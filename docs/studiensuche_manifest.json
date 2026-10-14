@@ -1,0 +1,340 @@
+[
+  {
+    "id": "informatik_ba",
+    "params": {
+      "sfe": "94116;93995",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/informatik_ba",
+    "status": "cached",
+    "pages": 37,
+    "items": 724,
+    "retrieved_utc": "2026-10-14T20:04:54+00:00",
+    "label": "Informatik (first degree)"
+  },
+  {
+    "id": "informatik_ma",
+    "params": {
+      "sfe": "94116;93995",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/informatik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:10:14+00:00",
+    "pages": 34,
+    "items": 664,
+    "label": "Informatik (further degree)"
+  },
+  {
+    "id": "wirtschaftsinformatik_ba",
+    "params": {
+      "sfe": "130048;130047",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/wirtschaftsinformatik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:10:44+00:00",
+    "pages": 12,
+    "items": 224,
+    "label": "Wirtschaftsinformatik (first degree)"
+  },
+  {
+    "id": "wirtschaftsinformatik_ma",
+    "params": {
+      "sfe": "130048;130047",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/wirtschaftsinformatik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:11:04+00:00",
+    "pages": 8,
+    "items": 145,
+    "label": "Wirtschaftsinformatik (further degree)"
+  },
+  {
+    "id": "elektro_informationstechnik_ba",
+    "params": {
+      "sfe": "93970;93853",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/elektro_informationstechnik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:11:51+00:00",
+    "pages": 19,
+    "items": 364,
+    "label": "Elektro- und Informationstechnik (first degree)"
+  },
+  {
+    "id": "elektro_informationstechnik_ma",
+    "params": {
+      "sfe": "93970;93853",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/elektro_informationstechnik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:12:26+00:00",
+    "pages": 14,
+    "items": 266,
+    "label": "Elektro- und Informationstechnik (further degree)"
+  },
+  {
+    "id": "automatisierung_produktion_ba",
+    "params": {
+      "sfe": "94030;93598",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/automatisierung_produktion_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:12:41+00:00",
+    "pages": 6,
+    "items": 102,
+    "label": "Automatisierungs-, Produktionstechnik (first degree)"
+  },
+  {
+    "id": "automatisierung_produktion_ma",
+    "params": {
+      "sfe": "94030;93598",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/automatisierung_produktion_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:12:51+00:00",
+    "pages": 4,
+    "items": 77,
+    "label": "Automatisierungs-, Produktionstechnik (further degree)"
+  },
+  {
+    "id": "energietechnik_ba",
+    "params": {
+      "sfe": "94362;94319",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/energietechnik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:13:14+00:00",
+    "pages": 9,
+    "items": 161,
+    "label": "Energietechnik, Energiemanagement (first degree)"
+  },
+  {
+    "id": "energietechnik_ma",
+    "params": {
+      "sfe": "94362;94319",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/energietechnik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:13:34+00:00",
+    "pages": 8,
+    "items": 148,
+    "label": "Energietechnik, Energiemanagement (further degree)"
+  },
+  {
+    "id": "mechatronik_mikro_opto_ba",
+    "params": {
+      "sfe": "93896;94237",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/mechatronik_mikro_opto_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:13:54+00:00",
+    "pages": 8,
+    "items": 157,
+    "label": "Mechatronik, Mikro- und Optotechnik (first degree)"
+  },
+  {
+    "id": "mechatronik_mikro_opto_ma",
+    "params": {
+      "sfe": "93896;94237",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/mechatronik_mikro_opto_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:14:12+00:00",
+    "pages": 7,
+    "items": 124,
+    "label": "Mechatronik, Mikro- und Optotechnik (further degree)"
+  },
+  {
+    "id": "medizintechnik_ba",
+    "params": {
+      "sfe": "93584;94187",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/medizintechnik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:14:25+00:00",
+    "pages": 5,
+    "items": 83,
+    "label": "Medizintechnik, Technisches Gesundheitswesen (first degree)"
+  },
+  {
+    "id": "medizintechnik_ma",
+    "params": {
+      "sfe": "93584;94187",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/medizintechnik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:14:32+00:00",
+    "pages": 3,
+    "items": 60,
+    "label": "Medizintechnik, Technisches Gesundheitswesen (further degree)"
+  },
+  {
+    "id": "medien_veranstaltungstechnik_ba",
+    "params": {
+      "sfe": "94145;94284",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/medien_veranstaltungstechnik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:14:38+00:00",
+    "pages": 2,
+    "items": 21,
+    "label": "Medien-, Veranstaltungstechnik (first degree)"
+  },
+  {
+    "id": "medien_veranstaltungstechnik_ma",
+    "params": {
+      "sfe": "94145;94284",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/medien_veranstaltungstechnik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:14:41+00:00",
+    "pages": 1,
+    "items": 18,
+    "label": "Medien-, Veranstaltungstechnik (further degree)"
+  },
+  {
+    "id": "kommunikation_medien_ba",
+    "params": {
+      "sfe": "93888;93821",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/kommunikation_medien_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:15:08+00:00",
+    "pages": 11,
+    "items": 220,
+    "label": "Kommunikation und Medien (first degree)"
+  },
+  {
+    "id": "kommunikation_medien_ma",
+    "params": {
+      "sfe": "93888;93821",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/kommunikation_medien_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:15:35+00:00",
+    "pages": 11,
+    "items": 215,
+    "label": "Kommunikation und Medien (further degree)"
+  },
+  {
+    "id": "gestaltung_design_ba",
+    "params": {
+      "sfe": "93733;94379",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/gestaltung_design_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:16:07+00:00",
+    "pages": 13,
+    "items": 255,
+    "label": "Gestaltung, Design (first degree)"
+  },
+  {
+    "id": "gestaltung_design_ma",
+    "params": {
+      "sfe": "93733;94379",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/gestaltung_design_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:16:27+00:00",
+    "pages": 8,
+    "items": 151,
+    "label": "Gestaltung, Design (further degree)"
+  },
+  {
+    "id": "mathematik_statistik_ba",
+    "params": {
+      "sfe": "94144;94403",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/mathematik_statistik_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:16:56+00:00",
+    "pages": 12,
+    "items": 240,
+    "label": "Mathematik, Statistik (first degree)"
+  },
+  {
+    "id": "mathematik_statistik_ma",
+    "params": {
+      "sfe": "94144;94403",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/mathematik_statistik_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:17:28+00:00",
+    "pages": 13,
+    "items": 250,
+    "label": "Mathematik, Statistik (further degree)"
+  },
+  {
+    "id": "technik_uebergreifend_ba",
+    "params": {
+      "sfe": "94307;93592",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/technik_uebergreifend_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:17:41+00:00",
+    "pages": 5,
+    "items": 93,
+    "label": "Technik, Ingenieurwissenschaften (übergreifend) (first degree)"
+  },
+  {
+    "id": "technik_uebergreifend_ma",
+    "params": {
+      "sfe": "94307;93592",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/technik_uebergreifend_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:17:53+00:00",
+    "pages": 5,
+    "items": 84,
+    "label": "Technik, Ingenieurwissenschaften (übergreifend) (further degree)"
+  },
+  {
+    "id": "wirtschaftsingenieurwesen_ba",
+    "params": {
+      "sfe": "93814;93581",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche/wirtschaftsingenieurwesen_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:18:33+00:00",
+    "pages": 16,
+    "items": 311,
+    "label": "Wirtschaftsingenieurwesen, Technologiemanagement (first degree)"
+  },
+  {
+    "id": "wirtschaftsingenieurwesen_ma",
+    "params": {
+      "sfe": "93814;93581",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche/wirtschaftsingenieurwesen_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T20:19:06+00:00",
+    "pages": 13,
+    "items": 251,
+    "label": "Wirtschaftsingenieurwesen, Technologiemanagement (further degree)"
+  }
+]
