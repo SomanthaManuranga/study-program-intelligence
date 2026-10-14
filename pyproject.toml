@@ -1,0 +1,25 @@
+[project]
+name = "study-program-intelligence"
+version = "0.1.0"
+description = "Reproducible analysis of new degree programme opportunities for OTH Amberg-Weiden"
+requires-python = ">=3.11"
+dependencies = [
+  "pandas>=2.2",
+  "duckdb>=1.0",
+  "statsmodels>=0.14",
+  "scikit-learn>=1.5",
+  "pyyaml>=6.0",
+  "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pandera>=0.20", "ruff>=0.5"]
+nlp = ["sentence-transformers>=3.0", "hdbscan>=0.8", "umap-learn>=0.5"]
+dashboard = ["streamlit>=1.37"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
