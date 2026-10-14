@@ -84,10 +84,10 @@ sources:
     url: https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Interaktive-Statistiken/Fachkraeftebedarf/Engpassanalyse-Nav.html
     table: interactive and download
     use: claim D, outlet (157 shortage occupations in 2025)
-    coverage: 2025
-    licence: TO_VERIFY
-    access: public
-    status: todo
+    coverage: 2025 (report published May 2026)
+    licence: free use of data and tables with citation; own calculations allowed if labelled; link to statistik.arbeitsagentur.de when published online
+    access: public; PDF via documents.yaml (mirror, title page checked)
+    status: downloaded
 
   - id: hrk_hochschulkompass
     owner: HRK
@@ -102,9 +102,39 @@ sources:
   - id: kmk_forecast_2024_2035
     owner: KMK
     url: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
-    table: scenario documents
+    table: Dokumentation Nr. 1 (Sept 2025), text and table annex
     use: supply scenarios (entrants up to 2035)
-    coverage: 2024-2035
+    coverage: actual 2017-2023, forecast 2024-2035; state-run universities
     licence: TO_VERIFY
-    access: public
-    status: todo
+    access: public; via documents.yaml
+    status: downloaded
+
+  - id: kmk_dok251_2025_2040
+    owner: KMK
+    url: https://www.kmk.org/downloads-dokumente/statistik/schulstatistik/vorausberechnung-der-schueler-und-absolventenzahlen.html
+    table: Dokumentation Nr. 251, text, national and state values
+    use: school leavers with university entrance qualification, Bavaria and Germany
+    coverage: actual 2024, forecast 2025-2040
+    licence: TO_VERIFY
+    access: public; via documents.yaml
+    status: downloaded
+
+  - id: hrk_statistik_ws_2025_26
+    owner: HRK
+    url: https://www.hrk.de/fileadmin/redaktion/hrk/02-Dokumente/02-03-Studium/02-03-01-Studium-Studienreform/HRK_Statistik_BA_MA_UEbrige_WiSe_2025_26.pdf
+    table: Statistiken zur Hochschulpolitik 1/2025
+    use: programme market overview
+    coverage: WS 2025/26 programmes; students to WS 2024/25
+    licence: reprint or use in electronic systems needs HRK written permission; cite figures only
+    access: public; via documents.yaml
+    status: downloaded
+
+  - id: ihf_bayern_ingenieurwiss_2025
+    owner: IHF Bayern
+    url: https://www.ihf.bayern.de/fileadmin/user_upload/IHF/Veranstaltungen/Workshop_Ingenieurwissenschaften_25/5_Falk___Lenz_Entwicklung_Ingenieurwiss_04072025.pdf
+    table: workshop slides, 4 Jul 2025
+    use: Bavarian HAW/TH entrant trends by engineering study area, 2005-2023
+    coverage: 2005-2023
+    licence: TO_VERIFY
+    access: public; via documents.yaml
+    status: downloaded
