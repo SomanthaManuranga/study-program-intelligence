@@ -218,3 +218,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+
+# ---- Project rules ----
+# Data: never commit downloads, scraped pages, or OTH internal data
+data/raw/
+data/interim/
+data/processed/
+*.csv
+*.parquet
+*.xlsx
+*.duckdb
+*.db
+*.html
+!docs/**/*.html
+
+# Secrets and credentials
+.env
+config.ini
+*.key
+
+# Dashboard files that may contain data
+*.pbix
+*.pbit
