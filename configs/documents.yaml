@@ -1,0 +1,64 @@
+# Public documents (PDF / XLSX) downloaded by:
+#   python -m study_program_intelligence.ingest.documents
+# Files land in data/raw/documents/ (not committed). A manifest with SHA-256
+# checksums and retrieval times is written to docs/download_manifest.json.
+#
+# Always cite the "owner", not a mirror.
+
+documents:
+  - id: kmk_studienanfaenger_2024_2035_text
+    owner: Kultusministerkonferenz (KMK)
+    title: Vorausberechnung der Studienanfaenger- und Studierendenzahlen 2024 bis 2035 (Dokumentation 1), text
+    url: https://www.kmk.org/fileadmin/Dateien/pdf/Statistik/Dokumentationen/2025-09-17_Text_VB_Studienanfaenger-Studierende_neueHP.pdf
+    page: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
+    use: supply scenarios for entrants (claim A)
+
+  - id: kmk_studienanfaenger_2024_2035_tables
+    owner: Kultusministerkonferenz (KMK)
+    title: Vorausberechnung der Studienanfaenger- und Studierendenzahlen 2024 bis 2035, table annex
+    url: https://www.kmk.org/fileadmin/Dateien/pdf/Statistik/Dokumentationen/2025-09-17_Tabellenanhang_neueHP.xlsx
+    page: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
+    use: supply scenarios, machine-readable
+
+  - id: kmk_dok251_schueler_2025_2040_text
+    owner: Kultusministerkonferenz (KMK)
+    title: Vorausberechnung der Zahl der Schueler/-innen und Absolvierenden 2025 bis 2040 (Dokumentation 251)
+    url: https://www.kmk.org/fileadmin/Dateien/pdf/Statistik/Dokumentationen/Dok_251_Vorausberechnung_Schueler_Abs_2025_2040.pdf
+    page: https://www.kmk.org/downloads-dokumente/statistik/schulstatistik/vorausberechnung-der-schueler-und-absolventenzahlen.html
+    use: school-leaver pool with university entrance qualification (bachelor demand)
+
+  - id: kmk_dok251_bundeswerte
+    owner: Kultusministerkonferenz (KMK)
+    title: Dokumentation 251, national values
+    url: https://www.kmk.org/fileadmin/Dateien/pdf/Statistik/Dokumentationen/SP2025_Bundeswerte.xlsx
+    page: https://www.kmk.org/downloads-dokumente/statistik/schulstatistik/vorausberechnung-der-schueler-und-absolventenzahlen.html
+    use: school-leaver forecast, Germany
+
+  - id: kmk_dok251_landeswerte
+    owner: Kultusministerkonferenz (KMK)
+    title: Dokumentation 251, state values
+    url: https://www.kmk.org/fileadmin/Dateien/pdf/Statistik/Dokumentationen/SP2025_Tabellenwerk.xlsx
+    page: https://www.kmk.org/downloads-dokumente/statistik/schulstatistik/vorausberechnung-der-schueler-und-absolventenzahlen.html
+    use: school-leaver forecast, Bavaria
+
+  - id: hrk_statistik_ws_2025_26
+    owner: Hochschulrektorenkonferenz (HRK)
+    title: Statistische Daten zu Studienangeboten an Hochschulen in Deutschland, Wintersemester 2025/2026
+    url: https://www.hrk.de/fileadmin/redaktion/hrk/02-Dokumente/02-03-Studium/02-03-01-Studium-Studienreform/HRK_Statistik_BA_MA_UEbrige_WiSe_2025_26.pdf
+    page: https://www.hrk.de/
+    use: market overview of programmes (competition)
+
+  - id: ihf_bayern_ingenieurwiss_2025
+    owner: Bayerisches Staatsinstitut fuer Hochschulforschung und Hochschulplanung (IHF)
+    title: Falk and Lenz, Entwicklung der Ingenieurwissenschaften (workshop slides, 4 Jul 2025)
+    url: https://www.ihf.bayern.de/fileadmin/user_upload/IHF/Veranstaltungen/Workshop_Ingenieurwissenschaften_25/5_Falk___Lenz_Entwicklung_Ingenieurwiss_04072025.pdf
+    page: https://www.ihf.bayern.de/
+    use: Bavarian engineering and computer science entrant trends
+
+  - id: ba_engpassanalyse_2025
+    owner: Statistik der Bundesagentur fuer Arbeit
+    title: Berichte Blickpunkt Arbeitsmarkt, Fachkraefteengpassanalyse 2025
+    url: https://www.frauundberuf-bw.de/fileadmin/FuB-contentbilder/themen/2025_BA-FK-Engpassanalyse.pdf
+    page: https://statistik.arbeitsagentur.de/DE/Statischer-Content/Statistiken/Themen-im-Fokus/Fachkraeftebedarf/Fachkraefteengpassanalyse/Fachkraefteengpassanalyse.html
+    mirror: true # the BA's own download sits behind a search form; check the PDF's title page says 2025 and cite the BA
+    use: outlet (claim D)
