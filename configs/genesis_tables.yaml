@@ -1,0 +1,54 @@
+# GENESIS tables downloaded by:
+#   python -m study_program_intelligence.ingest.genesis tables
+# Output: data/raw/destatis/<id>.csv (flat CSV, "ffcsv"), not committed.
+# Manifest: docs/genesis_manifest.json
+# Codes and coverage confirmed with the catalogue command on 14 Oct 2026.
+#
+# The API returns only the latest period unless startyear/endyear are sent.
+# The script requests startyear..endyear and halves the range automatically
+# when GENESIS answers "too large" (token logins cannot start background jobs).
+# State-by-subject tables are requested for Bavaria only (DLAND 09); national
+# figures come from the Germany-level tables.
+#
+# Definitions to keep apart:
+#   Studienanfaenger = 1st university semester (Hochschulsemester); most master
+#   starters are NOT included. Use students and graduates for the master side.
+# No public table crosses Studienfach with degree type (Bachelor/Master).
+
+defaults: &defaults
+  startyear: 2005
+  endyear: 2025
+
+tables:
+  # ---- first-year students (bachelor-level demand) ----
+  - {<<: *defaults, id: "21311-0012_DE", name: "21311-0012",
+     title: "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {<<: *defaults, id: "21311-0015_BY", name: "21311-0015",
+     params: {regionalvariable: DLAND, regionalkey: "09"},
+     title: "Studienanfaenger: Bundeslaender (Bayern), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {<<: *defaults, id: "21311-0013_DE", name: "21311-0013",
+     title: "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Angestrebte Abschlusspruefung"}
+
+  # ---- students (stock; includes master students) ----
+  - {<<: *defaults, id: "21311-0003_DE", name: "21311-0003",
+     title: "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {<<: *defaults, id: "21311-0006_BY", name: "21311-0006",
+     params: {regionalvariable: DLAND, regionalkey: "09"},
+     title: "Studierende: Bundeslaender (Bayern), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {<<: *defaults, id: "21311-0004_DE", name: "21311-0004",
+     title: "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Angestrebte Abschlusspruefung"}
+
+  # ---- institutions (capture: OTH and competitors) ----
+  - {<<: *defaults, id: "21311-0011_HS", name: "21311-0011",
+     title: "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"}
+  - {<<: *defaults, id: "21311-0002_HS", name: "21311-0002",
+     title: "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"}
+
+  # ---- graduates (master pipeline) ----
+  - {<<: *defaults, id: "21321-0003_DE", name: "21321-0003",
+     title: "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Studienfach"}
+  - {<<: *defaults, id: "21321-0006_BY", name: "21321-0006",
+     params: {regionalvariable: DLAND, regionalkey: "09"},
+     title: "Pruefungen: Bundeslaender (Bayern), Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Studienfach"}
+  - {<<: *defaults, id: "21321-0004_DE", name: "21321-0004",
+     title: "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Abgelegte Abschlusspruefung"}
