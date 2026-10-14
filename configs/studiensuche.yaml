@@ -1,0 +1,38 @@
+# Queries for the BA Studiensuche (Hochschulkompass data), all of Germany.
+# Study fields and their ids come from data/raw/studiensuche/studienfelder.json
+# (python -m study_program_intelligence.ingest.studiensuche fields, 14 Oct 2026).
+#
+# No "uk" parameter: without it the search covers all of Germany (uk=Bundesweit returns HTTP 400, probe 14 Oct 2026).
+# Each field is queried twice: st 0 = first degree (bachelor level),
+# st 1 = further degree (master level). sfe takes both dkzIds of the field.
+# Field choice: everything EMI could plausibly teach, plus neighbouring fields
+# (business informatics, mathematics/statistics, industrial engineering) so
+# that interdisciplinary competitors are not missed.
+
+queries:
+  - {id: informatik_ba, label: "Informatik (first degree)", field_key: "2509", params: {sfe: "94116;93995", st: 0}}
+  - {id: informatik_ma, label: "Informatik (further degree)", field_key: "2509", params: {sfe: "94116;93995", st: 1}}
+  - {id: wirtschaftsinformatik_ba, label: "Wirtschaftsinformatik (first degree)", field_key: "2928", params: {sfe: "130048;130047", st: 0}}
+  - {id: wirtschaftsinformatik_ma, label: "Wirtschaftsinformatik (further degree)", field_key: "2928", params: {sfe: "130048;130047", st: 1}}
+  - {id: elektro_informationstechnik_ba, label: "Elektro- und Informationstechnik (first degree)", field_key: "2307", params: {sfe: "93970;93853", st: 0}}
+  - {id: elektro_informationstechnik_ma, label: "Elektro- und Informationstechnik (further degree)", field_key: "2307", params: {sfe: "93970;93853", st: 1}}
+  - {id: automatisierung_produktion_ba, label: "Automatisierungs-, Produktionstechnik (first degree)", field_key: "2303", params: {sfe: "94030;93598", st: 0}}
+  - {id: automatisierung_produktion_ma, label: "Automatisierungs-, Produktionstechnik (further degree)", field_key: "2303", params: {sfe: "94030;93598", st: 1}}
+  - {id: energietechnik_ba, label: "Energietechnik, Energiemanagement (first degree)", field_key: "2309", params: {sfe: "94362;94319", st: 0}}
+  - {id: energietechnik_ma, label: "Energietechnik, Energiemanagement (further degree)", field_key: "2309", params: {sfe: "94362;94319", st: 1}}
+  - {id: mechatronik_mikro_opto_ba, label: "Mechatronik, Mikro- und Optotechnik (first degree)", field_key: "2321", params: {sfe: "93896;94237", st: 0}}
+  - {id: mechatronik_mikro_opto_ma, label: "Mechatronik, Mikro- und Optotechnik (further degree)", field_key: "2321", params: {sfe: "93896;94237", st: 1}}
+  - {id: medizintechnik_ba, label: "Medizintechnik, Technisches Gesundheitswesen (first degree)", field_key: "2325", params: {sfe: "93584;94187", st: 0}}
+  - {id: medizintechnik_ma, label: "Medizintechnik, Technisches Gesundheitswesen (further degree)", field_key: "2325", params: {sfe: "93584;94187", st: 1}}
+  - {id: medien_veranstaltungstechnik_ba, label: "Medien-, Veranstaltungstechnik (first degree)", field_key: "2323", params: {sfe: "94145;94284", st: 0}}
+  - {id: medien_veranstaltungstechnik_ma, label: "Medien-, Veranstaltungstechnik (further degree)", field_key: "2323", params: {sfe: "94145;94284", st: 1}}
+  - {id: kommunikation_medien_ba, label: "Kommunikation und Medien (first degree)", field_key: "3517", params: {sfe: "93888;93821", st: 0}}
+  - {id: kommunikation_medien_ma, label: "Kommunikation und Medien (further degree)", field_key: "3517", params: {sfe: "93888;93821", st: 1}}
+  - {id: gestaltung_design_ba, label: "Gestaltung, Design (first degree)", field_key: "3703", params: {sfe: "93733;94379", st: 0}}
+  - {id: gestaltung_design_ma, label: "Gestaltung, Design (further degree)", field_key: "3703", params: {sfe: "93733;94379", st: 1}}
+  - {id: mathematik_statistik_ba, label: "Mathematik, Statistik (first degree)", field_key: "2511", params: {sfe: "94144;94403", st: 0}}
+  - {id: mathematik_statistik_ma, label: "Mathematik, Statistik (further degree)", field_key: "2511", params: {sfe: "94144;94403", st: 1}}
+  - {id: technik_uebergreifend_ba, label: "Technik, Ingenieurwissenschaften (übergreifend) (first degree)", field_key: "2339", params: {sfe: "94307;93592", st: 0}}
+  - {id: technik_uebergreifend_ma, label: "Technik, Ingenieurwissenschaften (übergreifend) (further degree)", field_key: "2339", params: {sfe: "94307;93592", st: 1}}
+  - {id: wirtschaftsingenieurwesen_ba, label: "Wirtschaftsingenieurwesen, Technologiemanagement (first degree)", field_key: "2347", params: {sfe: "93814;93581", st: 0}}
+  - {id: wirtschaftsingenieurwesen_ma, label: "Wirtschaftsingenieurwesen, Technologiemanagement (further degree)", field_key: "2347", params: {sfe: "93814;93581", st: 1}}
