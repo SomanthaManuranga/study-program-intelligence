@@ -1,17 +1,89 @@
-sources:
-  - id: destatis_genesis_21311
-    owner: Destatis
-    url: https://www-genesis.destatis.de/
-    table: TO_VERIFY # record the exact table ID after checking in GENESIS
-    coverage: TO_VERIFY # years and dimensions
-    licence: Datenlizenz Deutschland, Namensnennung 2.0
-    access: registered web service
-    status: todo
+# Source register (machine-readable).
+# status values: todo -> candidate -> verified -> downloaded
+# "candidate" = code and title found by search on 14 Oct 2026; coverage and
+# dimensions still need checking inside GENESIS after login.
 
+sources:
+  # ---- Destatis GENESIS: student statistics (theme 21311) ----
+  - id: destatis_21311_0001
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/213*/table/21311-0001
+    table: "21311-0001 Studierende: Deutschland, Semester, Nationalitaet, Geschlecht"
+    use: national total of students (baseline for shares)
+    coverage: TO_VERIFY # first and last semester
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate
+
+  - id: destatis_21311_studienfach
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/url/d39d0f84
+    table: "21311-TO_VERIFY Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Studienfach"
+    use: claim A, demand by subject (students)
+    coverage: TO_VERIFY
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate # code not shown in search result; read it in GENESIS
+
+  - id: destatis_21311_0015
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/213*/table/21311-0015
+    table: "21311-0015 Studienanfaenger: Bundeslaender, Semester, Nationalitaet, Geschlecht, Studienfach"
+    use: claim A, first-year entrants by subject and state (main demand table)
+    coverage: TO_VERIFY
+    check: is "Studienanfaenger" 1. Hochschulsemester or 1. Fachsemester? Is there a degree-type (Bachelor/Master) breakdown?
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate
+
+  - id: destatis_21311_0011
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/21311/table/21311-0011
+    table: "21311-0011 Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"
+    use: claim B, entrants per institution (OTH and competitors)
+    coverage: TO_VERIFY
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate
+
+  - id: destatis_21311_hochschulen
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/url/9c97620f
+    table: "21311-TO_VERIFY Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"
+    use: claim B, students per institution
+    coverage: TO_VERIFY
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate # code not shown in search result; read it in GENESIS
+
+  - id: destatis_21311_degree_type
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/21311/details
+    table: TO_FIND # a 21311 table with angestrebte Abschlusspruefung (Bachelor/Master) by subject
+    use: separate bachelor and master demand
+    coverage: TO_VERIFY
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: todo # if none exists, fall back to the Fachserie / HRK statistics
+
+  # ---- Destatis GENESIS: examinations / graduates (theme 21321) ----
+  - id: destatis_21321_0007
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/213*/table/21321-0007
+    table: "21321-0007 Pruefungen an Hochschulen: Bundeslaender, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Abgelegte Abschlusspruefung"
+    use: master pipeline, bachelor graduates by state
+    coverage: TO_VERIFY
+    check: does it have a subject breakdown? If not, find the 21321 table with Studienfach.
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS web service, registration required
+    status: candidate
+
+  # ---- Other sources ----
   - id: ba_engpassanalyse_2025
     owner: Bundesagentur fuer Arbeit
     url: https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Interaktive-Statistiken/Fachkraeftebedarf/Engpassanalyse-Nav.html
     table: interactive and download
+    use: claim D, outlet (157 shortage occupations in 2025)
     coverage: 2025
     licence: TO_VERIFY
     access: public
@@ -21,6 +93,7 @@ sources:
     owner: HRK
     url: https://www.hochschulkompass.de/
     table: programme listing
+    use: competition and differentiation, all of Germany
     coverage: current
     licence: TO_VERIFY (check terms before any export)
     access: public website, manual or permitted export
@@ -30,6 +103,7 @@ sources:
     owner: KMK
     url: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
     table: scenario documents
+    use: supply scenarios (entrants up to 2035)
     coverage: 2024-2035
     licence: TO_VERIFY
     access: public
