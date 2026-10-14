@@ -1,0 +1,344 @@
+[
+  {
+    "id": "21311-0012_DE",
+    "name": "21311-0012",
+    "file": "data/raw/destatis/21311-0012_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:01:22+00:00",
+    "bytes": 13932722,
+    "rows": 56133,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "03ebbd6524c8ba90db7340a91be2b36fd42c8168bb0eb252e6d28c31f695d811",
+    "title": "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_BY",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_BY.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "09"
+    },
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:01:49+00:00",
+    "bytes": 13165083,
+    "rows": 56133,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "246656213372154e4972a33773ce4fa7472689d43151fe112dcdcede2f3ef124",
+    "title": "Studienanfaenger: Bundeslaender (Bayern), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0013_DE",
+    "name": "21311-0013",
+    "file": "data/raw/destatis/21311-0013_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:01:58+00:00",
+    "bytes": 5163460,
+    "rows": 19089,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "aa0dd78c835fd0bde647a43d12f5b87d0fa7cecfd1442f632a2935ff4a275145",
+    "title": "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Angestrebte Abschlusspruefung"
+  },
+  {
+    "id": "21311-0003_DE",
+    "name": "21311-0003",
+    "file": "data/raw/destatis/21311-0003_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:02:27+00:00",
+    "bytes": 13691211,
+    "rows": 56133,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "0a211c1985c354a9f06e7a25801c15141814b7490ebdfbc3d3fa78a2be3da2b8",
+    "title": "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0006_BY",
+    "name": "21311-0006",
+    "file": "data/raw/destatis/21311-0006_BY.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "09"
+    },
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:02:54+00:00",
+    "bytes": 12910360,
+    "rows": 56133,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "987f4282e7e54a2b3645cc9378f0fcc1eff17503785d06320f98b5aa16df121b",
+    "title": "Studierende: Bundeslaender (Bayern), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0004_DE",
+    "name": "21311-0004",
+    "file": "data/raw/destatis/21311-0004_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:03:03+00:00",
+    "bytes": 5083427,
+    "rows": 19089,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "e85df9f74c1362c5f10049348c5f0c60e56bdb89f6df9d498eed9e7b34ba77c9",
+    "title": "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Angestrebte Abschlusspruefung"
+  },
+  {
+    "id": "21311-0011_HS",
+    "name": "21311-0011",
+    "file": "data/raw/destatis/21311-0011_HS.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:05:11+00:00",
+    "bytes": 47434792,
+    "rows": 178038,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2007",
+        "status": "ok"
+      },
+      {
+        "years": "2008-2010",
+        "status": "ok"
+      },
+      {
+        "years": "2011-2013",
+        "status": "ok"
+      },
+      {
+        "years": "2014-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2018",
+        "status": "ok"
+      },
+      {
+        "years": "2019-2020",
+        "status": "ok"
+      },
+      {
+        "years": "2021-2023",
+        "status": "ok"
+      },
+      {
+        "years": "2024-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "326f7348869f36269b961ce09b4ec3c107e0691025997990bd7c55dce528bdd8",
+    "title": "Studienanfaenger: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"
+  },
+  {
+    "id": "21311-0002_HS",
+    "name": "21311-0002",
+    "file": "data/raw/destatis/21311-0002_HS.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:07:17+00:00",
+    "bytes": 46623377,
+    "rows": 178038,
+    "periods": 21,
+    "first_period": "2005-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2005-2007",
+        "status": "ok"
+      },
+      {
+        "years": "2008-2010",
+        "status": "ok"
+      },
+      {
+        "years": "2011-2013",
+        "status": "ok"
+      },
+      {
+        "years": "2014-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2018",
+        "status": "ok"
+      },
+      {
+        "years": "2019-2020",
+        "status": "ok"
+      },
+      {
+        "years": "2021-2023",
+        "status": "ok"
+      },
+      {
+        "years": "2024-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "d403c814e28e60658fe91fb74ce32f3ba51da44ffa516b7f27639350fc918cb7",
+    "title": "Studierende: Deutschland, Semester, Nationalitaet, Geschlecht, Hochschulen"
+  },
+  {
+    "id": "21321-0003_DE",
+    "name": "21321-0003",
+    "file": "data/raw/destatis/21321-0003_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:07:39+00:00",
+    "bytes": 14395526,
+    "rows": 49896,
+    "periods": 21,
+    "first_period": "2005",
+    "last_period": "2025",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "7a98972f3d878eaabeeeec12ae9efc7c4bfe1fb80e97e9d0cdd0a6d6e859864e",
+    "title": "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Studienfach"
+  },
+  {
+    "id": "21321-0006_BY",
+    "name": "21321-0006",
+    "file": "data/raw/destatis/21321-0006_BY.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "09"
+    },
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:08:01+00:00",
+    "bytes": 13729636,
+    "rows": 49896,
+    "periods": 21,
+    "first_period": "2005",
+    "last_period": "2025",
+    "requests": [
+      {
+        "years": "2005-2015",
+        "status": "ok"
+      },
+      {
+        "years": "2016-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "d4a1a63df564b20ba05e78cadb4401cc67e2eeb6614b55e9536aad6b0ca9f7b2",
+    "title": "Pruefungen: Bundeslaender (Bayern), Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Studienfach"
+  },
+  {
+    "id": "21321-0004_DE",
+    "name": "21321-0004",
+    "file": "data/raw/destatis/21321-0004_DE.csv",
+    "format": "ffcsv",
+    "params": {},
+    "years_requested": "2005-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-14T19:08:09+00:00",
+    "bytes": 5245389,
+    "rows": 16968,
+    "periods": 21,
+    "first_period": "2005",
+    "last_period": "2025",
+    "requests": [
+      {
+        "years": "2005-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "e70edca7b55ede5dc1eef709e9f1f4bc3db20d9c1fb30c0256264295bd16c409",
+    "title": "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Abgelegte Abschlusspruefung"
+  }
+]
