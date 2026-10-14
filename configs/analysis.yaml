@@ -1,0 +1,14 @@
+weights:
+  student_demand: 0.30 # includes the new-to-OTH share
+  labour_relevance: 0.20
+  institutional_fit: 0.20
+  feasibility: 0.15 # also a hard gate: a rating of 1 blocks recommendation
+  differentiation: 0.10
+  regional_contribution: 0.05
+
+monte_carlo:
+  draws: 10000
+  dirichlet_concentration: 50 # higher means samples stay closer to the base weights
+  seed: 42
+
+scenarios: [conservative, base, upside]

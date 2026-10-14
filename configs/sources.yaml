@@ -1,0 +1,36 @@
+sources:
+  - id: destatis_genesis_21311
+    owner: Destatis
+    url: https://www-genesis.destatis.de/
+    table: TO_VERIFY # record the exact table ID after checking in GENESIS
+    coverage: TO_VERIFY # years and dimensions
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: registered web service
+    status: todo
+
+  - id: ba_engpassanalyse_2025
+    owner: Bundesagentur fuer Arbeit
+    url: https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Interaktive-Statistiken/Fachkraeftebedarf/Engpassanalyse-Nav.html
+    table: interactive and download
+    coverage: 2025
+    licence: TO_VERIFY
+    access: public
+    status: todo
+
+  - id: hrk_hochschulkompass
+    owner: HRK
+    url: https://www.hochschulkompass.de/
+    table: programme listing
+    coverage: current
+    licence: TO_VERIFY (check terms before any export)
+    access: public website, manual or permitted export
+    status: todo
+
+  - id: kmk_forecast_2024_2035
+    owner: KMK
+    url: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
+    table: scenario documents
+    coverage: 2024-2035
+    licence: TO_VERIFY
+    access: public
+    status: todo
