@@ -38,3 +38,14 @@ Decision: retrieve programme listings from the Bundesagentur fuer Arbeit study s
 Reason: structured, complete programme data; the API has no published terms of use, which the team accepts for this academic project.
 Safeguards: programme data only (no personal data), 2-second delay between requests, raw replies cached and not redistributed, source cited as Hochschulkompass via BA Studiensuche with retrieval date.
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-15: Catalogue coverage
+Decision: use the hand-curated EMI portfolio (configs/oth_portfolio.yaml, from the EMI faculty page) for all overlap checks.
+Reason: 2 of 14 active EMI programmes (AI for Industrial Applications M.Sc., KI International B.Sc.) are not listed in Hochschulkompass/Studiensuche; an institution-only API query is rejected (HTTP 400).
+Consequence: the national competitor catalogue may also miss very new programmes elsewhere; stated as a limitation.
+Decided by: team.
+
+## 2026-10-15: Kill rule 1 applied
+Decision: drop embedded/cyber-physical master (88 % of core topics already in IT und Automation) and the part-time AI master (already offered by AI for Industrial Applications). Keep cybersecurity bachelor and master; keep robotics + AI bachelor as comparison case (50 %, at threshold).
+Evidence: docs/overlap_test.md, configs/overlap_test.yaml.
+Decided by: team.
