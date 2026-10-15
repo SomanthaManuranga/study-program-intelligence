@@ -1,0 +1,81 @@
+# EMI faculty portfolio (Elektrotechnik, Medien und Informatik), curated by hand.
+# Source: https://www.oth-aw.de/hochschule/fakultaeten/elektrotechnik-medien-informatik/unsere-studienangebote/
+# Retrieved: 2026-10-15. Bachelor: 7 semesters incl. practical semester. Master: 3 semesters, 90 ECTS.
+# focus = "Schwerpunkte" as listed in the Hochschulkompass/Studiensuche entry (14 Oct 2026),
+#         or specialisations named on the OTH page. Used for the overlap test (kill rule 1).
+# in_catalogue = found in data/processed/programmes.csv (13-field harvest of 14 Oct 2026 plus name searches of 15 Oct 2026).
+# Coverage: 12 of 14 active EMI programmes are listed in Hochschulkompass/Studiensuche; the two new/international ones are not
+# (Ingenieurpaedagogik, phasing out, is not listed either).
+
+faculty: EMI
+programmes:
+  # ---- bachelor ----
+  - name: Digital Design
+    degree: B.A.
+    status: new
+    in_catalogue: true
+    focus: [Audioproduktion, Audiovisuelle Medien, Digitale Bildbearbeitung, KI und Medien, Typografie und Layout, Visual Computing]
+  - name: Elektro- und Informationstechnik
+    degree: B.Eng.
+    specialisations: [Automatisierung und Energietechnik, Informations- und Kommunikationstechnik]
+    in_catalogue: true
+    focus: [Angewandte Systemtechnik, Digitaltechnik, Elektrische Energietechnik, Elektrische Messtechnik, Elektro- und Automatisierungstechnik, Embedded Systems]
+  - name: Geoinformatik und Landmanagement
+    degree: B.Eng.
+    specialisations: [Geodaesie und Landmanagement, Geoinformatik]
+    in_catalogue: true    # found by name search oth_check_geoinformatik (15 Oct 2026)
+  - name: Industrie-4.0-Informatik
+    degree: B.Eng.
+    in_catalogue: true
+    focus: [Cyberphysische Systeme, Data Analytics, Informationssicherheit, Mobile and Ubiquitous Computing, Prozesskommunikation und Industrial Ethernet]
+  - name: Kuenstliche Intelligenz
+    degree: B.Sc.
+    specialisations: [Data Analytics & Computer Vision, Smart Energy & Smart Home, Smart Robotics & Smart Media]
+    in_catalogue: true
+    focus: [Computer Vision, Data Analytics, Smart Energy, Smart Home, Smart Media, Smart Robotics]
+  - name: Kuenstliche Intelligenz - International
+    degree: B.Sc.
+    in_catalogue: false   # name search returned 0 offers (15 Oct 2026): not listed in Hochschulkompass/Studiensuche
+  - name: Medieninformatik
+    degree: B.Eng.
+    in_catalogue: true
+    focus: [Data Analytics, Informationssicherheit, Mediengestaltung und Informationsvisualisierung, Mensch-Computer-Interaktion, Mobile and Ubiquitous Computing]
+  - name: Medienproduktion und Medientechnik
+    degree: B.Eng.
+    in_catalogue: true
+    focus: [3D-Bilderstellung, Audio- und Videotechnik, Computergrafik und -animation, Content-Entwicklung, Digitale Bildbearbeitung, Mediengestaltung]
+  - name: Ingenieurpaedagogik
+    degree: B.Eng.
+    status: phasing out
+    in_catalogue: false
+
+  # ---- master ----
+  - name: Applied Research in Engineering Sciences
+    degree: M.Sc.
+    in_catalogue: true
+  - name: Artificial Intelligence for Industrial Applications
+    degree: M.Sc.
+    status: new
+    language: English
+    in_catalogue: false   # name search returned 0 offers (15 Oct 2026): not listed in Hochschulkompass/Studiensuche
+  - name: Educational Technology
+    degree: M.Eng.
+    in_catalogue: true
+  - name: IT und Automation
+    degree: M.Eng.
+    in_catalogue: true
+    focus: [Antriebsregelung und Aktorik, Digitale Signalverarbeitung und Uebertragungstechnik, Echtzeitsysteme, Elektrische Automatisierung, Industrielle Informatik]
+  - name: Kuenstliche Intelligenz
+    degree: M.Sc.
+    in_catalogue: true
+  - name: Medientechnik und Medienproduktion
+    degree: M.Eng.
+    specialisations: [Medienproduktion, Medieninformatik]
+    in_catalogue: true
+
+# Overlap signals for the shortlist (to be tested with module handbooks, kill rule 1):
+overlap_signals:
+  cybersecurity: [Industrie-4.0-Informatik (Informationssicherheit), Medieninformatik (Informationssicherheit)]
+  embedded_cps: [Elektro- und Informationstechnik (Embedded Systems), Industrie-4.0-Informatik (Cyberphysische Systeme), IT und Automation (Echtzeitsysteme)]
+  robotics_ai: [Kuenstliche Intelligenz B.Sc. (Smart Robotics & Smart Media)]
+  ai_parttime_master: [Kuenstliche Intelligenz M.Sc., Artificial Intelligence for Industrial Applications M.Sc.]

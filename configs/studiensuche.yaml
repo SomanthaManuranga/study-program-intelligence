@@ -36,3 +36,11 @@ queries:
   - {id: technik_uebergreifend_ma, label: "Technik, Ingenieurwissenschaften (übergreifend) (further degree)", field_key: "2339", params: {sfe: "94307;93592", st: 1}}
   - {id: wirtschaftsingenieurwesen_ba, label: "Wirtschaftsingenieurwesen, Technologiemanagement (first degree)", field_key: "2347", params: {sfe: "93814;93581", st: 0}}
   - {id: wirtschaftsingenieurwesen_ma, label: "Wirtschaftsingenieurwesen, Technologiemanagement (further degree)", field_key: "2347", params: {sfe: "93814;93581", st: 1}}
+
+  # ---- coverage check: OTH programmes missing from the 13-field harvest ----
+  # The API rejects an institution-only query (san without sw/sfe: HTTP 400, 15 Oct 2026),
+  # so the missing EMI programmes are searched by name. field_key OTH keeps them out of
+  # the per-field counts; the parser flags OTH offers via the institution name.
+  - {id: oth_check_aiia, label: "OTH check: AI for Industrial Applications", field_key: "OTH", params: {sw: "Artificial Intelligence for Industrial Applications"}}
+  - {id: oth_check_ki_international, label: "OTH check: KI International", field_key: "OTH", params: {sw: "Künstliche Intelligenz International"}}
+  - {id: oth_check_geoinformatik, label: "OTH check: Geoinformatik", field_key: "OTH", params: {sw: "Geoinformatik"}}
