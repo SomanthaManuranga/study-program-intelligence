@@ -1,0 +1,29 @@
+# Job-ad counts from the BA Jobsuche (claim D: graduate outlet).
+#   python -m study_program_intelligence.ingest.jobsuche snapshot
+# Counts are point-in-time; run the snapshot again on later dates to build a time series.
+# endpoint: set from the probe result (python -m study_program_intelligence.ingest.jobsuche probe).
+
+endpoint: /pc/v6/jobs   # probe 15 Oct 2026: v4 and v4/app return 403, v6 returns 200 with maxErgebnisse
+
+regions:
+  - {id: germany}
+  - {id: bayern, wo: Bayern}
+  - {id: amberg_50km, wo: Amberg, umkreis: 50}
+  - {id: amberg_100km, wo: Amberg, umkreis: 100}
+
+keywords:
+  # ---- candidate: cybersecurity ----
+  - {id: cyber_security, was: "Cyber Security", group: cybersecurity}
+  - {id: it_sicherheit, was: "IT-Sicherheit", group: cybersecurity}
+  - {id: informationssicherheit, was: "Informationssicherheit", group: cybersecurity}
+  - {id: security_engineer, was: "Security Engineer", group: cybersecurity}
+  - {id: ot_security, was: "OT Security", group: cybersecurity}
+  # ---- comparison case: robotics ----
+  - {id: robotik, was: "Robotik", group: robotics}
+  # ---- baselines (computer science and neighbours) ----
+  - {id: informatiker, was: "Informatiker", group: baseline}
+  - {id: softwareentwickler, was: "Softwareentwickler", group: baseline}
+  - {id: kuenstliche_intelligenz, was: "Künstliche Intelligenz", group: baseline}
+  - {id: data_scientist, was: "Data Scientist", group: baseline}
+  - {id: embedded, was: "Embedded", group: baseline}
+  - {id: elektroingenieur, was: "Elektroingenieur", group: baseline}
