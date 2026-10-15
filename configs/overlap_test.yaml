@@ -1,0 +1,78 @@
+# Kill rule 1 (overlap) for the shortlisted candidates. Applied 15 Oct 2026.
+# Rule (docs/kill_rules.md): drop a candidate if MORE than 50 % of its core topics are already
+# taught in ONE OTH programme at the same level.
+#
+# core_topics: specialised topics, derived from the "Schwerpunkte" lists of competitor programmes
+#   with a matching title (data/processed/programmes.csv, title rule in analysis/themes.py).
+#   freq = how many competitor programmes list the topic (synonyms merged, e.g. "IT-Sicherheit" + "Informationssicherheit"). Generic computer-science
+#   basics (programming, mathematics, "Informatik") are excluded: every programme shares them.
+# coverage: EMI module that covers the topic (module handbooks in data/raw/oth modules/), or null.
+#   C = compulsory, E = elective.
+
+candidates:
+  cybersecurity_ba:
+    competitors: "34 bachelor programmes in Germany, 23 with focus lists"
+    compare_with: Industrie-4.0-Informatik (B.Eng.)   # closest EMI bachelor; handbook WS 2026/27
+    core_topics:
+      it_information_security: {freq: 12, coverage: "Informationssicherheit (E)"}
+      cryptography:            {freq: 6,  coverage: "Grundlagen der Codierungstheorie und Kryptologie (C)"}
+      network_security:        {freq: 4,  coverage: null}
+      data_protection:         {freq: 4,  coverage: null}
+      digital_forensics:       {freq: 3,  coverage: null}
+      security_management_isms: {freq: 4, coverage: null}     # incl. ISO 27001
+      malware_cybercrime:      {freq: 4,  coverage: null}
+      system_security_engineering: {freq: 3, coverage: null}
+    covered: 2
+    total: 8
+
+  cybersecurity_ma:
+    competitors: "36 master programmes in Germany, 23 with focus lists"
+    compare_with: IT und Automation (M.Eng.)          # handbook WS 2024/25 (rev. 2025)
+    core_topics:
+      information_security:    {freq: 5, coverage: "Grundlagen der Informationssicherheit und Funktionalen Sicherheit (C)"}
+      cryptography:            {freq: 4, coverage: "Moderne Anwendungen der Kryptographie (E)"}
+      system_security:         {freq: 3, coverage: "Cybersicherheit (E)"}
+      embedded_hardware_security: {freq: 5, coverage: null}
+      mobile_security:         {freq: 3, coverage: null}
+      data_protection:         {freq: 2, coverage: null}
+      security_management_isms: {freq: 2, coverage: null}
+      forensics_cybercrime:    {freq: 3, coverage: null}
+    covered: 3
+    total: 8
+    note: "Master KI (M.Sc.) covers the same three (KI Sicherheit, Cybersicherheit, Kryptographie as electives)."
+
+  robotics_ai_ba:
+    competitors: "24 bachelor programmes in Germany, 16 with focus lists"
+    compare_with: Kuenstliche Intelligenz (B.Sc.)     # handbook SPO-2026
+    core_topics:
+      robotics_industrial_robots: {freq: 10, coverage: "Robotics Starter (C), Grundlagen der Robotik (C)"}
+      autonomous_mobile_robots:   {freq: 2,  coverage: "Autonome Mobile Systeme (specialisation)"}
+      ml_ai_for_robotics:         {freq: 6,  coverage: "Machine Learning 1/2 (C), Maschinelles Lernen in der Robotik"}
+      electronics_cps:            {freq: 6,  coverage: "Elektrotechnik & Cyber-Physische Systeme (C)"}
+      automation_plc:             {freq: 7,  coverage: null}
+      control_motion:             {freq: 5,  coverage: null}
+      embedded_microcontrollers:  {freq: 4,  coverage: null}
+      mechatronics_mechanics:     {freq: 4,  coverage: null}
+    covered: 4
+    total: 8
+    note: "Mechatronik und digitale Automation (B.Eng., other faculty) covers automation, control and mechanics; OTH-wide coverage is 7 of 8."
+
+  embedded_cps_ma:
+    competitors: "16 master programmes in Germany, 8 with focus lists"
+    compare_with: IT und Automation (M.Eng.)
+    core_topics:
+      digital_system_design_soc: {freq: 3, coverage: "Digitaler Systementwurf (C, track Elektrotechnik)"}
+      embedded_realtime_software: {freq: 3, coverage: "real-time content in IT und Automation modules (7 mentions)"}
+      industrial_communication_iiot: {freq: 2, coverage: "Industrielle Kommunikationssysteme (C)"}
+      safety_security:          {freq: 2, coverage: "Grundlagen der Informationssicherheit und Funktionalen Sicherheit (C)"}
+      model_based_development:  {freq: 2, coverage: "Modellbasierte Entwicklung (C)"}
+      control:                  {freq: 2, coverage: "Digitale Regelungstechnik (E)"}
+      edge_ml:                  {freq: 1, coverage: "Eingebettete Intelligenz (E)"}
+      hardware_design_pcb:      {freq: 2, coverage: null}
+    covered: 7
+    total: 8
+
+  ai_parttime_ma:
+    compare_with: Artificial Intelligence for Industrial Applications (M.Sc.)
+    note: "Handbook WS 2023/24 contains a full part-time curriculum. The candidate already exists."
+    covered: identical
