@@ -3,11 +3,11 @@
 Source: Hochschulkompass data via BA Studiensuche API; raw pages in data/raw/studiensuche/ (local).
 Built by `python -m study_program_intelligence.transform.programmes`.
 
-- Listings retrieved: 5,408
-- Unique programme offers: 4,840
-- Institutions: 277
-- With coordinates: 4,840
-- OTH Amberg-Weiden offers in the catalogue: 24
+- Listings retrieved: 5,445
+- Unique programme offers: 4,875
+- Institutions: 278
+- With coordinates: 4,875
+- OTH Amberg-Weiden offers in the catalogue: 25 (of which found only by the all-OTH query: 35)
 
 ## Offers by study field and level
 
@@ -29,4 +29,4 @@ Built by `python -m study_program_intelligence.transform.programmes`.
 
 ## Offers within 100 km of an OTH campus
 
-289 offers at 16 institutions.
+291 offers at 16 institutions.

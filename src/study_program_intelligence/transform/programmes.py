@@ -100,6 +100,11 @@ def parse_item(item: dict) -> dict:
     return row
 
 
+def _level(st) -> str:
+    """0 = first degree (bachelor level), 1 = further degree (master level)."""
+    return {0: "first degree", 1: "further degree"}.get(st, "other")
+
+
 def build() -> tuple[pd.DataFrame, pd.DataFrame]:
     queries = {q["id"]: q for q in yaml.safe_load(CONFIG.read_text(encoding="utf-8"))["queries"]}
     rows, links = [], []
@@ -114,7 +119,7 @@ def build() -> tuple[pd.DataFrame, pd.DataFrame]:
                     "query_id": qid,
                     "field_key": q.get("field_key"),
                     "field_label": q.get("label", "").split(" (")[0],
-                    "level": "first degree" if q["params"].get("st") == 0 else "further degree",
+                    "level": _level(q["params"].get("st", row["study_type_id"])),
                 })
     progs = pd.DataFrame(rows).drop_duplicates("programme_id").reset_index(drop=True)
     fields = pd.DataFrame(links).drop_duplicates().reset_index(drop=True)
@@ -122,6 +127,12 @@ def build() -> tuple[pd.DataFrame, pd.DataFrame]:
     progs = progs.merge(n_fields, on="programme_id", how="left")
     progs["is_oth"] = progs["institution"].fillna("").str.contains("Amberg-Weiden", case=False)
     return progs, fields
+
+
+def _only_oth(fields: pd.DataFrame) -> int:
+    in_fields = set(fields.loc[fields["field_key"] != "OTH", "programme_id"])
+    oth = set(fields.loc[fields["field_key"] == "OTH", "programme_id"])
+    return len(oth - in_fields)
 
 
 def summary(progs: pd.DataFrame, fields: pd.DataFrame, listings: int) -> str:
@@ -135,14 +146,16 @@ def summary(progs: pd.DataFrame, fields: pd.DataFrame, listings: int) -> str:
         f"- Unique programme offers: {len(progs):,}",
         f"- Institutions: {progs['institution'].nunique():,}",
         f"- With coordinates: {progs['lat'].notna().sum():,}",
-        f"- OTH Amberg-Weiden offers in the catalogue: {int(progs['is_oth'].sum())}",
+        f"- OTH Amberg-Weiden offers in the catalogue: {int(progs['is_oth'].sum())}"
+        f" (of which found only by the all-OTH query: {_only_oth(fields)})",
         "",
         "## Offers by study field and level",
         "",
         "| Study field | First degree | Further degree |",
         "| --- | --- | --- |",
     ]
-    pivot = fields.pivot_table(index="field_label", columns="level", values="programme_id", aggfunc="nunique", fill_value=0)
+    by_field = fields[fields["field_key"] != "OTH"]  # the OTH coverage query is not a study field
+    pivot = by_field.pivot_table(index="field_label", columns="level", values="programme_id", aggfunc="nunique", fill_value=0)
     for field, r in pivot.sort_values("first degree", ascending=False).iterrows():
         lines.append(f"| {field} | {r.get('first degree', 0)} | {r.get('further degree', 0)} |")
     lines += ["", "## Offers within 100 km of an OTH campus", ""]

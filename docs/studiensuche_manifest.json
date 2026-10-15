@@ -336,5 +336,47 @@
     "pages": 13,
     "items": 251,
     "label": "Wirtschaftsingenieurwesen, Technologiemanagement (further degree)"
+  },
+  {
+    "id": "oth_all",
+    "status": "error",
+    "error": "studienangebote {'san': 26224, 'pg': 1}: HTTP 400 {\"detailMessage\":\"Siehe Log-Eintrag 'ODpC5'\",\"httpStatus\":\"400 BAD_REQUEST\",\"logref\":\"ODpC5\",\"message\":\"EINGABEPARAMETER_FEHLERHAFT\"}",
+    "label": "OTH Amberg-Weiden (all offers)"
+  },
+  {
+    "id": "oth_check_aiia",
+    "params": {
+      "sw": "Artificial Intelligence for Industrial Applications"
+    },
+    "folder": "data/raw/studiensuche/oth_check_aiia",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-15T18:36:50+00:00",
+    "pages": 0,
+    "items": 0,
+    "label": "OTH check: AI for Industrial Applications"
+  },
+  {
+    "id": "oth_check_ki_international",
+    "params": {
+      "sw": "Künstliche Intelligenz International"
+    },
+    "folder": "data/raw/studiensuche/oth_check_ki_international",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-15T18:36:50+00:00",
+    "pages": 0,
+    "items": 0,
+    "label": "OTH check: KI International"
+  },
+  {
+    "id": "oth_check_geoinformatik",
+    "params": {
+      "sw": "Geoinformatik"
+    },
+    "folder": "data/raw/studiensuche/oth_check_geoinformatik",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-15T18:36:55+00:00",
+    "pages": 2,
+    "items": 37,
+    "label": "OTH check: Geoinformatik"
   }
 ]
