@@ -1,8 +1,5 @@
 """Module gap analysis: competitor cybersecurity modules vs EMI modules (Step 41).
 
-WORK IN PROGRESS (paused 17 Oct 2026): main() only prints calibration statistics so far. The title-based
-calibration below does not separate positives from random pairs; see CLAUDE.md "Where we stopped".
-
 Run from the repository root:
 
     python -m study_program_intelligence.analysis.module_gaps
@@ -14,21 +11,28 @@ Method (decision log 2026-10-17)
   (maths, programming, systems, soft skills, ...) and "frame" (thesis, internship, placeholder
   electives), which is left out of the coverage shares.
 - Similarity 1: intfloat/multilingual-e5-base, "query: " prefix (symmetric task), 200-word chunks,
-  mean of the normalised chunk embeddings. Similarity 2 (cross-check): word TF-IDF (1-2 grams).
+  mean of the normalised chunk embeddings, then centred PER HANDBOOK (each handbook's mean subtracted,
+  re-normalised): raw e5 cosines are compressed (unrelated pairs ~0.9) and each handbook has a house style
+  (template sentences); best-match AUC on the reference set 0.65 raw-centred -> 0.72 per-handbook.
+  Similarity 2 (cross-check, independent of the model): character 3-5-gram TF-IDF.
 - Comparison: competitor bachelor modules vs EMI bachelor modules; competitor master modules vs
   EMI bachelor and master modules. A module is "covered" if its best EMI match >= threshold.
-- Thresholds: calibrated per method on a reference set (competitor/EMI pairs with near-identical
-  titles = positives; random competitor/EMI pairs = negatives; Youden's J).
-- CyBOK 1.1 knowledge areas assigned to security modules by embedding similarity to short area
-  descriptions; OT/industrial flag by keywords.
+- Thresholds: calibrated per method on a topic reference set: competitor/EMI pairs whose titles share
+  a topic group (TOPICS) = positives, pairs with topics but none shared = negatives; Youden's J.
+  Validated by a 20-pair hand check (10 near the threshold, 5 clearly covered, 5 clearly gap).
+- Headline: ECTS-weighted share of each competitor programme's security (and general) ECTS that EMI
+  covers; "typical" = median over the competitor bachelors (4) / masters (3). Missing ECTS = 5.
+- CyBOK 1.1 knowledge areas assigned to security modules by ordered title rules (CYBOK_TITLE), else the
+  OT flag -> Cyber-Physical Systems Security, else embedding similarity to short area descriptions.
+  Two transparent pseudo-areas: "AI & security", "Broad / introductory security"; penetration testing and
+  auditing kept as a practice area. OT/industrial flag: OT keyword in the title or >= 3 hits in the text. Aalen and Mannheim (names only) are reported as
+  indicative, title-based, outside the headline.
 Outputs: data/interim/module_scores.csv, reports/module_gaps.md, reports/module_gaps_check.md.
 """
 
 from __future__ import annotations
 
-import difflib
 import hashlib
-import json
 import re
 from pathlib import Path
 
@@ -53,8 +57,10 @@ EMI_MA = ["oth_ma_ki", "oth_ma_ita", "oth_ma_aiia"]
 
 CONTENT_START = re.compile(r"\b(Lerninhalte|Lehrinhalte|Inhalte?|Contents?|Lernziele|Lernergebnisse|Qualifikationsziele|"
                            r"Learning [Oo]utcomes|Kompetenzen|Modulziele)\b:?")
-LITERATURE = re.compile(r"\b(Literatur(hinweise|liste|empfehlungen)?|Empfohlene Literatur|Literature|Recommended (reading|literature)|"
-                        r"Reading list|Lehr- und Lernmaterialien)\b:?")
+# A literature section heading, not the word in running text ("... der englischsprachigen Literatur ..."):
+# no lowercase word directly before it.
+LITERATURE = re.compile(r"(?<![a-zäöüß] )(?<![a-zäöüß]-)\b(Literatur(hinweise|liste|empfehlungen|verzeichnis)?|Empfohlene Literatur|"
+                        r"Literature|Recommended (reading|literature)|Reading list)\b:?")
 SEC = re.compile(r"secur|sicherheit|sichere[nrs]?\b|krypt|crypt|forensi|penetration|pentest|hacking|hacker|angriff|attack|malware|"
                  r"incident|intrusion|privacy|datenschutz|threat|bedrohung|vulnerab|schwachstell|exploit|firewall|authenti|"
                  r"zugriffskontrolle|access control|cyber(?!-?physi)|siem\b|\bsoc\b|resilien|abwehr|defen[cs]e|steganograph|"
@@ -62,7 +68,7 @@ SEC = re.compile(r"secur|sicherheit|sichere[nrs]?\b|krypt|crypt|forensi|penetrat
 FRAME = re.compile(r"bachelorarbeit|masterarbeit|bachelor'?s? thesis|master'?s? thesis|\bthesis\b|masterthesis|bachelormodul|"
                    r"kolloquium|praxis(modul|phase|semester|seminar)|praktikum \(|praktisches studiensemester|internship|"
                    r"praxissemester|einführungsprojekt|allgemeines wahlpflichtmodul|studiengangsspezifische wahlpflichtmodule|"
-                   r"wahlpflichtmodul projekt|vertiefungsmodul \d|praxisseminar|seminar bachelorarbeit|masterseminar|"
+                   r"wahlpflichtmodul projekt|wahlpflicht(modul|fach) \d|vertiefungsmodul \d|praxisseminar|seminar bachelorarbeit|masterseminar|"
                    r"^\s*(\[[^\]]*\]\s*)?(fw|sw|aw|kv)\d", re.I)
 OT = re.compile(r"\bOT\b|operational technology|industrial (control|security|automation|communication|internet|network)|"
                 r"industrielle[nr]? (kommunikation|netz|automati|steuerung|sicherheit|informationstechn)|\bICS\b|SCADA|\bSPS\b|\bPLC\b|"
@@ -142,24 +148,12 @@ def embed(texts: list[str]) -> np.ndarray:
     return np.vstack([np.load(CACHE / f"{k}.npy") for k in keys])
 
 
-STOP = ("der die das und in zu den von mit für im ist sind des dem ein eine einer eines auf als auch an bei werden wird "
-        "können kann sowie oder nach über durch zur zum aus wie sie es sich nicht dieser diese dieses studierenden "
-        "modul moduls module the and of to in for a an is are on with by as be can or this that students student "
-        "lernen kennen verstehen grundlagen basics fachkompetenz methodenkompetenz sozialkompetenz kompetenzen "
-        "lernziele learning outcomes inhalte content contents nach erfolgreichen absolvieren verfügen über folgenden").split()
-
-
-def tfidf_matrix(texts: list[str]) -> np.ndarray:
+def tfidf_matrix(texts: list[str]):
+    """Character 3-5-gram TF-IDF (within word boundaries): robust to German compounds ("Netzwerksicherheit" vs
+    "Netzsicherheit"). Chosen over word 1-2-grams by best-match AUC on the reference set (0.75 vs 0.67)."""
     from sklearn.feature_extraction.text import TfidfVectorizer
-    v = TfidfVectorizer(lowercase=True, stop_words=STOP, ngram_range=(1, 2), min_df=2, max_df=0.4, sublinear_tf=True,
-                        token_pattern=r"(?u)\b[a-zäöüß][a-zäöüß0-9\-]{2,}\b")
-    x = v.fit_transform(texts)
-    return x
-
-
-def key_title(t: str) -> str:
-    t = re.sub(r"^\[[^\]]*\]\s*|^[BM]-CY-\d+\s+|\(.*?\)", " ", t.lower())
-    return re.sub(r"[^a-zäöüß0-9]+", " ", t).strip()
+    v = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), lowercase=True, min_df=2, max_df=0.3, sublinear_tf=True)
+    return v.fit_transform(texts)
 
 
 def load() -> pd.DataFrame:
@@ -168,7 +162,7 @@ def load() -> pd.DataFrame:
     d["clean"] = [clean(t if isinstance(t, str) else "", ti) for t, ti in zip(d["text"], d["title"])]
     d.loc[d["names_only"], "clean"] = d.loc[d["names_only"], "title"].map(lambda t: re.sub(r"^\d{5}\s+", "", t))
     d["category"] = [category(ti, c) for ti, c in zip(d["title"], d["clean"])]
-    d["ot"] = d["clean"].map(lambda c: len(OT.findall(c))) >= 2
+    d["ot"] = d["clean"].map(lambda c: len(OT.findall(c))) >= 3
     d.loc[d["title"].str.contains(OT), "ot"] = True
     d["ects_used"] = pd.to_numeric(d["ects"], errors="coerce")
     d["ects_imputed"] = d["ects_used"].isna()
@@ -176,40 +170,306 @@ def load() -> pd.DataFrame:
     d["side"] = np.where(d["programme_id"].str.startswith("oth_"), "emi", "competitor")
     return d.reset_index(drop=True)
 
+# Topic groups for the calibration reference set (title level). A pair is a positive if both titles share a group.
+TOPICS = {
+    "mathematics": r"mathemati|lineare algebra|diskrete mathematik|\banalysis\b|algebra\b",
+    "statistics": r"statisti|stochasti|wahrscheinlichkeit",
+    "programming": r"programmier|programming|programmieren|\bpython\b|c\+\+|\bjava\b",
+    "algorithms": r"algorithm",
+    "databases": r"datenbank|database",
+    "operating systems": r"betriebssystem|operating system",
+    "networks": r"rechnernetz|computernetz|kommunikationsnetz|netzwerke\b|networks?\b(?!.*secur)|internettechnolog|internet technolog",
+    "software engineering": r"software.?engineering|softwaretechnik|softwareentwicklung",
+    "theory": r"theoretische informatik|formale sprachen|automatentheorie",
+    "web": r"webtechnolog|web.?technolog|web-?anwendung|webentwicklung|web.?engineering|web.?programm",
+    "ai/ml": r"machine learning|maschinelles lernen|künstliche intelligenz|artificial intelligence|deep learning|neuronale",
+    "data": r"data analytics|data science|big data|data engineering|data mining",
+    "cryptography": r"krypto|crypto",
+    "network security": r"netz(werk)?sicherheit|network security|netzwerk.?sicherheit",
+    "security basics": r"grundlagen der (it-|informations)?sicherheit|einführung in die it-sicherheit|security fundamentals|"
+                       r"introduction to (it |cyber )?security|grundlagen cyber security|informationssicherheit\b",
+    "law/privacy": r"\brecht|\blaw\b|datenschutz|privacy|legal",
+    "project management": r"projektmanagement|project management",
+    "cloud": r"\bcloud",
+    "embedded/iot": r"embedded|eingebettet|\biot\b|internet of things|cyber-?physi",
+    "computer architecture": r"digitaltechnik|digitale systeme|rechnerarchitektur|computer architecture|technische informatik",
+    "quantum": r"quantum|quanten",
+    "forensics": r"forensi",
+    "soft skills": r"englisch|english|präsentation|schlüsselqualifikation|soft.?skills|\bethik|ethics|wissenschaftliches arbeiten",
+    "business": r"betriebswirtschaft|\bbwl\b|business (administration|model)|unternehmensgründung|entrepreneurship",
+}
+
+
+def topics(title: str) -> set[str]:
+    t = title.lower()
+    return {k for k, p in TOPICS.items() if re.search(p, t)}
+
+
+def centre(e: np.ndarray, groups: pd.Series | None = None) -> np.ndarray:
+    """Subtract the mean embedding (per group if given, e.g. per handbook: removes each handbook's house style)."""
+    c = e.copy()
+    if groups is None:
+        c -= c.mean(axis=0)
+    else:
+        for g in pd.unique(groups):
+            m = (groups == g).to_numpy()
+            c[m] -= c[m].mean(axis=0)
+    return c / np.linalg.norm(c, axis=1, keepdims=True)
+
+
+def youden(pos: np.ndarray, neg: np.ndarray) -> tuple[float, float, float, float]:
+    """Threshold maximising TPR - FPR; returns (threshold, tpr, fpr, auc)."""
+    from sklearn.metrics import roc_auc_score, roc_curve
+    y = np.r_[np.ones(len(pos)), np.zeros(len(neg))]
+    s = np.r_[pos, neg]
+    fpr, tpr, thr = roc_curve(y, s)
+    k = int(np.argmax(tpr - fpr))
+    return float(thr[k]), float(tpr[k]), float(fpr[k]), float(roc_auc_score(y, s))
+
+
+def comparison_set(d: pd.DataFrame, level: str) -> np.ndarray:
+    pids = EMI_BA if level == "BA" else EMI_BA + EMI_MA
+    return d.index[d["programme_id"].isin(pids) & (d["category"] != "frame")].to_numpy()
+
+
+def best_matches(d: pd.DataFrame, sims: dict[str, np.ndarray], rows: np.ndarray) -> pd.DataFrame:
+    out = []
+    for i in rows:
+        cand = comparison_set(d, d.at[i, "level"])
+        rec = {"row": i}
+        for name, s in sims.items():
+            k = cand[int(np.argmax(s[i, cand]))]
+            rec[f"{name}_score"], rec[f"{name}_match"] = float(s[i, k]), int(k)
+        out.append(rec)
+    return pd.DataFrame(out).set_index("row")
+
+
+# Title rules for CyBOK areas, most specific first. Two transparent pseudo-areas: "AI & security" and
+# "Broad / introductory security" (fundamentals, seminars, projects spanning several areas).
+CYBOK_TITLE = [
+    ("Forensics", r"forensi"),
+    ("Penetration Testing & Auditing (not a CyBOK area; practice)", r"penetration|pentest|hacking|audit"),
+    ("Security Operations & Incident Management", r"incident|monitoring|intrusion|\bsoc\b|siem|security operations|secure operations|"
+                                                  r"detection|cyber defen[cs]e|abwehr"),
+    ("Malware & Attack Technologies", r"malware|exploit|reverse engineering|angriff|attack"),
+    ("Distributed Systems Security", r"blockchain|ledger|kryptowähr|cloud"),
+    ("Cryptography", r"krypt|crypt"),
+    ("Hardware Security", r"hardware"),
+    ("Cyber-Physical Systems Security", r"industrial|industrie|ot security|cyber-?physi|\biot\b|automotive|fahrzeug"),
+    ("Software Security", r"sichere programmierung|softwaresicherheit|software security|secure coding|systemnahe programmierung|"
+                          r"security testing|anwendungssicherheit|application security"),
+    ("Secure Software Lifecycle", r"security engineering|security architektur|threat model|product development|requirements engineering|secure design|devsecops"),
+    ("Web & Mobile Security", r"\bweb|mobile[rn]?\b|\bapp\b|smartphone"),
+    ("Law & Regulation", r"recht|\blaw\b|legal"),
+    ("Privacy & Online Rights", r"privacy|datenschutz|anonym"),
+    ("Network Security", r"netz|network|protokoll|internetkommunikation"),
+    ("Operating Systems & Virtualisation Security", r"systemsicherheit|system security|secure systems|härtung|hardening|betriebssystem|virtuali"),
+    ("Authentication, Authorisation & Accountability", r"authenti|identity|identität|access control|zugriffs"),
+    ("Human Factors", r"human|social engineering|awareness|ethik|ethics|gesellschaft"),
+    ("Adversarial Behaviours", r"osint|open source intelligence|spionage|cybercrime|threat intelligence|kriminal"),
+    ("Risk Management & Governance", r"management|governance|grc|risiko|risk|isms|\bism\b|grundschutz|maturity|reifegrad|compliance|"
+                                     r"standards|\bbcm\b"),
+    ("AI & security (not a CyBOK area)", r"künstliche[nr]? intelligenz|maschinelles lernen|machine learning|\bki\b|\bai\b"),
+    ("Broad / introductory security (spans several areas)", r"grundlagen|fundamentals|einführung|introduction|basics|seminar|projekt|project|"
+                                                            r"aktuelle themen|informationssicherheit|cybersicherheit|it-sicherheit|cyber security"),
+]
+
+
+def assign_cybok(d: pd.DataFrame, emb_c: np.ndarray, rows: np.ndarray) -> pd.DataFrame:
+    """CyBOK area per security module: title rule, else OT flag -> CPS, else embedding similarity (fallback)."""
+    fallback = _cybok_embedding(emb_c, rows)
+    out = []
+    for i in rows:
+        t = re.sub(r"^\[[^\]]*\]\s*|^[BM]-CY-\d+\s+|^\d{5}\s+", "", d.at[i, "title"]).lower()
+        hit = next((ka for ka, pat in CYBOK_TITLE if re.search(pat, t)), None)
+        if hit:
+            out.append((hit, "title rule"))
+        elif d.at[i, "ot"]:
+            out.append(("Cyber-Physical Systems Security", "OT flag"))
+        else:
+            out.append((fallback[i], "embedding"))
+    return pd.DataFrame(out, index=rows, columns=["cybok", "cybok_how"])
+
+
+def _cybok_embedding(emb_c: np.ndarray, rows: np.ndarray) -> pd.Series:
+    names = list(CYBOK)
+    ka = centre(embed([f"{n}: {CYBOK[n]}" for n in names]))  # area descriptions centred as their own group
+    s = emb_c[rows] @ ka.T
+    return pd.Series([names[int(k)] for k in s.argmax(axis=1)], index=rows)
+
+
+def coverage_table(d: pd.DataFrame, flag: str) -> pd.DataFrame:
+    """ECTS-weighted coverage per competitor programme and category."""
+    rows = []
+    for pid in COMPETITOR_BA + COMPETITOR_MA:
+        p = d[(d["programme_id"] == pid) & (d["category"] != "frame")]
+        rec = {"programme": pid, "level": "BA" if pid in COMPETITOR_BA else "MA"}
+        for cat in ("security", "general"):
+            c = p[p["category"] == cat]
+            rec[f"{cat} ECTS"] = c["ects_used"].sum()
+            rec[f"{cat} covered %"] = round(c.loc[c[flag], "ects_used"].sum() / max(c["ects_used"].sum(), 1) * 100, 1)
+        a = p
+        rec["all covered %"] = round(a.loc[a[flag], "ects_used"].sum() / max(a["ects_used"].sum(), 1) * 100, 1)
+        rows.append(rec)
+    return pd.DataFrame(rows)
+
+
+def _md(df: pd.DataFrame) -> str:
+    cols = [str(c) for c in df.columns]
+    out = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    out += ["| " + " | ".join(str(v).replace("|", "/").replace("\n", " ") for v in r) + " |" for r in df.itertuples(index=False)]
+    return "\n".join(out)
+
+
+# Standard opening phrases (for the hand-check display only): skipped so the excerpt starts with the topic.
+INTRO = re.compile(r"^(.*?\.\s*)?(Lernziele\s*/\s*Qualifikationen des Moduls|Qualifikationsziele des Moduls|Lernergebnisse( des Moduls)?:?|"
+                   r"Lerninhalte:|Inhalte?)?\s*(Learning Outcomes)?\s*(Nach dem erfolgreiche[nm] Absolvieren des Moduls verfügen die "
+                   r"Studierenden über die folgenden [^:]*:)?\s*(•\s*)?(Fachkompetenz:?)?\s*", re.S)
+
+
+def excerpt(clean_text: str, n: int = 300) -> str:
+    title, _, body = clean_text.partition(". ")
+    return INTRO.sub("", body, count=1)[:n]
+
+
+def short(t: str, n: int) -> str:
+    t = re.sub(r"^\[[^\]]*\]\s*|^[BM]-CY-\d+\s+", "", str(t))
+    return t if len(t) <= n else t[: n - 1] + "…"
+
 
 def main() -> None:
     d = load()
-    emb = embed(d["clean"].tolist())
+    raw = embed(d["clean"].tolist())
+    emb = centre(raw, d["source_file"])
     tf = tfidf_matrix(d["clean"].tolist())
-    np.save(REPO_ROOT / "data" / "interim" / "module_emb.npy", emb)
-    sims = {"emb": emb @ emb.T, "tfidf": (tf @ tf.T).toarray()}
-    comp = d.index[d["side"] == "competitor"]
-    emi = d.index[d["side"] == "emi"]
+    sims = {"e5": emb @ emb.T, "tfidf": (tf @ tf.T).toarray()}
+
+    # --- calibration on the topic reference set (modules with text, frame excluded) ---
+    comp_txt = d.index[(d["side"] == "competitor") & ~d["names_only"] & (d["category"] != "frame")]
+    emi_txt = d.index[(d["side"] == "emi") & (d["category"] != "frame")]
+    # The decision uses the BEST of many EMI candidates, so calibrate on best-match scores, not single pairs:
+    # per competitor module, best score among same-topic EMI modules (positive) vs among other-topic ones (negative).
+    tp = d["title"].map(topics)
     pos, neg = [], []
-    rng = np.random.default_rng(SEED)
-    kt = d["title"].map(key_title)
-    for i in comp:
-        if d.at[i, "names_only"]:
-            continue
-        for j in emi:
-            r = difflib.SequenceMatcher(None, kt[i], kt[j]).ratio()
-            if r >= 0.9 and len(kt[i]) >= 6:
-                pos.append((i, j))
-    pairs = set(pos)
-    comp_text = [i for i in comp if not d.at[i, "names_only"]]
-    while len(neg) < 3000:
-        i, j = int(rng.choice(comp_text)), int(rng.choice(emi))
-        if (i, j) not in pairs:
-            neg.append((i, j))
-    out = {}
+    calib = {}
     for name, s in sims.items():
-        ps = np.array([s[i, j] for i, j in pos])
-        ns = np.array([s[i, j] for i, j in neg])
-        out[name] = {"pos_n": len(ps), "pos_q": np.quantile(ps, [0.05, 0.25, 0.5]).round(3).tolist(),
-                     "neg_q": np.quantile(ns, [0.5, 0.95, 0.99]).round(3).tolist()}
-    print(json.dumps(out, indent=1))
-    print("categories:", d.groupby(["side", "category"]).size().to_dict())
-    print("positives sample:", [(d.at[i, "title"][:30], d.at[j, "title"][:30]) for i, j in pos[:12]])
+        ps, ns = [], []
+        for i in comp_txt:
+            if not tp[i]:
+                continue
+            cand = comparison_set(d, d.at[i, "level"])
+            same = [j for j in cand if tp[j] and tp[i] & tp[j]]
+            other = [j for j in cand if tp[j] and not tp[i] & tp[j]]
+            if same:
+                ps.append(s[i, same].max())
+            if other:
+                ns.append(s[i, other].max())
+        calib[name] = youden(np.array(ps), np.array(ns))
+        pos, neg = ps, ns
+    tau = {k: v[0] for k, v in calib.items()}
+
+    # --- best EMI match for every competitor module ---
+    comp = d.index[(d["side"] == "competitor") & (d["category"] != "frame")].to_numpy()
+    bm = best_matches(d, sims, comp)
+    d = d.join(bm)
+    for name in sims:
+        d[f"{name}_covered"] = d[f"{name}_score"] >= tau[name]
+    sec = d.index[(d["category"] == "security")].to_numpy()
+    ka = assign_cybok(d, emb, sec)
+    d.loc[sec, "cybok"], d.loc[sec, "cybok_how"] = ka["cybok"], ka["cybok_how"]
+
+    # incrementality: coverage by the two EMI programmes with an Informationssicherheit focus
+    iimi = d.index[d["programme_id"].isin(["oth_ba_ii", "oth_ba_mi"]) & (d["category"] != "frame")].to_numpy()
+    d.loc[comp, "e5_iimi_score"] = sims["e5"][np.ix_(comp, iimi)].max(axis=1)
+    d["e5_iimi_covered"] = d["e5_iimi_score"] >= tau["e5"]
+
+    SCORES.parent.mkdir(parents=True, exist_ok=True)
+    keep = ["programme_id", "level", "title", "category", "ects", "ects_used", "ects_imputed", "ot", "cybok", "cybok_how", "names_only",
+            "e5_score", "e5_match", "e5_covered", "tfidf_score", "tfidf_match", "tfidf_covered", "e5_iimi_score", "e5_iimi_covered",
+            "source_file", "page"]
+    d[keep].to_csv(SCORES, index_label="row")
+
+    text_rows = d.loc[comp][~d.loc[comp, "names_only"]]
+    agree = (text_rows["e5_covered"] == text_rows["tfidf_covered"]).mean()
+
+    cov_e5, cov_tf = coverage_table(d, "e5_covered"), coverage_table(d, "tfidf_covered")
+    cov_iimi = coverage_table(d, "e5_iimi_covered")
+    head = []
+    for lv in ("BA", "MA"):
+        for cat in ("security", "general"):
+            head.append({"competitor level": lv, "modules": cat,
+                         "EMI covers (e5), median %": cov_e5.loc[cov_e5.level == lv, f"{cat} covered %"].median(),
+                         "range %": f"{cov_e5.loc[cov_e5.level == lv, f'{cat} covered %'].min()}-{cov_e5.loc[cov_e5.level == lv, f'{cat} covered %'].max()}",
+                         "TF-IDF, median %": cov_tf.loc[cov_tf.level == lv, f"{cat} covered %"].median(),
+                         "Industrie-4.0-Inf. + Medieninf. only (e5), median %": cov_iimi.loc[cov_iimi.level == lv, f"{cat} covered %"].median()})
+    head = pd.DataFrame(head)
+
+    # --- CyBOK table (security modules with text, competitors) ---
+    cs = d.loc[sec][(d.loc[sec, "side"] == "competitor")]
+    cs_txt = cs[~cs["names_only"]]
+    emi_sec = d.loc[sec][d.loc[sec, "side"] == "emi"]
+    ka_rows = []
+    for ka, g in cs_txt.groupby("cybok"):
+        ects_prog = g.groupby("programme_id")["ects_used"].sum()
+        gaps = g[~g["e5_covered"]]
+        ka_rows.append({"CyBOK knowledge area": ka, "competitor programmes (of 7)": g["programme_id"].nunique(),
+                        "modules": len(g), "median ECTS per programme": ects_prog.median(),
+                        "covered by EMI (e5) %": round(g.loc[g["e5_covered"], "ects_used"].sum() / g["ects_used"].sum() * 100),
+                        "OT/industrial modules": int(g["ot"].sum()),
+                        "EMI security modules in this area": "; ".join(short(t, 40) for t in emi_sec.loc[emi_sec["cybok"] == ka, "title"]) or "-",
+                        "example gaps": "; ".join(f"{short(t, 45)} ({p.split('_')[0].upper()})" for t, p in zip(gaps["title"][:3], gaps["programme_id"][:3])) or "-"})
+    ka_tab = pd.DataFrame(ka_rows).sort_values(["competitor programmes (of 7)", "median ECTS per programme"], ascending=False)
+    ot = cs_txt[cs_txt["ot"]][["programme_id", "title", "ects_used", "cybok", "e5_covered"]]
+    title_only = d.loc[comp][d.loc[comp, "names_only"]][["programme_id", "title", "category", "ot", "cybok", "e5_covered"]]
+    dis = text_rows[text_rows["e5_covered"] != text_rows["tfidf_covered"]]
+    dis_tab = pd.DataFrame({"programme": dis["programme_id"], "module": dis["title"].map(lambda t: short(t, 60)), "category": dis["category"],
+                            "e5": dis["e5_covered"].map({True: "covered", False: "gap"}), "e5 score": dis["e5_score"].round(3),
+                            "TF-IDF": dis["tfidf_covered"].map({True: "covered", False: "gap"}), "TF-IDF score": dis["tfidf_score"].round(3),
+                            "best EMI match (e5)": [short(d.at[int(k), "title"], 45) for k in dis["e5_match"]]})
+
+    cal = pd.DataFrame([{"method": k, "threshold": round(v[0], 3), "TPR": round(v[1], 2), "FPR": round(v[2], 2), "AUC": round(v[3], 3)}
+                        for k, v in calib.items()])
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text("\n".join([
+        "# Module gap analysis (generated)", "",
+        f"Competitor modules compared: {len(comp)} (frame modules excluded; {int(d.loc[comp, 'names_only'].sum())} names-only). "
+        f"Calibration (best-match level): {len(pos)} competitor modules with a same-topic EMI module, {len(neg)} with an other-topic one.", "",
+        "## Calibration", "", _md(cal), "",
+        f"Agreement e5 vs TF-IDF on covered/gap (modules with text): {agree * 100:.1f} % ({len(text_rows)} modules).", "",
+        "## Headline: ECTS-weighted coverage", "", _md(head), "",
+        "### Per competitor programme (e5)", "", _md(cov_e5), "", "### Per competitor programme (TF-IDF)", "", _md(cov_tf), "",
+        "## Gaps by CyBOK knowledge area (competitor security modules with text)", "", _md(ka_tab), "",
+        "## OT/industrial security modules (competitors)", "", _md(ot), "",
+        "## Names-only programmes (indicative, title-based)", "", _md(title_only), "",
+        "## Disagreements e5 vs TF-IDF", "", _md(dis_tab), ""]), encoding="utf-8")
+
+    # --- 20-pair check: 10 near the threshold, 5 clearly covered, 5 clearly gap (e5) ---
+    pool = text_rows.assign(dist=(text_rows["e5_score"] - tau["e5"]).abs())
+    near = pool.nsmallest(10, "dist")
+    rest = pool.drop(near.index)
+    hi, lo = rest.nlargest(5, "e5_score"), rest.nsmallest(5, "e5_score")
+    rows = []
+    for grp, part in (("near threshold", near), ("clearly covered", hi), ("clearly gap", lo)):
+        for i, r in part.iterrows():
+            j = int(r["e5_match"])
+            t_pair = float(sims["tfidf"][i, j])  # TF-IDF verdict on the SAME pair, so one hand label grades both methods
+            rows.append({"#": len(rows) + 1, "group": grp, "e5 score": round(r["e5_score"], 3), "e5 says": "covered" if r["e5_covered"] else "gap",
+                         "TF-IDF score (same pair)": round(t_pair, 3), "TF-IDF says": "covered" if t_pair >= tau["tfidf"] else "gap",
+                         "competitor module": f"{short(r['title'], 70)} ({r['programme_id']}, {Path(r['source_file']).name} p{int(r['page'])})",
+                         "competitor ECTS": d.at[i, "ects"] if pd.notna(d.at[i, "ects"]) else "-",
+                         "competitor text (first 300)": excerpt(d.at[i, "clean"]),
+                         "best EMI module": f"{short(d.at[j, 'title'], 70)} ({d.at[j, 'programme_id']}, {Path(d.at[j, 'source_file']).name} p{int(d.at[j, 'page'])})",
+                         "EMI ECTS": d.at[j, "ects"] if pd.notna(d.at[j, "ects"]) else "-",
+                         "EMI text (first 300)": excerpt(d.at[j, "clean"])})
+    CHECK.write_text("\n".join([
+        "# Step 41 check: 20 competitor/EMI pairs (generated)", "",
+        f"Thresholds: e5 {tau['e5']:.3f}, TF-IDF {tau['tfidf']:.3f}. For each pair: does the EMI module really cover "
+        "the competitor module's topic? (yes/no)", "",
+        _md(pd.DataFrame(rows)), ""]), encoding="utf-8")
+    print(cal.to_string(index=False))
+    print(f"agreement {agree * 100:.1f} % | modules with same-topic best match {len(pos)}, other-topic {len(neg)}")
+    print(head.to_string(index=False))
+    print(f"Written: {SCORES.relative_to(REPO_ROOT)}, {REPORT.relative_to(REPO_ROOT)}, {CHECK.relative_to(REPO_ROOT)}")
 
 
 if __name__ == "__main__":
