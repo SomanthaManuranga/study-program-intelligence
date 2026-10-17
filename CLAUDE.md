@@ -25,8 +25,35 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 41: module gap analysis with embeddings + TF-IDF cross-check (Next steps item 1, part 2). Status: open.
-Last finished: Step 40, module table from all handbooks (2026-10-17): 382 modules, spot check 10/10.
+Step 41: module gap analysis with embeddings + TF-IDF cross-check (Next steps item 1, part 2). Status: open
+(started, paused). Last finished: Step 40, module table from all handbooks (2026-10-17): 382 modules, spot check 10/10.
+Agreed plan (Soma, 17 Oct 2026):
+- Input: data/interim/modules.csv; text = content + learning outcomes (form fields, literature removed), title in front.
+- Embeddings: paraphrase-multilingual-MiniLM-L12-v2 truncates at ~128 tokens, so either chunk each module text
+  (~100 words, average the chunk embeddings) or use intfloat/multilingual-e5-base (512 tokens, "query:"/"passage:"
+  prefixes). State the choice in docs/decision_log.md.
+- Cross-check: TF-IDF comparison, so the result does not depend on one model; report agreement, list disagreements.
+- Report security-specific modules separately from general foundations (maths, programming, soft skills), so the
+  general ones do not inflate coverage. Thesis/internship/placeholder electives ("frame") left out.
+- Headline = ECTS-weighted: share of a typical competitor cyber bachelor's / master's ECTS that EMI already covers.
+  Bachelors vs EMI bachelors; masters vs EMI bachelors + masters.
+- Group gaps by CyBOK knowledge areas (Cyber Security Body of Knowledge), plus an OT/industrial security flag.
+- Soma's check: 20 pairs = 10 near the threshold, 5 clearly covered, 5 clearly gap, English side-by-side table
+  (both titles, ECTS, first 300 characters of text, PDF pages).
+- Done when: embeddings and TF-IDF agree on >= 80 % of covered/gap labels (disagreements listed), >= 16 of 20 pairs
+  confirm the threshold, gap table by CyBOK area in docs/evidence_fit_modules.md.
+
+## Where we stopped (17 Oct 2026)
+- Last finished: Step 40. Next: Step 41 (plan above). Everything committed and pushed.
+- Half-done in Step 41: installed torch (CPU) + sentence-transformers; downloaded intfloat/multilingual-e5-base.
+  Draft analysis/module_gaps.py (WIP, not reviewed): text cleaning, categories (security/general/frame), e5 with
+  200-word chunks + mean, TF-IDF, title-based calibration. Embedding cache in data/interim/embeddings_e5/ (ignored).
+- First finding from the draft (not yet a result): the title-based calibration does NOT work. e5 scores are
+  compressed (positives median 0.941 vs random pairs 95th percentile 0.942), and "near-identical title" positives
+  include wrong pairs (Mathematik 1 vs Mathematik 3). TF-IDF overlaps too. Needs a better calibration set
+  (e.g. hand-labelled pairs or within-programme hard negatives) before any threshold is fixed. Also: only 10 EMI
+  modules count as security-specific.
+- Open choice to confirm: e5-base (chosen in the draft) vs chunked MiniLM at ~100 words.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
