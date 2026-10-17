@@ -19,9 +19,8 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 39: competitor module handbooks for the cyber shortlist (Next steps item 1). Status: open;
-7 of 11 downloaded, 1 not published; 3 open in docs/manual_downloads.md (Mannheim, Aalen, THI CSE mirror).
-Last finished: Step 38, hand-labelled precision check of the theme rules (2026-10-17).
+Step 40: module gap analysis, competitors vs EMI modules (Next steps item 1). Status: open.
+Last finished: Step 39, competitor module handbooks (2026-10-17): 7 handbooks, 2 module lists, 2 none published.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -59,6 +58,8 @@ Forecasts validated with rolling-origin backtests (MASE).
   (proposed by Claude, reviewed by Soma); score -> reports/theme_check.md, docs/theme_precision.md
 - ingest/documents.py --config configs/competitor_modules.yaml (Step 39): competitor module handbooks
   -> data/raw/competitor modules/, docs/competitor_modules_manifest.json; manual ones in docs/manual_downloads.md
+- transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page
+  -> data/raw/competitor modules/thm_ma_technische_informatik_modules.csv (handbook PDF blocked by robots.txt)
 
 ## Findings so far
 - Informatik is the only growing EMI field (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since 2023).
@@ -78,8 +79,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Competitor module handbooks for the shortlist -> NLP/embedding gap analysis vs EMI modules
-   (incl. OTH's Informationssicherheit focus in Medieninformatik and Industrie-4.0-Informatik).
+1. Module gap analysis: competitor modules (data/raw/competitor modules/) vs EMI modules (data/raw/oth modules/),
+   NLP/embeddings; incl. OTH's Informationssicherheit focus in Medieninformatik and Industrie-4.0-Informatik.
+   Note: HS Aalen has a compulsory-elective "Industrial Security / OT Security" (25612), the only one found so far.
 2. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
 3. 4-6 international benchmark programmes.
 4. Forecasting with backtests; MCDA + Monte Carlo.
