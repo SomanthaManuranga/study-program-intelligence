@@ -42,8 +42,8 @@ Phase 2 (evidence) complete (Steps 37-45). Phase 3 (modelling) plan, in order:
   configs/analysis.yaml, Dirichlet draws (10,000, concentration 50, seed 42), feasibility gate, leave-one-criterion-out.
   Done when: rank probabilities, sensitivity table and an evidence-strength matrix (robotics marked where evidence is
   thinner) in docs/evidence_ranking.md.
-Current: Step 47 (capture model). Status: open. Last finished: Step 46, demand forecast (2026-10-17):
-docs/evidence_forecast.md.
+Current: Step 48 (cannibalisation). Status: open. Last finished: Step 47, capture model (2026-10-17):
+docs/evidence_capture.md.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -124,6 +124,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   topic). Draft OTH cyber B.Sc.: 7 sem/210 ECTS, 75 security ECTS (36 %), 45 new + 10 teaching assignments.
 - Forecast (Step 46): Bavaria cyber-proxy first-years 4,936 (2024) -> central ~5,540 (2030), ~6,220 (2035);
   conservative (KMK, constant share) 5,057 / 5,519; drift best model (MASE 1.0-1.9 vs naive 2.5-3.5).
+- Capture (Step 47): OTH Cyber B.Sc. first-years low 21 / central 39 / high 75 (year 1: 12 / 24 / 45); anchored on
+  THI capacity 25 and an anecdotal Deggendorf ~60; relative capture stable (0.65-0.86 x THI). Min. cohort 20 is
+  an assumption (no rule found). Real THI/DEG intakes would halve the range.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).

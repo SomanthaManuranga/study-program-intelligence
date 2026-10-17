@@ -169,3 +169,11 @@ sources:
     access: public pages/PDFs via ingest/documents.py; Turku UAS skipped (robots.txt); manifest docs/benchmark_manifest.json
     status: downloaded
 
+  - id: by_studierende_hochschulen
+    owner: Bayerisches Landesamt für Statistik
+    url: https://statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/b3120c_202400.pdf
+    table: "Studierende an den Hochschulen in Bayern WS 2024/25 (B III 1-2 j 2024): Tabelle 3.1 (by subject group and HEI), Tabelle 5 (by HEI and Bezirk of entrance qualification)"
+    use: capture-model calibration (Step 47)
+    access: public PDF via ingest/documents.py; manifest docs/regional_manifest.json
+    status: downloaded
+
