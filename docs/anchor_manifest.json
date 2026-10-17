@@ -1,0 +1,41 @@
+[
+  {
+    "id": "thi_ba_robotik",
+    "owner": "Technische Hochschule Ingolstadt, Fakultät Elektro- und Informationstechnik",
+    "title": "Modulhandbuch Robotik (ROB), WS 2023",
+    "url": "https://konvens2023.thi.de/fileadmin/daten/fakultaetE/Studiengangseiten/ROB/Modulhandbuch_ROB_WS2023.pdf",
+    "mirror": false,
+    "file": "data/raw/anchors/thi_ba_robotik.pdf",
+    "programme": "Robotik (und autonome Systeme) B.Eng., TH Ingolstadt, 82 km",
+    "version": "SPO WS 20/21, Stand 12.09.2023 (3 years old)",
+    "status": "error",
+    "error": "HTTPSConnectionPool(host='konvens2023.thi.de', port=443): Max retries exceeded with url: /fileadmin/daten/fakultaetE/Studiengangseiten/ROB/Modulhandbuch_ROB_WS2023.pdf (Caused by NameResolutionError(\"HTTPSConnection(host='konvens2023.thi.de', port=443): Failed to resolve 'konvens2023.thi.de' ([Errno 11001] getaddrinfo failed)\"))"
+  },
+  {
+    "id": "tha_ba_ki_robotik",
+    "owner": "Technische Hochschule Augsburg",
+    "title": "Modulhandbuch KIR Bachelor SPO 2026",
+    "url": "https://www.tha.de/Binaries/Binary92690/Modulhandbuch-KIR-Bachelor-SPO2026.pdf",
+    "mirror": false,
+    "file": "data/raw/anchors/tha_ba_ki_robotik.pdf",
+    "programme": "Künstliche Intelligenz und Robotik B.Sc., TH Augsburg, 139 km",
+    "version": "SPO 2026",
+    "status": "error",
+    "error": "HTTP 404"
+  },
+  {
+    "id": "hske_ba_robotik",
+    "owner": "Hochschule Kempten, Fakultät Elektrotechnik",
+    "title": "Modulhandbuch Robotik, Version 1.5",
+    "url": "https://www.hs-kempten.de/fileadmin/Fakultaet/EL/Stg/ba/Robotik/MhB/Modulhandbuch_Robotik.pdf",
+    "mirror": false,
+    "file": "data/raw/anchors/hske_ba_robotik.pdf",
+    "programme": "Robotik B.Eng., Hochschule Kempten, 222 km",
+    "version": "Stand 20.01.2025, valid from WS 2024/25",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T21:24:52+00:00",
+    "content_type": "application/pdf",
+    "bytes": 2004675,
+    "sha256": "bca925fc3520cefff966a6dd949815d5f50c20fbfd8fb7ebc91b95709fa8eabe"
+  }
+]

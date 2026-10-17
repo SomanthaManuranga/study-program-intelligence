@@ -22,3 +22,10 @@ Written with observable thresholds before scoring. Example for student demand:
 - 1: related-field entrants across Germany fell over five years, and the regional catchment is too small for a cohort.
 
 Anchors for the other criteria are added in week 1.
+
+Rule added 17 Oct 2026 (Step 49, Soma): **weak evidence widens a score's range, it does not raise its centre.** A
+criterion rated on weak evidence (title-level checks, no staffing or lab estimate, no intake anchor) gets a central
+score no better than the best-evidenced comparable option and a wider low-high range.
+
+Anchors for the other criteria were written in Step 49 (configs/scores.yaml), after the evidence was collected but
+before the ranking was computed.

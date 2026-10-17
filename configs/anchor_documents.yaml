@@ -1,0 +1,28 @@
+# Intake anchors for the Step 49 capture runs (Robotics+AI B.Sc., Cyber/OT M.Sc.), downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/anchor_documents.yaml \
+#       --out "data/raw/anchors" --manifest docs/anchor_manifest.json --pdf-only
+# Purpose: public capacity figures ("Kapazität ... Studierende") of comparable Bavarian programmes, the same kind of
+# anchor as THI Cybersicherheit (25) in Step 47. Public PDFs only, robots.txt respected, 3 s delay. URLs found by web
+# search, 17 Oct 2026. Not found / blocked -> stated as a limitation (no manual list, rule of Steps 43/45).
+
+documents:
+  - id: thi_ba_robotik
+    owner: Technische Hochschule Ingolstadt, Fakultät Elektro- und Informationstechnik
+    programme: Robotik (und autonome Systeme) B.Eng., TH Ingolstadt, 82 km
+    title: Modulhandbuch Robotik (ROB), WS 2023
+    version: "SPO WS 20/21, Stand 12.09.2023 (3 years old)"
+    url: https://konvens2023.thi.de/fileadmin/daten/fakultaetE/Studiengangseiten/ROB/Modulhandbuch_ROB_WS2023.pdf  # THI host; the same path on www.thi.de gave HTTP 404
+
+  - id: tha_ba_ki_robotik
+    owner: Technische Hochschule Augsburg
+    programme: Künstliche Intelligenz und Robotik B.Sc., TH Augsburg, 139 km
+    title: Modulhandbuch KIR Bachelor SPO 2026
+    version: "SPO 2026"
+    url: https://www.tha.de/Binaries/Binary92690/Modulhandbuch-KIR-Bachelor-SPO2026.pdf
+
+  - id: hske_ba_robotik
+    owner: Hochschule Kempten, Fakultät Elektrotechnik
+    programme: Robotik B.Eng., Hochschule Kempten, 222 km
+    title: Modulhandbuch Robotik, Version 1.5
+    version: "Stand 20.01.2025, valid from WS 2024/25"
+    url: https://www.hs-kempten.de/fileadmin/Fakultaet/EL/Stg/ba/Robotik/MhB/Modulhandbuch_Robotik.pdf

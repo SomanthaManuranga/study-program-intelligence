@@ -177,3 +177,16 @@ sources:
     access: public PDF via ingest/documents.py; manifest docs/regional_manifest.json
     status: downloaded
 
+  - id: capacity_anchors
+    owner: TH Ingolstadt, Hochschule Kempten, TH Augsburg
+    url: see configs/anchor_documents.yaml
+    use: public intake/capacity anchors for the robotics bachelor and cyber master capture runs (Step 49); THI Cloud Applications und Security Engineering capacity 30 from the Step 39 cache
+    access: public PDFs via ingest/documents.py; THI Robotik (host does not resolve, www path 404) and TH Augsburg (404) not obtained, no workaround; manifest docs/anchor_manifest.json
+    status: partly downloaded (Kempten; no capacity figure)
+
+  - id: destatis_21321_graduates
+    owner: Statistisches Bundesamt (GENESIS)
+    url: https://www-genesis.destatis.de/ (tables 21321-0003, 21321-0006)
+    use: master pipeline check, Informatik graduates 2019-2025 (Step 49, kill rule 4)
+    access: GENESIS REST, cached in data/raw/destatis; manifest docs/genesis_manifest.json
+    status: downloaded

@@ -42,9 +42,9 @@ Phase 2 (evidence) complete (Steps 37-45). Phase 3 (modelling) plan, in order:
   configs/analysis.yaml, Dirichlet draws (10,000, concentration 50, seed 42), feasibility gate, leave-one-criterion-out.
   Done when: rank probabilities, sensitivity table and an evidence-strength matrix (robotics marked where evidence is
   thinner) in docs/evidence_ranking.md.
-Current: Step 49 (MCDA + Monte Carlo). Status: open. Last finished: Step 48, cannibalisation (2026-10-17):
-docs/evidence_cannibalisation.md; scenarios in data/interim/capture_scenarios.csv. Public data only (no intake figures
-from universities).
+Phase 3 (modelling) complete (Steps 46-49). Current: Step 50 (to be agreed: report / dashboard / presentation).
+Last finished: Step 49, ranking (2026-10-17): docs/evidence_ranking.md; analysis/options.py + analysis/ranking.py;
+score sheet configs/scores.yaml (reviewed by Soma). Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -130,6 +130,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   an assumption (no rule found). Real THI/DEG intakes would halve the range.
 - Cannibalisation (Step 48): 14-27 % from OTH (II/MI), 73-86 % net new, 13-16 % kept in region. Net new first-years
   15 / 32 / 64; kill rule 1 passed (13 % core-module overlap); no separate cannibalisation kill threshold exists.
+- Ranking (Step 49): same capture model for all options (robotics: no intake anchor; master: one). Cyber B.Sc. first in
+  88 % of draws (92 % with robotics at 50 % cannibalisation), first in every leave-one-out except without demand (tie
+  with robotics). Second place open (master vs robotics). Weak evidence widens ranges, not centres (kill_rules.md).
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).

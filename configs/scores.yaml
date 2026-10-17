@@ -1,0 +1,97 @@
+# Score sheet for the Step 49 MCDA (17 Oct 2026). Proposed by Claude, reviewed by Soma, who changed robotics fit,
+# feasibility and labour (see docs/decision_log.md, Step 49).
+# Scale 1-5 (5 = best). Each score has low / central / high; the Monte Carlo samples triangular(low, central, high).
+# strength: strong = measured, complete public data; medium = measured but partial or proxy; weak = judgement on thin
+# evidence. Criteria and weights: configs/analysis.yaml.
+#
+# Anchors: student demand from docs/kill_rules.md (14 Oct). kill_rules.md says anchors for the other criteria were to be
+# added in week 1; that was not done. The anchors below were written in Step 49, after the evidence was collected
+# but BEFORE the ranking was computed.
+#   student_demand        0.5 x capture score + 0.5 x trend score.
+#                         capture score (computed, not hand-set): net new first-years n (Step 48 / option_scenarios.csv)
+#                         -> 1 + 4 ln(n/10) / ln 8, clipped to 1-5 (10 net new/yr = 1, i.e. below the assumed minimum
+#                         cohort of 20; 80/yr = 5). trend score: 5 = related-field entrants (bachelor) or graduates
+#                         (master pipeline) rose over five years and the KMK scenario keeps rising; 1 = fell five years.
+#   labour_relevance      5 = shortage occupation at the matching level AND Bavarian job-ad share above the IT
+#                         baseline (22-25 %) AND >150 ads within 100 km; 3 = two of these; 1 = none.
+#   institutional_fit     5 = EMI already teaches >70 % of the programme's specific core and has the staff;
+#                         3 = 30-50 % with staff gaps closable by 1-2 hires; 1 = <20 %, no related staff.
+#   feasibility           5 = no new professorship or lab; 3 = 1-2 new professorships and one new lab;
+#                         1 = no staff, no lab, no accreditation path (kill rule 2, hard gate).
+#   differentiation       5 = no dedicated programme within 150 km; 3 = 3-5 within 150 km but none within 80 km
+#                         or a credible profile none of them has; 1 = >5 within 150 km, profile already offered nearby.
+#   regional_contribution computed: students kept in the region per year c (Step 48 (c)) -> 1 + 4 ln(max(c,1)) / ln 16
+#                         (1/yr = 1, 16/yr = 5).
+
+options:
+  cyber_bsc:
+    label: Cybersecurity B.Sc.
+    student_demand:
+      capture: {strength: medium, source: "data/interim/option_scenarios.csv (net new 15.3 / 32.0 / 64.4); two anchors, one anecdotal"}
+      trend: {low: 3, central: 4, high: 5, strength: strong,
+              evidence: "Bavaria Informatik first-years +6.1 %/yr 2019-24; cyber proxy 4,936 (2024) -> KMK floor 5,057 / central 5,540 (2030); cyber search interest plateau since 2022",
+              source: "docs/evidence_forecast.md (Step 46), docs/evidence_demand_trends.md (Step 37)"}
+    labour_relevance: {low: 3, central: 4, high: 5, strength: medium,
+                       evidence: "Informatik shortage occupation at specialist (bachelor) level 2025; 'Cyber Security' 851 ads DE, Bavaria share 31 %, 191 within 100 km; IT employment with degree in Bavaria +34 % 2019-23",
+                       source: "docs/evidence_outlet_jobs.md (Step 43)"}
+    institutional_fit: {low: 2, central: 3, high: 4, strength: strong,
+                        evidence: "EMI covers <=31 % of a typical cyber bachelor's security ECTS, ~71 % of its foundations; ~4 professors teach security; missing pentesting, forensics, SOC",
+                        source: "docs/evidence_fit_modules.md (Step 41), docs/evidence_fit_staff.md (Step 44)"}
+    feasibility: {low: 2, central: 3, high: 4, strength: medium,
+                  evidence: "2 new professorships + lab engineer + security lab; draft has 45 new ECTS + 10 teaching assignments; cost not estimated",
+                  source: "docs/evidence_fit_staff.md (Step 44), docs/evidence_benchmarks.md (Step 45)"}
+    differentiation: {low: 3, central: 3, high: 4, strength: strong,
+                      evidence: "4 dedicated BA within 150 km, none within ~80 km (THI 82 km); 15 general BA with a security focus within 150 km (2 at OTH); OT alone is no differentiator (Deggendorf)",
+                      source: "docs/theme_precision.md (Step 38), docs/evidence_catchment.md (Step 42)"}
+    regional_contribution: {strength: medium, source: "computed from (c) kept in region 2.8 / 6.1 / 11.5 (Step 48)"}
+
+  cyber_msc:
+    label: Cybersecurity M.Sc. (industrial / OT profile)
+    student_demand:
+      capture: {strength: weak, source: "data/interim/option_scenarios.csv (net new 14.3 / 31.5 / 62.9); one anchor, high end borrowed from the B.Sc. spread"}
+      trend: {low: 3, central: 4, high: 5, strength: strong,
+              evidence: "pipeline: Informatik graduates (all degrees) Germany 14,249 (2019) -> 21,858 (2025), Bavaria 2,676 -> 4,788; kill rule 4 not triggered",
+              source: "Destatis 21321-0003 / 21321-0006 (data/raw/destatis), Step 49"}
+    labour_relevance: {low: 2, central: 3, high: 4, strength: medium,
+                       evidence: "'OT Security' 153 ads DE (Bavaria 35 %, 34 within 100 km): small niche; software development not a shortage at expert (master) level 2025; security ads as for the bachelor",
+                       source: "docs/evidence_outlet_jobs.md (Step 43)"}
+    institutional_fit: {low: 3, central: 3, high: 4, strength: medium,
+                        evidence: "EMI covers <=39 % of a typical cyber master's security ECTS; OT side is the strongest base (4 professors: industrial communication, CPS, embedded, functional safety); needs one OT-security specialist",
+                        source: "docs/evidence_fit_modules.md (Step 41), docs/evidence_fit_staff.md (Step 44)"}
+    feasibility: {low: 2, central: 3, high: 4, strength: medium,
+                  evidence: "30-40 new security ECTS -> 0.7-0.9 professorship; on its own at least one new professorship plus OT testbed",
+                  source: "docs/evidence_fit_staff.md (Step 44)"}
+    differentiation: {low: 1, central: 2, high: 3, strength: strong,
+                      evidence: "6 dedicated cyber masters within 150 km (3 at THI 82 km, Deggendorf, Aalen, HDBW); Deggendorf already teaches OT/industrial security in its master",
+                      source: "docs/theme_precision.md (Step 38), docs/evidence_fit_modules.md (Step 41)"}
+    regional_contribution: {strength: weak, source: "computed from (c) kept in region 0.7 / 2.2 / 5.5 (Step 49 run; HAW origins only)"}
+
+  robotics_bsc:
+    label: Robotics + AI B.Sc.
+    student_demand:
+      capture: {strength: weak, source: "data/interim/option_scenarios.csv (net new 10.6 / 23.6 / 47.7); NO intake anchor, assumed 20-60"}
+      trend: {low: 1, central: 2, high: 3, strength: medium,
+              evidence: "feeders (Mechatronik, Technische Informatik) flat or falling; 'Robotik Studium' search flat, KI peaked 2023-24 and falls; cyber search ~2.6x robotics since 2022",
+              source: "docs/evidence_competition_demand.md (Steps 36-38), docs/evidence_demand_trends.md (Step 37)"}
+    labour_relevance: {low: 3, central: 3.5, high: 4.5, strength: medium,
+                       evidence: "anchor: Bavarian share 30 % (> 22-25 % baseline) and 161 ads within 100 km met; shortage partly: BA Engpassanalyse 2025 lists only the top-10 shortage occupations per level; at specialist level Elektrotechnik (KldB 2630, 2.2) and technical R&D (2710, 2.0) are shortages, Mechatronik/Automatisierung (261) is not named, so its status is unknown; strongest local signal of all keywords (58 ads within 50 km)",
+                       source: "data/raw/documents/ba_engpassanalyse_2025.pdf p. 13 (Tabelle 8); docs/evidence_outlet_jobs.md (Step 43)"}
+    institutional_fit: {low: 2, central: 3, high: 5, strength: weak,  # weak evidence widens the range, not the centre (Soma, 17 Oct)
+                        evidence: "KI B.Sc. already teaches robotics, autonomous mobile systems, ML for robotics, CPS; with Mechatronik und digitale Automation OTH covers 7 of 8 core topics; title-level check only, no module-level or staff analysis",
+                        source: "docs/overlap_test.md (Step 36)"}
+    feasibility: {low: 2, central: 3, high: 5, strength: weak,  # weak evidence widens the range, not the centre (Soma, 17 Oct)
+                  evidence: "mostly reuse of KI and Mechatronik modules and labs; no staffing or lab estimate made (Step 44 covered cyber only)",
+                  source: "docs/overlap_test.md; not assessed in Step 44"}
+    differentiation: {low: 2, central: 3, high: 3, strength: medium,
+                      evidence: "5 dedicated robotics BA within 150 km (THI 82 km, Deggendorf, Coburg, THWS, Augsburg), none within 80 km; OTH's own KI B.Sc. has a Smart Robotics specialisation (50 % core overlap)",
+                      source: "programme catalogue (Step 49 run), docs/overlap_test.md, docs/theme_precision.md"}
+    regional_contribution: {strength: medium, source: "computed from (c) kept in region 4.1 / 8.5 / 15.6 (Step 49 run)"}
+
+# Monte Carlo: one common uniform draw u per iteration sets every option's capture-model quantile (net new first-years
+# and (c)), because the anchor uncertainty is shared model error; all other scores and the weights are drawn
+# independently.
+sensitivity:
+  robotics_cannibalisation_50: >-
+    Huff (IIA) splits by baseline share and therefore understates substitution between near-identical programmes.
+    The robotics option has 50 % core overlap with OTH's KI B.Sc. (same campus); run once with (a) = 50 %
+    for robotics only (net new 7.5 / 14.4 / 27.7), reported as a full ranking scenario next to the base case.
