@@ -61,3 +61,9 @@ Decision: use one download per comparison with "Informatik Studium" as anchor; r
 Reason: Trends values are relative per download; absolute search volume for "Informatik Studium" fell while Destatis first-year numbers stayed flat, so levels reflect search behaviour, not students.
 Consequence: Trends is a supporting leading indicator for Claim A, not a demand count. Bavaria not downloaded (too sparse).
 Decided by: team.
+
+## 2026-10-17: Google Trends check without the anchor
+Decision: add a second download with the five specialist terms only (Cyber Security Studium, Cybersecurity Studium, IT Sicherheit Studium, Kuenstliche Intelligenz Studium, Robotik Studium; same settings) as a resolution check; the first term is the reference for ratios, not an anchor.
+Reason: with "Informatik Studium" in the download the specialist terms were 0-7 on the 0-100 scale with 30-51 % zero months.
+Consequence: both downloads give the same rank order since 2022 (cyber > KI > Robotik > IT Sicherheit). Reading corrected: cyber search interest rose 2018-2022 and is a plateau since 2022; its rising share of the anchor after 2022 comes from the anchor falling.
+Decided by: team.

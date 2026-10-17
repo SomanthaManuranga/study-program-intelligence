@@ -19,7 +19,8 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 37: second Google Trends download without the anchor (Next steps item 1). Status: open.
+Step 38: hand-labelled precision check of the theme rules (Next steps item 1). Status: open.
+Last finished: Step 37, second Google Trends download without the anchor (2026-10-17).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -50,7 +51,8 @@ Forecasts validated with rolling-origin backtests (MASE).
 - ingest/jobsuche.py: BA Jobsuche API v6, job-ad counts by keyword x region (snapshot 2026-10-15)
   -> docs/jobsuche_snapshots.json, docs/evidence_outlet_jobs.md. Repeat snapshot every 2-4 weeks until 4 Dec.
 - analysis/trends.py: Google Trends CSVs downloaded by hand into data/raw/trends/trends_*.csv
-  (first term = anchor; monthly; break at 2022-01-01) -> reports/trends.md, docs/evidence_demand_trends.md
+  (first term = anchor; monthly; break at 2022-01-01) -> reports/trends.md, docs/evidence_demand_trends.md.
+  Two files: trends_DE_2015_2026.csv (anchor Informatik Studium), trends_DE_specialist_2015_2026.csv (no anchor).
 
 ## Findings so far
 - Informatik is the only growing EMI field (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since 2023).
@@ -58,20 +60,19 @@ Forecasts validated with rolling-origin backtests (MASE).
 - Cybersecurity is the clearest gap: 34 BA / 36 MA programmes in Germany, 4 / 7 within 150 km, none at OTH.
 - Jobs: "Cyber Security" 851 ads in Germany; Bavaria share 31 % (OT Security 35 %) vs 22-25 % baseline;
   191 ads within 100 km of Amberg.
-- Trends: "Cyber Security Studium" rose from ~0 to 12.6 % of "Informatik Studium" interest (2026), only
-  specialist term with a sustained rise; KI flat ~5 %, Robotik flat 2-4 %.
+- Trends: "Cyber Security Studium" rose 2018-2022, plateau since 2022, and is the largest specialist term
+  (about 2x KI, 2.6x Robotik since 2022; confirmed by a second download without the anchor). Its share of
+  "Informatik Studium" (12.6 % in 2026) still rises only because the anchor falls. KI peaked 2023-24 and falls;
+  Robotik flat; "IT Sicherheit" replaced by English terms.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Second Trends download without the anchor, by me:
-   https://trends.google.com/trends/explore?date=all&geo=DE&q=Cyber%20Security%20Studium,Cybersecurity%20Studium,IT%20Sicherheit%20Studium,K%C3%BCnstliche%20Intelligenz%20Studium,Robotik%20Studium
-   saved as data/raw/trends/trends_DE_specialist_2015_2026.csv; then rerun analysis/trends.py and update the evidence doc.
-2. Hand-labelled precision check of the theme rules (50 programmes).
-3. Competitor module handbooks for the shortlist -> NLP/embedding gap analysis vs EMI modules.
-4. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
-5. 4-6 international benchmark programmes.
-6. Forecasting with backtests; MCDA + Monte Carlo.
-7. Dashboard, report, presentation.
+1. Hand-labelled precision check of the theme rules (50 programmes).
+2. Competitor module handbooks for the shortlist -> NLP/embedding gap analysis vs EMI modules.
+3. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
+4. 4-6 international benchmark programmes.
+5. Forecasting with backtests; MCDA + Monte Carlo.
+6. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).
