@@ -25,35 +25,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 41: module gap analysis with embeddings + TF-IDF cross-check (Next steps item 1, part 2). Status: open
-(started, paused). Last finished: Step 40, module table from all handbooks (2026-10-17): 382 modules, spot check 10/10.
-Agreed plan (Soma, 17 Oct 2026):
-- Input: data/interim/modules.csv; text = content + learning outcomes (form fields, literature removed), title in front.
-- Embeddings: paraphrase-multilingual-MiniLM-L12-v2 truncates at ~128 tokens, so either chunk each module text
-  (~100 words, average the chunk embeddings) or use intfloat/multilingual-e5-base (512 tokens, "query:"/"passage:"
-  prefixes). State the choice in docs/decision_log.md.
-- Cross-check: TF-IDF comparison, so the result does not depend on one model; report agreement, list disagreements.
-- Report security-specific modules separately from general foundations (maths, programming, soft skills), so the
-  general ones do not inflate coverage. Thesis/internship/placeholder electives ("frame") left out.
-- Headline = ECTS-weighted: share of a typical competitor cyber bachelor's / master's ECTS that EMI already covers.
-  Bachelors vs EMI bachelors; masters vs EMI bachelors + masters.
-- Group gaps by CyBOK knowledge areas (Cyber Security Body of Knowledge), plus an OT/industrial security flag.
-- Soma's check: 20 pairs = 10 near the threshold, 5 clearly covered, 5 clearly gap, English side-by-side table
-  (both titles, ECTS, first 300 characters of text, PDF pages).
-- Done when: embeddings and TF-IDF agree on >= 80 % of covered/gap labels (disagreements listed), >= 16 of 20 pairs
-  confirm the threshold, gap table by CyBOK area in docs/evidence_fit_modules.md.
-
-## Where we stopped (17 Oct 2026)
-- Last finished: Step 40. Next: Step 41 (plan above). Everything committed and pushed.
-- Half-done in Step 41: installed torch (CPU) + sentence-transformers; downloaded intfloat/multilingual-e5-base.
-  Draft analysis/module_gaps.py (WIP, not reviewed): text cleaning, categories (security/general/frame), e5 with
-  200-word chunks + mean, TF-IDF, title-based calibration. Embedding cache in data/interim/embeddings_e5/ (ignored).
-- First finding from the draft (not yet a result): the title-based calibration does NOT work. e5 scores are
-  compressed (positives median 0.941 vs random pairs 95th percentile 0.942), and "near-identical title" positives
-  include wrong pairs (Mathematik 1 vs Mathematik 3). TF-IDF overlaps too. Needs a better calibration set
-  (e.g. hand-labelled pairs or within-programme hard negatives) before any threshold is fixed. Also: only 10 EMI
-  modules count as security-specific.
-- Open choice to confirm: e5-base (chosen in the draft) vs chunked MiniLM at ~100 words.
+Step 42: catchment and regional data from the Regionaldatenbank (Next steps item 1). Status: open.
+Last finished: Step 41, module gap analysis (2026-10-17): e5 headline (16/20 hand check), TF-IDF sensitivity
+(14/20); docs/evidence_fit_modules.md.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -91,6 +65,8 @@ Forecasts validated with rolling-origin backtests (MASE).
   (proposed by Claude, reviewed by Soma); score -> reports/theme_check.md, docs/theme_precision.md
 - ingest/documents.py --config configs/competitor_modules.yaml (Step 39): competitor module handbooks
   -> data/raw/competitor modules/, docs/competitor_modules_manifest.json; manual ones in docs/manual_downloads.md
+- analysis/module_gaps.py (Step 41): e5 (per-handbook centred) + char TF-IDF, best-match calibration, CyBOK areas,
+  OT flag -> data/interim/module_scores.csv, reports/module_gaps.md, docs/evidence_fit_modules.md
 - transform/modules.py (Step 40): one module table from all handbooks (TOC-anchored parser)
   -> data/interim/modules.csv, reports/modules_check.md (counts vs TOC, spot-check table)
 - transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page
@@ -109,16 +85,19 @@ Forecasts validated with rolling-origin backtests (MASE).
   (about 2x KI, 2.6x Robotik since 2022; confirmed by a second download without the anchor). Its share of
   "Informatik Studium" (12.6 % in 2026) still rises only because the anchor falls. KI peaked 2023-24 and falls;
   Robotik flat; "IT Sicherheit" replaced by English terms.
+- Modules (Step 41): EMI covers at most ~31 % of a typical cyber bachelor's security ECTS (master 39 %;
+  e5 headline, upper-end estimate; TF-IDF 47 % / 45 %) but ~71 % of its general foundations. Missing at EMI:
+  pentesting/auditing, forensics, security operations/incident response, software security, security
+  management, law, human factors. TH Deggendorf (105 km) already teaches OT/industrial security (BA + MA), so an
+  OT profile differentiates against FAU/THI/THWS/HDBW but not against Deggendorf.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Module gap analysis: competitor modules (data/raw/competitor modules/) vs EMI modules (data/raw/oth modules/),
-   NLP/embeddings; incl. OTH's Informationssicherheit focus in Medieninformatik and Industrie-4.0-Informatik.
-   Note: HS Aalen has a compulsory-elective "Industrial Security / OT Security" (25612), the only one found so far.
-2. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
-3. 4-6 international benchmark programmes.
-4. Forecasting with backtests; MCDA + Monte Carlo.
-5. Dashboard, report, presentation.
+1. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
+2. 4-6 international benchmark programmes.
+3. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
+   shared intro-security and cryptography modules from docs/evidence_fit_modules.md).
+4. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).
