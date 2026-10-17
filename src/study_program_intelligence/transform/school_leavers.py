@@ -27,6 +27,7 @@ import pandas as pd
 import pypdf
 
 from ..analysis.catchment import counties
+from .pdf_numbers import split, tokens
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 RAW = REPO_ROOT / "data" / "raw" / "regional"
@@ -38,58 +39,15 @@ COLS_13 = ["gen_total", "gen_none", "gen_ms", "gen_mittel", "gen_fhr", "gen_ahr"
 COLS_12 = [c for c in COLS_13 if c != "gen_fhr"]
 
 
-def _pieces(t: str, max_cuts: int):
-    """Ways to cut a digit token into pieces (a glued token holds the end of one number and the start of the next)."""
-    yield [t]
-    if max_cuts:
-        for k in range(1, len(t)):
-            for rest in _pieces(t[k:], max_cuts - 1):
-                yield [t[:k]] + rest
-
-
-def _numbers(tokens: list[str], n: int, max_cuts: int = 3) -> list[list[int]]:
-    """Group tokens (digit groups, '-', '.') into n numbers so that both subtotals add up.
-    Editions sometimes glue numbers ("9 04718 694" = 9 047 | 18 694; "663 438 982" = 663 | 4 | 38 982), so digit
-    tokens may be cut; a piece either starts a number (1-3 digits, no leading zero) or continues one (exactly 3
-    digits). Fewest cuts first; only a split where both subtotals add up is accepted."""
-    tok = []
-    for t in tokens:  # regular glue first: a token longer than 3 digits = end of a number (3 digits) + more
-        t = "0" if t in ("-", ".", "x") else t
-        while re.fullmatch(r"\d{4,}", t):
-            tok.append(t[:3])
-            t = t[3:]
-        tok.append(t)
+def _numbers(toks: list[str], n: int) -> list[list[int]]:
+    """All splits of a row into n numbers where both subtotals (general / vocational schools) add up."""
     gen_parts = 4 if n == 12 else 5
 
     def ok(g: list[int]) -> bool:
         gen, voc = g[: gen_parts + 1], g[gen_parts + 1:]
         return gen[0] == sum(gen[1:]) and voc[0] == sum(voc[1:])
 
-    def place(pcs: list[str], nums: tuple[str, ...]):
-        """All ways to attach the pieces of one token: each continues the last number (3 digits) or starts one."""
-        if not pcs:
-            yield nums
-            return
-        p, rest = pcs[0], pcs[1:]
-        if nums and re.fullmatch(r"\d{3}", p):
-            yield from place(rest, nums[:-1] + (nums[-1] + p,))
-        if re.fullmatch(r"0|[1-9]\d{0,2}", p) and len(nums) < n:
-            yield from place(rest, nums + (p,))
-
-    def search(i: int, nums: tuple[str, ...], cuts: int):
-        if i == len(tok):
-            if len(nums) == n and ok([int(x) for x in nums]):
-                yield [int(x) for x in nums]
-            return
-        for pcs in _pieces(tok[i], cuts):
-            for nxt in place(pcs, nums):
-                yield from search(i + 1, nxt, cuts - (len(pcs) - 1))
-
-    for c in range(max_cuts + 1):  # all valid splits at the smallest number of extra cuts
-        found = {tuple(g) for g in search(0, (), c)}
-        if found:
-            return [list(g) for g in sorted(found)]
-    return []
+    return split(toks, n, ok)
 
 
 def parse(year: int) -> pd.DataFrame:
@@ -103,7 +61,7 @@ def parse(year: int) -> pd.DataFrame:
             m = re.match(r"^(.*?)\s*(zus\.|insges\.)\s*([\d\-.].*)$", line)  # 2014: "insges.176 512" (no space)
             if not m:
                 continue
-            options = _numbers(re.findall(r"\d+|[-.x]", m.group(3)), n)  # "-14 405": a dash glued to a number
+            options = _numbers(tokens(m.group(3)), n)
             if not options:
                 raise ValueError(f"{year} p{i + 1}: cannot split row {line!r}")
             rows.append({"label": m.group(1).strip(), "options": options})
