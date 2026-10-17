@@ -25,9 +25,25 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 46: forecasting with backtests (Next steps item 1). Status: open.
-Last finished: Step 45, international benchmarks (2026-10-17, lean): 4 programmes, draft OTH bachelor 210 ECTS
-(45 ECTS new, 110 reused); docs/evidence_benchmarks.md. Professors appear only as neutral labels (Prof. A-N).
+Phase 2 (evidence) complete (Steps 37-45). Phase 3 (modelling) plan, in order:
+- Step 46 Demand forecast: first-years (Destatis 21311) for Informatik and a cyber proxy (Informatik + Technische
+  Informatik + Computer- und Kommunikationstechniken; Destatis has no cyber subject), Germany and Bavaria, to 2030/2035;
+  models naive / drift / ETS / KMK-share; rolling-origin backtests h=1-5 with MASE; Bavaria 2025 G9 dip handled.
+  Done when: backtest table (MASE per model, series, horizon), chosen model per series with MASE vs naive, forecasts
+  with 80 % intervals to 2030/2035, docs/evidence_forecast.md.
+- Step 47 Capture model: expected first-years for an OTH cyber B.Sc.: catchment (Step 42) x subject choice share x
+  Huff/gravity share against competitors (distance decay calibrated on Destatis first-years by institution where
+  possible), checked against comparable programmes' public intake. Done when: low/central/high first-years with an
+  assumptions table and a sanity check against at least two comparable intakes.
+- Step 48 Cannibalisation: share of those students who would otherwise enrol in existing EMI programmes (II, MI, KI,
+  E&IT), from the Huff model and module/focus-area overlap (Steps 38, 41). Done when: gross vs net new students
+  (range), kill rule 1 / incrementality rechecked.
+- Step 49 MCDA + Monte Carlo: Cyber B.Sc., Cyber/OT M.Sc., Robotics+AI B.Sc.; criteria and weights from
+  configs/analysis.yaml, Dirichlet draws (10,000, concentration 50, seed 42), feasibility gate, leave-one-criterion-out.
+  Done when: rank probabilities, sensitivity table and an evidence-strength matrix (robotics marked where evidence is
+  thinner) in docs/evidence_ranking.md.
+Current: Step 47 (capture model). Status: open. Last finished: Step 46, demand forecast (2026-10-17):
+docs/evidence_forecast.md.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -106,12 +122,13 @@ Forecasts validated with rolling-origin backtests (MASE).
   new BA load; 18 SWS/semester per § 4 AVBayHIG). OT is where existing staff help most.
 - Benchmarks (Step 45): security share 30-50 % abroad/Bavaria; OT is not a standard bachelor block abroad (master
   topic). Draft OTH cyber B.Sc.: 7 sem/210 ECTS, 75 security ECTS (36 %), 45 new + 10 teaching assignments.
+- Forecast (Step 46): Bavaria cyber-proxy first-years 4,936 (2024) -> central ~5,540 (2030), ~6,220 (2035);
+  conservative (KMK, constant share) 5,057 / 5,519; drift best model (MASE 1.0-1.9 vs naive 2.5-3.5).
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
-   shared intro-security and cryptography modules from docs/evidence_fit_modules.md).
+1. Phase 3 modelling, Steps 46-49 (see Current step).
 2. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).
