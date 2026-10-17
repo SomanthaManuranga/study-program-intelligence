@@ -40,18 +40,34 @@ Safeguards: programme data only (no personal data), 2-second delay between reque
 Decided by: team (Somantha Manuranga).
 
 ## 2026-10-15: Catalogue coverage
-Decision: use the hand-curated EMI portfolio (configs/oth_portfolio.yaml, from the EMI faculty page) for all overlap checks.
+
+Decision: use the hand-curated EMI portfolio (configs/oth\_portfolio.yaml, from the EMI faculty page) for all overlap checks.
 Reason: 2 of 14 active EMI programmes (AI for Industrial Applications M.Sc., KI International B.Sc.) are not listed in Hochschulkompass/Studiensuche; an institution-only API query is rejected (HTTP 400).
 Consequence: the national competitor catalogue may also miss very new programmes elsewhere; stated as a limitation.
 Decided by: team.
 
 ## 2026-10-15: Kill rule 1 applied
+
 Decision: drop embedded/cyber-physical master (88 % of core topics already in IT und Automation) and the part-time AI master (already offered by AI for Industrial Applications). Keep cybersecurity bachelor and master; keep robotics + AI bachelor as comparison case (50 %, at threshold).
-Evidence: docs/overlap_test.md, configs/overlap_test.yaml.
+Evidence: docs/overlap\_test.md, configs/overlap\_test.yaml.
 Decided by: team.
 
 ## 2026-10-15: Job-ad data and search interest
+
 Decision: count open job ads from the BA Jobsuche API (rest.arbeitsagentur.de/jobboerse/jobsuche-service) by keyword and region; download Google Trends CSVs by hand from trends.google.com.
 Reason: Destatis has no separate subject for cybersecurity, so demand and outlet need independent signals; the Python Trends library (pytrends) is no longer reliable.
 Safeguards: totals only (no ad content or personal data stored beyond the first result page, kept locally), 2-second delay, snapshot date recorded; Trends settings (terms, region, period, category) recorded with each download.
 Decided by: team (Somantha Manuranga).
+
+
+
+\## 2026-10-17: Google Trends method
+
+Decision: use one download per comparison with "Informatik Studium" as anchor; report shares of the anchor by year (January-October), never absolute levels; treat 2022-01-01 (Google data-collection change) as a break.
+
+Reason: Trends values are relative per download; absolute search volume for "Informatik Studium" fell while Destatis first-year numbers stayed flat, so levels reflect search behaviour, not students.
+
+Consequence: Trends is a supporting leading indicator for Claim A, not a demand count. Bavaria not downloaded (too sparse).
+
+Decided by: team.
+
