@@ -66,10 +66,10 @@ Phase 4 (communication and reproducibility) plan, in order:
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 50 (key numbers, figures, outline). Status: open.
-Last finished: Step 49, ranking (2026-10-17, corrected 18 Oct: robotics fit/feasibility symmetric 1.5/3/4.5):
-docs/evidence_ranking.md; analysis/options.py + analysis/ranking.py; score sheet configs/scores.yaml (reviewed by Soma).
-Public data only (no intake figures from universities).
+Current: Step 51 (full report draft). Status: open.
+Last finished: Step 50, key numbers + figures + outline (2026-10-18): `python -m study_program_intelligence.report.build`
+-> reports/key_numbers.yaml (74 numbers, each checked against its source doc), reports/figures/ (7 figures, one
+style), reports/final/outline.md. Spot check passed (Soma). Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -115,6 +115,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   header login times out). 2018/19 stays a gap year.
 - transform/modules.py (Step 40): one module table from all handbooks (TOC-anchored parser)
   -> data/interim/modules.csv, reports/modules_check.md (counts vs TOC, spot-check table)
+- report/build.py (Step 50): key_numbers.py -> reports/key_numbers.yaml (JOB_SNAPSHOT = date of the evidence-doc
+  table; move to the frozen snapshot on 4 Dec), figures.py -> reports/figures/ (matplotlib, optional dep 'report'),
+  outline.py -> reports/final/outline.md. Run after the analysis modules; numbers never typed by hand.
 - transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page
   -> data/raw/competitor modules/thm_ma_technische_informatik_modules.csv (handbook PDF blocked by robots.txt)
 

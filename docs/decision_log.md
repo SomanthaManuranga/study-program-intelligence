@@ -167,5 +167,10 @@ Decided by: team (Somantha Manuranga).
 
 ## 2026-10-18: Robotics fit/feasibility made symmetric (Step 49 correction)
 Decision: robotics institutional fit and feasibility 1.5 / 3 / 4.5 instead of 2 / 3 / 5, so the range follows the rule "weak evidence widens the range, it doesn't raise the centre" (2 / 3 / 5 had a mean of 3.33). 2 / 3 / 5 kept as a sensitivity line.
-Result: Cyber B.Sc. P(rank 1) 91.7 % (robotics 50 %: 93.3 %; skewed 2/3/5: 87.8 %); first in every leave-one-criterion-out run (lowest without demand 67.2 %, without labour 77.8 %). Master second (67 % rank 2), robotics last (72 % rank 3).
+Result: Cyber B.Sc. P(rank 1) 91.7 % (robotics 50 %: 93.2 %; skewed 2/3/5: 87.8 %); first in every leave-one-criterion-out run (lowest without demand 67.2 %, without labour 77.8 %). Master second (67 % rank 2), robotics last (72 % rank 3).
+Decided by: team (Somantha Manuranga).
+
+## 2026-10-18: Key numbers, shared figures, report outline (Step 50)
+Decision: one build (python -m study_program_intelligence.report.build) generates reports/key_numbers.yaml, reports/figures/ and reports/final/outline.md. Every number used by report, slides and dashboard is defined once with its source doc; numbers from generated tables are read from data/interim, others are taken as stated in the evidence doc. Each number must occur verbatim in its source doc (no partial matches inside longer numbers; job-ad numbers matched against their full table row). Job-ad numbers use the snapshot shown in the evidence doc (15 Oct) until the 4 Dec freeze. Figures: matplotlib, one palette (options always in the same colour), source line on each figure. Outline numbers inserted from the key-numbers file; an unknown placeholder stops the build. Wording fixes in the outline: "drift is the best model in all four series" (not "every backtest"), no 2026/27 start (semester already running), master as follow-on marked as a proposal. reports/ stays git-ignored; the Step 51 draft source will live in docs/report/.
+Result: 74 numbers, all found in their source docs; 7 figures; outline with sections 0-9 + appendix. Spot check of 12 numbers passed (Soma).
 Decided by: team (Somantha Manuranga).
