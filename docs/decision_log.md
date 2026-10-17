@@ -120,3 +120,9 @@ Reason: county-level data with both Abitur and FOS/BOS for 10 years, from an off
 Result: own pool ~5,500 qualified leavers a year (10.1 % of Bavaria; 3,800 without Regensburg), -19 % since 2013/14 (Bavaria -13.5 %); 91 % of OTH's 100-km catchment is closer to OTH than to TH Deggendorf, only 42 % closer than to Nuremberg/Erlangen; G9 gap 2024/25 halves the pool for one year. Details: docs/evidence_catchment.md.
 Limitations: counts by school location; 17 non-Bavarian counties within 150 km not covered (Regionaldatenbank blocked).
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-17: GENESIS-Online Bayern retest and correction (Step 42)
+Correction: the Step 42 entry said the registered account "logs in with credentials as form fields, but has no web-service rights". That was wrong: with form fields the server ignores the credentials and logs in as the guest ("Username": "GAST"); the guest gets error 15 on every data/catalogue service. The account itself was never tested with a correct password (the password in .env was wrong at the time).
+Retest after Soma corrected the password (once, as agreed): credentials as form fields -> guest, error 15; credentials in the HTTP headers (the documented way) -> no reply within 60 s (request timed out), as already observed in Step 42.
+Decision: leave Step 42 as it is (PDF reports B I/II 1 j; 2018/19 stays a gap year). No further API attempts; if the API is needed later, ask genesis-online@statistik.bayern.de whether registered accounts have web-service access.
+Decided by: team (Somantha Manuranga).
