@@ -133,3 +133,19 @@ sources:
     access: API path allowed by robots.txt; credentials as form fields fall back to the guest (error 15 on data services); credentials in headers get no reply (timeout). Account in .env (GENESIS_BY_USER/PASSWORD)
     status: blocked
 
+  - id: by_svb_employment
+    owner: Bayerisches Landesamt für Statistik (BA employment statistics)
+    url: see configs/labour_documents.yaml (via statistischebibliothek.de)
+    table: "Statistische Berichte A VI 5 - Teil 1, Tabelle 10: employees by occupation (KldB 2010) and qualification, Bavaria"
+    use: claim D, IT occupations 2019-2023 (Step 43)
+    licence: TO_VERIFY (official statistics; cite source)
+    access: public PDFs via ingest/documents.py; manifest docs/labour_manifest.json
+    status: downloaded
+
+  - id: ba_statistik_portal
+    owner: Bundesagentur fuer Arbeit, Statistik
+    url: https://statistik.arbeitsagentur.de
+    use: occupation-by-county tables (not used)
+    access: robots.txt disallows /SiteGlobals/ (download forms), Crawl-delay 30 -> skipped by decision (Step 43)
+    status: blocked
+
