@@ -1,0 +1,93 @@
+[
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:28+00:00",
+    "sha256": "afad8d28dca3aef5968ff70bfa30d5d71668c91aef1fbb24649f80dd74fd4446"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/anlagen-und-simulationstechnik/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_anlagen_und_simulationstechnik.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:32+00:00",
+    "sha256": "c096b35e6a06babd5433b10e7890dd5bb1c7f53e621814ef250456154ebea7c2"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/anlagen-und-simulationstechnik/forschung-projekte/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_anlagen_und_simulationstechnik_forsc.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:35+00:00",
+    "sha256": "80e26026296686ef2735c33e81eeee948010a9ddb5d0f2077350253dfa8f89fd"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/anlagen-und-simulationstechnik/lehre/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_anlagen_und_simulationstechnik_lehre.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:38+00:00",
+    "sha256": "070fc0c1f95a2b3d5522b2020b850b5d2e76ca8b1827607720143eaae0bba1f7"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/automatisierungssysteme/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_automatisierungssysteme.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:42+00:00",
+    "sha256": "f56aac918e9e89e5d05a161fc8fb0554cccdf5e2440ba2dd16f3ac556a42ea25"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/digitale-signalverarbeitung/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_digitale_signalverarbeitung.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:45+00:00",
+    "sha256": "4971675e6134b7fb76584b2c322464da37338fdc3eb5be27544596c567831f19"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/elektrische-messtechnik/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_elektrische_messtechnik.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:49+00:00",
+    "sha256": "c13cf24980f17f9ecbf10cc30fdf258440f22c1744163848c8410eae442f8834"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/labor-medieninformatik/labor-medieninformatik/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_labor_medieninformatik_labor_medieni.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:52+00:00",
+    "sha256": "f826a1af72f8011180c857db7c4a45e7f396c2f4c5653dca549de1c974d3c1d6"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/labor-medieninformatik/physical-computing/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_labor_medieninformatik_physical_comp.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:56+00:00",
+    "sha256": "b29e73974792c88e75dab0e5d4a796cd72a73e42b4ba78e4c7fdeaa53722b091"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/regelungs-und-steuerungstechnik/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_regelungs_und_steuerungstechnik.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:45:59+00:00",
+    "sha256": "7eaab2579804c91af2ea58a9f00ee158bd2edf506d38255963ba1f904a1350b9"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/visual-computing/labor-visual-computing/",
+    "file": "data/raw/oth_web/labore_fakultaet_elektrotechnik_medien_und_informatik_visual_computing_labor_visual_comput.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:46:03+00:00",
+    "sha256": "208e9cc54ddcf35d86002409f0c509cf9c185a483d3a3873937ad6eafe54d622"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/kompetenzzentren/innovations-kompetenzzentrum-kuenstliche-intelligenz/ueber-das-ikki/",
+    "file": "data/raw/oth_web/kompetenzzentren_innovations_kompetenzzentrum_kuenstliche_intelligenz_ueber_das_ikki.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:46:06+00:00",
+    "sha256": "a06ada7370f004d27f800064649e1f3bbbaa768bfecf4169888e261b4d28b654"
+  },
+  {
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/institute/in-institute/institut-fuer-angewandte-forschung/",
+    "file": "data/raw/oth_web/institute_in_institute_institut_fuer_angewandte_forschung.html",
+    "status": 200,
+    "retrieved_utc": "2026-10-17T20:46:10+00:00",
+    "sha256": "070e9a83db81145bcd06e5e114d49b5a9d422fbe449ab05cea864fc1fcf7fd13"
+  }
+]
