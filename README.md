@@ -7,9 +7,6 @@ Computer Science (EMI) at OTH Amberg-Weiden. It combines public data from federa
 the Federal Employment Agency, programme catalogues, competitor module handbooks and search trends, and ranks
 the shortlisted options with a multi-criteria decision analysis under uncertainty.
 
-> AI Project, MSc AI for Industrial Applications, OTH Amberg-Weiden, winter semester 2026/27
-> Supervisor: Prof. Dr.-Ing. Thomas Nierhoff · Team: Somantha Manuranga, *[team member 2]*
-
 ---
 
 ## Result (preliminary, as of 18 Oct 2026; final after the 4 Dec 2026 data freeze)
