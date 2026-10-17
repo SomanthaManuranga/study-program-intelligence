@@ -162,3 +162,10 @@ sources:
     use: teaching load of HAW professors (18 SWS), Step 44
     status: verified
 
+  - id: benchmark_programmes
+    owner: USTP St. Pölten, FH OÖ Hagenberg, Hochschule Luzern, Abertay University
+    url: see configs/benchmark_documents.yaml
+    use: curriculum structure benchmarks (Step 45)
+    access: public pages/PDFs via ingest/documents.py; Turku UAS skipped (robots.txt); manifest docs/benchmark_manifest.json
+    status: downloaded
+

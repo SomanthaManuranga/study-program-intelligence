@@ -1,0 +1,35 @@
+# International benchmark programmes (Step 45, lean: curriculum structure only), downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/benchmark_documents.yaml \
+#       --out data/raw/benchmarks --manifest docs/benchmark_manifest.json
+# Public pages/PDFs only; robots.txt and Crawl-delay respected; blocked items are skipped (limitation).
+
+documents:
+  - id: at_hagenberg_sib_page
+    owner: FH Oberösterreich, Campus Hagenberg
+    programme: Sichere Informationssysteme (BSc), 6 semesters, 180 ECTS
+    title: Programme page Bachelor Sichere Informationssysteme (module groups with ECTS); the Infoblatt link from web search returned 404
+    url: https://fh-ooe.at/sib
+
+  - id: at_stpoelten_its_folder
+    owner: Hochschule für Angewandte Wissenschaften St. Pölten (USTP)
+    programme: IT Security (BSc), 6 semesters, 180 ECTS
+    title: Folder Bachelor IT Security
+    url: https://www.ustp.at/de/mediathek/pdfs/folder/folder-bachelor-it-security.pdf/@@download/file/Folder-Bachelor-IT-Security.pdf
+
+  - id: ch_hslu_ics_modules
+    owner: Hochschule Luzern (HSLU), Informatik
+    programme: Information & Cyber Security (BSc), 180 ECTS
+    title: Module overview Bachelor Information & Cyber Security (web page)
+    url: https://www.hslu.ch/en/lucerne-school-of-information-technology/degree-programs/bachelor/information-and-cyber-security/module/
+
+  - id: uk_abertay_ethical_hacking
+    owner: Abertay University
+    programme: BSc (Hons) Ethical Hacking, 4 years, 480 SCQF credits (= 240 ECTS)
+    title: BSc with Honours in Ethical Hacking (programme document)
+    url: https://www.abertay.ac.uk/media/lirnonzk/bsc-with-honours-in-ethical-hacking.pdf
+
+  - id: fi_turku_cyber_iot
+    owner: Turku University of Applied Sciences (TUAS)
+    programme: ICT - Cyber Security and IoT (Bachelor of Engineering), 240 ECTS
+    title: Curriculum Tieto- ja viestintätekniikka, Kyberturvallisuus ja IoT (study guide page)
+    url: https://opinto-opas.turkuamk.fi/21632/en/0/21716/1023
