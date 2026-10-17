@@ -58,7 +58,7 @@ weights drawn independently.
 
 | Option | Base: P(rank 1) | P(rank 2) | P(rank 3) | Median (80 % range) | Robotics 50 % cannibalisation: P(rank 1) | P(rank 2) | P(rank 3) |
 |---|---|---|---|---|---|---|---|
-| Cyber B.Sc. | **91.7 %** | 7.5 % | 0.8 % | 3.49 (3.24-3.74) | **93.3 %** | 6.4 % | 0.3 % |
+| Cyber B.Sc. | **91.7 %** | 7.5 % | 0.8 % | 3.49 (3.24-3.74) | **93.2 %** | 6.4 % | 0.3 % |
 | Cyber/OT M.Sc. | 6.0 % | 67.0 % | 27.0 % | 3.14 (2.89-3.39) | 6.3 % | 82.8 % | 10.9 % |
 | Robotics+AI B.Sc. | 2.3 % | 25.6 % | 72.2 % | 2.99 (2.70-3.27) | 0.4 % | 10.8 % | 88.8 % |
 
