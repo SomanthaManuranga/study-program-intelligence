@@ -72,10 +72,12 @@ Phase 4 (communication and reproducibility) plan, in order:
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 51 (full report draft). Status: open.
-Last finished: Step 50, key numbers + figures + outline (2026-10-18): `python -m study_program_intelligence.report.build`
--> reports/key_numbers.yaml (74 numbers, each checked against its source doc), reports/figures/ (7 figures, one
-style), reports/final/outline.md. Spot check passed (Soma). Public data only (no intake figures from universities).
+Current: Step 52 (Streamlit dashboard). Status: open.
+Last finished: Step 51, report draft (2026-10-18): section texts docs/report/*.md (no typed numbers; {{key}},
+{{fig:...}}, {{table:...}}), settings docs/report/report.yaml, references docs/report/references.yaml;
+`python -m study_program_intelligence.report.draft` -> reports/final/report.md/.docx/.pdf (~23 pages main text);
+`python -m study_program_intelligence.report.spotcheck` (10 sentences, seed 20261018) passed (Soma).
+Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -124,6 +126,9 @@ Forecasts validated with rolling-origin backtests (MASE).
 - report/build.py (Step 50): key_numbers.py -> reports/key_numbers.yaml (JOB_SNAPSHOT = date of the evidence-doc
   table; move to the frozen snapshot on 4 Dec), figures.py -> reports/figures/ (matplotlib, optional dep 'report'),
   outline.py -> reports/final/outline.md. Run after the analysis modules; numbers never typed by hand.
+- report/draft.py (Step 51): builds the report from docs/report/; fails on unknown placeholders or typed numbers
+  (allowed patterns in report.yaml). pandoc via pypandoc_binary (.venv), PDF via MiKTeX xelatex. Title page still has
+  placeholders for the second author and the supervisor. report/spotcheck.py: sentence-level spot check.
 - transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page
   -> data/raw/competitor modules/thm_ma_technische_informatik_modules.csv (handbook PDF blocked by robots.txt)
 
