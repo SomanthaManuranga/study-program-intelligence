@@ -41,6 +41,9 @@ backtest period (2012-2024) was a growth phase; drift's errors were mostly under
 
 ## Forecasts
 
+The central column is **a midpoint between the KMK floor and the drift trend, chosen by us as a planning value; it is
+not a model output.**
+
 | Series | Year | Conservative: KMK scenario (constant share x KMK Dok. 1 index) | Upside: drift (80 % band from backtest errors) | Central (midpoint, planning value) |
 |---|---|---|---|---|
 | DE Informatik | 2030 | 22,206 | 25,915 (24,727-28,832) | 24,060 |

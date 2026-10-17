@@ -80,3 +80,10 @@ documents:
     version: "2014; school leavers of school year 2013/14"
     url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00004593/B0100C 201400.pdf"
     use: school leavers by qualification and county (catchment)
+
+  - id: by_studierende_ws2024
+    owner: Bayerisches Landesamt für Statistik
+    title: "Studierende an den Hochschulen in Bayern, Wintersemester 2024/25, endgültige Ergebnisse (Statistische Berichte B III 1-2 j 2024)"
+    version: "WS 2024/25"
+    url: "https://statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/b3120c_202400.pdf"
+    use: first-years by university and subject (capture calibration, Step 47)

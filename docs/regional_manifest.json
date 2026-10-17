@@ -152,5 +152,19 @@
     "content_type": "application/pdf",
     "bytes": 14404838,
     "sha256": "3f39dd66cf1dbc39b776147330e34beb217cc54d8e15e9836346dbf6f1fdcf26"
+  },
+  {
+    "id": "by_studierende_ws2024",
+    "owner": "Bayerisches Landesamt für Statistik",
+    "title": "Studierende an den Hochschulen in Bayern, Wintersemester 2024/25, endgültige Ergebnisse (Statistische Berichte B III 1-2 j 2024)",
+    "url": "https://statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/b3120c_202400.pdf",
+    "mirror": false,
+    "file": "data/raw/regional/by_studierende_ws2024.pdf",
+    "version": "WS 2024/25",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T21:06:12+00:00",
+    "content_type": "application/pdf",
+    "bytes": 1941057,
+    "sha256": "a1f3a725a21feebab8e2fabaccad5b2591173493e0c87f58152ac5008ae9609d"
   }
 ]
