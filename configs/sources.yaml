@@ -99,3 +99,37 @@ sources:
     access: public PDFs via ingest/documents.py (robots.txt respected, 3 s delay); rest manual, see docs/manual_downloads.md
     manifest: docs/competitor_modules_manifest.json
     status: complete (Step 39): 7 handbooks; 2 module lists (HS Aalen lists, TH Mannheim programme page); 2 without published handbook (THI Cyber Security Engineer, THI Sociotechnical Cybersecurity)
+
+  - id: by_eckzahlen_schulen
+    owner: Bayerisches Landesamt für Statistik
+    url: see configs/regional_documents.yaml (one PDF per report year, via statistischebibliothek.de)
+    table: "Statistische Berichte B I/II 1 j, Tabelle 5: Absolventen und Abgänger nach allgemein bildendem Abschluss und Kreisen"
+    use: claim B, catchment (Step 42)
+    coverage: school years 2013/14-2017/18, 2019/20-2023/24 (2018/19 edition not in the archive)
+    licence: TO_VERIFY (official statistics; cite source)
+    access: public PDFs via ingest/documents.py; manifest docs/regional_manifest.json
+    status: downloaded
+
+  - id: destatis_gv_isys
+    owner: Destatis
+    url: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html
+    table: Gemeindeverzeichnis (all municipalities, 30.06.2026): population, centre coordinates
+    use: county centres and distances (Step 42)
+    licence: Datenlizenz Deutschland, Namensnennung 2.0 (TO_VERIFY)
+    access: public xlsx via ingest/documents.py; manifest docs/regional_manifest.json
+    status: downloaded
+
+  - id: regionaldatenbank
+    owner: Statistische Ämter des Bundes und der Länder
+    url: https://www.regionalstatistik.de
+    use: county data outside Bavaria (not used)
+    access: robots.txt disallows all automated access -> not used
+    status: blocked
+
+  - id: genesis_bayern_api
+    owner: Bayerisches Landesamt für Statistik
+    url: https://www.statistikdaten.bayern.de/genesisWS/rest/2020/
+    use: county tables (not used)
+    access: API path allowed by robots.txt; registered account (GENESIS_BY_USER/PASSWORD in .env) logs in, but tables/catalogue return error 15 (no web-service rights)
+    status: blocked
+
