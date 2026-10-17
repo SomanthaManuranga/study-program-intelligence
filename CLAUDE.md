@@ -69,7 +69,8 @@ Forecasts validated with rolling-origin backtests (MASE).
   OT flag -> data/interim/module_scores.csv, reports/module_gaps.md, docs/evidence_fit_modules.md
 - transform/school_leavers.py + analysis/catchment.py (Step 42): Bavarian school leavers by county (B I/II 1 j PDFs)
   -> data/interim/school_leavers_by.csv, counties_geo.csv, reports/catchment.md, docs/evidence_catchment.md.
-  Regionaldatenbank blocked by robots.txt; GENESIS Bayern account has no API rights (error 15).
+  Regionaldatenbank blocked by robots.txt; GENESIS Bayern API unusable (form-field login = guest, error 15;
+  header login times out). 2018/19 stays a gap year.
 - transform/modules.py (Step 40): one module table from all handbooks (TOC-anchored parser)
   -> data/interim/modules.csv, reports/modules_check.md (counts vs TOC, spot-check table)
 - transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page

@@ -130,6 +130,6 @@ sources:
     owner: Bayerisches Landesamt für Statistik
     url: https://www.statistikdaten.bayern.de/genesisWS/rest/2020/
     use: county tables (not used)
-    access: API path allowed by robots.txt; registered account (GENESIS_BY_USER/PASSWORD in .env) logs in, but tables/catalogue return error 15 (no web-service rights)
+    access: API path allowed by robots.txt; credentials as form fields fall back to the guest (error 15 on data services); credentials in headers get no reply (timeout). Account in .env (GENESIS_BY_USER/PASSWORD)
     status: blocked
 
