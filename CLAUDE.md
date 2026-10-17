@@ -12,7 +12,7 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 - After giving a step, wait until I report back or paste the output. Check the result against "Done when".
   Only move to the next step when it succeeded; otherwise help me fix it (same step number).
 - After each finished step, update "Current step" below and commit it with the step's other changes.
-- Push after each step passes its "Done when" check without asking (standing rule, 17 Oct 2026).
+- Push after each step passes its "Done when" check without asking (standing rule, confirmed by Soma 17 Oct 2026).
 - Spot checks for me: give an English side-by-side table (extracted title, ECTS, first 300 characters of
   text, PDF page number) so I only compare, never search.
 - Step 41: allowed to install sentence-transformers and a multilingual model that handles German
@@ -25,9 +25,8 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 40: one checked module table from all handbooks (Next steps item 1, part 1). Status: open;
-table built (382 modules), waiting for Soma's 10-row spot check (reports/modules_check.md).
-Last finished: Step 39, competitor module handbooks (2026-10-17): 7 handbooks, 2 module lists, 2 none published.
+Step 41: module gap analysis with embeddings + TF-IDF cross-check (Next steps item 1, part 2). Status: open.
+Last finished: Step 40, module table from all handbooks (2026-10-17): 382 modules, spot check 10/10.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
