@@ -19,7 +19,8 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 39: competitor module handbooks for the cyber shortlist (Next steps item 1). Status: open.
+Step 39: competitor module handbooks for the cyber shortlist (Next steps item 1). Status: open;
+part 1 done (6 of 11 downloaded), waiting for the 5 manual downloads in docs/manual_downloads.md.
 Last finished: Step 38, hand-labelled precision check of the theme rules (2026-10-17).
 
 ## Rules
@@ -56,6 +57,8 @@ Forecasts validated with rolling-origin backtests (MASE).
 - analysis/theme_check.py: hand-label sheet for the title theme rules (all cyber title matches + samples +
   miss check, seed 20261017) -> data/interim/theme_labels.xlsx; labels in data/interim/theme_labels_EN.xlsx
   (proposed by Claude, reviewed by Soma); score -> reports/theme_check.md, docs/theme_precision.md
+- ingest/documents.py --config configs/competitor_modules.yaml (Step 39): competitor module handbooks
+  -> data/raw/competitor modules/, docs/competitor_modules_manifest.json; manual ones in docs/manual_downloads.md
 
 ## Findings so far
 - Informatik is the only growing EMI field (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since 2023).

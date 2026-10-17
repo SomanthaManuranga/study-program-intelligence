@@ -1,0 +1,58 @@
+# Module handbooks of competitor programmes (Step 39), downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/competitor_modules.yaml \
+#       --out "data/raw/competitor modules" --manifest docs/competitor_modules_manifest.json --pdf-only
+# Scope: the 10 dedicated cybersecurity programmes within 150 km of OTH (docs/theme_precision.md)
+# plus TH Mannheim's master (benchmark: only industrial/OT security profile). Public PDFs only, robots.txt
+# respected, 3 s delay. Not found / blocked -> docs/manual_downloads.md. URLs found by web search, 17 Oct 2026.
+
+documents:
+  - id: fau_ba_informatik_it_sicherheit
+    owner: FAU Erlangen-Nürnberg, Technische Fakultät
+    programme: Informatik / IT-Sicherheit B.Sc. (berufsbegleitend), FAU, 63 km
+    title: Modulhandbuch Informatik IT-Sicherheit B.Sc., PO-Version 20242, WS 2026/27
+    version: PO-Version 20242, Stand 21.09.2026 (title page checked)
+    url: "https://www.apps.tf.fau.de/remoter//data/DepINF/ITS/Aktuell/Informatik_IT-Sicherheit , Abschluss B.Sc., PO-Version 20242, Wintersemester 2026_27, deutsch, Stand vom 21.09.2026.pdf"
+    page: https://www.tf.fau.eu/studying/study-organisation/module-handbook-faculty-of-engineering/module-handbooks-computer-science-it-security
+
+  - id: thi_ba_cybersicherheit
+    owner: Technische Hochschule Ingolstadt, Fakultät Informatik
+    programme: Cybersicherheit B.Sc., TH Ingolstadt, 82 km
+    title: Modulhandbuch Bachelor Cybersicherheit (CSI-B)
+    version: SPO WS 22/23, Stand 24.10.2025 (title page checked)
+    url: https://thi.de/fileadmin/daten/fakultaetI/Modulhandbuecher/MHBuch_CSI-B.pdf
+
+  - id: thi_ma_cloud_applications_security_engineering
+    owner: Technische Hochschule Ingolstadt, Fakultät Informatik
+    programme: Cloud Applications und Security Engineering M.Sc., TH Ingolstadt, 82 km
+    title: Modulhandbuch Master Cloud Applications und Security Engineering (CSE-M)
+    version: SPO WS 22/23, Stand 28.09.2023 (title page checked; 3 years old)
+    url: https://thi.de/fileadmin/daten/fakultaetI/Modulhandbuecher/MHBuch_CSE-M.pdf
+
+  - id: deg_ba_cyber_security
+    owner: Technische Hochschule Deggendorf
+    programme: Cyber Security B.Sc., TH Deggendorf, 105 km
+    title: Modulhandbuch Bachelor Cyber Security
+    version: Pruefungsordnung 10.07.2024, Stand 20.08.2024 (per search snippet; not downloaded)
+    url: https://cs-mariakirchen.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf
+
+  - id: deg_ma_cyber_security
+    owner: Technische Hochschule Deggendorf
+    programme: Cyber Security M.Eng. (weiterbildend), TH Deggendorf, 105 km
+    title: Modulhandbuch Master Cyber Security (MCY)
+    version: Pruefungsordnung 01.10.2024, Stand 30.07.2026 (title page checked)
+    url: https://th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/Weiterbildend/Modulhandbuch_MCY-2026.pdf
+
+  - id: thws_ba_informationssicherheit
+    owner: Technische Hochschule Würzburg-Schweinfurt, Fakultät Informatik und Wirtschaftsinformatik
+    programme: Informationssicherheit B.Sc., THWS, 143 km
+    title: Modulhandbuch Bachelor Informationssicherheit (BISD), SS 2026
+    version: SS 2026 / WS 2025 (title page checked)
+    url: https://fiw.thws.de/fileadmin/redaktion/dokumente/modulhandbuecher/20260312-FIW-Modulhandbuch-BISD-2026ss.pdf
+
+  - id: hdbw_ma_cyber_security
+    owner: Hochschule der Bayerischen Wirtschaft (HDBW), München
+    programme: Cyber Security M.Sc., HDBW München, 146 km
+    title: Modulhandbuch Master Cyber Security
+    version: Stand April 2025, Vollzeit / Teilzeit (title page checked)
+    url: https://www.hdbw-hochschule.de/fileadmin/user_upload/Zentrale/Downloads/HDBW_Dokumente/Modulhandbuch-HDBW_Master_Cyber_Security.pdf
+    page: https://www.hdbw-hochschule.de/masterstudium/cyber-security-studium

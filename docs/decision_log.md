@@ -83,3 +83,9 @@ Decision: (1) Labels in data/interim/theme_labels_EN.xlsx were proposed by Claud
 Reason: the competitor count enters Claim B and the MCDA; variants and non-IT "security" titles inflated it. General programmes with a focus area compete for the same students but are not dedicated programmes, so they are reported separately rather than added.
 Consequence: OTH's own Medieninformatik and Industrie-4.0-Informatik list "Informationssicherheit" as a focus area; the incrementality test must cover them. Secondary counts are lower bounds (focus areas come from a ~400-character teaser).
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-17: Competitor module handbooks (Step 39)
+Decision: collect the current module handbooks of the 10 dedicated cybersecurity programmes within 150 km of OTH (docs/theme_precision.md) plus the TH Mannheim master "Technische Informatik - Security und Industrial Internet of Things" (244 km) as a benchmark, because it is the only one with an industrial/OT security focus like our master idea. Download only public PDFs that robots.txt allows, 3 s delay after every request (incl. robots.txt), contact User-Agent, non-PDF replies rejected; every file recorded with URL, retrieval time, version (title page) and SHA-256 in docs/competitor_modules_manifest.json. Anything blocked or not found is not worked around but listed in docs/manual_downloads.md for manual download.
+Result: 6 of 11 downloaded (FAU BA, THI BA, THI MA Cloud Applications und Security Engineering, TH Deggendorf MA, THWS BA, HDBW MA); 5 manual (TH Deggendorf BA: host of the found link does not resolve; THI MA Cyber Security Engineer, THI MA Sociotechnical Cybersecurity, HS Aalen MA Cyber Security, TH Mannheim MA: no public handbook found). URLs found by web search.
+Caveat: THI MA Cloud Applications handbook is "Stand 28.09.2023"; an SPO is used only as a fallback where no handbook exists.
+Decided by: team (Somantha Manuranga).
