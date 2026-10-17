@@ -32,8 +32,9 @@ documents:
     owner: Technische Hochschule Deggendorf
     programme: Cyber Security B.Sc., TH Deggendorf, 105 km
     title: Modulhandbuch Bachelor Cyber Security
-    version: Pruefungsordnung 10.07.2024, Stand 20.08.2024 (per search snippet; not downloaded)
-    url: https://cs-mariakirchen.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf
+    version: Pruefungsordnung 10.07.2024, Stand 07.04.2025 (title page checked)
+    url: https://www.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf
+    # first link (cs-mariakirchen.th-deg.de, same path) did not resolve on 17 Oct 2026; th-deg.de link supplied by Soma
 
   - id: deg_ma_cyber_security
     owner: Technische Hochschule Deggendorf
@@ -56,3 +57,28 @@ documents:
     version: Stand April 2025, Vollzeit / Teilzeit (title page checked)
     url: https://www.hdbw-hochschule.de/fileadmin/user_upload/Zentrale/Downloads/HDBW_Dokumente/Modulhandbuch-HDBW_Master_Cyber_Security.pdf
     page: https://www.hdbw-hochschule.de/masterstudium/cyber-security-studium
+
+  - id: thm_ma_technische_informatik_security_iiot
+    owner: Technische Hochschule Mannheim, Fakultät für Informationstechnik
+    programme: Technische Informatik - Security und Industrial Internet of Things M.Sc., TH Mannheim, 244 km (benchmark)
+    title: Master-Modulhandbuch ab Studienstart SS 2025
+    version: ab Studienstart SS 2025 (not downloaded: robots.txt Disallow /fileadmin/)
+    url: https://www.inftech.hs-mannheim.de/fileadmin/user_upload/fakultaeten/fakultaet_n_neu/PDF/Modulhandbuecher/Master-Modulhandbuch_ab_Studienstart_SS2025.pdf
+    page: https://www.inftech.hs-mannheim.de/masterstudiengaenge/technische-informatik.html
+
+  - id: aalen_ma_cyber_security_spo
+    owner: Hochschule Aalen
+    programme: Cyber Security M.Sc. (berufsbegleitend), HS Aalen, 145 km
+    title: Studien- und Prüfungsordnung Teil B, Master Cyber Security (MAW-TB-CSC-511); SPO only, no handbook published
+    version: SPO 511, 03.07.2024 (not downloaded: HTTP 404)
+    url: https://www.hs-aalen.de/uploads/mediapool/media/file/43955/MAW-TB-CSC-511.pdf
+    page: https://www.hs-aalen.de/en/study-programmes/computer-science-artificial-intelligence/part-time/cyber-security/
+
+  - id: thi_ma_cyber_security_engineer_spo
+    owner: Technische Hochschule Ingolstadt (document); hosted by StudyCheck (third-party mirror)
+    programme: Cyber Security Engineer M.Sc. (weiterbildend), TH Ingolstadt, 82 km
+    title: SPO M.Sc. Cyber Security Engineer, Anlage 1 (module annex), 12.12.2022; no official handbook published
+    version: SPO 12.12.2022, Anlage 1 (not downloaded: robots.txt of static.studycheck.de, see manual_downloads.md)
+    url: https://static.studycheck.de/media/documents/course_documents/thi/msc_cyber-security-engineer/655216ca96e00_2022-12-12-spo-cybersecurity-anlage-1.pdf
+    mirror: true
+    page: https://www.thi.de/en/lifelong-learning/study-courses/cyber-security-engineer-msc/

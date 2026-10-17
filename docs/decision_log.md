@@ -89,3 +89,8 @@ Decision: collect the current module handbooks of the 10 dedicated cybersecurity
 Result: 6 of 11 downloaded (FAU BA, THI BA, THI MA Cloud Applications und Security Engineering, TH Deggendorf MA, THWS BA, HDBW MA); 5 manual (TH Deggendorf BA: host of the found link does not resolve; THI MA Cyber Security Engineer, THI MA Sociotechnical Cybersecurity, HS Aalen MA Cyber Security, TH Mannheim MA: no public handbook found). URLs found by web search.
 Caveat: THI MA Cloud Applications handbook is "Stand 28.09.2023"; an SPO is used only as a fallback where no handbook exists.
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-17: Competitor handbooks, second round (Step 39)
+Decision: official university URLs supplied by Soma are used with the same downloader rules. A third-party mirror (StudyCheck) is acceptable only for a document the university does not publish, labelled as a mirror. robots.txt is read with Python's robotparser (first match); where a file's rules conflict (static.studycheck.de: Disallow / and *.pdf, Allow /media/), it is treated as blocked and left to manual download.
+Result: TH Deggendorf BA downloaded from th-deg.de; TH Mannheim handbook blocked by robots.txt (Disallow /fileadmin/) -> manual; Aalen SPO 511 link returns 404 -> manual; THI Sociotechnical Cybersecurity marked "no published handbook" (SPO notice has no module list, checked by Soma).
+Decided by: team (Somantha Manuranga).

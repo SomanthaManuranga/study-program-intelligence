@@ -98,4 +98,4 @@ sources:
     licence: TO_VERIFY (public documents; used for analysis and citation only, not redistributed)
     access: public PDFs via ingest/documents.py (robots.txt respected, 3 s delay); rest manual, see docs/manual_downloads.md
     manifest: docs/competitor_modules_manifest.json
-    status: downloaded (6 of 11); 5 manual
+    status: downloaded (7 of 11); 1 not published (THI Sociotechnical Cybersecurity); 3 manual (TH Mannheim robots.txt, Aalen 404, THI Cyber Security Engineer mirror)

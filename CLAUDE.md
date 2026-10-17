@@ -20,7 +20,7 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Step 39: competitor module handbooks for the cyber shortlist (Next steps item 1). Status: open;
-part 1 done (6 of 11 downloaded), waiting for the 5 manual downloads in docs/manual_downloads.md.
+7 of 11 downloaded, 1 not published; 3 open in docs/manual_downloads.md (Mannheim, Aalen, THI CSE mirror).
 Last finished: Step 38, hand-labelled precision check of the theme rules (2026-10-17).
 
 ## Rules
