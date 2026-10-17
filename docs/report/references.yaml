@@ -66,3 +66,106 @@ references:
     issued: {date-parts: [[2026]]}
     accessed: {date-parts: [[2026, 10, 17]]}
     note: "sources.yaml: google_trends"
+  - id: lfstat2024schools
+    type: report
+    author: [{literal: "Bayerisches Landesamt für Statistik"}]
+    title: "Bayerische Schulen: Eckzahlen nach kreisfreien Städten und Landkreisen (Statistische Berichte B I/II 1 j), Tabelle 5, school years 2013/14-2023/24"
+    URL: https://www.statistischebibliothek.de/
+    issued: {date-parts: [[2024]]}
+    note: "sources.yaml: by_eckzahlen_schulen"
+  - id: kmk2025schools
+    type: report
+    author: [{literal: "Kultusministerkonferenz (KMK)"}]
+    title: "Vorausberechnung der Schüler- und Absolventenzahlen 2025 bis 2040"
+    collection-title: "Dokumentation Nr. 251"
+    URL: https://www.kmk.org/downloads-dokumente/statistik/schulstatistik/vorausberechnung-der-schueler-und-absolventenzahlen.html
+    issued: {date-parts: [[2025]]}
+    note: "sources.yaml: kmk_dok251_2025_2040"
+  - id: lfstat2024employment
+    type: report
+    author: [{literal: "Bayerisches Landesamt für Statistik"}]
+    title: "Sozialversicherungspflichtig Beschäftigte in Bayern (Statistische Berichte A VI 5), Tabelle 10, 2019 and 2023"
+    URL: https://www.statistischebibliothek.de/
+    issued: {date-parts: [[2024]]}
+    note: "sources.yaml: by_svb_employment"
+  - id: avbayhig
+    type: legislation
+    author: [{literal: "Freistaat Bayern"}]
+    title: "Verordnung zur Ausführung des Bayerischen Hochschulinnovationsgesetzes (AVBayHIG), § 4 Lehrverpflichtung"
+    URL: https://www.gesetze-bayern.de/Content/Document/BayAVHIG-4
+    issued: {date-parts: [[2023, 2, 13]]}
+    note: "sources.yaml: avbayhig_4"
+  - id: handbooks2026
+    type: document
+    author: [{literal: "FAU Erlangen-Nürnberg, TH Ingolstadt, TH Deggendorf, THWS, HDBW, Hochschule Aalen, TH Mannheim"}]
+    title: "Module handbooks of the dedicated cybersecurity programmes within 150 km of OTH (versions as of October 2026)"
+    issued: {date-parts: [[2026]]}
+    note: "sources.yaml: competitor_module_handbooks; manifest docs/competitor_modules_manifest.json"
+  - id: othhandbooks2026
+    type: document
+    author: [{literal: "OTH Amberg-Weiden"}]
+    title: "Module handbooks of the EMI programmes (Industrie-4.0-Informatik, Medieninformatik, Elektro- und Informationstechnik, Künstliche Intelligenz B.Sc./M.Sc., IT und Automation, AI for Industrial Applications)"
+    issued: {date-parts: [[2026]]}
+    note: "local copies in data/raw/oth modules"
+  - id: cybok2021
+    type: book
+    author: [{literal: "CyBOK"}]
+    title: "The Cyber Security Body of Knowledge, version 1.1"
+    publisher: "University of Bristol / National Cyber Security Centre"
+    URL: https://www.cybok.org/
+    issued: {date-parts: [[2021]]}
+  - id: wang2024e5
+    type: article
+    author: [{family: Wang, given: Liang}, {family: Yang, given: Nan}, {family: Huang, given: Xiaolong}, {family: Yang, given: Linjun}, {family: Majumder, given: Rangan}, {family: Wei, given: Furu}]
+    title: "Multilingual E5 Text Embeddings: A Technical Report"
+    container-title: "arXiv"
+    number: "2402.05672"
+    issued: {date-parts: [[2024]]}
+  - id: hyndman2006
+    type: article-journal
+    author: [{family: Hyndman, given: Rob J.}, {family: Koehler, given: Anne B.}]
+    title: "Another look at measures of forecast accuracy"
+    container-title: "International Journal of Forecasting"
+    volume: 22
+    issue: 4
+    page: 679-688
+    issued: {date-parts: [[2006]]}
+  - id: wilson1971
+    type: article-journal
+    author: [{family: Wilson, given: Alan G.}]
+    title: "A family of spatial interaction models, and associated developments"
+    container-title: "Environment and Planning A"
+    volume: 3
+    issue: 1
+    page: 1-32
+    issued: {date-parts: [[1971]]}
+  - id: huff1964
+    type: article-journal
+    author: [{family: Huff, given: David L.}]
+    title: "Defining and estimating a trading area"
+    container-title: "Journal of Marketing"
+    volume: 28
+    issue: 3
+    page: 34-38
+    issued: {date-parts: [[1964]]}
+  - id: lahdelma1998
+    type: article-journal
+    author: [{family: Lahdelma, given: Risto}, {family: Hokkanen, given: Joonas}, {family: Salminen, given: Pekka}]
+    title: "SMAA - Stochastic multiobjective acceptability analysis"
+    container-title: "European Journal of Operational Research"
+    volume: 106
+    issue: 1
+    page: 137-143
+    issued: {date-parts: [[1998]]}
+  - id: thi2025csi
+    type: document
+    author: [{literal: "Technische Hochschule Ingolstadt"}]
+    title: "Modulhandbuch Bachelor Cybersicherheit (CSI-B), Stand 24.10.2025"
+    URL: https://thi.de/fileadmin/daten/fakultaetI/Modulhandbuecher/MHBuch_CSI-B.pdf
+    issued: {date-parts: [[2025]]}
+  - id: benchmarks2026
+    type: document
+    author: [{literal: "USTP St. Pölten, FH OÖ Hagenberg, Hochschule Luzern, Abertay University"}]
+    title: "Curriculum documents of four international cybersecurity bachelor programmes"
+    issued: {date-parts: [[2026]]}
+    note: "sources.yaml: benchmark_programmes; manifest docs/benchmark_manifest.json"

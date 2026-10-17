@@ -1,4 +1,4 @@
-# Summary
+# Summary {-}
 
 <!-- Executive summary. All numbers are {{placeholders}} from reports/key_numbers.yaml; do not type numbers here. -->
 

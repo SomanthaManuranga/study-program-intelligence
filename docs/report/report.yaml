@@ -11,6 +11,7 @@ date: auto                    # build date
 length:
   target_pages: [20, 25]      # main text, without appendix
   words_per_page: 400         # body text incl. tables and captions; ~11 pt, single spacing
+  pages_per_figure: 0.5       # added to the estimate per figure
 formats: [docx, pdf]          # pdf needs a LaTeX engine (xelatex/MiKTeX); skipped with a note if missing
 citations:
   bibliography: references.yaml
@@ -34,13 +35,17 @@ appendix:
 # Typed-number check: numbers in the section texts must come from key_numbers.yaml ({{key}}). Flagged when typed:
 # percentages, decimals, numbers with thousands separators, and integers >= 10. Allowed patterns (regex):
 allowed_numbers:
+  - '\b(19|20)\d{2}/\d{2}\b'        # school / winter semester years 2026/27 (before plain years)
   - '\b(19|20)\d{2}\b'              # years
-  - '\b(19|20)\d{2}/\d{2}\b'        # winter semester 2026/27
   - '\b\d+ km\b'                    # distance bands (50/100/150 km)
+  - '\b\d+-km\b'
+  - '\b213\d{2}\b'                  # Destatis table codes (21311, 21321)
+  - 'SHA-256'
+  - 'Industrie-4\.0'
   - '\bStep \d+\b'                  # project step numbers
   - '\b\d+ ECTS\b'                  # ECTS sizes of the degree format
-  - '\b\d+ Oct\b'                   # dates
-  - '\b\d+ (Dec|Nov|Jan)\b'
+  - '\b\d+ (Oct|Nov|Dec|Jan)\w*\b'  # dates
+  - '(?m)^\s*\d+\.\s'               # numbered-list markers
   - '\b(1st|2nd|3rd)\b'
   - '§ \d+'
   - '\b\d{2}:\d{2}\b'               # clock times (commit times)
