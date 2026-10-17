@@ -88,3 +88,14 @@ sources:
     licence: TO_VERIFY
     access: public; via documents.yaml
     status: downloaded
+
+  - id: competitor_module_handbooks
+    owner: the respective universities (FAU, THI, TH Deggendorf, THWS, HDBW, HS Aalen, TH Mannheim)
+    url: see configs/competitor_modules.yaml (one entry per handbook)
+    table: module handbooks (Modulhandbuecher) of the 10 dedicated cybersecurity programmes within 150 km + TH Mannheim benchmark
+    use: claim B/C, differentiation and NLP gap analysis vs EMI modules (Step 39)
+    coverage: current versions as of 17 Oct 2026 (versions per file in the manifest)
+    licence: TO_VERIFY (public documents; used for analysis and citation only, not redistributed)
+    access: public PDFs via ingest/documents.py (robots.txt respected, 3 s delay); rest manual, see docs/manual_downloads.md
+    manifest: docs/competitor_modules_manifest.json
+    status: downloaded (6 of 11); 5 manual

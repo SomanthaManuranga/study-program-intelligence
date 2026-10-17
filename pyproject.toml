@@ -15,7 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "pandera>=0.20", "ruff>=0.5"]
-nlp = ["sentence-transformers>=3.0", "hdbscan>=0.8", "umap-learn>=0.5"]
+nlp = ["sentence-transformers>=3.0", "hdbscan>=0.8", "umap-learn>=0.5", "pypdf>=5.0"]
 dashboard = ["streamlit>=1.37"]
 
 [build-system]

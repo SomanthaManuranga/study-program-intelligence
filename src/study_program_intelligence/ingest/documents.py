@@ -5,12 +5,15 @@ Run from the repository root:
     python -m study_program_intelligence.ingest.documents            # download missing files
     python -m study_program_intelligence.ingest.documents --force    # re-download everything
     python -m study_program_intelligence.ingest.documents --only hrk_statistik_ws_2025_26
+    python -m study_program_intelligence.ingest.documents --config configs/competitor_modules.yaml \
+        --out "data/raw/competitor modules" --manifest docs/competitor_modules_manifest.json --pdf-only
 
 Rules this script follows:
 - checks each site's robots.txt and skips a URL the site disallows;
 - identifies itself with a User-Agent that includes CONTACT_EMAIL from .env;
 - waits between requests and never re-downloads a file that already exists;
-- records URL, retrieval time, size and SHA-256 for every file.
+- records URL, retrieval time, size and SHA-256 for every file;
+- with --pdf-only, rejects (and deletes) any reply that is not a PDF.
 """
 
 from __future__ import annotations
@@ -72,6 +75,7 @@ def allowed_by_robots(url: str, agent: str) -> bool:
         except requests.RequestException:
             rp = None
         _robots_cache[root] = rp
+        time.sleep(DELAY_SECONDS)  # robots.txt and the file are two requests to the same host
     rp = _robots_cache[root]
     return True if rp is None else rp.can_fetch(agent, url)
 
@@ -84,13 +88,13 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def target_path(doc: dict) -> Path:
+def target_path(doc: dict, out_dir: Path = OUT_DIR) -> Path:
     suffix = Path(urlparse(doc["url"]).path).suffix.lower() or ".bin"
-    return OUT_DIR / f"{doc['id']}{suffix}"
+    return out_dir / f"{doc['id']}{suffix}"
 
 
-def download(doc: dict, agent: str, force: bool) -> dict:
-    dest = target_path(doc)
+def download(doc: dict, agent: str, force: bool, out_dir: Path = OUT_DIR, pdf_only: bool = False) -> dict:
+    dest = target_path(doc, out_dir)
     record = {
         "id": doc["id"],
         "owner": doc.get("owner"),
@@ -99,6 +103,7 @@ def download(doc: dict, agent: str, force: bool) -> dict:
         "mirror": bool(doc.get("mirror", False)),
         "file": dest.relative_to(REPO_ROOT).as_posix(),
     }
+    record.update({k: doc[k] for k in ("programme", "version", "page") if k in doc})
 
     if dest.exists() and not force:
         record.update(status="cached", bytes=dest.stat().st_size, sha256=sha256(dest))
@@ -122,6 +127,12 @@ def download(doc: dict, agent: str, force: bool) -> dict:
     with tmp.open("wb") as fh:
         for chunk in resp.iter_content(chunk_size=1 << 16):
             fh.write(chunk)
+    with tmp.open("rb") as fh:
+        is_pdf = fh.read(5) == b"%PDF-"
+    if pdf_only and not is_pdf:
+        tmp.unlink()
+        record.update(status="error", error=f"not a PDF ({resp.headers.get('Content-Type')})")
+        return record
     tmp.replace(dest)
 
     record.update(
@@ -138,35 +149,40 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--force", action="store_true", help="re-download files that already exist")
     parser.add_argument("--only", nargs="*", default=None, help="document ids to fetch")
+    parser.add_argument("--config", type=Path, default=CONFIG, help="YAML with a 'documents' list")
+    parser.add_argument("--out", type=Path, default=OUT_DIR, help="output folder")
+    parser.add_argument("--manifest", type=Path, default=MANIFEST, help="manifest JSON to write")
+    parser.add_argument("--pdf-only", action="store_true", help="reject replies that are not PDFs")
     args = parser.parse_args(argv)
+    config, out_dir, manifest = (p if p.is_absolute() else REPO_ROOT / p for p in (args.config, args.out, args.manifest))
 
     load_env(REPO_ROOT / ".env")
     agent = user_agent()
-    docs = yaml.safe_load(CONFIG.read_text(encoding="utf-8"))["documents"]
+    docs = yaml.safe_load(config.read_text(encoding="utf-8"))["documents"]
     if args.only:
         docs = [d for d in docs if d["id"] in set(args.only)]
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
 
     previous = {}
-    if MANIFEST.exists():
-        previous = {r["id"]: r for r in json.loads(MANIFEST.read_text(encoding="utf-8"))}
+    if manifest.exists():
+        previous = {r["id"]: r for r in json.loads(manifest.read_text(encoding="utf-8"))}
 
     results = []
     for i, doc in enumerate(docs):
-        rec = download(doc, agent, args.force)
+        rec = download(doc, agent, args.force, out_dir, args.pdf_only)
         if rec["status"] == "cached" and doc["id"] in previous:
             # keep the original retrieval time for files we did not fetch again
             rec["retrieved_utc"] = previous[doc["id"]].get("retrieved_utc")
         results.append(rec)
         size = f"{rec.get('bytes', 0) / 1024:,.0f} KB" if rec.get("bytes") else ""
         print(f"[{rec['status']:>15}] {doc['id']:<40} {size} {rec.get('error', '')}")
-        if rec["status"] == "downloaded" and i < len(docs) - 1:
-            time.sleep(DELAY_SECONDS)
+        if rec["status"] != "cached" and i < len(docs) - 1:
+            time.sleep(DELAY_SECONDS)  # after every network attempt, incl. robots.txt and errors
 
     merged = {**previous, **{r["id"]: r for r in results}}
-    MANIFEST.write_text(json.dumps(list(merged.values()), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(f"\nManifest written to {MANIFEST.relative_to(REPO_ROOT).as_posix()}")
+    manifest.write_text(json.dumps(list(merged.values()), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"\nManifest written to {manifest.relative_to(REPO_ROOT).as_posix()}")
 
     failed = [r for r in results if r["status"] in {"error", "skipped_robots"}]
     if failed:
