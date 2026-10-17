@@ -76,10 +76,10 @@ options:
     labour_relevance: {low: 3, central: 3.5, high: 4.5, strength: medium,
                        evidence: "anchor: Bavarian share 30 % (> 22-25 % baseline) and 161 ads within 100 km met; shortage partly: BA Engpassanalyse 2025 lists only the top-10 shortage occupations per level; at specialist level Elektrotechnik (KldB 2630, 2.2) and technical R&D (2710, 2.0) are shortages, Mechatronik/Automatisierung (261) is not named, so its status is unknown; strongest local signal of all keywords (58 ads within 50 km)",
                        source: "data/raw/documents/ba_engpassanalyse_2025.pdf p. 13 (Tabelle 8); docs/evidence_outlet_jobs.md (Step 43)"}
-    institutional_fit: {low: 2, central: 3, high: 5, strength: weak,  # weak evidence widens the range, not the centre (Soma, 17 Oct)
+    institutional_fit: {low: 1.5, central: 3, high: 4.5, strength: weak,  # weak evidence widens the range symmetrically, not the centre (Soma, 18 Oct; was 2/3/5)
                         evidence: "KI B.Sc. already teaches robotics, autonomous mobile systems, ML for robotics, CPS; with Mechatronik und digitale Automation OTH covers 7 of 8 core topics; title-level check only, no module-level or staff analysis",
                         source: "docs/overlap_test.md (Step 36)"}
-    feasibility: {low: 2, central: 3, high: 5, strength: weak,  # weak evidence widens the range, not the centre (Soma, 17 Oct)
+    feasibility: {low: 1.5, central: 3, high: 4.5, strength: weak,  # weak evidence widens the range symmetrically, not the centre (Soma, 18 Oct; was 2/3/5)
                   evidence: "mostly reuse of KI and Mechatronik modules and labs; no staffing or lab estimate made (Step 44 covered cyber only)",
                   source: "docs/overlap_test.md; not assessed in Step 44"}
     differentiation: {low: 2, central: 3, high: 3, strength: medium,
