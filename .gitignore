@@ -242,3 +242,6 @@ config.ini
 # Dashboard files that may contain data
 *.pbix
 *.pbit
+
+# Generated reports (rebuild with the analysis modules)
+reports/

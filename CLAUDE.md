@@ -8,16 +8,22 @@ Scope: faculty EMI (Elektrotechnik, Medien und Informatik); bachelor and master;
 Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentation 11 Jan 2027.
 
 ## How to work with me (Soma)
-- One step at a time. Each step ends with a "Done when" check. Wait for me before the next step.
+- Work in numbered steps (Step N), one step at a time. Each step ends with a "Done when" check.
+- After giving a step, wait until I report back or paste the output. Check the result against "Done when".
+  Only move to the next step when it succeeded; otherwise help me fix it (same step number).
+- After each finished step, update "Current step" below and commit it with the step's other changes.
 - Plain English, blunt, evidence-based. Numbers with sources. Say clearly when evidence is weak.
 - Windows + PowerShell. Python venv in .venv (activate: .venv\Scripts\Activate.ps1). Run modules from repo root:
   python -m study_program_intelligence.<package>.<module>
 - Do the file edits, test runs and git commits yourself; I only do manual downloads that robots.txt or
   logins block.
 
+## Current step
+Step 37: second Google Trends download without the anchor (Next steps item 1). Status: open.
+
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
-- data/ and generated reports are git-ignored on purpose. Commit code, configs and docs only.
+- data/ and generated reports (reports/) are git-ignored on purpose; regenerate them with the analysis modules. Commit code, configs and docs only.
 - Scraping: respect robots.txt (allowed_by_robots in ingest/documents.py), User-Agent with CONTACT_EMAIL,
   2-3 s delay, cache raw replies, record every source in configs/sources.yaml and a manifest in docs/.
   Hochschulkompass search pages and OTH /fileadmin/ are disallowed -> manual download by me.
