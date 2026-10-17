@@ -49,13 +49,16 @@
     "id": "deg_ba_cyber_security",
     "owner": "Technische Hochschule Deggendorf",
     "title": "Modulhandbuch Bachelor Cyber Security",
-    "url": "https://cs-mariakirchen.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf",
+    "url": "https://www.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf",
     "mirror": false,
     "file": "data/raw/competitor modules/deg_ba_cyber_security.pdf",
     "programme": "Cyber Security B.Sc., TH Deggendorf, 105 km",
-    "version": "Pruefungsordnung 10.07.2024, Stand 20.08.2024 (per search snippet; not downloaded)",
-    "status": "error",
-    "error": "HTTPSConnectionPool(host='cs-mariakirchen.th-deg.de', port=443): Max retries exceeded with url: /Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf (Caused by NameResolutionError(\"HTTPSConnection(host='cs-mariakirchen.th-deg.de', port=443): Failed to resolve 'cs-mariakirchen.th-deg.de' ([Errno 11001] getaddrinfo failed)\"))"
+    "version": "Pruefungsordnung 10.07.2024, Stand 07.04.2025 (title page checked)",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T15:41:07+00:00",
+    "content_type": "application/pdf",
+    "bytes": 399452,
+    "sha256": "a9dc199258b7c1dcb7d8d7453517395c4e6e4afae48e684597befb9695896f81"
   },
   {
     "id": "deg_ma_cyber_security",
@@ -102,5 +105,54 @@
     "content_type": "application/pdf",
     "bytes": 891900,
     "sha256": "10fa07dac97d10c41ee4161131f1581d74f1dc8f934051aa1a5a033352178439"
+  },
+  {
+    "id": "thm_ma_technische_informatik_security_iiot",
+    "owner": "Technische Hochschule Mannheim, Fakultät für Informationstechnik",
+    "title": "Master-Modulhandbuch ab Studienstart SS 2025",
+    "url": "https://www.inftech.hs-mannheim.de/fileadmin/user_upload/fakultaeten/fakultaet_n_neu/PDF/Modulhandbuecher/Master-Modulhandbuch_ab_Studienstart_SS2025.pdf",
+    "mirror": false,
+    "file": "data/raw/competitor modules/thm_ma_technische_informatik_security_iiot.pdf",
+    "programme": "Technische Informatik - Security und Industrial Internet of Things M.Sc., TH Mannheim, 244 km (benchmark)",
+    "version": "ab Studienstart SS 2025 (not downloaded: robots.txt Disallow /fileadmin/)",
+    "page": "https://www.inftech.hs-mannheim.de/masterstudiengaenge/technische-informatik.html",
+    "status": "skipped_robots",
+    "note": "robots.txt: Disallow /fileadmin/ (User-agent *)"
+  },
+  {
+    "id": "aalen_ma_cyber_security_spo",
+    "owner": "Hochschule Aalen",
+    "title": "Studien- und Prüfungsordnung Teil B, Master Cyber Security (MAW-TB-CSC-511); SPO only, no handbook published",
+    "url": "https://www.hs-aalen.de/uploads/mediapool/media/file/43955/MAW-TB-CSC-511.pdf",
+    "mirror": false,
+    "file": "data/raw/competitor modules/aalen_ma_cyber_security_spo.pdf",
+    "programme": "Cyber Security M.Sc. (berufsbegleitend), HS Aalen, 145 km",
+    "version": "SPO 511, 03.07.2024 (not downloaded: HTTP 404)",
+    "page": "https://www.hs-aalen.de/en/study-programmes/computer-science-artificial-intelligence/part-time/cyber-security/",
+    "status": "error",
+    "error": "HTTP 404",
+    "note": "link from web search (17 Oct 2026) returns 404"
+  },
+  {
+    "id": "thi_ma_cyber_security_engineer_spo",
+    "owner": "Technische Hochschule Ingolstadt (document); hosted by StudyCheck (third-party mirror)",
+    "title": "SPO M.Sc. Cyber Security Engineer, Anlage 1 (module annex), 12.12.2022; no official handbook published",
+    "url": "https://static.studycheck.de/media/documents/course_documents/thi/msc_cyber-security-engineer/655216ca96e00_2022-12-12-spo-cybersecurity-anlage-1.pdf",
+    "mirror": true,
+    "file": "data/raw/competitor modules/thi_ma_cyber_security_engineer_spo.pdf",
+    "programme": "Cyber Security Engineer M.Sc. (weiterbildend), TH Ingolstadt, 82 km",
+    "version": "SPO 12.12.2022, Anlage 1 (not downloaded: robots.txt of static.studycheck.de, see manual_downloads.md)",
+    "page": "https://www.thi.de/en/lifelong-learning/study-courses/cyber-security-engineer-msc/",
+    "status": "skipped_robots",
+    "note": "robots.txt: Disallow / and *.pdf, Allow /media/; first-match parser = blocked; treated as blocked"
+  },
+  {
+    "id": "thi_ma_sociotechnical_cybersecurity",
+    "owner": "Technische Hochschule Ingolstadt",
+    "title": "Sociotechnical Cybersecurity M.Sc. (SPO 07.07.2025)",
+    "programme": "Sociotechnical Cybersecurity M.Sc., TH Ingolstadt, 82 km",
+    "url": null,
+    "status": "not_published",
+    "note": "no module handbook published; the SPO notice (2025_10_24_Bekanntgabe_SPO_MA_SOC.pdf) contains no module list (checked by Soma, 17 Oct 2026)"
   }
 ]
