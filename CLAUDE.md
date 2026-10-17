@@ -131,8 +131,8 @@ Forecasts validated with rolling-origin backtests (MASE).
 - Cannibalisation (Step 48): 14-27 % from OTH (II/MI), 73-86 % net new, 13-16 % kept in region. Net new first-years
   15 / 32 / 64; kill rule 1 passed (13 % core-module overlap); no separate cannibalisation kill threshold exists.
 - Ranking (Step 49): same capture model for all options (robotics: no intake anchor; master: one). Cyber B.Sc. first in
-  88 % of draws (92 % with robotics at 50 % cannibalisation), first in every leave-one-out except without demand (tie
-  with robotics). Second place open (master vs robotics). Weak evidence widens ranges, not centres (kill_rules.md).
+  92 % of draws (93 % with robotics at 50 % cannibalisation), first in every leave-one-out (lowest 67 % without demand).
+  Master second, robotics last. Weak evidence widens ranges symmetrically, not centres (kill_rules.md).
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).

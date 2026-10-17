@@ -25,7 +25,8 @@ Anchors for the other criteria are added in week 1.
 
 Rule added 17 Oct 2026 (Step 49, Soma): **weak evidence widens a score's range, it does not raise its centre.** A
 criterion rated on weak evidence (title-level checks, no staffing or lab estimate, no intake anchor) gets a central
-score no better than the best-evidenced comparable option and a wider low-high range.
+score no better than the best-evidenced comparable option and a wider low-high range, symmetric around the centre
+(amended 18 Oct 2026: a skewed range such as 2 / 3 / 5 raises the mean and so the centre in effect).
 
 Anchors for the other criteria were written in Step 49 (configs/scores.yaml), after the evidence was collected but
 before the ranking was computed.
