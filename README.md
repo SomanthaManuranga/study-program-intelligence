@@ -154,17 +154,3 @@ Main sources: Destatis GENESIS-Online (tables 21311, 21321), Bayerisches Landesa
 employment, students by origin), KMK projections, Bundesagentur für Arbeit (Studiensuche/Hochschulkompass data,
 Jobsuche, Engpassanalyse), university module handbooks, Google Trends.
 
-## Use of AI tools
-
-Analysis code and text drafts were produced with Claude (Anthropic) under the team's direction. Data sources,
-method decisions, human checks (theme labels, module pairs, score sheet) and all final judgements were made by
-the team. Every number is traceable to its source through `reports/key_numbers.yaml` and the evidence documents.
-
-## Timeline
-
-| Date | Milestone |
-|---|---|
-| 1 Nov, 15 Nov, 1 Dec 2026 | Job-ad snapshots |
-| 4 Dec 2026 | Analysis freeze, full pipeline rerun |
-| 10 Jan 2027 | Submission |
-| 11 Jan 2027 | Presentation |
