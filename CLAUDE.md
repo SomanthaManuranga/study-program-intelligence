@@ -51,7 +51,10 @@ Phase 4 (communication and reproducibility) plan, in order:
   doc). Done when: the script runs from the repo root, every key number has a source doc and matches it (spot check),
   figures render in one style, the outline covers all sections with links.
 - Step 51 Full report draft: written from the outline, numbers only from key_numbers.yaml, figures only from
-  reports/figures/. reports/ is git-ignored, so the hand-written draft source lives in docs/report/ (committed) and is
+  reports/figures/. Defaults (Soma, 18 Oct): English, Markdown -> .docx/PDF via pandoc, author-year citations,
+  ~20-25 pages + appendix, length/format adjustable in docs/report/report.yaml. Includes a selection-funnel section
+  and figure early on, a "Use of AI tools" paragraph in the method section, and section 9 proposals labelled as team
+  judgement. reports/ is git-ignored, so the hand-written draft source lives in docs/report/ (committed) and is
   built into reports/final/. Done when: complete draft with every number traceable to key_numbers.yaml.
 - Step 52 Streamlit dashboard in app/: reads key_numbers.yaml, the generated tables and figures (no own calculations);
   pages for the four claims, cannibalisation and the ranking with the Monte Carlo and leave-one-out.
@@ -63,6 +66,9 @@ Phase 4 (communication and reproducibility) plan, in order:
   Done when: a clean clone + the documented steps rebuild all reports and the tests pass.
 - Step 55 Independent review: every claim in the report checked against its evidence doc and key_numbers.yaml (claim,
   number, source, verdict table); fixes applied. Done when: no unverified claim remains.
+- Step 56 Defence preparation: docs/defence_qa.md with the 25 most likely examiner questions and short answers, each
+  pointing to its evidence doc / key number (incl. weak points: no intake data, proxies, robotics evidence, AI use).
+  Done when: 25 questions answered, every answer traceable, reviewed by Soma.
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
