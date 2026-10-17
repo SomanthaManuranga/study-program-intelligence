@@ -117,7 +117,7 @@
     "version": "ab Studienstart SS 2025 (not downloaded: robots.txt Disallow /fileadmin/)",
     "page": "https://www.inftech.hs-mannheim.de/masterstudiengaenge/technische-informatik.html",
     "status": "skipped_robots",
-    "note": "robots.txt: Disallow /fileadmin/ (User-agent *)"
+    "note": "robots.txt: Disallow /fileadmin/ (User-agent *); module list taken from the programme page instead (thm_ma_technische_informatik_modules)"
   },
   {
     "id": "aalen_ma_cyber_security_spo",
@@ -129,9 +129,9 @@
     "programme": "Cyber Security M.Sc. (berufsbegleitend), HS Aalen, 145 km",
     "version": "SPO 511, 03.07.2024 (not downloaded: HTTP 404)",
     "page": "https://www.hs-aalen.de/en/study-programmes/computer-science-artificial-intelligence/part-time/cyber-security/",
-    "status": "error",
+    "status": "superseded",
     "error": "HTTP 404",
-    "note": "link from web search (17 Oct 2026) returns 404"
+    "note": "SPO 511 link from web search returns 404; replaced by the two current module lists (Pflicht-/Wahlpflichtmodule, Stand 02.03.2026). No Cyber Security module handbook published."
   },
   {
     "id": "thi_ma_cyber_security_engineer_spo",
@@ -143,8 +143,8 @@
     "programme": "Cyber Security Engineer M.Sc. (weiterbildend), TH Ingolstadt, 82 km",
     "version": "SPO 12.12.2022, Anlage 1 (not downloaded: robots.txt of static.studycheck.de, see manual_downloads.md)",
     "page": "https://www.thi.de/en/lifelong-learning/study-courses/cyber-security-engineer-msc/",
-    "status": "skipped_robots",
-    "note": "robots.txt: Disallow / and *.pdf, Allow /media/; first-match parser = blocked; treated as blocked"
+    "status": "no_official_handbook",
+    "note": "THI publishes no module handbook; SPO annex exists only on a third-party mirror (StudyCheck), skipped by decision of Soma (17 Oct 2026); its robots.txt is contradictory"
   },
   {
     "id": "thi_ma_sociotechnical_cybersecurity",
@@ -154,5 +154,82 @@
     "url": null,
     "status": "not_published",
     "note": "no module handbook published; the SPO notice (2025_10_24_Bekanntgabe_SPO_MA_SOC.pdf) contains no module list (checked by Soma, 17 Oct 2026)"
+  },
+  {
+    "id": "aalen_ma_cyber_security_pflichtmodule",
+    "owner": "Hochschule Aalen",
+    "title": "Modulliste Pflichtmodule Cyber Security (CSC)",
+    "url": "https://www.hs-aalen.de/fileadmin/content/redakteure/fakultaeten/wirtschaft_gesundheit/cyber_security/Modullisten/20260306_Pflichtmodule_CSC.pdf",
+    "mirror": false,
+    "file": "data/raw/competitor modules/aalen_ma_cyber_security_pflichtmodule.pdf",
+    "programme": "Cyber Security M.Sc. (berufsbegleitend), HS Aalen, 145 km",
+    "version": "Stand 02.03.2026 (title page checked; file name 20260306)",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T15:47:32+00:00",
+    "content_type": "application/pdf",
+    "bytes": 125846,
+    "sha256": "1995e72448f1cea34d579574f5e0136b65a040661a53f59f03c4ee17f5c6aa56"
+  },
+  {
+    "id": "aalen_ma_cyber_security_wahlpflichtmodule",
+    "owner": "Hochschule Aalen",
+    "title": "Modulliste Wahlpflichtmodule Cyber Security (CSC)",
+    "url": "https://www.hs-aalen.de/fileadmin/content/redakteure/fakultaeten/wirtschaft_gesundheit/cyber_security/Modullisten/20260306_Wahlpflichtmodule_CSC.pdf",
+    "mirror": false,
+    "file": "data/raw/competitor modules/aalen_ma_cyber_security_wahlpflichtmodule.pdf",
+    "programme": "Cyber Security M.Sc. (berufsbegleitend), HS Aalen, 145 km",
+    "version": "Stand 02.03.2026 (title page checked; file name 20260306)",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T15:47:36+00:00",
+    "content_type": "application/pdf",
+    "bytes": 85904,
+    "sha256": "e922c017f48362804f3abc358e2144d6ffeee25850db65a467e0eb15e20a016f"
+  },
+  {
+    "id": "thm_ma_technische_informatik_page",
+    "owner": "Technische Hochschule Mannheim, Fakultät für Informationstechnik",
+    "title": "Programme page Master Technische Informatik (HTML; source of the module tables, handbook PDF blocked by robots.txt)",
+    "url": "https://www.inftech.hs-mannheim.de/masterstudiengaenge/technische-informatik.html",
+    "mirror": false,
+    "file": "data/raw/competitor modules/thm_ma_technische_informatik_page.html",
+    "programme": "Technische Informatik - Security und Industrial Internet of Things M.Sc., TH Mannheim, 244 km (benchmark)",
+    "version": "page as retrieved 2026-10-17",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T15:47:43+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 107884,
+    "sha256": "6a2c7652c9bd2a295460437a90a5431a96672c3d72e13f60ba49625487b9bced"
+  },
+  {
+    "id": "aalen_modulhandbuch_spo511_check",
+    "owner": "Hochschule Aalen",
+    "title": "Modulhandbuch SPO 511 (file in the data_science_und_business_analytics folder, DSB in the name)",
+    "url": "https://www.hs-aalen.de/fileadmin/content/redakteure/fakultaeten/wirtschaft_gesundheit/data_science_und_business_analytics/Dokumente/Modulhandbuch/Modulhandbuch_SPO511_DSB_Maerz2026.pdf",
+    "mirror": false,
+    "file": "data/raw/competitor modules/aalen_modulhandbuch_spo511_check.pdf",
+    "programme": "check only: linked as 'Modulhandbuch SPO 511' on the Cyber Security page",
+    "version": "Stand 25.03.2026 (title page checked)",
+    "page": "https://www.hs-aalen.de/en/study-programmes/computer-science-artificial-intelligence/part-time/cyber-security/",
+    "status": "rejected",
+    "retrieved_utc": "2026-10-17T15:49:06+00:00",
+    "content_type": "application/pdf",
+    "bytes": 919875,
+    "sha256": "dbb13cd963aa17bf9a9d87ba1b2064006488e929587ae517b048a29d68914936",
+    "note": "title page: 'Modulhandbuch Master Data Science und Business Analytics (berufsbegleitend)', not Cyber Security; linked as 'Modulhandbuch SPO 511' on the Cyber Security page. Not used; local file deleted (SHA-256 kept)."
+  },
+  {
+    "id": "thm_ma_technische_informatik_modules",
+    "owner": "Technische Hochschule Mannheim, Fakultät für Informationstechnik",
+    "programme": "Technische Informatik - Security und Industrial Internet of Things M.Sc., TH Mannheim, 244 km (benchmark)",
+    "title": "Module tables Schwerpunkt Security and Schwerpunkt Industrial Internet of Things (module, term, SWS, credits)",
+    "url": "https://www.inftech.hs-mannheim.de/masterstudiengaenge/technische-informatik.html",
+    "mirror": false,
+    "file": "data/raw/competitor modules/thm_ma_technische_informatik_modules.csv",
+    "status": "module list from programme page; handbook blocked by robots.txt",
+    "derived_from": "thm_ma_technische_informatik_page",
+    "built_by": "python -m study_program_intelligence.transform.thm_modules",
+    "retrieved_utc": "2026-10-17T15:47:43+00:00",
+    "bytes": 1021,
+    "sha256": "476ea50113aab30f74a2b3d1a4601bf04416020525e79b709408c1dfcb18152b"
   }
 ]
