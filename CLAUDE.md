@@ -19,8 +19,8 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 38: hand-labelled precision check of the theme rules (Next steps item 1). Status: open.
-Last finished: Step 37, second Google Trends download without the anchor (2026-10-17).
+Step 39: competitor module handbooks for the cyber shortlist (Next steps item 1). Status: open.
+Last finished: Step 38, hand-labelled precision check of the theme rules (2026-10-17).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -54,12 +54,16 @@ Forecasts validated with rolling-origin backtests (MASE).
   (first term = anchor; monthly; break at 2022-01-01) -> reports/trends.md, docs/evidence_demand_trends.md.
   Two files: trends_DE_2015_2026.csv (anchor Informatik Studium), trends_DE_specialist_2015_2026.csv (no anchor).
 - analysis/theme_check.py: hand-label sheet for the title theme rules (all cyber title matches + samples +
-  miss check, seed 20261017) -> data/interim/theme_labels.xlsx; scoring -> docs/theme_precision.md (Step 38)
+  miss check, seed 20261017) -> data/interim/theme_labels.xlsx; labels in data/interim/theme_labels_EN.xlsx
+  (proposed by Claude, reviewed by Soma); score -> reports/theme_check.md, docs/theme_precision.md
 
 ## Findings so far
 - Informatik is the only growing EMI field (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since 2023).
   Electrical and media fields shrink. Generic AI is crowded and OTH already offers it.
-- Cybersecurity is the clearest gap: 34 BA / 36 MA programmes in Germany, 4 / 7 within 150 km, none at OTH.
+- Cybersecurity is the clearest gap: 31 BA / 32 MA distinct dedicated programmes in Germany (exact, hand-checked),
+  4 / 6 within 150 km, none at OTH. Theme-rule precision 90-100 %. But 126 general programmes have a security
+  focus area (18 within 150 km), incl. OTH's own Medieninformatik and Industrie-4.0-Informatik (Informationssicherheit)
+  -> incrementality test must cover them.
 - Jobs: "Cyber Security" 851 ads in Germany; Bavaria share 31 % (OT Security 35 %) vs 22-25 % baseline;
   191 ads within 100 km of Amberg.
 - Trends: "Cyber Security Studium" rose 2018-2022, plateau since 2022, and is the largest specialist term
@@ -71,10 +75,10 @@ Forecasts validated with rolling-origin backtests (MASE).
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Hand-labelled precision check of the theme rules (50 programmes).
-2. Competitor module handbooks for the shortlist -> NLP/embedding gap analysis vs EMI modules.
-3. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
-4. 4-6 international benchmark programmes.
-5. Forecasting with backtests; MCDA + Monte Carlo.
-6. Dashboard, report, presentation.
+1. Competitor module handbooks for the shortlist -> NLP/embedding gap analysis vs EMI modules
+   (incl. OTH's Informationssicherheit focus in Medieninformatik and Industrie-4.0-Informatik).
+2. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
+3. 4-6 international benchmark programmes.
+4. Forecasting with backtests; MCDA + Monte Carlo.
+5. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).
