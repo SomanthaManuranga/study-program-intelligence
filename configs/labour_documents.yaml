@@ -1,0 +1,19 @@
+# Public files for the regional labour market (Step 43), downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/labour_documents.yaml \
+#       --out data/raw/labour --manifest docs/labour_manifest.json --pdf-only
+# robots.txt and Crawl-delay are respected (statistik.arbeitsagentur.de: Crawl-delay 30, /SiteGlobals/ disallowed).
+
+documents:
+  - id: by_svb_2023
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek); data from the BA employment statistics
+    title: "Sozialversicherungspflichtig Beschäftigte in Bayern (Statistische Berichte A VI 5 - Teil 1), 30.06.2023"
+    version: "30.06.2023"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00008334/A6501C 202300.pdf"
+    use: employees by occupation (KldB 2010) and county (Claim D)
+
+  - id: by_svb_2019
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek); data from the BA employment statistics
+    title: "Sozialversicherungspflichtig Beschäftigte in Bayern (Statistische Berichte A VI 5 - Teil 1), 30.06.2019"
+    version: "30.06.2019"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00007009/A6501C 201900.pdf"
+    use: employees by occupation (KldB 2010) and county, trend base (Claim D)

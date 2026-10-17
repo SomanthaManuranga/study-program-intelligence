@@ -1,0 +1,30 @@
+[
+  {
+    "id": "by_svb_2023",
+    "owner": "Bayerisches Landesamt für Statistik (via Statistische Bibliothek); data from the BA employment statistics",
+    "title": "Sozialversicherungspflichtig Beschäftigte in Bayern (Statistische Berichte A VI 5 - Teil 1), 30.06.2023",
+    "url": "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00008334/A6501C 202300.pdf",
+    "mirror": false,
+    "file": "data/raw/labour/by_svb_2023.pdf",
+    "version": "30.06.2023",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T19:53:47+00:00",
+    "content_type": "application/pdf",
+    "bytes": 9814655,
+    "sha256": "940411df98e9af9bb14cfd86179f307d05be26c81fbc7fa2316fae9d07b6cee8"
+  },
+  {
+    "id": "by_svb_2019",
+    "owner": "Bayerisches Landesamt für Statistik (via Statistische Bibliothek); data from the BA employment statistics",
+    "title": "Sozialversicherungspflichtig Beschäftigte in Bayern (Statistische Berichte A VI 5 - Teil 1), 30.06.2019",
+    "url": "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00007009/A6501C 201900.pdf",
+    "mirror": false,
+    "file": "data/raw/labour/by_svb_2019.pdf",
+    "version": "30.06.2019",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T19:53:52+00:00",
+    "content_type": "application/pdf",
+    "bytes": 3780323,
+    "sha256": "18cb0337a5ffd7af5fd4b2d736e65f6496a940a0a6890d10814adf9d66ee6ea3"
+  }
+]

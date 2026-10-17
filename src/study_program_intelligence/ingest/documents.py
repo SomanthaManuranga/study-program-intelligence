@@ -11,7 +11,7 @@ Run from the repository root:
 Rules this script follows:
 - checks each site's robots.txt and skips a URL the site disallows;
 - identifies itself with a User-Agent that includes CONTACT_EMAIL from .env;
-- waits between requests and never re-downloads a file that already exists;
+- waits between requests (3 s, or the site's robots.txt Crawl-delay if longer) and never re-downloads a file;
 - records URL, retrieval time, size and SHA-256 for every file;
 - with --pdf-only, rejects (and deletes) any reply that is not a PDF.
 """
@@ -75,9 +75,17 @@ def allowed_by_robots(url: str, agent: str) -> bool:
         except requests.RequestException:
             rp = None
         _robots_cache[root] = rp
-        time.sleep(DELAY_SECONDS)  # robots.txt and the file are two requests to the same host
+        time.sleep(delay_for(url, agent))  # robots.txt and the file are two requests to the same host
     rp = _robots_cache[root]
     return True if rp is None else rp.can_fetch(agent, url)
+
+
+def delay_for(url: str, agent: str) -> float:
+    """Seconds to wait between requests to this host: our 3 s, or the site's Crawl-delay if longer."""
+    parts = urlparse(url)
+    rp = _robots_cache.get(f"{parts.scheme}://{parts.netloc}")
+    site = rp.crawl_delay(agent) if rp is not None else None
+    return max(DELAY_SECONDS, float(site or 0))
 
 
 def sha256(path: Path) -> str:
@@ -178,7 +186,7 @@ def main(argv: list[str] | None = None) -> int:
         size = f"{rec.get('bytes', 0) / 1024:,.0f} KB" if rec.get("bytes") else ""
         print(f"[{rec['status']:>15}] {doc['id']:<40} {size} {rec.get('error', '')}")
         if rec["status"] != "cached" and i < len(docs) - 1:
-            time.sleep(DELAY_SECONDS)  # after every network attempt, incl. robots.txt and errors
+            time.sleep(delay_for(doc["url"], agent))  # after every network attempt (site Crawl-delay if longer)
 
     merged = {**previous, **{r["id"]: r for r in results}}
     manifest.write_text(json.dumps(list(merged.values()), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

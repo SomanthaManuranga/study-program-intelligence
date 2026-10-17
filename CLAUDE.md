@@ -26,6 +26,11 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Step 43: BA regional labour-market / shortage data (Next steps item 1, part 2). Status: open.
+Where we stopped (17 Oct 2026, usage limit): employment reports A VI 5 (2019, 2023) downloaded (docs/labour_manifest.json);
+  Bavaria IT occupations (KldB 43): 173,057 -> 214,223 (+24 %), academic 83,924 -> 112,676 (+34 %). analysis/labour.py
+  (Table 9 ICT sector by county) written but NOT yet run successfully: first run hung (unconstrained left-page split,
+  now fixed, untested). Open: run it, Engpass status, 2nd Jobsuche snapshot, manual-download entry for BA KldB x county
+  (BA /SiteGlobals/ forms disallowed; Crawl-delay 30 now honoured by documents.py), evidence_outlet_jobs.md update.
 Last finished: Step 42, catchment (2026-10-17): own pool ~5,500 qualified school leavers/yr (10 % of Bavaria;
 3,800 without Regensburg); docs/evidence_catchment.md.
 
