@@ -42,9 +42,34 @@ Phase 2 (evidence) complete (Steps 37-45). Phase 3 (modelling) plan, in order:
   configs/analysis.yaml, Dirichlet draws (10,000, concentration 50, seed 42), feasibility gate, leave-one-criterion-out.
   Done when: rank probabilities, sensitivity table and an evidence-strength matrix (robotics marked where evidence is
   thinner) in docs/evidence_ranking.md.
-Phase 3 (modelling) complete (Steps 46-49). Current: Step 50 (to be agreed: report / dashboard / presentation).
-Last finished: Step 49, ranking (2026-10-17): docs/evidence_ranking.md; analysis/options.py + analysis/ranking.py;
-score sheet configs/scores.yaml (reviewed by Soma). Public data only (no intake figures from universities).
+Phase 3 (modelling) complete (Steps 46-49).
+
+Phase 4 (communication and reproducibility) plan, in order:
+- Step 50 Key numbers, shared figures, report outline: one script generates reports/key_numbers.yaml (every number the
+  report, slides and dashboard use, each with its source doc), reports/figures/ (code-generated, one style) and
+  reports/final/outline.md (four claims, cannibalisation, ranking, limitations; each section linked to its evidence
+  doc). Done when: the script runs from the repo root, every key number has a source doc and matches it (spot check),
+  figures render in one style, the outline covers all sections with links.
+- Step 51 Full report draft: written from the outline, numbers only from key_numbers.yaml, figures only from
+  reports/figures/. reports/ is git-ignored, so the hand-written draft source lives in docs/report/ (committed) and is
+  built into reports/final/. Done when: complete draft with every number traceable to key_numbers.yaml.
+- Step 52 Streamlit dashboard in app/: reads key_numbers.yaml, the generated tables and figures (no own calculations);
+  pages for the four claims, cannibalisation and the ranking with the Monte Carlo and leave-one-out.
+  Done when: `streamlit run app/<main>.py` starts locally and every page shows the same numbers as the report.
+- Step 53 Slides for 11 Jan 2027: built from the outline, key numbers and shared figures.
+  Done when: deck complete within the time limit, every number from key_numbers.yaml.
+- Step 54 Reproducibility: README (setup, data access, manual downloads), one-command pipeline (raw -> interim ->
+  reports -> key numbers -> figures), tests (number parsing, models, key numbers vs. evidence docs).
+  Done when: a clean clone + the documented steps rebuild all reports and the tests pass.
+- Step 55 Independent review: every claim in the report checked against its evidence doc and key_numbers.yaml (claim,
+  number, source, verdict table); fixes applied. Done when: no unverified claim remains.
+Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
+a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
+
+Current: Step 50 (key numbers, figures, outline). Status: open.
+Last finished: Step 49, ranking (2026-10-17, corrected 18 Oct: robotics fit/feasibility symmetric 1.5/3/4.5):
+docs/evidence_ranking.md; analysis/options.py + analysis/ranking.py; score sheet configs/scores.yaml (reviewed by Soma).
+Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -138,6 +163,6 @@ Forecasts validated with rolling-origin backtests (MASE).
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Phase 3 modelling, Steps 46-49 (see Current step).
-2. Dashboard, report, presentation.
+1. Phase 4, Steps 50-55 (see Current step).
+2. Job-ad snapshots 1 Nov, 15 Nov, 1 Dec; freeze and full rerun 4 Dec; submission 10 Jan 2027; presentation 11 Jan.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).
