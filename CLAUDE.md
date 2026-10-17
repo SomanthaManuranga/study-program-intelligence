@@ -53,6 +53,8 @@ Forecasts validated with rolling-origin backtests (MASE).
 - analysis/trends.py: Google Trends CSVs downloaded by hand into data/raw/trends/trends_*.csv
   (first term = anchor; monthly; break at 2022-01-01) -> reports/trends.md, docs/evidence_demand_trends.md.
   Two files: trends_DE_2015_2026.csv (anchor Informatik Studium), trends_DE_specialist_2015_2026.csv (no anchor).
+- analysis/theme_check.py: hand-label sheet for the title theme rules (all cyber title matches + samples +
+  miss check, seed 20261017) -> data/interim/theme_labels.xlsx; scoring -> docs/theme_precision.md (Step 38)
 
 ## Findings so far
 - Informatik is the only growing EMI field (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since 2023).

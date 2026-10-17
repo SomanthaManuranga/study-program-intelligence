@@ -67,3 +67,13 @@ Decision: add a second download with the five specialist terms only (Cyber Secur
 Reason: with "Informatik Studium" in the download the specialist terms were 0-7 on the 0-100 scale with 30-51 % zero months.
 Consequence: both downloads give the same rank order since 2022 (cyber > KI > Robotik > IT Sicherheit). Reading corrected: cyber search interest rose 2018-2022 and is a plateau since 2022; its rising share of the anchor after 2022 comes from the anchor falling.
 Decided by: team.
+
+## 2026-10-17: Precision check of the theme rules (Step 38)
+Decision: check the title keyword rules (analysis/themes.py, title match as used for the supply counts in analysis/first_look.py) by hand on bachelor and master offers in data/processed/programmes.csv. Sheet built by analysis/theme_check.py (seed 20261017) -> data/interim/theme_labels.xlsx, 110 rows:
+- all 70 programmes whose title matches the cybersecurity rule (census instead of a sample, so the competitor count becomes exact);
+- random samples of title matches: 10 robotics (of 43), 10 ai_data (of 274), 5 embedded_iot (of 21), for precision;
+- miss check: 15 programmes (5 per theme) whose title matches none of cybersecurity/robotics/ai_data but whose content text matches one of them (pools: 139 / 125 / 329), to find specialised programmes the title rules miss.
+Label per row: is this a specialised programme of the theme (main focus or a named track in the title)? y / n / ?.
+Reason: the competitor counts in Claim B depend on the rules; precision was so far only checked informally. A random untagged sample would almost never contain a missed programme, so the miss check targets near-misses.
+Limitation: content is the short Studiensuche teaser (max ~400 characters); the miss check estimates whether misses exist, not the full miss rate.
+Decided by: team (Somantha Manuranga).
