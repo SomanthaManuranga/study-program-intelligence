@@ -10,3 +10,73 @@ documents:
     url: "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.xlsx?__blob=publicationFile&v=13"
     page: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.html
     use: municipality coordinates and population -> county centres and distances (catchment)
+
+  - id: by_eckzahlen_schulen_2024
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2024, corrected edition (Jan 2026)"
+    version: "2024; school leavers of school year 2023/24"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00008755/B0100C 202400_neu.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2023
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2023"
+    version: "2023; school leavers of school year 2022/23"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00008452/B0100C 202300.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2022
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2022, corrected edition (Feb 2024)"
+    version: "2022; school leavers of school year 2021/22"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00008025/B0100C 202200.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2021
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2021"
+    version: "2021; school leavers of school year 2020/21"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00007557/B0100C 202100.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2020
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2020"
+    version: "2020; school leavers of school year 2019/20"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00007712/b0100c_202000.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2018
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2018, corrected edition"
+    version: "2018; school leavers of school year 2017/18"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00006124/B0100C 201800_Korrektur.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2017
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2017"
+    version: "2017; school leavers of school year 2016/17"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00005820/B0100C 201700.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2016
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2016"
+    version: "2016; school leavers of school year 2015/16"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00005322/B0100C 201600.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2015
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2015"
+    version: "2015; school leavers of school year 2014/15"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00004944/B0100C 201500.pdf"
+    use: school leavers by qualification and county (catchment)
+
+  - id: by_eckzahlen_schulen_2014
+    owner: Bayerisches Landesamt für Statistik (via Statistische Bibliothek)
+    title: "Bayerische Schulen - Eckzahlen sämtlicher Schularten nach kreisfreien Städten und Landkreisen (B I/II 1 j), 2014"
+    version: "2014; school leavers of school year 2013/14"
+    url: "https://www.statistischebibliothek.de/mir/servlets/MCRFileNodeServlet/BYHeft_derivate_00004593/B0100C 201400.pdf"
+    use: school leavers by qualification and county (catchment)

@@ -25,14 +25,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 42: catchment and regional data from the Regionaldatenbank (Next steps item 1). Status: open.
-Note (Soma): OT alone is no longer a differentiator (TH Deggendorf teaches OT security in BA and MA). Step 42
-must show whether OTH has its own regional pool: Abitur and Fachhochschulreife (FOS/BOS) separately and combined;
-overlap with the catchments of TH Deggendorf, TH Ingolstadt and FAU/TH Nürnberg (counties closer to OTH).
-Data order: Regionaldatenbank; if it needs a login, GENESIS-Online Bayern (statistikdaten.bayern.de); ask Soma
-to register only if both need a login.
-Last finished: Step 41, module gap analysis (2026-10-17): e5 headline (16/20 hand check), TF-IDF sensitivity
-(14/20); docs/evidence_fit_modules.md.
+Step 43: BA regional labour-market / shortage data (Next steps item 1, part 2). Status: open.
+Last finished: Step 42, catchment (2026-10-17): own pool ~5,500 qualified school leavers/yr (10 % of Bavaria;
+3,800 without Regensburg); docs/evidence_catchment.md.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -72,6 +67,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   -> data/raw/competitor modules/, docs/competitor_modules_manifest.json; manual ones in docs/manual_downloads.md
 - analysis/module_gaps.py (Step 41): e5 (per-handbook centred) + char TF-IDF, best-match calibration, CyBOK areas,
   OT flag -> data/interim/module_scores.csv, reports/module_gaps.md, docs/evidence_fit_modules.md
+- transform/school_leavers.py + analysis/catchment.py (Step 42): Bavarian school leavers by county (B I/II 1 j PDFs)
+  -> data/interim/school_leavers_by.csv, counties_geo.csv, reports/catchment.md, docs/evidence_catchment.md.
+  Regionaldatenbank blocked by robots.txt; GENESIS Bayern account has no API rights (error 15).
 - transform/modules.py (Step 40): one module table from all handbooks (TOC-anchored parser)
   -> data/interim/modules.csv, reports/modules_check.md (counts vs TOC, spot-check table)
 - transform/thm_modules.py: TH Mannheim focus-area module tables from the cached programme page
@@ -95,12 +93,16 @@ Forecasts validated with rolling-origin backtests (MASE).
   pentesting/auditing, forensics, security operations/incident response, software security, security
   management, law, human factors. TH Deggendorf (105 km) already teaches OT/industrial security (BA + MA), so an
   OT profile differentiates against FAU/THI/THWS/HDBW but not against Deggendorf.
+- Catchment (Step 42): OTH has its own pool (~5,500 Abitur + FOS/BOS leavers/yr, 40 % FOS/BOS), as large as
+  TH Deggendorf's and barely overlapping it (91 % of OTH's 100-km catchment is closer to OTH). OT alone is no
+  differentiator, but regional reach is: no full-time dedicated cyber bachelor nearer than ~80 km. Overlap mainly
+  with Nuremberg/Erlangen; Regensburg is a third of the pool. Pool -19 % since 2013/14; G9 gap 2024/25.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. Regionaldatenbank: school leavers by county (catchment); BA regional shortage data.
+1. BA regional shortage data (labour market, Claim D) - school-leaver catchment done in Step 42.
 2. 4-6 international benchmark programmes.
 3. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
    shared intro-security and cryptography modules from docs/evidence_fit_modules.md).
