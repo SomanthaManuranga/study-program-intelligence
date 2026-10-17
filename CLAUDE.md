@@ -25,14 +25,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 43: BA regional labour-market / shortage data (Next steps item 1, part 2). Status: open.
-Where we stopped (17 Oct 2026, usage limit): employment reports A VI 5 (2019, 2023) downloaded (docs/labour_manifest.json);
-  Bavaria IT occupations (KldB 43): 173,057 -> 214,223 (+24 %), academic 83,924 -> 112,676 (+34 %). analysis/labour.py
-  (Table 9 ICT sector by county) written but NOT yet run successfully: first run hung (unconstrained left-page split,
-  now fixed, untested). Open: run it, Engpass status, 2nd Jobsuche snapshot, manual-download entry for BA KldB x county
-  (BA /SiteGlobals/ forms disallowed; Crawl-delay 30 now honoured by documents.py), evidence_outlet_jobs.md update.
-Last finished: Step 42, catchment (2026-10-17): own pool ~5,500 qualified school leavers/yr (10 % of Bavaria;
-3,800 without Regensburg); docs/evidence_catchment.md.
+Step 44: international benchmark programmes (Next steps item 1). Status: open.
+Last finished: Step 43, regional labour market (2026-10-17, lean): IT occupations Bavaria +24 % (academic +34 %),
+Informatik shortage at specialist level 2025, 2nd Jobsuche snapshot; docs/evidence_outlet_jobs.md.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -103,14 +98,16 @@ Forecasts validated with rolling-origin backtests (MASE).
   TH Deggendorf's and barely overlapping it (91 % of OTH's 100-km catchment is closer to OTH). OT alone is no
   differentiator, but regional reach is: no full-time dedicated cyber bachelor nearer than ~80 km. Overlap mainly
   with Nuremberg/Erlangen; Regensburg is a third of the pool. Pool -19 % since 2013/14; G9 gap 2024/25.
+- Labour market (Step 43): IT occupations in Bavaria +24 % 2019-2023, with degree +34 % (academic share 53 %);
+  Informatik a shortage occupation at specialist (bachelor) level 2025, software dev. no longer at expert level.
+  No county-level occupation data (BA forms disallowed; Tabelle 9 not parsable) -> regional demand = job ads.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. BA regional shortage data (labour market, Claim D) - school-leaver catchment done in Step 42.
-2. 4-6 international benchmark programmes.
-3. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
+1. 4-6 international benchmark programmes.
+2. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
    shared intro-security and cryptography modules from docs/evidence_fit_modules.md).
-4. Dashboard, report, presentation.
+3. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).

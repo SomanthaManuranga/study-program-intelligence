@@ -126,3 +126,8 @@ Correction: the Step 42 entry said the registered account "logs in with credenti
 Retest after Soma corrected the password (once, as agreed): credentials as form fields -> guest, error 15; credentials in the HTTP headers (the documented way) -> no reply within 60 s (request timed out), as already observed in Step 42.
 Decision: leave Step 42 as it is (PDF reports B I/II 1 j; 2018/19 stays a gap year). No further API attempts; if the API is needed later, ask genesis-online@statistik.bayern.de whether registered accounts have web-service access.
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-17: Regional labour market, lean version (Step 43)
+Decision (Soma): keep Step 43 lean. (1) Use the Bavarian employment reports A VI 5 - Teil 1 (30.06.2019, 30.06.2023; public PDFs via the Statistische Bibliothek) for IT occupations (KldB 2010 main group 43) Bavaria-wide. (2) Drop the county-level ICT-sector table (Tabelle 9): two parsing attempts timed out (facing-page layout); stated as a limitation. (3) Skip the BA occupation-by-county tables (only behind /SiteGlobals/ download forms, disallowed by robots.txt; Crawl-delay 30 is now honoured by ingest/documents.py). (4) Shortage status from the BA Fachkräfteengpassanalyse 2025 (Germany). (5) Second Jobsuche snapshot.
+Result: IT occupations in Bavaria +23.8 % (2019-2023), with academic degree +34.3 % (academic share 48.5 % -> 52.6 %); Informatik (4310) again a shortage occupation at specialist level in 2025, software development no longer at expert level; job-ad counts stable between 15 and 17 Oct (median change 1.4 %), Bavarian security shares unchanged. Details: docs/evidence_outlet_jobs.md.
+Decided by: team (Somantha Manuranga).

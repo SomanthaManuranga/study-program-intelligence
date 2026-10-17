@@ -382,5 +382,389 @@
   "group": "baseline",
   "region_id": "amberg_100km",
   "total": 63
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "cyber_security",
+  "keyword": "Cyber Security",
+  "group": "cybersecurity",
+  "region_id": "germany",
+  "total": 858
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "cyber_security",
+  "keyword": "Cyber Security",
+  "group": "cybersecurity",
+  "region_id": "bayern",
+  "total": 270
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "cyber_security",
+  "keyword": "Cyber Security",
+  "group": "cybersecurity",
+  "region_id": "amberg_50km",
+  "total": 6
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "cyber_security",
+  "keyword": "Cyber Security",
+  "group": "cybersecurity",
+  "region_id": "amberg_100km",
+  "total": 197
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "it_sicherheit",
+  "keyword": "IT-Sicherheit",
+  "group": "cybersecurity",
+  "region_id": "germany",
+  "total": 6378
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "it_sicherheit",
+  "keyword": "IT-Sicherheit",
+  "group": "cybersecurity",
+  "region_id": "bayern",
+  "total": 1402
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "it_sicherheit",
+  "keyword": "IT-Sicherheit",
+  "group": "cybersecurity",
+  "region_id": "amberg_50km",
+  "total": 113
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "it_sicherheit",
+  "keyword": "IT-Sicherheit",
+  "group": "cybersecurity",
+  "region_id": "amberg_100km",
+  "total": 865
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informationssicherheit",
+  "keyword": "Informationssicherheit",
+  "group": "cybersecurity",
+  "region_id": "germany",
+  "total": 747
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informationssicherheit",
+  "keyword": "Informationssicherheit",
+  "group": "cybersecurity",
+  "region_id": "bayern",
+  "total": 154
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informationssicherheit",
+  "keyword": "Informationssicherheit",
+  "group": "cybersecurity",
+  "region_id": "amberg_50km",
+  "total": 6
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informationssicherheit",
+  "keyword": "Informationssicherheit",
+  "group": "cybersecurity",
+  "region_id": "amberg_100km",
+  "total": 99
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "security_engineer",
+  "keyword": "Security Engineer",
+  "group": "cybersecurity",
+  "region_id": "germany",
+  "total": 851
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "security_engineer",
+  "keyword": "Security Engineer",
+  "group": "cybersecurity",
+  "region_id": "bayern",
+  "total": 212
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "security_engineer",
+  "keyword": "Security Engineer",
+  "group": "cybersecurity",
+  "region_id": "amberg_50km",
+  "total": 14
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "security_engineer",
+  "keyword": "Security Engineer",
+  "group": "cybersecurity",
+  "region_id": "amberg_100km",
+  "total": 158
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "ot_security",
+  "keyword": "OT Security",
+  "group": "cybersecurity",
+  "region_id": "germany",
+  "total": 152
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "ot_security",
+  "keyword": "OT Security",
+  "group": "cybersecurity",
+  "region_id": "bayern",
+  "total": 52
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "ot_security",
+  "keyword": "OT Security",
+  "group": "cybersecurity",
+  "region_id": "amberg_50km",
+  "total": 8
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "ot_security",
+  "keyword": "OT Security",
+  "group": "cybersecurity",
+  "region_id": "amberg_100km",
+  "total": 33
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "robotik",
+  "keyword": "Robotik",
+  "group": "robotics",
+  "region_id": "germany",
+  "total": 945
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "robotik",
+  "keyword": "Robotik",
+  "group": "robotics",
+  "region_id": "bayern",
+  "total": 289
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "robotik",
+  "keyword": "Robotik",
+  "group": "robotics",
+  "region_id": "amberg_50km",
+  "total": 58
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "robotik",
+  "keyword": "Robotik",
+  "group": "robotics",
+  "region_id": "amberg_100km",
+  "total": 162
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informatiker",
+  "keyword": "Informatiker",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 3409
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informatiker",
+  "keyword": "Informatiker",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 839
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informatiker",
+  "keyword": "Informatiker",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 92
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "informatiker",
+  "keyword": "Informatiker",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 609
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "softwareentwickler",
+  "keyword": "Softwareentwickler",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 3425
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "softwareentwickler",
+  "keyword": "Softwareentwickler",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 770
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "softwareentwickler",
+  "keyword": "Softwareentwickler",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 97
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "softwareentwickler",
+  "keyword": "Softwareentwickler",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 612
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "kuenstliche_intelligenz",
+  "keyword": "Künstliche Intelligenz",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 947
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "kuenstliche_intelligenz",
+  "keyword": "Künstliche Intelligenz",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 196
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "kuenstliche_intelligenz",
+  "keyword": "Künstliche Intelligenz",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 16
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "kuenstliche_intelligenz",
+  "keyword": "Künstliche Intelligenz",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 163
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "data_scientist",
+  "keyword": "Data Scientist",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 310
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "data_scientist",
+  "keyword": "Data Scientist",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 60
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "data_scientist",
+  "keyword": "Data Scientist",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 6
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "data_scientist",
+  "keyword": "Data Scientist",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 63
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "embedded",
+  "keyword": "Embedded",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 1250
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "embedded",
+  "keyword": "Embedded",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 322
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "embedded",
+  "keyword": "Embedded",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 52
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "embedded",
+  "keyword": "Embedded",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 358
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "elektroingenieur",
+  "keyword": "Elektroingenieur",
+  "group": "baseline",
+  "region_id": "germany",
+  "total": 656
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "elektroingenieur",
+  "keyword": "Elektroingenieur",
+  "group": "baseline",
+  "region_id": "bayern",
+  "total": 115
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "elektroingenieur",
+  "keyword": "Elektroingenieur",
+  "group": "baseline",
+  "region_id": "amberg_50km",
+  "total": 9
+ },
+ {
+  "date": "2026-10-17",
+  "keyword_id": "elektroingenieur",
+  "keyword": "Elektroingenieur",
+  "group": "baseline",
+  "region_id": "amberg_100km",
+  "total": 63
  }
 ]
