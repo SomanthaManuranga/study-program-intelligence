@@ -1,0 +1,12 @@
+# Public files for the catchment analysis (Step 42), downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/regional_documents.yaml \
+#       --out data/raw/regional --manifest docs/regional_manifest.json
+
+documents:
+  - id: destatis_gv_auszug_2026q2
+    owner: Statistisches Bundesamt (Destatis)
+    title: Alle politisch selbständigen Gemeinden mit ausgewählten Merkmalen am 30.06.2026 (GV-ISys, 2. Quartal 2026)
+    version: "30.06.2026"
+    url: "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.xlsx?__blob=publicationFile&v=13"
+    page: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.html
+    use: municipality coordinates and population -> county centres and distances (catchment)
