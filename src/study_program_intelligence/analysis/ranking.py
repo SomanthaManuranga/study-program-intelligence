@@ -17,7 +17,7 @@ Per draw (10,000, seed 42):
 Scenarios: base, and robotics with 50 % cannibalisation (Huff/IIA understates substitution with OTH's KI B.Sc.).
 Sensitivity: leave-one-criterion-out (weights renormalised), independent capture draws (no common factor), and the
 earlier skewed robotics fit/feasibility range 2 / 3 / 5.
-Outputs: reports/ranking.md, data/interim/ranking_summary.csv.
+Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/ranking_loo.csv.
 """
 
 from __future__ import annotations
@@ -34,6 +34,7 @@ SCORES = REPO_ROOT / "configs" / "scores.yaml"
 SCEN = REPO_ROOT / "data" / "interim" / "option_scenarios.csv"
 REPORT = REPO_ROOT / "reports" / "ranking.md"
 SUMMARY = REPO_ROOT / "data" / "interim" / "ranking_summary.csv"
+LOO = REPO_ROOT / "data" / "interim" / "ranking_loo.csv"
 LEVELS = ("low", "central", "high")
 HAND = ("labour_relevance", "institutional_fit", "feasibility", "differentiation")
 
@@ -163,6 +164,7 @@ def main() -> None:
                      skew.assign(scenario="base, robotics fit/feasibility 2/3/5")])
     SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(SUMMARY, index=False)
+    pd.concat([loo.assign(scenario="base"), loo50.assign(scenario="robotics 50 % cannibalisation")]).to_csv(LOO, index=False)
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join([
         "# MCDA + Monte Carlo ranking (generated)", "",
