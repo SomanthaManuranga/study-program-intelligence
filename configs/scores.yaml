@@ -29,7 +29,7 @@ options:
     student_demand:
       capture: {strength: medium, source: "data/interim/option_scenarios.csv (net new 15.3 / 32.0 / 64.4); two anchors, one anecdotal"}
       trend: {low: 3, central: 4, high: 5, strength: strong,
-              evidence: "Bavaria Informatik first-years +6.1 %/yr 2019-24; cyber proxy 4,936 (2024) -> KMK floor 5,057 / central 5,540 (2030); cyber search interest plateau since 2022",
+              evidence: "Bavaria Informatik first-years +6.1 %/yr 2019-24; cyber proxy 4,936 (2024) -> KMK floor 5,057 / central 5,538 (2030); cyber search interest plateau since 2022",
               source: "docs/evidence_forecast.md (Step 46), docs/evidence_demand_trends.md (Step 37)"}
     labour_relevance: {low: 3, central: 4, high: 5, strength: medium,
                        evidence: "Informatik shortage occupation at specialist (bachelor) level 2025; 'Cyber Security' 851 ads DE, Bavaria share 31 %, 191 within 100 km; IT employment with degree in Bavaria +34 % 2019-23",

@@ -49,4 +49,4 @@ purpose as a control case: it should fail the incrementality test, and it did.
   these themes, and they were not carried forward, but no separate written verdict exists for them. Energy and medtech
   also belong mainly to other faculties.
 - **Weak point: the screening relies on keyword rules on programme titles** in {{funnel_subjects}} subjects and
-  {{funnel_fields}} catalogue study fields. Their precision was checked by hand (Section 3); themes outside these fields were not screened.
+  {{funnel_fields}} catalogue study fields. Their precision was checked by hand (Section 1); themes outside these fields were not screened.

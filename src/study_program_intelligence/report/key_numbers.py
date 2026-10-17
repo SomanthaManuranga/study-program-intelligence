@@ -26,7 +26,7 @@ OUT = REPO_ROOT / "reports" / "key_numbers.yaml"
 INTERIM = REPO_ROOT / "data" / "interim"
 DOCS = REPO_ROOT / "docs"
 JOB_SNAPSHOT = "2026-10-15"   # snapshot the evidence doc's table shows; move to the frozen snapshot on 4 Dec
-SECTIONS = ["S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
+SECTIONS = ["M_method", "S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
 
 
 def _norm(s: str) -> str:
@@ -200,7 +200,7 @@ def collect() -> Numbers:
               " / ".join(str(v) for v in vals), s, data="data/interim/option_scenarios.csv")
     # ---------------- F: ranking ----------------
     w = yaml.safe_load((REPO_ROOT / "configs" / "analysis.yaml").read_text(encoding="utf-8"))["weights"]
-    n.add("weights", "F_ranking", "MCDA base weights", w, ", ".join(f"{k} {v:.2f}" for k, v in w.items()),
+    n.add("weights", "F_ranking", "MCDA base weights", w, ", ".join(f"{k.replace('_', ' ')} {v:.2f}" for k, v in w.items()),
           "docs/evidence_ranking.md", data="configs/analysis.yaml", check="Demand (.30) | Labour (.20) | Fit (.20) | Feasibility (.15) | Differentiation (.10) | Regional (.05)")
     rs = pd.read_csv(INTERIM / "ranking_summary.csv")
     for scen, tag in (("base", "base"), ("robotics 50 % cannibalisation", "rob50"), ("base, robotics fit/feasibility 2/3/5", "skew")):
@@ -216,7 +216,114 @@ def collect() -> Numbers:
           round(100 * lo["P(rank 1) cyber_bsc"], 1), f"{100 * lo['P(rank 1) cyber_bsc']:.1f} %", s, data="data/interim/ranking_loo.csv")
     n.add("loo_winner_always_cyber", "F_ranking", "Cyber B.Sc. first in every leave-one-out run", bool((b["winner"] == "cyber_bsc").all()),
           "first in every", s, data="data/interim/ranking_loo.csv", check="stays first whichever single criterion is left out")
+    for crit, key in (("labour_relevance", "loo_labour_cyber_bsc"), ("differentiation", "loo_diff_cyber_bsc")):
+        p = 100 * float(b.loc[b["criterion left out"] == crit, "P(rank 1) cyber_bsc"].iloc[0])
+        n.add(key, "F_ranking", f"P(rank 1) cyber B.Sc. without {crit}", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_loo.csv")
+    for opt, rank, key in (("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_base"), ("robotics_bsc", "P(rank 3)", "p_rank3_robotics_bsc_base")):
+        p = 100 * float(rs[(rs["scenario"] == "base") & (rs["option"] == opt)][rank].iloc[0])
+        n.add(key, "F_ranking", f"{rank} {opt}, base", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_summary.csv")
+    for k, label, v, disp, src, chk in LITERALS:
+        sec, key = k.split("__")
+        n.add(key, sec, label, v, disp, src, check=chk)
     return n
+
+
+# Numbers taken as stated in an evidence doc (key prefix = section). check = verbatim text in that doc.
+_D, _T, _F, _CA, _CT, _FM, _FS, _B, _O, _CN, _R, _TP = (
+    "docs/evidence_competition_demand.md", "docs/evidence_demand_trends.md", "docs/evidence_forecast.md",
+    "docs/evidence_capture.md", "docs/evidence_catchment.md", "docs/evidence_fit_modules.md", "docs/evidence_fit_staff.md",
+    "docs/evidence_benchmarks.md", "docs/evidence_outlet_jobs.md", "docs/evidence_cannibalisation.md",
+    "docs/evidence_ranking.md", "docs/theme_precision.md")
+LITERALS = [
+    # method
+    ("M_method__labels_reviewed", "Theme labels proposed by Claude and reviewed by the team", 110, "110", _TP, "who agreed with all 110"),
+    ("M_method__cyber_precision", "Precision of the cybersecurity title rule (all matches checked)", 94, "94 %", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
+    ("M_method__cyber_matches", "Cybersecurity title matches checked by hand", 70, "70", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
+    ("M_method__pairs_e5", "Module pairs judged correctly by e5 (hand check of 20)", 16, "16 of 20", _FM, "**16 of 20**"),
+    ("M_method__pairs_tfidf", "Module pairs judged correctly by TF-IDF (hand check of 20)", 14, "14 of 20", _FM, "**14 of 20**"),
+    # A demand
+    ("A_demand__informatik_share_2015", "Informatik share of all first-years, Germany 2015", 3.7, "3.7 %", _F, "DE 3.7 % in 2015"),
+    ("A_demand__informatik_share_2024", "Informatik share of all first-years, Germany 2024", 5.4, "5.4 %", _F, "5.4 % in 2024"),
+    ("A_demand__mase_naive_by_cyber", "Backtest MASE of the naive model, Bavaria cyber proxy", 3.17, "3.17", _F, "| BY cyber proxy | **1.52** | 1.70 | 3.17 | 3.98 |"),
+    ("A_demand__drift_underforecast", "Share of Bavarian backtest errors where drift under-forecast", "76-80", "76-80 %", _F, "76-80 % of the Bavarian backtest errors"),
+    ("A_demand__kmk_by_2030", "KMK index for Bavarian first-years 2030 (base 2024)", 0.99, "0.99", _F, "Bavaria 0.99 (2030)"),
+    ("A_demand__by_all_2024", "Bavarian first-years, all subjects, 2024", 68872, "68,872", _D, "fell from 68,872 to 57,216"),
+    ("A_demand__by_all_2025", "Bavarian first-years, all subjects, 2025 (G9 transition)", 57216, "57,216", _D, "fell from 68,872 to 57,216"),
+    ("A_demand__elektro_trend", "Elektrotechnik first-years Germany, per year 2019-2025", -2.6, "-2.6 %", _D, "Elektrotechnik -2.6 %/yr"),
+    ("A_demand__mechatronik_trend", "Mechatronik first-years Germany, per year 2019-2025", -3.6, "-3.6 %", _D, "Mechatronik -3.6 %/yr"),
+    ("A_demand__cyber_share_of_informatik_search", "'Cyber Security Studium' as share of 'Informatik Studium' searches, 2026", 12.6, "12.6 %", _T, "| 2026 | 12.6 % |"),
+    ("A_demand__cyber_search_2022", "'Cyber Security Studium' search index 2022 (specialist download)", 18.5, "18.5", _T, "| 2022 | 18.5 |"),
+    ("A_demand__cyber_search_2026", "'Cyber Security Studium' search index 2026 (specialist download)", 22.0, "22.0", _T, "| 2026 | 22.0 |"),
+    ("A_demand__ki_search_2024", "'KI Studium' search index 2024 (peak)", 13.3, "13.3", _T, "13.3 in 2024 to 9.0 in 2026"),
+    ("A_demand__ki_search_2026", "'KI Studium' search index 2026", 9.0, "9.0", _T, "13.3 in 2024 to 9.0 in 2026"),
+    ("A_demand__cyber_ba_nearest_km", "Nearest dedicated cyber bachelor (FAU, part-time online)", 63, "63 km", _D, "FAU (63 km)"),
+    ("A_demand__cyber_focus_germany", "General programmes in Germany with a security focus area", 126, "126", _D, "126 general programmes offer cybersecurity as a focus area"),
+    ("A_demand__cyber_ba_haw_share", "Share of dedicated cyber bachelors at HAWs", 81, "81 %", _D, "81 % of bachelor programmes are at HAW"),
+    # B capture
+    ("B_capture__own_pool_exact", "Own pool 2023/24 (exact)", 5501, "5,501", _CT, "| 14 | 3,279 | 2,222 | **5,501** | **-19 %** | **10.1 %** |"),
+    ("B_capture__own_pool_trend", "Own pool change since 2013/14", -19, "-19 %", _CT, "**-19 %**"),
+    ("B_capture__own_pool_share_by", "Own pool as share of Bavaria's qualified school leavers", 10.1, "10.1 %", _CT, "**10.1 %**"),
+    ("B_capture__pool_without_regensburg", "Own pool if OTH Regensburg counts as a competitor", 3807, "3,807", _CT, "| 12 | 2,312 | 1,495 | 3,807 | -24 % | 7.0 % |"),
+    ("B_capture__regensburg_part", "Regensburg city and county in the own pool", 1694, "1,694", _CT, "Regensburg city and county 1,694"),
+    ("B_capture__closer_than_nuernberg", "Share of OTH's 100-km catchment closer to OTH than to Nuremberg/Erlangen", 42, "42 %", _CT, "| FAU / TH Nürnberg | **42 %** |"),
+    ("B_capture__pool_g9_gap", "Own pool in the G9 gap year 2024/25", 2850, "~2,850", _CT, "| 2024/25 | ~2,850 |"),
+    ("B_capture__pool_2030", "Own pool forecast 2029/30 (KMK path)", 5300, "~5,300", _CT, "| 2029/30 | ~5,300"),
+    ("B_capture__beta_band", "Distance-decay values within 10 % of the best fit", "1.3-1.95", "1.3-1.95", _CA, "beta within 10 % of the best fit: 1.3-1.95"),
+    ("B_capture__home_share_model", "OTH home-region share, model", 61, "61 %", _CA, "OTH: model 61 % vs actual 71 %"),
+    ("B_capture__home_share_actual", "OTH home-region share, actual (Tabelle 5)", 71, "71 %", _CA, "OTH: model 61 % vs actual 71 %"),
+    ("B_capture__thi_implied", "THI cyber intake implied by the uncalibrated demand model", "59-173", "59-173", _CA, "implies 59-173 first-years"),
+    ("B_capture__rel_capture_thi", "OTH intake relative to THI's, over all model variants", "0.65-0.86", "0.65-0.86 times", _CA, "OTH would draw 0.65-0.86 times THI's intake"),
+    ("B_capture__oth_eng_firstyears", "OTH first-years in engineering sciences incl. Informatik, WS 2024/25", 452, "452", _CA, "engineering sciences (incl. Informatik) 452"),
+    ("B_capture__year1_low", "Cyber B.Sc. first-years in year 1, low", 12, "12", _CA, "| 12 | 16 | **21** |"),
+    ("B_capture__year1_central", "Cyber B.Sc. first-years in year 1, central", 24, "24", _CA, "| 24 | 31 | **39** |"),
+    ("B_capture__year1_high", "Cyber B.Sc. first-years in year 1, high", 45, "45", _CA, "| 45 | 60 | **75** |"),
+    # C fit
+    ("C_fit__cover_sec_ba_range", "EMI coverage of security ECTS, range over competitor bachelors", "18-39", "18-39 %", _FM, "| **31 %** | 18-39 % | 47 % | 71 % |"),
+    ("C_fit__cover_sec_ba_tfidf", "EMI coverage of a cyber bachelor's security ECTS, TF-IDF", 47, "47 %", _FM, "| **31 %** | 18-39 % | 47 % | 71 % |"),
+    ("C_fit__pentest_cover", "EMI coverage of penetration testing & auditing (e5)", 0, "0 %", _FM, "| Penetration testing & auditing (practice) | 6 | 5 | **0 %** |"),
+    ("C_fit__forensics_cover", "EMI coverage of forensics (e5)", 12, "12 %", _FM, "| Forensics | 5 | 5 | **12 %** |"),
+    ("C_fit__secops_cover", "EMI coverage of security operations & incident management (e5)", 0, "0 %", _FM, "| Security Operations & Incident Management | 5 | 5 | **0 %** |"),
+    ("C_fit__crypto_cover", "EMI coverage of cryptography (e5)", 100, "100 %", _FM, "| Cryptography | 4 | 7.5 | 100 % |"),
+    ("C_fit__network_cover", "EMI coverage of network security (e5)", 80, "80 %", _FM, "| Network Security | 6 | 7.5 | 80 % |"),
+    ("C_fit__deg_ma_ot", "TH Deggendorf master: OT/industrial security modules (ECTS)", 50, "50 ECTS", _FM, "8 modules, 50 ECTS"),
+    ("C_fit__security_profs", "EMI professors already teaching security modules", 4, "about four", _FS, "about four professors already teach security modules"),
+    ("C_fit__new_load_sws", "New teaching load of the cyber B.Sc. (SWS per year)", "40-50", "40-50 SWS", _FS, "| **New teaching load, bachelor** | **40-50** |"),
+    ("C_fit__master_profs", "Additional professorship share for the master", "0.7-0.9", "0.7-0.9", _FS, "0.7-0.9 professorship"),
+    ("C_fit__teaching_assignments", "ECTS via teaching assignments in the draft (ISMS, law)", 10, "10 ECTS", _B, "New via teaching assignments: 10 ECTS"),
+    ("C_fit__competitor_sec_share", "Security share of Bavarian competitor bachelors", "30-31", "30-31 %", _B, "between the Bavarian competitors (30-31 %)"),
+    ("C_fit__stpoelten_sec_share", "Security share of St. Pölten's bachelor", 50, "50 %", _B, "and St. Pölten (50 %)"),
+    # D outlet
+    ("D_outlet__ads_it_sicherheit", "Job ads 'IT-Sicherheit', Germany", 6191, "6,191", _O, "| Cybersecurity | IT-Sicherheit | 6,191 |"),
+    ("D_outlet__ads_security_engineer", "Job ads 'Security Engineer', Germany", 838, "838", _O, "| Cybersecurity | Security Engineer | 838 |"),
+    ("D_outlet__ads_ki", "Job ads 'Künstliche Intelligenz', Germany", 945, "945", _O, "| Baseline | Künstliche Intelligenz | 945 |"),
+    ("D_outlet__baseline_share", "Bavarian share of German job ads, IT baseline keywords", "22-25", "22-25 %", _O, "against 22–25 % for the computer-science baselines"),
+    ("D_outlet__ads_cyber_50km", "Job ads 'Cyber Security' within 50 km of Amberg", 8, "8", _O, "Within 50 km of Amberg there are only 8"),
+    ("D_outlet__snapshot_change", "Median absolute change between the two job-ad snapshots", 1.4, "1.4 %", _O, "median absolute change 1.4 %"),
+    ("D_outlet__academic_share_2023", "Academic share of IT employees in Bavaria 2023", 52.6, "52.6 %", _O, "| academic share | 48.5 % | 52.6 % |"),
+    ("D_outlet__shortage_score", "BA shortage score, Berufe in der Informatik (specialist level), 2025", 2.0, "2.0", _O, "(score 2.0)"),
+    # E cannibalisation
+    ("E_cannibalisation__netnew_share_range", "Cyber B.Sc. share of students new to OTH (model variants)", "73-86", "73-86 %", _CN, "73-86 % (central 82 %)"),
+    ("E_cannibalisation__netnew_share_central", "Cyber B.Sc. share new to OTH, central", 82, "82 %", _CN, "73-86 % (central 82 %)"),
+    ("E_cannibalisation__kept_share_range", "Cyber B.Sc. share kept in the region", "13-16", "13-16 %", _CN, "(13-16 %; central 6 per year)"),
+    ("E_cannibalisation__stress_share", "Cannibalisation share assumed in the stress test", 50, "50 %", _CN, "cannibalisation were 50 % (about twice the model's maximum)"),
+    ("E_cannibalisation__stress_netnew", "Cyber B.Sc. net new if cannibalisation were 50 %", [10.5, 19.5, 37.5], "10.5 / 19.5 / 37.5", _CN, "10.5 / 19.5 / 37.5"),
+    ("E_cannibalisation__module_cover_ii_mi", "Security ECTS of a cyber bachelor covered by Industrie-4.0-Informatik and Medieninformatik", 28, "28 %", _CN, "at most 28 %"),
+    ("E_cannibalisation__msc_from_oth", "Cyber/OT M.Sc. share taken from OTH programmes", "22-37", "22-37 %", _R, "| 22-37 % (AI for Industrial Applications, IT und Automation) |"),
+    ("E_cannibalisation__rob_from_oth", "Robotics+AI B.Sc. share taken from OTH programmes (model)", "14-29", "14-29 %", _R, "| 14-29 % (KI B.Sc., E&IT, Mechatronik und digitale Automation) |"),
+    ("E_cannibalisation__rob_kept", "Robotics+AI B.Sc. students kept in region, low / central / high", [4.1, 8.5, 15.6], "4.1 / 8.5 / 15.6", _R, "| 4.1 / 8.5 / 15.6 |"),
+    ("E_cannibalisation__msc_kept", "Cyber/OT M.Sc. students kept in region, low / central / high", [0.7, 2.2, 5.5], "0.7 / 2.2 / 5.5", _R, "| 0.7 / 2.2 / 5.5 |"),
+    ("E_cannibalisation__msc_gross", "Cyber/OT M.Sc. gross first-years, low / central / high", [23, 43, 81], "23 / 43 / 81", _R, "| 23 / 43 / 81 |"),
+    ("E_cannibalisation__rob_gross", "Robotics+AI B.Sc. gross first-years, low / central / high", [15, 29, 55], "15 / 29 / 55", _R, "| 15 / 29 / 55 |"),
+    ("E_cannibalisation__msc_anchor", "THI Cloud Applications und Security Engineering capacity (master anchor)", 30, "30", _R, "THI Cloud Applications und Security Engineering capacity 30"),
+    ("E_cannibalisation__grads_de_2019", "Informatik graduates Germany 2019", 14249, "14,249", _R, "Informatik graduates Germany 14,249 (2019)"),
+    ("E_cannibalisation__grads_de_2025", "Informatik graduates Germany 2025", 21858, "21,858", _R, "-> 21,858 (2025)"),
+    # F ranking
+    ("F_ranking__total_cyber_bsc", "Weighted total at central scores, Cyber B.Sc.", 3.42, "3.42", _R, "| 3.61 | **3.42** |"),
+    ("F_ranking__total_cyber_msc", "Weighted total at central scores, Cyber/OT M.Sc.", 3.04, "3.04", _R, "| 2.14 | 3.04 |"),
+    ("F_ranking__total_robotics", "Weighted total at central scores, Robotics+AI B.Sc.", 2.95, "2.95", _R, "| 4.09 | 2.95 |"),
+    ("F_ranking__p1_independent", "P(rank 1) Cyber B.Sc. with independent capture draws", 87.0, "87.0 %", _R, "87.0 % / 10.0 % / 3.0 %"),
+    ("F_ranking__dirichlet_conc", "Dirichlet concentration of the weight draws", 50, "50", _R, "Dirichlet concentration 50"),
+]
 
 
 def write(n: Numbers) -> dict:

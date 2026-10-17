@@ -45,6 +45,44 @@ def figure_index() -> dict[str, dict]:
     return out
 
 
+def _cell(x) -> str:
+    return re.sub(r"\s+", " ", str(x if x is not None else "")).replace("|", "/").strip()
+
+
+def table_sources() -> str:
+    """All registered sources (configs/sources.yaml), one row each."""
+    src = yaml.safe_load((REPO_ROOT / "configs" / "sources.yaml").read_text(encoding="utf-8"))["sources"]
+    rows = ["| Source | Data | Used for | Access |", "|-------------|--------------------|----------------|------------------|"]
+    for s in src:
+        rows.append(f"| {_cell(s.get('owner'))} | {_cell(s.get('table') or s.get('title') or s.get('url'))} | "
+                    f"{_cell(s.get('use'))} | {_cell(s.get('access') or s.get('status'))} |")
+    return "\n".join(rows)
+
+
+def table_scores() -> str:
+    """Score sheet (configs/scores.yaml): low / central / high and evidence strength per option and criterion."""
+    sc = yaml.safe_load((REPO_ROOT / "configs" / "scores.yaml").read_text(encoding="utf-8"))["options"]
+    rows = ["| Option | Criterion | Low / central / high | Strength | Evidence |",
+            "|----------|--------------|--------|------|------------------------------|"]
+    for o, s in sc.items():
+        for crit in ("student_demand", "labour_relevance", "institutional_fit", "feasibility", "differentiation", "regional_contribution"):
+            e = s[crit]
+            if crit == "student_demand":
+                t = e["trend"]
+                rng = f"model + trend {t['low']} / {t['central']} / {t['high']}"
+                strength = f"model {e['capture']['strength']}, trend {t['strength']}"
+                ev = f"{e['capture']['source']}; {t['evidence']}"
+            elif crit == "regional_contribution":
+                rng, strength, ev = "computed from (c)", e["strength"], e["source"]
+            else:
+                rng, strength, ev = f"{e['low']} / {e['central']} / {e['high']}", e["strength"], e["evidence"]
+            rows.append(f"| {_cell(s['label'])} | {crit.replace('_', ' ')} | {_cell(rng)} | {_cell(strength)} | {_cell(ev)} |")
+    return "\n".join(rows)
+
+
+TABLES = {"sources": table_sources, "scores": table_scores}
+
+
 def typed_numbers(text: str, allowed: list[str]) -> list[str]:
     t = re.sub(r"<!--.*?-->", " ", text, flags=re.S)
     t = PLACEHOLDER.sub(" ", t)
@@ -67,6 +105,11 @@ def render_section(name: str, kn: dict, figs: dict, counter: list[int], allowed:
 
     def sub(m: re.Match) -> str:
         key = m.group(1)
+        if key.startswith("table:"):
+            if key[6:] not in TABLES:
+                problems.append(f"{name}: unknown table {key[6:]}")
+                return m.group(0)
+            return TABLES[key[6:]]()
         if key.startswith("fig:"):
             f = key[4:]
             if f not in figs:
@@ -112,13 +155,16 @@ def build() -> tuple[Path, list[str], dict]:
             "lang": cfg.get("lang", "en-GB"), "bibliography": str((SRC / cfg["citations"]["bibliography"]).as_posix()),
             "link-citations": True, "reference-section-title": "References", "toc": True,
             "subject": cfg.get("supervisor_line")}
-    body = "\n\n".join(main) + "\n\n# References\n\n::: {#refs}\n:::\n\n" + ("\\newpage\n\n# Appendix\n\n" + "\n\n".join(appendix) if appendix else "")
+    body = ("\n\n".join(main) + "\n\n# References {-}\n\n::: {#refs}\n:::\n\n"
+            + ("\\newpage\n\n# Appendix {-}\n\n" + "\n\n".join(appendix) if appendix else ""))
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     OUT.write_text("---\n" + yaml.safe_dump(meta, allow_unicode=True, sort_keys=False) + "---\n\n" + body, encoding="utf-8")
     n_main = words("\n".join(main))
     lo, hi = cfg["length"]["target_pages"]
     wpp = cfg["length"]["words_per_page"]
-    stats = {"words_main": n_main, "pages_main_est": round(n_main / wpp, 1), "target_pages": (lo, hi), "figures": counter[0],
+    fig_pages = cfg["length"].get("pages_per_figure", 0.5)
+    stats = {"words_main": n_main, "pages_main_est": round(n_main / wpp + fig_pages * counter[0], 1), "target_pages": (lo, hi),
+             "figures": counter[0],
              "missing": [p for p in problems if p.startswith("missing")]}
     return OUT, problems, stats
 
@@ -126,7 +172,7 @@ def build() -> tuple[Path, list[str], dict]:
 def convert(cfg_formats: list[str]) -> list[str]:
     import pypandoc
     notes = []
-    args = ["--citeproc", f"--resource-path={OUT_DIR.as_posix()}", "--toc"]
+    args = ["--citeproc", f"--resource-path={OUT_DIR.as_posix()}", "--toc", "--number-sections"]   # Summary = unnumbered, Method = 1
     if "docx" in cfg_formats:
         pypandoc.convert_file(str(OUT), "docx", outputfile=str(OUT_DIR / "report.docx"), extra_args=args)
         notes.append("reports/final/report.docx")
@@ -150,7 +196,7 @@ def main(argv: list[str] | None = None) -> None:
     out, problems, stats = build()
     hard = [p for p in problems if not p.startswith("missing")]
     print(f"Written: {out.relative_to(REPO_ROOT)}")
-    print(f"Main text: {stats['words_main']} words = ~{stats['pages_main_est']} pages (target {stats['target_pages'][0]}-"
+    print(f"Main text: {stats['words_main']} words = ~{stats["pages_main_est"]} pages incl. figures (target {stats['target_pages'][0]}-"
           f"{stats['target_pages'][1]}); figures: {stats['figures']}")
     if stats["missing"]:
         print("Not yet written:", ", ".join(m.split()[-1] for m in stats["missing"]))
