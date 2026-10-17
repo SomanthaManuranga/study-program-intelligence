@@ -1,0 +1,68 @@
+[
+  {
+    "id": "at_stpoelten_its_folder",
+    "owner": "Hochschule für Angewandte Wissenschaften St. Pölten (USTP)",
+    "title": "Folder Bachelor IT Security",
+    "url": "https://www.ustp.at/de/mediathek/pdfs/folder/folder-bachelor-it-security.pdf/@@download/file/Folder-Bachelor-IT-Security.pdf",
+    "mirror": false,
+    "file": "data/raw/benchmarks/at_stpoelten_its_folder.pdf",
+    "programme": "IT Security (BSc), 6 semesters, 180 ECTS",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T20:53:32+00:00",
+    "content_type": "application/pdf",
+    "bytes": 488593,
+    "sha256": "61c0ce6cc88ed8356653c11ce2d796f908d5cdb96d612acbbd8cc3c5ea82937a"
+  },
+  {
+    "id": "ch_hslu_ics_modules",
+    "owner": "Hochschule Luzern (HSLU), Informatik",
+    "title": "Module overview Bachelor Information & Cyber Security (web page)",
+    "url": "https://www.hslu.ch/en/lucerne-school-of-information-technology/degree-programs/bachelor/information-and-cyber-security/module/",
+    "mirror": false,
+    "file": "data/raw/benchmarks/ch_hslu_ics_modules.bin",
+    "programme": "Information & Cyber Security (BSc), 180 ECTS",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T20:53:39+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 111243,
+    "sha256": "db399c624acf37f263b1999467d5689c67edaa6bd27bf5384cbb4d99dd32e6cc"
+  },
+  {
+    "id": "uk_abertay_ethical_hacking",
+    "owner": "Abertay University",
+    "title": "BSc with Honours in Ethical Hacking (programme document)",
+    "url": "https://www.abertay.ac.uk/media/lirnonzk/bsc-with-honours-in-ethical-hacking.pdf",
+    "mirror": false,
+    "file": "data/raw/benchmarks/uk_abertay_ethical_hacking.pdf",
+    "programme": "BSc (Hons) Ethical Hacking, 4 years, 480 SCQF credits (= 240 ECTS)",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T20:53:46+00:00",
+    "content_type": "application/pdf",
+    "bytes": 182460,
+    "sha256": "e75f24b9380abc4e47bf45d00b6aac6bebec92c65d5fc831179099584e94b7c0"
+  },
+  {
+    "id": "fi_turku_cyber_iot",
+    "owner": "Turku University of Applied Sciences (TUAS)",
+    "title": "Curriculum Tieto- ja viestintätekniikka, Kyberturvallisuus ja IoT (study guide page)",
+    "url": "https://opinto-opas.turkuamk.fi/21632/en/0/21716/1023",
+    "mirror": false,
+    "file": "data/raw/benchmarks/fi_turku_cyber_iot.bin",
+    "programme": "ICT - Cyber Security and IoT (Bachelor of Engineering), 240 ECTS",
+    "status": "skipped_robots"
+  },
+  {
+    "id": "at_hagenberg_sib_page",
+    "owner": "FH Oberösterreich, Campus Hagenberg",
+    "title": "Programme page Bachelor Sichere Informationssysteme (module groups with ECTS); the Infoblatt link from web search returned 404",
+    "url": "https://fh-ooe.at/sib",
+    "mirror": false,
+    "file": "data/raw/benchmarks/at_hagenberg_sib_page.bin",
+    "programme": "Sichere Informationssysteme (BSc), 6 semesters, 180 ECTS",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T20:54:58+00:00",
+    "content_type": "text/html",
+    "bytes": 236336,
+    "sha256": "ea7fb415bf21d9fc9f0e98e8666789f3ad4894dde25713583b014507f22bc535"
+  }
+]

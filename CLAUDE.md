@@ -25,9 +25,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
   logins block.
 
 ## Current step
-Step 45: international benchmarks, lean (4-6 programmes, curriculum structure only, input for our curriculum).
-Status: open. Last finished: Step 44, staff & labs fit (2026-10-17): 2 new professorships + 1 lab engineer + security
-lab; docs/evidence_fit_staff.md.
+Step 46: forecasting with backtests (Next steps item 1). Status: open.
+Last finished: Step 45, international benchmarks (2026-10-17, lean): 4 programmes, draft OTH bachelor 210 ECTS
+(45 ECTS new, 110 reused); docs/evidence_benchmarks.md. Professors appear only as neutral labels (Prof. A-N).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -104,13 +104,14 @@ Forecasts validated with rolling-origin backtests (MASE).
 - Staff (Step 44): ~4 EMI professors teach security (infosec, crypto, networks, AI security), ~4 the OT/embedded side;
   missing: pentesting, forensics, SOC, malware -> 2 new professorships + lab engineer + security lab (40-50 SWS/yr
   new BA load; 18 SWS/semester per § 4 AVBayHIG). OT is where existing staff help most.
+- Benchmarks (Step 45): security share 30-50 % abroad/Bavaria; OT is not a standard bachelor block abroad (master
+  topic). Draft OTH cyber B.Sc.: 7 sem/210 ECTS, 75 security ECTS (36 %), 45 new + 10 teaching assignments.
 - Shortlist after kill rule 1: (1) Cybersecurity B.Sc. (lead), (2) Cybersecurity M.Sc. with industrial/OT
   security profile, (3) Robotics + AI B.Sc. (comparison case). Watch list: Microelectronics M.Sc.
   Dropped: embedded/CPS master (88 % overlap with IT und Automation), part-time AI master (AIIA exists).
 
 ## Next steps (in order)
-1. 4-6 international benchmark programmes (Step 45, lean).
-2. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
+1. Forecasting with backtests; MCDA + Monte Carlo (incl. update of kill rule 1 / incrementality with the
    shared intro-security and cryptography modules from docs/evidence_fit_modules.md).
-3. Dashboard, report, presentation.
+2. Dashboard, report, presentation.
 Known gap: E&IT module handbook SPO 222B not found (file in data/raw/oth modules is a duplicate of 226B).

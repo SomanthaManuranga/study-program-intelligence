@@ -7,7 +7,7 @@ raw pages in `data/raw/oth_web/`), § 4 AVBayHIG. Method decisions: docs/decisio
 ## Method and data access
 
 - Teaching: the responsible lecturer of each EMI module with security or security-adjacent content, taken from the
-  official module handbooks (public documents).
+  official module handbooks (public documents). Lecturers are shown as neutral labels (Prof. A-N), not by name.
 - Research and labs: OTH lab and institute pages found via the public sitemap; robots.txt respected, 3 s delay, raw
   pages cached with SHA-256.
 - Not used: individual staff profile pages. OTH's robots.txt blocks AI crawlers (GPTBot) from
@@ -16,15 +16,15 @@ raw pages in `data/raw/oth_web/`), § 4 AVBayHIG. Method decisions: docs/decisio
 
 ## Who teaches security at EMI today (module handbooks)
 
-| Area | Lecturer (module responsibility) | Modules |
+| Area | Lecturer (neutral label; module responsibility) | Modules |
 |---|---|---|
-| Information security, cryptography | Prof. Dr. Daniel Loebenberger | Informationssicherheit (BA II/MI); Moderne Anwendungen der Kryptographie (MA) |
-| Network security, security basics, functional safety | Prof. Dr. Christian Roth | Computernetzwerke (BA); Cybersicherheit (MA KI, MA IT und Automation); Grundlagen der Informations- und Funktionalen Sicherheit (MA IT und Automation) |
-| Cryptology, coding theory | Prof. Dr. Jan Ortmann | Grundlagen der Codierungstheorie und Kryptologie (BA); Informationstheorie, Codierung (MA) |
-| AI security | Prof. Dr. Patrick Levi | KI Sicherheit (MA KI) |
-| OT-adjacent: industrial communication, CPS, embedded | Prof. Dr.-Ing. Thomas Stein; Prof. Dr. Michael Wiehl; Prof. Dr. Peter Raab; Prof. Dr. Gerald Pirkl | Industrielle Kommunikationssysteme; Cyberphysische Systeme 1/2; Embedded Systems, Echtzeitbetriebssysteme; Eingebettete Intelligenz |
-| Software engineering, systems | Prof. Dr. Sandra Rebholz; Prof. Dr. Josef Pösl; Prof. Dr. Ulrich Schäfer / Prof. Dr. Christoph Neumann | Software Engineering 1/2; Betriebssysteme, Technologien verteilter Systeme; Web-Anwendungsentwicklung |
-| Ethics | Prof. Dr. Dominikus Heckmann; Prof. Dr. Lisa-Marie Ranisch | Informationsethik und Technikphilosophie; Ethik, Kognition & Meeting |
+| Information security, cryptography | Prof. A - information security & cryptography | Informationssicherheit (BA II/MI); Moderne Anwendungen der Kryptographie (MA) |
+| Network security, security basics, functional safety | Prof. B - network security, security basics, functional safety | Computernetzwerke (BA); Cybersicherheit (MA KI, MA IT und Automation); Grundlagen der Informations- und Funktionalen Sicherheit (MA IT und Automation) |
+| Cryptology, coding theory | Prof. C - cryptology & coding theory | Grundlagen der Codierungstheorie und Kryptologie (BA); Informationstheorie, Codierung (MA) |
+| AI security | Prof. D - AI security | KI Sicherheit (MA KI) |
+| OT-adjacent: industrial communication, CPS, embedded | Prof. E - industrial communication; Prof. F - cyber-physical systems; Prof. G - embedded systems & RTOS; Prof. H - embedded intelligence | Industrielle Kommunikationssysteme; Cyberphysische Systeme 1/2; Embedded Systems, Echtzeitbetriebssysteme; Eingebettete Intelligenz |
+| Software engineering, systems | Prof. I - software engineering; Prof. J - operating & distributed systems; Prof. K / Prof. L - web application development | Software Engineering 1/2; Betriebssysteme, Technologien verteilter Systeme; Web-Anwendungsentwicklung |
+| Ethics | Prof. M / Prof. N - ethics | Informationsethik und Technikphilosophie; Ethik, Kognition & Meeting |
 
 Reading: about four professors already teach security modules (information security, cryptography, network
 security, AI security), and four more teach the industrial/embedded side that an OT-security profile needs. This
@@ -39,11 +39,11 @@ is a real base, but it is concentrated in introductory security, cryptography an
 | Security operations / incident management, SOC (5 of 7) | none (network monitoring basics in Computernetzwerke) | **new staff** |
 | Malware & attack technologies (2 of 7) | none | **new staff** (same profile as pentesting) |
 | Software security, secure coding (3 of 7) | software engineering, web development; no security focus | **partly** (existing staff with added security content, or new staff) |
-| OT / industrial security (Deggendorf, Aalen) | functional + information security (Roth), industrial communication (Stein), CPS (Wiehl), embedded/RTOS (Raab) | **partly**: strongest base; needs one OT-security specialist to integrate it |
+| OT / industrial security (Deggendorf, Aalen) | functional + information security (Prof. B), industrial communication (Prof. E), CPS (Prof. F), embedded/RTOS (Prof. G) | **partly**: strongest base; needs one OT-security specialist to integrate it |
 | Risk management & governance, ISMS (4 of 7) | none in EMI | **new** (teaching assignment or other faculty) |
 | Law & regulation (4 of 7) | none in EMI | **teaching assignment** (lawyer) or other faculty |
 | Human factors (3 of 7) | ethics modules | **partly** |
-| Cryptography, network security, AI security | Loebenberger, Ortmann, Roth, Levi | **covered** |
+| Cryptography, network security, AI security | Prof. A, Prof. C, Prof. B, Prof. D | **covered** |
 
 ## New teaching load and professorships
 
