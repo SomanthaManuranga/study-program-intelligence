@@ -10,6 +10,7 @@ dependencies = [
   "scikit-learn>=1.5",
   "pyyaml>=6.0",
   "requests>=2.31",
+  "openpyxl>=3.1",
 ]
 
 [project.optional-dependencies]
