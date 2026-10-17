@@ -98,7 +98,7 @@ sources:
     licence: TO_VERIFY (public documents; used for analysis and citation only, not redistributed)
     access: public PDFs via ingest/documents.py (robots.txt respected, 3 s delay); rest manual, see docs/manual_downloads.md
     manifest: docs/competitor_modules_manifest.json
-    status: complete (Step 39): 7 handbooks; 2 module lists (HS Aalen lists, TH Mannheim programme page); 2 without published handbook (THI Cyber Security Engineer, THI Sociotechnical Cybersecurity)
+    status: "complete (Step 39): 7 handbooks; 2 module lists (HS Aalen lists, TH Mannheim programme page); 2 without published handbook (THI Cyber Security Engineer, THI Sociotechnical Cybersecurity)"
 
   - id: by_eckzahlen_schulen
     owner: Bayerisches Landesamt für Statistik
@@ -113,7 +113,7 @@ sources:
   - id: destatis_gv_isys
     owner: Destatis
     url: https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html
-    table: Gemeindeverzeichnis (all municipalities, 30.06.2026): population, centre coordinates
+    table: "Gemeindeverzeichnis (all municipalities, 30.06.2026): population, centre coordinates"
     use: county centres and distances (Step 42)
     licence: Datenlizenz Deutschland, Namensnennung 2.0 (TO_VERIFY)
     access: public xlsx via ingest/documents.py; manifest docs/regional_manifest.json
@@ -189,4 +189,29 @@ sources:
     url: https://www-genesis.destatis.de/ (tables 21321-0003, 21321-0006)
     use: master pipeline check, Informatik graduates 2019-2025 (Step 49, kill rule 4)
     access: GENESIS REST, cached in data/raw/destatis; manifest docs/genesis_manifest.json
+    status: downloaded
+
+  # Added 18 Oct 2026 (Step 51): sources used since Steps 3-37 but missing from this register.
+  - id: ba_studiensuche
+    owner: Bundesagentur fuer Arbeit (data from the HRK Hochschulkompass)
+    url: https://rest.arbeitsagentur.de/infosysbub/studisu/pc/v1/
+    table: programme offers (studienangebote) by study field; 4,840 offers from 13 fields, 14-15 Oct 2026
+    use: programme catalogue, supply and competition (data/processed/programmes.csv)
+    access: public REST API via ingest/studiensuche.py; cached raw replies; manifest docs/studiensuche_manifest.json
+    status: downloaded
+
+  - id: ba_jobsuche
+    owner: Bundesagentur fuer Arbeit
+    url: https://rest.arbeitsagentur.de/jobboerse/jobsuche-service
+    table: job offers (/pc/v6/jobs), total matches per keyword and region
+    use: graduate outlet indicator (Step 43); snapshots in docs/jobsuche_snapshots.json
+    access: public REST API via ingest/jobsuche.py; snapshots 15 and 17 Oct 2026, next 1 Nov, 15 Nov, 1 Dec
+    status: downloaded
+
+  - id: google_trends
+    owner: Google
+    url: https://trends.google.com/
+    table: "Interest over time, Germany, monthly, all categories, web search"
+    use: search interest in degree terms (Step 37)
+    access: manual CSV download by the team (data/raw/trends/); no API used
     status: downloaded

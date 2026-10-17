@@ -1,0 +1,68 @@
+# CSL-YAML bibliography for the report (author-year via pandoc --citeproc). Keys are cited as [@key].
+# Every entry corresponds to a source in configs/sources.yaml (id in the note field). Accessed dates = retrieval.
+references:
+  - id: destatis2026students
+    type: dataset
+    author: [{literal: "Statistisches Bundesamt (Destatis)"}]
+    title: "Statistik der Studierenden (21311): Studienanfänger und Studierende nach Fach, Land und Hochschule, 2005-2025"
+    publisher: "GENESIS-Online"
+    URL: https://genesis.destatis.de/datenbank/online/statistic/21311/details
+    issued: {date-parts: [[2026]]}
+    accessed: {date-parts: [[2026, 10, 14]]}
+    note: "sources.yaml: destatis_genesis_21311"
+  - id: destatis2026exams
+    type: dataset
+    author: [{literal: "Statistisches Bundesamt (Destatis)"}]
+    title: "Statistik der Prüfungen (21321): Absolventen nach Fach und Land, 2005-2025"
+    publisher: "GENESIS-Online"
+    URL: https://genesis.destatis.de/datenbank/online/statistic/21321/details
+    issued: {date-parts: [[2026]]}
+    accessed: {date-parts: [[2026, 10, 14]]}
+    note: "sources.yaml: destatis_genesis_21321"
+  - id: ba2026studiensuche
+    type: dataset
+    author: [{literal: "Bundesagentur für Arbeit"}]
+    title: "Studiensuche (data of the HRK Hochschulkompass): programme offers in 13 study fields"
+    URL: https://rest.arbeitsagentur.de/infosysbub/studisu/pc/v1/
+    issued: {date-parts: [[2026]]}
+    accessed: {date-parts: [[2026, 10, 14]]}
+    note: "sources.yaml: ba_studiensuche, hrk_hochschulkompass"
+  - id: kmk2025forecast
+    type: report
+    author: [{literal: "Kultusministerkonferenz (KMK)"}]
+    title: "Vorausberechnung der Studienanfängerinnen und Studienanfänger und der Studierenden 2024 bis 2035"
+    collection-title: "Dokumentation Nr. 1"
+    URL: https://www.kmk.org/downloads-dokumente/statistik/hochschulstatistik/vorausberechnung-der-studienanfaenger-und-studierendenzahlen-2024-bis-2035.html
+    issued: {date-parts: [[2025, 9]]}
+    note: "sources.yaml: kmk_forecast_2024_2035"
+  - id: lfstat2025students
+    type: report
+    author: [{literal: "Bayerisches Landesamt für Statistik"}]
+    title: "Studierende an den Hochschulen in Bayern, Wintersemester 2024/25 (Statistische Berichte B III 1-2 j 2024)"
+    URL: https://statistik.bayern.de/mam/produkte/veroffentlichungen/statistische_berichte/b3120c_202400.pdf
+    issued: {date-parts: [[2025]]}
+    note: "sources.yaml: by_studierende_hochschulen"
+  - id: ba2025engpass
+    type: report
+    author: [{literal: "Bundesagentur für Arbeit"}]
+    title: "Fachkräfteengpassanalyse 2025"
+    collection-title: "Berichte: Blickpunkt Arbeitsmarkt"
+    URL: https://statistik.arbeitsagentur.de/DE/Navigation/Statistiken/Interaktive-Statistiken/Fachkraeftebedarf/Engpassanalyse-Nav.html
+    issued: {date-parts: [[2025]]}
+    note: "sources.yaml: ba_engpassanalyse_2025"
+  - id: ba2026jobsuche
+    type: dataset
+    author: [{literal: "Bundesagentur für Arbeit"}]
+    title: "Jobsuche API: job offers by keyword and region (snapshots 15 and 17 Oct 2026)"
+    URL: https://rest.arbeitsagentur.de/jobboerse/jobsuche-service
+    issued: {date-parts: [[2026]]}
+    accessed: {date-parts: [[2026, 10, 15]]}
+    note: "sources.yaml: ba_jobsuche"
+  - id: google2026trends
+    type: dataset
+    author: [{literal: "Google"}]
+    title: "Google Trends: interest over time, Germany, 2015-2026"
+    URL: https://trends.google.com/
+    issued: {date-parts: [[2026]]}
+    accessed: {date-parts: [[2026, 10, 17]]}
+    note: "sources.yaml: google_trends"

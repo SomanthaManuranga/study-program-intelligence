@@ -1,0 +1,47 @@
+# Report settings (Step 51). Built by: python -m study_program_intelligence.report.draft
+# Change length, format or section order here if course rules appear; the section texts stay as they are.
+title: "Which new study programme should EMI offer? An evidence-based case for a Cybersecurity B.Sc."
+subtitle: "AI Project, OTH Amberg-Weiden, winter semester 2026/27"
+authors:
+  - Somantha Manuranga
+  - "[team member 2]"          # TODO: second author
+supervisor_line: "Supervisor: [name]"   # TODO: fill in for the final title page (names kept out of generated docs)
+lang: en-GB
+date: auto                    # build date
+length:
+  target_pages: [20, 25]      # main text, without appendix
+  words_per_page: 400         # body text incl. tables and captions; ~11 pt, single spacing
+formats: [docx, pdf]          # pdf needs a LaTeX engine (xelatex/MiKTeX); skipped with a note if missing
+citations:
+  bibliography: references.yaml
+  style: chicago-author-date  # pandoc default (author-year)
+sections:                     # main text, in order
+  - 00_summary.md
+  - 01_method.md
+  - 02_funnel.md
+  - 03_demand.md
+  - 04_capture.md
+  - 05_fit.md
+  - 06_outlet.md
+  - 07_cannibalisation.md
+  - 08_ranking.md
+  - 09_limitations.md
+  - 10_recommendation.md
+appendix:
+  - A1_sources.md
+  - A2_decisions.md
+  - A3_scoring.md
+# Typed-number check: numbers in the section texts must come from key_numbers.yaml ({{key}}). Flagged when typed:
+# percentages, decimals, numbers with thousands separators, and integers >= 10. Allowed patterns (regex):
+allowed_numbers:
+  - '\b(19|20)\d{2}\b'              # years
+  - '\b(19|20)\d{2}/\d{2}\b'        # winter semester 2026/27
+  - '\b\d+ km\b'                    # distance bands (50/100/150 km)
+  - '\bStep \d+\b'                  # project step numbers
+  - '\b\d+ ECTS\b'                  # ECTS sizes of the degree format
+  - '\b\d+ Oct\b'                   # dates
+  - '\b\d+ (Dec|Nov|Jan)\b'
+  - '\b(1st|2nd|3rd)\b'
+  - '§ \d+'
+  - '\b\d{2}:\d{2}\b'               # clock times (commit times)
+  - '\b(Section|Figure|Table|Stage) \d+\b'

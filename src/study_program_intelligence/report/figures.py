@@ -53,6 +53,39 @@ def _save(fig, name: str, title: str, message: str, source: str, index: list) ->
     index.append({"file": f"{name}.png", "title": title, "message": message, "source": source})
 
 
+def f00_funnel(kn: dict, index: list) -> None:
+    v = lambda k: kn[k]["value"]
+    stages = [
+        ("Screening: EMI-related theme groups", v("funnel_0_themes"),
+         f"{kn['funnel_offers']['display']} programme offers, {v('funnel_subjects')} Destatis subjects (14 Oct)"),
+        ("1 Demand trend", v("funnel_1_demand"), f"drop media technology / games (Medientechnik {kn['funnel_medientechnik']['display']}/yr)"),
+        ("2 Supply gap, not at OTH", v("funnel_2_candidates"),
+         f"drop generic AI ({v('funnel_ai_ba_150km')} BA / {v('funnel_ai_ma_150km')} MA within 150 km), themes OTH offers; "
+         "microelectronics to watch list"),
+        ("3 Kill rule 1: overlap", v("funnel_3_shortlist"),
+         f"drop embedded/CPS master ({kn['funnel_embedded_overlap']['display']}), part-time AI master (exists)"),
+        ("4 Kill rules 2-4", v("funnel_4_after_gates"), "none dropped (feasibility, trend, pipeline)"),
+        ("5 Ranking (MCDA + Monte Carlo)", 1, f"Cybersecurity B.Sc., first in {kn['p_rank1_cyber_bsc_base']['display']} of draws"),
+    ]
+    fig, ax = plt.subplots(figsize=(7.5, 3.4))
+    top = max(s[1] for s in stages)
+    for i, (lab, cnt, note) in enumerate(stages):
+        y = len(stages) - 1 - i
+        w = 0.6 + 0.4 * cnt / top   # minimum width keeps the last label inside its bar
+        col = OPTION["cyber_bsc"] if i == len(stages) - 1 else ("#9DB7D5" if i else LIGHT)
+        ax.barh(y, w, left=-w / 2, height=0.72, color=col)
+        ax.text(0, y + 0.08, f"{lab}: {cnt}", ha="center", va="center", fontsize=8.5, fontweight="bold",
+                color="white" if i == len(stages) - 1 else "black")
+        ax.text(0, y - 0.22, note, ha="center", va="center", fontsize=7, color="white" if i == len(stages) - 1 else "#404040")
+    ax.set_xlim(-0.55, 0.55)
+    ax.set_ylim(-0.45, len(stages) - 0.55)
+    ax.axis("off")
+    ax.set_title(f"Selection funnel: rules and weights fixed {kn['rules_fixed_date']['display']}, before screening")
+    _save(fig, "f00_funnel", "Selection funnel",
+          "Candidates were filtered stage by stage with rules fixed in advance; the winner came out at the end.",
+          "docs/evidence_funnel.md (from evidence_competition_demand, overlap_test, kill_rules, evidence_ranking)", index)
+
+
 def f01_demand_forecast(kn: dict, index: list) -> None:
     y = forecast.series()[("BY", "cyber_proxy")]
     y = y[y.index >= 2010]
@@ -213,6 +246,7 @@ def main() -> None:
     style()
     kn = load_numbers()
     index: list[dict] = []
+    f00_funnel(kn, index)
     f01_demand_forecast(kn, index)
     f02_search_interest(index)
     f03_job_ads(index, kn)

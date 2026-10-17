@@ -66,6 +66,8 @@ Sensitivity lines (P(rank 1) cyber B.Sc. / M.Sc. / robotics):
 
 - Robotics fit and feasibility 2 / 3 / 5 (skewed first draft, mean 3.33): 87.8 % / 5.3 % / 6.9 %; robotics then wins
   first place slightly more often than the master, but the master keeps the higher median (3.14 vs 3.10).
+- Robotics with 50 % cannibalisation (scenario column above): net new first-years 7.5 / 14.3 / 27.6 (half of the gross
+  14.9 / 28.7 / 55.3), below the assumed minimum cohort of 20 in the low and central case.
 - Independent capture draws (no common factor): 87.0 % / 10.0 % / 3.0 %. The common factor removes noise, it does
   not create the lead.
 

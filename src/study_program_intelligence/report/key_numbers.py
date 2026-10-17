@@ -26,11 +26,11 @@ OUT = REPO_ROOT / "reports" / "key_numbers.yaml"
 INTERIM = REPO_ROOT / "data" / "interim"
 DOCS = REPO_ROOT / "docs"
 JOB_SNAPSHOT = "2026-10-15"   # snapshot the evidence doc's table shows; move to the frozen snapshot on 4 Dec
-SECTIONS = ["A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
+SECTIONS = ["S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
 
 
 def _norm(s: str) -> str:
-    return re.sub(r"\s+", " ", s.replace("‑", "-").replace("–", "-"))
+    return re.sub(r"\s+", " ", s.replace("‑", "-").replace("–", "-").replace("−", "-"))
 
 
 def _found(probe: str, doc: str) -> bool:
@@ -61,6 +61,38 @@ def _f(x: float, nd: int = 0) -> str:
 
 def collect() -> Numbers:
     n = Numbers()
+    # ---------------- S: selection funnel ----------------
+    s = "docs/evidence_funnel.md"
+    funnel = [("funnel_0_themes", "Stage 0: theme groups screened (14 Oct)", 9, "9 theme groups", "| 9 theme groups | - | 9 theme groups |"),
+              ("funnel_1_demand", "Stage 1: after the demand-trend filter", 8, "8", "Medieninformatik -3.5 %/yr in Germany) | 8 |"),
+              ("funnel_2_candidates", "Stage 2: candidates after the supply-gap filter", 5, "5 candidates", "| 3 themes = 5 candidates |"),
+              ("funnel_3_shortlist", "Stage 3: shortlist after kill rule 1", 3, "3", "(identical to AI for Industrial Applications) | 3 |"),
+              ("funnel_4_after_gates", "Stage 4: after kill rules 2-4", 3, "3", "Informatik graduates rising) | 3 |")]
+    for key, label, v, disp, chk in funnel:
+        n.add(key, "S_selection", label, v, disp, s, check=chk)
+    n.add("funnel_offers", "S_selection", "Programme offers screened (13 study fields, 14 Oct)", 4840, "4,840", s)
+    n.add("funnel_fields", "S_selection", "Catalogue study fields screened", 13, "13", s, check="4,840 programme offers from 13 study fields")
+    n.add("funnel_subjects", "S_selection", "EMI-related Destatis subjects screened", 11, "11", s, check="11 EMI-related Destatis subjects")
+    n.add("funnel_medientechnik", "S_selection", "Medientechnik first-years Germany, per year 2019-2025", -8.6, "-8.6 %", s, check="Medientechnik -8.6 %/yr")
+    n.add("funnel_medieninformatik", "S_selection", "Medieninformatik first-years Germany, per year 2019-2025", -3.5, "-3.5 %", s, check="Medieninformatik -3.5 %/yr")
+    n.add("funnel_ai_ba_150km", "S_selection", "AI/data bachelors within 150 km", 32, "32", s, check="32 BA / 34 MA within 150 km")
+    n.add("funnel_ai_ma_150km", "S_selection", "AI/data masters within 150 km", 34, "34", s, check="32 BA / 34 MA within 150 km")
+    n.add("funnel_micro_firstyears", "S_selection", "Mikroelektronik first-years Germany 2025 (watch list)", 116, "116", s, check="116 first-years in Germany 2025")
+    n.add("funnel_embedded_overlap", "S_selection", "Embedded/CPS master: core topics already in IT und Automation", 88, "88 %", s, check="(88 %, IT und Automation)")
+    n.add("kill_rule_1_threshold", "S_selection", "Kill rule 1 threshold: core-module overlap with one OTH programme", 50, "more than 50 %",
+          "docs/kill_rules.md", check="more than 50 % of its core modules")
+    n.add("rules_fixed_date", "S_selection", "Weights and kill rules committed (before the first screening)", "2026-10-14", "14 Oct 2026",
+          s, check="| 14 Oct 2026, 16:37 | dff024f |")
+    os_ = pd.read_csv(INTERIM / "option_scenarios.csv")
+    n.add("mc_draws", "F_ranking", "Monte Carlo draws", 10000, "10,000", "docs/evidence_ranking.md", check="(10,000 draws")
+    n.add("robotics_overlap", "S_selection", "Robotics+AI B.Sc.: core topics already in the KI B.Sc. (kill rule 1)", 50, "50 %",
+          "docs/overlap_test.md", check="| 4 of 8 | 50 % | passes at the threshold |")
+    rob = os_[os_["option"] == "robotics_bsc"].set_index("scenario")
+    half = [0.5 * float(rob.at[k, "gross first-years"]) for k in ("low", "central", "high")]
+    n.add("robotics_netnew_cannib50", "F_ranking", "Robotics+AI net new first-years if 50 % come from OTH (low / central / high)",
+          [round(v, 1) for v in half], " / ".join(f"{v:.1f}" for v in half), "docs/evidence_ranking.md",
+          data="data/interim/option_scenarios.csv")
+    n.add("robustness_bar", "F_ranking", "Robustness bar for the winner (share of draws)", 80, "80 %", "docs/evidence_ranking.md", check="above the 80 % robustness bar")
     # ---------------- A: demand ----------------
     s = "docs/evidence_competition_demand.md"
     n.add("informatik_firstyears_by_growth", "A_demand", "Informatik first-years in Bavaria, growth per year 2019-2024", 6.1, "6.1 %",
