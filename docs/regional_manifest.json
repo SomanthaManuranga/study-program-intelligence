@@ -1,0 +1,17 @@
+[
+  {
+    "id": "destatis_gv_auszug_2026q2",
+    "owner": "Statistisches Bundesamt (Destatis)",
+    "title": "Alle politisch selbständigen Gemeinden mit ausgewählten Merkmalen am 30.06.2026 (GV-ISys, 2. Quartal 2026)",
+    "url": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.xlsx?__blob=publicationFile&v=13",
+    "mirror": false,
+    "file": "data/raw/regional/destatis_gv_auszug_2026q2.xlsx",
+    "version": "30.06.2026",
+    "page": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/Administrativ/Archiv/GVAuszugQ/AuszugGV2QAktuell.html",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-17T19:14:50+00:00",
+    "content_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
+    "bytes": 1868818,
+    "sha256": "92e51ee097b1fea2f76a1c383c02d01ffa889975647d640b61c39845a1067174"
+  }
+]

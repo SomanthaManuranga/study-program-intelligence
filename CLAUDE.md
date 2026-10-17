@@ -26,6 +26,11 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Step 42: catchment and regional data from the Regionaldatenbank (Next steps item 1). Status: open.
+Note (Soma): OT alone is no longer a differentiator (TH Deggendorf teaches OT security in BA and MA). Step 42
+must show whether OTH has its own regional pool: Abitur and Fachhochschulreife (FOS/BOS) separately and combined;
+overlap with the catchments of TH Deggendorf, TH Ingolstadt and FAU/TH Nürnberg (counties closer to OTH).
+Data order: Regionaldatenbank; if it needs a login, GENESIS-Online Bayern (statistikdaten.bayern.de); ask Soma
+to register only if both need a login.
 Last finished: Step 41, module gap analysis (2026-10-17): e5 headline (16/20 hand check), TF-IDF sensitivity
 (14/20); docs/evidence_fit_modules.md.
 
