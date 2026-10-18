@@ -100,71 +100,53 @@ A free GENESIS-Online account gives the API token. The PDF build of the report a
 
 ## Running the analysis
 
-Run all commands from the repo root with the virtual environment active, in the order below. The `ingest`
-modules have a command-line help (`python -m study_program_intelligence.ingest.<module> --help`); the other modules
-take no options (or the subcommand shown) and document themselves in their module docstring. Note that running a
-transform or analysis module with `--help` simply runs it. A single one-command pipeline is being added (Step 54).
+Run from the repo root with the virtual environment active. **One command rebuilds everything** from the data in
+`data/raw/` (transform, analysis, key numbers, figures, report) and runs the tests:
 
-**1. Collect data** (`data/raw/`)
 ```powershell
-python -m study_program_intelligence.ingest.documents                 # reference documents (configs/documents.yaml)
-python -m study_program_intelligence.ingest.genesis tables            # Destatis first-years and graduates
-python -m study_program_intelligence.ingest.studiensuche harvest      # programme catalogue
-python -m study_program_intelligence.ingest.jobsuche snapshot         # job-ad counts (dated snapshot)
-```
-The other document lists need their own output folder and manifest (without `--out`/`--manifest` they would write
-into `data/raw/documents` and overwrite `docs/download_manifest.json`):
-```powershell
-python -m study_program_intelligence.ingest.documents --config configs/competitor_modules.yaml --out "data/raw/competitor modules" --manifest docs/competitor_modules_manifest.json --pdf-only
-python -m study_program_intelligence.ingest.documents --config configs/regional_documents.yaml --out data/raw/regional --manifest docs/regional_manifest.json
-python -m study_program_intelligence.ingest.documents --config configs/labour_documents.yaml --out data/raw/labour --manifest docs/labour_manifest.json --pdf-only
-python -m study_program_intelligence.ingest.documents --config configs/benchmark_documents.yaml --out data/raw/benchmarks --manifest docs/benchmark_manifest.json
-python -m study_program_intelligence.ingest.documents --config configs/anchor_documents.yaml --out data/raw/anchors --manifest docs/anchor_manifest.json --pdf-only
+python -m study_program_intelligence.pipeline
 ```
 
-**2. Transform** (`data/interim/`, `data/processed/`)
-```powershell
-python -m study_program_intelligence.transform.programmes
-python -m study_program_intelligence.transform.modules
-python -m study_program_intelligence.transform.thm_modules
-python -m study_program_intelligence.transform.school_leavers
-```
+Before it starts it checks that the manual inputs are in place (see *Manual downloads* below). It stops at the first
+failing step, writes the full console output to `reports/pipeline_output.log`, and writes `reports/pipeline_log.md`
+with the time of every step and a comparison of the new key numbers with the previous run, so any change in a result
+is visible.
 
-**3. Analyse** (`reports/`, `data/interim/`)
-```powershell
-python -m study_program_intelligence.analysis.first_look
-python -m study_program_intelligence.analysis.trends              # all data/raw/trends/trends_*.csv
-python -m study_program_intelligence.analysis.theme_check score   # scores the hand labels ("sample" only rebuilds the labelling sheet)
-python -m study_program_intelligence.analysis.module_gaps         # downloads multilingual-e5-base on first run
-python -m study_program_intelligence.analysis.catchment geo       # county centres and distances
-python -m study_program_intelligence.analysis.catchment run       # catchment tables
-python -m study_program_intelligence.analysis.labour
-python -m study_program_intelligence.analysis.forecast
-python -m study_program_intelligence.analysis.capture
-python -m study_program_intelligence.analysis.cannibalisation
-python -m study_program_intelligence.analysis.options
-python -m study_program_intelligence.analysis.ranking
-```
+| Option | Use |
+|---|---|
+| `--ingest` | download the sources first (needs `.env`; files already downloaded are kept) |
+| `--snapshot` | also take a dated job-ad snapshot (only on the snapshot dates; it adds data) |
+| `--list` | show every step with its exact command |
+| `--from <step>` | resume at a step, e.g. `--from analysis.forecast` |
+| `--skip <step> ...` | leave steps out |
+| `--no-tests` | do not run the tests at the end |
 
-**4. Build key numbers, figures and the report**
-```powershell
-python -m study_program_intelligence.report.build      # key_numbers.yaml + figures + outline
-python -m study_program_intelligence.report.draft      # reports/final/report.md, .docx, .pdf
-python -m study_program_intelligence.report.spotcheck  # 10 random report sentences vs. their source docs
-```
+Every step is an ordinary module call (`python -m study_program_intelligence.<package>.<module>`) and can also be run
+on its own; `--list` prints them in order. The `ingest` modules have a command-line help (`--help`).
 
-**5. Dashboard** (local only)
+**Tests** (also run at the end of the pipeline):
+```powershell
+python -m pytest
+```
+They check the PDF number parsing, the model building blocks (distances, gravity model, forecasts, score mappings,
+Monte Carlo reproducibility), the configs (weights, score ranges, source register, citations), that every key number
+is found in its evidence document and the report contains no hand-typed numbers, and the dashboard.
+
+**Dashboard** (local only)
 ```powershell
 streamlit run app/dashboard.py
+python app/screenshots.py      # screenshots of every page (dashboard must be running)
 ```
 
-Every number in the report, slides and dashboard comes from `reports/key_numbers.yaml`, which links each
-value to its evidence document. The report build stops on unknown placeholders or hand-typed numbers.
+Every number in the report and dashboard comes from `reports/key_numbers.yaml`, which links each value to its
+evidence document. The report build stops on unknown placeholders or hand-typed numbers.
 
 ### Manual downloads
 A few sources cannot be fetched by script (robots.txt or no API). These files must be placed by hand:
 - **Google Trends** CSVs in `data/raw/trends/` (settings are recorded in `docs/evidence_demand_trends.md`)
 - **OTH module handbooks** in `data/raw/oth modules/` (OTH `/fileadmin/` is disallowed for scripts)
+- **Hand-checked theme labels** `data/interim/theme_labels_EN.xlsx` (Step 38; the team's reviewed labels,
+  kept outside git like all data)
 - anything listed in `docs/manual_downloads.md`
 
 ---
