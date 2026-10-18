@@ -59,7 +59,8 @@ Phase 4 (communication and reproducibility) plan, in order:
 - Step 52 Streamlit dashboard in app/: reads key_numbers.yaml, the generated tables and figures (no own calculations);
   pages for the four claims, cannibalisation and the ranking with the Monte Carlo and leave-one-out.
   Done when: `streamlit run app/<main>.py` starts locally and every page shows the same numbers as the report.
-- Step 53 Slides for 11 Jan 2027: built from the outline, key numbers and shared figures.
+- Step 53 Slides for 11 Jan 2027: DEFERRED, Soma decides later (18 Oct 2026); no slides yet. Open questions when it
+  resumes: format (generated .pptx vs. hand-made), time limit, OTH template, live demo.
   Done when: deck complete within the time limit, every number from key_numbers.yaml.
 - Step 54 Reproducibility: README (setup, data access, manual downloads), one-command pipeline (raw -> interim ->
   reports -> key numbers -> figures), tests (number parsing, models, key numbers vs. evidence docs).
@@ -69,10 +70,17 @@ Phase 4 (communication and reproducibility) plan, in order:
 - Step 56 Defence preparation: docs/defence_qa.md with the 25 most likely examiner questions and short answers, each
   pointing to its evidence doc / key number (incl. weak points: no intake data, proxies, robotics evidence, AI use).
   Done when: 25 questions answered, every answer traceable, reviewed by Soma.
+- Step 57 (after the 4 Dec freeze) Plain-English project summary: a short PDF (about 10-15 pages) for readers with no
+  data-analytics background; simple language, every technical term explained in one sentence or avoided, the key
+  figures, and clear answers to: what was the question, what did we do, what did we find, what do we recommend, how
+  sure are we, what are the limits. Numbers from key_numbers.yaml as in the report. The final PDF is committed:
+  .gitignore exception for that one file (reports/final/project_summary.pdf). Final README update at the same time:
+  keep Soma's current README structure (the AI-tools and timeline sections were removed on purpose; do not re-add).
+  Done when: PDF built from key numbers, reviewed by Soma, committed and pushed with the README update.
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 53 (slides for 11 Jan 2027). Status: open.
+Current: Step 54 (reproducibility: one-command pipeline, tests, README). Status: open. Step 53 deferred.
 Last finished: Step 52, dashboard (2026-10-18): app/ (local only), tests/test_dashboard.py (11 passed), screenshots in
 reports/figures/dashboard/; click-through passed (Soma). Public data only (no intake figures from universities).
 
