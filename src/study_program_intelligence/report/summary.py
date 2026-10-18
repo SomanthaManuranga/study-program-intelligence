@@ -67,8 +67,12 @@ def prose(text: str) -> str:
 
 
 def sentences(text: str) -> list[str]:
-    t = re.sub(r"\s+", " ", prose(text))
-    parts = re.split(r"(?<!\bSt\.)(?<!e\.g\.)(?<!i\.e\.)(?<!B\.Sc\.)(?<!M\.Sc\.)(?<=[.!?])\s+(?=[A-Z0-9\"(])", t)
+    # paragraphs and list items end a sentence even without a full stop
+    t = re.sub(r"^\s*(?:-|\d+\.)\s+", "\n\n", prose(text), flags=re.M)
+    parts = []
+    for block in re.split(r"\n\s*\n", t):
+        block = re.sub(r"\s+", " ", block)
+        parts += re.split(r"(?<!\bSt\.)(?<!e\.g\.)(?<!i\.e\.)(?<!B\.Sc\.)(?<!M\.Sc\.)(?<=[.!?])\s+(?=[A-Z0-9\"(])", block)
     return [p.strip() for p in parts if len(p.split()) >= 3]
 
 
@@ -80,7 +84,7 @@ def readability(body: str, glossary: str, cfg: dict) -> tuple[str, dict]:
     long = [(n, s) for n, s in zip(lengths, sents) if n > limit]
     low_body, low_gloss = body.lower(), glossary.lower()
     unexplained = [t for t in cfg["readability"]["terms"] if re.search(rf"\b{re.escape(t.lower())}\b", low_body)
-                   and f"**{t.lower()}**" not in low_gloss]
+                   and not re.search(rf"\*\*{re.escape(t.lower())}:?\*\*", low_gloss)]
     avoided = [t for t in cfg["readability"]["avoid"] if re.search(rf"\b{re.escape(t.lower())}\b", low_body)]
     lines = ["# Readability check of the project summary (generated)", "",
              f"Sentences: {len(sents)}; average length {avg:.1f} words (target <= {cfg['readability']['avg_sentence_words']}); "
