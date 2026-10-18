@@ -25,31 +25,32 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Done: evidence (Steps 37-45), modelling (Steps 46-49), key numbers / figures / report / dashboard / pipeline / claim
-review (Steps 50-52, 54, 55).
+review (Steps 50-52, 54, 55), defence Q&A (Step 56: docs/defence_qa.md, built by report/defence.py from
+docs/defence/qa.md).
 
 Remaining work, in this order:
-1. Step 56 Defence preparation: docs/defence_qa.md with the 25 most likely examiner questions and short answers, each
-   pointing to its evidence doc / key number (incl. weak points: no intake data, proxies, robotics evidence, AI use).
-   English, German terms where they matter. Done when: 25 questions answered, every answer traceable, reviewed by Soma.
-2. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026 (`python -m study_program_intelligence.pipeline --snapshot`, or
-   ingest.jobsuche snapshot).
-3. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py to
-   the frozen snapshot; regenerate key numbers, figures, report, dashboard screenshots.
-4. Step 57 Plain-English project summary: a short PDF (about 10-15 pages) for readers with no data-analytics
+1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
+   (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
+   for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
+   snapshot until the freeze.
+2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py to
+   the frozen snapshot; add the snapshot series (15 Oct to 1 Dec) to docs/evidence_outlet_jobs.md; regenerate key numbers, figures, report,
+   defence Q&A, dashboard screenshots.
+3. Step 57 Plain-English project summary: a short PDF (about 10-15 pages) for readers with no data-analytics
    background; simple language, every technical term explained in one sentence or avoided, the key figures, and clear
    answers to: what was the question, what did we do, what did we find, what do we recommend, how sure are we, what
    are the limits. Numbers from key_numbers.yaml as in the report. The final PDF is committed (.gitignore exception
    for reports/final/project_summary.pdf only). Final README update at the same time: keep Soma's current README
    structure (the AI-tools and timeline sections were removed on purpose; do not re-add).
    Done when: PDF built from key numbers, reviewed by Soma, committed and pushed with the README update.
-5. Phase 5 (LOCKED until Step 57 is finished and every baseline step is complete): a deep evaluation of the whole
+4. Phase 5 (LOCKED until Step 57 is finished and every baseline step is complete): a deep evaluation of the whole
    pipeline from a senior data-analytics perspective, comparing an improved approach with the baseline. Do not start
    or plan it; Soma gives the full instructions then.
-6. Step 53 Slides for 11 Jan 2027 (last, so they show the final results). Open questions: format (generated .pptx vs.
+5. Step 53 Slides for 11 Jan 2027 (last, so they show the final results). Open questions: format (generated .pptx vs.
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: Step 56 (defence preparation). Status: open.
+Current: job-ad snapshot on 1 Nov 2026. Status: waiting for the date.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
