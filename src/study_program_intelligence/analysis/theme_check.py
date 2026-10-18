@@ -6,7 +6,7 @@ Run from the repository root:
     python -m study_program_intelligence.analysis.theme_check score
 
 sample writes data/interim/theme_labels.xlsx for labelling by hand. score reads the
-labels (data/interim/theme_labels_EN.xlsx, joined on row_id) and writes
+labels (docs/theme_labels.csv, the team's reviewed labels, committed; joined on row_id) and writes
 reports/theme_check.md: precision, miss check, distinct dedicated cybersecurity
 programmes, and secondary competitors (focus areas). Universe: bachelor and
 master offers in data/processed/programmes.csv, tagged by title match as in
@@ -51,7 +51,7 @@ MISS_PER_THEME = 5
 COLUMNS = ["row_id", "group", "theme", "matched", "level", "title", "institution", "city",
            "km_oth", "content", "programme_id", "is_theme_programme", "note"]
 
-LABELS = REPO_ROOT / "data" / "interim" / "theme_labels_EN.xlsx"
+LABELS = REPO_ROOT / "docs" / "theme_labels.csv"   # reviewed labels (was data/interim/theme_labels_EN.xlsx until Step 54)
 REPORT = REPO_ROOT / "reports" / "theme_check.md"
 NEAR_KM = 150
 # Offers that are one programme (programme_id groups); first id is kept.
@@ -150,7 +150,7 @@ def write(df: pd.DataFrame, path: Path) -> None:
 def labelled(p: pd.DataFrame) -> pd.DataFrame:
     """Sheet rows (with programme_id) plus the reviewed labels, joined on row_id."""
     rows = pd.read_excel(SHEET, sheet_name="labels", dtype={"programme_id": str}).drop(columns=["is_theme_programme", "note"])
-    lab = pd.read_excel(LABELS, sheet_name="labels")[["row_id", "title", "is_theme_programme", "note"]]
+    lab = pd.read_csv(LABELS, encoding="utf-8")[["row_id", "title", "is_theme_programme", "note"]]
     d = rows.merge(lab, on="row_id", suffixes=("", "_labels"), validate="one_to_one")
     if len(d) != len(rows) or not (d["title"] == d["title_labels"]).all():
         sys.exit(f"{LABELS.name} does not match {SHEET.name} on row_id/title")
