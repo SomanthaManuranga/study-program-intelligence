@@ -95,3 +95,18 @@ sensitivity:
     Huff (IIA) splits by baseline share and therefore understates substitution between near-identical programmes.
     The robotics option has 50 % core overlap with OTH's KI B.Sc. (same campus); run once with (a) = 50 %
     for robotics only (net new 7.5 / 14.3 / 27.6), reported as a full ranking scenario next to the base case.
+  german_first_years: >-
+    Data-sufficiency audit (G1): most of the growth behind the demand trend scores is foreign entrants. Sensitivity:
+    the same trend anchor (top of this file) applied to German first-years / graduates only, for all three options;
+    range width kept (+-1), clipped at the scale floor of 1. Proposed by Claude, for review by Soma. Evidence:
+    reports/demand_split.md, docs/evidence_demand_split.md.
+    Cyber B.Sc.: cyber proxy, German first-years Bavaria +1.9 %/yr, Germany -0.5 %/yr (2019-24): rose weakly in
+    Bavaria only -> 3 (was 4).
+    Cyber/OT M.Sc.: Informatik graduates, German Bavaria +7.2 %/yr, Germany +5.5 %/yr (2019-25): still rising -> 4
+    (unchanged).
+    Robotics B.Sc.: Mechatronik + Technische Informatik, German first-years Bavaria -3.3 %/yr, Germany -4.7 %/yr:
+    fell over five years -> 1 (was 2).
+  trend_german:
+    cyber_bsc: {low: 2, central: 3, high: 4}
+    cyber_msc: {low: 3, central: 4, high: 5}
+    robotics_bsc: {low: 1, central: 1, high: 2}

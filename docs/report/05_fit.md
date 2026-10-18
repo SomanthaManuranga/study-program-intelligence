@@ -78,6 +78,8 @@ draft matches the staffing estimate above.
 
 Claim C holds with a cost: EMI can carry the foundations, cryptography and networking, and has a genuine base for
 OT security, but the practical security core is new and needs two professorships, a lab engineer and a lab.
-**Strength: strong for the module comparison** (hand check: the embedding model was right in {{pairs_e5}} pairs,
+OTH's ministry contract 2023-2027 names IT security as a cross-cutting research profile field, next to
+digitalisation and AI ([evidence_ministry_contracts.md](../../docs/evidence_ministry_contracts.md)); this supports the
+fit but does not change the score, which rests on the module comparison. **Strength: strong for the module comparison** (hand check: the embedding model was right in {{pairs_e5}} pairs,
 all its errors overestimate coverage; the two methods agree on {{method_agreement}} of labels), **medium for staffing**, which rests
 on stated assumptions (cohort size, lab groups, teaching reductions) and could not use staff research profiles.

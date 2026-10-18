@@ -98,6 +98,32 @@ def collect() -> Numbers:
     n.add("informatik_firstyears_by_growth", "A_demand", "Informatik first-years in Bavaria, growth per year 2019-2024", 6.1, "6.1 %",
           s, unit="%/yr", check="rose 6.1 % a year (2019–2024)")
     n.add("informatik_firstyears_de_2019", "A_demand", "Informatik first-years Germany 2019", 18586, "18,586", s)
+    # German vs foreign first-years (data-sufficiency audit G1)
+    from study_program_intelligence.analysis.demand_split import load as load_split, series_table, university_type
+    st = series_table(load_split()).set_index(["series", "region"])
+    s = "docs/evidence_demand_split.md"
+    pct1 = lambda v: f"{v:.1f} %"
+    pct0 = lambda v: f"{v:.0f} %"
+    for key, label, idx, col, disp in (
+            ("informatik_by_german_growth", "Informatik first-years Bavaria, German only, growth per year 2019-2024", ("Informatik", "BY"), "German %/yr", pct1),
+            ("informatik_by_foreign_growth", "Informatik first-years Bavaria, foreign only, growth per year 2019-2024", ("Informatik", "BY"), "foreign %/yr", pct1),
+            ("informatik_de_german_growth", "Informatik first-years Germany, German only, growth per year 2019-2024", ("Informatik", "DE"), "German %/yr", pct1),
+            ("informatik_de_foreign_growth", "Informatik first-years Germany, foreign only, growth per year 2019-2024", ("Informatik", "DE"), "foreign %/yr", pct1),
+            ("cyber_proxy_by_german_growth", "Cyber proxy first-years Bavaria, German only, growth per year 2019-2024", ("cyber proxy", "BY"), "German %/yr", pct1),
+            ("cyber_proxy_de_german_growth", "Cyber proxy first-years Germany, German only, growth per year 2019-2024", ("cyber proxy", "DE"), "German %/yr", pct1),
+            ("grads_by_german_growth", "Informatik graduates Bavaria, German only, growth per year 2019-2025", ("Informatik graduates", "BY"), "German %/yr", pct1),
+            ("robotics_feeders_by_german_growth", "Robotics feeder first-years Bavaria, German only, growth per year 2019-2024", ("robotics feeders", "BY"), "German %/yr", pct1),
+            ("informatik_by_foreign_part", "Foreign part of the Informatik first-year growth, Bavaria 2019-2024", ("Informatik", "BY"), "foreign part of change %", pct0),
+            ("cyber_proxy_by_foreign_part", "Foreign part of the cyber-proxy first-year growth, Bavaria 2019-2024", ("cyber proxy", "BY"), "foreign part of change %", pct0),
+            ("cyber_proxy_by_foreign_share_2024", "Foreign share of cyber-proxy first-years, Bavaria 2024", ("cyber proxy", "BY"), "foreign share end %", pct0),
+            ("informatik_de_foreign_share_2025", "Foreign share of Informatik first-years, Germany 2025", ("Informatik", "DE"), "foreign share 2025 %", pct0)):
+        v = float(st.at[idx, col])
+        n.add(key, "A_demand", label, v, disp(v), s, unit="%", data="data/interim/demand_split.csv")
+    ut = university_type().set_index("university type")
+    v = float(ut.at["universities of applied sciences", "foreign share 1st univ. sem. %"])
+    n.add("haw_informatik_foreign_share", "A_demand", "Foreign share of Informatik first-years at Bavarian HAWs, WS 2024/25", v,
+          f"{v:.0f} %", s, unit="%", check=f"({v:.0f} % foreign)")
+    s = "docs/evidence_competition_demand.md"
     n.add("informatik_firstyears_de_2025", "A_demand", "Informatik first-years Germany 2025 (flat since 2023)", 21428, "21,428", s)
     fc = pd.read_csv(INTERIM / "forecast.csv")
     by = fc[fc["series"] == "BY cyber_proxy"].set_index("year")
@@ -203,7 +229,8 @@ def collect() -> Numbers:
     n.add("weights", "F_ranking", "MCDA base weights", w, ", ".join(f"{k.replace('_', ' ')} {v:.2f}" for k, v in w.items()),
           "docs/evidence_ranking.md", data="configs/analysis.yaml", check="Demand (.30) | Labour (.20) | Fit (.20) | Feasibility (.15) | Differentiation (.10) | Regional (.05)")
     rs = pd.read_csv(INTERIM / "ranking_summary.csv")
-    for scen, tag in (("base", "base"), ("robotics 50 % cannibalisation", "rob50"), ("base, robotics fit/feasibility 2/3/5", "skew")):
+    for scen, tag in (("base", "base"), ("robotics 50 % cannibalisation", "rob50"), ("base, robotics fit/feasibility 2/3/5", "skew"),
+                      ("base, trend scores from German first-years only", "german")):
         d = rs[rs["scenario"] == scen].set_index("option")
         for opt in d.index:
             p = 100 * float(d.at[opt, "P(rank 1)"])
@@ -219,6 +246,38 @@ def collect() -> Numbers:
     for crit, key in (("labour_relevance", "loo_labour_cyber_bsc"), ("differentiation", "loo_diff_cyber_bsc")):
         p = 100 * float(b.loc[b["criterion left out"] == crit, "P(rank 1) cyber_bsc"].iloc[0])
         n.add(key, "F_ranking", f"P(rank 1) cyber B.Sc. without {crit}", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_loo.csv")
+    words = ["zero", "one", "two", "three", "four", "five", "six"]
+    g = loo[loo["scenario"] == "base, trend scores from German first-years only"]
+    won = int((g["winner"] == "cyber_bsc").sum())
+    n.add("loo_german_cyber_wins", "F_ranking", "Leave-one-out runs won by the cyber B.Sc., German-only trend", won,
+          f"{words[won]} of {words[len(g)]}", s, data="data/interim/ranking_loo.csv")
+    gl = g[g["criterion left out"] == "labour_relevance"].iloc[0]
+    for opt, key in (("cyber_msc", "loo_german_labour_msc"), ("cyber_bsc", "loo_german_labour_cyber")):
+        p = 100 * float(gl[f"P(rank 1) {opt}"])
+        n.add(key, "F_ranking", f"P(rank 1) {opt}, German-only trend, without labour_relevance", round(p, 1), f"{p:.1f} %", s,
+              data="data/interim/ranking_loo.csv")
+    # B: students from outside Bavaria and published intakes elsewhere (audit G4, G3)
+    s = "docs/evidence_capture.md"
+    oos = pd.read_csv(INTERIM / "out_of_state.csv", index_col=0)
+    ex, ap = oos[oos["method"].str.startswith("exact")], oos[oos["method"].str.startswith("approx")]
+    for key, label, v in (("oth_outside_bavaria", "OTH German students with a school certificate from outside Bavaria (exact)", ex.at["OTH Amberg-Weiden", "share outside Bavaria %"]),
+                          ("haw_outside_bavaria", "All Bavarian HAWs: German students with a certificate from outside Bavaria", ex.at["all HAWs in Bavaria", "share outside Bavaria %"]),
+                          ("thi_outside_bavaria_approx", "TH Ingolstadt: approx. share of German students from outside Bavaria", ap.at["TH Ingolstadt", "approx. share outside Bavaria %"]),
+                          ("thd_outside_bavaria_approx", "TH Deggendorf: approx. share of German students from outside Bavaria", ap.at["TH Deggendorf", "approx. share outside Bavaria %"])):
+        n.add(key, "B_capture", label, float(v), f"{float(v):.1f} %", s, unit="%", data="data/interim/out_of_state.csv")
+    v = 100 * float(ex.at["OTH Amberg-Weiden", "of which Sachsen + Thüringen"]) / float(ex.at["OTH Amberg-Weiden", "German students"])
+    n.add("oth_sachsen_thueringen_share", "B_capture", "OTH German students with a certificate from Sachsen or Thüringen", round(v, 1),
+          f"{v:.1f} %", s, unit="%", data="data/interim/out_of_state.csv")
+    for key, label, v, chk in (("rub_cyber_ba_firstyears", "Ruhr-Uni Bochum IT-Sicherheit/Informationstechnik B.Sc. first-years 2024 (plausibility check)", 156, "| 2024 | 156 |"),
+                               ("uds_cyber_ba_firstyears", "Saarland Cybersicherheit B.Sc. (German) first-years WS 2025/26", 42, "| 44 / 42 |"),
+                               ("uds_cyber_en_firstyears", "Saarland Cybersecurity B.Sc. (English) first-years WS 2025/26", 3, "| 4 / 3 |")):
+        n.add(key, "B_capture", label, v, str(v), s, check=chk, data="reports/intake_benchmark.md")
+    # S: written verdict for every theme group (audit G5)
+    tv = pd.read_csv(INTERIM / "theme_verdicts.csv")
+    k = int(tv["theme"].nunique())
+    n.add("themes_all", "S_selection", "Theme groups with a written verdict (incl. 3 sub-themes)", k, str(k),
+          "docs/evidence_theme_verdicts.md", check=f"all {k} themes", data="data/interim/theme_verdicts.csv")
+    s = "docs/evidence_ranking.md"
     for opt, rank, key, scen in (("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_base", "base"),
                                  ("robotics_bsc", "P(rank 3)", "p_rank3_robotics_bsc_base", "base"),
                                  ("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_rob50", "robotics 50 % cannibalisation")):

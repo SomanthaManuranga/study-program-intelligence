@@ -96,6 +96,9 @@ OT-security testbed. Cost is not estimated here.
   professorships + 1 lab engineer + a security lab**. That is a feasibility cost to be priced into the feasibility
   gate and the MCDA, not a kill reason in itself.
 - OT security is where existing staff help most; offensive security, forensics and SOC are where they help least.
+- OTH's ministry contract 2023-2027 names IT security ("IT-Security") as a cross-cutting research profile field next
+  to digitalisation and AI (docs/evidence_ministry_contracts.md). This supports institutional fit; the fit score
+  itself rests on the module comparison and is unchanged.
 
 ## Caveats
 

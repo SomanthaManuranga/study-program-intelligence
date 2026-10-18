@@ -1,0 +1,44 @@
+[
+  {
+    "id": "hv_oth_2023_2027",
+    "owner": "Bayerisches Staatsministerium für Wissenschaft und Kunst / OTH Amberg-Weiden",
+    "title": "Hochschulvertrag 2023-2027 OTH Amberg-Weiden",
+    "url": "https://wissenschaftkunst.bayern.de/download/22334_OTH-Amberg-Weiden.pdf",
+    "mirror": false,
+    "file": "data/raw/ministry/hv_oth_2023_2027.pdf",
+    "version": "2023-2027",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:18:49+00:00",
+    "content_type": "application/pdf",
+    "bytes": 485047,
+    "sha256": "f2d26c153c36681debe71c4877bbc0e475a174f434987df4f9151b4e999c63c9"
+  },
+  {
+    "id": "hv_thd_2023_2027",
+    "owner": "Bayerisches Staatsministerium für Wissenschaft und Kunst / TH Deggendorf",
+    "title": "Hochschulvertrag 2023-2027 TH Deggendorf",
+    "url": "https://wissenschaftkunst.bayern.de/download/22339_TH-Deggendorf.pdf",
+    "mirror": false,
+    "file": "data/raw/ministry/hv_thd_2023_2027.pdf",
+    "version": "2023-2027",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:18:52+00:00",
+    "content_type": "application/pdf",
+    "bytes": 598832,
+    "sha256": "2842094acbd6c242d8f74808e5169be5fecdd3d7e3b5b9a37d30ab3e6650a369"
+  },
+  {
+    "id": "hv_thi_2023_2027",
+    "owner": "Bayerisches Staatsministerium für Wissenschaft und Kunst / TH Ingolstadt",
+    "title": "Hochschulvertrag 2023-2027 TH Ingolstadt",
+    "url": "https://wissenschaftkunst.bayern.de/download/22341_TH-Ingolstadt.pdf",
+    "mirror": false,
+    "file": "data/raw/ministry/hv_thi_2023_2027.pdf",
+    "version": "2023-2027",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:18:56+00:00",
+    "content_type": "application/pdf",
+    "bytes": 450582,
+    "sha256": "eb5de4f46e4705e29bf85437385eaca9d0d48a41b35a521cefdf8881ca21c268"
+  }
+]

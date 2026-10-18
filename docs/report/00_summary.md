@@ -17,8 +17,10 @@ candidates; only then were they modelled and ranked (Section 2).
 
 **Why cybersecurity: four claims.**
 
-- **A. Demand grows.** Computer science is the only large EMI field still growing (Bavaria {{informatik_firstyears_by_growth}}
-  per year, 2019-2024). The Bavarian recruiting pool for a cyber programme rises from {{cyber_proxy_by_2024}} first-year
+- **A. Demand grows, mostly through foreign students.** Computer science is the only large EMI field still growing
+  (Bavaria {{informatik_firstyears_by_growth}} per year, 2019-2024), but {{informatik_by_foreign_part}} of that growth are
+  foreign students. German first-years grew by {{informatik_by_german_growth}} a year in Bavaria and changed by
+  {{informatik_de_german_growth}} a year in Germany; among them, Informatik is still the strongest large EMI subject. The Bavarian recruiting pool for a cyber programme rises from {{cyber_proxy_by_2024}} first-year
   students (2024) to {{cyber_proxy_by_2030_central}} in 2030 (a central planning value, the midpoint of the KMK and trend
   paths; conservative {{cyber_proxy_by_2030_conservative}}). Among the degree search terms we tracked, "Cyber Security
   Studium" is the largest ({{search_cyber_vs_robotik}} since 2022).

@@ -1,0 +1,24 @@
+# Hochschulverträge 2023-2027 between the Bavarian science ministry and OTH, TH Deggendorf and TH Ingolstadt
+# (data-sufficiency audit). Downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/ministry_documents.yaml \
+#       --out "data/raw/ministry" --manifest docs/ministry_manifest.json --pdf-only
+# Public PDFs, robots.txt respected (wissenschaftkunst.bayern.de allows /download), 3 s delay.
+
+documents:
+  - id: hv_oth_2023_2027
+    owner: Bayerisches Staatsministerium für Wissenschaft und Kunst / OTH Amberg-Weiden
+    title: Hochschulvertrag 2023-2027 OTH Amberg-Weiden
+    version: "2023-2027"
+    url: https://wissenschaftkunst.bayern.de/download/22334_OTH-Amberg-Weiden.pdf
+
+  - id: hv_thd_2023_2027
+    owner: Bayerisches Staatsministerium für Wissenschaft und Kunst / TH Deggendorf
+    title: Hochschulvertrag 2023-2027 TH Deggendorf
+    version: "2023-2027"
+    url: https://wissenschaftkunst.bayern.de/download/22339_TH-Deggendorf.pdf
+
+  - id: hv_thi_2023_2027
+    owner: Bayerisches Staatsministerium für Wissenschaft und Kunst / TH Ingolstadt
+    title: Hochschulvertrag 2023-2027 TH Ingolstadt
+    version: "2023-2027"
+    url: https://wissenschaftkunst.bayern.de/download/22341_TH-Ingolstadt.pdf

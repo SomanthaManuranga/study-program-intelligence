@@ -29,7 +29,8 @@ Then we narrowed the options down step by step:
 The funnel is not perfect, and we say where.
 
 - The two screening filters (falling demand, crowded supply) were set on the day of the screening itself.
-- The fields that OTH already offers were dropped without a separate written reason.
+- The fields that OTH already offers were first dropped without a written reason. A later check gave all
+  {{themes_all}} themes a written verdict with the same filters. No theme came out stronger than cybersecurity.
 - Robotics stayed in although {{robotics_overlap}} of its core topics are already taught in one OTH programme, the AI
   bachelor. The kill rule only drops options above half.
 - The scoring scales for five of the six points, and part of the sixth, were written after we had collected the

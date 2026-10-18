@@ -9,7 +9,8 @@ they hold: demand in its field grows (Section 3), OTH has a regional pool withou
 nearby (Section 4), EMI can carry the foundations and needs an estimated security core (two professorships, a lab
 engineer, a lab whose cost is open; Section 5), and there is substantial job demand, with a shortage of computer
 scientists at bachelor level (Section 6). Most of its students would be new to OTH
-(Section 7), and it ranks first in {{p_rank1_cyber_bsc_base}} of the Monte Carlo draws (Section 8).
+(Section 7), and it ranks first in {{p_rank1_cyber_bsc_base}} of the Monte Carlo draws (Section 8); measured on German
+entrants only, its lead is smaller ({{p_rank1_cyber_bsc_german}}), but it still ranks first.
 
 Conditions for the recommendation:
 
@@ -20,7 +21,8 @@ Conditions for the recommendation:
   automation labs.
 - **Profile:** a broad security bachelor with an industrial (OT) module and electives, using the English term
   "Cyber Security" in the name, which is how prospective students search (Section 3). OT is a useful accent, not a
-  differentiator against TH Deggendorf.
+  differentiator against TH Deggendorf. Taught in German, with English electives at most: an English-taught bachelor
+  is not supported by the evidence (Section 9).
 - **Timing:** the first intake after accreditation, and not in a G9 gap year.
 
 ## Before the decision: narrow the intake range
@@ -35,7 +37,10 @@ against its own minimum cohort; if they are near the Deggendorf figure, the cent
 **(a) The Cyber/OT M.Sc. as a follow-on.** The master ranks second. We propose to offer it later, once the bachelor
 produces its own graduates: it would then build on the bachelor's staff and lab, recruit the bachelor's graduates and
 reduce cannibalisation of AI for Industrial Applications and IT und Automation. The second new professorship could
-carry its OT specialisation.
+carry its OT specialisation. Taught in English, the master could also reach international students, who now make up
+{{informatik_de_foreign_share_2025}} of computer-science first-years in Germany and who probably concentrate at master
+level. That fits a master better than a bachelor: at Saarland University the English-taught cyber bachelor had
+{{uds_cyber_en_firstyears}} first-years against {{uds_cyber_ba_firstyears}} in the German-taught one (WS 2025/26).
 
 **(b) Robotics as a specialisation within the KI B.Sc.** Robotics + AI ranks last. {{robotics_overlap}} of its core
 topics are already taught in OTH's KI B.Sc., and if half of its students came from OTH programmes, only

@@ -39,6 +39,8 @@ DOC_LISTS = [  # (config, out folder, manifest, pdf only)
     ("configs/labour_documents.yaml", "data/raw/labour", "docs/labour_manifest.json", True),
     ("configs/benchmark_documents.yaml", "data/raw/benchmarks", "docs/benchmark_manifest.json", False),
     ("configs/anchor_documents.yaml", "data/raw/anchors", "docs/anchor_manifest.json", True),
+    ("configs/intake_benchmark_documents.yaml", "data/raw/intake_benchmark", "docs/intake_benchmark_manifest.json", True),
+    ("configs/ministry_documents.yaml", "data/raw/ministry", "docs/ministry_manifest.json", True),
 ]
 
 # (step name, stage, module, arguments)
@@ -54,6 +56,7 @@ BUILD = [
     ("transform.thm_modules", "transform", "transform.thm_modules", []),
     ("transform.school_leavers", "transform", "transform.school_leavers", []),
     ("analysis.first_look", "analysis", "analysis.first_look", []),
+    ("analysis.theme_verdicts", "analysis", "analysis.theme_verdicts", []),
     ("analysis.trends", "analysis", "analysis.trends", []),
     ("analysis.theme_check:sample", "analysis", "analysis.theme_check", ["sample"]),   # only if the sheet is missing
     ("analysis.theme_check", "analysis", "analysis.theme_check", ["score"]),
@@ -62,7 +65,10 @@ BUILD = [
     ("analysis.catchment:run", "analysis", "analysis.catchment", ["run"]),
     ("analysis.labour", "analysis", "analysis.labour", []),
     ("analysis.forecast", "analysis", "analysis.forecast", []),
+    ("analysis.demand_split", "analysis", "analysis.demand_split", []),
     ("analysis.capture", "analysis", "analysis.capture", []),
+    ("analysis.out_of_state", "analysis", "analysis.out_of_state", []),
+    ("analysis.intake_benchmark", "analysis", "analysis.intake_benchmark", []),
     ("analysis.cannibalisation", "analysis", "analysis.cannibalisation", []),
     ("analysis.options", "analysis", "analysis.options", []),
     ("analysis.ranking", "analysis", "analysis.ranking", []),
@@ -70,6 +76,7 @@ BUILD = [
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),
     ("report.defence", "report", "report.defence", []),
+    ("report.summary", "report", "report.summary", []),
 ]
 
 # Inputs that no script can download (robots.txt, no API, or human work); see README "Manual downloads".
