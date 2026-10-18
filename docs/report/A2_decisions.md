@@ -20,6 +20,6 @@ Method decisions are logged with date and who decided, most with a reason, in
 | 17 Oct | Capture model used for relative capture only, anchored on a public capacity (TH Ingolstadt) and one anecdotal intake (TH Deggendorf) | the absolute demand scale failed the TH Ingolstadt check |
 | 17 Oct | No new cannibalisation threshold; cannibalisation enters via net new demand | the kill rules were set before scoring |
 | 17 Oct | Same capture model for all three options; missing anchors widen ranges | avoid evidence asymmetry |
-| 17 Oct, 18 Oct | Score sheet reviewed by the team; weak evidence widens ranges symmetrically | robotics fit and feasibility rest on a title-level check |
+| 17 Oct | Score sheet reviewed by the team; weak evidence widens ranges, symmetrically since a first ranking run | robotics fit and feasibility rest on a title-level check |
 | 17 Oct | One shared capture draw per Monte Carlo iteration | shared model error should not reorder options at random |
 | 18 Oct | Every statistic in the report text generated from a key-numbers file and checked against its evidence document | traceability |

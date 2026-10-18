@@ -37,7 +37,9 @@ change the conclusion:
     {{funnel_fields}} study fields; four of the rules were checked by hand, and themes outside these fields were not screened
     (Section 2).
 
-In our sensitivity runs no single limitation changes the winner (lowest first-place share {{loo_min_cyber_bsc}},
-without demand), and the weakest evidence concerns the options that rank behind it. They do matter for the size of
+In the sensitivity runs we made (leave one criterion out, robotics with {{stress_share}} cannibalisation, independent
+capture draws, the skewed robotics range) the winner never changes (lowest first-place share {{loo_min_cyber_bsc}},
+without demand); not every limitation was tested this way (for example, the cyber bachelor's own {{stress_share}}
+cannibalisation case was not run through the ranking). The weakest evidence concerns the options that rank behind the winner. They do matter for the size of
 the programme and for the decision to start: the intake range should be narrowed before committing resources
 (Section 10).

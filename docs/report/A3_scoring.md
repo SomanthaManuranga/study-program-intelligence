@@ -10,11 +10,12 @@ A candidate is dropped if any rule applies:
 2. **Feasibility:** its feasibility rating is 1 (no staff, no lab, no accreditation path).
 3. **Trend:** entrants in the related field across Germany fell in each of the last five years, and the KMK scenario
    shows no recovery.
-4. **Pipeline (master only):** bachelor graduates in related fields are falling and too few are in the region.
+4. **Pipeline (master only):** bachelor graduates in related fields are falling and too few are in the region. No
+   numeric threshold was set; the rule was applied as a direction check (graduates rising, so it does not apply).
 5. **Scope:** at most three candidates per level go into full dossiers.
 
 Added in Step 49 (after the evidence was collected, before the first ranking run): *weak evidence widens a score's
-range; it does not raise the centre.* Amended on 18 Oct, after the first run: the widened range must be symmetric
+range; it does not raise the centre.* Amended on 17 Oct, after the first run (git: ranking 23:36, amendment 23:40): the widened range must be symmetric
 around the centre (the earlier skewed range is reported as a sensitivity).
 
 **Scoring anchors (1 to 5, 5 = best).**

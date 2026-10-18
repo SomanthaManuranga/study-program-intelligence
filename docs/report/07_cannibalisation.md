@@ -58,8 +58,8 @@ security ECTS in Industrie-4.0-Informatik and Medieninformatik together.
 {{fig:f05_cannibalisation}}
 
 - **The master** draws more from OTH ({{msc_from_oth}}), mainly from AI for Industrial Applications and IT und
-  Automation, and keeps few students in the region (in the master model the origins are the Bavarian universities of applied
-  sciences, weighted by their students, and many of them already study in the region). It has one intake anchor (TH Ingolstadt's Cloud Applications und Security
+  Automation, and keeps few students in the region (see the table; in the master model the origins are the Bavarian universities
+  of applied sciences, weighted by their students). It has one intake anchor (TH Ingolstadt's Cloud Applications und Security
   Engineering master, capacity {{msc_anchor}}); its high end was widened by the bachelor's spread.
 - **Robotics** has **no verified intake anchor**: no public capacity or intake figure for a Bavarian robotics bachelor
   could be obtained, so a comparator intake was assumed and its range taken over all model variants. Its model

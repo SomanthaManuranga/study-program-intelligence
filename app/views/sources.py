@@ -14,5 +14,5 @@ st.markdown(report_section("A2_decisions.md").replace("## A2 Method decisions {-
 
 st.subheader("Data sources")
 st.markdown(table_sources())
-st.caption("Full register: " + doc_link("configs/sources.yaml") + " · downloads with their date (and URL and SHA-256 for downloaded files) in the manifests in docs/ · "
+st.caption("Full register: " + doc_link("configs/sources.yaml") + " · automated downloads with their date (and URL and SHA-256 for downloaded files) in the manifests in docs/; manual downloads (EMI handbooks, Google Trends files) in the register only · "
            "decision log: " + doc_link("docs/decision_log.md"))

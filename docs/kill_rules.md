@@ -10,7 +10,8 @@ A candidate is dropped if any rule applies. Rules 1 and 4 are applied per level:
 
 3. Trend: entrants in the related field across Germany fell in each of the last five years, and the KMK scenario shows no recovery.
 
-4. Pipeline (master only): bachelor graduates in related fields across Germany are falling, and too few are in the region to fill a cohort without international applicants. Threshold to set in week 1 from the Destatis graduate data.
+4. Pipeline (master only): bachelor graduates in related fields across Germany are falling, and too few are in the region to fill a cohort without international applicants. Threshold to set in week 1 from the Destatis graduate data. (Note, Step 55 review: no numeric threshold was set; the
+rule was applied as a direction check, see the pipeline check in docs/evidence_ranking.md.)
 
 5. Scope: at most three candidates per level, six in total, go into full dossiers. If more survive, rank them by preliminary score and keep the top ones.
 
@@ -26,7 +27,8 @@ Anchors for the other criteria are added in week 1.
 Rule added 17 Oct 2026 (Step 49, Soma): **weak evidence widens a score's range, it does not raise its centre.** A
 criterion rated on weak evidence (title-level checks, no staffing or lab estimate, no intake anchor) gets a central
 score no better than the best-evidenced comparable option and a wider low-high range, symmetric around the centre
-(amended 18 Oct 2026: a skewed range such as 2 / 3 / 5 raises the mean and so the centre in effect).
+(amended 17 Oct 2026, 23:40, after the first ranking run: a skewed range such as 2 / 3 / 5 raises the mean and so the
+centre in effect; date corrected in the Step 55 review).
 
 Anchors for the other criteria were written in Step 49 (configs/scores.yaml), after the evidence was collected but
 before the ranking was computed.
