@@ -80,9 +80,11 @@ Phase 4 (communication and reproducibility) plan, in order:
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 54 (reproducibility: one-command pipeline, tests, README). Status: open. Step 53 deferred.
-Last finished: Step 52, dashboard (2026-10-18): app/ (local only), tests/test_dashboard.py (11 passed), screenshots in
-reports/figures/dashboard/; click-through passed (Soma). Public data only (no intake figures from universities).
+Current: Step 55 (independent review of every report claim). Status: open. Step 53 deferred (Soma decides later).
+Last finished: Step 54, reproducibility (2026-10-18): `python -m study_program_intelligence.pipeline` (20 steps, ~6-11 min;
+--ingest, --snapshot, --from, --skip, --list, --no-tests) + `python -m pytest` (44 tests). Verified: in-place rerun and a
+clean clone (committed code + data/raw + hand labels only) both rebuild all outputs, tests pass, 179/179 key numbers
+identical. Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
@@ -131,6 +133,10 @@ Forecasts validated with rolling-origin backtests (MASE).
 - report/build.py (Step 50): key_numbers.py -> reports/key_numbers.yaml (JOB_SNAPSHOT = date of the evidence-doc
   table; move to the frozen snapshot on 4 Dec), figures.py -> reports/figures/ (matplotlib, optional dep 'report'),
   outline.py -> reports/final/outline.md. Run after the analysis modules; numbers never typed by hand.
+- pipeline.py (Step 54): one command for transform -> analysis -> key numbers -> figures -> report -> tests; checks the
+  manual inputs first (Trends CSVs, OTH handbooks, data/interim/theme_labels_EN.xlsx); writes reports/pipeline_log.md
+  (step times + key-number changes vs the previous run). Ingest steps with known gaps (dead links, robots.txt) do not stop
+  it. data/interim/pdf_text and module_emb.npy are leftovers no code uses.
 - app/ (Step 52): Streamlit dashboard, local only: `streamlit run app/dashboard.py` (pages in app/views/, helpers in
   app/common.py; numbers only from key_numbers.yaml / data/interim; ranking explorer calls analysis.ranking.simulate).
   Tests: `python -m pytest tests/test_dashboard.py` (pages run, metrics = key numbers, explorer = report, weight 0 = LOO).
