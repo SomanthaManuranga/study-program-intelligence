@@ -46,8 +46,8 @@ sources:
     use: competition and differentiation, all of Germany
     coverage: current
     licence: TO_VERIFY (check terms before any export)
-    access: public website, manual or permitted export
-    status: todo
+    access: "not used directly: the Hochschulkompass data were obtained through the BA Studiensuche API (ba_studiensuche)"
+    status: via ba_studiensuche
 
   - id: kmk_forecast_2024_2035
     owner: KMK
@@ -215,3 +215,20 @@ sources:
     use: search interest in degree terms (Step 37)
     access: manual CSV download by the team (data/raw/trends/); no API used
     status: downloaded
+
+  # Added 18 Oct 2026 (Step 55 review): sources cited in the report but missing from this register.
+  - id: oth_module_handbooks
+    owner: OTH Amberg-Weiden (Fakultaet EMI)
+    url: "https://www.oth-aw.de/ (module handbooks of the EMI programmes)"
+    table: module handbooks of Industrie-4.0-Informatik, Medieninformatik, E&IT, KI B.Sc./M.Sc., IT und Automation, AI for Industrial Applications
+    use: EMI modules, ECTS and module responsibility (Steps 36, 40, 41, 44)
+    access: "manual download by the team (OTH /fileadmin/ is disallowed for scripts); local copies in data/raw/oth modules"
+    status: downloaded (manual)
+
+  - id: studycheck_deg_review
+    owner: studycheck.de (one student review)
+    url: https://www.studycheck.de/
+    table: "review of the TH Deggendorf Cyber Security bachelor stating about 60 first-years"
+    use: weak upper anchor of the capture model (Step 47)
+    access: public page, read once; anecdotal, not a statistic
+    status: used as weak evidence only

@@ -7,7 +7,7 @@ st.markdown("Official statistics have no cybersecurity subject, so demand is rea
             "search interest and the supply of programmes.")
 
 c = st.columns(4)
-metric("Informatik, Bavaria, per year", "informatik_firstyears_by_growth", c[0])
+metric("Informatik first-years, Bavaria, 2019-24 / yr", "informatik_firstyears_by_growth", c[0])
 metric("Bavarian cyber proxy 2024", "cyber_proxy_by_2024", c[1])
 metric("2030 central (planning midpoint)", "cyber_proxy_by_2030_central", c[2])
 metric("2030 conservative (KMK)", "cyber_proxy_by_2030_conservative", c[3])

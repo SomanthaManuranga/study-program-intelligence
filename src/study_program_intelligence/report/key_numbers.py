@@ -82,7 +82,7 @@ def collect() -> Numbers:
     n.add("kill_rule_1_threshold", "S_selection", "Kill rule 1 threshold: core-module overlap with one OTH programme", 50, "more than 50 %",
           "docs/kill_rules.md", check="more than 50 % of its core modules")
     n.add("rules_fixed_date", "S_selection", "Weights and kill rules committed (before the first screening)", "2026-10-14", "14 Oct 2026",
-          s, check="| 14 Oct 2026, 16:37 | dff024f |")
+          s, check="| 14 Oct 2026, 17:40 | 958f823 |")
     os_ = pd.read_csv(INTERIM / "option_scenarios.csv")
     n.add("mc_draws", "F_ranking", "Monte Carlo draws", 10000, "10,000", "docs/evidence_ranking.md", check="(10,000 draws")
     n.add("robotics_overlap", "S_selection", "Robotics+AI B.Sc.: core topics already in the KI B.Sc. (kill rule 1)", 50, "50 %",
@@ -219,9 +219,11 @@ def collect() -> Numbers:
     for crit, key in (("labour_relevance", "loo_labour_cyber_bsc"), ("differentiation", "loo_diff_cyber_bsc")):
         p = 100 * float(b.loc[b["criterion left out"] == crit, "P(rank 1) cyber_bsc"].iloc[0])
         n.add(key, "F_ranking", f"P(rank 1) cyber B.Sc. without {crit}", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_loo.csv")
-    for opt, rank, key in (("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_base"), ("robotics_bsc", "P(rank 3)", "p_rank3_robotics_bsc_base")):
-        p = 100 * float(rs[(rs["scenario"] == "base") & (rs["option"] == opt)][rank].iloc[0])
-        n.add(key, "F_ranking", f"{rank} {opt}, base", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_summary.csv")
+    for opt, rank, key, scen in (("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_base", "base"),
+                                 ("robotics_bsc", "P(rank 3)", "p_rank3_robotics_bsc_base", "base"),
+                                 ("cyber_msc", "P(rank 2)", "p_rank2_cyber_msc_rob50", "robotics 50 % cannibalisation")):
+        p = 100 * float(rs[(rs["scenario"] == scen) & (rs["option"] == opt)][rank].iloc[0])
+        n.add(key, "F_ranking", f"{rank} {opt}, {scen}", round(p, 1), f"{p:.1f} %", s, data="data/interim/ranking_summary.csv")
     for k, label, v, disp, src, chk in LITERALS:
         sec, key = k.split("__")
         n.add(key, sec, label, v, disp, src, check=chk)
@@ -240,6 +242,7 @@ LITERALS = [
     ("M_method__cyber_precision", "Precision of the cybersecurity title rule (all matches checked)", 94, "94 %", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
     ("M_method__cyber_matches", "Cybersecurity title matches checked by hand", 70, "70", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
     ("M_method__pairs_e5", "Module pairs judged correctly by e5 (hand check of 20)", 16, "16 of 20", _FM, "**16 of 20**"),
+    ("M_method__method_agreement", "Agreement of e5 and TF-IDF on covered/gap labels", 74, "74 %", _FM, "The two methods agree on 74 % of covered/gap labels"),
     ("M_method__pairs_tfidf", "Module pairs judged correctly by TF-IDF (hand check of 20)", 14, "14 of 20", _FM, "**14 of 20**"),
     # A demand
     ("A_demand__informatik_share_2015", "Informatik share of all first-years, Germany 2015", 3.7, "3.7 %", _F, "DE 3.7 % in 2015"),
@@ -305,6 +308,7 @@ LITERALS = [
     ("E_cannibalisation__netnew_share_range", "Cyber B.Sc. share of students new to OTH (model variants)", "73-86", "73-86 %", _CN, "73-86 % (central 82 %)"),
     ("E_cannibalisation__netnew_share_central", "Cyber B.Sc. share new to OTH, central", 82, "82 %", _CN, "73-86 % (central 82 %)"),
     ("E_cannibalisation__kept_share_range", "Cyber B.Sc. share kept in the region", "13-16", "13-16 %", _CN, "(13-16 %; central 6 per year)"),
+    ("E_cannibalisation__overlap_test_cyber_ba", "Kill rule 1 overlap test: cyber B.Sc. core topics already in one OTH programme", 25, "25 %", "docs/overlap_test.md", "| 2 of 8 | 25 % | **passes** |"),
     ("E_cannibalisation__stress_share", "Cannibalisation share assumed in the stress test", 50, "50 %", _CN, "cannibalisation were 50 % (about twice the model's maximum)"),
     ("E_cannibalisation__stress_netnew", "Cyber B.Sc. net new if cannibalisation were 50 %", [10.5, 19.5, 37.5], "10.5 / 19.5 / 37.5", _CN, "10.5 / 19.5 / 37.5"),
     ("E_cannibalisation__module_cover_ii_mi", "Security ECTS of a cyber bachelor covered by Industrie-4.0-Informatik and Medieninformatik", 28, "28 %", _CN, "at most 28 %"),

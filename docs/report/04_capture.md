@@ -2,7 +2,8 @@
 
 <!-- Evidence: docs/evidence_catchment.md, docs/evidence_capture.md. -->
 
-**Claim:** OTH can win enough first-year students for a viable cohort, given its location and its competitors.
+**Claim:** OTH can win enough first-year students for a viable cohort in the central and high scenarios, given its
+location and its competitors.
 
 ## OTH has its own regional pool
 
@@ -47,10 +48,9 @@ Absolute numbers come from two anchors:
 | Central | geometric mean of low and high (a choice) | {{year1_central}} | **{{cyber_bsc_gross_central}}** |
 | High | TH Deggendorf intake {{deg_cyber_anecdote}} (one student review; weak) | {{year1_high}} | **{{cyber_bsc_gross_high}}** |
 
-The ramp-up to the steady state over the first three intake years is an assumption. OTH's own
-first-year intake in engineering sciences including Informatik was {{oth_eng_firstyears}} in winter 2024/25, which
-puts these numbers in proportion: a cyber bachelor would be a mid-sized programme, not a large one
-([evidence_capture.md](../../docs/evidence_capture.md)).
+The ramp-up to the steady state over the first three intake years is an assumption. For
+comparison, OTH's own first-year intake in engineering sciences including Informatik was {{oth_eng_firstyears}} in
+winter 2024/25 ([evidence_capture.md](../../docs/evidence_capture.md)).
 
 {{fig:f04_capture}}
 
@@ -65,6 +65,7 @@ at steady state, and only just.
 
 Claim B holds in the central and high scenarios and is borderline in the low one. The model structure is robust
 (relative capture varies little across the model variants); **the weak point is the anchors**: a planned capacity and
-one anecdotal intake, because no university publishes programme-level intakes. One measured intake figure from TH
+one anecdotal intake, because none of the comparable programmes we checked publishes its intake. One measured intake figure from TH
 Ingolstadt or TH Deggendorf would cut the range by about half. **Strength: medium.** Students from Saxony and
-Thuringia and from further away are not modelled, which makes the estimate conservative.
+Thuringia and from further away are not modelled; on its own this biases the estimate downward, but the anchors
+can err in either direction.

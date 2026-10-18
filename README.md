@@ -17,10 +17,10 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 |---|---|
 | Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run |
 | Expected first-years per year | **21 / 39 / 75** (low / central / high), year 1: 12 / 24 / 45 |
-| New to OTH (not taken from existing programmes) | **~82 %** in the central case (73-86 % across model variants) |
+| New to OTH (not taken from existing programmes) | **~82 %** in the central case (73-86 % across model variants; a model estimate that does not see OTH programmes without a security focus) |
 | Regional pool | ~5,500 qualified school leavers a year; no full-time dedicated cyber bachelor within ~80 km |
-| Demand trend | Bavarian first-years in the cyber-related subjects: 4,936 (2024), ~5,540 (2030), ~6,220 (2035), central |
-| Labour market | IT occupations in Bavaria +24 % (2019-2023), +34 % with a degree; Informatik a shortage occupation (2025) |
+| Demand trend | Bavarian first-years in the cyber-related subjects: 4,936 (2024); central planning value (midpoint of KMK scenario and trend) ~5,540 (2030), ~6,220 (2035) |
+| Labour market | IT occupations in Bavaria +24 % (2019-2023), +34 % with a degree; Informatik a shortage occupation at bachelor level in Germany (2025) |
 | Faculty fit | EMI covers ~71 % of the foundations but at most ~31 % of the security content |
 | Resources needed | ~2 new professorships, 1 lab engineer, 1 security lab |
 
@@ -28,7 +28,7 @@ Options compared: Cyber Security B.Sc. (winner), Cyber/OT Security M.Sc. (second
 follow-on), Robotics + AI B.Sc. (third; better as a specialisation of the existing KI B.Sc.).
 
 **Main limitations:** no published intake figures for comparable programmes (wide first-year range; the low case
-is below the assumed minimum cohort of 20), Destatis has no separate cyber-security subject (a proxy is used),
+only just reaches the assumed minimum cohort of 20, and only about 15 of its 21 first-years would be new to OTH), Destatis has no separate cyber-security subject (a proxy is used),
 and job-ad counts are keyword matches, not vacancy statistics. All of these are stated in the report.
 
 ---

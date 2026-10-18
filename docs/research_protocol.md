@@ -2,6 +2,11 @@
 
 Status: draft v2, 14 Oct 2026 (scope confirmed)
 
+## Project brief (as given by the course)
+
+Use public data (Destatis, other universities' websites, ...) to find and argue which new study programme would
+attract the most students and why it suits our faculty. (Recorded 18 Oct 2026 from the course brief.)
+
 ## Primary question
 
 Which new or substantially differentiated degree programme should OTH Amberg-Weiden consider, at bachelor or master level, given new student demand, differentiation from existing programmes, graduate outlet and feasibility for the Faculty of Elektrotechnik, Medien und Informatik (EMI)?

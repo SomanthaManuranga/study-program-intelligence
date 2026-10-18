@@ -33,7 +33,9 @@ st.altair_chart(chart, width="stretch")
 c = st.columns(3)
 metric("Cyber B.Sc.: share from OTH", "cyber_bsc_from_oth_range", c[0])
 metric("Net new if cannibalisation were 50 %", "stress_netnew", c[1])
-metric("Kill rule 1: core-module overlap", "cyber_bsc_core_overlap", c[2])
+metric("Kill rule 1 test: core topics already at OTH", "overlap_test_cyber_ba", c[2])
+st.caption(f"Later rechecks: {show('cyber_bsc_core_overlap')} of the draft's security modules exist in one OTH bachelor; "
+           f"at most {show('module_cover_ii_mi')} of a cyber bachelor's security ECTS are covered by Industrie-4.0-Informatik and Medieninformatik.")
 st.caption(f"Kill rule 1 drops a candidate at {show('kill_rule_1_threshold')} overlap; no separate cannibalisation threshold "
            f"was added after scoring. Robotics overlaps {show('robotics_overlap')} with OTH's KI B.Sc.; with half its students "
            f"from OTH only {show('robotics_netnew_cannib50')} a year would be new.")
