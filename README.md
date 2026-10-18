@@ -79,7 +79,7 @@ Key documents to start with:
 Requires Python 3.11+ (developed with 3.13).
 
 ```powershell
-git clone <repo-url>
+git clone https://github.com/SomanthaManuranga/study-program-intelligence.git
 cd study-program-intelligence
 python -m venv .venv
 .venv\Scripts\Activate.ps1
@@ -100,29 +100,57 @@ A free GENESIS-Online account gives the API token. The PDF build of the report a
 
 ## Running the analysis
 
-Run all commands from the repo root with the virtual environment active. Each module documents its options
-(`python -m <module> --help` or the module docstring). A single one-command pipeline is being added (Step 54).
+Run all commands from the repo root with the virtual environment active, in the order below. The `ingest`
+modules have a command-line help (`python -m study_program_intelligence.ingest.<module> --help`); the other modules
+take no options (or the subcommand shown) and document themselves in their module docstring. Note that running a
+transform or analysis module with `--help` simply runs it. A single one-command pipeline is being added (Step 54).
 
 **1. Collect data** (`data/raw/`)
 ```powershell
-python -m study_program_intelligence.ingest.documents                 # reference documents
+python -m study_program_intelligence.ingest.documents                 # reference documents (configs/documents.yaml)
 python -m study_program_intelligence.ingest.genesis tables            # Destatis first-years and graduates
 python -m study_program_intelligence.ingest.studiensuche harvest      # programme catalogue
 python -m study_program_intelligence.ingest.jobsuche snapshot         # job-ad counts (dated snapshot)
-python -m study_program_intelligence.ingest.documents --config configs/competitor_modules.yaml   # also regional_, labour_, benchmark_, anchor_documents.yaml
+```
+The other document lists need their own output folder and manifest (without `--out`/`--manifest` they would write
+into `data/raw/documents` and overwrite `docs/download_manifest.json`):
+```powershell
+python -m study_program_intelligence.ingest.documents --config configs/competitor_modules.yaml --out "data/raw/competitor modules" --manifest docs/competitor_modules_manifest.json --pdf-only
+python -m study_program_intelligence.ingest.documents --config configs/regional_documents.yaml --out data/raw/regional --manifest docs/regional_manifest.json
+python -m study_program_intelligence.ingest.documents --config configs/labour_documents.yaml --out data/raw/labour --manifest docs/labour_manifest.json --pdf-only
+python -m study_program_intelligence.ingest.documents --config configs/benchmark_documents.yaml --out data/raw/benchmarks --manifest docs/benchmark_manifest.json
+python -m study_program_intelligence.ingest.documents --config configs/anchor_documents.yaml --out data/raw/anchors --manifest docs/anchor_manifest.json --pdf-only
 ```
 
-**2. Transform** (`data/interim/`, `data/processed/`): `transform.programmes`, `transform.modules`,
-`transform.thm_modules`, `transform.school_leavers`
+**2. Transform** (`data/interim/`, `data/processed/`)
+```powershell
+python -m study_program_intelligence.transform.programmes
+python -m study_program_intelligence.transform.modules
+python -m study_program_intelligence.transform.thm_modules
+python -m study_program_intelligence.transform.school_leavers
+```
 
-**3. Analyse** (`reports/`, `data/interim/`): `analysis.first_look`, `analysis.trends`, `analysis.theme_check`,
-`analysis.module_gaps`, `analysis.catchment`, `analysis.labour`, `analysis.forecast`, `analysis.capture`,
-`analysis.cannibalisation`, `analysis.options`, `analysis.ranking`
+**3. Analyse** (`reports/`, `data/interim/`)
+```powershell
+python -m study_program_intelligence.analysis.first_look
+python -m study_program_intelligence.analysis.trends              # all data/raw/trends/trends_*.csv
+python -m study_program_intelligence.analysis.theme_check score   # scores the hand labels ("sample" only rebuilds the labelling sheet)
+python -m study_program_intelligence.analysis.module_gaps         # downloads multilingual-e5-base on first run
+python -m study_program_intelligence.analysis.catchment geo       # county centres and distances
+python -m study_program_intelligence.analysis.catchment run       # catchment tables
+python -m study_program_intelligence.analysis.labour
+python -m study_program_intelligence.analysis.forecast
+python -m study_program_intelligence.analysis.capture
+python -m study_program_intelligence.analysis.cannibalisation
+python -m study_program_intelligence.analysis.options
+python -m study_program_intelligence.analysis.ranking
+```
 
 **4. Build key numbers, figures and the report**
 ```powershell
 python -m study_program_intelligence.report.build      # key_numbers.yaml + figures + outline
 python -m study_program_intelligence.report.draft      # reports/final/report.md, .docx, .pdf
+python -m study_program_intelligence.report.spotcheck  # 10 random report sentences vs. their source docs
 ```
 
 **5. Dashboard** (local only)
@@ -145,7 +173,7 @@ A few sources cannot be fetched by script (robots.txt or no API). These files mu
 
 - **Public data only**, no personal data. Professors are referred to by role, not by name.
 - **robots.txt respected** for every site; when a site disallows scripts, the data was skipped or downloaded by
-  hand. Requests use a User-Agent with a contact address and a delay of 2-3 s (more if a site asks for it).
+  hand. Requests use a User-Agent with a contact address and a delay of at least 3 s (more if a site's Crawl-delay asks for it).
 - **Every source is registered** in `configs/sources.yaml` with licence notes, and every download is recorded in
   a manifest in `docs/` (URL, date, SHA-256).
 - **Raw data is not redistributed.** `data/` is git-ignored; the code regenerates it from the original sources.
