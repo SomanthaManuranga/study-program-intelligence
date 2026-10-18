@@ -86,6 +86,42 @@ def f00_funnel(kn: dict, index: list) -> None:
           "docs/evidence_funnel.md (from evidence_competition_demand, overlap_test, kill_rules, evidence_ranking)", index)
 
 
+def f08_pipeline(kn: dict, index: list) -> None:
+    """Plain flow of the whole project for the summary: data -> four questions -> own-students check -> ranking -> advice."""
+    from matplotlib.patches import FancyBboxPatch
+
+    fig, ax = plt.subplots(figsize=(7.5, 4.6))
+    ax.set_xlim(0.4, 9.6)
+    ax.set_ylim(0, 9.8)
+    ax.axis("off")
+
+    def box(x, y, w, h, text, colour, txt="black", size=8.5, bold=False):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.02,rounding_size=0.25", fc=colour, ec="none"))
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=size, color=txt,
+                fontweight="bold" if bold else "normal", wrap=True)
+
+    def arrow(x0, y0, x1, y1):
+        ax.annotate("", xy=(x1, y1), xytext=(x0, y0), arrowprops={"arrowstyle": "-|>", "color": GREY, "lw": 1.2})
+
+    box(0.6, 8.3, 8.8, 1.3, "Public data: statistics offices, programme catalogue,\nmodule handbooks, job board, search trends",
+        LIGHT, size=8.5)
+    qs = ["Do students\nwant it?", "Would they come\nto OTH?", "Can OTH\nteach it?", "Are there\njobs?"]
+    for i, q in enumerate(qs):
+        x = 0.6 + i * 2.25
+        arrow(5.0, 8.3, x + 1.0, 7.25)
+        box(x, 5.6, 2.0, 1.6, q, "#9DB7D5", size=8, bold=True)
+        arrow(x + 1.0, 5.6, 5.0, 4.75)
+    box(1.6, 3.5, 6.8, 1.2, "Would it just take students from OTH's own programmes?", "#9DB7D5", bold=True)
+    arrow(5.0, 3.5, 5.0, 2.95)
+    box(1.6, 1.8, 6.8, 1.1, f"Compare the options in {kn['mc_draws']['display']} what-if scenarios", "#9DB7D5", bold=True)
+    arrow(5.0, 1.8, 5.0, 1.25)
+    box(2.6, 0.1, 4.8, 1.1, "Recommendation", OPTION["cyber_bsc"], txt="white", size=10, bold=True)
+    ax.set_title("How the project works, from data to recommendation")
+    _save(fig, "f08_pipeline", "How the project works",
+          "Public data feeds four questions; the answers are checked for cannibalisation and compared in what-if scenarios.",
+          "project structure (report Section 1)", index)
+
+
 def f01_demand_forecast(kn: dict, index: list) -> None:
     y = forecast.series()[("BY", "cyber_proxy")]
     y = y[y.index >= 2010]
@@ -247,6 +283,7 @@ def main() -> None:
     kn = load_numbers()
     index: list[dict] = []
     f00_funnel(kn, index)
+    f08_pipeline(kn, index)
     f01_demand_forecast(kn, index)
     f02_search_interest(index)
     f03_job_ads(index, kn)
