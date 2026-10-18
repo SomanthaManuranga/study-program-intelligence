@@ -2,7 +2,8 @@
 
 <!-- Evidence: docs/evidence_outlet_jobs.md. -->
 
-**Claim:** graduates of a cybersecurity bachelor find relevant jobs, in Germany and in the region.
+**Claim:** there is substantial job demand for cybersecurity graduates in Germany and within reach of OTH. The
+evidence is job-ad counts, not graduate outcomes.
 
 ## Job ads
 
@@ -18,9 +19,9 @@ We counted job offers on the job board of the Federal Employment Agency by keywo
 - **Security is a large job market, not a niche.** "Security Engineer" matches {{ads_security_engineer}} ads and
   "Cyber Security" {{ads_cyber_security_de}}, about as many as "Künstliche Intelligenz" ({{ads_ki}}); the German term
   "IT-Sicherheit" matches {{ads_it_sicherheit}}, partly because security is named as a requirement in other IT jobs.
-- **Bavaria is over-represented in security**, and most in industrial security: its share is
-  {{ads_cyber_security_by_share}} for "Cyber Security" and {{ads_ot_security_by_share}} for "OT Security", against
-  {{baseline_share}} for general IT keywords.
+- **Bavaria is over-represented for the English security keywords**, most of all for industrial security: its share
+  is {{ads_cyber_security_by_share}} for "Cyber Security" and {{ads_ot_security_by_share}} for "OT Security", against
+  {{baseline_share}} for general IT keywords; the German security keywords are at the baseline.
 - **The jobs are in the wider region.** Within 50 km of Amberg there are only {{ads_cyber_50km}} "Cyber Security" ads,
   but {{ads_cyber_security_amberg_100km}} within 100 km, where Nuremberg and Regensburg fall inside. That is normal for
   a university in a small town.
@@ -45,7 +46,8 @@ automation occupations among its published top lists, so their shortage status i
 
 ## Assessment
 
-Claim D holds for a cyber bachelor: security is a large and Bavarian-heavy job market, and computer science is a
-shortage occupation at bachelor level. **Strength: medium.** Keyword counts are indicators, not vacancies by
+Claim D holds for a cyber bachelor: security keywords match many job ads, "Cyber Security" and "OT Security" ads
+are over-represented in Bavaria, and computer science (not security specifically) is a shortage occupation at
+bachelor level in Germany. **Strength: medium.** Keyword counts are indicators, not vacancies by
 occupation; an ad can match several keywords; the job board does not contain every ad in Germany; and no county-level
-occupation data were available.
+occupation data could be used (download forms disallowed by robots.txt; one county table could not be parsed).

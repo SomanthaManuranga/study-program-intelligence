@@ -96,7 +96,8 @@ human factors. This is what a new programme would have to build (staff and labs:
   TH Mannheim (Security + Industrial IoT focus, names only).
 - EMI: no OT/industrial security module; IT und Automation and Industrie-4.0-Informatik have the automation side.
 - Consequence: an "industrial/OT security" profile is still a differentiator against FAU, THI, THWS and HDBW, **but not
-  against TH Deggendorf**, the nearest competitor with a master, which already teaches it.
+  against TH Deggendorf** (105 km, bachelor and master), which already teaches it. (Correction 18 Oct, Step 55 review:
+  TH Ingolstadt, 82 km, is the nearest competitor with a cyber master.)
 
 ## Incrementality: overlap with OTH's own Informationssicherheit focus
 

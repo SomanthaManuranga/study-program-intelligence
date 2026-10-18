@@ -4,10 +4,11 @@
 
 ## Recommendation
 
-**EMI should introduce a Cybersecurity B.Sc.** It is the only shortlisted option for which all four claims hold:
-demand in its field grows (Section 3), OTH has a regional pool without a full-time dedicated competitor nearby
-(Section 4), EMI can carry the foundations and needs a costed security core (Section 5), and graduates meet a large,
-Bavarian-heavy job market with a shortage at bachelor level (Section 6). Most of its students would be new to OTH
+**EMI should introduce a Cybersecurity B.Sc.** It is the only shortlisted option tested in full against all four claims, and
+they hold: demand in its field grows (Section 3), OTH has a regional pool without a full-time dedicated competitor
+nearby (Section 4), EMI can carry the foundations and needs an estimated security core (two professorships, a lab
+engineer, a lab whose cost is open; Section 5), and there is substantial job demand, with a shortage of computer
+scientists at bachelor level (Section 6). Most of its students would be new to OTH
 (Section 7), and it ranks first in {{p_rank1_cyber_bsc_base}} of the Monte Carlo draws (Section 8).
 
 Conditions for the recommendation:

@@ -3,20 +3,21 @@
 <!-- Evidence: docs/evidence_competition_demand.md, docs/evidence_forecast.md, docs/evidence_demand_trends.md,
 docs/theme_precision.md, docs/evidence_ranking.md (pipeline). -->
 
-**Claim:** enough prospective students want to study cybersecurity, and the pool OTH would recruit from is not
-shrinking. Official statistics have no cybersecurity subject; cyber programmes are counted under computer science.
+**Claim:** enough prospective students want to study cybersecurity, and the Bavarian pool of computer-science
+first-years a cyber programme recruits from is not shrinking. Official statistics have no cybersecurity subject; cyber programmes are counted under computer science.
 Demand is therefore read through three proxies: first-year students in the computer-science subjects, search
 interest, and the supply of programmes.
 
-## Computer science is the only growing EMI field
+## Computer science is the only large EMI field still growing
 
 Between 2019 and 2025 the number of first-year students in Germany fell across all subjects, but Informatik rose
 from {{informatik_firstyears_de_2019}} to {{informatik_firstyears_de_2025}} [@destatis2026students]; in Bavaria it
-grew by {{informatik_firstyears_by_growth}} a year (2019-2024). Nationally the number has been flat since 2023. The
-electrical and media subjects that make up the rest of EMI are shrinking: Elektrotechnik {{elektro_trend}},
-Mechatronik {{mechatronik_trend}} and Medientechnik {{funnel_medientechnik}} a year in Germany. Computer science also
-gains share: its part of all first-year students rose from {{informatik_share_2015}} in 2015 to
-{{informatik_share_2024}} in 2024 ([evidence_competition_demand.md](../../docs/evidence_competition_demand.md)).
+grew by {{informatik_firstyears_by_growth}} a year (2019-2024). Nationally the number has been flat since 2023. Of the
+larger electrical and media subjects that make up the rest of EMI, most are shrinking: Elektrotechnik {{elektro_trend}},
+Mechatronik {{mechatronik_trend}} and Medientechnik {{funnel_medientechnik}} a year in Germany. Only small
+subjects such as microelectronics also grow ([evidence_competition_demand.md](../../docs/evidence_competition_demand.md)).
+Computer science also gains share: its part of all first-year students in Germany rose from {{informatik_share_2015}}
+in 2015 to {{informatik_share_2024}} in 2024 ([evidence_forecast.md](../../docs/evidence_forecast.md)).
 
 ## Forecast of the recruiting pool
 
@@ -67,13 +68,13 @@ Medieninformatik). This overlap is tested in Section 7.
 
 ## Master pipeline
 
-For a master the relevant demand is the number of bachelor graduates in related fields. Informatik graduates rose
-from {{grads_de_2019}} (2019) to {{grads_de_2025}} (2025) in Germany and from {{informatik_grads_by_2019}} to
+For a master the relevant demand is the number of bachelor graduates in related fields. Informatik graduates (all
+degrees) rose from {{grads_de_2019}} (2019) to {{grads_de_2025}} (2025) in Germany and from {{informatik_grads_by_2019}} to
 {{informatik_grads_by_2025}} in Bavaria [@destatis2026exams], so kill rule 4 (falling pipeline) does not apply.
 
 ## Assessment
 
-Claim A holds for cybersecurity: the field it belongs to is the only growing EMI field, the Bavarian recruiting pool
+Claim A holds for cybersecurity: the field it belongs to is the only large EMI field still growing, the Bavarian recruiting pool
 is projected to stay above its 2024 level, and supply near OTH is thin. **Strength: strong for the field trend,
 medium for cybersecurity itself**, because cyber demand is only visible through proxies and search interest has
 plateaued since 2022. For robotics the same proxies point the other way: its feeder subjects (Mechatronik,

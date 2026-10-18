@@ -11,21 +11,24 @@ Git history of this repository (commit time, Europe/Berlin):
 | When | Commit | What was fixed |
 |---|---|---|
 | 14 Oct 2026, 16:35 | cab5148 | MCDA criteria and weights (configs/analysis.yaml); unchanged since |
-| 14 Oct 2026, 16:37 | dff024f | Kill rules 1-5 (docs/kill_rules.md) |
+| 14 Oct 2026, 16:37 | dff024f | Kill-rule draft (four rules, thresholds still open) |
+| 14 Oct 2026, 17:40 | 958f823 | Final kill rules 1-5 incl. the 50 % overlap threshold (docs/kill_rules.md) |
 | 14 Oct 2026, 22:42 | 27bf2e0 | First demand/supply screening of all fields (docs/evidence_competition_demand.md) |
 | 15 Oct 2026, 21:03 | c546da9 | Kill rule 1 overlap test, shortlist of 3 (docs/overlap_test.md) |
 | 17-18 Oct 2026 | bcfb0d1 ... 6c6138f | Capture, cannibalisation, ranking (Steps 47-49) |
 
 Later additions to the rules are logged as such: scoring anchors for criteria other than demand and the rule "weak
 evidence widens a score's range, it does not raise its centre" were written in Step 49, after the evidence was
-collected but before the ranking was computed (docs/kill_rules.md, docs/decision_log.md).
+collected but before the first ranking run; the rule was tightened after that run (ranges must be symmetric, 18 Oct)
+and the earlier version is kept as a sensitivity (docs/kill_rules.md, docs/decision_log.md). Correction 18 Oct
+(Step 55 review): the final kill rules date from 17:40, not 16:37 (the 16:37 commit was a draft).
 
 ## Funnel
 
 | Stage | Date | Filter | In | Dropped (reason) | Out |
 |---|---|---|---|---|---|
 | 0 Screening universe | 14 Oct | 4,840 programme offers from 13 study fields; 11 EMI-related Destatis subjects; title rules for 9 theme groups | 9 theme groups | - | 9 theme groups |
-| 1 Demand trend | 14 Oct | feeder subjects of the theme grow (Destatis 21311, 2019-2025) | 9 | media technology / games (Medientechnik -8.6 %/yr, Medieninformatik -3.5 %/yr in Germany) | 8 |
+| 1 Demand trend | 14 Oct | feeder subjects of the theme grow (Destatis 21311, 2019-2025); robotics kept as a combined AI angle although its feeders are flat or falling | 9 | media technology / games (Medientechnik -8.6 %/yr, Medieninformatik -3.5 %/yr in Germany) | 8 |
 | 2 Supply gap | 14 Oct | thin supply near OTH and not already offered by OTH | 8 | generic AI / data (32 BA / 34 MA within 150 km, OTH offers both levels); automation / Industrie 4.0, energy / e-mobility, medtech / health (already offered at OTH: 1, 1 and 2 titled offers; not carried forward, no separate written verdict); microelectronics to the watch list (116 first-years in Germany 2025, 9 master programmes) | 3 themes = 5 candidates |
 | 3 Kill rule 1 (overlap > 50 %) | 15 Oct | core topics already in one OTH programme at the same level | 5 | embedded / CPS master (88 %, IT und Automation); part-time AI master (identical to AI for Industrial Applications) | 3 |
 | 4 Kill rules 2-4 (feasibility, trend, pipeline) | 17 Oct | feasibility rating 1; five-year fall in entrants; falling graduate pipeline (master) | 3 | none (no feasibility rating of 1; Informatik entrants not falling; Informatik graduates rising) | 3 |

@@ -2,7 +2,8 @@
 
 <!-- Evidence: docs/evidence_fit_modules.md, docs/evidence_fit_staff.md, docs/evidence_benchmarks.md. -->
 
-**Claim:** EMI can teach a cybersecurity bachelor with its existing staff, labs and modules, plus a costed gap.
+**Claim:** EMI can teach a cybersecurity bachelor with its existing staff, labs and modules, plus a gap whose staffing
+is estimated (two professorships, a lab engineer) and whose lab cost is still open.
 
 ## What EMI already teaches
 
@@ -28,12 +29,13 @@ matched to an EMI basics module, i.e. false "covered".
 | Penetration testing and auditing | {{pentest_cover}} |
 | Security operations and incident management | {{secops_cover}} |
 
-EMI teaches cryptography and introductory and network security. **The practical and defensive core that most
-competitors teach is missing:** penetration testing, digital forensics, security operations and incident response,
-software security, security management, law and human factors.
+EMI teaches cryptography and introductory and network security. **The practical and defensive core that five or six
+of the seven competitors teach is missing** (penetration testing, digital forensics, security operations and incident
+response), and so are software security, security management, law and human factors, which three or four of them
+teach.
 
-**Industrial (OT) security is not a differentiator against everyone.** TH Deggendorf, the nearest competitor with
-both a bachelor and a master, already teaches it ({{deg_ma_ot}} of OT-related modules in its master). An OT profile
+**Industrial (OT) security is not a differentiator against everyone.** TH Deggendorf (105 km), which offers both a
+cyber bachelor and a cyber master, already teaches it ({{deg_ma_ot}} of OT-related modules in its master). An OT profile
 sets OTH apart from FAU, TH Ingolstadt, THWS and HDBW, not from Deggendorf.
 
 ## Staff and labs
@@ -41,7 +43,8 @@ sets OTH apart from FAU, TH Ingolstadt, THWS and HDBW, not from Deggendorf.
 From module responsibilities in the handbooks, {{security_profs}} EMI professors already teach security modules
 (information security, cryptography, network security, AI security), and four more teach the industrial and embedded
 side that OT security needs ([evidence_fit_staff.md](../../docs/evidence_fit_staff.md)). The missing practical core
-amounts to a new teaching load of {{new_load_sws}} a year. With a teaching load of {{teaching_load_sws}} per semester
+amounts to an estimated new teaching load of {{new_load_sws}} a year (stated assumptions on lab groups and cohort size;
+possibly higher). With a teaching load of {{teaching_load_sws}} per semester
 for a professor at a Bavarian university of applied sciences [@avbayhig], this means:
 
 - **{{new_professorships}}**: one for offensive security and forensics, one for defensive and OT security including
@@ -64,7 +67,7 @@ programmes as benchmarks [@benchmarks2026], we drafted a structure
 | Semesters 1-2 (60 ECTS) | mathematics, programming, digital systems, algorithms, operating systems, networks, databases, theory, software engineering, information security | existing EMI modules |
 | Semesters 3-4 (60 ECTS) | cryptology, software engineering, web development, statistics, industrial communication; network security (adapted); secure coding, system security, penetration testing, digital forensics; security management, IT law | about half new |
 | Semester 5 (30 ECTS) | practical semester | existing format |
-| Semesters 6-7 (60 ECTS) | security operations and incident response, malware, OT / industrial security, security architecture, security lab project; AI and security (adapted); electives; thesis | mostly new |
+| Semesters 6-7 (60 ECTS) | security operations and incident response, malware, OT / industrial security, security architecture, security lab project; AI and security (adapted); electives; thesis | five new modules; the rest adapted, electives and thesis |
 
 In total {{draft_new_ects}} would be taught by new staff and {{teaching_assignments}} by teaching assignments, while
 {{draft_reused_ects}} come from existing or adapted EMI modules. The security share is {{draft_security_ects}}, between
@@ -75,5 +78,6 @@ draft matches the staffing estimate above.
 
 Claim C holds with a cost: EMI can carry the foundations, cryptography and networking, and has a genuine base for
 OT security, but the practical security core is new and needs two professorships, a lab engineer and a lab.
-**Strength: strong for the module comparison** (validated against a hand check), **medium for staffing**, which rests
+**Strength: strong for the module comparison** (hand check: the embedding model was right in {{pairs_e5}} pairs,
+all its errors overestimate coverage; the two methods agree on {{method_agreement}} of labels), **medium for staffing**, which rests
 on stated assumptions (cohort size, lab groups, teaching reductions) and could not use staff research profiles.

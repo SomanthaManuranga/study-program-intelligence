@@ -13,8 +13,9 @@ A candidate is dropped if any rule applies:
 4. **Pipeline (master only):** bachelor graduates in related fields are falling and too few are in the region.
 5. **Scope:** at most three candidates per level go into full dossiers.
 
-Added in Step 49 (after the evidence was collected, before the ranking): *weak evidence widens a score's range
-symmetrically around its centre; it does not raise the centre.*
+Added in Step 49 (after the evidence was collected, before the first ranking run): *weak evidence widens a score's
+range; it does not raise the centre.* Amended on 18 Oct, after the first run: the widened range must be symmetric
+around the centre (the earlier skewed range is reported as a sensitivity).
 
 **Scoring anchors (1 to 5, 5 = best).**
 

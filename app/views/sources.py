@@ -14,5 +14,5 @@ st.markdown(report_section("A2_decisions.md").replace("## A2 Method decisions {-
 
 st.subheader("Data sources")
 st.markdown(table_sources())
-st.caption("Full register: " + doc_link("configs/sources.yaml") + " · downloads with date and SHA-256 in the manifests in docs/ · "
+st.caption("Full register: " + doc_link("configs/sources.yaml") + " · downloads with their date (and URL and SHA-256 for downloaded files) in the manifests in docs/ · "
            "decision log: " + doc_link("docs/decision_log.md"))
