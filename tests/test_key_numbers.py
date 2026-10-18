@@ -32,3 +32,17 @@ def test_typed_number_check_catches_numbers():
     assert typed_numbers("In 2024 about 39 students, 31 % of them, 1,234 in total, ratio 0.5.", allowed) == \
         ["39", "31 %", "1,234", "0.5"]
     assert typed_numbers("{{cyber_bsc_gross_central}} students within 150 km in 2026 [@destatis2026students].", allowed) == []
+
+
+def test_defence_qa_source_has_no_typed_numbers():
+    """docs/defence/qa.md follows the report's number rules (checked without rewriting the committed output)."""
+    import re
+    import yaml
+    from study_program_intelligence.report.draft import PLACEHOLDER, SRC, typed_numbers
+    from study_program_intelligence.report.key_numbers import load
+    raw = re.sub(r"<!--.*?-->", " ", (REPO / "docs" / "defence" / "qa.md").read_text(encoding="utf-8"), flags=re.S)
+    allowed = yaml.safe_load((SRC / "report.yaml").read_text(encoding="utf-8"))["allowed_numbers"]
+    assert typed_numbers(raw, allowed) == []
+    kn = load()
+    assert all(k.removeprefix("val:") in kn for k in PLACEHOLDER.findall(raw))
+    assert len(re.findall(r"^### Q\d+", raw, flags=re.M)) == 25

@@ -1,6 +1,6 @@
 # Independent claim review: verdicts and fixes (Step 55)
 
-Claims: docs/review_claims.md (443, generated 18 Oct 2026 before the fixes). Verdicts by three fresh-context reviewer agents (docs/review_verdicts_part1-3.md, kept as delivered). Fixes applied by the drafting session; the claim sheet regenerated after the fixes is checked again (see the end of this file).
+Claims: docs/review_claims.md (443 claims, extracted before the fixes). Verdicts by three fresh-context reviewer agents (docs/review_verdicts_part1-3.md, kept as delivered). Fixes applied by the drafting session; the fixed claims were re-checked twice by further fresh-context reviewers (see the end of this file).
 
 Verdicts: supported 333, caveat 42, overstated 29, n/a 27, wrong 7, unsupported 5.
 
