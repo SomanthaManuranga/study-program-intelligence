@@ -1,0 +1,42 @@
+# Plain-English project summary (Step 57). Built by: python -m study_program_intelligence.report.summary
+title: "Which new study programme should OTH offer?"
+subtitle: "A plain-English summary of the Study Program Intelligence project"
+authors:
+  - Somantha Manuranga
+  - "[team member 2]"
+length:
+  target_pages: [10, 15]
+  words_per_page: 380
+  pages_per_figure: 0.45
+sections:
+  - 01_summary.md
+  - 02_question.md
+  - 03_big_picture.md
+  - 04_data.md
+  - 05_funnel.md
+  - 06_findings.md
+  - 07_own_students.md
+  - 08_comparison.md
+  - 09_how_sure.md
+  - 10_recommendation.md
+  - 11_glossary.md
+  - 12_details.md
+glossary_section: 11_glossary.md
+# Plain captions: one sentence saying what the reader should see (may contain {{key}} placeholders).
+captions:
+  f08_pipeline: "The whole project in one picture: public data answers four questions, then we check for lost students and compare the options."
+  f00_funnel: "We started with many possible fields and removed them step by step with rules written in advance; only one option is left at the end."
+  f01_demand_forecast: "The number of Bavarian first-year students in computer-related subjects grew strongly and is expected to stay above its 2024 level."
+  f04_capture: "Grey bars show all expected first-year students, coloured bars those who are new to OTH; the cybersecurity bachelor is above the minimum in the middle case."
+  f05_cannibalisation: "Most of the new programme's students would come from other universities (dark part), not from OTH's own programmes (light part)."
+  f06_rank_probabilities: "The dark part of each bar shows how often an option came first in the what-if scenarios; cybersecurity wins in most of them."
+readability:
+  avg_sentence_words: 20
+  max_sentence_words: 30
+  # technical terms that must be in the glossary if they are used
+  terms: [cannibalisation, capture model, catchment, proxy, forecast, kill rule, what-if scenarios, weighting, anchor,
+          ECTS, professorship, OT security, FOS/BOS, G9, KMK, Destatis, robots.txt, key numbers, first-year students,
+          university of applied sciences, module handbook, sensitivity check]
+  # specialist words that should not appear in a plain-English text at all
+  avoid: [Dirichlet, TF-IDF, MASE, Huff, MCDA, embedding, CyBOK, SRMSE, drift, geometric mean, SWS, gravity model, HAW,
+          backtest, Monte Carlo]
