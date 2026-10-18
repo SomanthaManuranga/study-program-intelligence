@@ -25,10 +25,12 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Done: evidence (Steps 37-45), modelling (Steps 46-49), key numbers / figures / report / dashboard / pipeline / claim
-review (Steps 50-52, 54, 55), defence Q&A (Step 56: docs/defence_qa.md, built by report/defence.py from
-docs/defence/qa.md).
+review (Steps 50-52, 54, 55), preliminary plain-English summary (Step 57 preliminary).
 
 Remaining work, in this order:
+0. Data-sufficiency audit (docs/data_gap_audit.md): waiting for Soma's approval; approved items are collected
+   before the freeze. Data only, no method re-evaluation (that is Phase 5). Then Step 56 defence Q&A (open;
+   docs/defence_qa.md, built by report/defence.py from docs/defence/qa.md).
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
    (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
    for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
@@ -50,7 +52,8 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: job-ad snapshot on 1 Nov 2026. Status: waiting for the date.
+Current: data-sufficiency audit, waiting for Soma's approval (decisions D1-D3 in the audit). Next fixed date: job-ad
+snapshot on 1 Nov 2026.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
