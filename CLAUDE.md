@@ -80,11 +80,15 @@ Phase 4 (communication and reproducibility) plan, in order:
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 55 (independent review of every report claim). Status: open. Step 53 deferred (Soma decides later).
-Last finished: Step 54, reproducibility (2026-10-18): `python -m study_program_intelligence.pipeline` (20 steps, ~6-11 min;
---ingest, --snapshot, --from, --skip, --list, --no-tests) + `python -m pytest` (44 tests). Verified: in-place rerun and a
-clean clone (committed code + data/raw + hand labels only) both rebuild all outputs, tests pass, 179/179 key numbers
-identical. Public data only (no intake figures from universities).
+Current: Step 56 (defence preparation: docs/defence_qa.md). Status: open. Step 53 deferred (Soma decides later).
+Last finished: Step 55, independent claim review (2026-10-18): `python -m study_program_intelligence.report.claims` ->
+docs/review_claims.md (443 claims: report, dashboard, README Result); three fresh-context reviewers ->
+docs/review_verdicts_part1-3.md; 83 findings fixed (docs/review_verdicts.md), two re-checks (docs/review_recheck.md,
+review_recheck2.md); nothing left overstated/unsupported/wrong. Evidence-doc corrections: final kill rules 17:40 (not
+16:37), symmetric-range amendment 17 Oct 23:40 (not 18 Oct), THI is the nearest cyber master, API delays 2 s, GENESIS
+client has no robots.txt check or contact User-Agent, kill rule 4 had no numeric threshold. Open for the team: record the
+second member's check of AI-related scores (research protocol). Dashboard screenshots to regenerate after the freeze.
+Spot check of 15 verdicts passed (Soma). Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
