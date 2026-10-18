@@ -25,8 +25,8 @@ glossary_section: 11_glossary.md
 # Plain captions: one sentence saying what the reader should see (may contain {{key}} placeholders).
 captions:
   f08_pipeline: "The whole project in one picture: public data answers four questions, then we check for lost students and compare the options."
-  f00_funnel: "We started with many possible fields and removed them step by step with rules written in advance; only one option is left at the end."
-  f01_demand_forecast: "The number of Bavarian first-year students in computer-related subjects grew strongly and is expected to stay above its 2024 level."
+  f00_funnel: "We started with many possible fields and removed them step by step; the weights and kill rules were written in advance."
+  f01_demand_forecast: "The number of Bavarian first-year students in computer-related subjects grew strongly and is expected to be back above its 2024 level after the 2025 dip."
   f04_capture: "Grey bars show all expected first-year students, coloured bars those who are new to OTH; the cybersecurity bachelor is above the minimum in the middle case."
   f05_cannibalisation: "Most of the new programme's students would come from other universities (dark part), not from OTH's own programmes (light part)."
   f06_rank_probabilities: "The dark part of each bar shows how often an option came first in the what-if scenarios; cybersecurity wins in most of them."
@@ -34,9 +34,8 @@ readability:
   avg_sentence_words: 20
   max_sentence_words: 30
   # technical terms that must be in the glossary if they are used
-  terms: [cannibalisation, capture model, catchment, proxy, forecast, kill rule, what-if scenarios, weighting, anchor,
-          ECTS, professorship, OT security, FOS/BOS, G9, KMK, Destatis, robots.txt, key numbers, first-year students,
-          university of applied sciences, module handbook, sensitivity check]
+  terms: [anchor, cannibalisation, capture model, catchment, ECTS, key numbers, kill rule, module handbook, OT security,
+          professorship, proxy, sensitivity check, university of applied sciences, weights, what-if scenarios]
   # specialist words that should not appear in a plain-English text at all
   avoid: [Dirichlet, TF-IDF, MASE, Huff, MCDA, embedding, CyBOK, SRMSE, drift, geometric mean, SWS, gravity model, HAW,
           backtest, Monte Carlo]

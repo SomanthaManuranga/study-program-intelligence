@@ -15,7 +15,7 @@ future for the business? We asked the same four questions about a new programme:
 4. **Are there jobs?** We counted job adverts and looked at employment statistics.
 
 We answered these questions in full for the cybersecurity bachelor and with less evidence for the other two finalists.
-Earlier candidates were only screened on student demand and competition.
+Earlier candidates were screened on student demand and competition, and two of them also on the overlap rule.
 
 Two more checks came after the four questions. First, we asked whether a new programme would only take students away from
 OTH's existing programmes. We call this **cannibalisation**. It is like a new café that mainly takes customers from the
@@ -28,4 +28,4 @@ range, from low to high. Then we counted how often each option came first.
 Before the first screening, we fixed how much each of the six scoring points would count. We also fixed five **kill
 rules**. A kill rule drops an option at once. One example: more than half of its core topics are already taught in one
 existing OTH programme at the same level. Fixing these rules early makes it harder for our own preferences to shape the
-result. A few rules were added later, and Section 5 says which.
+result. Some rules came later, and Section 5 says which.

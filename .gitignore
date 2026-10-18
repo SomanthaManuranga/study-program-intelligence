@@ -244,7 +244,11 @@ config.ini
 *.pbit
 
 # Generated reports (rebuild with the analysis modules)
-reports/
+reports/*
+# except the plain-English project summary (Step 57), committed for readers without the pipeline
+!reports/final/
+reports/final/*
+!reports/final/project_summary.pdf
 
 # Hand-checked theme labels (Step 38): the team's reviewed labels, committed so the pipeline is reproducible from git
 !docs/theme_labels.csv
