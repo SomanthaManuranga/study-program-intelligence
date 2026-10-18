@@ -449,3 +449,18 @@ Verdicts: supported 333, caveat 42, overstated 29, n/a 27, wrong 7, unsupported 
 | C441 | supported | decision_log.md: "Master second (67 % rank 2), robotics last (72 % rank 3)." |  |  |
 | C442 | wrong | evidence_capture.md: "Low / 21 / 12 / just / no" (minimum-cohort table: steady state, year 1, meets 20 steady, meets 20 in year 1) | In the first-year range the README lists (21 / 39 / 75), the low case of 21 "just" meets the assumed minimum of 20; only its net new value (15.3) and year 1 (12) are below 20. The dashboard (C400) and the report say "21 against 20". Fix: "(wide first-year range; the low case only just reaches the assumed minimum cohort of 20, and only 15 of its 21 first-years are new to OTH)". | README: low case only just reaches 20; about 15 of 21 new to OTH. |
 | C443 | caveat | docs/report/09_limitations.md: "the low case is at the edge of viability" | The report states all three limitations, but it describes the low case as at the edge (21 vs 20), not below 20 as C442 says. This becomes true once C442 is reworded; no other change needed. | Resolved by the C442 fix (statement now matches the report). |
+
+## Re-checks after the fixes
+
+1. **First re-check** (fresh-context reviewer, docs/review_recheck.md): of the 83 fixed claims, 70 supported, 11 caveat,
+   1 overstated, 1 unsupported, 0 wrong. Three fixes had introduced new problems (C073/C419 "checked by hand" not
+   recorded; C233 an unsupported clause; C334 the amendment date: git shows 17 Oct 23:40, not 18 Oct).
+2. **Second re-check** of those 13 (another fresh-context reviewer, docs/review_recheck2.md): 11 supported, 2 caveat
+   (C306: example manifests placed after "register only"; C068: the GENESIS client does not check robots.txt), none
+   overstated, unsupported or wrong; the kill-rule-4 note (no numeric threshold, applied as a direction check) supported.
+3. **Last two caveats** fixed with the reviewer's suggested wording (A1: example list moved back to the manifests;
+   Section 1: robots.txt and contact address limited to document downloads and the BA APIs, GENESIS used through its
+   API with a personal token; code checked: genesis.py has no robots.txt call and no contact User-Agent). Verified by the
+   drafting session against the code and the file, not by a third reviewer.
+
+Result: no claim remains overstated, unsupported or wrong; all 443 claims are supported, labelled n/a, or fixed.

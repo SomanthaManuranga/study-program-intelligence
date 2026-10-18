@@ -19,9 +19,10 @@ We counted job offers on the job board of the Federal Employment Agency by keywo
 - **Security is a large job market, not a niche.** "Security Engineer" matches {{ads_security_engineer}} ads and
   "Cyber Security" {{ads_cyber_security_de}}, about as many as "Künstliche Intelligenz" ({{ads_ki}}); the German term
   "IT-Sicherheit" matches {{ads_it_sicherheit}}, partly because security is named as a requirement in other IT jobs.
-- **Bavaria is over-represented for the English security keywords**, most of all for industrial security: its share
-  is {{ads_cyber_security_by_share}} for "Cyber Security" and {{ads_ot_security_by_share}} for "OT Security", against
-  {{baseline_share}} for general IT keywords; the German security keywords are at the baseline.
+- **Bavaria is over-represented for "Cyber Security" and "OT Security"**, most of all for industrial security: its
+  share is {{ads_cyber_security_by_share}} and {{ads_ot_security_by_share}} respectively, against {{baseline_share}} for general IT
+  keywords; the other security keywords ("Security Engineer", "IT-Sicherheit", "Informationssicherheit") are at or
+  below the baseline.
 - **The jobs are in the wider region.** Within 50 km of Amberg there are only {{ads_cyber_50km}} "Cyber Security" ads,
   but {{ads_cyber_security_amberg_100km}} within 100 km, where Nuremberg and Regensburg fall inside. That is normal for
   a university in a small town.

@@ -48,8 +48,9 @@ analysis with Monte Carlo uncertainty (Section 8).
 | BA job board API and shortage analysis [@ba2026jobsuche; @ba2025engpass] | job-ad counts by keyword and region; shortage occupations | D |
 | Google Trends [@google2026trends] | search interest in degree terms | A |
 
-The data sources are registered with their URL and use (Appendix A1); document downloads are recorded with URL, date
-and SHA-256 checksum, API downloads and job-ad snapshots with their date, in manifests in the repository.
+The data sources are registered with their URL and use (Appendix A1); automated document downloads are recorded with URL,
+date and SHA-256 checksum, API downloads and job-ad snapshots with their date, in manifests in the repository; manual
+downloads (the EMI module handbooks, the Google Trends files) are listed in the register only.
 
 ## Methods
 
@@ -84,8 +85,10 @@ extraction against the handbooks (Step 40).
 
 ## Data access rules
 
-Automated downloads respected each site's robots.txt, identified the project with a contact address and waited between
-requests (two seconds for the public APIs, at least three seconds or the site's crawl delay for document downloads). Where a site blocked access or required a login, we did not work around it and
+Document downloads and the Federal Employment Agency APIs checked each site's robots.txt, identified the project
+with a contact address and waited between
+requests (two seconds for the public APIs, at least three seconds or the site's crawl delay for document downloads); the Destatis GENESIS service was used
+through its documented API with a personal account token. Where a site blocked access or required a login, we did not work around it and
 recorded the gap: the federal-state regional database (robots.txt), the Bavarian GENESIS web service (login failed),
 OTH staff profile pages (blocked for AI crawlers, skipped on principle) and some competitor documents. These gaps are
 listed in Section 9.
@@ -98,8 +101,8 @@ module pairs, score sheet) and all final judgements were made by the team; metho
 who decided, most with a reason, in the decision log (Appendix A2). Every statistic in the report text (percentages,
 decimals and numbers of ten or more) is inserted from a generated key-numbers file (`reports/key_numbers.yaml`) that
 names the evidence document it comes from, and each is checked automatically against that document; distances,
-dates, times and small counts are typed and were checked by hand, and the appendix tables are generated from the
-configuration files.
+years and dates, times, ECTS sizes, step numbers, table codes and small counts are typed in the text and not checked
+automatically, and the appendix tables are generated from the configuration files.
 
 ## Conflict of interest
 

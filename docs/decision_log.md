@@ -165,7 +165,7 @@ Decision: (1) Against evidence asymmetry (Soma), the Step 47/48 capture + cannib
 Result: Cyber B.Sc. P(rank 1) 87.8 % (robotics-50 % scenario 91.7 %; independent capture draws 82.5 %); first in every leave-one-criterion-out run except without demand (tie with robotics 49 % / 50 %). Second place open (master 52 % / robotics 37 % rank 2; master 73 % in the robotics-50 % case). Robotics evidence weakest (no anchor, fit/feasibility title-level). The 2/3/5 skew lifts the robotics mean; symmetric 1.5/3/4.5 gives 2.3 % instead of 6.9 %.
 Decided by: team (Somantha Manuranga).
 
-## 2026-10-18: Robotics fit/feasibility made symmetric (Step 49 correction)
+## 2026-10-17: Robotics fit/feasibility made symmetric (Step 49 correction; heading date corrected in Step 55, git 6c6138f 23:40)
 Decision: robotics institutional fit and feasibility 1.5 / 3 / 4.5 instead of 2 / 3 / 5, so the range follows the rule "weak evidence widens the range, it doesn't raise the centre" (2 / 3 / 5 had a mean of 3.33). 2 / 3 / 5 kept as a sensitivity line.
 Result: Cyber B.Sc. P(rank 1) 91.7 % (robotics 50 %: 93.2 %; skewed 2/3/5: 87.8 %); first in every leave-one-criterion-out run (lowest without demand 67.2 %, without labour 77.8 %). Master second (67 % rank 2), robotics last (72 % rank 3).
 Decided by: team (Somantha Manuranga).

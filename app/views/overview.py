@@ -24,7 +24,8 @@ metric("New professorships needed", "new_professorships", c[3], bare=True)
 st.subheader("How the winner was found")
 st.markdown(
     f"Criteria, weights and the final kill rules were committed on **{show('rules_fixed_date')}**, before the first screening; "
-    "the scoring anchors for the other criteria and the weak-evidence rule followed on 17-18 Oct, before the ranking. "
+    "the scoring anchors for the other criteria and the weak-evidence rule followed on 17 Oct, before the first ranking run "
+    "(the rule was tightened to symmetric ranges after that run). "
     "Candidates were then filtered stage by stage; only three were modelled and ranked."
 )
 figure("f00_funnel")
