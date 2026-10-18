@@ -145,9 +145,9 @@ evidence document. The report build stops on unknown placeholders or hand-typed 
 A few sources cannot be fetched by script (robots.txt or no API). These files must be placed by hand:
 - **Google Trends** CSVs in `data/raw/trends/` (settings are recorded in `docs/evidence_demand_trends.md`)
 - **OTH module handbooks** in `data/raw/oth modules/` (OTH `/fileadmin/` is disallowed for scripts)
-- **Hand-checked theme labels** `data/interim/theme_labels_EN.xlsx` (Step 38; the team's reviewed labels,
-  kept outside git like all data)
 - anything listed in `docs/manual_downloads.md`
+
+The team's hand-checked theme labels (Step 38) are committed as `docs/theme_labels.csv`.
 
 ---
 

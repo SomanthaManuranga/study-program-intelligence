@@ -75,12 +75,11 @@ BUILD = [
 MANUAL = [
     ("data/raw/trends", "trends_*.csv", "Google Trends CSVs (docs/evidence_demand_trends.md)"),
     ("data/raw/oth modules", "*.pdf", "OTH module handbooks (OTH /fileadmin/ is disallowed for scripts)"),
-    ("data/interim", "theme_labels_EN.xlsx", "hand-checked theme labels (Step 38; reviewed by the team)"),
-]
+]   # the hand-checked theme labels are committed (docs/theme_labels.csv), so they are not a manual input
 
 
 # Steps that only run when their output is missing (name -> file). The labelling sheet is rebuilt from the catalogue
-# with a fixed seed; it is never overwritten because the hand labels (theme_labels_EN.xlsx) are joined to its rows.
+# with a fixed seed; it is never overwritten because the hand labels (docs/theme_labels.csv) are joined to its rows.
 ONLY_IF_MISSING = {"analysis.theme_check:sample": REPO_ROOT / "data" / "interim" / "theme_labels.xlsx"}
 
 

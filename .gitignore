@@ -245,3 +245,6 @@ config.ini
 
 # Generated reports (rebuild with the analysis modules)
 reports/
+
+# Hand-checked theme labels (Step 38): the team's reviewed labels, committed so the pipeline is reproducible from git
+!docs/theme_labels.csv

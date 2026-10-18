@@ -118,7 +118,7 @@ Forecasts validated with rolling-origin backtests (MASE).
   (first term = anchor; monthly; break at 2022-01-01) -> reports/trends.md, docs/evidence_demand_trends.md.
   Two files: trends_DE_2015_2026.csv (anchor Informatik Studium), trends_DE_specialist_2015_2026.csv (no anchor).
 - analysis/theme_check.py: hand-label sheet for the title theme rules (all cyber title matches + samples +
-  miss check, seed 20261017) -> data/interim/theme_labels.xlsx; labels in data/interim/theme_labels_EN.xlsx
+  miss check, seed 20261017) -> data/interim/theme_labels.xlsx; labels in docs/theme_labels.csv (committed since Step 54)
   (proposed by Claude, reviewed by Soma); score -> reports/theme_check.md, docs/theme_precision.md
 - ingest/documents.py --config configs/competitor_modules.yaml (Step 39): competitor module handbooks
   -> data/raw/competitor modules/, docs/competitor_modules_manifest.json; manual ones in docs/manual_downloads.md
@@ -134,7 +134,7 @@ Forecasts validated with rolling-origin backtests (MASE).
   table; move to the frozen snapshot on 4 Dec), figures.py -> reports/figures/ (matplotlib, optional dep 'report'),
   outline.py -> reports/final/outline.md. Run after the analysis modules; numbers never typed by hand.
 - pipeline.py (Step 54): one command for transform -> analysis -> key numbers -> figures -> report -> tests; checks the
-  manual inputs first (Trends CSVs, OTH handbooks, data/interim/theme_labels_EN.xlsx); writes reports/pipeline_log.md
+  manual inputs first (Trends CSVs, OTH handbooks); writes reports/pipeline_log.md
   (step times + key-number changes vs the previous run). Ingest steps with known gaps (dead links, robots.txt) do not stop
   it. data/interim/pdf_text and module_emb.npy are leftovers no code uses.
 - app/ (Step 52): Streamlit dashboard, local only: `streamlit run app/dashboard.py` (pages in app/views/, helpers in
