@@ -12,8 +12,8 @@ Q25 (use of AI).
 
 ### Q1. Why only public data? Why not simply ask the universities for their intake numbers?
 
-**Answer.** Public data only was the scope of the brief and our protocol, so every number traces to a public source and
-the code rebuilds all results from the downloaded data. We say openly that this is the main weakness: no comparable
+**Answer.** Public data only was the scope of the brief and our protocol, so every data input is public (our own assumptions are
+labelled as ours) and the code rebuilds all results from the downloaded data. We say openly that this is the main weakness: no comparable
 programme we checked publishes its intake. Asking TH Ingolstadt and TH Deggendorf for one measured number is our first
 recommendation before a decision.
 
@@ -46,7 +46,9 @@ The weights never changed. Candidates then left the funnel stage by stage: 9 the
 
 **If pressed:** the screening filters themselves (stages 1 and 2) were written with the screening, the scoring anchors
 for criteria other than demand after the evidence was collected, and the weak-evidence rule was tightened after the
-first ranking run; all of this is logged in [decision_log.md](decision_log.md).
+first ranking run (see [evidence_funnel.md](evidence_funnel.md), report Section 2 and
+[decision_log.md](decision_log.md)). The protocol's candidate longlist was never written into the repository; the
+first list of candidates is the screening itself.
 
 ### Q4. Why were automation, energy and medical technology dropped so early?
 
@@ -158,7 +160,7 @@ would miss it in year 1 (24).
 partly because the seven administrative regions are coarse. We use the model only for relative quantities (OTH's
 intake relative to its competitors, and the cannibalisation shares), never for absolute numbers.
 
-**Evidence:** [evidence_capture.md](evidence_capture.md).
+**Evidence:** [evidence_capture.md](evidence_capture.md), [evidence_cannibalisation.md](evidence_cannibalisation.md).
 
 **If pressed:** the error is larger for TH Ingolstadt, so we do not know in which direction it shifts the ratio; we
 have not quantified it.
@@ -270,8 +272,8 @@ draws it is 87.0 %.
 
 **Evidence:** [evidence_ranking.md](evidence_ranking.md), report Section 8.
 
-**If pressed:** in the first ranking run, with robotics' skewed ranges, leaving out demand gave a near tie with
-robotics (49 % / 50 %); the 80 % bar was set when the results were reported, not before; and
+**If pressed:** in the first ranking run, with robotics' skewed ranges, leaving out demand put robotics narrowly
+ahead (cyber bachelor and robotics: 49 % / 50 %); the 80 % bar was set when the results were reported, not before; and
 the lead rests mostly on demand and labour relevance.
 
 ### Q23. Why not start with the master?
@@ -306,11 +308,12 @@ estimate downward.
 **Answer.** Claude Code wrote the analysis code and drafted the texts under our direction, and proposed the theme labels
 and the score sheet. We chose the sources and made or approved every method decision; we reviewed all
 110 proposed theme labels, judged twenty module pairs and changed the score sheet. Every statistic in
-the report is checked automatically to appear in its evidence document, and independent AI reviewers checked all
+the report (percentages, decimals and numbers of ten or more) is checked automatically to appear in its evidence
+document, and independent AI reviewers checked all
 443 statements; flagged ones were fixed and re-checked.
 
 **Evidence:** report Section 1, [review_verdicts.md](review_verdicts.md), [decision_log.md](decision_log.md).
 
-**If pressed:** the reviews were done by AI reviewers in a fresh context, not by people; the automatic check covers
-statistics, not small typed numbers; the last two fixes were checked by the drafting session only; and the protocol's
+**If pressed:** the reviews were done by AI reviewers in a fresh context, not by people; distances, dates, times, ECTS sizes and
+small counts are typed and not checked automatically; the last two fixes were checked by the drafting session only; and the protocol's
 check of AI-related scores by our second team member is not recorded yet.
