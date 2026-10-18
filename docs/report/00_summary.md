@@ -20,7 +20,8 @@ candidates; only then were they modelled and ranked (Section 2).
 - **A. Demand grows, mostly through foreign students.** Computer science is the only large EMI field still growing
   (Bavaria {{informatik_firstyears_by_growth}} per year, 2019-2024), but {{informatik_by_foreign_part}} of that growth are
   foreign students. German first-years grew by {{informatik_by_german_growth}} a year in Bavaria and changed by
-  {{informatik_de_german_growth}} a year in Germany; among them, Informatik is still the strongest large EMI subject. The Bavarian recruiting pool for a cyber programme rises from {{cyber_proxy_by_2024}} first-year
+  {{informatik_de_german_growth}} a year in Germany; among them, Informatik is the only large EMI subject that grew in
+  Bavaria, and in Germany it is about level with Wirtschaftsinformatik. The Bavarian recruiting pool for a cyber programme rises from {{cyber_proxy_by_2024}} first-year
   students (2024) to {{cyber_proxy_by_2030_central}} in 2030 (a central planning value, the midpoint of the KMK and trend
   paths; conservative {{cyber_proxy_by_2030_conservative}}). Among the degree search terms we tracked, "Cyber Security
   Studium" is the largest ({{search_cyber_vs_robotik}} since 2022).
@@ -43,8 +44,10 @@ students would come from existing OTH programmes (the model does not see OTH pro
 of leaving. Kill rule 1 ({{kill_rule_1_threshold}} core overlap with one OTH programme) is passed: {{overlap_test_cyber_ba}} of core
 topics in the formal test, {{cyber_bsc_core_overlap}} to {{module_cover_ii_mi}} in later module-level rechecks.
 
-**How robust.** The Cybersecurity B.Sc. clears the {{robustness_bar}} robustness bar and stays first whichever single
-criterion is left out (lowest {{loo_min_cyber_bsc}}, without demand). The same capture and cannibalisation model was run
+**How robust.** In the base case the Cybersecurity B.Sc. clears the {{robustness_bar}} robustness bar and stays first
+whichever single criterion is left out (lowest {{loo_min_cyber_bsc}}, without demand). With demand trends judged on
+German entrants only it is first in {{p_rank1_cyber_bsc_german}} of draws, just below the bar, and loses narrowly when
+labour relevance is also left out. The same capture and cannibalisation model was run
 for all three options, so none is ranked on a model the others lack.
 
 **What is weak, and what would change the conclusion.**

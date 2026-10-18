@@ -16,10 +16,10 @@ trend way continues the growth of the past years. As a planning value we took th
 
 - Computer science is the only large subject of the faculty that grew: in Bavaria by
   {{informatik_firstyears_by_growth}} a year (2019-2024), with a dip in 2024. In Germany it has been level since 2023.
-- Most of that growth is students from abroad. In Bavaria, foreign students made up {{informatik_by_foreign_part}} of
+- Most of that growth is foreign students. In Bavaria, foreign students made up {{informatik_by_foreign_part}} of
   the growth. German first-year students grew by only {{informatik_by_german_growth}} a year in Bavaria, and in Germany
-  they changed by {{informatik_de_german_growth}}. Among German students, computer science is still the strongest
-  large subject of the faculty.
+  they changed by {{informatik_de_german_growth}}. Among German students, computer science is the only large subject
+  of the faculty that grew in Bavaria.
 - Our proxy was {{cyber_proxy_by_2024}} first-year students in Bavaria in 2024. The careful forecast gives
   {{cyber_proxy_by_2030_conservative}} for 2030, the middle value {{cyber_proxy_by_2030_central}}.
 - Online, people search for "Cyber Security Studium" more often than for the AI and robotics degree terms
@@ -38,7 +38,7 @@ more slowly.
 **What we did.** People tend to shop at the nearest supermarket, and fewer travel far. Students behave in a similar way.
 We measured how strongly distance puts students off, using real data on which region the students of each state-run
 Bavarian university of applied sciences come from. With this **capture model** we can say how many students OTH would attract compared with
-a competitor. But no university we checked publishes how many students start its cybersecurity programme. So we needed
+a competitor. But no university of applied sciences we checked publishes how many students start its cybersecurity programme. So we needed
 **anchors**: known figures of similar programmes that turn the comparison into a number.
 
 **A worked example.** OTH's **catchment** (the Bavarian counties closer to OTH than to the nearest universities with a
@@ -64,11 +64,12 @@ in a hundred of OTH's own school leavers.
 capacity and one student review. One real first-year number from TH Ingolstadt or TH Deggendorf would make the range
 about half as wide.
 
-- Students from outside Bavaria are not in the model, but they matter little. They are {{oth_outside_bavaria}} of
-  OTH's German students, about as many as at the other two universities.
-- No university of applied sciences publishes its numbers. Two research universities do: {{rub_cyber_ba_firstyears}}
-  and {{uds_cyber_ba_firstyears}} first-year students a year. So the {{deg_cyber_anecdote}} from the student review is believable
-  as a high figure. This is a check, not a new anchor.
+- Students from outside Bavaria are not in the model, but they matter little. By the same rough method they are
+  about {{oth_outside_bavaria_approx}} of OTH's German students, {{thi_outside_bavaria_approx}} at TH Ingolstadt and
+  {{thd_outside_bavaria_approx}} at TH Deggendorf.
+- None of the universities of applied sciences we checked publishes its numbers. Two research universities do
+  ({{rub_cyber_ba_firstyears}} and {{uds_cyber_ba_firstyears}} a year), so the {{deg_cyber_anecdote}} from the student
+  review is a believable high figure. This is a check, not a new anchor.
 - TH Deggendorf also runs a regional centre for IT security, so it is a strong competitor in this field.
 
 ## 6.3 Can OTH teach it?

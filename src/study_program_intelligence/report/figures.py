@@ -274,7 +274,7 @@ def f07_leave_one_out(index: list) -> None:
     ax.legend(fontsize=7.5, loc="lower left", bbox_to_anchor=(0.0, 1.0), ncol=3)
     ax.set_title("Leave-one-criterion-out", pad=24)
     _save(fig, "f07_leave_one_out", "Leave-one-criterion-out",
-          "The Cybersecurity B.Sc. stays first whichever criterion is dropped; demand and labour carry most of the lead.",
+          "Base case: the Cybersecurity B.Sc. stays first whichever criterion is dropped; demand and labour carry most of the lead.",
           "data/interim/ranking_loo.csv; docs/evidence_ranking.md", index)
 
 

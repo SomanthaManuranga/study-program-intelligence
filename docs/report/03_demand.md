@@ -25,16 +25,18 @@ Split by nationality, most of this growth comes from foreign students
 ([evidence_demand_split.md](../../docs/evidence_demand_split.md)). In Bavaria, German first-years in Informatik grew by
 {{informatik_by_german_growth}} a year (2019-2024) and foreign first-years by {{informatik_by_foreign_growth}};
 foreign students account for {{informatik_by_foreign_part}} of the growth. In Germany, German first-years changed by
-{{informatik_de_german_growth}} a year and foreign first-years by {{informatik_de_foreign_growth}}; foreign students
-were {{informatik_de_foreign_share_2025}} of all Informatik first-years in 2025. For the Bavarian cyber proxy, German
+{{informatik_de_german_growth}} a year and foreign first-years by {{informatik_de_foreign_growth}}; foreign-nationality
+students were {{informatik_de_foreign_share_2024}} of all Informatik first-years in 2024 ({{informatik_de_foreign_share_2025}}
+in 2025, inflated by the Bavarian G9 gap year). For the Bavarian cyber proxy, German
 first-years grew by {{cyber_proxy_by_german_growth}} a year (Germany {{cyber_proxy_de_german_growth}}), and foreign
-students made up {{cyber_proxy_by_foreign_share_2024}} of the proxy in 2024. At Bavarian universities of applied
-sciences the foreign share of Informatik first-years was {{haw_informatik_foreign_share}} (WS 2024/25).
+students made up {{cyber_proxy_by_foreign_share_2024}} of the proxy in 2024 (Bavarian universities of applied
+sciences, Informatik: {{haw_informatik_foreign_share}}).
 
 ("Foreign" is nationality; first-years include international master students, whose share cannot be measured at
 subject level.) For a German-language bachelor that recruits mainly German school leavers, the absolute growth is
-therefore much weaker than the headline figure. The relative position holds: among German first-years Informatik is still the
-strongest large EMI subject, and in Bavaria the only large one that grew. The forecast below continues the total trend,
+therefore much weaker than the headline figure. The relative position holds in Bavaria, where Informatik is the only
+large EMI subject that grew among German first-years; in Germany it is about level with Wirtschaftsinformatik, and both
+fall slightly. The forecast below continues the total trend,
 which is mostly international; for the German target group the conservative path is the more relevant one. The
 demand proxy itself is unchanged; the split enters the ranking as a sensitivity (Section 8).
 
@@ -93,7 +95,8 @@ degrees) rose from {{grads_de_2019}} (2019) to {{grads_de_2025}} (2025) in Germa
 
 ## Assessment
 
-Claim A holds for cybersecurity: the field it belongs to is the only large EMI field still growing, the Bavarian recruiting pool
+Claim A holds for cybersecurity: the field it belongs to is the only large EMI field still growing (mostly through
+foreign students; among German first-years it grows only in Bavaria), the Bavarian recruiting pool
 is projected to stay above its 2024 level, and supply near OTH is thin. **Strength: strong for the field trend,
 medium for cybersecurity itself**, because cyber demand is only visible through proxies and search interest has
 plateaued since 2022. For robotics the same proxies point the other way: its feeder subjects (Mechatronik,

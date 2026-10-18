@@ -116,7 +116,8 @@ def collect() -> Numbers:
             ("informatik_by_foreign_part", "Foreign part of the Informatik first-year growth, Bavaria 2019-2024", ("Informatik", "BY"), "foreign part of change %", pct0),
             ("cyber_proxy_by_foreign_part", "Foreign part of the cyber-proxy first-year growth, Bavaria 2019-2024", ("cyber proxy", "BY"), "foreign part of change %", pct0),
             ("cyber_proxy_by_foreign_share_2024", "Foreign share of cyber-proxy first-years, Bavaria 2024", ("cyber proxy", "BY"), "foreign share end %", pct0),
-            ("informatik_de_foreign_share_2025", "Foreign share of Informatik first-years, Germany 2025", ("Informatik", "DE"), "foreign share 2025 %", pct0)):
+            ("informatik_de_foreign_share_2025", "Foreign share of Informatik first-years, Germany 2025", ("Informatik", "DE"), "foreign share 2025 %", pct0),
+            ("informatik_de_foreign_share_2024", "Foreign share of Informatik first-years, Germany 2024", ("Informatik", "DE"), "foreign share end %", pct0)):
         v = float(st.at[idx, col])
         n.add(key, "A_demand", label, v, disp(v), s, unit="%", data="data/interim/demand_split.csv")
     ut = university_type().set_index("university type")
@@ -251,6 +252,10 @@ def collect() -> Numbers:
     won = int((g["winner"] == "cyber_bsc").sum())
     n.add("loo_german_cyber_wins", "F_ranking", "Leave-one-out runs won by the cyber B.Sc., German-only trend", won,
           f"{words[won]} of {words[len(g)]}", s, data="data/interim/ranking_loo.csv")
+    gw = g[g["winner"] == "cyber_bsc"]
+    lo = gw.loc[gw["P(rank 1) cyber_bsc"].idxmin()]
+    n.add("loo_german_min_cyber", "F_ranking", f"Lowest winning P(rank 1) of the cyber B.Sc., German-only leave-one-out (without {lo['criterion left out']})",
+          round(100 * lo["P(rank 1) cyber_bsc"], 1), f"{100 * lo['P(rank 1) cyber_bsc']:.1f} %", s, data="data/interim/ranking_loo.csv")
     gl = g[g["criterion left out"] == "labour_relevance"].iloc[0]
     for opt, key in (("cyber_msc", "loo_german_labour_msc"), ("cyber_bsc", "loo_german_labour_cyber")):
         p = 100 * float(gl[f"P(rank 1) {opt}"])
@@ -262,6 +267,7 @@ def collect() -> Numbers:
     ex, ap = oos[oos["method"].str.startswith("exact")], oos[oos["method"].str.startswith("approx")]
     for key, label, v in (("oth_outside_bavaria", "OTH German students with a school certificate from outside Bavaria (exact)", ex.at["OTH Amberg-Weiden", "share outside Bavaria %"]),
                           ("haw_outside_bavaria", "All Bavarian HAWs: German students with a certificate from outside Bavaria", ex.at["all HAWs in Bavaria", "share outside Bavaria %"]),
+                          ("oth_outside_bavaria_approx", "OTH: approx. share of German students from outside Bavaria (same method as THI/THD)", ap.at["OTH Amberg-Weiden", "approx. share outside Bavaria %"]),
                           ("thi_outside_bavaria_approx", "TH Ingolstadt: approx. share of German students from outside Bavaria", ap.at["TH Ingolstadt", "approx. share outside Bavaria %"]),
                           ("thd_outside_bavaria_approx", "TH Deggendorf: approx. share of German students from outside Bavaria", ap.at["TH Deggendorf", "approx. share outside Bavaria %"])):
         n.add(key, "B_capture", label, float(v), f"{float(v):.1f} %", s, unit="%", data="data/interim/out_of_state.csv")

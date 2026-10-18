@@ -15,7 +15,7 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 
 | | Result |
 |---|---|
-| Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run. With demand measured on German entrants only: first in ~78 %, just below the 80 % robustness bar |
+| Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run (base case; five of six with German-only demand trends). With demand measured on German entrants only: first in ~78 %, just below the 80 % robustness bar |
 | Expected first-years per year | **21 / 39 / 75** (low / central / high), year 1: 12 / 24 / 45 |
 | New to OTH (not taken from existing programmes) | **~82 %** in the central case (73-86 % across model variants; a model estimate that does not see OTH programmes without a security focus) |
 | Regional pool | ~5,500 qualified school leavers a year; no full-time dedicated cyber bachelor within ~80 km |

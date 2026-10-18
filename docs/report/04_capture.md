@@ -52,16 +52,16 @@ The ramp-up to the steady state over the first three intake years is an assumpti
 comparison, OTH's own first-year intake in engineering sciences including Informatik was {{oth_eng_firstyears}} in
 winter 2024/25 ([evidence_capture.md](../../docs/evidence_capture.md)).
 
-**Plausibility check, not an anchor.** No university of applied sciences with a dedicated cyber bachelor publishes
-first-years per programme. Two research universities do: Ruhr-Universität Bochum had {{rub_cyber_ba_firstyears}}
-first-years in IT-Sicherheit/Informationstechnik (2024), and Saarland University {{uds_cyber_ba_firstyears}} in its
-German-taught Cybersicherheit bachelor (WS 2025/26). TH Deggendorf's {{deg_cyber_anecdote}} lies inside that range and
-TH Ingolstadt's planned {{thi_cyber_capacity}} at its low end; the check does not narrow the range.
+**Plausibility check, not an anchor.** None of the universities of applied sciences with a dedicated cyber bachelor
+that we searched (a one-day search) publishes first-years per programme. Two research universities do: Ruhr-Universität
+Bochum had {{rub_cyber_ba_firstyears}} first-years in IT-Sicherheit/Informationstechnik (2024), and Saarland University
+{{uds_cyber_ba_firstyears}} in its German-taught Cybersicherheit bachelor (WS 2025/26); both count the first subject
+semester, including students who change subject. TH Deggendorf's {{deg_cyber_anecdote}} lies inside that range and TH
+Ingolstadt's planned {{thi_cyber_capacity}} below it; the check does not narrow the range.
 
-**A strong competitor in security.** TH Deggendorf's ministry contract 2023-2027 names its technology transfer centre
-for digital security in Vilshofen, which supports Bavarian firms on IT security
-([evidence_ministry_contracts.md](../../docs/evidence_ministry_contracts.md)). TH Deggendorf is therefore a stronger
-regional competitor in security than its programme list shows, and OT security is no differentiator against it.
+**A strong competitor in security.** TH Deggendorf's ministry contract 2023-2027 names its IT-security transfer centre
+in Vilshofen ([evidence_ministry_contracts.md](../../docs/evidence_ministry_contracts.md)), which supports the finding
+that OT security is no differentiator against it.
 
 {{fig:f04_capture}}
 
@@ -79,7 +79,7 @@ Claim B holds in the central and high scenarios and is borderline in the low one
 one anecdotal intake, because none of the comparable programmes we checked publishes its intake. One measured intake figure from TH
 Ingolstadt or TH Deggendorf would cut the range by about half. **Strength: medium.** Students from outside Bavaria are
 not modelled, but they matter little for this estimate: {{oth_outside_bavaria}} of OTH's German students gained their
-school-leaving certificate outside Bavaria (Bavarian universities of applied sciences: {{haw_outside_bavaria}}), about
-as many as at TH Ingolstadt ({{thi_outside_bavaria_approx}}, approximate) and TH Deggendorf
-({{thd_outside_bavaria_approx}}). Because the estimate is relative to those two universities, leaving them out shifts it
-by a few per cent at most.
+school-leaving certificate outside Bavaria (Bavarian universities of applied sciences: {{haw_outside_bavaria}}). On the
+same approximate method OTH has {{oth_outside_bavaria_approx}}, TH Ingolstadt {{thi_outside_bavaria_approx}} and TH
+Deggendorf {{thd_outside_bavaria_approx}}. Because the estimate is relative to those two universities, leaving them out
+shifts it by a few per cent at most (a reasoned bound, not tested).

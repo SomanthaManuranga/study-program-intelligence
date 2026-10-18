@@ -5,8 +5,8 @@
 Short answers for the presentation. Each answer has three parts: **Answer** (what to say), **Evidence** (where it is
 shown), **If pressed** (the honest limit). Numbers come from the key-numbers file, like the report.
 
-**Rehearse these five first:** Q10 (weak anchors), Q11 (low case), Q3 (winner chosen first?), Q19 (cannibalisation),
-Q25 (use of AI).
+**Rehearse these six first:** Q10 (weak anchors), Q11 (low case), Q3 (winner chosen first?), Q6 (demand is mostly
+foreign students), Q19 (cannibalisation), Q25 (use of AI).
 
 ## Question and scope
 
@@ -53,11 +53,15 @@ first list of candidates is the screening itself.
 ### Q4. Why were automation, energy and medical technology dropped so early?
 
 **Answer.** At the supply-gap stage we kept only themes that OTH does not already offer. OTH already has titled
-programmes in all three, and energy and medtech belong mainly to other faculties.
+programmes in all three, and energy and medtech belong mainly to other faculties. A later check wrote the two filters
+out as thresholds and applied them to all 18 themes, including data science, health informatics and energy
+informatics. On the same filters no theme came out stronger than cybersecurity; the next step was judged on titles
+only.
 
-**Evidence:** [evidence_competition_demand.md](evidence_competition_demand.md), [evidence_funnel.md](evidence_funnel.md).
+**Evidence:** [evidence_funnel.md](evidence_funnel.md), [evidence_theme_verdicts.md](evidence_theme_verdicts.md).
 
-**If pressed:** there is no separate written verdict for these three themes; the funnel document says so.
+**If pressed:** the thresholds were written after the screening, so they explain it rather than having been fixed
+before. Health/medical informatics passes both filters; its overlap with OTH's Medizintechnik was not tested.
 
 ### Q5. Robotics overlaps 50 % with your KI bachelor. Why was it not dropped?
 
@@ -82,10 +86,12 @@ Technische Informatik and Computer- und Kommunikationstechniken) was 4,936 in 20
 that level in the conservative forecast. Search interest only shows that cybersecurity is the largest specialist term
 we tracked, not that it grows.
 
-**Evidence:** [evidence_competition_demand.md](evidence_competition_demand.md), [evidence_forecast.md](evidence_forecast.md).
+**Evidence:** [evidence_competition_demand.md](evidence_competition_demand.md), [evidence_forecast.md](evidence_forecast.md),
+[evidence_demand_split.md](evidence_demand_split.md).
 
-**If pressed:** these are proxies, not cyber enrolments, and nationally Informatik has been flat since 2023; we label
-demand evidence "strong for the field, medium for cybersecurity itself".
+**If pressed:** 77 % of the Bavarian growth is foreign students, and in Germany German
+first-years changed by -0.2 % a year. Among German first-years Informatik is the only large
+EMI subject that grew in Bavaria; in Germany it is about level with Wirtschaftsinformatik. These are proxies, not cyber enrolments; we tested the split in the ranking (Q22).
 
 ### Q7. Your 2030 forecast is a "midpoint". Isn't that arbitrary?
 
@@ -131,7 +137,10 @@ little across all model variants.
 **Evidence:** [evidence_capture.md](evidence_capture.md), report Section 9 (limitation 1).
 
 **If pressed:** the high anchor comes from one review on studycheck.de; it is registered as weak evidence in
-`configs/sources.yaml`.
+`configs/sources.yaml`. As a plausibility check, two research universities publish per-programme figures:
+156 first-years at Ruhr-Uni Bochum and 42 at Saarland. The Deggendorf
+figure lies inside that range. None of the universities of applied sciences we searched publishes such figures; the
+two that do are research universities, not peers, so this is a check, not an anchor.
 
 ### Q11. In the low case you reach only 21 first-years. Is the programme viable?
 
@@ -164,7 +173,9 @@ intake relative to its competitors, and the cannibalisation shares), never for a
 **Evidence:** [evidence_capture.md](evidence_capture.md), [evidence_cannibalisation.md](evidence_cannibalisation.md).
 
 **If pressed:** the error is larger for TH Ingolstadt, so we do not know in which direction it shifts the ratio; we
-have not quantified it.
+have not quantified it. Students from outside Bavaria are not modelled either. Their share is measured: on the same
+approximate method 11.5 % of OTH's German students and 11.0 % at TH
+Ingolstadt; its effect on the estimate is small by reasoning, not tested.
 
 ## Fit and feasibility
 
@@ -196,9 +207,11 @@ exercise groups and thesis supervision, so the load may be higher.
 Deggendorf. The differentiation is regional reach: OTH has its own pool of about 5,500 school leavers a year, and
 91 % of its 100-km catchment is closer to OTH than to Deggendorf.
 
-**Evidence:** [evidence_catchment.md](evidence_catchment.md), [evidence_fit_modules.md](evidence_fit_modules.md).
+**Evidence:** [evidence_catchment.md](evidence_catchment.md), [evidence_fit_modules.md](evidence_fit_modules.md),
+[evidence_ministry_contracts.md](evidence_ministry_contracts.md).
 
-**If pressed:** the overlap with Nuremberg/Erlangen is large (only 42 % of the catchment is closer to
+**If pressed:** Deggendorf is strong in security beyond teaching: its ministry contract names an IT-security transfer
+centre in Vilshofen. The overlap with Nuremberg/Erlangen is large (only 42 % of the catchment is closer to
 OTH than to that hub), and counting OTH Regensburg as a competitor the own pool is 3,807.
 
 ## Outlet
@@ -267,26 +280,34 @@ sensitivity runs show how far the result depends on the weights.
 
 ### Q22. How robust is first place?
 
-**Answer.** The cyber bachelor ranks first in 91.7 % of the Monte Carlo draws and stays first
-whichever single criterion is left out; the lowest is 67.2 %, without demand. With independent capture
-draws it is 87.0 %.
+**Answer.** The cyber bachelor ranks first in 91.7 % of the Monte Carlo draws and, in the base
+case, stays first whichever single criterion is left out; the lowest is 67.2 %, without demand. With independent capture
+draws it is 87.0 %. With demand measured on German entrants only, for all three options, it still ranks
+first, but in 78.2 % of draws, just below our bar.
 
 **Evidence:** [evidence_ranking.md](evidence_ranking.md), report Section 8.
 
 **If pressed:** in the first ranking run, with robotics' skewed ranges, leaving out demand put robotics narrowly
 ahead (cyber bachelor and robotics: 49 % / 50 %); the 80 % bar was set when the results were reported, not before; and
-the lead rests mostly on demand and labour relevance.
+the lead rests mostly on demand and labour relevance. With German-only demand and labour relevance also left out, the
+master is narrowly ahead (50.1 % against 48.2 %).
 
 ### Q23. Why not start with the master?
 
 **Answer.** The master ranks second. It faces more competition (6 dedicated cyber masters within
 150 km, and Deggendorf already teaches OT security in its master), draws more from OTH's own programmes
 (22-37 %) and keeps few students in the region. We propose it as a follow-on once the bachelor produces its
-own graduates: a team judgement, not a model result.
+own graduates: a team judgement, not a model result. Taught in English, it could also reach foreign-nationality
+students, 40 % of computer-science first-years in Germany in 2024. For the bachelor our
+one data point is against English: Saarland's English-taught cyber bachelor had 3 first-years against
+42 in the German one (winter 2025/26).
 
-**Evidence:** [evidence_ranking.md](evidence_ranking.md), report Section 10.
+**Evidence:** [evidence_ranking.md](evidence_ranking.md), [evidence_demand_split.md](evidence_demand_split.md), report
+Section 10.
 
-**If pressed:** the master's demand model has one anchor (30 at TH Ingolstadt) and a borrowed spread.
+**If pressed:** the master's demand model has one anchor (30 at TH Ingolstadt) and a borrowed spread. With
+demand measured on German entrants the master gains (19.5 % first places), because German
+graduates in Informatik still grow (7.2 % a year in Bavaria).
 
 ## Limits and data access
 
@@ -299,8 +320,9 @@ permitted route or downloaded public files by hand.
 
 **Evidence:** report Appendix A1, [decision_log.md](decision_log.md).
 
-**If pressed:** students from Saxony and Thuringia are not in the catchment model, which on its own biases the
-estimate downward.
+**If pressed:** students from outside Bavaria are not in the catchment model; OTH's share is similar to that of the
+anchor universities: close to TH Ingolstadt's (11.5 % against 11.0 %) and
+above TH Deggendorf's 8.0 % (approximate), so the effect is small.
 
 ## Use of AI
 

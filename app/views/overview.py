@@ -5,7 +5,8 @@ from common import evidence, figure, metric, show
 st.title("Which new study programme should EMI offer?")
 st.markdown(
     f"**Answer: a Cybersecurity B.Sc.** It ranks first of three shortlisted options in **{show('p_rank1_cyber_bsc_base')}** "
-    f"of {show('mc_draws')} Monte Carlo draws, and stays first whichever single criterion is left out. "
+    f"of {show('mc_draws')} Monte Carlo draws and, in the base case, stays first whichever single criterion is left out; "
+    f"with demand trends judged on German entrants only it is first in {show('p_rank1_cyber_bsc_german')}. "
     "Public data only; preliminary until the analysis freeze on 4 Dec 2026."
 )
 

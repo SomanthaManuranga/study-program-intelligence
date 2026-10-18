@@ -18,8 +18,9 @@ change the conclusion:
    in Bavaria. The proxy itself was not split; the split enters the ranking as a sensitivity (Sections 3 and 8).
 3. **The capture model is simple.** Straight-line distances, Bavarian origins only, fixed total demand, and a Huff
    structure that understates substitution between near-identical programmes (Sections 4 and 7). Students from outside
-   Bavaria are missing, but OTH's share ({{oth_outside_bavaria}} of its German students) is close to that of the two
-   anchor universities, so the effect on the estimate is small. The model covers no international applicants, so it
+   Bavaria are missing, but OTH's share ({{oth_outside_bavaria_approx}} of its German students on the approximate
+   method; exact {{oth_outside_bavaria}}) is close to TH Ingolstadt's {{thi_outside_bavaria_approx}} and above TH
+   Deggendorf's {{thd_outside_bavaria_approx}}, so the effect on the relative estimate is small (reasoned, not tested). The model covers no international applicants, so it
    gives no intake estimate for an English-taught programme.
 4. **Uneven evidence across the options.** Robotics has no intake anchor and its fit and feasibility come from a
    title-level overlap check only; the master's demand model has one anchor and a borrowed spread. Both were handled by
@@ -41,15 +42,16 @@ change the conclusion:
     {{funnel_fields}} study fields; four of the rules were checked by hand, and themes outside these fields were not screened
     (Section 2). The written thresholds for all {{themes_all}} themes came after the first screening; health/medical
     informatics passes both filters, and its overlap with OTH's Medizintechnik was not tested.
-11. **English-taught option.** An English-taught cyber bachelor could reach the growing number of international
-    students, but the only data point is negative: at Saarland University the English-taught cyber bachelor had
+11. **English-taught option.** An English-taught cyber bachelor could reach the growing number of foreign-nationality
+    students (OTH's ministry contract reports that English-taught bachelors raised its international numbers in
+    general), but the only cyber data point is negative: at Saarland University the English-taught cyber bachelor had
     {{uds_cyber_en_firstyears}} first-years against {{uds_cyber_ba_firstyears}} in the German-taught one (WS 2025/26).
     No intake estimate is possible with our model (Section 10, proposal (a)).
 
 In the sensitivity runs we made (leave one criterion out, robotics with {{stress_share}} cannibalisation, independent
-capture draws, the skewed robotics range, demand measured on German entrants) the cyber bachelor stays first (lowest
-first-place share {{loo_min_cyber_bsc}}, without demand; {{p_rank1_cyber_bsc_german}} with German-only demand trends,
-just below the {{robustness_bar}} bar). Only when demand is measured on German entrants and labour relevance is also left
+capture draws, the skewed robotics range, demand measured on German entrants) the cyber bachelor stays first (base
+case: lowest first-place share {{loo_min_cyber_bsc}}, without demand; German-only demand trends: {{p_rank1_cyber_bsc_german}},
+just below the {{robustness_bar}} bar, and at least {{loo_german_min_cyber}} in the leave-one-out runs it still wins). Only when demand is measured on German entrants and labour relevance is also left
 out does the master move narrowly ahead; not every limitation was tested this way (for example, the cyber bachelor's own {{stress_share}}
 cannibalisation case was not run through the ranking). The weakest evidence concerns the options that rank behind the winner. They do matter for the size of
 the programme and for the decision to start: the intake range should be narrowed before committing resources

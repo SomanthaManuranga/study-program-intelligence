@@ -26,11 +26,10 @@ Deggendorf, our middle estimate is on the careful side.
 ## Two proposals (team judgement, not model results)
 
 **(a) The cybersecurity master later.** The master came second. We suggest offering it once the bachelor has its own
-graduates. It could then share the bachelor's staff and lab and recruit its graduates. Taught in English, it could
-also reach students from abroad, who are now {{informatik_de_foreign_share_2025}} of computer-science first-year
-students in Germany. For the bachelor, English-taught teaching looks weak on our evidence: at Saarland University the
-English-taught cyber bachelor had {{uds_cyber_en_firstyears}} first-year students, the German-taught one
-{{uds_cyber_ba_firstyears}}.
+graduates; it could then share its staff and lab, and recruit its graduates. Taught in English, it could also reach foreign students
+({{informatik_de_foreign_share_2024}} of computer-science first-years in Germany, 2024). An English-taught bachelor
+looks weak: at Saarland University it had {{uds_cyber_en_firstyears}} first-years in winter 2025/26, the German-taught
+one {{uds_cyber_ba_firstyears}}.
 
 **(b) Robotics inside the existing AI bachelor.** Robotics came last. {{robotics_overlap}} of its core topics are already
 taught in OTH's AI bachelor. If half of its students came from OTH, only {{robotics_netnew_cannib50}} a year (low /
