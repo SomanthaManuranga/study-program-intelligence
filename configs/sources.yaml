@@ -247,7 +247,7 @@ sources:
     url: see configs/intake_benchmark_documents.yaml
     table: first-years per programme (IT-Sicherheit/Informationstechnik; Cybersicherheit, Cybersecurity in English)
     use: plausibility check of the capture anchors (analysis/intake_benchmark.py); not an anchor
-    access: public PDFs via ingest/documents.py; manifest docs/intake_benchmark_manifest.json; no HAW with a dedicated cyber bachelor publishes such figures
+    access: public PDFs via ingest/documents.py; manifest docs/intake_benchmark_manifest.json; no HAW with a dedicated cyber bachelor that we searched (one-day search) publishes such figures
     status: downloaded
 
   - id: ministry_contracts_2023_2027

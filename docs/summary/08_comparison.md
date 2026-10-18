@@ -29,11 +29,12 @@ different weather and seeing which team usually wins.
 
 {{fig:f06_rank_probabilities}}
 
-**How sure are we?** First place is robust in the base case. Counting German students only, the demand score of the
-cybersecurity bachelor drops, and so does robotics'. The bachelor then comes first in {{p_rank1_cyber_bsc_german}} of
+**How sure are we?** First place is robust in the base case. If we judge the demand trend on German students only,
+the demand score of the cybersecurity bachelor drops, and so does robotics'. The bachelor then comes first in {{p_rank1_cyber_bsc_german}} of
 the scenarios, just below our bar for "robust", and the master in {{p_rank1_cyber_msc_german}}. Two more honest
 notes. In our first run, robotics' wide ranges were uneven and
 raised its average. Leaving out demand then made robotics and the cybersecurity bachelor about level
 ({{loo_first_run_tie}}). We made the ranges even,
-and the cybersecurity bachelor has stayed first in the main checks since. And the {{robustness_bar}} bar we use for "robust" was set when
+and the cybersecurity bachelor has stayed first in every check since except one (demand judged on German students
+and job relevance left out). And the {{robustness_bar}} bar we use for "robust" was set when
 we reported the results, not before.

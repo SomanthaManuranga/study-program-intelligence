@@ -43,7 +43,8 @@ use for a robust winner (a bar set when the results were reported, not before th
 
 ## Sensitivity
 
-- **Leave one criterion out.** Dropping each criterion in turn (and rescaling the others) never changes the winner.
+- **Leave one criterion out.** In the base case, dropping each criterion in turn (and rescaling the others) never
+  changes the winner (one exception with German-only trends, below).
   The lowest first-place share of the cyber bachelor is {{loo_min_cyber_bsc}} without student demand, then
   {{loo_labour_cyber_bsc}} without labour relevance and {{loo_diff_cyber_bsc}} without differentiation: **its lead rests
   mostly on demand and labour relevance**; demand is also where its evidence is best compared with the other options.
@@ -51,14 +52,13 @@ use for a robust winner (a bar set when the results were reported, not before th
   {{p1_independent}} of draws; the shared draw removes noise, it does not create the lead.
 - **Skewed robotics range.** With the first draft of the robotics scores (fit and feasibility 2 / 3 / 5, whose mean
   lies above 3) the cyber bachelor wins {{p_rank1_cyber_bsc_skew}}.
-- **Demand measured on German entrants only.** Most of the growth behind the demand trend scores is foreign students
-  (Section 3). Applying the trend anchor to German first-years or graduates only, for all three options, lowers the
-  trend score of the cyber bachelor (4 to 3) and of robotics (2 to 1); the master keeps 4, because German graduates in
-  Informatik still grow ({{grads_by_german_growth}} a year in Bavaria). The cyber bachelor then wins
-  {{p_rank1_cyber_bsc_german}} of draws, just below the {{robustness_bar}} bar; the master rises to
-  {{p_rank1_cyber_msc_german}} and robotics stays at {{p_rank1_robotics_bsc_german}}. Leaving out one criterion on top
-  of this, the bachelor stays first in {{loo_german_cyber_wins}} runs; without labour relevance the master is narrowly
-  ahead ({{loo_german_labour_msc}} against {{loo_german_labour_cyber}}).
+- **Demand measured on German entrants only** (Section 3). The trend anchor applied to German first-years or graduates,
+  for all three options (scores proposed by the AI assistant, pending the team's review), gives the cyber bachelor 3
+  instead of 4 and robotics 1 instead of 2; the master keeps 4, as German graduates in Informatik still grow
+  ({{grads_by_german_growth}} a year in Bavaria). The cyber bachelor then wins {{p_rank1_cyber_bsc_german}} of draws,
+  just below the {{robustness_bar}} bar (master {{p_rank1_cyber_msc_german}}, robotics {{p_rank1_robotics_bsc_german}}).
+  Leaving out one criterion on top, it stays first in {{loo_german_cyber_wins}} runs; without labour relevance the master
+  is narrowly ahead ({{loo_german_labour_msc}} against {{loo_german_labour_cyber}}).
 
 {{fig:f07_leave_one_out}}
 

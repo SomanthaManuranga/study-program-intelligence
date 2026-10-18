@@ -115,7 +115,7 @@ figures are research universities with large security institutes, not HAW peers.
   faculty only, latest Dec 2022).
 - Reading: dedicated cyber bachelors that publish figures attract between about 40 and 160 first-years a year. The
   Deggendorf figure of "about 60" (one student review) lies inside that range and is not implausible as a high anchor.
-  THI's planned 25 is at the low end. The check does not narrow the 21-75 range.
+  THI's planned 25 lies below that range. The check does not narrow the 21-75 range.
 - The 1st subject semester includes students who change subject, so these figures are slightly higher than true
   beginners.
 

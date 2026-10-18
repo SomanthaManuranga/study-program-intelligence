@@ -94,7 +94,8 @@ sensitivity.trend_german): Cyber B.Sc. 4 -> 3, Cyber/OT M.Sc. 4 -> 4, Robotics +
 | Cybersecurity M.Sc. | 6.0 % | 19.5 % |
 | Robotics + AI B.Sc. | 2.3 % | 2.4 % |
 
-Leave-one-criterion-out with German-only trends: the bachelor stays first in five of six runs; without labour
+Leave-one-criterion-out with German-only trends: the bachelor stays first in five of six runs (lowest 58.6 %,
+without differentiation); without labour
 relevance the master is narrowly ahead (50.1 % against 48.2 %).
 
 ## Evidence-strength matrix

@@ -22,7 +22,7 @@ Conditions for the recommendation:
 - **Profile:** a broad security bachelor with an industrial (OT) module and electives, using the English term
   "Cyber Security" in the name, which is how prospective students search (Section 3). OT is a useful accent, not a
   differentiator against TH Deggendorf. Taught in German, with English electives at most: an English-taught bachelor
-  is not supported by the evidence (Section 9).
+  is not supported as the main variant on the one cyber data point we have (Saarland, a research university; Section 9).
 - **Timing:** the first intake after accreditation, and not in a G9 gap year.
 
 ## Before the decision: narrow the intake range
@@ -37,10 +37,10 @@ against its own minimum cohort; if they are near the Deggendorf figure, the cent
 **(a) The Cyber/OT M.Sc. as a follow-on.** The master ranks second. We propose to offer it later, once the bachelor
 produces its own graduates: it would then build on the bachelor's staff and lab, recruit the bachelor's graduates and
 reduce cannibalisation of AI for Industrial Applications and IT und Automation. The second new professorship could
-carry its OT specialisation. Taught in English, the master could also reach international students, who now make up
-{{informatik_de_foreign_share_2025}} of computer-science first-years in Germany and who probably concentrate at master
-level. That fits a master better than a bachelor: at Saarland University the English-taught cyber bachelor had
-{{uds_cyber_en_firstyears}} first-years against {{uds_cyber_ba_firstyears}} in the German-taught one (WS 2025/26).
+carry its OT specialisation. Taught in English, it could also reach foreign-nationality students
+({{informatik_de_foreign_share_2024}} of computer-science first-years in Germany in 2024), who probably concentrate at
+master level; for an English-taught bachelor the one cyber data point is negative (Section 9). Whether an
+English master would do better is not measured.
 
 **(b) Robotics as a specialisation within the KI B.Sc.** Robotics + AI ranks last. {{robotics_overlap}} of its core
 topics are already taught in OTH's KI B.Sc., and if half of its students came from OTH programmes, only

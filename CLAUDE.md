@@ -52,7 +52,8 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: Step 56 defence Q&A. Done before it: data-sufficiency audit (docs/data_gap_audit.md) and its items G1, G3,
+Current: Step 56 defence Q&A, updated (Q4, Q6, Q10, Q13, Q16, Q22-Q24) and fact-checked (docs/data_sufficiency_review.md);
+waiting for Soma's review. Done before it: data-sufficiency audit (docs/data_gap_audit.md) and its items G1, G3,
 G4, G5. Open for review by Soma: the German-only trend scores in configs/scores.yaml (sensitivity.trend_german).
 Next fixed date: job-ad snapshot on 1 Nov 2026.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this

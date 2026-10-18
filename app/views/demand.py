@@ -19,7 +19,7 @@ metric("Foreign only, Bavaria, 2019-24 / yr", "informatik_by_foreign_growth", c[
 metric("German only, Germany, 2019-24 / yr", "informatik_de_german_growth", c[2])
 metric("Foreign part of the Bavarian growth", "informatik_by_foreign_part", c[3])
 st.caption("Most of the growth in Informatik first-years is foreign students. Among German first-years Informatik is "
-           "still the strongest large EMI subject, and in Bavaria the only large one that grew. 'Foreign' is nationality.")
+           "the only large EMI subject that grew in Bavaria; in Germany it is about level with Wirtschaftsinformatik. 'Foreign' is nationality.")
 
 figure("f01_demand_forecast")
 st.caption(f"Drift is the best model in all four series (MASE {show('forecast_mase_drift_by_cyber')} vs naive "

@@ -88,7 +88,7 @@ st.dataframe(pd.DataFrame({
     **{LABEL[o]: (100 * loo[f"P(rank 1) {o}"]).map(lambda v: f"{v:.1f} %") for o in OPTION},
 }), hide_index=True, width="stretch")
 c = st.columns(3)
-metric("Lowest first place (no demand)", "loo_min_cyber_bsc", c[0])
+metric("Lowest first place, base case (no demand)", "loo_min_cyber_bsc", c[0])
 metric("Robustness bar", "robustness_bar", c[1])
 metric("With independent capture draws", "p1_independent", c[2])
 figure("f07_leave_one_out")

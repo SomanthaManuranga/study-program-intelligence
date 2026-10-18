@@ -30,8 +30,7 @@ from.
 
 **Sensitivity check:** a test of whether the answer changes when one assumption is changed or left out.
 
-**University of applied sciences:** a practice-oriented university such as OTH; in Germany it is called a
-Hochschule für angewandte Wissenschaften.
+**University of applied sciences:** a practice-oriented university such as OTH (Hochschule für angewandte Wissenschaften).
 
 **Weights:** the importance given to each scoring point; they add up to one.
 
