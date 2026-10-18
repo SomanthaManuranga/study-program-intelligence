@@ -126,6 +126,11 @@ Forecasts validated with rolling-origin backtests (MASE).
 - report/build.py (Step 50): key_numbers.py -> reports/key_numbers.yaml (JOB_SNAPSHOT = date of the evidence-doc
   table; move to the frozen snapshot on 4 Dec), figures.py -> reports/figures/ (matplotlib, optional dep 'report'),
   outline.py -> reports/final/outline.md. Run after the analysis modules; numbers never typed by hand.
+- app/ (Step 52): Streamlit dashboard, local only: `streamlit run app/dashboard.py` (pages in app/views/, helpers in
+  app/common.py; numbers only from key_numbers.yaml / data/interim; ranking explorer calls analysis.ranking.simulate).
+  Tests: `python -m pytest tests/test_dashboard.py` (pages run, metrics = key numbers, explorer = report, weight 0 = LOO).
+  Screenshots for the presentation: `python app/screenshots.py` (dashboard must be running) -> reports/figures/dashboard/.
+  Preview in the desktop app: .claude/launch.json "dashboard" (when the session starts in this repo).
 - report/draft.py (Step 51): builds the report from docs/report/; fails on unknown placeholders or typed numbers
   (allowed patterns in report.yaml). pandoc via pypandoc_binary (.venv), PDF via MiKTeX xelatex. Title page still has
   placeholders for the second author and the supervisor. report/spotcheck.py: sentence-level spot check.
