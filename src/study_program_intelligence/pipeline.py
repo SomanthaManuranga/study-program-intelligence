@@ -55,6 +55,7 @@ BUILD = [
     ("transform.school_leavers", "transform", "transform.school_leavers", []),
     ("analysis.first_look", "analysis", "analysis.first_look", []),
     ("analysis.trends", "analysis", "analysis.trends", []),
+    ("analysis.theme_check:sample", "analysis", "analysis.theme_check", ["sample"]),   # only if the sheet is missing
     ("analysis.theme_check", "analysis", "analysis.theme_check", ["score"]),
     ("analysis.module_gaps", "analysis", "analysis.module_gaps", []),
     ("analysis.catchment:geo", "analysis", "analysis.catchment", ["geo"]),
@@ -76,6 +77,11 @@ MANUAL = [
     ("data/raw/oth modules", "*.pdf", "OTH module handbooks (OTH /fileadmin/ is disallowed for scripts)"),
     ("data/interim", "theme_labels_EN.xlsx", "hand-checked theme labels (Step 38; reviewed by the team)"),
 ]
+
+
+# Steps that only run when their output is missing (name -> file). The labelling sheet is rebuilt from the catalogue
+# with a fixed seed; it is never overwritten because the hand labels (theme_labels_EN.xlsx) are joined to its rows.
+ONLY_IF_MISSING = {"analysis.theme_check:sample": REPO_ROOT / "data" / "interim" / "theme_labels.xlsx"}
 
 
 def steps(args: argparse.Namespace) -> list[tuple]:
@@ -144,6 +150,10 @@ def main(argv: list[str] | None = None) -> int:
         for i, (name, stage, module, a) in enumerate(plan, 1):
             cmd = [sys.executable, "-m", P + module, *a]
             print(f"[{i:>2}/{len(plan)}] {name} ...", end=" ", flush=True)
+            if name in ONLY_IF_MISSING and ONLY_IF_MISSING[name].exists():
+                print("skipped (output exists)")
+                rows.append((stage, name, " ".join([f"python -m {P}{module}", *a]), "0", "skipped (output exists)"))
+                continue
             out.write(f"\n===== {name}: {' '.join(cmd[1:])}\n")
             out.flush()
             t = time.time()
