@@ -69,6 +69,7 @@ BUILD = [
     ("report.build", "report", "report.build", []),
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),
+    ("report.defence", "report", "report.defence", []),
 ]
 
 # Inputs that no script can download (robots.txt, no API, or human work); see README "Manual downloads".

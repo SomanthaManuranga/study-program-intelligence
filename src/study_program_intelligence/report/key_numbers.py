@@ -242,6 +242,7 @@ LITERALS = [
     ("M_method__cyber_precision", "Precision of the cybersecurity title rule (all matches checked)", 94, "94 %", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
     ("M_method__cyber_matches", "Cybersecurity title matches checked by hand", 70, "70", _TP, "| Cybersecurity | all 70 | 66 | 94 % |"),
     ("M_method__pairs_e5", "Module pairs judged correctly by e5 (hand check of 20)", 16, "16 of 20", _FM, "**16 of 20**"),
+    ("M_method__review_n_claims", "Statements checked in the independent claim review", 443, "443", "docs/review_verdicts.md", "docs/review_claims.md (443 claims"),
     ("M_method__method_agreement", "Agreement of e5 and TF-IDF on covered/gap labels", 74, "74 %", _FM, "The two methods agree on 74 % of covered/gap labels"),
     ("M_method__pairs_tfidf", "Module pairs judged correctly by TF-IDF (hand check of 20)", 14, "14 of 20", _FM, "**14 of 20**"),
     # A demand
@@ -276,6 +277,9 @@ LITERALS = [
     ("B_capture__home_share_actual", "OTH home-region share, actual (Tabelle 5)", 71, "71 %", _CA, "OTH: model 61 % vs actual 71 %"),
     ("B_capture__thi_implied", "THI cyber intake implied by the uncalibrated demand model", "59-173", "59-173", _CA, "implies 59-173 first-years"),
     ("B_capture__rel_capture_thi", "OTH intake relative to THI's, over all model variants", "0.65-0.86", "0.65-0.86 times", _CA, "OTH would draw 0.65-0.86 times THI's intake"),
+    ("B_capture__low_variant_range", "Low case across the nine model variants (THI-anchored)", "16-21", "16-21", _CA, "Ranges across the 9 model variants: low 16-21"),
+    ("B_capture__rel_capture_deg", "OTH intake relative to TH Deggendorf's, over all model variants", "1.20-1.28", "1.20-1.28 times", _CA, "1.20-1.28 times TH Deggendorf's"),
+    ("F_ranking__loo_first_run_tie", "First ranking run (skewed robotics range): leave out demand, cyber vs robotics", "49 / 50", "49 % / 50 %", "docs/decision_log.md", "tie with robotics 49 % / 50 %"),
     ("B_capture__oth_eng_firstyears", "OTH first-years in engineering sciences incl. Informatik, WS 2024/25", 452, "452", _CA, "engineering sciences (incl. Informatik) 452"),
     ("B_capture__year1_low", "Cyber B.Sc. first-years in year 1, low", 12, "12", _CA, "| 12 | 16 | **21** |"),
     ("B_capture__year1_central", "Cyber B.Sc. first-years in year 1, central", 24, "24", _CA, "| 24 | 31 | **39** |"),
