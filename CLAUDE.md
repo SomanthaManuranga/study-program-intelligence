@@ -72,12 +72,9 @@ Phase 4 (communication and reproducibility) plan, in order:
 Fixed dates: job-ad snapshots (ingest/jobsuche.py) on 1 Nov, 15 Nov and 1 Dec 2026; analysis freeze 4 Dec 2026 with
 a full pipeline rerun (then key numbers, figures, report, dashboard and slides are regenerated from the frozen data).
 
-Current: Step 52 (Streamlit dashboard). Status: open.
-Last finished: Step 51, report draft (2026-10-18): section texts docs/report/*.md (no typed numbers; {{key}},
-{{fig:...}}, {{table:...}}), settings docs/report/report.yaml, references docs/report/references.yaml;
-`python -m study_program_intelligence.report.draft` -> reports/final/report.md/.docx/.pdf (~23 pages main text);
-`python -m study_program_intelligence.report.spotcheck` (10 sentences, seed 20261018) passed (Soma).
-Public data only (no intake figures from universities).
+Current: Step 53 (slides for 11 Jan 2027). Status: open.
+Last finished: Step 52, dashboard (2026-10-18): app/ (local only), tests/test_dashboard.py (11 passed), screenshots in
+reports/figures/dashboard/; click-through passed (Soma). Public data only (no intake figures from universities).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN and CONTACT_EMAIL; load via ingest/documents.py load_env().
