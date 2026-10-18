@@ -82,6 +82,21 @@ Sensitivity lines (P(rank 1) cyber B.Sc. / M.Sc. / robotics):
 | Differentiation | 81.2 % | 3.3 % | 15.4 % | cyber B.Sc. | cyber B.Sc. 83.1 % |
 | Regional contribution | 87.8 % | 1.8 % | 10.4 % | cyber B.Sc. | cyber B.Sc. 88.7 % |
 
+## Sensitivity: demand trend scores from German entrants only (data-sufficiency audit G1)
+
+Most of the growth behind the demand trend scores is foreign entrants (docs/evidence_demand_split.md). The trend
+anchor was applied to German first-years / graduates only, for all three options (configs/scores.yaml,
+sensitivity.trend_german): Cyber B.Sc. 4 -> 3, Cyber/OT M.Sc. 4 -> 4, Robotics + AI B.Sc. 2 -> 1.
+
+| Option | P(rank 1), base | P(rank 1), German-only trend |
+|---|---|---|
+| Cybersecurity B.Sc. | 91.7 % | 78.2 % |
+| Cybersecurity M.Sc. | 6.0 % | 19.5 % |
+| Robotics + AI B.Sc. | 2.3 % | 2.4 % |
+
+Leave-one-criterion-out with German-only trends: the bachelor stays first in five of six runs; without labour
+relevance the master is narrowly ahead (50.1 % against 48.2 %).
+
 ## Evidence-strength matrix
 
 | Option | Demand: model | Demand: trend | Labour | Fit | Feasibility | Differentiation | Regional |
@@ -97,6 +112,8 @@ staffing or lab estimate. The master's demand model rests on one capacity figure
 
 - **The Cybersecurity B.Sc. ranks first in 92 % of draws (93 % if robotics cannibalises 50 %), above the 80 %
   robustness bar,** and it stays first whichever single criterion is left out.
+- **Less robust when demand is measured on German entrants:** with German-only trend scores for all three options the
+  bachelor is still first, but in 78.2 % of draws, just below the 80 % bar; the master rises to 19.5 %.
 - **The lead rests mostly on student demand and labour relevance.** Without demand its first-place probability falls
   to 67 % (robotics 31 %, helped by regional contribution and local jobs); without labour to 78 % (the master gains).
   Demand is also where the cyber evidence is best (rising Informatik entrants and graduates, two intake anchors) and

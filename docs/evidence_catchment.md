@@ -96,6 +96,11 @@ full-time cyber bachelor in the northern Oberpfalz / eastern Oberfranken has no 
 Illustration (cohort size is an assumption, not yet derived): 40-60 first-years would be 0.7-1.1 % of the own pool
 of 5,500 (1.1-1.6 % of the 3,800 without Regensburg), before counting students from further away.
 
+TH Deggendorf is a stronger regional competitor in security than its programme list alone shows: its ministry contract
+2023-2027 names the technology transfer centre Vilshofen (Bayerisches Zentrum für Digitale Sicherheit), which supports
+Bavarian firms on IT security (docs/evidence_ministry_contracts.md). This supports the advice that OT is no
+differentiator against TH Deggendorf; the differentiation score stays at 3.
+
 ## Caveats
 
 - School location, not residence; students also move across county lines for school.

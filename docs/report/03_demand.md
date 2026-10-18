@@ -19,6 +19,25 @@ subjects such as microelectronics also grow ([evidence_competition_demand.md](..
 Computer science also gains share: its part of all first-year students in Germany rose from {{informatik_share_2015}}
 in 2015 to {{informatik_share_2024}} in 2024 ([evidence_forecast.md](../../docs/evidence_forecast.md)).
 
+## The growth is mostly foreign students
+
+Split by nationality, most of this growth comes from foreign students
+([evidence_demand_split.md](../../docs/evidence_demand_split.md)). In Bavaria, German first-years in Informatik grew by
+{{informatik_by_german_growth}} a year (2019-2024) and foreign first-years by {{informatik_by_foreign_growth}};
+foreign students account for {{informatik_by_foreign_part}} of the growth. In Germany, German first-years changed by
+{{informatik_de_german_growth}} a year and foreign first-years by {{informatik_de_foreign_growth}}; foreign students
+were {{informatik_de_foreign_share_2025}} of all Informatik first-years in 2025. For the Bavarian cyber proxy, German
+first-years grew by {{cyber_proxy_by_german_growth}} a year (Germany {{cyber_proxy_de_german_growth}}), and foreign
+students made up {{cyber_proxy_by_foreign_share_2024}} of the proxy in 2024. At Bavarian universities of applied
+sciences the foreign share of Informatik first-years was {{haw_informatik_foreign_share}} (WS 2024/25).
+
+("Foreign" is nationality; first-years include international master students, whose share cannot be measured at
+subject level.) For a German-language bachelor that recruits mainly German school leavers, the absolute growth is
+therefore much weaker than the headline figure. The relative position holds: among German first-years Informatik is still the
+strongest large EMI subject, and in Bavaria the only large one that grew. The forecast below continues the total trend,
+which is mostly international; for the German target group the conservative path is the more relevant one. The
+demand proxy itself is unchanged; the split enters the ranking as a sensitivity (Section 8).
+
 ## Forecast of the recruiting pool
 
 We forecast the Bavarian "cyber proxy", the first-year students in Informatik, Technische Informatik and

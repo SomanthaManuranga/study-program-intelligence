@@ -1,0 +1,47 @@
+[
+  {
+    "id": "rub_firstyears_2024",
+    "owner": "Ruhr-Universität Bochum",
+    "title": "Studienanfänger im 1. Fachsemester im 2024 (Bericht ausgegeben am 31.03.2025)",
+    "url": "https://einrichtungen.ruhr-uni-bochum.de/sites/einrichtungen.ruhr-uni-bochum.de/files/2025-03/Studienanfaenger_im_1FS.pdf",
+    "mirror": false,
+    "file": "data/raw/intake_benchmark/rub_firstyears_2024.pdf",
+    "programme": "IT-Sicherheit / Informationstechnik B.Sc. (and M.Sc.), 398 km",
+    "version": "2024",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:17:50+00:00",
+    "content_type": "application/pdf",
+    "bytes": 674903,
+    "sha256": "58c4b10f48ce30191f3647d84b6c088ebdf0d43ba02cb38b566a3d792e82c633"
+  },
+  {
+    "id": "uds_faecher_ws2024",
+    "owner": "Universität des Saarlandes",
+    "title": "Studierendenstatistik zum Wintersemester 2024/25 nach Studienfächern",
+    "url": "https://www.uni-saarland.de/fileadmin/upload/universitaet/statistik/2024-ws/faecher.pdf",
+    "mirror": false,
+    "file": "data/raw/intake_benchmark/uds_faecher_ws2024.pdf",
+    "programme": "Cybersicherheit B.Sc.; Cybersecurity (English) B.Sc., 352 km",
+    "version": "WS 2024/25",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:17:58+00:00",
+    "content_type": "application/pdf",
+    "bytes": 492562,
+    "sha256": "21cf1cf9a619d40fcab11c43bab26d7134c267be31680deca659d1b480e7f392"
+  },
+  {
+    "id": "uds_faecher_ws2025",
+    "owner": "Universität des Saarlandes",
+    "title": "Studierendenstatistik zum Wintersemester 2025/26 nach Studienfächern (Endstand 30.11.2025)",
+    "url": "https://www.uni-saarland.de/fileadmin/upload/universitaet/statistik/2025-ws/faecher.pdf",
+    "mirror": false,
+    "file": "data/raw/intake_benchmark/uds_faecher_ws2025.pdf",
+    "programme": "Cybersicherheit B.Sc.; Cybersecurity (English) B.Sc., 352 km",
+    "version": "WS 2025/26",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-18T23:18:01+00:00",
+    "content_type": "application/pdf",
+    "bytes": 485725,
+    "sha256": "c6197e4d8ab0a612bda8562dc0f76aa03fd2b3bed0ddadcaf94178a81dfbf6fc"
+  }
+]

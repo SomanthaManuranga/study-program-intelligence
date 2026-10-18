@@ -76,7 +76,8 @@ matched topics on titles, and robotics' fit and feasibility rest on that title-l
 ### Q6. Official statistics have no cybersecurity subject. How can you say demand grows?
 
 **Answer.** Through the field it belongs to. Informatik is the only large EMI field still growing (Bavaria
-6.1 % a year, 2019-2024), and the Bavarian cyber-proxy pool (first-years in Informatik,
+6.1 % a year, 2019-2024), though mostly through foreign students: German first-years grew
+by 2.3 % a year in Bavaria. The Bavarian cyber-proxy pool (first-years in Informatik,
 Technische Informatik and Computer- und Kommunikationstechniken) was 4,936 in 2024 and stays above
 that level in the conservative forecast. Search interest only shows that cybersecurity is the largest specialist term
 we tracked, not that it grows.

@@ -51,6 +51,14 @@ use for a robust winner (a bar set when the results were reported, not before th
   {{p1_independent}} of draws; the shared draw removes noise, it does not create the lead.
 - **Skewed robotics range.** With the first draft of the robotics scores (fit and feasibility 2 / 3 / 5, whose mean
   lies above 3) the cyber bachelor wins {{p_rank1_cyber_bsc_skew}}.
+- **Demand measured on German entrants only.** Most of the growth behind the demand trend scores is foreign students
+  (Section 3). Applying the trend anchor to German first-years or graduates only, for all three options, lowers the
+  trend score of the cyber bachelor (4 to 3) and of robotics (2 to 1); the master keeps 4, because German graduates in
+  Informatik still grow ({{grads_by_german_growth}} a year in Bavaria). The cyber bachelor then wins
+  {{p_rank1_cyber_bsc_german}} of draws, just below the {{robustness_bar}} bar; the master rises to
+  {{p_rank1_cyber_msc_german}} and robotics stays at {{p_rank1_robotics_bsc_german}}. Leaving out one criterion on top
+  of this, the bachelor stays first in {{loo_german_cyber_wins}} runs; without labour relevance the master is narrowly
+  ahead ({{loo_german_labour_msc}} against {{loo_german_labour_cyber}}).
 
 {{fig:f07_leave_one_out}}
 
@@ -69,6 +77,7 @@ evidence widens a score's range without raising its centre.
 
 ## Assessment
 
-The Cybersecurity B.Sc. is a robust first choice. The master is more likely second ({{p_rank2_cyber_msc_base}} of draws; {{p_rank2_cyber_msc_rob50}} if robotics
+The Cybersecurity B.Sc. is a robust first choice in the base case; measured on German entrants only, its lead is
+smaller and falls just below the robustness bar, while it still ranks first. The master is more likely second ({{p_rank2_cyber_msc_base}} of draws; {{p_rank2_cyber_msc_rob50}} if robotics
 cannibalises {{stress_share}}), but this order is less robust than first place. The ranking is only as good as the score
 sheet; its weakest inputs are the intake anchors (all options) and the title-level evidence for robotics.

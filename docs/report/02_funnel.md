@@ -49,9 +49,15 @@ same curriculum.
 - **Robotics was kept although it sat exactly at the kill-rule threshold** ({{robotics_overlap}} of its core topics are
   already taught in the KI B.Sc.; kill rule 1 drops only candidates with {{kill_rule_1_threshold}}). It stayed in as the
   comparison case, which is why it was modelled in full.
-- **Weak point: stage 2 for automation, energy and medtech.** The screening table shows that OTH already offers each of
-  these themes, and they were not carried forward, but no separate written verdict exists for them. Energy and medtech
-  also belong mainly to other faculties.
+- **A written verdict for every theme.** Automation, energy and medtech were first dropped as "already at OTH" without
+  a written verdict, and five themes in the code (software engineering, sustainability, mobility, quantum, aerospace)
+  were never screened. A later check applied the same two filters, with thresholds written out, to all
+  {{themes_all}} themes including data science, health/medical informatics and energy informatics
+  ([evidence_theme_verdicts.md](../../docs/evidence_theme_verdicts.md)). It reproduces the funnel's outcome for almost
+  all original rows. Some new themes pass both filters, but each faces a likely kill rule 1 at title level, lies
+  outside EMI's subjects, or has no market evidence. Health/medical informatics is the closest case; its overlap with
+  OTH's Medizintechnik was not tested. The thresholds were written after the screening, so they explain it rather than
+  having been fixed before.
 - **Weak point: the screening relies on keyword rules on programme titles** in {{funnel_subjects}} subjects and
   {{funnel_fields}} catalogue study fields. The precision of the cybersecurity, robotics, AI/data and embedded rules was checked by hand (Section 1); the
   other rules were not checked, and themes outside these fields were not screened.

@@ -28,9 +28,9 @@ Done: evidence (Steps 37-45), modelling (Steps 46-49), key numbers / figures / r
 review (Steps 50-52, 54, 55), preliminary plain-English summary (Step 57 preliminary).
 
 Remaining work, in this order:
-0. Data-sufficiency audit (docs/data_gap_audit.md): waiting for Soma's approval; approved items are collected
-   before the freeze. Data only, no method re-evaluation (that is Phase 5). Then Step 56 defence Q&A (open;
-   docs/defence_qa.md, built by report/defence.py from docs/defence/qa.md).
+0. Step 56 defence Q&A (open; docs/defence_qa.md, built by report/defence.py from docs/defence/qa.md): bring it up
+   to date with the data-sufficiency results (German vs foreign demand, German-only ranking sensitivity, out-of-state
+   share, plausibility check, theme verdicts, ministry contracts, English-taught option).
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
    (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
    for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
@@ -52,8 +52,9 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: data-sufficiency audit, waiting for Soma's approval (decisions D1-D3 in the audit). Next fixed date: job-ad
-snapshot on 1 Nov 2026.
+Current: Step 56 defence Q&A. Done before it: data-sufficiency audit (docs/data_gap_audit.md) and its items G1, G3,
+G4, G5. Open for review by Soma: the German-only trend scores in configs/scores.yaml (sensitivity.trend_german).
+Next fixed date: job-ad snapshot on 1 Nov 2026.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
@@ -93,7 +94,10 @@ Forecasts validated with rolling-origin backtests (MASE).
   2018/19 missing), pdf_numbers.py (number splitting by the table's own arithmetic).
 - analysis/: themes.py + first_look.py (supply/demand), trends.py (Google Trends, manual CSVs), theme_check.py (hand
   labels in docs/theme_labels.csv), module_gaps.py (e5 + TF-IDF, CyBOK), catchment.py, labour.py, forecast.py,
-  capture.py, cannibalisation.py, options.py (same capture model for all three options), ranking.py (MCDA + Monte Carlo).
+  capture.py, cannibalisation.py, options.py (same capture model for all three options), ranking.py (MCDA + Monte Carlo;
+  sensitivities incl. German-only trend scores), demand_split.py (German vs foreign first-years / graduates),
+  out_of_state.py (students from outside Bavaria), intake_benchmark.py (published cyber intakes, plausibility check),
+  theme_verdicts.py (written verdict for every theme group).
 - report/: key_numbers.py (every number with its source doc, verbatim check), figures.py, outline.py, draft.py
   (docs/report/ -> reports/final/report.md/.docx/.pdf; fails on unknown placeholders or typed numbers; pandoc via
   pypandoc_binary, PDF via MiKTeX xelatex), spotcheck.py, claims.py (claim sheet for reviews).
@@ -104,7 +108,11 @@ Forecasts validated with rolling-origin backtests (MASE).
 
 ## Findings
 - Informatik is the only large EMI field still growing (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since
-  2023). Electrical and media fields shrink. Generic AI is crowded and OTH already offers it.
+  2023), but mostly through foreign students: German first-years +2.3 %/yr in Bavaria, -0.2 %/yr in Germany; foreign
+  students are 77 % of the Bavarian growth. Among German first-years Informatik is still the strongest large EMI
+  subject. Electrical and media fields shrink. Generic AI is crowded and OTH already offers it.
+- Every theme group (18, incl. data science, health informatics, energy informatics) has a written verdict with the
+  funnel's two filters; none is a stronger candidate than cybersecurity; health informatics is the closest new case.
 - Cybersecurity is the clearest gap: 31 BA / 32 MA dedicated programmes in Germany (hand-checked), 4 / 6 within 150 km,
   none at OTH; nearest full-time cyber bachelor TH Ingolstadt (82 km). 126 general programmes have a security focus
   area (18 within 150 km), incl. OTH's Medieninformatik and Industrie-4.0-Informatik.
@@ -125,4 +133,9 @@ Forecasts validated with rolling-origin backtests (MASE).
   formal test); robotics overlaps 50 % with the KI B.Sc.
 - Ranking: Cyber B.Sc. first in 91.7 % of draws (93.2 % with robotics at 50 % cannibalisation), first in every
   leave-one-out (lowest 67.2 % without demand). Master second, robotics last. Weak evidence widens ranges
-  symmetrically, never raises a score.
+  symmetrically, never raises a score. With German-only trend scores for all options: 78.2 % (below the 80 % bar),
+  master 19.5 %; without labour relevance on top, the master is narrowly ahead (50.1 % vs 48.2 %).
+- Out-of-state: 13.7 % of OTH's German students come from outside Bavaria, about as at THI and TH Deggendorf, so the
+  Bavaria-only capture model is barely biased. Published cyber intakes exist only at research universities (Bochum
+  156, Saarland 42; Saarland's English-taught bachelor 3): a plausibility check, not an anchor.
+- English-taught cyber bachelor: not supported; fits better as an English-taught master later (proposal (a)).

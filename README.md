@@ -15,11 +15,11 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 
 | | Result |
 |---|---|
-| Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run |
+| Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run. With demand measured on German entrants only: first in ~78 %, just below the 80 % robustness bar |
 | Expected first-years per year | **21 / 39 / 75** (low / central / high), year 1: 12 / 24 / 45 |
 | New to OTH (not taken from existing programmes) | **~82 %** in the central case (73-86 % across model variants; a model estimate that does not see OTH programmes without a security focus) |
 | Regional pool | ~5,500 qualified school leavers a year; no full-time dedicated cyber bachelor within ~80 km |
-| Demand trend | Bavarian first-years in the cyber-related subjects: 4,936 (2024); central planning value (midpoint of KMK scenario and trend) ~5,540 (2030), ~6,220 (2035) |
+| Demand trend | Bavarian first-years in the cyber-related subjects: 4,936 (2024); central planning value (midpoint of KMK scenario and trend) ~5,540 (2030), ~6,220 (2035). Most of the growth is foreign students: German first-years +1.9 % a year (2019-2024), foreign +12.8 % |
 | Labour market | IT occupations in Bavaria +24 % (2019-2023), +34 % with a degree; Informatik a shortage occupation at bachelor level in Germany (2025) |
 | Faculty fit | EMI covers ~71 % of the foundations but at most ~31 % of the security content |
 | Resources needed | ~2 new professorships, 1 lab engineer, 1 security lab |

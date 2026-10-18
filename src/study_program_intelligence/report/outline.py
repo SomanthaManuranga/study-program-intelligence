@@ -42,6 +42,8 @@ SECTIONS = [
      ["f01_demand_forecast.png", "f02_search_interest.png"], [
         "Informatik is the only growing EMI field: Bavaria +{informatik_firstyears_by_growth} per year (2019-2024); Germany "
         "{informatik_firstyears_de_2019} -> {informatik_firstyears_de_2025}, flat since 2023.",
+        "Mostly foreign students: {informatik_by_foreign_part} of the Bavarian growth; German first-years +{informatik_by_german_growth} per "
+        "year in Bavaria, {informatik_de_german_growth} in Germany (evidence_demand_split.md).",
         "Bavaria cyber proxy {cyber_proxy_by_2024} (2024) -> central {cyber_proxy_by_2030_central} (2030), {cyber_proxy_by_2035_central} (2035); "
         "conservative {cyber_proxy_by_2030_conservative} / {cyber_proxy_by_2035_conservative}. Central = midpoint, a planning choice.",
         "Model choice: drift is the best model in all four series (MASE {forecast_mase_drift_by_cyber} for Bavaria cyber proxy vs naive 3.17).",

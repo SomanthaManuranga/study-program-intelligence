@@ -12,7 +12,8 @@ ordered by how much they could change our answer.
 2. **Cybersecurity is measured indirectly.** No official statistic counts cybersecurity students. We read demand from
    computer science, from online searches and from job adverts.
 3. **The capture model is simple.** It uses straight-line distances and only students from Bavaria. Students from
-   Saxony, Thuringia and further away are missing, so this part makes our estimate too low rather than too high. The
+   outside Bavaria are missing. But they are only {{oth_outside_bavaria}} of OTH's German students, about as many as at
+   the other two universities, so this matters little. The
    model may also understate how many students move between two very similar programmes.
 4. **Uneven evidence.** For robotics we could not obtain a verified student number for a comparable programme. We assumed a
    wide range of first-year numbers for such a programme and gave its scores wider ranges.
@@ -24,13 +25,18 @@ ordered by how much they could change our answer.
    research profiles of OTH staff.
 8. **Job adverts are signals, not jobs.** One advert can mention several keywords, and the job board does not list
    every advert.
-9. **Missing sources.** Some databases and pages blocked automatic downloads or needed a login, or our login did not work. We
+9. **English-taught teaching.** An English-taught bachelor could reach students from abroad. But the one example we
+   found is weak: the English-taught cyber bachelor at Saarland University had {{uds_cyber_en_firstyears}} first-year
+   students, the German-taught one {{uds_cyber_ba_firstyears}}. Our model cannot estimate students from abroad.
+10. **Missing sources.** Some databases and pages blocked automatic downloads or needed a login, or our login did not work. We
    did not work around that. One school year is missing from the school-leaver data.
 
 **What we tested.** We left out each scoring point in turn. We assumed that robotics takes half its students from
-OTH. We let the student numbers of the options vary independently, and we gave robotics more favourable ranges. The
-winner did not change. Its lowest share of first places was {{loo_min_cyber_bsc}}. Not every limit was tested this way. For example,
-we did not rerun the ranking with half of the cybersecurity students coming from OTH.
+OTH. We let the student numbers of the options vary independently, and we gave robotics more favourable ranges. We
+also counted only German students. The cybersecurity bachelor stayed first; its lowest share of first places was
+{{loo_min_cyber_bsc}}. Only when we counted German students and also left out job relevance did the master come out
+narrowly ahead. Not every limit was tested this way. For example, we did not rerun the ranking with half of the
+cybersecurity students coming from OTH.
 
 **Bottom line.** The limits mainly affect how big the programme would be, not which option comes first. That is why our
 first recommendation is to get one real first-year number before deciding.

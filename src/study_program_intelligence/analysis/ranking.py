@@ -15,8 +15,9 @@ Per draw (10,000, seed 42):
     regional_contribution = 1 + 4 ln(max(c,1))/ln 16 (clipped 1-5);
   - feasibility gate: an option whose central feasibility rating is 1 is excluded (kill rule 2).
 Scenarios: base, and robotics with 50 % cannibalisation (Huff/IIA understates substitution with OTH's KI B.Sc.).
-Sensitivity: leave-one-criterion-out (weights renormalised), independent capture draws (no common factor), and the
-earlier skewed robotics fit/feasibility range 2 / 3 / 5.
+Sensitivity: leave-one-criterion-out (weights renormalised), independent capture draws (no common factor), the
+earlier skewed robotics fit/feasibility range 2 / 3 / 5, and demand trend scores from German first-years / graduates
+only (scores.yaml sensitivity.trend_german, all three options).
 Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/ranking_loo.csv.
 """
 
@@ -55,9 +56,13 @@ def tri_ppf(u, lo, mode, hi):
     return np.where(u < f, lo + np.sqrt(u * (hi - lo) * (mode - lo)), hi - np.sqrt((1 - u) * (hi - lo) * (hi - mode)))
 
 
-def load(robotics_cannib_50: bool = False, robotics_skew: bool = False) -> tuple[dict, dict, dict]:
+def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_trend: bool = False) -> tuple[dict, dict, dict]:
     cfg = yaml.safe_load(ANALYSIS.read_text(encoding="utf-8"))
-    sc = yaml.safe_load(SCORES.read_text(encoding="utf-8"))["options"]
+    sheet = yaml.safe_load(SCORES.read_text(encoding="utf-8"))
+    sc = sheet["options"]
+    if german_trend:  # sensitivity: trend anchor applied to German first-years / graduates only (all options)
+        for o, t in sheet["sensitivity"]["trend_german"].items():
+            sc[o]["student_demand"]["trend"].update(t)
     if robotics_skew:  # sensitivity: the earlier skewed 2 / 3 / 5 for robotics fit and feasibility (mean 3.33)
         for k in ("institutional_fit", "feasibility"):
             sc["robotics_bsc"][k].update(low=2, central=3, high=5)
@@ -155,16 +160,21 @@ def main() -> None:
     rob50 = summarise(simulate(cfg50, sc50, cap50, cfg50["weights"]))
     cfgs, scs, caps = load(robotics_skew=True)
     skew = summarise(simulate(cfgs, scs, caps, cfgs["weights"]))
+    cfgg, scg, capg = load(german_trend=True)
+    german = summarise(simulate(cfgg, scg, capg, cfgg["weights"]))
+    detg, loog = deterministic(cfgg, scg, capg), leave_one_out(cfgg, scg, capg)
     det, det50 = deterministic(cfg, sc, cap), deterministic(cfg50, sc50, cap50)
     loo, loo50 = leave_one_out(cfg, sc, cap), leave_one_out(cfg50, sc50, cap50)
     gate = [o for o in sc if sc[o]["feasibility"]["central"] <= 1]
     mat = strength_matrix(sc)
     out = pd.concat([base.assign(scenario="base"), rob50.assign(scenario="robotics 50 % cannibalisation"),
                      indep.assign(scenario="base, independent capture draws"),
-                     skew.assign(scenario="base, robotics fit/feasibility 2/3/5")])
+                     skew.assign(scenario="base, robotics fit/feasibility 2/3/5"),
+                     german.assign(scenario="base, trend scores from German first-years only")])
     SUMMARY.parent.mkdir(parents=True, exist_ok=True)
     out.to_csv(SUMMARY, index=False)
-    pd.concat([loo.assign(scenario="base"), loo50.assign(scenario="robotics 50 % cannibalisation")]).to_csv(LOO, index=False)
+    pd.concat([loo.assign(scenario="base"), loo50.assign(scenario="robotics 50 % cannibalisation"),
+               loog.assign(scenario="base, trend scores from German first-years only")]).to_csv(LOO, index=False)
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join([
         "# MCDA + Monte Carlo ranking (generated)", "",
@@ -175,11 +185,13 @@ def main() -> None:
         "## Robotics with 50 % cannibalisation", "", "Central scores:", "", _md(det50), "", _md(rob50), "",
         "## Sensitivity: independent capture draws (no common factor)", "", _md(indep), "",
         "## Sensitivity: robotics fit and feasibility 2 / 3 / 5 (skewed, earlier draft)", "", _md(skew), "",
+        "## Sensitivity: demand trend scores from German first-years / graduates only (all options)", "",
+        "Central scores:", "", _md(detg), "", _md(german), "", "Leave-one-criterion-out:", "", _md(loog), "",
         "## Leave-one-criterion-out (base)", "", _md(loo), "",
         "## Leave-one-criterion-out (robotics 50 %)", "", _md(loo50), "",
         "## Evidence strength", "", _md(mat), ""]), encoding="utf-8")
     pd.set_option("display.width", 250)
-    for name, df in (("central", det), ("base", base), ("central rob50", det50), ("rob50", rob50), ("independent", indep), ("skew 2/3/5", skew),
+    for name, df in (("central", det), ("base", base), ("central rob50", det50), ("rob50", rob50), ("independent", indep), ("skew 2/3/5", skew), ("German trend", german), ("central German", detg),
                      ("LOO base", loo), ("LOO rob50", loo50), ("strength", mat)):
         print(f"\n== {name}\n{df.to_string(index=False)}")
     print(f"\nWritten: {REPORT.relative_to(REPO_ROOT)}, {SUMMARY.relative_to(REPO_ROOT)}")

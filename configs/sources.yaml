@@ -232,3 +232,28 @@ sources:
     use: weak upper anchor of the capture model (Step 47)
     access: public page, read once; anecdotal, not a statistic
     status: used as weak evidence only
+
+  # Added in the data-sufficiency audit (G1, G3, G4, contracts).
+  - id: destatis_nationality_split
+    owner: Statistisches Bundesamt (GENESIS)
+    url: https://www-genesis.destatis.de/ (tables 21311-0012, 21311-0015, 21321-0003, 21321-0006, 21311-0002)
+    table: first-years and passed exams by nationality (German / foreign) and subject; students by university campus
+    use: demand by nationality (analysis/demand_split.py), German students per university (analysis/out_of_state.py)
+    access: GENESIS REST, already cached in data/raw/destatis (no new download)
+    status: downloaded
+
+  - id: intake_benchmark
+    owner: Ruhr-Universität Bochum; Universität des Saarlandes
+    url: see configs/intake_benchmark_documents.yaml
+    table: first-years per programme (IT-Sicherheit/Informationstechnik; Cybersicherheit, Cybersecurity in English)
+    use: plausibility check of the capture anchors (analysis/intake_benchmark.py); not an anchor
+    access: public PDFs via ingest/documents.py; manifest docs/intake_benchmark_manifest.json; no HAW with a dedicated cyber bachelor publishes such figures
+    status: downloaded
+
+  - id: ministry_contracts_2023_2027
+    owner: Bayerisches Staatsministerium für Wissenschaft und Kunst
+    url: see configs/ministry_documents.yaml (wissenschaftkunst.bayern.de/download/...)
+    table: Hochschulverträge 2023-2027 of OTH Amberg-Weiden, TH Deggendorf, TH Ingolstadt
+    use: exact wording on programmes, IT security and digitalisation (docs/evidence_ministry_contracts.md)
+    access: public PDFs via ingest/documents.py; manifest docs/ministry_manifest.json
+    status: downloaded

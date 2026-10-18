@@ -73,6 +73,52 @@ reference, THI runs its cyber bachelor with a planned capacity of 25.
 | Central | 39 | 24 | yes | yes |
 | High | 75 | 45 | yes | yes |
 
+## Students from outside Bavaria (data-sufficiency audit G4)
+
+Tables: `reports/out_of_state.md` (`python -m study_program_intelligence.analysis.out_of_state`). LfStat WS 2024/25
+Tabelle 4 gives German students by the state where they gained their school-leaving certificate, per university only
+for a selection that includes OTH; Tabelle 5 with Destatis 21311-0002 gives an approximate share for every state HAW.
+
+| University | German students | Certificate outside Bavaria | Method |
+|---|---|---|---|
+| OTH Amberg-Weiden | 2,667 | 13.7 % (365; of them Sachsen + Thüringen 43, Baden-Württemberg 98) | exact (Tabelle 4) |
+| All HAWs in Bavaria | 117,923 | 19.8 % | exact (Tabelle 4) |
+| OTH Amberg-Weiden | 2,667 | 11.5 % | approximate |
+| TH Ingolstadt | 5,346 | 11.0 % | approximate |
+| TH Deggendorf | 4,638 | 8.0 % | approximate |
+
+The approximation counts foreigners with a Bavarian certificate as Bavarian, so it is slightly too low (OTH: 11.5 %
+against the exact 13.7 %).
+
+- OTH draws fewer German students from outside Bavaria than the average Bavarian HAW, and about as many as the two
+  anchor universities.
+- Because the intake estimate is OTH relative to THI and TH Deggendorf, leaving out non-Bavarian students shifts it by
+  a few per cent at most. The earlier caveat ("biases the estimate downward") is therefore small, not a material
+  downward bias.
+- Students from Saxony and Thuringia are 1.6 % of OTH's German students; the border location does not bring many.
+
+## Plausibility check: published intakes elsewhere (data-sufficiency audit G3)
+
+A time-boxed search (one day) for dedicated cyber bachelors that publish first-years per programme. Table:
+`reports/intake_benchmark.md` (`python -m study_program_intelligence.analysis.intake_benchmark`); documents in
+configs/intake_benchmark_documents.yaml. **A plausibility check, not an anchor:** both universities that publish such
+figures are research universities with large security institutes, not HAW peers.
+
+| University | Programme | Term | First-years (1st subject semester) |
+|---|---|---|---|
+| Ruhr-Universität Bochum | IT-Sicherheit / Informationstechnik B.Sc. | 2024 | 156 |
+| Universität des Saarlandes | Cybersicherheit B.Sc. (German) | WS 2024/25 / WS 2025/26 | 44 / 42 |
+| Universität des Saarlandes | Cybersecurity B.Sc. (English) | WS 2024/25 / WS 2025/26 | 4 / 3 |
+
+- No HAW with a dedicated cyber bachelor publishes first-years per programme (searched: Bonn-Rhein-Sieg, Mittweida,
+  Esslingen, Mittelhessen, Offenburg, Niederrhein, Lübeck, THI, TH Deggendorf; TH Deggendorf publishes students per
+  faculty only, latest Dec 2022).
+- Reading: dedicated cyber bachelors that publish figures attract between about 40 and 160 first-years a year. The
+  Deggendorf figure of "about 60" (one student review) lies inside that range and is not implausible as a high anchor.
+  THI's planned 25 is at the low end. The check does not narrow the 21-75 range.
+- The 1st subject semester includes students who change subject, so these figures are slightly higher than true
+  beginners.
+
 ## Reading for the argument
 
 - Claim B: an OTH cyber bachelor is **viable in the central and high scenarios and borderline in the low one**. The
@@ -83,7 +129,8 @@ reference, THI runs its cyber bachelor with a planned capacity of 25.
 
 ## Caveats
 
-- Only Bavarian counties are modelled; students from Saxony/Thuringia and from outside the region add to OTH's intake.
+- Only Bavarian counties are modelled. Students from outside Bavaria add to every university's intake; OTH's share
+  (13.7 % of German students) is close to that of the anchor universities, so the effect on the relative estimate is small.
 - The gravity calibration uses all subjects and Bezirk-level flows; cyber students may travel differently.
 - The anchors are a planned capacity (THI) and an anecdote (Deggendorf), not measured intakes.
 - Secondary competitors are identified from a ~400-character teaser (Step 38) and are incomplete.

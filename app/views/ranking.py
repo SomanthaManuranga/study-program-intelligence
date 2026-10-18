@@ -24,7 +24,8 @@ def reset() -> None:
 
 left, right = st.columns([1, 2])
 with left:
-    scenario = st.radio("Scenario", ["Base", "Robotics with 50 % cannibalisation"], horizontal=False)
+    scenario = st.radio("Scenario", ["Base", "Robotics with 50 % cannibalisation", "Demand trend from German entrants only"],
+                        horizontal=False)
     for k in BASE:
         st.slider(k.replace("_", " "), 0.0, 0.6, step=0.05, key=f"s_{k}")
     st.button("Reset to the chosen weights", on_click=reset)
@@ -32,8 +33,8 @@ with left:
 
 
 @st.cache_data(show_spinner="Running 10,000 draws ...")
-def run(weights: tuple, rob50: bool) -> pd.DataFrame:
-    c, sc, cap = ranking.load(robotics_cannib_50=rob50)
+def run(weights: tuple, rob50: bool, german: bool) -> pd.DataFrame:
+    c, sc, cap = ranking.load(robotics_cannib_50=rob50, german_trend=german)
     w = dict(weights)
     if all(abs(w[k] - c["weights"][k]) < 1e-9 for k in c["weights"]):
         w = c["weights"]                                   # exactly the report's run
@@ -47,7 +48,7 @@ weights = st.session_state.w
 if sum(weights.values()) == 0:
     st.warning("All weights are zero.")
     st.stop()
-res = run(tuple(weights.items()), scenario != "Base").set_index("option").loc[list(OPTION)]
+res = run(tuple(weights.items()), scenario.startswith("Robotics"), scenario.startswith("Demand")).set_index("option").loc[list(OPTION)]
 
 with right:
     is_base = all(abs(weights[k] - BASE[k]) < 1e-9 for k in BASE)
@@ -73,10 +74,15 @@ with right:
     if is_base and scenario == "Base":
         st.caption(f"Report: {show('p_rank1_cyber_bsc_base')} / {show('p_rank1_cyber_msc_base')} / "
                    f"{show('p_rank1_robotics_bsc_base')} first place.")
+    if is_base and scenario.startswith("Demand"):
+        st.caption(f"Report: {show('p_rank1_cyber_bsc_german')} / {show('p_rank1_cyber_msc_german')} / "
+                   f"{show('p_rank1_robotics_bsc_german')} first place. Trend scores from German first-years / graduates "
+                   "only, for all three options (cyber B.Sc. 4 to 3, master 4, robotics 2 to 1).")
 
 st.subheader("Leave one criterion out (chosen weights)")
 loo = csv("ranking_loo.csv")
-loo = loo[loo["scenario"] == ("base" if scenario == "Base" else "robotics 50 % cannibalisation")]
+loo = loo[loo["scenario"] == {"Base": "base", "Robotics with 50 % cannibalisation": "robotics 50 % cannibalisation"}.get(
+    scenario, "base, trend scores from German first-years only")]
 st.dataframe(pd.DataFrame({
     "Criterion left out": loo["criterion left out"].str.replace("_", " "),
     **{LABEL[o]: (100 * loo[f"P(rank 1) {o}"]).map(lambda v: f"{v:.1f} %") for o in OPTION},

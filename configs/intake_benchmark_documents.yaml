@@ -1,0 +1,30 @@
+# Published first-year figures of dedicated cyber programmes (data-sufficiency audit G3, time-boxed to one day).
+# A plausibility check of the anchors, NOT a new anchor: both universities are research universities, not HAW peers.
+# Downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/intake_benchmark_documents.yaml \
+#       --out "data/raw/intake_benchmark" --manifest docs/intake_benchmark_manifest.json --pdf-only
+# Public PDFs only, robots.txt respected, 3 s delay. No HAW with a dedicated cyber bachelor publishes per-programme
+# first-years (searched: Bonn-Rhein-Sieg, Mittweida, Esslingen, Mittelhessen, Offenburg, Niederrhein, Lübeck, THI,
+# TH Deggendorf); stated as a limitation.
+
+documents:
+  - id: rub_firstyears_2024
+    owner: Ruhr-Universität Bochum
+    programme: IT-Sicherheit / Informationstechnik B.Sc. (and M.Sc.), 398 km
+    title: Studienanfänger im 1. Fachsemester im 2024 (Bericht ausgegeben am 31.03.2025)
+    version: "2024"
+    url: https://einrichtungen.ruhr-uni-bochum.de/sites/einrichtungen.ruhr-uni-bochum.de/files/2025-03/Studienanfaenger_im_1FS.pdf
+
+  - id: uds_faecher_ws2024
+    owner: Universität des Saarlandes
+    programme: Cybersicherheit B.Sc.; Cybersecurity (English) B.Sc., 352 km
+    title: Studierendenstatistik zum Wintersemester 2024/25 nach Studienfächern
+    version: "WS 2024/25"
+    url: https://www.uni-saarland.de/fileadmin/upload/universitaet/statistik/2024-ws/faecher.pdf
+
+  - id: uds_faecher_ws2025
+    owner: Universität des Saarlandes
+    programme: Cybersicherheit B.Sc.; Cybersecurity (English) B.Sc., 352 km
+    title: Studierendenstatistik zum Wintersemester 2025/26 nach Studienfächern (Endstand 30.11.2025)
+    version: "WS 2025/26"
+    url: https://www.uni-saarland.de/fileadmin/upload/universitaet/statistik/2025-ws/faecher.pdf

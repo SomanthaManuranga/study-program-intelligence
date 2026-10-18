@@ -16,6 +16,10 @@ trend way continues the growth of the past years. As a planning value we took th
 
 - Computer science is the only large subject of the faculty that grew: in Bavaria by
   {{informatik_firstyears_by_growth}} a year (2019-2024), with a dip in 2024. In Germany it has been level since 2023.
+- Most of that growth is students from abroad. In Bavaria, foreign students made up {{informatik_by_foreign_part}} of
+  the growth. German first-year students grew by only {{informatik_by_german_growth}} a year in Bavaria, and in Germany
+  they changed by {{informatik_de_german_growth}}. Among German students, computer science is still the strongest
+  large subject of the faculty.
 - Our proxy was {{cyber_proxy_by_2024}} first-year students in Bavaria in 2024. The careful forecast gives
   {{cyber_proxy_by_2030_conservative}} for 2030, the middle value {{cyber_proxy_by_2030_central}}.
 - Online, people search for "Cyber Security Studium" more often than for the AI and robotics degree terms
@@ -24,7 +28,8 @@ trend way continues the growth of the past years. As a planning value we took th
 {{fig:f01_demand_forecast}}
 
 **How sure are we?** Fairly sure for the field as a whole, less sure for cybersecurity itself, because we can only
-measure it through the wider field.
+measure it through the wider field. A German-taught bachelor draws mainly German students, and their numbers grow much
+more slowly.
 
 ## 6.2 Would students come to OTH?
 
@@ -59,6 +64,13 @@ in a hundred of OTH's own school leavers.
 capacity and one student review. One real first-year number from TH Ingolstadt or TH Deggendorf would make the range
 about half as wide.
 
+- Students from outside Bavaria are not in the model, but they matter little. They are {{oth_outside_bavaria}} of
+  OTH's German students, about as many as at the other two universities.
+- No university of applied sciences publishes its numbers. Two research universities do: {{rub_cyber_ba_firstyears}}
+  and {{uds_cyber_ba_firstyears}} first-year students a year. So the {{deg_cyber_anecdote}} from the student review is believable
+  as a high figure. This is a check, not a new anchor.
+- TH Deggendorf also runs a regional centre for IT security, so it is a strong competitor in this field.
+
 ## 6.3 Can OTH teach it?
 
 **What we asked.** How much of a cybersecurity programme does the faculty already teach, and what is missing?
@@ -78,6 +90,8 @@ figures are probably on the high side.
 - An estimated {{new_professorships}}, a lab engineer, outside teachers for law and security management, and a
   separate security lab would close the gap. A draft course
   plan has {{draft_security_ects}} security credits (**ECTS**) out of 210 ECTS.
+
+OTH's agreement with the state ministry names IT security as one of its research fields.
 
 **How sure are we?** Fairly sure about the module comparison; we checked a sample of its decisions by hand. The staff figure is an estimate, and we
 have not estimated the cost of the lab.
