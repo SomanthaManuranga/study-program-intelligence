@@ -12,6 +12,10 @@ Output: data/processed/programmes.csv        one row per programme offer (id)
 One programme can appear in several study fields (e.g. Informatik and
 Wirtschaftsinformatik). programmes.csv keeps it once; programme_fields.csv
 keeps every field it was found in.
+
+Re-scope (R4): `--set full` builds the same tables from the full catalogue harvest (configs/studiensuche_full.yaml,
+data/raw/studiensuche_full) into programmes_full.csv, programme_fields_full.csv and docs/programmes_full_summary.md.
+The default set (13 fields) is the baseline and is not changed.
 """
 
 from __future__ import annotations
@@ -105,11 +109,11 @@ def _level(st) -> str:
     return {0: "first degree", 1: "further degree"}.get(st, "other")
 
 
-def build() -> tuple[pd.DataFrame, pd.DataFrame]:
-    queries = {q["id"]: q for q in yaml.safe_load(CONFIG.read_text(encoding="utf-8"))["queries"]}
+def build(raw: Path = RAW, config: Path = CONFIG) -> tuple[pd.DataFrame, pd.DataFrame]:
+    queries = {q["id"]: q for q in yaml.safe_load(config.read_text(encoding="utf-8"))["queries"]}
     rows, links = [], []
     for qid, q in queries.items():
-        for page in sorted((RAW / qid).glob("page_*.json")):
+        for page in sorted((raw / qid).glob("page_*.json")):
             payload = json.loads(page.read_text(encoding="utf-8"))
             for item in payload.get("items", []):
                 row = parse_item(item)
@@ -135,12 +139,12 @@ def _only_oth(fields: pd.DataFrame) -> int:
     return len(oth - in_fields)
 
 
-def summary(progs: pd.DataFrame, fields: pd.DataFrame, listings: int) -> str:
+def summary(progs: pd.DataFrame, fields: pd.DataFrame, listings: int, full: bool = False) -> str:
     lines = [
-        "# Programme catalogue summary",
+        "# Programme catalogue summary" + (" (full catalogue)" if full else ""),
         "",
-        "Source: Hochschulkompass data via BA Studiensuche API; raw pages in data/raw/studiensuche/ (local).",
-        "Built by `python -m study_program_intelligence.transform.programmes`.",
+        f"Source: Hochschulkompass data via BA Studiensuche API; raw pages in data/raw/{'studiensuche_full' if full else 'studiensuche'}/ (local).",
+        "Built by `python -m study_program_intelligence.transform.programmes" + (" --set full`." if full else "`."),
         "",
         f"- Listings retrieved: {listings:,}",
         f"- Unique programme offers: {len(progs):,}",
@@ -164,15 +168,23 @@ def summary(progs: pd.DataFrame, fields: pd.DataFrame, listings: int) -> str:
     return "\n".join(lines) + "\n"
 
 
-def main() -> int:
-    progs, fields = build()
+def main(argv: list[str] | None = None) -> int:
+    import argparse
+    ap = argparse.ArgumentParser(description="programme table from the Studiensuche harvest")
+    ap.add_argument("--set", choices=["baseline", "full"], default="baseline")
+    full = ap.parse_args(argv).set == "full"
+    raw = REPO_ROOT / "data" / "raw" / "studiensuche_full" if full else RAW
+    config = REPO_ROOT / "configs" / "studiensuche_full.yaml" if full else CONFIG
+    sfx = "_full" if full else ""
+    progs, fields = build(raw, config)
     OUT.mkdir(parents=True, exist_ok=True)
-    progs.to_csv(OUT / "programmes.csv", index=False, encoding="utf-8")
-    fields.to_csv(OUT / "programme_fields.csv", index=False, encoding="utf-8")
-    SUMMARY.write_text(summary(progs, fields, len(fields)), encoding="utf-8")
+    progs.to_csv(OUT / f"programmes{sfx}.csv", index=False, encoding="utf-8")
+    fields.to_csv(OUT / f"programme_fields{sfx}.csv", index=False, encoding="utf-8")
+    summary_path = REPO_ROOT / "docs" / f"programmes{sfx}_summary.md"
+    summary_path.write_text(summary(progs, fields, len(fields), full), encoding="utf-8")
     print(f"{len(progs):,} unique programme offers from {len(fields):,} listings")
     print(f"OTH Amberg-Weiden offers: {int(progs['is_oth'].sum())}")
-    print("Written: data/processed/programmes.csv, data/processed/programme_fields.csv, docs/programmes_summary.md")
+    print(f"Written: data/processed/programmes{sfx}.csv, data/processed/programme_fields{sfx}.csv, {summary_path.relative_to(REPO_ROOT).as_posix()}")
     return 0
 
 

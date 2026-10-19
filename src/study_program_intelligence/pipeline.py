@@ -41,6 +41,7 @@ DOC_LISTS = [  # (config, out folder, manifest, pdf only)
     ("configs/anchor_documents.yaml", "data/raw/anchors", "docs/anchor_manifest.json", True),
     ("configs/intake_benchmark_documents.yaml", "data/raw/intake_benchmark", "docs/intake_benchmark_manifest.json", True),
     ("configs/ministry_documents.yaml", "data/raw/ministry", "docs/ministry_manifest.json", True),
+    ("configs/oth_handbooks_documents.yaml", "data/raw/oth handbooks 2026", "docs/oth_handbooks_manifest.json", True),
 ]
 
 # (step name, stage, module, arguments)
@@ -48,11 +49,16 @@ INGEST = [("ingest.documents", "ingest", "ingest.documents", [])] + [
     (f"ingest.documents:{Path(c).stem}", "ingest", "ingest.documents",
      ["--config", c, "--out", o, "--manifest", m] + (["--pdf-only"] if pdf else [])) for c, o, m, pdf in DOC_LISTS
 ] + [("ingest.genesis", "ingest", "ingest.genesis", ["tables"]),
-     ("ingest.studiensuche", "ingest", "ingest.studiensuche", ["harvest"])]
+     ("ingest.studiensuche", "ingest", "ingest.studiensuche", ["harvest"]),
+     ("ingest.studiensuche:full", "ingest", "ingest.studiensuche",
+      ["harvest", "--config", "configs/studiensuche_full.yaml", "--out", "data/raw/studiensuche_full",
+       "--manifest", "docs/studiensuche_full_manifest.json"])]
 SNAPSHOT = [("ingest.jobsuche", "ingest", "ingest.jobsuche", ["snapshot"])]
 BUILD = [
     ("transform.programmes", "transform", "transform.programmes", []),
+    ("transform.programmes:full", "transform", "transform.programmes", ["--set", "full"]),
     ("transform.modules", "transform", "transform.modules", []),
+    ("transform.modules:emi2026", "transform", "transform.modules", ["--set", "emi2026"]),
     ("transform.thm_modules", "transform", "transform.thm_modules", []),
     ("transform.school_leavers", "transform", "transform.school_leavers", []),
     ("analysis.first_look", "analysis", "analysis.first_look", []),
