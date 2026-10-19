@@ -20,3 +20,12 @@ teachability:   # screen for rare TITLE types, not a feasibility test (that is F
          handbook, catalogue texts centred as their own group)
   review: the 40 highest-scoring rare title types go to a hand review (proposed by Claude, confirmed by Soma)
           for EMI teachability and for overlap with an existing OTH programme
+
+# AMENDMENT (before any result; reason: a dry count showed 2,872 of 2,996 exact normalised titles at <= 3 institutions,
+# i.e. exact titles measure wording, not rarity):
+primary_type: topic
+topic: >-
+  a content word of the normalised titles (letters only, at least 5 characters, not a German or English stop word) that
+  appears in the full-time titles of at most 3 institutions in Germany; all offers whose title contains the word form the
+  type (e.g. "motorsport"). Words that appear at more institutions are common by definition. The subject and exact-title
+  counts are still reported.
