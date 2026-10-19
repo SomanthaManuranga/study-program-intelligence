@@ -41,8 +41,8 @@ review (Steps 50-52, 54, 55), defence Q&A (Step 56), preliminary plain-English s
 data-sufficiency audit with its collected items.
 
 Remaining work, in this order:
-0. Re-scope to existing resources (Scope constraint 1): plan in docs/rescope_plan.md, waiting for Soma's approval
-   (decisions R1-R6). No code changes before approval. The current results become "baseline: with new resources".
+0. Re-scope to existing resources (Scope constraint 1): plan in docs/rescope_plan.md (approved), timeline there
+   (decisions R1-R6). The current results are the "baseline: with new resources" (tag baseline-new-resources).
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
    (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
    for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
@@ -64,7 +64,8 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope plan (item 0), waiting for Soma's approval. Next fixed date: job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
+Current: re-scope week 1 (plan approved; feasibility rule pre-registered; baseline tagged; EMI handbooks downloaded;
+full catalogue harvest running). Next: parse the new handbooks. Fixed date: job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
@@ -79,7 +80,8 @@ check is not recorded yet. Title page of the report: second author and superviso
 - Scraping: respect robots.txt (allowed_by_robots in ingest/documents.py), User-Agent with CONTACT_EMAIL, delay 2 s for
   the APIs and at least 3 s (or the site's Crawl-delay) for documents, cache raw replies, record every source in
   configs/sources.yaml and a manifest in docs/. Hochschulkompass search pages and OTH /fileadmin/ are disallowed ->
-  manual download by me.
+  manual download by me. OTH /files/ (current module handbooks) is allowed and fetched by script. Check robots.txt
+  before fetching any page of a new host, also for one-off checks.
 - Anything blocked by robots.txt or a login: do not work around it; skip it and state it as a limitation.
 - Professors are shown as neutral labels (Prof. A-N), never by name; OTH person pages are not read.
 - Every method decision goes into docs/decision_log.md (date, decision, reason, decided by).

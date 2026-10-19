@@ -1,0 +1,1267 @@
+# Full BA Studiensuche catalogue: every study field (90) at both levels (re-scope R4: rarity of programme types).
+# Generated from data/raw/studiensuche/studienfelder.json. Harvested by:
+#   python -m study_program_intelligence.ingest.studiensuche harvest --config configs/studiensuche_full.yaml \
+#       --out data/raw/studiensuche_full --manifest docs/studiensuche_full_manifest.json
+# Kept separate from configs/studiensuche.yaml (13-field harvest), which the baseline uses.
+
+queries:
+- id: f2101_ba
+  label: Agrarwissenschaften (first degree)
+  field_key: '2101'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93701;93796
+    st: 0
+- id: f2101_ma
+  label: Agrarwissenschaften (further degree)
+  field_key: '2101'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93701;93796
+    st: 1
+- id: f2103_ba
+  label: Ernährungswissenschaften (first degree)
+  field_key: '2103'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93986;93802
+    st: 0
+- id: f2103_ma
+  label: Ernährungswissenschaften (further degree)
+  field_key: '2103'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93986;93802
+    st: 1
+- id: f2105_ba
+  label: Forstwissenschaften, -wirtschaft (first degree)
+  field_key: '2105'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 94163;94014
+    st: 0
+- id: f2105_ma
+  label: Forstwissenschaften, -wirtschaft (further degree)
+  field_key: '2105'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 94163;94014
+    st: 1
+- id: f2107_ba
+  label: Garten-, Landschaftsbau (first degree)
+  field_key: '2107'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93858;94010
+    st: 0
+- id: f2107_ma
+  label: Garten-, Landschaftsbau (further degree)
+  field_key: '2107'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 93858;94010
+    st: 1
+- id: f2109_ba
+  label: Lebensmittel-, Getränketechnologie (first degree)
+  field_key: '2109'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 94329;93757
+    st: 0
+- id: f2109_ma
+  label: Lebensmittel-, Getränketechnologie (further degree)
+  field_key: '2109'
+  group: Agrar-, Forst-, Ernährungswissenschaften
+  params:
+    sfe: 94329;93757
+    st: 1
+- id: f2301_ba
+  label: Architektur, Raumplanung (first degree)
+  field_key: '2301'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93936;93958
+    st: 0
+- id: f2301_ma
+  label: Architektur, Raumplanung (further degree)
+  field_key: '2301'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93936;93958
+    st: 1
+- id: f2303_ba
+  label: Automatisierungs-, Produktionstechnik (first degree)
+  field_key: '2303'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94030;93598
+    st: 0
+- id: f2303_ma
+  label: Automatisierungs-, Produktionstechnik (further degree)
+  field_key: '2303'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94030;93598
+    st: 1
+- id: f2305_ba
+  label: Bautechnik (first degree)
+  field_key: '2305'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93819;93690
+    st: 0
+- id: f2305_ma
+  label: Bautechnik (further degree)
+  field_key: '2305'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93819;93690
+    st: 1
+- id: f2306_ba
+  label: Chemietechnik (first degree)
+  field_key: '2306'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 136538;136539
+    st: 0
+- id: f2306_ma
+  label: Chemietechnik (further degree)
+  field_key: '2306'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 136538;136539
+    st: 1
+- id: f2307_ba
+  label: Elektro- und Informationstechnik (first degree)
+  field_key: '2307'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93970;93853
+    st: 0
+- id: f2307_ma
+  label: Elektro- und Informationstechnik (further degree)
+  field_key: '2307'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93970;93853
+    st: 1
+- id: f2309_ba
+  label: Energietechnik, Energiemanagement (first degree)
+  field_key: '2309'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94362;94319
+    st: 0
+- id: f2309_ma
+  label: Energietechnik, Energiemanagement (further degree)
+  field_key: '2309'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94362;94319
+    st: 1
+- id: f2311_ba
+  label: Fahrzeug-, Verkehrstechnik (first degree)
+  field_key: '2311'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94324;94394
+    st: 0
+- id: f2311_ma
+  label: Fahrzeug-, Verkehrstechnik (further degree)
+  field_key: '2311'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94324;94394
+    st: 1
+- id: f2313_ba
+  label: Fertigungstechnologien (first degree)
+  field_key: '2313'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93815;94121
+    st: 0
+- id: f2313_ma
+  label: Fertigungstechnologien (further degree)
+  field_key: '2313'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93815;94121
+    st: 1
+- id: f2315_ba
+  label: Gebäude-, Versorgungstechnik, Facility-Management (first degree)
+  field_key: '2315'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93751;94262
+    st: 0
+- id: f2315_ma
+  label: Gebäude-, Versorgungstechnik, Facility-Management (further degree)
+  field_key: '2315'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93751;94262
+    st: 1
+- id: f2317_ba
+  label: Geoinformation, Vermessung (first degree)
+  field_key: '2317'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94420;94056
+    st: 0
+- id: f2317_ma
+  label: Geoinformation, Vermessung (further degree)
+  field_key: '2317'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94420;94056
+    st: 1
+- id: f2319_ba
+  label: Maschinenbau, Mechanik (first degree)
+  field_key: '2319'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94114;93999
+    st: 0
+- id: f2319_ma
+  label: Maschinenbau, Mechanik (further degree)
+  field_key: '2319'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94114;93999
+    st: 1
+- id: f2321_ba
+  label: Mechatronik, Mikro- und Optotechnik (first degree)
+  field_key: '2321'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93896;94237
+    st: 0
+- id: f2321_ma
+  label: Mechatronik, Mikro- und Optotechnik (further degree)
+  field_key: '2321'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93896;94237
+    st: 1
+- id: f2323_ba
+  label: Medien-, Veranstaltungstechnik (first degree)
+  field_key: '2323'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94145;94284
+    st: 0
+- id: f2323_ma
+  label: Medien-, Veranstaltungstechnik (further degree)
+  field_key: '2323'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94145;94284
+    st: 1
+- id: f2325_ba
+  label: Medizintechnik, Technisches Gesundheitswesen (first degree)
+  field_key: '2325'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93584;94187
+    st: 0
+- id: f2325_ma
+  label: Medizintechnik, Technisches Gesundheitswesen (further degree)
+  field_key: '2325'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93584;94187
+    st: 1
+- id: f2327_ba
+  label: Nanowissenschaften (first degree)
+  field_key: '2327'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94231;94378
+    st: 0
+- id: f2327_ma
+  label: Nanowissenschaften (further degree)
+  field_key: '2327'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94231;94378
+    st: 1
+- id: f2329_ba
+  label: Physikalische Technik (first degree)
+  field_key: '2329'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94269;93918
+    st: 0
+- id: f2329_ma
+  label: Physikalische Technik (further degree)
+  field_key: '2329'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94269;93918
+    st: 1
+- id: f2331_ba
+  label: Produktentwicklung, Konstruktion (first degree)
+  field_key: '2331'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93795;93574
+    st: 0
+- id: f2331_ma
+  label: Produktentwicklung, Konstruktion (further degree)
+  field_key: '2331'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93795;93574
+    st: 1
+- id: f2333_ba
+  label: Qualitätsmanagement (first degree)
+  field_key: '2333'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94408;93627
+    st: 0
+- id: f2333_ma
+  label: Qualitätsmanagement (further degree)
+  field_key: '2333'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94408;93627
+    st: 1
+- id: f2335_ba
+  label: Rohstoffgewinnung, Hüttenwesen (first degree)
+  field_key: '2335'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93907;93772
+    st: 0
+- id: f2335_ma
+  label: Rohstoffgewinnung, Hüttenwesen (further degree)
+  field_key: '2335'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93907;93772
+    st: 1
+- id: f2337_ba
+  label: Sicherheit und Gefahrenabwehr, Rettungsingenieurwesen (first degree)
+  field_key: '2337'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94120;94383
+    st: 0
+- id: f2337_ma
+  label: Sicherheit und Gefahrenabwehr, Rettungsingenieurwesen (further degree)
+  field_key: '2337'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94120;94383
+    st: 1
+- id: f2339_ba
+  label: Technik, Ingenieurwissenschaften (übergreifend) (first degree)
+  field_key: '2339'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94307;93592
+    st: 0
+- id: f2339_ma
+  label: Technik, Ingenieurwissenschaften (übergreifend) (further degree)
+  field_key: '2339'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94307;93592
+    st: 1
+- id: f2341_ba
+  label: Umwelttechnik, Umweltschutz (first degree)
+  field_key: '2341'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94256;93861
+    st: 0
+- id: f2341_ma
+  label: Umwelttechnik, Umweltschutz (further degree)
+  field_key: '2341'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 94256;93861
+    st: 1
+- id: f2343_ba
+  label: Verfahrenstechnik (first degree)
+  field_key: '2343'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93724;94204
+    st: 0
+- id: f2343_ma
+  label: Verfahrenstechnik (further degree)
+  field_key: '2343'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93724;94204
+    st: 1
+- id: f2345_ba
+  label: Werkstoff-, Materialwissenschaften (first degree)
+  field_key: '2345'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93850;94143
+    st: 0
+- id: f2345_ma
+  label: Werkstoff-, Materialwissenschaften (further degree)
+  field_key: '2345'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93850;94143
+    st: 1
+- id: f2347_ba
+  label: Wirtschaftsingenieurwesen, Technologiemanagement (first degree)
+  field_key: '2347'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93814;93581
+    st: 0
+- id: f2347_ma
+  label: Wirtschaftsingenieurwesen, Technologiemanagement (further degree)
+  field_key: '2347'
+  group: Ingenieurwissenschaften
+  params:
+    sfe: 93814;93581
+    st: 1
+- id: f2501_ba
+  label: Angewandte Naturwissenschaften (first degree)
+  field_key: '2501'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94405;94249
+    st: 0
+- id: f2501_ma
+  label: Angewandte Naturwissenschaften (further degree)
+  field_key: '2501'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94405;94249
+    st: 1
+- id: f2503_ba
+  label: Bio-, Umweltwissenschaften (first degree)
+  field_key: '2503'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93901;93935
+    st: 0
+- id: f2503_ma
+  label: Bio-, Umweltwissenschaften (further degree)
+  field_key: '2503'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93901;93935
+    st: 1
+- id: f2505_ba
+  label: Chemie, Pharmazie (first degree)
+  field_key: '2505'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94374;93928
+    st: 0
+- id: f2505_ma
+  label: Chemie, Pharmazie (further degree)
+  field_key: '2505'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94374;93928
+    st: 1
+- id: f2507_ba
+  label: Geowissenschaften, -technologie (first degree)
+  field_key: '2507'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93649;94179
+    st: 0
+- id: f2507_ma
+  label: Geowissenschaften, -technologie (further degree)
+  field_key: '2507'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93649;94179
+    st: 1
+- id: f2509_ba
+  label: Informatik (first degree)
+  field_key: '2509'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94116;93995
+    st: 0
+- id: f2509_ma
+  label: Informatik (further degree)
+  field_key: '2509'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94116;93995
+    st: 1
+- id: f2511_ba
+  label: Mathematik, Statistik (first degree)
+  field_key: '2511'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94144;94403
+    st: 0
+- id: f2511_ma
+  label: Mathematik, Statistik (further degree)
+  field_key: '2511'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 94144;94403
+    st: 1
+- id: f2513_ba
+  label: Physik (first degree)
+  field_key: '2513'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93825;93651
+    st: 0
+- id: f2513_ma
+  label: Physik (further degree)
+  field_key: '2513'
+  group: Mathematik, Naturwissenschaften
+  params:
+    sfe: 93825;93651
+    st: 1
+- id: f2701_ba
+  label: Biomedizin, Neurowissenschaften (first degree)
+  field_key: '2701'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94373;93720
+    st: 0
+- id: f2701_ma
+  label: Biomedizin, Neurowissenschaften (further degree)
+  field_key: '2701'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94373;93720
+    st: 1
+- id: f2703_ba
+  label: Gesundheitswissenschaften (first degree)
+  field_key: '2703'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 93891;94197
+    st: 0
+- id: f2703_ma
+  label: Gesundheitswissenschaften (further degree)
+  field_key: '2703'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 93891;94197
+    st: 1
+- id: f2705_ba
+  label: Human-, Tier-, Zahnmedizin (first degree)
+  field_key: '2705'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 93698;93575
+    st: 0
+- id: f2705_ma
+  label: Human-, Tier-, Zahnmedizin (further degree)
+  field_key: '2705'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 93698;93575
+    st: 1
+- id: f2706_ba
+  label: Pflegepraxis, -management, -pädagogik (first degree)
+  field_key: '2706'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 138468;138478
+    st: 0
+- id: f2706_ma
+  label: Pflegepraxis, -management, -pädagogik (further degree)
+  field_key: '2706'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 138468;138478
+    st: 1
+- id: f2707_ba
+  label: Psychologie (first degree)
+  field_key: '2707'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94393;93804
+    st: 0
+- id: f2707_ma
+  label: Psychologie (further degree)
+  field_key: '2707'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94393;93804
+    st: 1
+- id: f2709_ba
+  label: Sport (first degree)
+  field_key: '2709'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94098;93685
+    st: 0
+- id: f2709_ma
+  label: Sport (further degree)
+  field_key: '2709'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94098;93685
+    st: 1
+- id: f2711_ba
+  label: Therapien (first degree)
+  field_key: '2711'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94037;93871
+    st: 0
+- id: f2711_ma
+  label: Therapien (further degree)
+  field_key: '2711'
+  group: Medizin, Gesundheitswissenschaften, Psychologie, Sport
+  params:
+    sfe: 94037;93871
+    st: 1
+- id: f2901_ba
+  label: Automobilwirtschaft (first degree)
+  field_key: '2901'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94304;94384
+    st: 0
+- id: f2901_ma
+  label: Automobilwirtschaft (further degree)
+  field_key: '2901'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94304;94384
+    st: 1
+- id: f2903_ba
+  label: Bau-, Immobilienwirtschaft (first degree)
+  field_key: '2903'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94228;94252
+    st: 0
+- id: f2903_ma
+  label: Bau-, Immobilienwirtschaft (further degree)
+  field_key: '2903'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94228;94252
+    st: 1
+- id: f2905_ba
+  label: Betriebswirtschaft (first degree)
+  field_key: '2905'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94008;94158
+    st: 0
+- id: f2905_ma
+  label: Betriebswirtschaft (further degree)
+  field_key: '2905'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94008;94158
+    st: 1
+- id: f2907_ba
+  label: Finanz- und Rechnungswesen, Controlling, Steuern (first degree)
+  field_key: '2907'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93659;93818
+    st: 0
+- id: f2907_ma
+  label: Finanz- und Rechnungswesen, Controlling, Steuern (further degree)
+  field_key: '2907'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93659;93818
+    st: 1
+- id: f2909_ba
+  label: Finanzdienstleistungen, Versicherungswirtschaft (first degree)
+  field_key: '2909'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93909;94020
+    st: 0
+- id: f2909_ma
+  label: Finanzdienstleistungen, Versicherungswirtschaft (further degree)
+  field_key: '2909'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93909;94020
+    st: 1
+- id: f2911_ba
+  label: Gesundheitsmanagement, -ökonomie (first degree)
+  field_key: '2911'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93989;93846
+    st: 0
+- id: f2911_ma
+  label: Gesundheitsmanagement, -ökonomie (further degree)
+  field_key: '2911'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93989;93846
+    st: 1
+- id: f2913_ba
+  label: Handel, Industrie, Handwerk (first degree)
+  field_key: '2913'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94087;93718
+    st: 0
+- id: f2913_ma
+  label: Handel, Industrie, Handwerk (further degree)
+  field_key: '2913'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94087;93718
+    st: 1
+- id: f2915_ba
+  label: Internationale Wirtschaft (first degree)
+  field_key: '2915'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94375;94221
+    st: 0
+- id: f2915_ma
+  label: Internationale Wirtschaft (further degree)
+  field_key: '2915'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94375;94221
+    st: 1
+- id: f2917_ba
+  label: Logistik, Verkehr (first degree)
+  field_key: '2917'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93953;93904
+    st: 0
+- id: f2917_ma
+  label: Logistik, Verkehr (further degree)
+  field_key: '2917'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93953;93904
+    st: 1
+- id: f2919_ba
+  label: Management (first degree)
+  field_key: '2919'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94000;93719
+    st: 0
+- id: f2919_ma
+  label: Management (further degree)
+  field_key: '2919'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94000;93719
+    st: 1
+- id: f2921_ba
+  label: Marketing, Vertrieb (first degree)
+  field_key: '2921'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93977;93736
+    st: 0
+- id: f2921_ma
+  label: Marketing, Vertrieb (further degree)
+  field_key: '2921'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93977;93736
+    st: 1
+- id: f2923_ba
+  label: Medienwirtschaft, -management (first degree)
+  field_key: '2923'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93799;93739
+    st: 0
+- id: f2923_ma
+  label: Medienwirtschaft, -management (further degree)
+  field_key: '2923'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93799;93739
+    st: 1
+- id: f2925_ba
+  label: Personalmanagement, -dienstleistung (first degree)
+  field_key: '2925'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94178;93900
+    st: 0
+- id: f2925_ma
+  label: Personalmanagement, -dienstleistung (further degree)
+  field_key: '2925'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94178;93900
+    st: 1
+- id: f2927_ba
+  label: Tourismuswirtschaft, Sport- und Eventmanagement (first degree)
+  field_key: '2927'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94357;94217
+    st: 0
+- id: f2927_ma
+  label: Tourismuswirtschaft, Sport- und Eventmanagement (further degree)
+  field_key: '2927'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94357;94217
+    st: 1
+- id: f2928_ba
+  label: Wirtschaftsinformatik (first degree)
+  field_key: '2928'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 130048;130047
+    st: 0
+- id: f2928_ma
+  label: Wirtschaftsinformatik (further degree)
+  field_key: '2928'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 130048;130047
+    st: 1
+- id: f2929_ba
+  label: Wirtschaftswissenschaften, Volkswirtschaft (first degree)
+  field_key: '2929'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94033;94303
+    st: 0
+- id: f2929_ma
+  label: Wirtschaftswissenschaften, Volkswirtschaft (further degree)
+  field_key: '2929'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 94033;94303
+    st: 1
+- id: f2931_ba
+  label: Öffentliche Verwaltung (first degree)
+  field_key: '2931'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93648;93611
+    st: 0
+- id: f2931_ma
+  label: Öffentliche Verwaltung (further degree)
+  field_key: '2931'
+  group: Wirtschaftswissenschaften
+  params:
+    sfe: 93648;93611
+    st: 1
+- id: f3101_ba
+  label: Arbeitsmarktmanagement (first degree)
+  field_key: '3101'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94240;93650
+    st: 0
+- id: f3101_ma
+  label: Arbeitsmarktmanagement (further degree)
+  field_key: '3101'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94240;93650
+    st: 1
+- id: f3103_ba
+  label: Politikwissenschaften (first degree)
+  field_key: '3103'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 93889;93915
+    st: 0
+- id: f3103_ma
+  label: Politikwissenschaften (further degree)
+  field_key: '3103'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 93889;93915
+    st: 1
+- id: f3105_ba
+  label: Rechtswissenschaften (first degree)
+  field_key: '3105'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94352;94358
+    st: 0
+- id: f3105_ma
+  label: Rechtswissenschaften (further degree)
+  field_key: '3105'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94352;94358
+    st: 1
+- id: f3107_ba
+  label: Sozialwesen (first degree)
+  field_key: '3107'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94258;93959
+    st: 0
+- id: f3107_ma
+  label: Sozialwesen (further degree)
+  field_key: '3107'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94258;93959
+    st: 1
+- id: f3109_ba
+  label: Sozialwissenschaften, Soziologie (first degree)
+  field_key: '3109'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94348;93694
+    st: 0
+- id: f3109_ma
+  label: Sozialwissenschaften, Soziologie (further degree)
+  field_key: '3109'
+  group: Rechts-, Sozialwissenschaften
+  params:
+    sfe: 94348;93694
+    st: 1
+- id: f3301_ba
+  label: Erziehungs-, Bildungswissenschaften (first degree)
+  field_key: '3301'
+  group: Erziehungs-, Bildungswissenschaften, Lehrämter
+  params:
+    sfe: 94363;94142
+    st: 0
+- id: f3301_ma
+  label: Erziehungs-, Bildungswissenschaften (further degree)
+  field_key: '3301'
+  group: Erziehungs-, Bildungswissenschaften, Lehrämter
+  params:
+    sfe: 94363;94142
+    st: 1
+- id: f3303_ba
+  label: Lehrämter (first degree)
+  field_key: '3303'
+  group: Erziehungs-, Bildungswissenschaften, Lehrämter
+  params:
+    sfe: 94333;94334
+    st: 0
+- id: f3303_ma
+  label: Lehrämter (further degree)
+  field_key: '3303'
+  group: Erziehungs-, Bildungswissenschaften, Lehrämter
+  params:
+    sfe: 94333;94334
+    st: 1
+- id: f3501_ba
+  label: Altertumswissenschaften, Archäologie (first degree)
+  field_key: '3501'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94101;93828
+    st: 0
+- id: f3501_ma
+  label: Altertumswissenschaften, Archäologie (further degree)
+  field_key: '3501'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94101;93828
+    st: 1
+- id: f3503_ba
+  label: Anglistik, Amerikanistik (first degree)
+  field_key: '3503'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93638;94412
+    st: 0
+- id: f3503_ma
+  label: Anglistik, Amerikanistik (further degree)
+  field_key: '3503'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93638;94412
+    st: 1
+- id: f3505_ba
+  label: Archiv, Bibliothek, Dokumentation (first degree)
+  field_key: '3505'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93842;94328
+    st: 0
+- id: f3505_ma
+  label: Archiv, Bibliothek, Dokumentation (further degree)
+  field_key: '3505'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93842;94328
+    st: 1
+- id: f3507_ba
+  label: Außereuropäische Sprachen und Kulturen (first degree)
+  field_key: '3507'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94321;93583
+    st: 0
+- id: f3507_ma
+  label: Außereuropäische Sprachen und Kulturen (further degree)
+  field_key: '3507'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94321;93583
+    st: 1
+- id: f3509_ba
+  label: Germanistik (first degree)
+  field_key: '3509'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94322;94253
+    st: 0
+- id: f3509_ma
+  label: Germanistik (further degree)
+  field_key: '3509'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94322;94253
+    st: 1
+- id: f3511_ba
+  label: Geschichtswissenschaften (first degree)
+  field_key: '3511'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93911;94041
+    st: 0
+- id: f3511_ma
+  label: Geschichtswissenschaften (further degree)
+  field_key: '3511'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93911;94041
+    st: 1
+- id: f3513_ba
+  label: Jüdische Studien, Judaistik (first degree)
+  field_key: '3513'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93817;94122
+    st: 0
+- id: f3513_ma
+  label: Jüdische Studien, Judaistik (further degree)
+  field_key: '3513'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93817;94122
+    st: 1
+- id: f3515_ba
+  label: Kleinere europäische Sprachen und Kulturen (first degree)
+  field_key: '3515'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94246;94330
+    st: 0
+- id: f3515_ma
+  label: Kleinere europäische Sprachen und Kulturen (further degree)
+  field_key: '3515'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94246;94330
+    st: 1
+- id: f3517_ba
+  label: Kommunikation und Medien (first degree)
+  field_key: '3517'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93888;93821
+    st: 0
+- id: f3517_ma
+  label: Kommunikation und Medien (further degree)
+  field_key: '3517'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93888;93821
+    st: 1
+- id: f3519_ba
+  label: Kulturwissenschaften (first degree)
+  field_key: '3519'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93699;94398
+    st: 0
+- id: f3519_ma
+  label: Kulturwissenschaften (further degree)
+  field_key: '3519'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93699;94398
+    st: 1
+- id: f3520_ba
+  label: Liberal Arts (first degree)
+  field_key: '3520'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: '128341'
+    st: 0
+- id: f3520_ma
+  label: Liberal Arts (further degree)
+  field_key: '3520'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: '128341'
+    st: 1
+- id: f3521_ba
+  label: Philosophie, Theologie, Religionspädagogik (first degree)
+  field_key: '3521'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93988;93836
+    st: 0
+- id: f3521_ma
+  label: Philosophie, Theologie, Religionspädagogik (further degree)
+  field_key: '3521'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93988;93836
+    st: 1
+- id: f3523_ba
+  label: Regionalwissenschaften (first degree)
+  field_key: '3523'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94224;94063
+    st: 0
+- id: f3523_ma
+  label: Regionalwissenschaften (further degree)
+  field_key: '3523'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94224;94063
+    st: 1
+- id: f3525_ba
+  label: Romanistik (first degree)
+  field_key: '3525'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93797;93946
+    st: 0
+- id: f3525_ma
+  label: Romanistik (further degree)
+  field_key: '3525'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93797;93946
+    st: 1
+- id: f3527_ba
+  label: Slawistik (first degree)
+  field_key: '3527'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94310;93979
+    st: 0
+- id: f3527_ma
+  label: Slawistik (further degree)
+  field_key: '3527'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94310;93979
+    st: 1
+- id: f3529_ba
+  label: Sprach-, Literaturwissenschaften, Dolmetschen und Übersetzen (first degree)
+  field_key: '3529'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93705;93677
+    st: 0
+- id: f3529_ma
+  label: Sprach-, Literaturwissenschaften, Dolmetschen und Übersetzen (further degree)
+  field_key: '3529'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 93705;93677
+    st: 1
+- id: f3531_ba
+  label: Ältere europäische Sprachen und Kulturen (first degree)
+  field_key: '3531'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94257;94170
+    st: 0
+- id: f3531_ma
+  label: Ältere europäische Sprachen und Kulturen (further degree)
+  field_key: '3531'
+  group: Sprach-, Kulturwissenschaften
+  params:
+    sfe: 94257;94170
+    st: 1
+- id: f3701_ba
+  label: Bühnenbild, Szenografie (first degree)
+  field_key: '3701'
+  group: Kunst, Musik
+  params:
+    sfe: 93890;93625
+    st: 0
+- id: f3701_ma
+  label: Bühnenbild, Szenografie (further degree)
+  field_key: '3701'
+  group: Kunst, Musik
+  params:
+    sfe: 93890;93625
+    st: 1
+- id: f3703_ba
+  label: Gestaltung, Design (first degree)
+  field_key: '3703'
+  group: Kunst, Musik
+  params:
+    sfe: 93733;94379
+    st: 0
+- id: f3703_ma
+  label: Gestaltung, Design (further degree)
+  field_key: '3703'
+  group: Kunst, Musik
+  params:
+    sfe: 93733;94379
+    st: 1
+- id: f3705_ba
+  label: Kunst (first degree)
+  field_key: '3705'
+  group: Kunst, Musik
+  params:
+    sfe: 94230;94299
+    st: 0
+- id: f3705_ma
+  label: Kunst (further degree)
+  field_key: '3705'
+  group: Kunst, Musik
+  params:
+    sfe: 94230;94299
+    st: 1
+- id: f3707_ba
+  label: Musik (first degree)
+  field_key: '3707'
+  group: Kunst, Musik
+  params:
+    sfe: 94065;93774
+    st: 0
+- id: f3707_ma
+  label: Musik (further degree)
+  field_key: '3707'
+  group: Kunst, Musik
+  params:
+    sfe: 94065;93774
+    st: 1
+- id: f3709_ba
+  label: Schauspiel, Tanz, Film, Fernsehen (first degree)
+  field_key: '3709'
+  group: Kunst, Musik
+  params:
+    sfe: 94406;94422
+    st: 0
+- id: f3709_ma
+  label: Schauspiel, Tanz, Film, Fernsehen (further degree)
+  field_key: '3709'
+  group: Kunst, Musik
+  params:
+    sfe: 94406;94422
+    st: 1
