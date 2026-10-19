@@ -203,7 +203,7 @@ def harvest(only: list[str] | None, force: bool) -> int:
 
     merged = {**previous, **{r["id"]: r for r in results}}
     MANIFEST.write_text(json.dumps(list(merged.values()), indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print("\nManifest written to docs/studiensuche_manifest.json")
+    print(f"\nManifest written to {MANIFEST.relative_to(REPO_ROOT).as_posix()}")
     return 1 if any(r["status"] == "error" for r in results) else 0
 
 
@@ -215,7 +215,15 @@ def main(argv: list[str] | None = None) -> int:
     h = sub.add_parser("harvest", help="download the queries in configs/studiensuche.yaml")
     h.add_argument("--only", nargs="*", default=None)
     h.add_argument("--force", action="store_true")
+    h.add_argument("--config", type=Path, default=None, help="query YAML (default configs/studiensuche.yaml)")
+    h.add_argument("--out", type=Path, default=None, help="cache folder (default data/raw/studiensuche)")
+    h.add_argument("--manifest", type=Path, default=None, help="manifest JSON (default docs/studiensuche_manifest.json)")
     args = parser.parse_args(argv)
+    global CONFIG, OUT_DIR, MANIFEST
+    if args.command == "harvest":   # separate harvests (e.g. the full catalogue) keep their own cache and manifest
+        CONFIG = (REPO_ROOT / args.config) if args.config else CONFIG
+        OUT_DIR = (REPO_ROOT / args.out) if args.out else OUT_DIR
+        MANIFEST = (REPO_ROOT / args.manifest) if args.manifest else MANIFEST
     load_env(REPO_ROOT / ".env")
     try:
         if args.command == "fields":
