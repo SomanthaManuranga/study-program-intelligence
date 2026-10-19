@@ -1,0 +1,42 @@
+# Feasibility with EMI's existing resources (Scope constraint 1). PRE-REGISTERED: committed before any candidate is
+# re-scored (docs/rescope_plan.md section (a), approved; docs/decision_log.md "Re-scope plan approved").
+# Do not change after re-scoring has started; any later change is logged as such and the old rule is kept as a
+# sensitivity.
+
+unit:
+  bachelor: {total_ects: 210, practical_semester_ects: 30, thesis_ects: 15, taught_ects: 165}
+  master: {total_ects: 90, thesis_ects: 30, taught_ects: 60}
+  note: coverage is measured on taught ECTS only; practical semester and thesis are formats existing staff already run.
+
+categories:
+  E1: existing EMI module, unchanged (shared with another programme allowed)
+  E2: >-
+    existing EMI module, adapted - same responsible EMI professor (neutral label), same core topic, at most a third of
+    the content new. Match by the e5 model at the calibrated Step 41 threshold (0.295, reports/module_gaps.md;
+    recalibrated with the same method if the EMI module set grows) AND confirmed by hand for every module counted as
+    covered in a shortlisted candidate.
+  T: new module by a teaching assignment (Lehrauftrag)
+  N: new module by an existing EMI professor who already teaches a module on the same topic
+  not_allowed:
+    - a new professorship or lab-engineer post
+    - a module that needs equipment not in EMI's public lab list (configs/sources.yaml, oth_web_labs)
+    - modules of other OTH faculties counted as covered (R2)
+
+rule:            # all must hold (decision rule, R1 strict)
+  F1_min_covered_share: 0.80          # (E1 + E2) / taught ECTS
+  F2_max_new_share: 0.20              # (T + N) / taught ECTS
+  F2_max_T_ects: {bachelor: 10, master: 5}
+  F2_max_N_ects: {bachelor: 10, master: 5}
+  F3_labs: existing EMI labs only
+  F4_max_share_from_one_programme: 0.50   # of taught ECTS, from any one existing OTH programme (kill rule 1 at module level)
+
+sensitivity:     # reported next to the decision rule, never used to decide (R1 lenient)
+  F1_min_covered_share: 0.70
+  F2_max_N_ects: {bachelor: 20, master: 10}
+
+assumptions:
+  - N of at most 10 ECTS is about 8 SWS a year, under a quarter of one professor's annual load; treated as absorbable
+    by reallocation.
+  - Extra exercise or lab groups caused by shared modules cannot be measured with public data (limitation).
+
+mcda: feasibility keeps its weight of 0.15 (configs/analysis.yaml); the gate F1-F4 is applied before the ranking (R3).
