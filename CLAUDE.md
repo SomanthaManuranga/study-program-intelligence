@@ -25,12 +25,10 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Current step
 Done: evidence (Steps 37-45), modelling (Steps 46-49), key numbers / figures / report / dashboard / pipeline / claim
-review (Steps 50-52, 54, 55), preliminary plain-English summary (Step 57 preliminary).
+review (Steps 50-52, 54, 55), defence Q&A (Step 56), preliminary plain-English summary (Step 57 preliminary),
+data-sufficiency audit with its collected items.
 
 Remaining work, in this order:
-0. Step 56 defence Q&A (open; docs/defence_qa.md, built by report/defence.py from docs/defence/qa.md): bring it up
-   to date with the data-sufficiency results (German vs foreign demand, German-only ranking sensitivity, out-of-state
-   share, plausibility check, theme verdicts, ministry contracts, English-taught option).
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
    (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
    for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
@@ -52,10 +50,9 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: Step 56 defence Q&A, updated (Q4, Q6, Q10, Q13, Q16, Q22-Q24) and fact-checked (docs/data_sufficiency_review.md);
-waiting for Soma's review. Done before it: data-sufficiency audit (docs/data_gap_audit.md) and its items G1, G3,
-G4, G5. Open for review by Soma: the German-only trend scores in configs/scores.yaml (sensitivity.trend_german).
-Next fixed date: job-ad snapshot on 1 Nov 2026.
+Current: job-ad snapshot on 1 Nov 2026 (item 1). Status: waiting for the date. Done: data-sufficiency audit
+(docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
+Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 

@@ -53,7 +53,7 @@ use for a robust winner (a bar set when the results were reported, not before th
 - **Skewed robotics range.** With the first draft of the robotics scores (fit and feasibility 2 / 3 / 5, whose mean
   lies above 3) the cyber bachelor wins {{p_rank1_cyber_bsc_skew}}.
 - **Demand measured on German entrants only** (Section 3). The trend anchor applied to German first-years or graduates,
-  for all three options (scores proposed by the AI assistant, pending the team's review), gives the cyber bachelor 3
+  for all three options (scores proposed by the AI assistant, reviewed by the team), gives the cyber bachelor 3
   instead of 4 and robotics 1 instead of 2; the master keeps 4, as German graduates in Informatik still grow
   ({{grads_by_german_growth}} a year in Bavaria). The cyber bachelor then wins {{p_rank1_cyber_bsc_german}} of draws,
   just below the {{robustness_bar}} bar (master {{p_rank1_cyber_msc_german}}, robotics {{p_rank1_robotics_bsc_german}}).

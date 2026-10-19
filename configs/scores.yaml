@@ -98,7 +98,7 @@ sensitivity:
   german_first_years: >-
     Data-sufficiency audit (G1): most of the growth behind the demand trend scores is foreign entrants. Sensitivity:
     the same trend anchor (top of this file) applied to German first-years / graduates only, for all three options;
-    range width kept (+-1), clipped at the scale floor of 1. Proposed by Claude, for review by Soma. Evidence:
+    range width kept (+-1), clipped at the scale floor of 1. Proposed by Claude, reviewed and accepted by Soma. Evidence:
     reports/demand_split.md, docs/evidence_demand_split.md.
     Cyber B.Sc.: cyber proxy, German first-years Bavaria +1.9 %/yr, Germany -0.5 %/yr (2019-24): rose weakly in
     Bavaria only -> 3 (was 4).

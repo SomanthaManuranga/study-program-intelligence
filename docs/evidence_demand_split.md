@@ -48,8 +48,8 @@ sciences 2,359 German / 1,457 foreign (38 % foreign); universities 1,640 German 
 ## Sensitivity: demand trend scores from German entrants only (all three options)
 
 The same trend anchor (configs/scores.yaml) was applied to German first-years or graduates only, for all three
-options; range widths kept, clipped at the scale floor of 1. These scores were proposed by Claude and are for review by
-the team.
+options; range widths kept, clipped at the scale floor of 1. These scores were proposed by Claude and reviewed and
+accepted by Soma.
 
 | Option | Series behind the trend score | German only | Trend score: base -> German only |
 |---|---|---|---|
