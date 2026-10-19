@@ -64,10 +64,10 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope week 1 done (plan approved; feasibility rule pre-registered; baseline tagged; current EMI handbooks
-downloaded and parsed into data/interim/modules_emi_2026.csv, 412 modules; full catalogue harvested, 22,093 offers in
-data/processed/programmes_full.csv). Next: week 2 (feasibility re-check of the three options, module clustering, rarity
-screen). Fixed date: job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
+Current: re-scope week 2 (docs/evidence_feasibility.md). The cyber options fail the feasibility rule; robotics path B
+(assistive / service) passes pending Soma's hand-check confirmation (configs/feasibility_handcheck.yaml); recombination
+clusters and rarity screen give six proposed week-3 candidates, pending Soma's review of labels and verdicts. Fixed date:
+job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this

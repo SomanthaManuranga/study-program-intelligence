@@ -59,6 +59,7 @@ BUILD = [
     ("transform.programmes:full", "transform", "transform.programmes", ["--set", "full"]),
     ("transform.modules", "transform", "transform.modules", []),
     ("transform.modules:emi2026", "transform", "transform.modules", ["--set", "emi2026"]),
+    ("transform.modules:references", "transform", "transform.modules", ["--set", "references"]),
     ("transform.thm_modules", "transform", "transform.thm_modules", []),
     ("transform.school_leavers", "transform", "transform.school_leavers", []),
     ("analysis.first_look", "analysis", "analysis.first_look", []),
@@ -67,6 +68,9 @@ BUILD = [
     ("analysis.theme_check:sample", "analysis", "analysis.theme_check", ["sample"]),   # only if the sheet is missing
     ("analysis.theme_check", "analysis", "analysis.theme_check", ["score"]),
     ("analysis.module_gaps", "analysis", "analysis.module_gaps", []),
+    ("analysis.feasibility", "analysis", "analysis.feasibility", []),
+    ("analysis.recombination", "analysis", "analysis.recombination", []),
+    ("analysis.rarity", "analysis", "analysis.rarity", []),
     ("analysis.catchment:geo", "analysis", "analysis.catchment", ["geo"]),
     ("analysis.catchment:run", "analysis", "analysis.catchment", ["run"]),
     ("analysis.labour", "analysis", "analysis.labour", []),
