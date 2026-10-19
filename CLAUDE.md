@@ -4,8 +4,20 @@
 AI Project course, OTH Amberg-Weiden (Prof. Dr.-Ing. Thomas Nierhoff), WS 2026/27, team of 2.
 Brief: use public data (Destatis, other universities' websites, ...) to find and argue which NEW study
 programme would attract the most students and why it suits our faculty.
-Scope: faculty EMI (Elektrotechnik, Medien und Informatik); bachelor and master; public data only; all of Germany.
 Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentation 11 Jan 2027.
+
+## Scope (binding; confirmed by the supervisor)
+1. **Existing resources only:** the new programme must be feasible with EMI's existing staff and labs (no new
+   professorships, no new labs). The pre-registered test is in docs/rescope_plan.md (once approved).
+2. Competition and trends: Germany-wide. Student numbers: Bavaria and the OTH catchment.
+3. Bachelor and master both allowed.
+4. Target group: German AND international students.
+5. EMI fit only (faculty Elektrotechnik, Medien und Informatik).
+6. Success measure: students new to OTH (not taken from existing OTH programmes).
+7. Full-time programmes only; part-time is at most a minor variant.
+8. Programmes that are rare or not yet offered in Germany are explicitly welcome (example: Motorsport Engineering,
+   only Stralsund and Amberg). Neighbouring countries optional (supervisor unsure it helps).
+9. Internal OTH data: the supervisor will ask; do not plan around it. Public data only.
 
 ## How to work with me (Soma)
 - Work in numbered steps (Step N), one step at a time. Each step ends with a "Done when" check.
@@ -29,6 +41,8 @@ review (Steps 50-52, 54, 55), defence Q&A (Step 56), preliminary plain-English s
 data-sufficiency audit with its collected items.
 
 Remaining work, in this order:
+0. Re-scope to existing resources (Scope constraint 1): plan in docs/rescope_plan.md, waiting for Soma's approval
+   (decisions R1-R6). No code changes before approval. The current results become "baseline: with new resources".
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
    (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
    for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
@@ -50,7 +64,7 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: job-ad snapshot on 1 Nov 2026 (item 1). Status: waiting for the date. Done: data-sufficiency audit
+Current: re-scope plan (item 0), waiting for Soma's approval. Next fixed date: job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
@@ -104,7 +118,7 @@ Forecasts validated with rolling-origin backtests (MASE).
   pages, TH Mannheim handbook, THI and TH Augsburg robotics handbooks. data/interim/pdf_text and module_emb.npy are
   leftovers no code uses. E&IT handbook SPO 222B not found.
 
-## Findings
+## Findings (baseline: with new resources; the winner needs new staff and a lab, so it fails Scope constraint 1)
 - Informatik is the only large EMI field still growing (Bavaria first-years +6.1 %/yr 2019-24; Germany flat since
   2023), but mostly through foreign students: German first-years +2.3 %/yr in Bavaria, -0.2 %/yr in Germany; foreign
   students are 77 % of the Bavarian growth. Among German first-years Informatik is still the strongest large EMI
