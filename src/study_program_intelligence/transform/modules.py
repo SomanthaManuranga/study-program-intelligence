@@ -13,6 +13,11 @@ Method (decision log 2026-10-17)
 - ECTS: first credit value near the heading; semester: first "N. Semester" style hit.
 - Aalen (module lists) and TH Mannheim (programme page CSV) give names only (text empty).
 Outputs: data/interim/modules.csv, reports/modules_check.md.
+
+Re-scope (week 1): `--set emi2026` parses the CURRENT handbooks of all EMI programmes (configs/oth_handbooks_documents.yaml,
+data/raw/oth handbooks 2026) into data/interim/modules_emi_2026.csv and reports/modules_emi_2026_check.md, for the
+feasibility gate and the recombination step. The default set (competitors + earlier EMI copies) is the baseline and is
+not changed.
 """
 
 from __future__ import annotations
@@ -55,6 +60,7 @@ class Handbook:
     programmes: dict[str, str] = field(default_factory=dict)  # section keyword -> programme_id (joint handbooks)
     exclude: str = ""  # extra regex for TOC lines to drop
     label: str = ""  # per-module field label; a 2nd one inside a module = a module missing from the TOC
+    unordered: bool = False  # TOC order differs from body order: search missed titles again from the body start
 
 
 HANDBOOKS = [
@@ -72,6 +78,26 @@ HANDBOOKS = [
     Handbook(OTH / "Künstliche Intelligenz (M.Sc.).pdf", "oth_ma_ki", "OTH Amberg-Weiden", "MA", [2], "tabbed", label="Modul-ID"),
     Handbook(OTH / "IT und Automation (M.Eng.).pdf", "oth_ma_ita", "OTH Amberg-Weiden", "MA", [4, 5]),
     Handbook(OTH / "AI for Industrial Applications (M.Sc.).pdf", "oth_ma_aiia", "OTH Amberg-Weiden", "MA", [2]),
+]
+OTH26 = REPO_ROOT / "data" / "raw" / "oth handbooks 2026"
+OUT_2026 = REPO_ROOT / "data" / "interim" / "modules_emi_2026.csv"
+REPORT_2026 = REPO_ROOT / "reports" / "modules_emi_2026_check.md"
+_O = "OTH Amberg-Weiden"
+EMI_2026 = [  # current handbooks of every EMI programme (KI B.Sc.: no newer handbook online, earlier copy)
+    Handbook(OTH26 / "oth_hb_dd_ba.pdf", "oth26_ba_dd", _O, "BA", [2, 3], "tabbed"),
+    Handbook(OTH26 / "oth_hb_ei_ba_2022.pdf", "oth26_ba_ei", _O, "BA", [2, 3], label="Modul-ID"),
+    Handbook(OTH26 / "oth_hb_gi_ba.pdf", "oth26_ba_gi", _O, "BA", [2, 3], unordered=True),
+    Handbook(OTH26 / "oth_hb_iki_ba.pdf", "oth26_ba_iki", _O, "BA", [2, 3], "tabbed"),
+    Handbook(OTH26 / "oth_hb_mt_ba.pdf", "oth26_ba_mt", _O, "BA", [2, 3], "numbered"),
+    Handbook(OTH26 / "oth_hb_ii_mi_ba.pdf", "oth26_ba_ii|oth26_ba_mi", _O, "BA", [2, 3],
+             programmes={"Industrie-4.0-Informatik": "oth26_ba_ii", "Medieninformatik": "oth26_ba_mi"}, label="Modul-ID"),
+    Handbook(OTH / "Künstliche Intelligenz (B.Sc.).pdf", "oth26_ba_ki", _O, "BA", [2, 3], "tabbed", label="Modul-ID"),
+    Handbook(OTH26 / "oth_hb_mapr_ma.pdf", "oth26_ma_mapr", _O, "MA", [2]),
+    Handbook(OTH26 / "oth_hb_edu_ma.pdf", "oth26_ma_edu", _O, "MA", [2], "tabbed"),
+    Handbook(OTH26 / "oth_hb_mp_ma.pdf", "oth26_ma_mp", _O, "MA", [2, 3], "numbered"),
+    Handbook(OTH26 / "oth_hb_mai_ma.pdf", "oth26_ma_mai", _O, "MA", [2]),
+    Handbook(OTH26 / "oth_hb_ia_ma.pdf", "oth26_ma_ia", _O, "MA", [4, 5]),
+    Handbook(OTH26 / "oth_hb_mki_ma.pdf", "oth26_ma_mki", _O, "MA", [2], "tabbed"),
 ]
 NAME_ONLY = [  # (file, programme_id, institution, level)
     (COMP / "aalen_ma_cyber_security_pflichtmodule.pdf", "aalen_ma_csc", "HS Aalen", "MA"),
@@ -133,6 +159,18 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
             line = raw.replace("\t", " ").strip()
             if not line or norm(line) in common:
                 continue
+            if hb.toc_style == "numbered":  # "1.2 Title ....." or "2.1.3 Title 17": numbered entries, page optional
+                m = re.match(r"^(\d+(?:\.\d+)*)\.?\s+(.+?)\s*(?:(?:[\.…]\s?){3,}.*|\s\d{1,3})?\s*$", line)
+                if not m:
+                    continue
+                title = m.group(2).strip()
+                if "." not in m.group(1):          # level 1 = a section heading ("2 TECHNIK UND PRODUKTION ...")
+                    section = title
+                    continue
+                if "(vgl." in title or re.match(r"(?i)wahlpflichtmodule\b", title):   # cross-reference or group heading
+                    continue
+                out.append((title, section))
+                continue
             if hb.toc_style == "code":
                 m = re.match(r"^([BM]-CY-\d+)\s+(.+)$", line)
                 if m:
@@ -167,8 +205,11 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
     return out
 
 
-def locate(lines: list[tuple[int, str]], titles: list[str], start: int) -> list[int | None]:
-    """Index in `lines` of each title's heading, searched forward in TOC order."""
+def locate(lines: list[tuple[int, str]], titles: list[str], start: int, strip_numbers: bool = False) -> list[int | None]:
+    """Index in `lines` of each title's heading, searched forward in TOC order. strip_numbers: body headings carry the
+    TOC numbering ("1.1 Mathematik 1"); compare without it (numbered handbooks only)."""
+    if strip_numbers:
+        lines = [(p, re.sub(r"^\s*\d+(?:\.\d+)+\.?\s+", "", l)) for p, l in lines]
     pos, cursor = [], start
     for title in titles:
         t = compact(title)
@@ -229,7 +270,15 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
     lines = [(n + 1, l) for n, page in enumerate(clean) for l in page]
     entries = toc_titles(hb, pages)
     body_start = next(i for i, (p, _) in enumerate(lines) if p > max(hb.toc_pages))
-    pos = locate(lines, [t for t, _ in entries], body_start)
+    pos = locate(lines, [t for t, _ in entries], body_start, strip_numbers=hb.toc_style == "numbered")
+    if hb.unordered:  # second pass for titles the forward search missed; never reuse a heading already taken
+        taken = {i for i in pos if i is not None}
+        for k, (title, _) in enumerate(entries):
+            if pos[k] is None:
+                hit = locate(lines, [title], body_start, strip_numbers=hb.toc_style == "numbered")[0]
+                if hit is not None and hit not in taken:
+                    pos[k] = hit
+                    taken.add(hit)
     found = [(i, e) for i, e in zip(pos, entries) if i is not None]
     extra = []
     if hb.label:  # modules missing from the TOC: a 2nd label block inside one module
@@ -343,22 +392,28 @@ def report(rows: list[dict], checks: list[dict]) -> str:
         _md(spot, ["#", "file", "PDF page", "extracted title", "ECTS", "first 300 characters of text", "content excerpt"]), ""])
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    import argparse
+    ap = argparse.ArgumentParser(description="module table from module handbooks")
+    ap.add_argument("--set", choices=["baseline", "emi2026"], default="baseline")
+    args = ap.parse_args(argv)
+    handbooks, out, report_path = (EMI_2026, OUT_2026, REPORT_2026) if args.set == "emi2026" else (HANDBOOKS, OUT, REPORT)
     rows, checks = [], []
-    for hb in HANDBOOKS:
+    for hb in handbooks:
         r, c = parse(hb)
         rows += r
         checks.append(c)
         print(f"{hb.file.name:<55} TOC {c['toc']:>3}  found {c['found']:>3}  missing {len(c['missing'])}")
-    rows += name_only()
+    if args.set == "baseline":
+        rows += name_only()
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    with OUT.open("w", newline="", encoding="utf-8") as fh:
+    with out.open("w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, fieldnames=COLUMNS)
         w.writeheader()
         w.writerows(rows)
-    REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text(report(rows, checks), encoding="utf-8")
-    print(f"Written: {OUT.relative_to(REPO_ROOT)} ({len(rows)} rows), {REPORT.relative_to(REPO_ROOT)}")
+    report_path.parent.mkdir(parents=True, exist_ok=True)
+    report_path.write_text(report(rows, checks), encoding="utf-8")
+    print(f"Written: {out.relative_to(REPO_ROOT)} ({len(rows)} rows), {report_path.relative_to(REPO_ROOT)}")
 
 
 if __name__ == "__main__":
