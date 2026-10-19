@@ -208,5 +208,20 @@
     "content_type": "application/pdf",
     "bytes": 363601,
     "sha256": "9c2a4d4c0ae1b47bd9275dcf4a3f5de2d1b776c4208874fa43af31f2768b06cc"
+  },
+  {
+    "id": "oth_hb_ei_ba_2022",
+    "owner": "OTH Amberg-Weiden EMI",
+    "title": "Modulhandbuch EI",
+    "url": "https://www.oth-aw.de/files/oth-aw/Studiengaenge/Bachelor/EI/Dokumente/Modulhandbuch_EI_WiSe26_27_Review_Stand_18.05.2026.pdf",
+    "mirror": false,
+    "file": "data/raw/oth handbooks 2026/oth_hb_ei_ba_2022.pdf",
+    "programme": "Elektro- und Informationstechnik B.Eng. (SPO 2022",
+    "version": "first-years from WiSe 2022/23, Review Stand 18.05.2026",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:55+00:00",
+    "content_type": "application/pdf",
+    "bytes": 1496187,
+    "sha256": "65591a6079865de85acf53898c3015e893cce60ee5a259a2584d594775f73ef9"
   }
 ]
