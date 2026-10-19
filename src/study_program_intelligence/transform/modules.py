@@ -63,6 +63,7 @@ class Handbook:
     unordered: bool = False  # TOC order differs from body order: search missed titles again from the body start
     strict_ects: bool = False  # ignore numbers that are part of a code such as "3.3.4" (EMI 2026 set)
     plan_pages: list[int] = field(default_factory=list)  # study-plan pages with "ID code title SWS ECTS ..." rows
+    ects_rule: str = ""  # "sum_lp": credits split by teaching form ("Vorlesung: 2 SWS 3 LP Praktikum: 2 SWS 2 LP") -> sum
 
 
 HANDBOOKS = [
@@ -100,6 +101,12 @@ EMI_2026 = [  # current handbooks of every EMI programme (KI B.Sc.: no newer han
     Handbook(OTH26 / "oth_hb_mai_ma.pdf", "oth26_ma_mai", _O, "MA", [2]),
     Handbook(OTH26 / "oth_hb_ia_ma.pdf", "oth26_ma_ia", _O, "MA", [4, 5]),
     Handbook(OTH26 / "oth_hb_mki_ma.pdf", "oth26_ma_mki", _O, "MA", [2], "tabbed"),
+]
+OUT_REF = REPO_ROOT / "data" / "interim" / "modules_references.csv"
+REPORT_REF = REPO_ROOT / "reports" / "modules_references_check.md"
+REFERENCES = [  # reference curricula for options without a handbook in the baseline set (re-scope feasibility check)
+    Handbook(REPO_ROOT / "data" / "raw" / "anchors" / "hske_ba_robotik.pdf", "hske_ba_rob", "Hochschule Kempten", "BA", [2, 3, 4],
+             "numbered", exclude=r"^(?!RO\s?\d)", ects_rule="sum_lp"),
 ]
 NAME_ONLY = [  # (file, programme_id, institution, level)
     (COMP / "aalen_ma_cyber_security_pflichtmodule.pdf", "aalen_ma_csc", "HS Aalen", "MA"),
@@ -170,6 +177,8 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
                     section = title
                     continue
                 if "(vgl." in title or re.match(r"(?i)wahlpflichtmodule\b", title):   # cross-reference or group heading
+                    continue
+                if extra and extra.search(title):
                     continue
                 out.append((title, section))
                 continue
@@ -274,6 +283,13 @@ def plan_ects(hb: Handbook, pages: list[str]) -> dict[str, str]:
     return out
 
 
+def sum_lp(text: str) -> str:
+    """Sum of the "N LP" values in the German teaching-methods field (before the English "Lecture:" repeat)."""
+    m = re.search(r"Lehrmethoden.*?(?=Lecture:|Arbeitsaufwand|Workload)", text[:4000], re.S)
+    vals = [float(x.replace(",", ".")) for x in re.findall(r"(\d{1,2}(?:,\d)?)\s*LP\b", m.group(0))] if m else []
+    return f"{sum(vals):g}" if vals else ""
+
+
 def content_excerpt(text: str, n: int = 250) -> str:
     """Start of the content / learning-outcome part (skips the form fields at the top)."""
     m = CONTENT.search(text, 150)
@@ -339,7 +355,8 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
             rows.append({"programme_id": pid, "institution": hb.institution, "level": hb.level,
                          "module_id": f"{pid}:{len([r for r in rows if r['programme_id'] == pid]) + 1:03d}",
                          "title": title, "section": section,
-                         "ects": find_ects(text, hb.strict_ects) or next((v for k, v in plan.items() if k.startswith(compact(title)[:25])), ""),
+                         "ects": (sum_lp(text) if hb.ects_rule == "sum_lp" else "") or find_ects(text, hb.strict_ects)
+                                 or next((v for k, v in plan.items() if k.startswith(compact(title)[:25])), ""),
                          "semester": find_semester(text),
                          "text": text, "text_chars": len(text), "source_file": hb.file.relative_to(REPO_ROOT).as_posix(),
                          "page": lines[i][0], "text_source": source})
@@ -419,10 +436,11 @@ def report(rows: list[dict], checks: list[dict]) -> str:
 def main(argv: list[str] | None = None) -> None:
     import argparse
     ap = argparse.ArgumentParser(description="module table from module handbooks")
-    ap.add_argument("--set", choices=["baseline", "emi2026"], default="baseline")
+    ap.add_argument("--set", choices=["baseline", "emi2026", "references"], default="baseline")
     args = ap.parse_args(argv)
-    handbooks, out, report_path = (EMI_2026, OUT_2026, REPORT_2026) if args.set == "emi2026" else (HANDBOOKS, OUT, REPORT)
-    if args.set == "emi2026":   # numbered codes ("3.3.4") sit next to the credit field in some current handbooks
+    handbooks, out, report_path = {"emi2026": (EMI_2026, OUT_2026, REPORT_2026), "references": (REFERENCES, OUT_REF, REPORT_REF),
+                                   "baseline": (HANDBOOKS, OUT, REPORT)}[args.set]
+    if args.set in ("emi2026", "references"):   # numbered codes ("3.3.4") sit next to the credit field in some current handbooks
         for hb in handbooks:
             hb.strict_ects = True
     rows, checks = [], []

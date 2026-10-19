@@ -1,0 +1,54 @@
+# Hand check of the automatic module matches (configs/feasibility.yaml: every match counted as covered for a shortlisted
+# candidate is confirmed by hand). Status: PROPOSED by Claude, to be confirmed or changed by Soma.
+# verdict: E1 = existing module unchanged; E2 = existing module adapted (<= a third new); T = new, teaching assignment;
+#          N = new, existing professor with a module on the same topic; out = not in this path.
+# Reference: Hochschule Kempten Robotik B.Eng. (data/interim/modules_references.csv). Two paths, because Kempten requires
+# one of two specialisations: A = Industrielle Robotik, B = Geriatronik (assistive / service robotics).
+# lab: capability from configs/emi_labs.yaml, or "missing: industrial_robots".
+
+robotics_bsc:
+  status: proposed
+  modules:
+    RO 11 Ingenieurmathematik 1: {verdict: E1, emi: "Mathematik 1 (several EMI bachelors)"}
+    RO 12 Elektronik 1: {verdict: E1, emi: "E&IT electronics / Elektrotechnik modules", note: "automatic best match is MT 'Elektrotechnik'"}
+    RO 13 Grundlagen der Mechanik: {verdict: T, emi: "-", note: "no mechanics module in EMI's handbooks"}
+    RO 14 Digitaltechnik: {verdict: E1, emi: "Digitaltechnik (E&IT)"}
+    RO 15 Programmieren 1: {verdict: E1, emi: "programming modules (II, KI)"}
+    RO 21 Ingenieurmathematik 2: {verdict: E1, emi: "Mathematik 2/3"}
+    RO 22 Elektronik 2: {verdict: E1, emi: "E&IT electronics modules"}
+    RO 23 Messtechnik: {verdict: E1, emi: "Elektrische Messtechnik (E&IT)"}
+    RO 24 Algorithmen und Datenstrukturen: {verdict: E1, emi: "Algorithmen & Datenstrukturen (KI)"}
+    RO 25 Programmieren 2: {verdict: E1, emi: "Programmieren für KI 1/2 (KI)"}
+    RO 261 Projektmanagement: {verdict: E1, emi: "Projektmanagement und Agile Entwicklungsmethoden (II)"}
+    RO 262 Robotik Projekt 1: {verdict: E2, emi: "project format; robotics content as in 'Grundlagen der Robotik' (KI)", lab: educational_robots}
+    RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse: {verdict: E2, emi: "Data Analytics (II) / Stochastik (KI)", note: "automatic score just below the threshold"}
+    RO 32 Regelungstechnik 1: {verdict: E1, emi: "Einführung in die Systemtheorie und Regelungstechnik (II)"}
+    RO 33 Aktorik: {verdict: E2, emi: "electrical machines and drives (E&IT)", note: "automatic best match MT 'Elektrotechnik' is weak"}
+    RO 34 Verteilte Softwaresysteme: {verdict: E2, emi: "Big Data, Cloud & NoSQL (KI International)"}
+    RO 35 2D Maschinelles Sehen: {verdict: E1, emi: "Computer Vision (E&IT, KI)"}
+    RO 36 Robotik Projekt 2: {verdict: E2, emi: "project format; Grundlagen der Robotik (KI)", lab: educational_robots}
+    RO 42 Embedded Systems: {verdict: E1, emi: "Embedded Systems (II)"}
+    RO 43 Software Engineering: {verdict: E1, emi: "Software Engineering 1 (E&IT, II)"}
+    RO 44 Maschinelles Lernen: {verdict: E1, emi: "Machine Learning 1/2 (E&IT, KI)", note: "automatic false negative (0.269 vs 0.277)"}
+    RO 45 Robotik Projekt 3: {verdict: E2, emi: "project format; robotics as above", lab: educational_robots}
+    RO 631 Qualitätsmanagement: {verdict: T, emi: "-"}
+    RO 632 Robotik Projekt 4 Teil 1: {verdict: E2, emi: "project format", lab: educational_robots}
+    RO 633 Robotik Projekt 4 Teil 2: {verdict: E2, emi: "project format", lab: educational_robots}
+    RO 71 Ethik und Recht im Kontext der Robotik: {verdict: E2, emi: "Informationsethik und Technikphilosophie (II)"}
+    # Specialisation A: Industrielle Robotik
+    RO 6211 Anwendung von Industrierobotern: {verdict: E2, path: A, emi: "Grundlagen der Robotik (KI)", lab: "missing: industrial_robots"}
+    RO 6212 Automatisierungssysteme: {verdict: E1, path: A, emi: "Automatisierungstechnik Grundlagen (E&IT)", lab: automation}
+    RO 6213 Kollaborative Robotik: {verdict: E2, path: A, emi: "Grundlagen der Robotik (KI)", lab: "missing: industrial_robots"}
+    # Specialisation B: Geriatronik (assistive / service robotics)
+    RO 6221 Mensch-Maschine-Interaktion: {verdict: E2, path: B, emi: "Mensch-Computer-Interaktion / Mediengestaltung (MI)"}
+    RO 6222 Gesund durch Elektronik und Ambient Assisted Living: {verdict: E1, path: B, emi: "Ambient Assisted Living (KI)"}
+    RO 6223 Robotik im Pflegeumfeld: {verdict: N, path: B, emi: "Robotik (E&IT) / Grundlagen der Robotik (KI) professors", lab: educational_robots,
+                                     note: "service/humanoid robots: the Physical Computing lab has Aldebaran robots (teaching grade)"}
+    # Electives (a path needs only some of them)
+    RO 411 Regelungstechnik 2: {verdict: E1, elective: true, emi: "control modules (II, E&IT)"}
+    RO 412 Messsysteme: {verdict: E1, elective: true, emi: "Elektrische Messtechnik (E&IT)"}
+    RO 413 Funktionale Sicherheit: {verdict: out, elective: true, note: "exists only at master level (IA); drop this elective"}
+    RO 611 Deep Learning in der Robotik: {verdict: E1, elective: true, emi: "Machine Learning 2 / Deep Learning (KI)"}
+    RO 612 3D Maschinelles Sehen: {verdict: E1, elective: true, emi: "Computer Vision (E&IT, KI)"}
+    RO 613 Schall, Technik, Hören: {verdict: E1, elective: true, emi: "Audioproduktion (DD, MT)"}
+    RO 616 Einführung in die mobile Robotik: {verdict: E1, elective: true, emi: "Robotik (E&IT)", lab: educational_robots}
