@@ -1,0 +1,22 @@
+# Rarity screen (docs/rescope_plan.md (c)(ii), R4). Fixed before the screen is run.
+# Data: full Studiensuche catalogue (data/processed/programmes_full.csv), bachelor and master, FULL-TIME only (Scope 7).
+
+study_fields:   # offers listed in at least one of these fields (EMI link); field keys of the BA Studiensuche
+  groups: ["23"]                     # all of Ingenieurwissenschaften (incl. Fahrzeugtechnik, Geoinformation, Medientechnik)
+  fields: ["2509", "2511", "2928", "3517", "3703", "3709"]   # Informatik, Mathematik/Statistik, Wirtschaftsinformatik,
+                                                            # Kommunikation und Medien, Gestaltung/Design, Film/Fernsehen
+rare_max_institutions: 3            # a programme type is rare if at most 3 institutions offer it full-time in Germany
+
+type_definitions:
+  subject: the catalogue's own subject classification (field "subjects", e.g. "Informatik (grundständig)")
+  title: >-
+    the programme title, normalised: lower case; degree words, degree abbreviations, bracketed additions and study-mode
+    words removed (bachelor, master, of, science, engineering, arts, b.sc., m.sc., b.eng., m.eng., b.a., m.a., dual,
+    berufsbegleitend, vollzeit, teilzeit, online); punctuation removed; identical normalised titles = one type
+
+teachability:   # screen for rare TITLE types, not a feasibility test (that is F1-F4 for the shortlist)
+  text: programme title + catalogue teaser text of each offer of the type
+  score: mean of the 10 highest e5 similarities between the type's text and EMI's current modules (modules centred per
+         handbook, catalogue texts centred as their own group)
+  review: the 40 highest-scoring rare title types go to a hand review (proposed by Claude, confirmed by Soma)
+          for EMI teachability and for overlap with an existing OTH programme
