@@ -61,6 +61,8 @@ class Handbook:
     exclude: str = ""  # extra regex for TOC lines to drop
     label: str = ""  # per-module field label; a 2nd one inside a module = a module missing from the TOC
     unordered: bool = False  # TOC order differs from body order: search missed titles again from the body start
+    strict_ects: bool = False  # ignore numbers that are part of a code such as "3.3.4" (EMI 2026 set)
+    plan_pages: list[int] = field(default_factory=list)  # study-plan pages with "ID code title SWS ECTS ..." rows
 
 
 HANDBOOKS = [
@@ -88,13 +90,13 @@ EMI_2026 = [  # current handbooks of every EMI programme (KI B.Sc.: no newer han
     Handbook(OTH26 / "oth_hb_ei_ba_2022.pdf", "oth26_ba_ei", _O, "BA", [2, 3], label="Modul-ID"),
     Handbook(OTH26 / "oth_hb_gi_ba.pdf", "oth26_ba_gi", _O, "BA", [2, 3], unordered=True),
     Handbook(OTH26 / "oth_hb_iki_ba.pdf", "oth26_ba_iki", _O, "BA", [2, 3], "tabbed"),
-    Handbook(OTH26 / "oth_hb_mt_ba.pdf", "oth26_ba_mt", _O, "BA", [2, 3], "numbered"),
+    Handbook(OTH26 / "oth_hb_mt_ba.pdf", "oth26_ba_mt", _O, "BA", [2, 3], "numbered", plan_pages=[6]),
     Handbook(OTH26 / "oth_hb_ii_mi_ba.pdf", "oth26_ba_ii|oth26_ba_mi", _O, "BA", [2, 3],
              programmes={"Industrie-4.0-Informatik": "oth26_ba_ii", "Medieninformatik": "oth26_ba_mi"}, label="Modul-ID"),
     Handbook(OTH / "Künstliche Intelligenz (B.Sc.).pdf", "oth26_ba_ki", _O, "BA", [2, 3], "tabbed", label="Modul-ID"),
     Handbook(OTH26 / "oth_hb_mapr_ma.pdf", "oth26_ma_mapr", _O, "MA", [2]),
     Handbook(OTH26 / "oth_hb_edu_ma.pdf", "oth26_ma_edu", _O, "MA", [2], "tabbed"),
-    Handbook(OTH26 / "oth_hb_mp_ma.pdf", "oth26_ma_mp", _O, "MA", [2, 3], "numbered"),
+    Handbook(OTH26 / "oth_hb_mp_ma.pdf", "oth26_ma_mp", _O, "MA", [2, 3], "numbered", plan_pages=[5, 6]),
     Handbook(OTH26 / "oth_hb_mai_ma.pdf", "oth26_ma_mai", _O, "MA", [2]),
     Handbook(OTH26 / "oth_hb_ia_ma.pdf", "oth26_ma_ia", _O, "MA", [4, 5]),
     Handbook(OTH26 / "oth_hb_mki_ma.pdf", "oth26_ma_mki", _O, "MA", [2], "tabbed"),
@@ -239,9 +241,10 @@ ECTS = [r"Number of Credits\s.{0,160}?(?:modul|Modul\)|module)[^0-9]{0,25}?" + N
         NUM + r"\s*(?:ECTS|CP|LP|Credits?)\b"]
 
 
-def find_ects(text: str) -> str:
+def find_ects(text: str, strict: bool = False) -> str:
     head = text[:2500]
-    for pat in ECTS:
+    pats = [x.replace(NUM, NUM + r"(?![.,]\d)") for x in ECTS] if strict else ECTS
+    for pat in pats:
         for m in re.finditer(pat, head, re.I | re.S):
             v = float(m.group(1).replace(",", "."))
             if 1 <= v <= 30:
@@ -251,6 +254,24 @@ def find_ects(text: str) -> str:
 
 CONTENT = re.compile(r"\b(Lerninhalte|Lehrinhalte|Inhalte?|Contents?|Lernziele|Lernergebnisse|Qualifikationsziele|"
                      r"Learning [Oo]utcomes|Kompetenzen)\b:?")
+
+
+def plan_ects(hb: Handbook, pages: list[str]) -> dict[str, str]:
+    """ECTS per module from the study-plan table: rows "1.3 MPT Title ... 4 5 4 5" = (SWS, ECTS) per semester;
+    the module's ECTS is the sum of every second number. Rows can wrap over several lines."""
+    out = {}
+    for n in hb.plan_pages:
+        text = pages[n - 1].replace("\t", " ")
+        for chunk in re.split(r"(?m)^(?=\s*\d+(?:\.\d+)*\.?\s)", text):   # every numbered row starts a chunk
+            m = re.match(r"\s*\d+(?:\.\d+)+\.?\s+[A-Z][A-Za-z0-9]{0,5}\s+(.+?)\s+((?:\d{1,2}(?:,5)?\s+)*\d{1,2}(?:,5)?)\s*$",
+                         " ".join(chunk.split()))
+            if not m:
+                continue
+            nums = [float(x.replace(",", ".")) for x in m.group(2).split()]
+            if len(nums) >= 2 and len(nums) % 2 == 0:
+                v = sum(nums[1::2])
+                out[compact(m.group(1))] = f"{v:g}"
+    return out
 
 
 def content_excerpt(text: str, n: int = 250) -> str:
@@ -297,6 +318,7 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
         end = found[k + 1][0] if k + 1 < len(found) else len(lines)
         texts.append(re.sub(r"\s+", " ", " ".join(l for _, l in lines[i + 1:end])).strip())
     starts = [lines[i][0] for i, _ in found]
+    plan = plan_ects(hb, pages) if hb.plan_pages else {}
     rows, dropped = [], []
     for k, (i, (title, section)) in enumerate(found):
         text, source = texts[k], "handbook"
@@ -316,7 +338,9 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
         for pid in pids:
             rows.append({"programme_id": pid, "institution": hb.institution, "level": hb.level,
                          "module_id": f"{pid}:{len([r for r in rows if r['programme_id'] == pid]) + 1:03d}",
-                         "title": title, "section": section, "ects": find_ects(text), "semester": find_semester(text),
+                         "title": title, "section": section,
+                         "ects": find_ects(text, hb.strict_ects) or next((v for k, v in plan.items() if k.startswith(compact(title)[:25])), ""),
+                         "semester": find_semester(text),
                          "text": text, "text_chars": len(text), "source_file": hb.file.relative_to(REPO_ROOT).as_posix(),
                          "page": lines[i][0], "text_source": source})
     missing = [t for i, (t, _) in zip(pos, entries) if i is None]
@@ -398,6 +422,9 @@ def main(argv: list[str] | None = None) -> None:
     ap.add_argument("--set", choices=["baseline", "emi2026"], default="baseline")
     args = ap.parse_args(argv)
     handbooks, out, report_path = (EMI_2026, OUT_2026, REPORT_2026) if args.set == "emi2026" else (HANDBOOKS, OUT, REPORT)
+    if args.set == "emi2026":   # numbered codes ("3.3.4") sit next to the credit field in some current handbooks
+        for hb in handbooks:
+            hb.strict_ects = True
     rows, checks = [], []
     for hb in handbooks:
         r, c = parse(hb)
