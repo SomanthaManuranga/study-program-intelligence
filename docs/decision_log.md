@@ -236,3 +236,7 @@ Decided by: team (Somantha Manuranga).
 ## 2026-10-19: Feasibility rule pre-registered
 Decision: the feasibility test with existing resources is fixed in configs/feasibility.yaml (F1 coverage at least 80 % of taught ECTS by existing EMI modules unchanged or adapted, F2 new content at most 20 % with teaching assignments and new modules by existing professors each at most 10 ECTS bachelor / 5 ECTS master, F3 existing labs only, F4 at most 50 % of taught ECTS from any one OTH programme; e5 match at the calibrated Step 41 threshold, every counted match for a shortlisted candidate confirmed by hand; lenient values as a sensitivity only). Committed before any candidate is re-scored; the commit time is the proof of order.
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-21: Branch workflow for two collaborators
+Decision: main holds only reviewed work and changes only through pull requests (CONTRIBUTING.md); each person works on topic branches named <name>/<topic>. The eight unreviewed re-scope commits (week 1 and 2, be0b3eb..43a3800) were moved to branch soma/rescope, and main was reset to the reviewed baseline (13aa60b, tag baseline-new-resources) and force-pushed once, before any collaborator cloned the repository. Nothing was lost: soma/rescope holds all eight commits. From now on main is never force-pushed. Reason: pushing everything to main makes parallel work by two people unsafe.
+Decided by: team (Somantha Manuranga).
