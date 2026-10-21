@@ -24,7 +24,10 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 - After giving a step, wait until I report back or paste the output. Check the result against "Done when".
   Only move to the next step when it succeeded; otherwise help me fix it (same step number).
 - After each finished step, update "Current step" below and commit it with the step's other changes.
-- Push after each step passes its "Done when" check without asking.
+- Git: never commit or push to main. Work on a personal topic branch (soma/<topic>; the collaborator uses
+  <name>/<topic>), commit there, and push that branch after each step passes its "Done when" check without asking.
+  Work reaches main only through a reviewed pull request (CONTRIBUTING.md). Keep the branch up to date by merging main
+  into it; never rewrite or force-push main.
 - Spot checks for me: an English side-by-side table (what was extracted or claimed, the source text, where it is)
   so I only compare, never search.
 - Plain English, blunt, evidence-based. Numbers with sources. Say clearly when evidence is weak.
