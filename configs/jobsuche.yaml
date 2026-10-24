@@ -20,6 +20,18 @@ keywords:
   - {id: ot_security, was: "OT Security", group: cybersecurity}
   # ---- comparison case: robotics ----
   - {id: robotik, was: "Robotik", group: robotics}
+  # ---- equal-evidence candidates (configs/candidates.yaml); first counts with the 1 Nov snapshot ----
+  - {id: servicerobotik, was: "Servicerobotik", group: robotics}
+  - {id: autonomes_fahren, was: "Autonomes Fahren", group: autonomous}
+  - {id: fahrerassistenz, was: "Fahrerassistenzsysteme", group: autonomous}
+  - {id: virtual_reality, was: "Virtual Reality", group: arvr}
+  - {id: augmented_reality, was: "Augmented Reality", group: arvr}
+  - {id: computergrafik, was: "Computergrafik", group: arvr}
+  - {id: energiedatenmanagement, was: "Energiedatenmanagement", group: energydata}
+  - {id: energieinformatik, was: "Energieinformatik", group: energydata}
+  - {id: smart_meter, was: "Smart Meter", group: energydata}
+  - {id: geoinformatik, was: "Geoinformatik", group: geodata}
+  - {id: gis, was: "GIS", group: geodata}
   # ---- baselines (computer science and neighbours) ----
   - {id: informatiker, was: "Informatiker", group: baseline}
   - {id: softwareentwickler, was: "Softwareentwickler", group: baseline}

@@ -26,7 +26,8 @@ OUT = REPO_ROOT / "reports" / "key_numbers.yaml"
 INTERIM = REPO_ROOT / "data" / "interim"
 DOCS = REPO_ROOT / "docs"
 JOB_SNAPSHOT = "2026-10-15"   # snapshot the evidence doc's table shows; move to the frozen snapshot on 4 Dec
-SECTIONS = ["M_method", "S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
+SECTIONS = ["M_method", "S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking",
+            "G_candidates"]
 
 
 def _norm(s: str) -> str:
@@ -292,7 +293,87 @@ def collect() -> Numbers:
     for k, label, v, disp, src, chk in LITERALS:
         sec, key = k.split("__")
         n.add(key, sec, label, v, disp, src, check=chk)
+    candidates(n)
     return n
+
+
+def candidates(n: Numbers) -> None:
+    """Equal-evidence step (docs/evidence_candidates.md): read from the generated tables where they exist."""
+    s, g = "docs/evidence_candidates.md", "G_candidates"
+    hc = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
+    names = {"Autonomous mobile systems B.Eng.": "autonomous", "AR/VR & visual computing B.Sc.": "arvr",
+             "Energy data management B.Sc.": "energydata", "Geo-data & geovisualisation B.Sc.": "geodata"}
+    pid = {"autonomous": "thd_ba_em", "arvr": "hsc_ba_vc", "energydata": "fhdo_ba_eedm", "geodata": "hm_ba_gds"}
+    auto = pd.read_csv(INTERIM / "feasibility_modules.csv")
+    for option, t in hc.groupby("option"):
+        k = names[option]
+        tot = t["ects"].sum()
+        e12 = 100 * t.loc[t["verdict"].isin(["E1", "E2"]), "ects"].sum() / tot
+        e1 = 100 * t.loc[t["verdict"] == "E1", "ects"].sum() / tot
+        a = auto[auto["programme_id"] == pid[k]]
+        e5 = round(100 * a.loc[a["covered"], "ects_used"].sum() / a["ects_used"].sum(), 1)
+        tf = round(100 * a.loc[a["tfidf_covered"], "ects_used"].sum() / a["ects_used"].sum(), 1)
+        row = f"| {k} | {e5:.1f} % | {tf:.1f} % | {e5 - tf:.1f} pp | {e12:.1f} % | {e1:.1f} % |"
+        src = "data/interim/feasibility_handcheck_candidates.csv"
+        n.add(f"f1_hand_{k}", g, f"F1 after the hand check (E1+E2), {k}", round(e12, 1), f"{e12:.1f} %", s, check=row, data=src)
+        n.add(f"f1_e1only_{k}", g, f"F1 without adapted modules (E1 only), {k}", round(e1, 1), f"{e1:.1f} %", s, check=row, data=src)
+        n.add(f"e5_tfidf_gap_{k}", g, f"Gap e5 vs TF-IDF coverage, {k}", round(e5 - tf, 1), f"{e5 - tf:.1f} pp", s, check=row,
+              data="data/interim/feasibility_modules.csv")
+    by = pd.read_csv(INTERIM / "candidate_demand.csv")
+    by = by[by["region"] == "BY"].set_index("candidate")
+    for k in by.index:
+        r = by.loc[k]
+        chk = f"| {int(r['all start']):,} -> {int(r['all end']):,} | {r['all %/yr']} | {r['German %/yr']} | {r['foreign %/yr']} |"
+        n.add(f"by_growth_{k}", g, f"Bavarian growth of the demand series, {k} (%/yr)", float(r["all %/yr"]), f"{r['all %/yr']}", s,
+              check=chk, data="data/interim/candidate_demand.csv")
+        n.add(f"by_german_growth_{k}", g, f"Bavarian growth, German nationality only, {k} (%/yr)", float(r["German %/yr"]),
+              f"{r['German %/yr']}", s, check=chk, data="data/interim/candidate_demand.csv")
+    comp = pd.read_csv(INTERIM / "candidate_competition.csv").set_index("candidate")
+    for k in comp.index:
+        r = comp.loc[k]
+        chk = (f"| {k} | {r['dedicated institutions DE']} | {r['dedicated institutions BY']} | "
+               f"{r['dedicated institutions <=150 km']} | {r['dedicated institutions <=80 km']} |")
+        n.add(f"competitors_150km_{k}", g, f"Dedicated competitor institutions within 150 km, {k}",
+              int(r["dedicated institutions <=150 km"]), str(r["dedicated institutions <=150 km"]), s, check=chk,
+              data="data/interim/candidate_competition.csv")
+        n.add(f"competitors_de_{k}", g, f"Dedicated competitor institutions in Germany, {k}", int(r["dedicated institutions DE"]),
+              str(r["dedicated institutions DE"]), s, check=chk, data="data/interim/candidate_competition.csv")
+    sc = pd.read_csv(INTERIM / "candidate_scenarios.csv")
+    for k, t in sc.groupby("option"):
+        t = t.set_index("scenario")
+        levels = ("low", "central", "high")
+        gross = " / ".join(f"{t.at[x, 'gross first-years']:.1f}" for x in levels)
+        net = " / ".join(f"{t.at[x, '(b) net new to OTH']:.1f}" for x in levels)
+        n.add(f"gross_{k}", g, f"Gross first-years low / central / high, {k}",
+              [float(t.at[x, "gross first-years"]) for x in levels], gross, s, check=f"| {gross} | {net} |",
+              data="data/interim/candidate_scenarios.csv")
+    rs = pd.read_csv(INTERIM / "ranking_candidates_summary.csv")
+    slug = lambda x: "".join(ch if ch.isalnum() else "_" for ch in x.lower()).strip("_")
+    for r in rs.itertuples():   # every scenario of the robustness table
+        p = 100 * float(r._2)
+        n.add(f"p1_{r.option}_{slug(r.scenario)}", g, f"P(rank 1) {r.option}, {r.scenario}", round(p, 1), f"{p:.1f} %", s,
+              data="data/interim/ranking_candidates_summary.csv")
+    # central weighted totals (deterministic, base weights)
+    from study_program_intelligence.analysis import ranking as R
+    cfg, sc, cap = R.load(sheet_path=R.CAND_SCORES, scen_path=R.CAND_SCEN)
+    for r in R.deterministic(cfg, sc, cap).itertuples():
+        n.add(f"total_{r.option}", g, f"Weighted total at central scores, {r.option}", float(r._8), f"{r.option} {r._8:.2f}", s)
+    for k, label, v, disp, chk in CANDIDATE_LITERALS:
+        n.add(k, g, label, v, disp, s, check=chk)
+
+
+CANDIDATE_LITERALS = [   # stated in docs/evidence_candidates.md
+    ("f4_ot_strict", "Reduced OT master: share listed by IT und Automation", 83.3, "83.3 %", "83.3 % of it is listed by IT und Automation"),
+    ("f4_ot_lenient", "Reduced OT master: largest share if shared modules count elsewhere", 58.3, "58.3 %", "58.3 % comes from the KI master"),
+    ("f4_geodata", "Geo-data: share from OTH's Geoinformatik und Landmanagement", 62.3, "62.3 %", "| geodata | fails | 62.3 % from OTH's own"),
+    ("f4_autonomous", "Autonomous systems: share from E&IT", 70.1, "70.1 %", "70.1 % from E&IT (F4)"),
+    ("arvr_share_of_mi", "AR/VR central gross as a share of Bavarian Medieninformatik first-years 2024", 41, "41 %", "would be 41 % of all 141"),
+    ("arvr_rel_capture", "AR/VR: OTH new relative to the Coburg site, all model variants", "1.50-1.91", "1.50-1.91",
+     "draw 1.50-1.91 times Coburg's intake"),
+    ("arvr_e2_margin", "AR/VR: ECTS of E2 verdicts that could be rejected before F1 falls below 80 %", 14, "14 ECTS", "worth more than 14 ECTS"),
+    ("plzen_km", "Distance Amberg - Plzen (straight line)", 115, "about 115 km", "about 115 km from Amberg"),
+    ("baseline_p1_cyber", "Baseline winner P(rank 1), Cybersecurity B.Sc.", 91.7, "91.7 %", "Cybersecurity B.Sc., P(rank 1) 91.7 %"),
+]
 
 
 # Numbers taken as stated in an evidence doc (key prefix = section). check = verbatim text in that doc.

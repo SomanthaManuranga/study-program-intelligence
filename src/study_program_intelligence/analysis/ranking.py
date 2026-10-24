@@ -19,6 +19,13 @@ Sensitivity: leave-one-criterion-out (weights renormalised), independent capture
 earlier skewed robotics fit/feasibility range 2 / 3 / 5, and demand trend scores from German first-years / graduates
 only (scores.yaml sensitivity.trend_german, all three options).
 Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/ranking_loo.csv.
+
+Equal-evidence candidates (`--candidates`): the same model on configs/scores_candidates.yaml and
+data/interim/candidate_scenarios.csv (analysis/candidates.py). Candidates that fail the F1-F4 gate carry feasibility 1
+and drop out as above. Scenarios: base; German-only trends; lenient feasibility gate; 50 % cannibalisation for the
+candidates with a same-campus near-twin; AR/VR capture replaced by robotics' rows; AR/VR differentiation one step lower
+(neighbouring countries); all AR/VR counter-arguments at once; independent capture draws; leave-one-criterion-out.
+Outputs: reports/ranking_candidates.md, data/interim/ranking_candidates_summary.csv, data/interim/ranking_candidates_loo.csv.
 """
 
 from __future__ import annotations
@@ -36,6 +43,11 @@ SCEN = REPO_ROOT / "data" / "interim" / "option_scenarios.csv"
 REPORT = REPO_ROOT / "reports" / "ranking.md"
 SUMMARY = REPO_ROOT / "data" / "interim" / "ranking_summary.csv"
 LOO = REPO_ROOT / "data" / "interim" / "ranking_loo.csv"
+CAND_SCORES = REPO_ROOT / "configs" / "scores_candidates.yaml"
+CAND_SCEN = REPO_ROOT / "data" / "interim" / "candidate_scenarios.csv"
+CAND_REPORT = REPO_ROOT / "reports" / "ranking_candidates.md"
+CAND_SUMMARY = REPO_ROOT / "data" / "interim" / "ranking_candidates_summary.csv"
+CAND_LOO = REPO_ROOT / "data" / "interim" / "ranking_candidates_loo.csv"
 LEVELS = ("low", "central", "high")
 HAND = ("labour_relevance", "institutional_fit", "feasibility", "differentiation")
 
@@ -56,9 +68,10 @@ def tri_ppf(u, lo, mode, hi):
     return np.where(u < f, lo + np.sqrt(u * (hi - lo) * (mode - lo)), hi - np.sqrt((1 - u) * (hi - lo) * (hi - mode)))
 
 
-def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_trend: bool = False) -> tuple[dict, dict, dict]:
+def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_trend: bool = False,
+         sheet_path: Path = SCORES, scen_path: Path = SCEN, cannib_50: tuple = ("robotics_bsc",)) -> tuple[dict, dict, dict]:
     cfg = yaml.safe_load(ANALYSIS.read_text(encoding="utf-8"))
-    sheet = yaml.safe_load(SCORES.read_text(encoding="utf-8"))
+    sheet = yaml.safe_load(sheet_path.read_text(encoding="utf-8"))
     sc = sheet["options"]
     if german_trend:  # sensitivity: trend anchor applied to German first-years / graduates only (all options)
         for o, t in sheet["sensitivity"]["trend_german"].items():
@@ -66,13 +79,13 @@ def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_t
     if robotics_skew:  # sensitivity: the earlier skewed 2 / 3 / 5 for robotics fit and feasibility (mean 3.33)
         for k in ("institutional_fit", "feasibility"):
             sc["robotics_bsc"][k].update(low=2, central=3, high=5)
-    model = pd.read_csv(SCEN)
+    model = pd.read_csv(scen_path)
     cap = {}
     for o in sc:
         d = model[model["option"] == o].set_index("scenario")
         n = [float(d.at[k, "(b) net new to OTH"]) for k in LEVELS]
         c = [float(d.at[k, "(c) kept in region"]) for k in LEVELS]
-        if robotics_cannib_50 and o == "robotics_bsc":
+        if robotics_cannib_50 and o in cannib_50:
             share = [float(d.at[k, "net-new share"]) for k in LEVELS]
             n = [0.5 * float(d.at[k, "gross first-years"]) for k in LEVELS]
             c = [ci * 0.5 / s for ci, s in zip(c, share)]
@@ -152,7 +165,62 @@ def _md(df: pd.DataFrame) -> str:
     return "\n".join(out)
 
 
+def main_candidates() -> None:
+    kw = {"sheet_path": CAND_SCORES, "scen_path": CAND_SCEN}
+    sheet = yaml.safe_load(CAND_SCORES.read_text(encoding="utf-8"))
+    sens = sheet["sensitivity"]
+    cfg, sc, cap = load(**kw)
+    runs = {"base": (cfg, sc, cap)}
+    runs["German-only trends"] = load(german_trend=True, **kw)
+    c, s_, k = load(**kw)
+    for o in s_:   # lenient gate: the candidates that would pass under the lenient rule keep their scores
+        if o not in sens["lenient_gate"]["pass"]:
+            s_[o]["feasibility"].update(low=1, central=1, high=1)
+    runs["lenient feasibility gate"] = (c, s_, k)
+    runs["50 % cannibalisation (robotics_b, arvr)"] = load(robotics_cannib_50=True, cannib_50=tuple(sens["cannibalisation_50"]), **kw)
+    c, s_, k = load(**kw)
+    k["arvr"] = k["robotics_b"]
+    runs["AR/VR capture = robotics rows"] = (c, s_, k)
+    c, s_, k = load(**kw)
+    s_["arvr"]["differentiation"].update(low=2, central=3, high=3)
+    runs["AR/VR differentiation one step lower"] = (c, s_, k)
+    c, s_, k = load(german_trend=True, robotics_cannib_50=True, cannib_50=("arvr",), **kw)
+    k["arvr"] = {"n": [0.5 * x for x in k["robotics_b"]["n"]], "c": k["robotics_b"]["c"]}
+    s_["arvr"]["differentiation"].update(low=2, central=3, high=3)
+    runs["AR/VR: all counter-arguments at once"] = (c, s_, k)
+    res = {name: summarise(simulate(*r, r[0]["weights"])) for name, r in runs.items()}
+    res["independent capture draws"] = summarise(simulate(cfg, sc, cap, cfg["weights"], common=False))
+    det = deterministic(cfg, {o: v for o, v in sc.items() if v["feasibility"]["central"] > 1}, cap)
+    det_all = deterministic(cfg, sc, cap)
+    loo = leave_one_out(cfg, sc, cap)
+    gate = {o: sc[o]["gate"]["result"] + ": " + sc[o]["gate"]["evidence"] for o in sc}
+    out = pd.concat([r.assign(scenario=name) for name, r in res.items()])
+    CAND_SUMMARY.parent.mkdir(parents=True, exist_ok=True)
+    out.to_csv(CAND_SUMMARY, index=False)
+    loo.to_csv(CAND_LOO, index=False)
+    lines = ["# Ranking of the equal-evidence candidates (generated)", "",
+             f"Score sheet configs/scores_candidates.yaml; capture data/interim/candidate_scenarios.csv. Draws "
+             f"{cfg['monte_carlo']['draws']}, Dirichlet concentration {cfg['monte_carlo']['dirichlet_concentration']}, "
+             f"seed {cfg['monte_carlo']['seed']}.", "", "## Gate F1-F4", "",
+             *[f"- {o}: {g}" for o, g in gate.items()], "",
+             "## Central scores of all candidates (gate ignored, for comparison only)", "", _md(det_all), "",
+             "## Central scores of the candidates that pass the gate", "", _md(det), ""]
+    for name, r in res.items():
+        lines += [f"## {name}", "", _md(r), ""]
+    lines += ["## Leave-one-criterion-out (base)", "", _md(loo), "", "## Evidence strength", "", _md(strength_matrix(sc)), ""]
+    CAND_REPORT.write_text("\n".join(lines), encoding="utf-8")
+    pd.set_option("display.width", 250)
+    print(det_all.to_string(index=False))
+    for name, r in res.items():
+        print(f"\n== {name}\n{r.to_string(index=False)}")
+    print(f"\n== LOO\n{loo.to_string(index=False)}")
+    print(f"\nWritten: {CAND_REPORT.relative_to(REPO_ROOT)}, {CAND_SUMMARY.relative_to(REPO_ROOT)}")
+
+
 def main() -> None:
+    import sys
+    if "--candidates" in sys.argv[1:]:
+        return main_candidates()
     cfg, sc, cap = load()
     base = summarise(simulate(cfg, sc, cap, cfg["weights"]))
     indep = summarise(simulate(cfg, sc, cap, cfg["weights"], common=False))

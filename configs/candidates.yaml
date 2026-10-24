@@ -27,6 +27,7 @@ candidates:
     label: Autonomous mobile systems B.Eng.
     level: Bachelor
     theme: "autonom|automatisiert\\w* fahren|automated driving|fahrerassistenz|mobile robot"
+    exclude: "physiotherap"
     subjects: {kind: first-years, codes: [SF235, SF380], note: "Fahrzeugtechnik + Mechatronik"}
     capture: own
     trends: ["autonomes Fahren Studium", "Autonome Systeme Studium"]
@@ -35,6 +36,7 @@ candidates:
     label: AR/VR & visual computing B.Sc.
     level: Bachelor
     theme: "virtual reality|augmented reality|extended reality|mixed reality|\\bxr\\b|ar/vr|vr/ar|visual computing|computervisualistik|computer visualistics|immersive|spatial computing"
+    exclude: "wirtschaftswissenschaft|technische kommunikation"
     subjects: {kind: first-years, codes: [SF121], note: "Medieninformatik (visual computing has no own subject code)"}
     capture: own
     trends: ["Virtual Reality Studium", "AR VR Studium", "Visual Computing Studium"]
@@ -59,7 +61,7 @@ candidates:
     label: Reduced OT-security master
     level: Master
     theme: "cyber|it-?sicherheit|it[- ]security|informationssicherheit|information security|security engineering|sichere systeme"
-    exclude: "\\bmba\\b|defence|criminolog|\\blaw\\b|peace|security studies|international security"
+    exclude: "\\bmba\\b|defence|criminolog|\\blaw\\b|peace|security studies|international security|cyber[- ]?physi|cyberphysi|cybernetic|analytical instruments"
     subjects: {kind: graduates, codes: [SF079], note: "Informatik graduates, the pipeline used for the baseline cyber master"}
     capture: cyber_msc
     trends: ["OT Security", "Industrial Security", "Cyber Security Master"]
