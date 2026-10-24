@@ -23,8 +23,8 @@ labs:
   - {name: Digitale Signalverarbeitung, capabilities: [signal_processing]}
   - {name: Physik, capabilities: [physics]}
   - {name: Software Projekte, capabilities: [software]}
-  - {name: Labor Medieninformatik / Physical Computing, capabilities: [physical_computing, educational_robots],
-     note: "Arduino/ESP32/Raspberry Pi, Mindstorms and Aldebaran robot programming, 3D printing (public lab page)"}
+  - {name: Labor Medieninformatik / Physical Computing, capabilities: [physical_computing, educational_robots, xr],
+     note: "Arduino/ESP32/Raspberry Pi, Mindstorms and Aldebaran robot programming, 3D printing (public lab page); HTC Vive, Microsoft HoloLens, Kinect, NAO and Pepper (Labor Medieninformatik page, from about 2020)"}
   - {name: Visual Computing, capabilities: [computer_vision, graphics, xr]}
   - {name: Audio- und Videotechnik, capabilities: [audio, video]}
   - {name: Mediengestaltung, capabilities: [media_design]}

@@ -79,7 +79,7 @@ autonomous_bsc:
     EM-12 Regelungstechnik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Regelungstechnik", note: "automatic false negative (0.241)"}
     EM-13 Elektrische Messtechnik: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrische Messtechnik"}
     EM-14 Sensorik / Optik: {verdict: E2, prog: oth26_ba_ei, emi: "Practical Training in Optoelectronic Systems"}
-    EM-15 Mikrocomputertechnik: {verdict: E1, prog: oth26_ba_ei, emi: "Embedded Systems", lab: embedded, note: "automatic false negative (0.255)"}
+    EM-15 Mikrocomputertechnik: {verdict: E1, prog: oth26_ba_ei, emi: "Embedded Systems", lab: embedded, note: "automatic false negative: best match Physical Computing (DD), 0.255"}
     EM-16 Elektromagnetische Verträglichkeit: {verdict: N, emi: "Hochfrequenztechnik professor (E&IT)", note: "no EMC module at EMI"}
     EM-17 Bildverarbeitung: {verdict: E1, prog: oth26_ba_ii, emi: "Computer Vision (II)"}
     EM-18 Regelungstechnik 2: {verdict: E2, prog: oth26_ba_ei, emi: "Simulation dynamischer Systeme"}
@@ -105,7 +105,7 @@ arvr_bsc:
     Diskrete Mathematik: {verdict: E1, prog: oth26_ba_ki, emi: "Mathematik 2 (Diskrete Mathematik)"}
     Grundlagen der Informatik: {verdict: E1, prog: oth26_ba_ki, emi: "Informatik Grundlagen (KI International)"}
     Programmieren 1: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 1"}
-    Programmieren 2: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 2", note: "automatic false negative (0.243)"}
+    Programmieren 2: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 2", note: "automatic false negative: Programmierung 2 scores 0.232; best match Programmieren für KI 3 (Java), 0.243"}
     Webtechnologien: {verdict: E1, prog: oth26_ba_mi, emi: "Web-Client-Technologien"}
     Grundlagen des Visual Computing: {verdict: E2, prog: oth26_ba_mt, emi: "Visual Computing (MT/DD)"}
     Künstliche Intelligenz 1: {verdict: E1, prog: oth26_ba_ki, emi: "Symbolische Künstliche Intelligenz 2 (Klassische Methoden)", note: "search and problem solving"}
@@ -170,7 +170,7 @@ geodata_bsc:
     202 - Softwareentwicklung: {verdict: E1, prog: oth26_ba_gi, emi: "Geo-Programmierung 2"}
     203 - Computer Systems Fundamentals: {verdict: E1, prog: oth26_ba_ii, emi: "Grundlagen digitaler Systeme"}
     231 - Visual Computing 1: {verdict: E2, prog: oth26_ba_mt, emi: "Visual Computing (MT/DD)"}
-    232 - Geo Sensorik 1: {verdict: E1, prog: oth26_ba_gi, emi: "Ingenieurvermessung und Sensorik", note: "automatic false negative (0.249)"}
+    232 - Geo Sensorik 1: {verdict: E1, prog: oth26_ba_gi, emi: "Ingenieurvermessung und Sensorik", note: "automatic false negative: Ingenieurvermessung und Sensorik scores 0.244; best match Mobile & Ubiquitous Computing, 0.249"}
     233 - Geodatenanalyse 1: {verdict: E1, prog: oth26_ba_gi, emi: "Geo Data Analytics"}
     301 - Statistik und Stochastik: {verdict: E1, prog: oth26_ba_ii, emi: "Stochastik"}
     331 - Visual Computing 2: {verdict: E2, prog: oth26_ba_gi, emi: "Geovisualisierung; Virtual / Augmented Reality (GI)"}
@@ -190,7 +190,7 @@ geodata_bsc:
     533 - Projekt Geodatenfusion: {verdict: E2, prog: oth26_ba_gi, emi: "Geoinformatik-Projekt"}
     534 - Projekt Umwelt: {verdict: E2, prog: oth26_ba_gi, emi: "Vertiefungs-Projekt; Umwelt und Natur"}
 
-# Reduced OT-security master: no reference curriculum fits (the cyber/OT references reach only 47-49 %), so this
+# Reduced OT-security master: no reference curriculum fits (the cyber/OT references reach at most 49 %: THI 49.4 %, HDBW 47.2 %, Deggendorf 0 % as an artefact), so this
 # candidate is a design from EMI's existing MASTER modules (bachelor modules do not count at master level): every
 # master-level security module, the OT modules, and a project and research frame, 60 taught ECTS.
 # owners = the master programmes whose handbooks list the module. F4 is reported strict (a module IA lists counts for

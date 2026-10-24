@@ -23,7 +23,7 @@ Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/rank
 Equal-evidence candidates (`--candidates`): the same model on configs/scores_candidates.yaml and
 data/interim/candidate_scenarios.csv (analysis/candidates.py). Candidates that fail the F1-F4 gate carry feasibility 1
 and drop out as above. Scenarios: base; German-only trends; lenient feasibility gate; 50 % cannibalisation for the
-candidates with a same-campus near-twin; AR/VR capture replaced by robotics' rows; AR/VR differentiation one step lower
+candidates with a same-campus near-twin; AR/VR capture replaced by robotics' rows; AR/VR differentiation one step lower; AR/VR institutional fit 4
 (neighbouring countries); all AR/VR counter-arguments at once; independent capture draws; leave-one-criterion-out.
 Outputs: reports/ranking_candidates.md, data/interim/ranking_candidates_summary.csv, data/interim/ranking_candidates_loo.csv.
 """
@@ -184,9 +184,13 @@ def main_candidates() -> None:
     c, s_, k = load(**kw)
     s_["arvr"]["differentiation"].update(low=2, central=3, high=3)
     runs["AR/VR differentiation one step lower"] = (c, s_, k)
-    c, s_, k = load(german_trend=True, robotics_cannib_50=True, cannib_50=("arvr",), **kw)
+    c, s_, k = load(**kw)
+    s_["arvr"]["institutional_fit"].update(low=4, central=4, high=4.5)   # more than 10 new ECTS (fit rule: staff 4)
+    runs["AR/VR institutional fit 4"] = (c, s_, k)
+    c, s_, k = load(german_trend=True, **kw)
     k["arvr"] = {"n": [0.5 * x for x in k["robotics_b"]["n"]], "c": k["robotics_b"]["c"]}
     s_["arvr"]["differentiation"].update(low=2, central=3, high=3)
+    s_["arvr"]["institutional_fit"].update(low=4, central=4, high=4.5)
     runs["AR/VR: all counter-arguments at once"] = (c, s_, k)
     res = {name: summarise(simulate(*r, r[0]["weights"])) for name, r in runs.items()}
     res["independent capture draws"] = summarise(simulate(cfg, sc, cap, cfg["weights"], common=False))
