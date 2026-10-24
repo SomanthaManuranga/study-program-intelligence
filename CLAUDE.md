@@ -20,6 +20,12 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 9. Internal OTH data: the supervisor will ask; do not plan around it. Public data only.
 
 ## How to work with me (Soma)
+- **Standing rule for every step: Build -> Evaluate -> Iterate -> Report.** Write the criteria and thresholds down
+  BEFORE building (committed first). Score your own output against them, run the tests, have a fresh-context reviewer
+  check every factual claim, fix what fails and repeat, at most 3 rounds. Then report a scorecard (criterion, target,
+  result, pass/fail, what was fixed). If a criterion still fails after 3 rounds, stop and tell Soma; never loosen a
+  criterion to make it pass.
+- No AI attribution in commits, pull requests or repo files (no "Co-Authored-By" or "Generated with" lines).
 - Work in numbered steps (Step N), one step at a time. Each step ends with a "Done when" check.
 - After giving a step, wait until I report back or paste the output. Check the result against "Done when".
   Only move to the next step when it succeeded; otherwise help me fix it (same step number).
