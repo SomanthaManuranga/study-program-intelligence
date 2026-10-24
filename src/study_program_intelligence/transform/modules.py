@@ -64,6 +64,9 @@ class Handbook:
     strict_ects: bool = False  # ignore numbers that are part of a code such as "3.3.4" (EMI 2026 set)
     plan_pages: list[int] = field(default_factory=list)  # study-plan pages with "ID code title SWS ECTS ..." rows
     ects_rule: str = ""  # "sum_lp": credits split by teaching form ("Vorlesung: 2 SWS 3 LP Praktikum: 2 SWS 2 LP") -> sum
+    code_re: str = r"[BM]-CY-\d+"  # module code at the start of a "code" style TOC line
+    body_prefix: str = ""  # regex stripped from body lines before matching headings ("103 Thesis" -> "Thesis")
+    code_page: bool = False  # "code" TOC lines end with a page number ("101 - Computational Thinking 6")
 
 
 HANDBOOKS = [
@@ -104,9 +107,18 @@ EMI_2026 = [  # current handbooks of every EMI programme (KI B.Sc.: no newer han
 ]
 OUT_REF = REPO_ROOT / "data" / "interim" / "modules_references.csv"
 REPORT_REF = REPO_ROOT / "reports" / "modules_references_check.md"
+REF = REPO_ROOT / "data" / "raw" / "references"
 REFERENCES = [  # reference curricula for options without a handbook in the baseline set (re-scope feasibility check)
     Handbook(REPO_ROOT / "data" / "raw" / "anchors" / "hske_ba_robotik.pdf", "hske_ba_rob", "Hochschule Kempten", "BA", [2, 3, 4],
              "numbered", exclude=r"^(?!RO\s?\d)", ects_rule="sum_lp"),
+    # equal-evidence candidates (configs/reference_documents.yaml)
+    Handbook(REF / "ref_autonomous_deggendorf.pdf", "thd_ba_em", "TH Deggendorf", "BA", [2, 3], "code", code_re=r"EM-\d+"),
+    Handbook(REF / "ref_energydata_dortmund.pdf", "fhdo_ba_eedm", "FH Dortmund", "BA", [2, 3], body_prefix=r"^\d{4,6}\s+",
+             ects_rule="art"),
+    Handbook(REF / "ref_visual_computing_coburg.pdf", "hsc_ba_vc", "Hochschule Coburg", "BA", [6, 7, 8],
+             body_prefix=r"^Modulbezeichnung\s+"),
+    Handbook(REF / "ref_geodata_hm.pdf", "hm_ba_gds", "Hochschule München", "BA", [2, 3], "code", unordered=True,
+             code_re=r"\d{3} -", code_page=True),
 ]
 NAME_ONLY = [  # (file, programme_id, institution, level)
     (COMP / "aalen_ma_cyber_security_pflichtmodule.pdf", "aalen_ma_csc", "HS Aalen", "MA"),
@@ -183,9 +195,10 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
                 out.append((title, section))
                 continue
             if hb.toc_style == "code":
-                m = re.match(r"^([BM]-CY-\d+)\s+(.+)$", line)
+                m = re.match(rf"^({hb.code_re})\s+(.+)$", line)
                 if m:
-                    out.append((f"{m.group(1)} {m.group(2).strip()}", section))
+                    rest = re.sub(r"\s+\d{1,3}$", "", m.group(2).strip()) if hb.code_page else m.group(2).strip()
+                    out.append((f"{m.group(1)} {rest}", section))
                 elif out and out[-1][0].endswith((",", "-", "(", "und")):
                     out[-1] = (f"{out[-1][0]} {line}", out[-1][1])  # wrapped title
                 continue
@@ -216,11 +229,14 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
     return out
 
 
-def locate(lines: list[tuple[int, str]], titles: list[str], start: int, strip_numbers: bool = False) -> list[int | None]:
+def locate(lines: list[tuple[int, str]], titles: list[str], start: int, strip_numbers: bool = False,
+           prefix: str = "") -> list[int | None]:
     """Index in `lines` of each title's heading, searched forward in TOC order. strip_numbers: body headings carry the
-    TOC numbering ("1.1 Mathematik 1"); compare without it (numbered handbooks only)."""
+    TOC numbering ("1.1 Mathematik 1"); compare without it (numbered handbooks only). prefix: other body-only prefix."""
     if strip_numbers:
         lines = [(p, re.sub(r"^\s*\d+(?:\.\d+)+\.?\s+", "", l)) for p, l in lines]
+    if prefix:
+        lines = [(p, re.sub(prefix, "", l)) for p, l in lines]
     pos, cursor = [], start
     for title in titles:
         t = compact(title)
@@ -290,6 +306,12 @@ def sum_lp(text: str) -> str:
     return f"{sum(vals):g}" if vals else ""
 
 
+def art_ects(text: str) -> str:
+    """Credits in the module-type column of a header table ("... Art des Moduls ECTS ... Pflichtfach 14")."""
+    m = re.search(r"\b(?:Wahlpflichtfach|Pflichtfach|Wahlfach|Wahlpflichtmodul|Pflichtmodul)\s+(\d{1,2})\b", text[:1500])
+    return m.group(1) if m else ""
+
+
 def content_excerpt(text: str, n: int = 250) -> str:
     """Start of the content / learning-outcome part (skips the form fields at the top)."""
     m = CONTENT.search(text, 150)
@@ -307,12 +329,12 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
     lines = [(n + 1, l) for n, page in enumerate(clean) for l in page]
     entries = toc_titles(hb, pages)
     body_start = next(i for i, (p, _) in enumerate(lines) if p > max(hb.toc_pages))
-    pos = locate(lines, [t for t, _ in entries], body_start, strip_numbers=hb.toc_style == "numbered")
+    pos = locate(lines, [t for t, _ in entries], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix)
     if hb.unordered:  # second pass for titles the forward search missed; never reuse a heading already taken
         taken = {i for i in pos if i is not None}
         for k, (title, _) in enumerate(entries):
             if pos[k] is None:
-                hit = locate(lines, [title], body_start, strip_numbers=hb.toc_style == "numbered")[0]
+                hit = locate(lines, [title], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix)[0]
                 if hit is not None and hit not in taken:
                     pos[k] = hit
                     taken.add(hit)
@@ -355,7 +377,7 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
             rows.append({"programme_id": pid, "institution": hb.institution, "level": hb.level,
                          "module_id": f"{pid}:{len([r for r in rows if r['programme_id'] == pid]) + 1:03d}",
                          "title": title, "section": section,
-                         "ects": (sum_lp(text) if hb.ects_rule == "sum_lp" else "") or find_ects(text, hb.strict_ects)
+                         "ects": {"sum_lp": sum_lp, "art": art_ects}.get(hb.ects_rule, lambda _: "")(text) or find_ects(text, hb.strict_ects)
                                  or next((v for k, v in plan.items() if k.startswith(compact(title)[:25])), ""),
                          "semester": find_semester(text),
                          "text": text, "text_chars": len(text), "source_file": hb.file.relative_to(REPO_ROOT).as_posix(),

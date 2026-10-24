@@ -148,12 +148,16 @@ def embed(texts: list[str]) -> np.ndarray:
     return np.vstack([np.load(CACHE / f"{k}.npy") for k in keys])
 
 
-def tfidf_matrix(texts: list[str]):
+def tfidf_matrix(texts: list[str], fit_on: list[bool] | None = None):
     """Character 3-5-gram TF-IDF (within word boundaries): robust to German compounds ("Netzwerksicherheit" vs
-    "Netzsicherheit"). Chosen over word 1-2-grams by best-match AUC on the reference set (0.75 vs 0.67)."""
+    "Netzsicherheit"). Chosen over word 1-2-grams by best-match AUC on the reference set (0.75 vs 0.67).
+    fit_on: fit the vocabulary and IDF on these texts only and transform all (keeps earlier results fixed)."""
     from sklearn.feature_extraction.text import TfidfVectorizer
     v = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), lowercase=True, min_df=2, max_df=0.3, sublinear_tf=True)
-    return v.fit_transform(texts)
+    if fit_on is None:
+        return v.fit_transform(texts)
+    v.fit([t for t, k in zip(texts, fit_on) if k])
+    return v.transform(texts)
 
 
 def load() -> pd.DataFrame:

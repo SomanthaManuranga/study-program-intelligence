@@ -52,3 +52,162 @@ robotics_bsc:
     RO 612 3D Maschinelles Sehen: {verdict: E1, elective: true, emi: "Computer Vision (E&IT, KI)"}
     RO 613 Schall, Technik, Hören: {verdict: E1, elective: true, emi: "Audioproduktion (DD, MT)"}
     RO 616 Einführung in die mobile Robotik: {verdict: E1, elective: true, emi: "Robotik (E&IT)", lab: educational_robots}
+
+# ---------------------------------------------------------------------------------------------------------------------
+# Equal-evidence candidates (docs/criteria_equal_evidence.md). Same scheme as robotics: every taught module of the
+# reference curriculum (frame modules left out) gets a verdict; "prog" = the EMI programme that supplies an E1/E2
+# module (for F4; KI and KI International count as one family). Electives the handbook marks are not counted in F1
+# (as for robotics: a degree needs only some of them). Status: PROPOSED by Claude (Soma delegated the candidate choice
+# and the hand check), to be confirmed by Soma.
+
+autonomous_bsc:
+  status: proposed
+  programme_id: thd_ba_em
+  reference: TH Deggendorf, Elektromobilität, autonomes Fahren und mobile Robotik B.Eng.
+  modules:
+    EM-01 Mathematik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Mathematik für Ingenieure 1"}
+    EM-02 Physik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Physik"}
+    EM-03 Grundlagen der Elektrotechnik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrotechnik 1"}
+    EM-04 Grundlagen der Technischen Informatik: {verdict: E2, prog: oth26_ba_ei, emi: "Digitaltechnik"}
+    EM-05 Mathematik 2: {verdict: E1, prog: oth26_ba_ei, emi: "Mathematik für Ingenieure 2"}
+    EM-06 Physik 2: {verdict: E2, prog: oth26_ba_ei, emi: "Optoelektronische Systeme", note: "EMI has one physics module; the optics part from Optoelektronik"}
+    EM-07 Grundlagen der Elektrotechnik 2: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrotechnik 2"}
+    EM-08 Materialwissenschaften: {verdict: E1, prog: oth26_ba_ei, emi: "Werkstofftechnik"}
+    EM-09 Informatik: {verdict: E1, prog: oth26_ba_ei, emi: "Informatik 1"}
+    EM-10 Statistik und Stochastik: {verdict: E1, prog: oth26_ba_ii, emi: "Stochastik"}
+    EM-11 Elektronische Bauelemente: {verdict: E1, prog: oth26_ba_ei, emi: "Elektronische Bauelemente und Schaltungstechnik 1"}
+    EM-12 Regelungstechnik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Regelungstechnik", note: "automatic false negative (0.241)"}
+    EM-13 Elektrische Messtechnik: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrische Messtechnik"}
+    EM-14 Sensorik / Optik: {verdict: E2, prog: oth26_ba_ei, emi: "Practical Training in Optoelectronic Systems"}
+    EM-15 Mikrocomputertechnik: {verdict: E1, prog: oth26_ba_ei, emi: "Embedded Systems", lab: embedded, note: "automatic false negative (0.255)"}
+    EM-16 Elektromagnetische Verträglichkeit: {verdict: N, emi: "Hochfrequenztechnik professor (E&IT)", note: "no EMC module at EMI"}
+    EM-17 Bildverarbeitung: {verdict: E1, prog: oth26_ba_ii, emi: "Computer Vision (II)"}
+    EM-18 Regelungstechnik 2: {verdict: E2, prog: oth26_ba_ei, emi: "Simulation dynamischer Systeme"}
+    EM-19 Leistungselektronik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Leistungselektronik", lab: power_electronics}
+    EM-20 Elektrische Maschinen: {verdict: E1, prog: oth26_ba_ei, emi: "Grundlagen elektrischer Maschinen und Antriebe", lab: drives}
+    EM-23 Englisch für Ingenieure: {verdict: E2, prog: oth26_ba_mt, emi: "English for Media Professionals"}
+    EM-24 Automobile Bussysteme: {verdict: E2, prog: oth26_ba_ii, emi: "Industrielle Kommunikationstechnik (II)", lab: industrial_communication}
+    EM-27 Schlüsselkompetenzen: {verdict: E1, prog: oth26_ba_ei, emi: "Betriebswirtschaftslehre und Projektmanagement; Gesprächsführung und Vortragstechnik"}
+    EM-29 Leistungselektronik 2: {verdict: N, emi: "Leistungselektronik professor (E&IT)", lab: power_electronics, note: "EMI has one bachelor power-electronics module"}
+    EM-30 Batterietechnologien: {verdict: T, emi: "-", lab: "missing: battery_lab", note: "no battery module and no battery lab at EMI"}
+    EM-31 Ladestationen, Wasserstofftechnologie: {verdict: T, emi: "-", lab: "missing: battery_lab", note: "charging and hydrogen: no EMI module or lab"}
+    EM-32 Modellbasierter Reglerentwurf und Absicherung: {verdict: N, emi: "control professors (Modellbasierte Entwicklung exists at master level, IA)"}
+    EM-33 Autonomes Fahren: {verdict: E1, prog: oth26_ba_ei, emi: "Fahrzeugautomatisierung"}
+    EM-34 Mobile Roboter: {verdict: E1, prog: oth26_ba_ki, emi: "Autonome Mobile Systeme", lab: educational_robots}
+    EM-26 Allgemeinwissenschaftliches Wahlpflichtmodul (AWP): {verdict: E1, elective: true, prog: oth26_ba_ki, emi: "Allgemeines Wahlpflichtmodul"}
+
+arvr_bsc:
+  status: proposed
+  programme_id: hsc_ba_vc
+  reference: Hochschule Coburg, Visual Computing B.Sc. (closest Bavarian programme; the HFT Stuttgart AR/VR handbook is not usable)
+  modules:
+    Analysis: {verdict: E1, prog: oth26_ba_ii, emi: "Mathematik 1"}
+    Diskrete Mathematik: {verdict: E1, prog: oth26_ba_ki, emi: "Mathematik 2 (Diskrete Mathematik)"}
+    Grundlagen der Informatik: {verdict: E1, prog: oth26_ba_ki, emi: "Informatik Grundlagen (KI International)"}
+    Programmieren 1: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 1"}
+    Programmieren 2: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 2", note: "automatic false negative (0.243)"}
+    Webtechnologien: {verdict: E1, prog: oth26_ba_mi, emi: "Web-Client-Technologien"}
+    Grundlagen des Visual Computing: {verdict: E2, prog: oth26_ba_mt, emi: "Visual Computing (MT/DD)"}
+    Künstliche Intelligenz 1: {verdict: E1, prog: oth26_ba_ki, emi: "Symbolische Künstliche Intelligenz 2 (Klassische Methoden)", note: "search and problem solving"}
+    Mensch-Maschine-Interaktion 1: {verdict: E1, prog: oth26_ba_mi, emi: "Mensch-Computer-Interaktion"}
+    Algorithmen und Datenstrukturen: {verdict: E1, prog: oth26_ba_ii, emi: "Algorithmen und Datenstrukturen"}
+    Fortgeschrittene Programmierung: {verdict: E1, prog: oth26_ba_ki, emi: "Programmieren für KI 2 (C/C++)"}
+    Bildverarbeitung 1: {verdict: E1, prog: oth26_ba_ei, emi: "Computer Vision (E&IT)"}
+    Bildverarbeitung 2: {verdict: E2, prog: oth26_ba_ki, emi: "Deep Computer Vision"}
+    Computergrafik 1: {verdict: N, emi: "Visual Computing lab professor (lab course 'Fortgeschrittenes 3D Computergrafik'; 3D-Modellierung und Animation, MP)", lab: graphics, note: "no computer-graphics programming module at bachelor level"}
+    Computergrafik 2: {verdict: N, emi: "as Computergrafik 1", lab: graphics}
+    Künstliche Intelligenz 2: {verdict: E1, prog: oth26_ba_ki, emi: "Machine Learning 1 (KI)"}
+    Mathematik für Visual Computing: {verdict: E2, prog: oth26_ba_ii, emi: "Mathematik 3"}
+    Mensch-Maschine-Interaktion 2: {verdict: E2, prog: oth26_ba_dd, emi: "Human Centered Design"}
+    Visual-Computing-Seminar: {verdict: E2, prog: oth26_ba_dd, emi: "seminar format; Medien/UX-UI Projekte"}
+    Englisch (GER B2) 1: {verdict: E1, prog: oth26_ba_mt, emi: "English for Media Professionals"}
+    Englisch (GER B2) 2: {verdict: E2, prog: oth26_ba_ki, emi: "Foreign Language 1 (KI International)"}
+    Wissenschaftliches und interdisziplinäres Arbeiten: {verdict: E1, prog: oth26_ba_ei, emi: "Wissenschaftliches Arbeiten"}
+    Interdisziplinäre Projektarbeit: {verdict: E2, prog: oth26_ba_ii, emi: "Software-Projekt (II)", lab: xr, note: "VR/AR projects: Visual Computing lab (spatial computing); GI teaches 'Virtual / Augmented Reality'"}
+
+energydata_bsc:
+  status: proposed
+  programme_id: fhdo_ba_eedm
+  reference: FH Dortmund, Energiewirtschaft und Energiedatenmanagement B.Sc. (the only programme of this type)
+  modules:
+    Mathematik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Mathematik für Ingenieure 1"}
+    Softwaretechnik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Informatik 1"}
+    Elektrotechnik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrotechnik 1"}
+    Energiewirtschaft und Projektmanagement: {verdict: T, emi: "-", note: "energy economics: no EMI module or professor"}
+    Ingenieurmethodik: {verdict: E2, prog: oth26_ba_ei, emi: "Wissenschaftliches Arbeiten"}
+    Mathematik 2: {verdict: E1, prog: oth26_ba_ei, emi: "Mathematik für Ingenieure 2"}
+    Softwaretechnik 2: {verdict: E1, prog: oth26_ba_ii, emi: "Programmierung 2"}
+    Energietechnische Grundlagen: {verdict: E2, prog: oth26_ba_ei, emi: "Elektrische Energietechnik"}
+    Messdatenerfassung & -verarbeitung: {verdict: E1, prog: oth26_ba_ei, emi: "Elektrische Messtechnik"}
+    Wirtschaftliche Grundlagen: {verdict: E1, prog: oth26_ba_ei, emi: "Betriebswirtschaftslehre und Projektmanagement"}
+    Grundlagen der elektr. Energieverteilung: {verdict: E2, prog: oth26_ba_ki, emi: "Intelligente Stromnetze (KI)"}
+    Anwendungssoftware und Schlüsselqualifikationen: {verdict: E2, prog: oth26_ba_ei, emi: "Gesprächsführung und Vortragstechnik"}
+    Energiedatenmanagement: {verdict: E2, prog: oth26_ba_ki, emi: "Data Engineering & Data Analytics (KI)"}
+    Regulatorische Energiewirtschaft: {verdict: T, emi: "-", note: "grid regulation: no EMI module or professor"}
+    "Regulatorische Energiewirtschaft #2": {verdict: T, ects: 6, emi: "-", note: "second module with the same title; ECTS from the handbook (Pflichtfach 6)"}
+    Rationelle Energieanwendung: {verdict: N, emi: "Energieeffizienz in Gebäuden professor (KI)"}
+    Elektrische Energieanlagen und -netze: {verdict: E2, prog: oth26_ba_ei, emi: "Praktikum Elektrische Energietechnik", lab: high_voltage}
+    Applikations- & Abrechnungssysteme: {verdict: T, emi: "-", note: "billing and energy-trading IT systems: no EMI module"}
+    Energieinformationstechnik und Leitsysteme: {verdict: E2, prog: oth26_ba_ii, emi: "Industrielle Kommunikationstechnik (II)"}
+    Energiedatenverarbeitung: {verdict: E2, prog: oth26_ba_ii, emi: "Data Analytics (II)"}
+    Energierecht und Genehmigungsrecht: {verdict: T, emi: "-", note: "energy law"}
+    Regenerative Energiequellen: {verdict: E2, prog: oth26_ba_ki, emi: "Integrierte Energiesysteme (KI)"}
+    Informationssicherheit: {verdict: E1, prog: oth26_ba_ei, emi: "Informationssicherheit"}
+    Energiemanagement: {verdict: N, emi: "Integrierte Energiesysteme / Energieeffizienz professors (KI)"}
+    Netzführung und -regelung: {verdict: N, emi: "Elektrische Energietechnik professor (E&IT)"}
+
+geodata_bsc:
+  status: proposed
+  programme_id: hm_ba_gds
+  reference: Hochschule München, Geodata Science B.Sc. (the THWS Geovisualisierung handbook is not usable)
+  modules:
+    101 - Computational Thinking: {verdict: E1, prog: oth26_ba_gi, emi: "Geo-Programmierung; Theoretische Informatik für Ingenieure (GI)"}
+    102 - Physik: {verdict: E1, prog: oth26_ba_gi, emi: "Physik (GI)"}
+    131 - Analysis: {verdict: E1, prog: oth26_ba_gi, emi: "Mathematik für Ingenieure 1 (GI)"}
+    132 - Lineare Algebra: {verdict: E1, prog: oth26_ba_gi, emi: "Geo-Mathematik"}
+    133 - Geobezugssysteme: {verdict: E1, prog: oth26_ba_gi, emi: "Referenzsysteme und Abbildungen"}
+    201 - Software Engineering: {verdict: E1, prog: oth26_ba_ii, emi: "Software Engineering 1"}
+    202 - Softwareentwicklung: {verdict: E1, prog: oth26_ba_gi, emi: "Geo-Programmierung 2"}
+    203 - Computer Systems Fundamentals: {verdict: E1, prog: oth26_ba_ii, emi: "Grundlagen digitaler Systeme"}
+    231 - Visual Computing 1: {verdict: E2, prog: oth26_ba_mt, emi: "Visual Computing (MT/DD)"}
+    232 - Geo Sensorik 1: {verdict: E1, prog: oth26_ba_gi, emi: "Ingenieurvermessung und Sensorik", note: "automatic false negative (0.249)"}
+    233 - Geodatenanalyse 1: {verdict: E1, prog: oth26_ba_gi, emi: "Geo Data Analytics"}
+    301 - Statistik und Stochastik: {verdict: E1, prog: oth26_ba_ii, emi: "Stochastik"}
+    331 - Visual Computing 2: {verdict: E2, prog: oth26_ba_gi, emi: "Geovisualisierung; Virtual / Augmented Reality (GI)"}
+    332 - Geo Sensorik 2: {verdict: E1, prog: oth26_ba_gi, emi: "Satellitenpositionierung"}
+    333 - Geoinformatik 1: {verdict: E1, prog: oth26_ba_gi, emi: "Geoinformationssysteme"}
+    334 - Machine Learning 1: {verdict: E1, prog: oth26_ba_ki, emi: "Machine Learning 1", note: "automatic false negative (0.212)"}
+    335 - Routenplanung: {verdict: E2, prog: oth26_ba_ii, emi: "Algorithmen und Datenstrukturen (graph algorithms)"}
+    401 - Mobile Anwendungen: {verdict: E1, prog: oth26_ba_mi, emi: "App-Programmierung"}
+    431 - Geodatenfusion: {verdict: E2, prog: oth26_ba_gi, emi: "Geodätisches Rechnen (adjustment and estimation)"}
+    432 - Remote Sensing: {verdict: E1, prog: oth26_ba_gi, emi: "Fernerkundung"}
+    433 - Geodatenanalyse 2: {verdict: E2, prog: oth26_ba_gi, emi: "Geodatenmanagement"}
+    434 - Machine Learning 2: {verdict: E1, prog: oth26_ba_ki, emi: "Machine Learning 2"}
+    501 - Cloud Computing: {verdict: E1, prog: oth26_ba_ki, emi: "Big Data, Cloud & NoSQL"}
+    302 - IT-Sicherheit und technischer Datenschutz: {verdict: E1, prog: oth26_ba_ii, emi: "Informationssicherheit"}
+    531 - Geoinformatik 2: {verdict: E2, prog: oth26_ba_gi, emi: "Kartographie"}
+    532 - Projekt Big Data: {verdict: E2, prog: oth26_ba_ki, emi: "Data Engineering & Data Analytics (project format)"}
+    533 - Projekt Geodatenfusion: {verdict: E2, prog: oth26_ba_gi, emi: "Geoinformatik-Projekt"}
+    534 - Projekt Umwelt: {verdict: E2, prog: oth26_ba_gi, emi: "Vertiefungs-Projekt; Umwelt und Natur"}
+
+# Reduced OT-security master: no reference curriculum fits (the cyber/OT references reach only 47-49 %), so this
+# candidate is a design from EMI's existing MASTER modules (bachelor modules do not count at master level): every
+# master-level security module, the OT modules, and a project and research frame, 60 taught ECTS.
+# owners = the master programmes whose handbooks list the module. F4 is reported strict (a module IA lists counts for
+# IA) and lenient (a module shared with another master counts for the other one).
+ot_master:
+  status: proposed
+  level: MA
+  modules:
+    Cybersicherheit: {owners: [oth26_ma_ia, oth26_ma_mki, oth26_ma_mp], ects: 5, part: security}
+    Moderne Anwendungen der Kryptographie: {owners: [oth26_ma_ia, oth26_ma_mki, oth26_ma_mp], ects: 5, part: security}
+    Grundlagen der Informationssicherheit und Funktionalen Sicherheit: {owners: [oth26_ma_ia], ects: 5, part: security}
+    KI Sicherheit: {owners: [oth26_ma_mki], ects: 5, part: security}
+    Industrielle Kommunikationssysteme: {owners: [oth26_ma_ia], ects: 5, part: ot}
+    Automatisierungssysteme (I4.0): {owners: [oth26_ma_ia], ects: 5, part: ot}
+    Methoden digitaler Automatisierung: {owners: [oth26_ma_ia, oth26_ma_mki], ects: 5, part: ot}
+    Technologien verteilter Systeme: {owners: [oth26_ma_ia, oth26_ma_mki], ects: 5, part: ot}
+    Eingebettete Intelligenz: {owners: [oth26_ma_ia, oth26_ma_mki], ects: 5, part: ot}
+    Software in der Automobiltechnik: {owners: [oth26_ma_ia], ects: 5, part: ot}
+    Projektarbeit Industrie 4.0 (Digitale Modellfabrik): {owners: [oth26_ma_ia], ects: 5, part: project}
+    Forschungsseminar: {owners: [oth26_ma_mki], ects: 5, part: project}

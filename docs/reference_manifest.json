@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ref_visual_computing_coburg",
+    "owner": "Hochschule Coburg",
+    "title": "Modulhandbuch VC",
+    "url": "https://www.hs-coburg.de/wp-content/uploads/2025/05/Modulhandbuch_VC_SoSe25.pdf",
+    "mirror": false,
+    "file": "data/raw/references/ref_visual_computing_coburg.pdf",
+    "programme": "Visual Computing B.Sc. (candidate AR/VR & visual computing)",
+    "version": "SoSe 2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-24T10:05:46+00:00",
+    "content_type": "application/pdf",
+    "bytes": 1544936,
+    "sha256": "96b564807c6117e12e76a59614ee292e3a9c38c3c2053fb5d2dd7014a6aaf33e"
+  },
+  {
+    "id": "ref_energydata_dortmund",
+    "owner": "Fachhochschule Dortmund",
+    "title": "Modulhandbuch",
+    "url": "https://fh-dortmund.de/medien/21_11_2024_Energiewirtschaft-Energiedatenmanagement_Modulhandbuch.pdf",
+    "mirror": false,
+    "file": "data/raw/references/ref_energydata_dortmund.pdf",
+    "programme": "Energiewirtschaft und Energiedatenmanagement B.Sc. (candidate energy data)",
+    "version": "PO 2024, 21.11.2024",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-24T10:05:54+00:00",
+    "content_type": "application/pdf",
+    "bytes": 5471147,
+    "sha256": "2d3eef022c9e3b90a47b1cbfc75163ab3e8689385ef0cf04303ea21fc53aa28f"
+  },
+  {
+    "id": "ref_autonomous_deggendorf",
+    "owner": "TH Deggendorf",
+    "title": "Modulhandbuch EM-B",
+    "url": "https://th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_em-b.pdf",
+    "mirror": false,
+    "file": "data/raw/references/ref_autonomous_deggendorf.pdf",
+    "programme": "Elektromobilität",
+    "version": "14.04.2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-24T10:06:01+00:00",
+    "content_type": "application/pdf",
+    "bytes": 278274,
+    "sha256": "9b950f98c6bbfa42ec34d6f8840c821411d0c6b62507772d30d1ec6493644ff2"
+  },
+  {
+    "id": "ref_geodata_hm",
+    "owner": "Hochschule München",
+    "title": "Modulhandbuch GSB",
+    "url": "https://mediapool.hm.edu/media/mucdai/mucdai_lehre/modulhandbuch_10/wise26_1/gsb222_modulhandbuch.pdf",
+    "mirror": false,
+    "file": "data/raw/references/ref_geodata_hm.pdf",
+    "programme": "Geodata Science B.Sc. (candidate geo-data)",
+    "version": "WiSe 2026/27",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-24T10:06:08+00:00",
+    "content_type": "application/pdf",
+    "bytes": 335638,
+    "sha256": "e6a773e70b8a4f1db895031eb6eb3e90b23ea7a64df5707f27869c6a232f0144"
+  }
+]

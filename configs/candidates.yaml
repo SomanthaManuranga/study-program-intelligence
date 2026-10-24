@@ -1,0 +1,74 @@
+# Equal-evidence candidates (docs/criteria_equal_evidence.md): the inputs every candidate gets in the same way as the
+# baseline options. Read by analysis/candidates.py.
+#
+# theme       regex on programme titles (dedicated competitors) and on the catalogue's focus field ("Schwerpunkte",
+#             competitors with the theme as a focus); case-insensitive. Checked by hand on the Bavarian hits
+#             (reports/candidates.md lists every hit within 150 km).
+# exclude     regex for false positives found in the hand check of the hits (optional).
+# level       Bachelor or Master (full-time offers only, scope 7).
+# subjects    Destatis subject codes closest to the candidate (first-years 21311; master: graduates 21321 as the
+#             pipeline, as for the baseline cyber master).
+# capture     "own": run the Step 47/48 model with this candidate's sites; "<option>": reuse that option's model
+#             (same competitor set). No public intake figure exists for any new candidate's comparator, so every
+#             "own" run uses the robotics logic: assumed comparator intake 20-60, range over all model variants.
+# trends      Google Trends search terms (manual download by Soma; no API).
+# jobs        BA Jobsuche keyword group (configs/jobsuche.yaml).
+
+candidates:
+  robotics_b:
+    label: Robotics + AI B.Sc. (path B, assistive / service)
+    level: Bachelor
+    theme: "robotik|robotics|roboter"
+    subjects: {kind: first-years, codes: [SF380, SF123], note: "robotics feeders as in the baseline (Mechatronik, Technische Informatik)"}
+    capture: robotics_bsc
+    trends: ["Robotik Studium", "Robotics Bachelor", "Servicerobotik"]
+    jobs: robotics
+  autonomous:
+    label: Autonomous mobile systems B.Eng.
+    level: Bachelor
+    theme: "autonom|automatisiert\\w* fahren|automated driving|fahrerassistenz|mobile robot"
+    subjects: {kind: first-years, codes: [SF235, SF380], note: "Fahrzeugtechnik + Mechatronik"}
+    capture: own
+    trends: ["autonomes Fahren Studium", "Autonome Systeme Studium"]
+    jobs: autonomous
+  arvr:
+    label: AR/VR & visual computing B.Sc.
+    level: Bachelor
+    theme: "virtual reality|augmented reality|extended reality|mixed reality|\\bxr\\b|ar/vr|vr/ar|visual computing|computervisualistik|computer visualistics|immersive|spatial computing"
+    subjects: {kind: first-years, codes: [SF121], note: "Medieninformatik (visual computing has no own subject code)"}
+    capture: own
+    trends: ["Virtual Reality Studium", "AR VR Studium", "Visual Computing Studium"]
+    jobs: arvr
+  energydata:
+    label: Energy data management B.Sc.
+    level: Bachelor
+    theme: "energieinformatik|energy informatics|energiedaten|energy data|digitale energie|digital energy|smart energy|energiewirtschaft und energiedaten"
+    subjects: {kind: first-years, codes: [SF316, SF310], note: "Elektrische Energietechnik + Regenerative Energien (no energy-economics code)"}
+    capture: own
+    trends: ["Energieinformatik Studium", "Energiewirtschaft Studium"]
+    jobs: energydata
+  geodata:
+    label: Geo-data & geovisualisation B.Sc.
+    level: Bachelor
+    theme: "geovisual|geodat|geodata|geoinformati|geomati|geoinformation"
+    subjects: {kind: first-years, codes: [SF171, SF280], note: "Vermessungswesen + Kartografie"}
+    capture: own
+    trends: ["Geoinformatik Studium", "Geodaten Studium"]
+    jobs: geodata
+  ot_master:
+    label: Reduced OT-security master
+    level: Master
+    theme: "cyber|it-?sicherheit|it[- ]security|informationssicherheit|information security|security engineering|sichere systeme"
+    exclude: "\\bmba\\b|defence|criminolog|\\blaw\\b|peace|security studies|international security"
+    subjects: {kind: graduates, codes: [SF079], note: "Informatik graduates, the pipeline used for the baseline cyber master"}
+    capture: cyber_msc
+    trends: ["OT Security", "Industrial Security", "Cyber Security Master"]
+    jobs: cybersecurity
+
+# Demand trend score rule (written before any candidate series was computed): the scores.yaml anchor made numeric so
+# it applies to every candidate the same way. Input: Bavarian growth of the candidate's series (first-years 2019-2024,
+# graduates 2019-2025), %/yr. central = 4 if >= +5; 3 if >= +1; 2 if >= -2; 1 below. 5 needs a rising KMK scenario,
+# which exists only for the cyber proxy, so 4 is the maximum here. low/high = central -/+ 1, clipped to 1-5.
+# Check: the rule reproduces all six baseline trend scores (cyber proxy +5.9 -> 4, robotics feeders -0.6 -> 2,
+# Informatik graduates +10.2 -> 4; German-only +1.9 -> 3, -3.3 -> 1, +7.2 -> 4); tests/test_candidates.py checks this.
+trend_rule: {cuts: [5.0, 1.0, -2.0], scores: [4, 3, 2, 1]}
