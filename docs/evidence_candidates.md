@@ -41,7 +41,7 @@ two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 
   reference programmes only, and TF-IDF is fitted on the week-2 module set, so adding references does not move the
   week-2 numbers. The EMI module set did change: the parser had dropped the Digital Design module "AR/VR"; with it the
   recalibrated e5 threshold is 0.285 (was 0.277), as the pre-registered rule requires, and the automatic week-2 numbers
-  were updated in `docs/evidence_feasibility.md` (verdicts unchanged).
+  were updated in `docs/evidence_feasibility.md` (no overall verdict changed; robotics' automatic match now also fails F1).
 - **Hand check:** every taught core module of each reference got a verdict (E1, E2, T, N), as for robotics in week 2
   (`configs/feasibility_handcheck.yaml`, proposed by Claude). Frame modules (practical semester, thesis, placeholder
   electives) are left out; listed electives are not counted in F1, because a degree needs only some of them. Where a
@@ -62,7 +62,7 @@ two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 
 
 | Candidate | Gap | Decision |
 |---|---|---|
-| robotics_b | 27.3 pp | hand check decides (week 2): 91.2 %. TF-IDF misses differently named modules (e.g. RO 25 Programmieren 2) |
+| robotics_b | 27.3 pp | hand check decides (week 2): 91.2 %. TF-IDF misses modules that e5 matches under other names (e.g. RO 71 Ethik und Recht im Kontext der Robotik, RO 33 Aktorik) |
 | autonomous | 26.4 pp | hand check decides: 93.4 % on the FR track (e5 counts both tracks). The verdict does not depend on F1: F4 fails |
 | geodata | 27.4 pp | hand check decides: 100 %. Most matches are GI modules with other names (e.g. "Geo Sensorik" to "Ingenieurvermessung und Sensorik"); the verdict rests on F4 after the hand check (62.3 % GI); with the automatic match it would fail F1 (58.2 %) instead |
 
@@ -72,8 +72,8 @@ below the hand check: e5 misses modules whose EMI twin has another name ("Progra
 "Programmierung 2"; its best automatic match is "Programmieren für KI 3 (Java)", 0.243) and counts nothing as adapted. Read without adapted modules (E1 only) AR/VR reaches 61.2 % and would fail F1; the same holds for robotics
 path B (56.9 %). Both gate passes therefore rest on the E2 verdicts, which are proposed, not confirmed.
 
-**Electives.** AR/VR students must choose 44 elective ECTS; the automatic match covers 85 ECTS of Coburg's listed
-electives. Energy data must choose 12 elective ECTS and the automatic match covers 9 of its 36 listed elective ECTS: a weakness, not part of the gate. The Hochschule München handbook
+**Electives.** AR/VR students must choose 44 elective ECTS; the automatic match covers 75 ECTS of Coburg's listed
+electives. Energy data must choose 12 elective ECTS and the automatic match covers 6 of its 36 listed elective ECTS: a weakness, not part of the gate. The Hochschule München handbook
 lists 188 ECTS; the remaining 22 ECTS of the 210 are not described in it (presumably general electives).
 
 **Reduced OT-security master.** No reference fits (the cyber/OT references reach at most 49 %: THI 49.4 %, HDBW 47.2 %, Deggendorf 0 % as an artefact), so the candidate is the
@@ -224,7 +224,7 @@ unanchored model run, not on the evidence. Institutional fit (5 vs 4) adds 0.20,
 0.18, and that step is the staff rule "new ECTS <= 10 -> 5": AR/VR needs exactly 10 new ECTS, robotics path B 12. With fit 4, AR/VR's total
 would be 3.43 and robotics path B (3.45) would lead at central scores; in the Monte Carlo the two tie
 (AR/VR 51.8 %). The 10 ECTS are Computergrafik 1 and 2; no EMI bachelor
-module teaches graphics programming (MT/DD "Visual Computing" covers CGI design and rendering). OTH documents 32 GPU
+module is a computer-graphics programming course (GI's VR/AR module and MT/DD "Visual Computing" touch on 3D rendering). OTH documents 32 GPU
 workstations and an AR/VR lab (IKKI), but no XR headset count; Labor Medieninformatik lists HTC Vive and HoloLens
 without quantities on a page from about 2020. EMI's AR/VR teaching is spread over single modules: among them DD's
 "AR/VR" (5 ECTS profile module), GI's "Virtual / Augmented Reality", Educational Technology's "VR und AR in der

@@ -319,6 +319,11 @@ def candidates(n: Numbers) -> None:
         n.add(f"f1_e1only_{k}", g, f"F1 without adapted modules (E1 only), {k}", round(e1, 1), f"{e1:.1f} %", s, check=row, data=src)
         n.add(f"e5_tfidf_gap_{k}", g, f"Gap e5 vs TF-IDF coverage, {k}", round(e5 - tf, 1), f"{e5 - tf:.1f} pp", s, check=row,
               data="data/interim/feasibility_modules.csv")
+        el = a[a["elective"]]
+        if len(el) and k in ("arvr", "energydata"):   # elective coverage stated in the electives paragraph
+            cov = el.loc[el["covered"], "ects_used"].sum()
+            n.add(f"electives_covered_{k}", g, f"Listed elective ECTS the automatic match covers, {k}", float(cov), f"{cov:g}", s,
+                  check=f"the automatic match covers {cov:g}", data="data/interim/feasibility_modules.csv")
     by = pd.read_csv(INTERIM / "candidate_demand.csv")
     by = by[by["region"] == "BY"].set_index("candidate")
     for k in by.index:
