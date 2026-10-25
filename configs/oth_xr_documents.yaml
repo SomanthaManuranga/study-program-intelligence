@@ -1,0 +1,10 @@
+# OTH public pages checked for XR (AR/VR) hardware for the demand tie-break (docs/evidence_tie_break.md). Downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/oth_xr_documents.yaml --out data/raw/oth_xr --manifest docs/oth_xr_manifest.json
+# OTH's sitemap (data/raw/oth_web/sitemap_urls.txt) lists no page of its own for the AR/VR lab; these are the pages of the
+# Digitaler Campus, where the IKKI page places the AR/VR lab. robots.txt checked per page.
+
+documents:
+  - {id: oth_digitaler_campus, owner: OTH Amberg-Weiden, title: Kompetenzzentrum Digitaler Campus, url: "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-digitaler-campus/"}
+  - {id: oth_dc_creative_space, owner: OTH Amberg-Weiden, title: Digitaler Campus Creative Space, url: "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-grundlagen-ccg/unsere-angebote/schnitzeljagd-durch-die-lernraeume/digitaler-campus-creative-space/"}
+  - {id: oth_dc_maker_space, owner: OTH Amberg-Weiden, title: Digitaler Campus Maker Space, url: "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-grundlagen-ccg/unsere-angebote/schnitzeljagd-durch-die-lernraeume/digitaler-campus-maker-space/"}
+  - {id: oth_ikki_about, owner: OTH Amberg-Weiden, title: IKKI Über das IKKI, url: "https://www.oth-aw.de/forschung/forschungseinrichtungen/kompetenzzentren/innovations-kompetenzzentrum-kuenstliche-intelligenz/ueber-das-ikki/"}

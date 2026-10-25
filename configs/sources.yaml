@@ -156,6 +156,13 @@ sources:
     access: public pages via sitemap; robots.txt respected (person pages skipped, see decision log); manifest docs/oth_web_manifest.json
     status: downloaded
 
+  - id: oth_web_xr
+    owner: OTH Amberg-Weiden
+    url: https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-digitaler-campus/
+    use: XR (AR/VR) lab and hardware check for the demand tie-break (Digitaler Campus pages, IKKI page)
+    access: public pages; robots.txt checked per page; configs/oth_xr_documents.yaml, manifest docs/oth_xr_manifest.json
+    status: downloaded
+
   - id: avbayhig_4
     owner: Freistaat Bayern
     url: https://www.gesetze-bayern.de/Content/Document/BayAVHIG-4

@@ -31,6 +31,7 @@ robots.txt disallows PDFs, and the THWS Geovisualisierung handbook is under the 
 | geodata | fails | 62.3 % from OTH's own Geoinformatik und Landmanagement (F4) |
 | ot_master | fails | 83.3 % from IT und Automation (strict), 58.3 % from KI master (lenient) (F4) |
 
+Demand tie-break and the two-level answer (existing resources vs with investment): `docs/evidence_tie_break.md`.
 The ranking under the gate is therefore a two-way comparison: AR/VR & visual computing ahead of robotics path B,
 **P(rank 1) 73.5 %, below the 80 % robustness bar**; the lead hangs on one step of the fit rule (section 8), so the
 two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 %) fails the gate.

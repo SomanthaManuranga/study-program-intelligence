@@ -1,0 +1,54 @@
+[
+  {
+    "id": "oth_digitaler_campus",
+    "owner": "OTH Amberg-Weiden",
+    "title": "Kompetenzzentrum Digitaler Campus",
+    "url": "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-digitaler-campus/",
+    "mirror": false,
+    "file": "data/raw/oth_xr/oth_digitaler_campus.bin",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-25T22:37:19+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 122723,
+    "sha256": "d7fa1fde5638c9824dfd631ada0b51ae89df10937c2d8907d9fbef7d989aa7f8"
+  },
+  {
+    "id": "oth_dc_creative_space",
+    "owner": "OTH Amberg-Weiden",
+    "title": "Digitaler Campus Creative Space",
+    "url": "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-grundlagen-ccg/unsere-angebote/schnitzeljagd-durch-die-lernraeume/digitaler-campus-creative-space/",
+    "mirror": false,
+    "file": "data/raw/oth_xr/oth_dc_creative_space.bin",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-25T22:37:23+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 131534,
+    "sha256": "4f6269e4c3248c4ab454e6d36b5667ccd445ce495f6f947b4bd257829e901a36"
+  },
+  {
+    "id": "oth_dc_maker_space",
+    "owner": "OTH Amberg-Weiden",
+    "title": "Digitaler Campus Maker Space",
+    "url": "https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-grundlagen-ccg/unsere-angebote/schnitzeljagd-durch-die-lernraeume/digitaler-campus-maker-space/",
+    "mirror": false,
+    "file": "data/raw/oth_xr/oth_dc_maker_space.bin",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-25T22:37:26+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 128847,
+    "sha256": "058652177edd193b4475965fae876460e39c51e2a37524f5f6230ebcf4851a62"
+  },
+  {
+    "id": "oth_ikki_about",
+    "owner": "OTH Amberg-Weiden",
+    "title": "IKKI Über das IKKI",
+    "url": "https://www.oth-aw.de/forschung/forschungseinrichtungen/kompetenzzentren/innovations-kompetenzzentrum-kuenstliche-intelligenz/ueber-das-ikki/",
+    "mirror": false,
+    "file": "data/raw/oth_xr/oth_ikki_about.bin",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-25T22:37:30+00:00",
+    "content_type": "text/html; charset=utf-8",
+    "bytes": 214434,
+    "sha256": "e5f18ceeac6fd9c1ee4dcbd28815da11d247a0b49daee2b901973fae820b2314"
+  }
+]

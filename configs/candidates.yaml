@@ -21,7 +21,7 @@ candidates:
     theme: "robotik|robotics|roboter"
     subjects: {kind: first-years, codes: [SF380, SF123], note: "robotics feeders as in the baseline (Mechatronik, Technische Informatik)"}
     capture: robotics_bsc
-    trends: ["Robotik Studium", "Robotics Bachelor", "Servicerobotik"]
+    trends: ["Robotik Studium", "Servicerobotik"]   # docs/evidence_tie_break.md: exact downloads
     jobs: robotics
   autonomous:
     label: Autonomous mobile systems B.Eng.
@@ -39,7 +39,7 @@ candidates:
     exclude: "wirtschaftswissenschaft|technische kommunikation"
     subjects: {kind: first-years, codes: [SF121], note: "Medieninformatik (visual computing has no own subject code)"}
     capture: own
-    trends: ["Virtual Reality Studium", "AR VR Studium", "Visual Computing Studium"]
+    trends: ["Virtual Reality Studium", "Medieninformatik Studium", "Visual Computing Studium", "Computervisualistik Studium"]   # docs/evidence_tie_break.md
     jobs: arvr
   energydata:
     label: Energy data management B.Sc.

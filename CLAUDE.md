@@ -73,9 +73,11 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope week 2 (docs/evidence_feasibility.md). The cyber options fail the feasibility rule; robotics path B
-(assistive / service) passes pending Soma's hand-check confirmation (configs/feasibility_handcheck.yaml); recombination
-clusters and rarity screen give six proposed week-3 candidates, pending Soma's review of labels and verdicts. Fixed date:
+Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md): AR/VR & visual computing
+and robotics path B pass the gate, the other four fail. Demand tie-break and two-level answer in
+docs/evidence_tie_break.md: on demand robotics path B leads moderately (provisional). Waiting for Soma: the hand check
+of the adapted-module verdicts (docs/handcheck_sheet.md; answers go into configs/handcheck_sheet.yaml decisions, then
+F1-F4 and the ranking are recomputed) and the Google Trends downloads listed in docs/evidence_tie_break.md. Fixed date:
 job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.

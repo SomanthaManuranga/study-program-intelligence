@@ -84,6 +84,8 @@ BUILD = [
     ("analysis.ranking", "analysis", "analysis.ranking", []),
     ("analysis.candidates", "analysis", "analysis.candidates", []),
     ("analysis.ranking:candidates", "analysis", "analysis.ranking", ["--candidates"]),
+    ("analysis.tie_break", "analysis", "analysis.tie_break", []),
+    ("report.handcheck_sheet", "report", "report.handcheck_sheet", []),
     ("report.build", "report", "report.build", []),
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),
