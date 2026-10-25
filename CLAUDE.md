@@ -75,7 +75,8 @@ Remaining work, in this order:
 
 Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md): AR/VR & visual computing
 and robotics path B pass the gate, the other four fail. Demand tie-break and two-level answer in
-docs/evidence_tie_break.md: on demand robotics path B leads moderately (provisional). Waiting for Soma: the hand check
+docs/evidence_tie_break.md: demand does not break the tie yet; a pre-registered rule decides it with the 1 Nov job
+ads and the Trends downloads. Waiting for Soma: the hand check
 of the adapted-module verdicts (docs/handcheck_sheet.md; answers go into configs/handcheck_sheet.yaml decisions, then
 F1-F4 and the ranking are recomputed) and the Google Trends downloads listed in docs/evidence_tie_break.md. Fixed date:
 job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit

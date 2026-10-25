@@ -37,11 +37,17 @@ def strip_code(title: str) -> str:
 PROF = re.compile(r"Prof\.?(?:\s*(?:Dr\.?|Dr\.-Ing\.|-Ing\.))*\s+[A-ZÄÖÜ][\w.-]*(?:\s+[A-ZÄÖÜ][\w-]+)?")
 
 
+OUTCOMES = [re.compile(x) for x in (r"Lernziele:", r"Lernziele\s*/\s*Qualifikation", r"Qualifikationsziele", r"Lernergebnisse",
+                                     r"Learning Outcomes")]   # in this order: Kempten's "Learning Outcomes, Contents" heading precedes its prerequisites
+
+
 def short(text, n: int = 300) -> str:
     """First n characters of the content part (after the form fields), professors' names masked (project rule)."""
     from study_program_intelligence.transform.modules import content_excerpt
     t = re.sub(r"\s+", " ", str(text if isinstance(text, str) else "")).strip()
-    return PROF.sub("Prof. [name]", content_excerpt(t, n)).replace("|", "/")
+    m = next((x for x in (o.search(t) for o in OUTCOMES) if x), None)   # outcome headings first: "Inhalte" can sit in the prerequisites
+    excerpt = t[m.start():m.start() + n] if m else content_excerpt(t, n)
+    return PROF.sub("Prof. [name]", excerpt).replace("|", "/")
 
 
 def config() -> tuple[dict, dict, dict]:

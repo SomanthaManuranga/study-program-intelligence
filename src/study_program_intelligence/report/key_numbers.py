@@ -339,6 +339,16 @@ def tie_break(n: Numbers) -> None:
           data="docs/jobsuche_snapshots.json")
     for k, label, v, disp, chk in TIE_BREAK_LITERALS:
         n.add(k, g, label, v, disp, s, check=chk)
+    for c in ("arvr", "robotics_b"):   # proxy fit, German first-years per competitor, German-only trend score
+        prox = val(c, "", "", "", "dedicated offers whose catalogue subject is the proxy subject")
+        n.add(f"{c}_proxy_tagged", g, f"Dedicated offers whose catalogue subject is the proxy subject, {c}", int(prox), prox, s, data=src,
+              check={"arvr": f"carries the catalogue subject Medieninformatik ({prox})", "robotics_b": f"{prox} of 19 carry"}[c])
+        ser = closest[c][0]
+        per = val(c, ser, "BY", "German", "2024 per dedicated Bavarian institution")
+        n.add(f"{c}_german_per_competitor", g, f"German first-years per dedicated Bavarian competitor institution 2024, {c}", int(per),
+              per, s, data=src, check=f"| {per} ({val(c, '', '', '', 'dedicated institutions Bavaria')} institution")
+        n.add(f"{c}_german_trend_score", g, f"German-only trend score by the rule, {c}", int(val(c, ser, "BY", "German", "trend score (rule)")),
+              val(c, ser, "BY", "German", "trend score (rule)"), s, data=src, check="(1 and 1 by the pre-registered rule)")
     for c in ("arvr", "robotics_b"):   # nearest competitor, from the same table
         near = val(c, "", "", "", "nearest 1")
         km = int(near.rsplit(" ", 2)[-2])
@@ -371,8 +381,14 @@ TIE_BREAK_LITERALS = [   # stated in docs/evidence_tie_break.md, from the source
     ("cyber_ads", "Baseline: job ads 'Cyber Security' Germany / Bavaria share / 100 km", [851, 30.9, 191], "851 / 30.9 % / 191",
      '"Cyber Security" 851 ads in Germany, Bavaria 30.9 %, 191 within 100 km'),
     ("cyber_competitors_150km", "Baseline: dedicated cyber bachelors within 150 km", 4, "4", "4 dedicated bachelors within 150 km"),
-    ("trends_robotik_share", "'Robotik Studium' share of 'Informatik Studium', 2019 and 2026", [2.4, 3.4], "2.4 % -> 3.4 %",
-     '"Robotik Studium" 2.4 % (2019) -> 3.4 % (2026)'),
+    ("trends_robotik_share", "'Robotik Studium' share of 'Informatik Studium', 2019 / 2021 / 2026", [2.4, 3.5, 3.4], "2.4 / 3.5 / 3.4 %",
+     '"Robotik Studium" 2.4 % (2019), 3.5 % (2021), 3.4 % (2026, Jan-Oct)'),
+    ("gross_share_informatik", "AR/VR central gross first-years as a share of Bavarian Informatik first-years 2024", 1.4, "1.4 %",
+     "would be 1.4 % of Bavaria's 4,110"),
+    ("rule_groups", "Decision rule: signal groups a candidate must lead to win on demand", [3, 4], "3 of 4", "leads in at least three of the four"),
+    ("rule_jobs_band", "Decision rule: job-ad counts within this margin are neutral", 10, "10 %", "within 10 % of each other is neutral"),
+    ("rule_trends_band", "Decision rule: Trends slope difference below this is neutral (pp/yr)", 0.1, "0.1", "under 0.1 percentage points a year"),
+    ("rule_jobs_radius", "Decision rule: radius for the job-ad comparison", 100, "100 km", "within 100 km of Amberg: the largest"),
     ("gpu_workstations", "GPU workstations listed on the IKKI page", 32, "32", "GPU lab with 32 workstations"),
     ("xr_headsets_estimate", "XR headsets a cohort of about 40 would need (assumption)", [10, 20], "10-20", "estimate 10-20 for a cohort of about 40"),
 ]

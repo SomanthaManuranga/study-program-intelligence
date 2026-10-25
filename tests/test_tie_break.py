@@ -78,3 +78,23 @@ def test_job_ads_come_from_the_latest_snapshot_and_missing_keywords_say_why():
 def test_new_keywords_are_in_the_snapshot_config():
     kw = {k["id"] for k in yaml.safe_load((REPO / "configs" / "jobsuche.yaml").read_text(encoding="utf-8"))["keywords"]}
     assert {"virtual_reality", "augmented_reality", "computergrafik", "servicerobotik", "robotik"} <= kw
+
+
+@needs("data/interim/modules_references.csv", "data/interim/modules_emi_2026.csv")
+def test_sheet_excerpts_start_at_a_learning_outcome_heading():
+    from study_program_intelligence.report import handcheck_sheet as H
+    cfg, hc, _ = H.config()
+    rows = H.sheet_rows(cfg, hc)
+    heading = r"^(Lernziele|Qualifikationsziele|Lernergebnisse|Learning Outcomes)"
+    for col in [c for c in rows.columns if "text" in c]:
+        assert rows[col].str.contains(heading).all(), col
+
+
+@needs("data/interim/tie_break.csv")
+def test_proxy_fit_and_per_competitor_rows():
+    t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
+    v = lambda c, m: t[(t["candidate"] == c) & (t["metric"] == m)]["value"].iloc[0]
+    assert v("arvr", "dedicated offers whose catalogue subject is the proxy subject") == "0"
+    for c in ("arvr", "robotics_b"):
+        german = int(t[(t["candidate"] == c) & (t["region"] == "BY") & (t["group"] == "German") & (t["metric"] == "2024")]["value"].iloc[0])
+        assert int(v(c, "2024 per dedicated Bavarian institution")) == round(german / int(v(c, "dedicated institutions Bavaria")))

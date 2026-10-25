@@ -37,6 +37,7 @@ SERIES = {  # candidate: [(label, subject codes)]; the first is the series behin
     "robotics_b": [("Mechatronik + Technische Informatik", ["SF380", "SF123"]), ("Mechatronik", ["SF380"]),
                    ("Technische Informatik", ["SF123"])],
 }
+PROXY_SUBJECT = {"arvr": "Medieninformatik", "robotics_b": "Mechatronik|Technische Informatik"}   # catalogue subject names
 JOB_KEYWORDS = {"arvr": ["virtual_reality", "augmented_reality", "computergrafik"], "robotics_b": ["robotik", "servicerobotik"]}
 
 
@@ -77,6 +78,7 @@ def competition_rows() -> list[dict]:
         for k, r in enumerate(inst.head(3).itertuples(), 1):
             add(f"nearest {k}", f"{r.institution} {r.km_oth:.0f} km")
         add("dedicated offers (Germany)", len(d))
+        add("dedicated offers whose catalogue subject is the proxy subject", int(d["subjects"].fillna("").str.contains(PROXY_SUBJECT[cand]).sum()))
     return rows
 
 
@@ -108,8 +110,28 @@ def capture_rows() -> list[dict]:
     return rows
 
 
+def derived_rows(rows: list[dict]) -> list[dict]:
+    """German first-years of the closest series per dedicated Bavarian competitor institution, and the German-only
+    trend score (configs/candidates.yaml trend_rule)."""
+    from .candidates import trend_score
+    t = pd.DataFrame(rows)
+    rule = config()["trend_rule"]
+    out = []
+    for cand in CANDIDATES:
+        ser = SERIES[cand][0][0]
+        g = lambda grp, m: t[(t["candidate"] == cand) & (t["series"] == ser) & (t["region"] == "BY") & (t["group"] == grp)
+                              & (t["metric"] == m)]["value"].iloc[0]
+        inst = t[(t["candidate"] == cand) & (t["metric"] == "dedicated institutions Bavaria")]["value"].iloc[0]
+        out.append({"signal": "Destatis first-years", "candidate": cand, "series": ser, "region": "BY", "group": "German",
+                    "metric": "2024 per dedicated Bavarian institution", "value": round(int(g("German", "2024")) / int(inst))})
+        out.append({"signal": "Destatis first-years", "candidate": cand, "series": ser, "region": "BY", "group": "German",
+                    "metric": "trend score (rule)", "value": trend_score(float(g("German", "%/yr 2019-24")), rule)["central"]})
+    return out
+
+
 def table() -> pd.DataFrame:
-    return pd.DataFrame(destatis_rows(load_destatis()) + competition_rows() + job_rows() + capture_rows())
+    rows = destatis_rows(load_destatis()) + competition_rows() + job_rows() + capture_rows()
+    return pd.DataFrame(rows + derived_rows(rows))
 
 
 def _md(df: pd.DataFrame) -> str:
