@@ -27,7 +27,7 @@ robots.txt disallows PDFs, and the THWS Geovisualisierung handbook is under the 
 | robotics_b | **passes** | F1 91.2 %, T 7 + N 5 ECTS, educational robots only (thin), F4 25.5 % |
 | arvr | **passes** | F1 91.7 %, N 10 ECTS (computer graphics), Visual Computing lab (thin), F4 32.2 % |
 | autonomous | fails | N 15 ECTS (F2), no battery or charging lab (F3), 70.1 % from E&IT (F4) |
-| energydata | fails | F1 72.5 %, T 20 ECTS (energy economics, regulation, law, billing systems) + N 18 ECTS (energy efficiency, energy management, grid control) |
+| energydata | fails | F1 69.4 %, T 26 ECTS (energy economics, regulation, law, billing systems) + N 18 ECTS (energy efficiency, energy management, grid control) |
 | geodata | fails | 62.3 % from OTH's own Geoinformatik und Landmanagement (F4) |
 | ot_master | fails | 83.3 % from IT und Automation (strict), 58.3 % from KI master (lenient) (F4) |
 
@@ -49,7 +49,7 @@ two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 
 | robotics_b | 80.7 % | 48.1 % | 32.6 pp | 91.2 % | 56.9 % | 7 | 5 | educational robots (thin) | 25.5 % KI |
 | autonomous | 85.4 % | 56.1 % | 29.3 pp | 85.0 % | 66.5 % | 10 | 15 | battery and charging lab missing | 70.1 % E&IT |
 | arvr | 60.9 % | 41.0 % | 19.9 pp | 91.7 % | 61.2 % | 0 | 10 | Visual Computing lab (thin) | 32.2 % II |
-| energydata | 51.1 % | 48.3 % | 2.8 pp | 72.5 % | 35.5 % | 20 | 18 | - | 49.3 % E&IT |
+| energydata | 46.1 % | 50.0 % | -3.9 pp | 69.4 % | 34.0 % | 26 | 18 | - | 47.2 % E&IT |
 | geodata | 65.1 % | 27.4 % | 37.7 pp | 100.0 % | 68.5 % | 0 | 0 | - | 62.3 % GI |
 | ot_master | design: 100 % | - | - | 100 % | 100 % | 0 | 0 | IA labs; no OT-security testbed (thin) | 83.3 % IA |
 
@@ -57,18 +57,18 @@ two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 
 
 | Candidate | Gap | Decision |
 |---|---|---|
-| robotics_b | 32.6 pp | hand check decides (week 2): 91.2 %. TF-IDF misses translated and differently named modules |
+| robotics_b | 32.6 pp | hand check decides (week 2): 91.2 %. TF-IDF misses differently named modules (e.g. RO 25 Programmieren 2) |
 | autonomous | 29.3 pp | hand check decides: 85.0 %, close to e5. The verdict does not depend on F1: F2, F3 and F4 fail |
 | geodata | 37.7 pp | hand check decides: 100 %. Most matches are GI modules with other names (e.g. "Geo Sensorik" to "Ingenieurvermessung und Sensorik"); the verdict rests on F4 after the hand check (62.3 % GI); with the automatic match it would fail F1 (65.1 %) instead |
 
-AR/VR (19.9 pp) and energy data (2.8 pp) are under the 20 pp line. The e5 and TF-IDF columns cover all listed modules,
+AR/VR (19.9 pp) and energy data (-3.9 pp, TF-IDF slightly higher) are under the 20 pp line. The e5 and TF-IDF columns cover all listed modules,
 electives included; the hand check covers core modules only. On the same core base e5 gives 66.1 % for AR/VR, 25.6 pp
 below the hand check: e5 misses modules whose EMI twin has another name ("Programmieren 2" scores 0.232 against
 "Programmierung 2"; its best automatic match is "Programmieren für KI 3 (Java)", 0.243) and counts nothing as adapted. Read without adapted modules (E1 only) AR/VR reaches 61.2 % and would fail F1; the same holds for robotics
 path B (56.9 %). Both gate passes therefore rest on the E2 verdicts, which are proposed, not confirmed.
 
 **Electives.** AR/VR students must choose 44 elective ECTS; the automatic match covers 85 ECTS of Coburg's listed
-electives. Energy data must choose 27 and only 9 are covered: a second reason it fails. The Hochschule München handbook
+electives. Energy data must choose 12 elective ECTS and the automatic match covers 9 of its 36 listed elective ECTS: a weakness, not part of the gate. The Hochschule München handbook
 lists 188 ECTS; the remaining 22 are general electives not described in it.
 
 **Reduced OT-security master.** No reference fits (the cyber/OT references reach at most 49 %: THI 49.4 %, HDBW 47.2 %, Deggendorf 0 % as an artefact), so the candidate is the
@@ -152,7 +152,7 @@ runs (same competitor set).
 | Candidate | What the whole degree needs | EMI's public lab list | Verdict |
 |---|---|---|---|
 | robotics_b | four robotics project modules and service-robotics practice | Physical Computing lab: Mindstorms and Aldebaran humanoids (teaching grade) | **thin**: cohort-size capacity unknown |
-| arvr | VR/AR headsets and tracking, GPU workstations for computer graphics | Visual Computing lab (spatial computing, 3D computer graphics courses); Labor Medieninformatik lists an HTC Vive and a Microsoft HoloLens (public page, from about 2020); "Virtual / Augmented Reality" taught in GI; "Ausgewählte Themen AR/VR" (IA/MKI) uses Unity | **thin**: single devices documented, on an old page; capacity for a cohort and whether they are current is unknown |
+| arvr | VR/AR headsets and tracking, GPU workstations for computer graphics | Visual Computing lab (spatial computing, 3D computer graphics courses); Labor Medieninformatik lists HTC Vive and Microsoft HoloLens among its hardware, without quantities (public page, from about 2020); "Virtual / Augmented Reality" taught in GI; "Ausgewählte Themen AR/VR" (IA/MKI) uses Unity | **thin**: device types listed without quantities, on an old page; capacity for a cohort and whether they are current is unknown |
 | autonomous | battery cells, charging stations, hydrogen; vehicle platforms | power electronics, drives, control labs; a race-car project in the KI programme | **missing**: battery and charging lab |
 | energydata | power-system lab, energy-data and billing software | high-voltage and power-electronics labs | software licences unknown; not a lab gap |
 | geodata | surveying and GNSS equipment | not in the EMI lab list; GI's own modules (Vermessungskunde 1-3, Satellitenpositionierung) need such equipment, so OTH has it | sufficient (GI's equipment, not listed) |
@@ -165,9 +165,10 @@ A thin lab case lowers the feasibility score from 5 to 4 at the low end; it does
 Only the two candidates that pass the gate could change the ranking. No foreign data was collected. In this model the only criterion a
 foreign competitor could move is differentiation (weight 0.10): Plzeň (Czech Republic) is about 115 km from Amberg
 (straight line, city-centre coordinates 49.75 N, 13.38 E). The
-ranking was rerun with AR/VR's differentiation one step lower (4 -> 3): AR/VR stays first but only at 51.7 %. So a
-foreign AR/VR or visual-computing bachelor within 150 km could make the two candidates a tie; checking Plzeň's
-programmes is worth doing before the freeze.
+ranking was rerun with AR/VR's differentiation one step lower (4 -> 3) as a stress test: AR/VR stays first but only at
+51.7 %. Under the differentiation rule one Plzeň programme alone would not cause that step (two institutions within
+150 km still score 4); it needs one within 80 km, two more within 150 km, or the same profile nearby. Checking Plzeň's
+programmes is still worth doing before the freeze.
 
 ## 7. Ranking with the gate, next to the frozen baseline
 
@@ -180,7 +181,7 @@ Candidates that fail the gate are excluded; their central scores are shown for c
 | Second | Cyber/OT M.Sc. 6.0 % | Robotics + AI B.Sc. path B 26.5 % |
 | Gate | not applied | cyber options fail; four of six candidates fail |
 
-Central weighted totals: arvr 3.63, robotics_b 3.45 (gate passed); ot_master 3.14, energydata 2.78, autonomous 2.70,
+Central weighted totals: arvr 3.63, robotics_b 3.45 (gate passed); ot_master 3.14, autonomous 2.70, energydata 2.58,
 geodata 2.43 (gate failed, excluded).
 
 **Robustness (E4).** P(rank 1) of AR/VR:
@@ -208,7 +209,7 @@ capture is the largest uncertainty (43.3 % when replaced by robotics' rows).
 | Claim | Evidence | Strength | What would change it |
 |---|---|---|---|
 | EMI can run it with existing staff and labs | hand check 91.7 % E1+E2, 10 ECTS new by existing professors (computer graphics) | medium: proposed hand check; E1 only 61.2 % | Soma rejects E2 verdicts worth more than 14 ECTS (then F1 < 80 %); no usable XR hardware for a cohort |
-| Few competitors | 1 dedicated institution in Bavaria, 6 in Germany | strong: full catalogue | a Czech or Austrian programme within 150 km (Plzeň not checked) |
+| Few competitors | 1 dedicated institution in Bavaria, 6 in Germany | strong: full catalogue | foreign or new programmes that lower the score under the rule: one within 80 km, two more within 150 km, or the same profile nearby (Plzeň not checked) |
 | Enough students | model: 58.5 gross first-years (central) | weak: no intake anchor; one comparator site | an intake figure for Coburg Visual Computing; capture at robotics' level flips the ranking |
 | Demand trend | Medieninformatik first-years Bavaria -8.2 %/yr | medium: proxy code | a better proxy (visual computing inside Informatik) |
 | Graduate outlet | Informatik is a specialist shortage occupation | weak: ad counts pending | the 1 Nov / 15 Nov / 1 Dec snapshots for "Virtual Reality", "Augmented Reality", "Computergrafik" |
@@ -217,10 +218,12 @@ capture is the largest uncertainty (43.3 % when replaced by robotics' rows).
 unanchored model run, not on the evidence. Institutional fit (5 vs 4) adds 0.20, more than its whole central lead of
 0.18, and that step is the staff rule "new ECTS <= 10 -> 5": AR/VR needs exactly 10 new ECTS, robotics path B 12. With fit 4, AR/VR's total
 would be 3.43 and robotics path B (3.45) would lead at central scores; in the Monte Carlo the two tie
-(AR/VR 51.8 %). The 10 ECTS are Computergrafik 1 and 2, which no EMI bachelor
-module teaches. The only public XR hardware mention is one HTC Vive and one HoloLens on a lab page from about
-2020; nothing shows hardware for a cohort. EMI's AR/VR teaching is one GI bachelor module ("Virtual / Augmented
-Reality") and a master elective ("Ausgewählte Themen AR/VR", IA/MKI) capped at 20 participants. The gate pass rests on proposed E2 verdicts (E1 only: 61.2 %). The
+(AR/VR 51.8 %). The 10 ECTS are Computergrafik 1 and 2; no EMI bachelor
+module teaches graphics programming (MT/DD "Visual Computing" covers CGI design and rendering). The only public XR
+hardware mention is HTC Vive and HoloLens in a hardware list without quantities, on a lab page from about 2020;
+nothing shows hardware for a cohort. EMI's AR/VR teaching in its handbooks is one GI bachelor module ("Virtual /
+Augmented Reality"), the Educational Technology master module "VR und AR in der Weiterbildung" and a master elective
+("Ausgewählte Themen AR/VR", IA/MKI) capped at 20 participants. The gate pass rests on proposed E2 verdicts (E1 only: 61.2 %). The
 model's 58.5 first-years would be 41 % of a Bavarian Medieninformatik pool that falls by 8.2 %/yr. Robotics path B
 scores higher on labour relevance (partly on ad counts) and keeps more students in the region (8.5 vs 5.6 central).
 With German-only trends, AR/VR capture at half of robotics' net new first-years, differentiation one step lower
@@ -229,8 +232,8 @@ With German-only trends, AR/VR capture at half of robotics' net new first-years,
 **Answer.** The attack holds. The fit rule was written before the ranking and is not changed after it, but the lead
 depends on one step of it, so the result is reported as a tie that the evidence does not yet separate, not as a
 recommendation for AR/VR. Four pieces of evidence decide it, in this order: (1) Soma's confirmation or rejection of the
-E2 verdicts and of who teaches Computergrafik 1 and 2 (if it needs more than 10 new ECTS, fit drops to 4 and robotics
-path B leads); (2) an inventory of EMI's XR hardware against a cohort; (3) the job-ad snapshots for the new keywords;
+E2 verdicts and of who teaches Computergrafik 1 and 2 (if it needs more than 10 new ECTS, fit drops to 4: robotics
+path B leads at central scores and the Monte Carlo is a tie); (2) an inventory of EMI's XR hardware against a cohort; (3) the job-ad snapshots for the new keywords;
 (4) a check of programmes in Plzeň. An intake figure for Coburg Visual Computing would replace the assumed comparator
 intake, the largest uncertainty in AR/VR's capture.
 
@@ -257,4 +260,4 @@ Value = measured or modelled in this step; "no data" carries its reason.
 - The gate passes of AR/VR and robotics path B rest on proposed E2 verdicts (Soma's confirmation pending).
 - AR/VR's capture has no intake anchor and only one comparator site; its demand proxy is rough and falling.
 - No ad counts for the new keywords before 1 Nov; no Google Trends data (manual download).
-- Lab capacity at cohort size is unknown for both candidates that pass (XR hardware documented only as single devices on an old lab page; teaching-grade robots).
+- Lab capacity at cohort size is unknown for both candidates that pass (XR device types listed without quantities on an old lab page; teaching-grade robots).

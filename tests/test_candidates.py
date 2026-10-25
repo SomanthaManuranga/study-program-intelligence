@@ -29,7 +29,7 @@ def test_reference_handbooks_parse_completely():
         assert check["toc"] == expected[hb.programme_id] == check["found"], hb.programme_id
         assert not check["missing"], hb.programme_id
         no_ects = [r["title"] for r in rows if not r["ects"]]
-        assert len(no_ects) <= 4, (hb.programme_id, no_ects)   # Kempten 4 (week 2), Dortmund: thesis + a duplicate title
+        assert len(no_ects) <= 4, (hb.programme_id, no_ects)   # Kempten 4 (week 2); the others none
 
 
 # ---------------- nationality split ----------------

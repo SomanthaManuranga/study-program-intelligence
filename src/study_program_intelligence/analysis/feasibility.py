@@ -77,7 +77,7 @@ def load() -> pd.DataFrame:
     base = pd.read_csv(BASE_MODULES)
     refs = pd.concat([base[base["programme_id"].isin(sum((v[1] for v in OPTIONS.values()), []))], pd.read_csv(REFS)])
     refs["side"] = "reference"
-    refs = refs.drop_duplicates(["programme_id", "title", "section"])   # Coburg lists some electives in two groups
+    refs = refs.drop_duplicates(["programme_id", "title", "section", "page"])   # exact repeats only (FH Dortmund has two modules with one title)
     two_groups = refs.duplicated(["programme_id", "title"], keep="first") & refs["section"].fillna("").str.contains(ELECTIVE)
     refs = refs[~two_groups]
     emi = pd.read_csv(EMI_2026).drop_duplicates(["source_file", "title", "page"])     # shared II/MI modules counted once

@@ -67,6 +67,7 @@ class Handbook:
     code_re: str = r"[BM]-CY-\d+"  # module code at the start of a "code" style TOC line
     body_prefix: str = ""  # regex stripped from body lines before matching headings ("103 Thesis" -> "Thesis")
     code_page: bool = False  # "code" TOC lines end with a page number ("101 - Computational Thinking 6")
+    heading_first: bool = False  # a module heading opens a page (FH Dortmund: one module starts per page)
 
 
 HANDBOOKS = [
@@ -113,8 +114,8 @@ REFERENCES = [  # reference curricula for options without a handbook in the base
              "numbered", exclude=r"^(?!RO\s?\d)", ects_rule="sum_lp"),
     # equal-evidence candidates (configs/reference_documents.yaml)
     Handbook(REF / "ref_autonomous_deggendorf.pdf", "thd_ba_em", "TH Deggendorf", "BA", [2, 3], "code", code_re=r"EM-\d+"),
-    Handbook(REF / "ref_energydata_dortmund.pdf", "fhdo_ba_eedm", "FH Dortmund", "BA", [2, 3], body_prefix=r"^\d{4,6}\s+",
-             ects_rule="art"),
+    Handbook(REF / "ref_energydata_dortmund.pdf", "fhdo_ba_eedm", "FH Dortmund", "BA", [2], body_prefix=r"^\d{3,6}\s+",
+             ects_rule="art", heading_first=True),
     Handbook(REF / "ref_visual_computing_coburg.pdf", "hsc_ba_vc", "Hochschule Coburg", "BA", [6, 7, 8],
              body_prefix=r"^Modulbezeichnung\s+"),
     Handbook(REF / "ref_geodata_hm.pdf", "hm_ba_gds", "Hochschule München", "BA", [2, 3], "code", unordered=True,
@@ -230,7 +231,7 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
 
 
 def locate(lines: list[tuple[int, str]], titles: list[str], start: int, strip_numbers: bool = False,
-           prefix: str = "") -> list[int | None]:
+           prefix: str = "", first: bool = False) -> list[int | None]:
     """Index in `lines` of each title's heading, searched forward in TOC order. strip_numbers: body headings carry the
     TOC numbering ("1.1 Mathematik 1"); compare without it (numbered handbooks only). prefix: other body-only prefix."""
     if strip_numbers:
@@ -245,6 +246,8 @@ def locate(lines: list[tuple[int, str]], titles: list[str], start: int, strip_nu
         for i in range(cursor, len(lines)):
             a = compact(lines[i][1])
             if len(a) < 4 or len(a) > 2 * len(t) + 30 or not t.startswith(a[:4]):
+                continue
+            if first and i > 0 and lines[i - 1][0] == lines[i][0]:   # not the first line of its page: e.g. a course row
                 continue
             joined = compact(" ".join(l for _, l in lines[i:i + 3]))
             if not (a.startswith(key) or (len(a) < len(key) and joined.startswith(key))):
@@ -329,12 +332,12 @@ def parse(hb: Handbook) -> tuple[list[dict], dict]:
     lines = [(n + 1, l) for n, page in enumerate(clean) for l in page]
     entries = toc_titles(hb, pages)
     body_start = next(i for i, (p, _) in enumerate(lines) if p > max(hb.toc_pages))
-    pos = locate(lines, [t for t, _ in entries], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix)
+    pos = locate(lines, [t for t, _ in entries], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix, first=hb.heading_first)
     if hb.unordered:  # second pass for titles the forward search missed; never reuse a heading already taken
         taken = {i for i in pos if i is not None}
         for k, (title, _) in enumerate(entries):
             if pos[k] is None:
-                hit = locate(lines, [title], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix)[0]
+                hit = locate(lines, [title], body_start, strip_numbers=hb.toc_style == "numbered", prefix=hb.body_prefix, first=hb.heading_first)[0]
                 if hit is not None and hit not in taken:
                     pos[k] = hit
                     taken.add(hit)
