@@ -33,7 +33,7 @@ def test_recompute_reproduces_the_gate_and_applies_rejections():
     none = {**cfg, "decisions": {}}
     r = H.f1_f4(H.verdict_table("robotics_b", none, hc), rule)
     a = H.f1_f4(H.verdict_table("arvr", none, hc), rule)
-    assert (r["F1 %"], r["T"], r["N"], r["F4 %"]) == (91.2, 7, 5, 25.5)
+    assert (r["F1 %"], r["T"], r["N"], r["F4 %"]) == (91.2, 7, 5, 38.0)   # F4 by the sheet's EMI modules (week 2: 25.5 %)
     assert (a["F1 %"], a["T"], a["N"], a["F4 %"]) == (91.7, 0, 10, 32.2)
     rej = H.f1_f4(H.verdict_table("arvr", {**cfg, "decisions": {"arvr|Bildverarbeitung 2": "reject"}}, hc), rule)
     assert rej["N"] == 15 and not rej["F2 pass"]       # one rejected module taught as N breaks the N cap

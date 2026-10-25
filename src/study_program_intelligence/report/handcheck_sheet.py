@@ -84,8 +84,10 @@ def verdict_table(cand: str, cfg: dict, hc: dict) -> pd.DataFrame:
         auto = pd.read_csv(INTERIM / "feasibility_modules.csv")
         auto = auto[auto["programme_id"] == "hske_ba_rob"].set_index("title")
         mods = hc["robotics_bsc"]["modules"]
+        sheet = cfg["candidates"]["robotics_b"]["modules"]   # E2 rows: the EMI module this sheet names; others: automatic match
+        prog = lambda k: sheet[k]["emi"][0] if k in sheet else auto.at[k, "match_programme"]
         t = pd.DataFrame([{"module": k, "ects": float(auto.at[k, "ects_used"]), "verdict": v["verdict"],
-                           "prog": FAMILY.get(auto.at[k, "match_programme"], auto.at[k, "match_programme"])}
+                           "prog": FAMILY.get(prog(k), prog(k))}
                           for k, v in mods.items() if not v.get("elective") and v.get("path", "B") == "B"])
     else:
         t = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
@@ -124,7 +126,9 @@ def main() -> None:
              "Texts start at the module's contents or learning outcomes (the form fields before it are skipped); "
              "professors' names are masked. For each row: is the EMI module, adapted by at most a third, a fair stand-in for the candidate module? "
              "Write `confirm` or `reject` per row (or tell Claude); a rejected module becomes the type in \"if rejected\" "
-             "(T = teaching assignment, N = new module by an existing professor).", ""]
+             "(T = teaching assignment, N = new module by an existing professor). F4 counts each E2 row for the programme of the "
+             "EMI module shown here; other rows use the automatic best match (robotics) or the hand check's programme (AR/VR). "
+             "For robotics this gives a higher F4 than the 25.5 % reported in week 2, which used the automatic match for every row.", ""]
     for cand, label in (("arvr", "AR/VR & visual computing B.Sc. (reference: Hochschule Coburg Visual Computing)"),
                         ("robotics_b", "Robotics + AI B.Sc., path B (reference: Hochschule Kempten Robotik, Geriatronik)")):
         r = rows[rows["candidate"] == cand].drop(columns=["candidate"])

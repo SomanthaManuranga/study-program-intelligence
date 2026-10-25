@@ -130,7 +130,7 @@ broken on demand yet. Two parts of the attack go too far:
 - **Capture is not decisive.** It is not independent evidence: it rests on an assumed comparator intake at a single
   site, Coburg, which has no public figure.
 - **The project's demand score is not a verdict.** The scored demand criterion is 2.37 vs 2.33, a difference of 0.04
-  on a 1-5 scale that comes from the same capture model.
+  on a 1-5 scale: the capture model's lead for AR/VR (+0.54) almost cancels robotics' higher Destatis trend score (+0.5).
 
 The decision now rests on the pre-registered rule above: with the existing signals split one to one, a candidate wins
 on demand only if both missing signals point to it.
