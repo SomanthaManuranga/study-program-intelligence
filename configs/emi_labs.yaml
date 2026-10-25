@@ -28,6 +28,8 @@ labs:
   - {name: Visual Computing, capabilities: [computer_vision, graphics, xr]}
   - {name: Audio- und Videotechnik, capabilities: [audio, video]}
   - {name: Mediengestaltung, capabilities: [media_design]}
+  - {name: "IKKI / Digitaler Campus (OTH AI competence centre, linked from the EMI lab overview)", capabilities: [gpu, xr],
+     note: "GPU-Rechnerlabor mit 32 Workstations, AR-/VR-Labor (IKKI public page); headset count not stated"}
 
 # Capabilities that NO public EMI lab offers (from the baseline evidence and the lab pages):
 missing:

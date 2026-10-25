@@ -29,7 +29,7 @@ robotics_bsc:
     RO 36 Robotik Projekt 2: {verdict: E2, emi: "project format; Grundlagen der Robotik (KI)", lab: educational_robots}
     RO 42 Embedded Systems: {verdict: E1, emi: "Embedded Systems (II)"}
     RO 43 Software Engineering: {verdict: E1, emi: "Software Engineering 1 (E&IT, II)"}
-    RO 44 Maschinelles Lernen: {verdict: E1, emi: "Machine Learning 1/2 (E&IT, KI)", note: "automatic false negative (0.269 vs 0.277)"}
+    RO 44 Maschinelles Lernen: {verdict: E1, emi: "Machine Learning 1/2 (E&IT, KI)", note: "automatic false negative (0.269 vs the threshold 0.285)"}
     RO 45 Robotik Projekt 3: {verdict: E2, emi: "project format; robotics as above", lab: educational_robots}
     RO 631 Qualitätsmanagement: {verdict: T, emi: "-"}
     RO 632 Robotik Projekt 4 Teil 1: {verdict: E2, emi: "project format", lab: educational_robots}
@@ -64,6 +64,8 @@ autonomous_bsc:
   status: proposed
   programme_id: thd_ba_em
   reference: TH Deggendorf, Elektromobilität, autonomes Fahren und mobile Robotik B.Eng.
+  path: FR   # the degree has two specialisations (handbook pp. 96-113): EM = Elektromobilität, FR = Autonomes Fahren /
+             # mobile Robotik; a student takes one, and the candidate is the FR track (as the Kempten paths A/B)
   modules:
     EM-01 Mathematik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Mathematik für Ingenieure 1"}
     EM-02 Physik 1: {verdict: E1, prog: oth26_ba_ei, emi: "Physik"}
@@ -88,12 +90,12 @@ autonomous_bsc:
     EM-23 Englisch für Ingenieure: {verdict: E2, prog: oth26_ba_mt, emi: "English for Media Professionals"}
     EM-24 Automobile Bussysteme: {verdict: E2, prog: oth26_ba_ii, emi: "Industrielle Kommunikationstechnik (II)", lab: industrial_communication}
     EM-27 Schlüsselkompetenzen: {verdict: E1, prog: oth26_ba_ei, emi: "Betriebswirtschaftslehre und Projektmanagement; Gesprächsführung und Vortragstechnik"}
-    EM-29 Leistungselektronik 2: {verdict: N, emi: "Leistungselektronik professor (E&IT)", lab: power_electronics, note: "EMI has one bachelor power-electronics module"}
-    EM-30 Batterietechnologien: {verdict: T, emi: "-", lab: "missing: battery_lab", note: "no battery module and no battery lab at EMI"}
-    EM-31 Ladestationen, Wasserstofftechnologie: {verdict: T, emi: "-", lab: "missing: battery_lab", note: "charging and hydrogen: no EMI module or lab"}
-    EM-32 Modellbasierter Reglerentwurf und Absicherung: {verdict: N, emi: "control professors (Modellbasierte Entwicklung exists at master level, IA)"}
-    EM-33 Autonomes Fahren: {verdict: E1, prog: oth26_ba_ei, emi: "Fahrzeugautomatisierung"}
-    EM-34 Mobile Roboter: {verdict: E1, prog: oth26_ba_ki, emi: "Autonome Mobile Systeme", lab: educational_robots}
+    EM-29 Leistungselektronik 2: {verdict: N, path: EM, emi: "Leistungselektronik professor (E&IT)", lab: power_electronics, note: "EMI has one bachelor power-electronics module"}
+    EM-30 Batterietechnologien: {verdict: T, path: EM, emi: "-", lab: "missing: battery_lab", note: "no battery module and no battery lab at EMI"}
+    EM-31 Ladestationen, Wasserstofftechnologie: {verdict: T, path: EM, emi: "-", lab: "missing: battery_lab", note: "charging and hydrogen: no EMI module or lab"}
+    EM-32 Modellbasierter Reglerentwurf und Absicherung: {verdict: N, path: FR, emi: "control professors (Modellbasierte Entwicklung exists at master level, IA)"}
+    EM-33 Autonomes Fahren: {verdict: E1, path: FR, prog: oth26_ba_ei, emi: "Fahrzeugautomatisierung"}
+    EM-34 Mobile Roboter: {verdict: E1, path: FR, prog: oth26_ba_ki, emi: "Autonome Mobile Systeme", lab: educational_robots}
     EM-26 Allgemeinwissenschaftliches Wahlpflichtmodul (AWP): {verdict: E1, elective: true, prog: oth26_ba_ki, emi: "Allgemeines Wahlpflichtmodul"}
 
 arvr_bsc:
@@ -123,7 +125,7 @@ arvr_bsc:
     Englisch (GER B2) 1: {verdict: E1, prog: oth26_ba_mt, emi: "English for Media Professionals"}
     Englisch (GER B2) 2: {verdict: E2, prog: oth26_ba_ki, emi: "Foreign Language 1 (KI International)"}
     Wissenschaftliches und interdisziplinäres Arbeiten: {verdict: E1, prog: oth26_ba_ei, emi: "Wissenschaftliches Arbeiten"}
-    Interdisziplinäre Projektarbeit: {verdict: E2, prog: oth26_ba_ii, emi: "Software-Projekt (II)", lab: xr, note: "VR/AR projects: Visual Computing lab (spatial computing); GI teaches 'Virtual / Augmented Reality'"}
+    Interdisziplinäre Projektarbeit: {verdict: E2, prog: oth26_ba_ii, emi: "Software-Projekt (II)", lab: xr, note: "VR/AR projects: Visual Computing lab (spatial computing), IKKI AR/VR lab; AR/VR modules in DD ('AR/VR'), GI and IA/MKI"}
 
 energydata_bsc:
   status: proposed

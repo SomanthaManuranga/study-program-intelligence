@@ -23,8 +23,8 @@ Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/rank
 Equal-evidence candidates (`--candidates`): the same model on configs/scores_candidates.yaml and
 data/interim/candidate_scenarios.csv (analysis/candidates.py). Candidates that fail the F1-F4 gate carry feasibility 1
 and drop out as above. Scenarios: base; German-only trends; lenient feasibility gate; 50 % cannibalisation for the
-candidates with a same-campus near-twin; AR/VR capture replaced by robotics' rows; AR/VR differentiation one step lower; AR/VR institutional fit 4
-(neighbouring countries); all AR/VR counter-arguments at once; independent capture draws; leave-one-criterion-out.
+candidates with a same-campus near-twin; AR/VR capture replaced by robotics' rows; AR/VR differentiation one step lower
+(neighbouring countries); AR/VR institutional fit 4; all AR/VR counter-arguments at once; independent capture draws; leave-one-criterion-out.
 Outputs: reports/ranking_candidates.md, data/interim/ranking_candidates_summary.csv, data/interim/ranking_candidates_loo.csv.
 """
 

@@ -12,8 +12,10 @@ Rule: `configs/feasibility.yaml` (pre-registered before any re-scoring). Labs: `
   - cyber master: TH Ingolstadt, TH Deggendorf, HDBW;
   - robotics bachelor: Hochschule Kempten Robotik.
 - **Matching:** the Step 41 method (e5 embeddings centred per handbook, best EMI match, ECTS-weighted). The threshold
-  was recalibrated on this module set with the Step 41 procedure, as the rule requires: 0.277 (AUC 0.762); it was 0.295
-  in Step 41. TF-IDF is shown as a cross-check.
+  was recalibrated on this module set with the Step 41 procedure, as the rule requires: 0.285 (AUC 0.762); it was 0.295
+  in Step 41. TF-IDF is shown as a cross-check. (The first week-2 run gave 0.277; the parser had dropped the Digital
+  Design module "AR/VR", and adding it moved the threshold, docs/decision_log.md. The hand-check verdicts do not
+  depend on the threshold.)
 - **Known artefact:** the TH Deggendorf master scores 0 %. Its handbook has only security modules, and centring it
   removes the shared security signal; the matches are meaningless (e.g. "Cybersecurity Fundamentals" to
   "Fahrzeugautomatisierung"). The verdict for the master rests on THI and HDBW.
@@ -23,11 +25,11 @@ Rule: `configs/feasibility.yaml` (pre-registered before any re-scoring). Labs: `
 | Option | Evidence | F1 coverage (at least 80 %) | F2 new content | F3 labs | F4 one source | Verdict |
 |---|---|---|---|---|---|---|
 | Cybersecurity B.Sc. | OTH draft curriculum (Step 45) | 67 % (110 of 165 taught ECTS) | 45 ECTS need new professors | new security lab needed | - | **fails** F1, F2, F3 |
-| Cybersecurity B.Sc. | reference curricula | 51-79 % (THWS, THI, THD) | 34-81 ECTS new at OTH size | 12-28 % of core ECTS need a security lab | 16-25 % | **fails** F1, F2, F3 |
+| Cybersecurity B.Sc. | reference curricula | 49-76 % (THWS, THI, THD) | 40-84 ECTS new at OTH size | 12-28 % of core ECTS need a security lab | 16-25 % | **fails** F1, F2, F3 |
 | Reduced cyber bachelor | EMI's own security modules | - | - | - | - | **not viable**: only 2 distinct security modules (10 ECTS) at bachelor level, against roughly 45-75 security ECTS in dedicated cyber bachelors; it would be an informatics bachelor with a security focus, which Industrie-4.0-Informatik and Medieninformatik already are |
 | Cyber/OT M.Sc. | reference curricula (THI, HDBW) | 47-49 % | about 30 ECTS new at OTH size | 12-19 % need a security lab | 19-32 % | **fails** F1, F2, F3 |
 | Reduced OT-security master | EMI's security and OT modules | - | - | - | - | **open**: 16 distinct modules (80 ECTS), half at bachelor level; at master level IT und Automation supplies most of them, so F4 against IA is the risk. Carried into the recombination step |
-| Robotics + AI B.Sc. | Kempten, automatic | 80.7 % (TF-IDF 48 %) | about 32 ECTS new | industrial robot cells | 25 % | fails F2 and F3 automatically |
+| Robotics + AI B.Sc. | Kempten, automatic | 75.4 % (TF-IDF 48 %) | about 41 ECTS new | industrial robot cells | 23 % | fails F1, F2 and F3 automatically |
 | Robotics + AI B.Sc., path A (industrial robotics) | Kempten, hand check | 94.9 % | 7 ECTS (teaching assignments) | **two modules need industrial robot cells, which EMI lacks** | 29 % | **fails F3** |
 | Robotics + AI B.Sc., path B (assistive / service robotics) | Kempten, hand check | 91.2 % | 7 ECTS teaching assignments + 5 ECTS existing professor | educational / humanoid robots in the Physical Computing lab | 26 % (KI family) | **passes F1-F4, pending Soma's confirmation of the hand check** |
 
@@ -89,7 +91,7 @@ F1-F4 check with a reference curriculum each.
 
 ## Caveats
 
-- The matches are automatic until the hand check is confirmed; for robotics, e5 (80.7 %) and TF-IDF (48 %) disagree
+- The matches are automatic until the hand check is confirmed; for robotics, e5 (75.4 %) and TF-IDF (48 %) disagree
   strongly, so the hand check decides.
 - Kempten is one reference; its two specialisations make two paths. The path verdicts use core and specialisation
   modules; the electives could only raise coverage.

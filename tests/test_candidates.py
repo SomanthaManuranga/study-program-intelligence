@@ -172,3 +172,19 @@ def test_candidate_ranking_reproduces_with_the_fixed_seed():
     now = R.summarise(a).set_index("option")["P(rank 1)"]
     for o in now.index:
         assert now[o] == pytest.approx(stored[o]), o
+
+
+@needs("data/interim/modules_emi_2026.csv")
+def test_short_all_caps_module_title_is_parsed():
+    """Digital Design's "AR/VR" module was once taken for a section heading and merged into the previous module."""
+    e = pd.read_csv(INTERIM / "modules_emi_2026.csv")
+    row = e[(e["programme_id"] == "oth26_ba_dd") & (e["title"] == "AR/VR")]
+    assert len(row) == 1 and float(row["ects"].iloc[0]) == 5.0
+
+
+@needs("data/interim/feasibility_handcheck_candidates.csv")
+def test_deggendorf_candidate_uses_one_specialisation():
+    t = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
+    mods = set(t.loc[t["option"] == "Autonomous mobile systems B.Eng.", "module"])
+    assert {"EM-32 Modellbasierter Reglerentwurf und Absicherung", "EM-33 Autonomes Fahren", "EM-34 Mobile Roboter"} <= mods
+    assert not mods & {"EM-29 Leistungselektronik 2", "EM-30 Batterietechnologien", "EM-31 Ladestationen, Wasserstofftechnologie"}

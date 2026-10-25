@@ -26,7 +26,7 @@ robots.txt disallows PDFs, and the THWS Geovisualisierung handbook is under the 
 |---|---|---|
 | robotics_b | **passes** | F1 91.2 %, T 7 + N 5 ECTS, educational robots only (thin), F4 25.5 % |
 | arvr | **passes** | F1 91.7 %, N 10 ECTS (computer graphics), Visual Computing lab (thin), F4 32.2 % |
-| autonomous | fails | N 15 ECTS (F2), no battery or charging lab (F3), 70.1 % from E&IT (F4) |
+| autonomous | fails | 77.0 % from E&IT (F4) on the autonomous-driving / mobile-robotics track; F1 93.4 %, N 10 ECTS, labs sufficient |
 | energydata | fails | F1 69.4 %, T 26 ECTS (energy economics, regulation, law, billing systems) + N 18 ECTS (energy efficiency, energy management, grid control) |
 | geodata | fails | 62.3 % from OTH's own Geoinformatik und Landmanagement (F4) |
 | ot_master | fails | 83.3 % from IT und Automation (strict), 58.3 % from KI master (lenient) (F4) |
@@ -37,39 +37,44 @@ two are reported as an open tie. The baseline winner (Cybersecurity B.Sc., 91.7 
 
 ## 1. Feasibility with existing resources (gate)
 
-- **Method:** the week-2 method unchanged (e5, best EMI match, ECTS-weighted, threshold 0.277). The thresholds are
-  calibrated on the week-2 reference programmes only, and TF-IDF is fitted on the week-2 module set, so the week-2
-  numbers do not move (checked: all seven week-2 rows identical).
+- **Method:** the week-2 method (e5, best EMI match, ECTS-weighted). The thresholds are calibrated on the week-2
+  reference programmes only, and TF-IDF is fitted on the week-2 module set, so adding references does not move the
+  week-2 numbers. The EMI module set did change: the parser had dropped the Digital Design module "AR/VR"; with it the
+  recalibrated e5 threshold is 0.285 (was 0.277), as the pre-registered rule requires, and the automatic week-2 numbers
+  were updated in `docs/evidence_feasibility.md` (verdicts unchanged).
 - **Hand check:** every taught core module of each reference got a verdict (E1, E2, T, N), as for robotics in week 2
   (`configs/feasibility_handcheck.yaml`, proposed by Claude). Frame modules (practical semester, thesis, placeholder
-  electives) are left out; listed electives are not counted in F1, because a degree needs only some of them.
+  electives) are left out; listed electives are not counted in F1, because a degree needs only some of them. Where a
+  reference has specialisations, a student takes one: Kempten's paths A/B, and for TH Deggendorf the autonomous-driving
+  / mobile-robotics track (FR); its electromobility track (EM: Leistungselektronik 2, Batterietechnologien,
+  Ladestationen / Wasserstofftechnologie) is left out.
 
 | Candidate | e5, all listed modules | TF-IDF, all listed modules | Gap | Hand check E1+E2 | E1 only | T | N | F3 | F4 largest |
 |---|---|---|---|---|---|---|---|---|---|
-| robotics_b | 80.7 % | 48.1 % | 32.6 pp | 91.2 % | 56.9 % | 7 | 5 | educational robots (thin) | 25.5 % KI |
-| autonomous | 85.4 % | 56.1 % | 29.3 pp | 85.0 % | 66.5 % | 10 | 15 | battery and charging lab missing | 70.1 % E&IT |
-| arvr | 60.9 % | 41.0 % | 19.9 pp | 91.7 % | 61.2 % | 0 | 10 | Visual Computing lab (thin) | 32.2 % II |
-| energydata | 46.1 % | 50.0 % | -3.9 pp | 69.4 % | 34.0 % | 26 | 18 | - | 47.2 % E&IT |
-| geodata | 65.1 % | 27.4 % | 37.7 pp | 100.0 % | 68.5 % | 0 | 0 | - | 62.3 % GI |
+| robotics_b | 75.4 % | 48.1 % | 27.3 pp | 91.2 % | 56.9 % | 7 | 5 | educational robots (thin) | 25.5 % KI |
+| autonomous | 82.5 % | 56.1 % | 26.4 pp | 93.4 % | 73.0 % | 0 | 10 | sufficient on the FR track | 77.0 % E&IT |
+| arvr | 55.4 % | 41.0 % | 14.4 pp | 91.7 % | 61.2 % | 0 | 10 | Visual Computing lab (thin) | 32.2 % II |
+| energydata | 44.4 % | 50.0 % | -5.6 pp | 69.4 % | 34.0 % | 26 | 18 | - | 47.2 % E&IT |
+| geodata | 58.2 % | 30.8 % | 27.4 pp | 100.0 % | 68.5 % | 0 | 0 | - | 62.3 % GI |
 | ot_master | design: 100 % | - | - | 100 % | 100 % | 0 | 0 | IA labs; no OT-security testbed (thin) | 83.3 % IA |
 
 **Method agreement (E3).** Gaps over 20 percentage points between e5 and TF-IDF, and how they were decided:
 
 | Candidate | Gap | Decision |
 |---|---|---|
-| robotics_b | 32.6 pp | hand check decides (week 2): 91.2 %. TF-IDF misses differently named modules (e.g. RO 25 Programmieren 2) |
-| autonomous | 29.3 pp | hand check decides: 85.0 %, close to e5. The verdict does not depend on F1: F2, F3 and F4 fail |
-| geodata | 37.7 pp | hand check decides: 100 %. Most matches are GI modules with other names (e.g. "Geo Sensorik" to "Ingenieurvermessung und Sensorik"); the verdict rests on F4 after the hand check (62.3 % GI); with the automatic match it would fail F1 (65.1 %) instead |
+| robotics_b | 27.3 pp | hand check decides (week 2): 91.2 %. TF-IDF misses differently named modules (e.g. RO 25 Programmieren 2) |
+| autonomous | 26.4 pp | hand check decides: 93.4 % on the FR track (e5 counts both tracks). The verdict does not depend on F1: F4 fails |
+| geodata | 27.4 pp | hand check decides: 100 %. Most matches are GI modules with other names (e.g. "Geo Sensorik" to "Ingenieurvermessung und Sensorik"); the verdict rests on F4 after the hand check (62.3 % GI); with the automatic match it would fail F1 (58.2 %) instead |
 
-AR/VR (19.9 pp) and energy data (-3.9 pp, TF-IDF slightly higher) are under the 20 pp line. The e5 and TF-IDF columns cover all listed modules,
-electives included; the hand check covers core modules only. On the same core base e5 gives 66.1 % for AR/VR, 25.6 pp
+AR/VR (14.4 pp) and energy data (-5.6 pp, TF-IDF higher) are under the 20 pp line. The e5 and TF-IDF columns cover all listed modules,
+electives included; the hand check covers core modules only. On the same core base e5 gives 62.0 % for AR/VR, 29.7 pp
 below the hand check: e5 misses modules whose EMI twin has another name ("Programmieren 2" scores 0.232 against
 "Programmierung 2"; its best automatic match is "Programmieren für KI 3 (Java)", 0.243) and counts nothing as adapted. Read without adapted modules (E1 only) AR/VR reaches 61.2 % and would fail F1; the same holds for robotics
 path B (56.9 %). Both gate passes therefore rest on the E2 verdicts, which are proposed, not confirmed.
 
 **Electives.** AR/VR students must choose 44 elective ECTS; the automatic match covers 85 ECTS of Coburg's listed
 electives. Energy data must choose 12 elective ECTS and the automatic match covers 9 of its 36 listed elective ECTS: a weakness, not part of the gate. The Hochschule München handbook
-lists 188 ECTS; the remaining 22 are general electives not described in it.
+lists 188 ECTS; the remaining 22 ECTS of the 210 are not described in it (presumably general electives).
 
 **Reduced OT-security master.** No reference fits (the cyber/OT references reach at most 49 %: THI 49.4 %, HDBW 47.2 %, Deggendorf 0 % as an artefact), so the candidate is the
 master that EMI's existing master modules could form: 20 security ECTS (all four master-level security modules), 30 OT
@@ -152,8 +157,8 @@ runs (same competitor set).
 | Candidate | What the whole degree needs | EMI's public lab list | Verdict |
 |---|---|---|---|
 | robotics_b | four robotics project modules and service-robotics practice | Physical Computing lab: Mindstorms and Aldebaran humanoids (teaching grade) | **thin**: cohort-size capacity unknown |
-| arvr | VR/AR headsets and tracking, GPU workstations for computer graphics | Visual Computing lab (spatial computing, 3D computer graphics courses); Labor Medieninformatik lists HTC Vive and Microsoft HoloLens among its hardware, without quantities (public page, from about 2020); "Virtual / Augmented Reality" taught in GI; "Ausgewählte Themen AR/VR" (IA/MKI) uses Unity | **thin**: device types listed without quantities, on an old page; capacity for a cohort and whether they are current is unknown |
-| autonomous | battery cells, charging stations, hydrogen; vehicle platforms | power electronics, drives, control labs; a race-car project in the KI programme | **missing**: battery and charging lab |
+| arvr | VR/AR headsets and tracking, GPU workstations for computer graphics | Visual Computing lab (spatial computing, 3D computer graphics courses); OTH's AI competence centre IKKI (Digitaler Campus) has a GPU lab with 32 workstations and an AR/VR lab; Labor Medieninformatik lists HTC Vive and Microsoft HoloLens without quantities (page from about 2020); AR/VR modules in DD ("AR/VR", head-mounted displays), GI and IA/MKI (Unity) | **thin**: GPU seats documented (32), XR headset count unknown |
+| autonomous | FR track: sensors, control, mobile robots and vehicle automation (the battery, charging and hydrogen needs belong to the EM track, which is left out) | power electronics, drives, control and measurement labs; educational robots; a race-car project in the KI programme | sufficient for the FR track (vehicle platforms for cohort projects not documented) |
 | energydata | power-system lab, energy-data and billing software | high-voltage and power-electronics labs | software licences unknown; not a lab gap |
 | geodata | surveying and GNSS equipment | not in the EMI lab list; GI's own modules (Vermessungskunde 1-3, Satellitenpositionierung) need such equipment, so OTH has it | sufficient (GI's equipment, not listed) |
 | ot_master | OT testbed for security practice | automation, PLC and industrial-communication labs | **thin**: no isolated security lab (week 2) |
@@ -181,7 +186,7 @@ Candidates that fail the gate are excluded; their central scores are shown for c
 | Second | Cyber/OT M.Sc. 6.0 % | Robotics + AI B.Sc. path B 26.5 % |
 | Gate | not applied | cyber options fail; four of six candidates fail |
 
-Central weighted totals: arvr 3.63, robotics_b 3.45 (gate passed); ot_master 3.14, autonomous 2.70, energydata 2.58,
+Central weighted totals: arvr 3.63, robotics_b 3.45 (gate passed); ot_master 3.14, autonomous 2.90, energydata 2.58,
 geodata 2.43 (gate failed, excluded).
 
 **Robustness (E4).** P(rank 1) of AR/VR:
@@ -208,7 +213,7 @@ capture is the largest uncertainty (43.3 % when replaced by robotics' rows).
 
 | Claim | Evidence | Strength | What would change it |
 |---|---|---|---|
-| EMI can run it with existing staff and labs | hand check 91.7 % E1+E2, 10 ECTS new by existing professors (computer graphics) | medium: proposed hand check; E1 only 61.2 % | Soma rejects E2 verdicts worth more than 14 ECTS (then F1 < 80 %); no usable XR hardware for a cohort |
+| EMI can run it with existing staff and labs | hand check 91.7 % E1+E2, 10 ECTS new by existing professors (computer graphics) | medium: proposed hand check; E1 only 61.2 % | any rejected E2 module adds new ECTS: as N it breaks the N cap (already 10), as teaching assignments it fails F2 above 10 ECTS, and F1 falls below 80 % above 14 ECTS; any rejection lowers fit to 4 (a tie); too few XR headsets for a cohort |
 | Few competitors | 1 dedicated institution in Bavaria, 6 in Germany | strong: full catalogue | foreign or new programmes that lower the score under the rule: one within 80 km, two more within 150 km, or the same profile nearby (Plzeň not checked) |
 | Enough students | model: 58.5 gross first-years (central) | weak: no intake anchor; one comparator site | an intake figure for Coburg Visual Computing; capture at robotics' level flips the ranking |
 | Demand trend | Medieninformatik first-years Bavaria -8.2 %/yr | medium: proxy code | a better proxy (visual computing inside Informatik) |
@@ -219,11 +224,11 @@ unanchored model run, not on the evidence. Institutional fit (5 vs 4) adds 0.20,
 0.18, and that step is the staff rule "new ECTS <= 10 -> 5": AR/VR needs exactly 10 new ECTS, robotics path B 12. With fit 4, AR/VR's total
 would be 3.43 and robotics path B (3.45) would lead at central scores; in the Monte Carlo the two tie
 (AR/VR 51.8 %). The 10 ECTS are Computergrafik 1 and 2; no EMI bachelor
-module teaches graphics programming (MT/DD "Visual Computing" covers CGI design and rendering). The only public XR
-hardware mention is HTC Vive and HoloLens in a hardware list without quantities, on a lab page from about 2020;
-nothing shows hardware for a cohort. EMI's AR/VR teaching in its handbooks is one GI bachelor module ("Virtual /
-Augmented Reality"), the Educational Technology master module "VR und AR in der Weiterbildung" and a master elective
-("Ausgewählte Themen AR/VR", IA/MKI) capped at 20 participants. The gate pass rests on proposed E2 verdicts (E1 only: 61.2 %). The
+module teaches graphics programming (MT/DD "Visual Computing" covers CGI design and rendering). OTH documents 32 GPU
+workstations and an AR/VR lab (IKKI), but no XR headset count; Labor Medieninformatik lists HTC Vive and HoloLens
+without quantities on a page from about 2020. EMI's AR/VR teaching is spread over single modules: among them DD's
+"AR/VR" (5 ECTS profile module), GI's "Virtual / Augmented Reality", Educational Technology's "VR und AR in der
+Weiterbildung" and the master elective "Ausgewählte Themen AR/VR" (IA/MKI), capped at 20 participants. The gate pass rests on proposed E2 verdicts (E1 only: 61.2 %). The
 model's 58.5 first-years would be 41 % of a Bavarian Medieninformatik pool that falls by 8.2 %/yr. Robotics path B
 scores higher on labour relevance (partly on ad counts) and keeps more students in the region (8.5 vs 5.6 central).
 With German-only trends, AR/VR capture at half of robotics' net new first-years, differentiation one step lower
@@ -251,7 +256,7 @@ Value = measured or modelled in this step; "no data" carries its reason.
 | Shortage occupation | value | value | value | value (not in top 10) | value (not in top 10) | value |
 | Competition count and map | value | value | value | value | value | value |
 | Capture and cannibalisation | value (no anchor) | value (no anchor) | value (no anchor) | value (no comparator, widened) | value (no anchor) | value (THI anchor) |
-| Lab check, whole degree | value (thin) | value (missing) | value (thin) | value | value | value (thin) |
+| Lab check, whole degree | value (thin) | value (FR track sufficient) | value (thin) | value | value | value (thin) |
 | Neighbouring countries | no data; not varied (only AR/VR's run) | not needed: fails the gate | no data; sensitivity run (differentiation 3) | not needed: fails the gate | not needed: fails the gate | not needed: fails the gate |
 | Ranking score | value | value (excluded) | value | value (excluded) | value (excluded) | value (excluded) |
 

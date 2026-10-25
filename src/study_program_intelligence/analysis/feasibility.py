@@ -244,8 +244,8 @@ def candidates_handchecked(d: pd.DataFrame, mods: pd.DataFrame, rule: dict) -> t
             seen[r.title] = seen.get(r.title, 0) + 1
             k = r.title if seen[r.title] == 1 else f"{r.title} #{seen[r.title]}"
             v = c["modules"].get(k)
-            if v is None or v.get("elective") or r.elective:
-                continue
+            if v is None or v.get("elective") or r.elective or v.get("path", c.get("path")) != c.get("path"):
+                continue   # electives, and modules of another specialisation (e.g. Deggendorf EM when the candidate is FR)
             recs.append({"option": option, "module": k, "ects": float(v.get("ects", r.ects_used)), "verdict": v["verdict"],
                          "prog": FAMILY.get(v.get("prog", ""), v.get("prog", "")), "emi": v.get("emi", ""),
                          "lab": str(v.get("lab", "")), "automatic": "covered" if r.covered else "not covered",

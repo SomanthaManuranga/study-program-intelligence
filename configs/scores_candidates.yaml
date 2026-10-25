@@ -51,12 +51,12 @@ options:
     regional_contribution: {strength: weak, source: "computed"}
   autonomous:
     label: Autonomous mobile systems B.Eng.
-    gate: {result: fail, evidence: "F2 (N 15 > 10), F3 (battery and charging lab missing), F4 (E&IT 70.1 %)"}
+    gate: {result: fail, evidence: "F4 (E&IT 77.0 %, FR track; F1 93.4 %, T 0, N 10, F3 passes)"}
     student_demand:
       capture: {strength: weak, source: "own model run; no intake anchor, assumed comparator intake 20-60 at FAU"}
       trend: {low: 2, central: 3, high: 4, strength: medium, evidence: "Fahrzeugtechnik + Mechatronik first-years Bavaria +2.0 %/yr (German -3.0)"}
     labour_relevance: {low: 2, central: 3, high: 4, strength: weak, evidence: "Elektrotechnik (2630) and technical R&D (2710) specialist shortages; ad counts pending"}
-    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "E1+E2 85.0 %, E1 only 66.5 %, T+N 25 ECTS"}
+    institutional_fit: {low: 5, central: 5, high: 5, strength: medium, evidence: "FR track: E1+E2 93.4 %, E1 only 73.0 %, T+N 10 ECTS"}
     feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed"}
     differentiation: {low: 1, central: 2, high: 2, strength: strong, evidence: "3 dedicated institutions within 150 km, FAU at 63 km"}
     regional_contribution: {strength: weak, source: "computed"}
@@ -104,7 +104,7 @@ sensitivity:
     ot_master: {low: 3, central: 4, high: 5}
   lenient_gate:   # configs/feasibility.yaml sensitivity (F1 >= 70 %, N <= 20/10): which candidates would pass
     pass: [robotics_b, arvr]
-    note: "autonomous still fails F3 and F4, energydata F1 (69.4 % < 70 %) and F2 (T 26 > 10), geodata and ot_master F4"
+    note: "autonomous still fails F4, energydata F1 (69.4 % < 70 %) and F2 (T 26 > 10), geodata and ot_master F4"
   cannibalisation_50: [robotics_b, arvr]   # (a) = 50 % for the candidates with a same-campus near-twin (KI; Medieninformatik / Digital Design)
   arvr_capture_as_robotics: true           # AR/VR's capture rests on one comparator site: rerun with robotics' rows
   arvr_differentiation_3: true             # neighbouring countries: a Czech or Austrian competitor could lower AR/VR's differentiation by one step

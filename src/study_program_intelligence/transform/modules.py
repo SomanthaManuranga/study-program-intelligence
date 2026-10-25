@@ -222,9 +222,10 @@ def toc_titles(hb: Handbook, pages: list[str]) -> list[tuple[str, str]]:
             carry = []
             for title in parts:
                 t = norm(title)
-                if re.match(r"^\d+(\.\d+)*\.?\s", t) or title.isupper():
+                upper = title.isupper() and len(title.strip()) > 6   # an all-caps section heading; "AR/VR" is a module
+                if re.match(r"^\d+(\.\d+)*\.?\s", t) or upper:
                     section = title
-                if not t or EXCLUDE.match(t) or (extra and extra.search(title)) or title.isupper():
+                if not t or EXCLUDE.match(t) or (extra and extra.search(title)) or upper:
                     continue
                 out.append((title, section))
     return out

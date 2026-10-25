@@ -366,11 +366,11 @@ CANDIDATE_LITERALS = [   # stated in docs/evidence_candidates.md
     ("f4_ot_strict", "Reduced OT master: share listed by IT und Automation", 83.3, "83.3 %", "83.3 % of it is listed by IT und Automation"),
     ("f4_ot_lenient", "Reduced OT master: largest share if shared modules count elsewhere", 58.3, "58.3 %", "58.3 % comes from the KI master"),
     ("f4_geodata", "Geo-data: share from OTH's Geoinformatik und Landmanagement", 62.3, "62.3 %", "| geodata | fails | 62.3 % from OTH's own"),
-    ("f4_autonomous", "Autonomous systems: share from E&IT", 70.1, "70.1 %", "70.1 % from E&IT (F4)"),
+    ("f4_autonomous", "Autonomous systems (FR track): share from E&IT", 77.0, "77.0 %", "77.0 % from E&IT (F4)"),
     ("arvr_share_of_mi", "AR/VR central gross as a share of Bavarian Medieninformatik first-years 2024", 41, "41 %", "would be 41 % of all 141"),
     ("arvr_rel_capture", "AR/VR: OTH new relative to the Coburg site, all model variants", "1.50-1.91", "1.50-1.91",
      "draw 1.50-1.91 times Coburg's intake"),
-    ("arvr_e2_margin", "AR/VR: ECTS of E2 verdicts that could be rejected before F1 falls below 80 %", 14, "14 ECTS", "worth more than 14 ECTS"),
+    ("arvr_e2_margin", "AR/VR: ECTS of E2 verdicts that could be rejected before F1 falls below 80 %", 14, "14 ECTS", "F1 falls below 80 % above 14 ECTS"),
     ("plzen_km", "Distance Amberg - Plzen (straight line)", 115, "about 115 km", "about 115 km from Amberg"),
     ("baseline_p1_cyber", "Baseline winner P(rank 1), Cybersecurity B.Sc.", 91.7, "91.7 %", "Cybersecurity B.Sc., P(rank 1) 91.7 %"),
 ]
