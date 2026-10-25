@@ -85,7 +85,7 @@ def test_sheet_excerpts_start_at_a_learning_outcome_heading():
     from study_program_intelligence.report import handcheck_sheet as H
     cfg, hc, _ = H.config()
     rows = H.sheet_rows(cfg, hc)
-    heading = r"^(Lernziele|Qualifikationsziele|Lernergebnisse|Learning Outcomes)"
+    heading = r"^(?:Lernziele|Qualifikationsziele|Lernergebnisse|Learning Outcomes)"
     for col in [c for c in rows.columns if "text" in c]:
         assert rows[col].str.contains(heading).all(), col
 
