@@ -42,6 +42,7 @@ DOC_LISTS = [  # (config, out folder, manifest, pdf only)
     ("configs/intake_benchmark_documents.yaml", "data/raw/intake_benchmark", "docs/intake_benchmark_manifest.json", True),
     ("configs/ministry_documents.yaml", "data/raw/ministry", "docs/ministry_manifest.json", True),
     ("configs/oth_handbooks_documents.yaml", "data/raw/oth handbooks 2026", "docs/oth_handbooks_manifest.json", True),
+    ("configs/regulation_documents.yaml", "data/raw/regulation", "docs/regulation_manifest.json", False),
 ]
 
 # (step name, stage, module, arguments)
@@ -86,6 +87,8 @@ BUILD = [
     ("analysis.ranking:candidates", "analysis", "analysis.ranking", ["--candidates"]),
     ("analysis.tie_break", "analysis", "analysis.tie_break", []),
     ("report.handcheck_sheet", "report", "report.handcheck_sheet", []),
+    ("analysis.first_years", "analysis", "analysis.first_years", []),
+    ("analysis.cost", "analysis", "analysis.cost", []),
     ("report.build", "report", "report.build", []),
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),

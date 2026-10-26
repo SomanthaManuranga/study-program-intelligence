@@ -32,12 +32,41 @@ The F4 figure for robotics path B has three values in the documents: 25.5 % in w
 38.0 % on the hand-check sheet with every adapted module confirmed (programme of the EMI module the sheet names), and
 34.3 % after Soma's verdicts (rejected modules no longer count for a programme). All three pass the 50 % limit.
 
+### First-years and resource need per level
+
+| Level | Option | First-years, year 1 (low / central / high) | First-years, steady state (low / central / high); central German + international | Minimum cohort of 20 | Professor-equivalents | Per expected first-year, steady state (central / low) |
+|---|---|---|---|---|---|---|
+| (a) | none passes; smallest new resource for robotics path B | – | – | – | 0.11 (5 ECTS, 4 SWS a year) | – |
+| (b) | Robotics + AI path B | 8.9 / 17.1 / 33.0 | 14.9 / 28.6 / 55.1; 12.4 + 16.2 | missed in the low case (14.9) and in year 1 of the central case (17.1) | 0.52 (15 + 8.25 ECTS, 18.6 SWS a year; no new position) | 0.018 / 0.035 |
+| (c) | Cybersecurity B.Sc. | 16.6 / 30.8 / 59.2 | 32.2 / 59.8 / 115.1; 24.3 + 35.6 | missed only in year 1 of the low case (16.6) | 3.22 (2 professorships, 1 lab engineer, 10 ECTS of teaching assignments) | 0.054 / 0.100 (without the trend projection, 39 / 21 first-years: 0.083 / 0.153) |
+
+How the numbers are made (`analysis/first_years.py`, `analysis/cost.py`; inputs `configs/first_years.yaml`,
+`configs/cost.yaml`; generated tables `reports/first_years.md`, `reports/cost.md`):
+- **Same code path for every option.** The Step 47/48 Huff model's gross steady-state intake (cyber 21 / 39 / 75,
+  unchanged), split into German and international students by the mix of the option's Bavarian subject pool in its
+  base year, each group projected with its pool's yearly growth 2019-24, then the ramp-up 60 / 80 / 100 %. Assumed:
+  first intake in winter 2028/29, steady state in year 3. For robotics path B the German pool's −3.3 %/yr lowers the
+  German first-years; the foreign pool's +3.1 %/yr nearly offsets it (central steady state 28.6 with the trends, 28.7
+  without). Cyber's projected numbers rise mainly through foreign first-years growing 12.8 %/yr, carried on to 2030.
+- **The pool trend is not a validated forecast.** In a rolling-origin backtest of robotics' German pool (origins
+  2012-2023, horizons 1-5) no model beats the naive scale: best MASE 1.30 (last value carried forward); a trend model
+  (drift) scores 2.03. The forecast does not beat naive. Cyber's German pool: drift 0.92.
+- **Professor-equivalent** = 18 SWS per semester, the legal load of a professor at a Bavarian HAW (AVBayHIG § 4
+  Abs. 1 Nr. 1: "Professorinnen und Professoren 18 Lehrveranstaltungsstunden", gesetze-bayern.de), so 36 SWS a year;
+  ECTS to SWS by the configs/feasibility.yaml assumption (10 ECTS ≈ 8 SWS a year). A new professorship counts 1; the
+  lab engineer is counted as one position (a headcount convention, not a salary comparison). Lab and equipment cost:
+  not estimated.
+
 **The project's answer.** Under the decision rule, no candidate passes. The closest is robotics path B: it misses only
 the cap on new modules by existing professors (15 against 10 ECTS, the project's own operationalisation). It is a
 conditional candidate, not a recommendation, until two conditions hold: the faculty confirms that about 15 ECTS (about
 12 SWS a year; about 18 ECTS or 14.5 SWS scaled to 165 taught ECTS) of new teaching by existing professors is
 absorbable, and the demand data due after 1 Nov do not go
 against it. If the faculty can invest instead, the cybersecurity bachelor is the baseline answer, outside constraint 1.
+
+**What would change this answer:** the faculty ruling out about 15 ECTS of new teaching by existing professors (level
+(b) falls away); confirming hand-check row 9 or row 11 (robotics path B passes the strict rule); or the demand data
+after 1 Nov triggering the downgrade rule in configs/demand_thresholds.yaml.
 
 What the investment at level (c) would buy, from the baseline evidence:
 

@@ -1,0 +1,33 @@
+# First-years per candidate through one shared code path (analysis/first_years.py), for the three-level answer.
+# Gross steady-state intakes and the origin shares come from the Step 47/48 model as already run: cyber from
+# data/interim/capture_scenarios.csv (analysis/capture.py + analysis/cannibalisation.py), the candidates from
+# data/interim/candidate_scenarios.csv (analysis/candidates.py, which runs the same Huff model of analysis/options.py).
+# This layer adds, identically for every candidate: the German / international split, the trend projection and the
+# ramp-up. Ramp-up (60 / 80 / 100 %) and the minimum cohort (20) are the cyber assumptions in analysis/capture.py.
+#
+# pool: Destatis subject codes whose Bavarian first-years (graduates for the master) give the German / foreign mix
+#       and the German and foreign trends (yearly growth over the window, computed from the data, not typed here).
+# Assumptions (stated in docs/evidence_tie_break.md):
+# - the intake mix of German and international students follows the Bavarian subject pool in the base year;
+# - each group's pool keeps its yearly growth of the window up to the projection year (German and foreign apart);
+# - first intake in winter semester 2028/29 (about two years for curriculum, accreditation and approval; no OTH
+#   timetable is public); steady state = year 3 of the ramp-up (2030/31).
+
+first_intake_year: 2028
+candidates:
+  cyber_bsc:
+    label: Cybersecurity B.Sc. (baseline, level c)
+    scenarios: capture_scenarios
+    pool: {kind: first-years, codes: [SF079, SF123, SF200], window: [2019, 2024], source: "cyber proxy, analysis/forecast.py (Destatis 21311-0015)"}
+  robotics_b:
+    label: Robotics + AI B.Sc., path B (level b)
+    scenarios: candidate_scenarios
+    pool: {kind: first-years, codes: [SF380, SF123], window: [2019, 2024], source: "robotics feeders Mechatronik + Technische Informatik, configs/candidates.yaml"}
+  arvr:
+    label: AR/VR & visual computing B.Sc.
+    scenarios: candidate_scenarios
+    pool: {kind: first-years, codes: [SF121], window: [2019, 2024], source: "Medieninformatik, configs/candidates.yaml"}
+  ot_master:
+    label: "Reduced OT-security master (reference: the F4-only fail with the highest central total, 3.14)"
+    scenarios: candidate_scenarios
+    pool: {kind: graduates, codes: [SF079], window: [2019, 2025], source: "Informatik graduates, configs/candidates.yaml"}
