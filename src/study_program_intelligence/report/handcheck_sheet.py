@@ -107,7 +107,8 @@ def f1_f4(t: pd.DataFrame, rule: dict) -> dict:
     return {"taught ECTS": tot, "F1 %": round(100 * e12 / tot, 1), "F1 pass": e12 / tot >= r["F1_min_covered_share"],
             "T": tn, "N": nn, "F2 pass": tn <= r["F2_max_T_ects"]["bachelor"] and nn <= r["F2_max_N_ects"]["bachelor"]
             and (tn + nn) / tot <= r["F2_max_new_share"],
-            "F4 %": round(100 * prog.max() / tot, 1), "F4 programme": prog.idxmax().replace("oth26_", ""),
+            "F4 %": round(100 * prog.max() / tot, 1),
+            "F4 programme": "KI family: ba_ki + ba_iki" if prog.idxmax() == "oth26_ba_ki" else prog.idxmax().replace("oth26_", ""),
             "F4 pass": prog.max() / tot <= r["F4_max_share_from_one_programme"]}
 
 
@@ -127,7 +128,7 @@ def main() -> None:
              "professors' names are masked. For each row: is the EMI module, adapted by at most a third, a fair stand-in for the candidate module? "
              "Write `confirm` or `reject` per row (or tell Claude); a rejected module becomes the type in \"if rejected\" "
              "(T = teaching assignment, N = new module by an existing professor). F4 counts each E2 row for the programme of the "
-             "EMI module shown here; other rows use the automatic best match (robotics) or the hand check's programme (AR/VR). "
+             "EMI module shown here (KI International counted with KI as one family, as in week 2); other rows use the automatic best match (robotics) or the hand check's programme (AR/VR). "
              "For robotics this gives a higher F4 than the 25.5 % reported in week 2, which used the automatic match for every row.", ""]
     for cand, label in (("arvr", "AR/VR & visual computing B.Sc. (reference: Hochschule Coburg Visual Computing)"),
                         ("robotics_b", "Robotics + AI B.Sc., path B (reference: Hochschule Kempten Robotik, Geriatronik)")):
