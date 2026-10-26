@@ -34,4 +34,10 @@ candidates:
       Englisch (GER B2) 2: {emi: [oth26_ba_iki, Foreign Language 1], if_rejected: T}
       Interdisziplinäre Projektarbeit: {emi: [oth26_ba_ii, Software-Projekt], if_rejected: N, note: "project format"}
 
-decisions: {}   # e.g. {"arvr|Bildverarbeitung 2": confirm}
+# Soma's answers: "<candidate>|<candidate module>": {decision: confirm | reject, reason: "..."}. Rows not listed are
+# undecided (the proposed E2 verdict stands until Soma decides).
+decisions:
+  "robotics_b|RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse":
+    {decision: reject, reason: "Data Analytics is not statistics / scientific writing"}
+  "robotics_b|RO 34 Verteilte Softwaresysteme":
+    {decision: reject, reason: "cloud is not distributed systems"}

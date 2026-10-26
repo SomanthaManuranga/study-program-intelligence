@@ -74,8 +74,18 @@ def sheet_rows(cfg: dict, hc: dict) -> pd.DataFrame:
                          "where": f"{Path(r['source_file']).name} p. {r['page']}; {Path(e['source_file']).name} p. {e['page']}",
                          "proposed verdict": f"E2: {v.get('emi', '')}" + (f" ({m['note']})" if m.get("note") else ""),
                          "if rejected": m["if_rejected"],
-                         "decision": cfg.get("decisions", {}).get(f"{cand}|{mod}", "")})
+                         "decision": decision_text(cfg, f"{cand}|{mod}")})
     return pd.DataFrame(rows)
+
+
+def decision(cfg: dict, key: str) -> str:
+    d = (cfg.get("decisions") or {}).get(key)
+    return d.get("decision", "") if isinstance(d, dict) else (d or "")
+
+
+def decision_text(cfg: dict, key: str) -> str:
+    d = (cfg.get("decisions") or {}).get(key)
+    return f"{d['decision']}: {d.get('reason', '')}" if isinstance(d, dict) else (d or "")
 
 
 def verdict_table(cand: str, cfg: dict, hc: dict) -> pd.DataFrame:
@@ -93,7 +103,7 @@ def verdict_table(cand: str, cfg: dict, hc: dict) -> pd.DataFrame:
         t = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
         t = t[t["option"] == "AR/VR & visual computing B.Sc."].rename(columns={})[["module", "ects", "verdict", "prog"]].copy()
     for mod, m in cfg["candidates"][cand]["modules"].items():
-        if cfg.get("decisions", {}).get(f"{cand}|{mod}") == "reject":
+        if decision(cfg, f"{cand}|{mod}") == "reject":
             t.loc[t["module"] == mod, ["verdict", "prog"]] = [m["if_rejected"], None]
     return t
 
@@ -130,9 +140,12 @@ def main() -> None:
              "(T = teaching assignment, N = new module by an existing professor). F4 counts each E2 row for the programme of the "
              "EMI module shown here (KI International counted with KI as one family, as in week 2); other rows use the automatic best match (robotics) or the hand check's programme (AR/VR). "
              "For robotics this gives a higher F4 than the 25.5 % reported in week 2, which used the automatic match for every row.", ""]
+    count = 0   # rows are numbered 1-17 across both sections, in the order shown
     for cand, label in (("arvr", "AR/VR & visual computing B.Sc. (reference: Hochschule Coburg Visual Computing)"),
                         ("robotics_b", "Robotics + AI B.Sc., path B (reference: Hochschule Kempten Robotik, Geriatronik)")):
         r = rows[rows["candidate"] == cand].drop(columns=["candidate"])
+        r.insert(0, "#", range(count + 1, count + len(r) + 1))
+        count += len(r)
         t = verdict_table(cand, {**cfg, "decisions": {}}, hc)
         now = f1_f4(t, rule)
         all_t = t.copy()
@@ -143,7 +156,9 @@ def main() -> None:
                   f"Now (all E2 confirmed): F1 {now['F1 %']} %, T {now['T']:g}, N {now['N']:g}, F4 {now['F4 %']} % "
                   f"({now['F4 programme']}). If every E2 is rejected: F1 {worst['F1 %']} %, T {worst['T']:g}, N {worst['N']:g}.", ""]
         if decided:
-            lines += ["After Soma's decisions:", "", _md(pd.DataFrame([f1_f4(verdict_table(cand, cfg, hc), rule)])), ""]
+            n_dec = sum(1 for mod in cfg["candidates"][cand]["modules"] if decision(cfg, f"{cand}|{mod}"))
+            lines += [f"After Soma's decisions ({n_dec} of {len(r)} rows decided; undecided rows keep the proposed verdict):", "",
+                      _md(pd.DataFrame([f1_f4(verdict_table(cand, cfg, hc), rule)])), ""]
     OUT.write_text("\n".join(lines), encoding="utf-8")
     print(f"Written: {OUT.relative_to(REPO_ROOT)} ({len(rows)} rows)")
 
