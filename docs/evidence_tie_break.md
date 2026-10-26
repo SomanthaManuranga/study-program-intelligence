@@ -19,13 +19,24 @@ reported, never used to decide.
 
 | Level | Best option | Gate result | What it costs | How robust | Main risk |
 |---|---|---|---|---|---|
-| (a) Strict existing resources (the decision) | **None passes.** Nearest: Robotics + AI path B | robotics path B fails F2 only: 15 ECTS of new modules by existing professors against the cap of 10; AR/VR fails F1 (79.3 %) and F2 (25); the other four fail as in the equal-evidence step | - (robotics path B would need 5 ECTS more new teaching by existing professors than the cap allows) | the no-pass result would change only if row 9 or row 11 were confirmed instead of rejected (single-flip table) | the cap is our own operationalisation: a reader who accepts 15 ECTS of new teaching by existing staff as "existing resources" gets level (b) |
-| (b) Lenient existing resources (small stretch, pre-registered sensitivity) | **Robotics + AI B.Sc., path B** (assistive / service), the only candidate that passes | F1 83.0 %, teaching assignments 8.25 ECTS, new modules by existing professors 15 ECTS, new content 17.0 % of 137 taught ECTS, F4 34.3 % (KI family); labs thin | no new professorship or lab; 15 ECTS of new modules by existing professors and 8.25 ECTS of teaching assignments (mechanics 5, quality management 2, the law part of RO 71 1.25) | thin: rejecting any further 5-ECTS module, or teaching all of RO 71 as a teaching assignment, makes it fail (single-flip table); the demand ranking is pending, so its demand position against other options is not measured | robotics projects on teaching-grade robots only (lab capacity unknown); its feeder subjects shrink (German first-years Bavaria -3.3 %/yr) |
-| (c) With investment (the baseline) | **Cybersecurity B.Sc.** | fails the gate by design: it needs new staff and a lab | 2 new professorships, 1 lab engineer, a security lab (cost not estimated) | P(rank 1) 91.7 % in the baseline ranking; 78.2 % with demand trends from German first-years only, below the 80 % bar (docs/evidence_ranking.md) | most of the growing demand is foreign students (German cyber-proxy first-years Bavaria +1.9 %/yr); the intake estimate rests on THI's capacity 25 and an anecdotal Deggendorf ~60 |
+| (a) Strict existing resources (the decision rule) | **None passes the full gate.** Closest: Robotics + AI path B | robotics path B fails F2 only: 15 ECTS of new modules by existing professors against the cap of 10. Autonomous systems, geo-data and the reduced OT master pass F1-F3 (coverage, new teaching, labs) and fail only F4, the rule against taking most of the content from one existing OTH programme; AR/VR fails F1 (79.3 %) and F2 (25); energy data fails F1 and F2 | the smallest new resource that would let robotics path B pass: 5 ECTS of new teaching beyond the caps, about 4 SWS a year (configs/feasibility.yaml: 10 ECTS is about 8 SWS a year); turning it into teaching assignments instead would breach the teaching-assignment cap (8.25 + 5 = 13.25 against 10) | the no-pass result would change only if row 9 or row 11 were confirmed instead of rejected (single-flip table) | the cap is our own operationalisation; the configs/feasibility.yaml assumption treats up to 10 ECTS (about 8 SWS a year) as absorbable, and 15 ECTS is outside it |
+| (b) Lenient existing resources (pre-registered sensitivity, reported, not used to decide) | Robotics + AI B.Sc., path B (assistive / service): the only candidate that passes | F1 83.0 %, teaching assignments 8.25 ECTS, new modules by existing professors 15 ECTS, new content 17.0 %, F4 34.3 % (KI family); labs thin | no new professorship or lab; 15 ECTS of new modules by existing professors (about 12 SWS a year by the same assumption) and 8.25 ECTS of teaching assignments (mechanics 5, quality management 2, the law part of RO 71 1.25) | thin on two caps: rejecting any further 5-ECTS module, or teaching all of RO 71 as a teaching assignment, makes it fail (single-flip table); with RO 71's law part at 2.5 ECTS the teaching-assignment headroom is 0.5 ECTS; scaled to OTH's 165 taught ECTS (below) the headroom is about 0 | it wins by elimination, not on demand: its demand position is pending; its feeder subjects shrink (German first-years Bavaria -3.3 %/yr); robotics projects run on teaching-grade robots (lab capacity unknown) |
+| (c) With investment (outside constraint 1; the baseline result) | Cybersecurity B.Sc. | fails the gate by design: it needs new staff and a lab | 2 new professorships, 1 lab engineer, a security lab (cost not estimated) | P(rank 1) 91.7 % in the baseline ranking of three options (cyber bachelor, cyber/OT master, industrial robotics); 78.2 % with demand trends from German first-years only, below the 80 % bar (docs/evidence_ranking.md); not comparable with the six re-scope candidates, which were never ranked against it | most of the growing demand is foreign students (German cyber-proxy first-years Bavaria +1.9 %/yr); the intake estimate rests on THI's capacity 25 and an anecdotal Deggendorf ~60 |
 
-**Recommendation by level.** Under the supervisor's constraint as we operationalised it, no candidate is feasible.
-If the faculty accepts the small stretch, robotics path B is the recommendation. If it can invest, the cybersecurity
-bachelor is. Which level applies is the faculty's decision, not the project's.
+Shares at level (b) are relative to the reference curriculum's taught core modules (137 ECTS at Hochschule Kempten), as
+in every hand check since week 2. Scaled to the 165 taught ECTS that configs/feasibility.yaml sets for an OTH bachelor,
+F1 and the new-content share stay the same, teaching assignments become 9.9 ECTS and new modules by existing
+professors 18.1 ECTS: still within the lenient caps, with almost no headroom on teaching assignments.
+
+The F4 figure for robotics path B has three values in the documents: 25.5 % in week 2 (automatic programme match),
+38.0 % on the hand-check sheet with every adapted module confirmed (programme of the EMI module the sheet names), and
+34.3 % after Soma's verdicts (rejected modules no longer count for a programme). All three pass the 50 % limit.
+
+**The project's answer.** Under the decision rule, no candidate passes. The closest is robotics path B: it misses only
+the cap on new modules by existing professors (15 against 10 ECTS, the project's own operationalisation). It is a
+conditional candidate, not a recommendation, until two conditions hold: the faculty confirms that about 15 ECTS (about
+12 SWS a year) of new teaching by existing professors is absorbable, and the demand data due after 1 Nov do not go
+against it. If the faculty can invest instead, the cybersecurity bachelor is the baseline answer, outside constraint 1.
 
 What the investment at level (c) would buy, from the baseline evidence:
 
@@ -149,6 +160,33 @@ broken on demand yet. Two parts of the attack go too far:
 
 The decision now rests on the pre-registered rule above: with the existing signals split one to one, a candidate wins
 on demand only if both missing signals point to it.
+
+## Opposing view on the three-level answer (fresh-context reviewer, E4)
+
+**Attack.** The supervisor asked for one programme. The re-scope plan said what to do if nothing passed: report it
+plainly, show the lenient sensitivity and name the smallest new resource (docs/rescope_plan.md). The first draft
+instead called robotics path B "the recommendation" under the lenient rule, which configs/feasibility.yaml says is
+"never used to decide", and left the choice of level to the faculty. Robotics path B wins level (b) by elimination:
+after the hand check its new teaching rose from 5 to 15 ECTS, beyond the 10 ECTS the config treats as absorbable, and
+one more rejected module makes it fail; its feeder subjects shrink and its demand evidence is pending; its modelled
+net new first-years (23.6) are below the OT master's (31.5) and AR/VR's (41.5). Level (c) brings back an answer that
+constraint 1 rules out. And "no candidate is feasible with existing resources" is not literally true: autonomous
+systems, geo-data and the OT master pass the staff and lab tests and fail only F4.
+
+**Answer.** Most of the attack holds, and the section was changed:
+- level (b) is labelled a sensitivity, and the answer above names one candidate with its conditions instead of handing
+  the choice to the faculty;
+- level (a) now separates the three candidates that fail only F4 from those that fail on resources;
+- the smallest new resource is stated (5 ECTS, about 4 SWS a year);
+- the 137 vs 165 ECTS base is disclosed with the scaled check;
+- level (c) is marked as outside constraint 1, with its P(rank 1) labelled as coming from the three-option baseline.
+
+Two parts are not adopted:
+- **F4 stays a gate.** Failing only F4 means the programme would mostly repackage an existing OTH programme. That is
+  the project's success measure ("students new to OTH"), so those three stay out.
+- **The three levels stay.** Soma asked for this structure, and the reader needs to see what each reading of
+  "existing resources" yields. The answer is still one candidate with conditions, so the levels do not avoid a
+  recommendation.
 
 ## Hand check (Soma's verdicts), gates under both rules, single-flip sensitivity
 
