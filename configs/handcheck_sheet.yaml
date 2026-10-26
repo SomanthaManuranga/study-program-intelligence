@@ -12,32 +12,45 @@ candidates:
     reference: hske_ba_rob
     path: B
     modules:
-      RO 262 Robotik Projekt 1: {emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "verdict rests on the project format; robotics content as in this module"}
-      RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse: {emi: [oth26_ba_ii, Data Analytics], if_rejected: N, note: "verdict also names Stochastik (KI)"}
-      RO 33 Aktorik: {emi: [oth26_ba_ei, Grundlagen elektrischer Maschinen und Antriebe], if_rejected: N}
-      RO 34 Verteilte Softwaresysteme: {emi: [oth26_ba_iki, "Big Data, Cloud & NoSQL"], if_rejected: N}
-      RO 36 Robotik Projekt 2: {emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "project format; same EMI module as RO 262"}
-      RO 45 Robotik Projekt 3: {emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "project format; same EMI module as RO 262"}
-      RO 632 Robotik Projekt 4 Teil 1: {emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "the verdict names only the project format; closest module shown"}
-      RO 633 Robotik Projekt 4 Teil 2: {emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "the verdict names only the project format; closest module shown"}
-      RO 71 Ethik und Recht im Kontext der Robotik: {emi: [oth26_ba_ii, Informationsethik und Technikphilosophie], if_rejected: T, note: "law part: no EMI module"}
-      RO 6221 Mensch-Maschine-Interaktion: {emi: [oth26_ba_mi, Mensch-Computer-Interaktion], if_rejected: N, note: "verdict also names Mediengestaltung (MI)"}
+      RO 262 Robotik Projekt 1: {row: 8, emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "verdict rests on the project format; robotics content as in this module"}
+      RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse: {row: 9, emi: [oth26_ba_ii, Data Analytics], if_rejected: N, note: "verdict also names Stochastik (KI)"}
+      RO 33 Aktorik: {row: 10, emi: [oth26_ba_ei, Grundlagen elektrischer Maschinen und Antriebe], if_rejected: N}
+      RO 34 Verteilte Softwaresysteme: {row: 11, emi: [oth26_ba_iki, "Big Data, Cloud & NoSQL"], if_rejected: N}
+      RO 36 Robotik Projekt 2: {row: 12, emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "project format; same EMI module as RO 262"}
+      RO 45 Robotik Projekt 3: {row: 13, emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "project format; same EMI module as RO 262"}
+      RO 632 Robotik Projekt 4 Teil 1: {row: 14, emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "the verdict names only the project format; closest module shown"}
+      RO 633 Robotik Projekt 4 Teil 2: {row: 15, emi: [oth26_ba_ki, Grundlagen der Robotik], if_rejected: N, note: "the verdict names only the project format; closest module shown"}
+      RO 71 Ethik und Recht im Kontext der Robotik: {row: 16, emi: [oth26_ba_ii, Informationsethik und Technikphilosophie], if_rejected: T, note: "law part: no EMI module"}
+      RO 6221 Mensch-Maschine-Interaktion: {row: 17, emi: [oth26_ba_mi, Mensch-Computer-Interaktion], if_rejected: N, note: "verdict also names Mediengestaltung (MI)"}
   arvr:
     hand_check: arvr_bsc
     reference: hsc_ba_vc
     modules:
-      Grundlagen des Visual Computing: {emi: [oth26_ba_mt, Visual Computing], if_rejected: N}
-      Bildverarbeitung 2: {emi: [oth26_ba_ki, Deep Computer Vision], if_rejected: N}
-      Mathematik für Visual Computing: {emi: [oth26_ba_ii, Mathematik 3], if_rejected: N}
-      Mensch-Maschine-Interaktion 2: {emi: [oth26_ba_dd, Human Centered Design], if_rejected: N}
-      Visual-Computing-Seminar: {emi: [oth26_ba_dd, Medien/UX-UI Projekte], if_rejected: N, note: "seminar format"}
-      Englisch (GER B2) 2: {emi: [oth26_ba_iki, Foreign Language 1], if_rejected: T}
-      Interdisziplinäre Projektarbeit: {emi: [oth26_ba_ii, Software-Projekt], if_rejected: N, note: "project format"}
+      Grundlagen des Visual Computing: {row: 1, emi: [oth26_ba_mt, Visual Computing], if_rejected: N}
+      Bildverarbeitung 2: {row: 2, emi: [oth26_ba_ki, Deep Computer Vision], if_rejected: N}
+      Mathematik für Visual Computing: {row: 3, emi: [oth26_ba_ii, Mathematik 3], if_rejected: N}
+      Mensch-Maschine-Interaktion 2: {row: 4, emi: [oth26_ba_dd, Human Centered Design], if_rejected: N}
+      Visual-Computing-Seminar: {row: 5, emi: [oth26_ba_dd, Medien/UX-UI Projekte], if_rejected: N, note: "seminar format"}
+      Englisch (GER B2) 2: {row: 6, emi: [oth26_ba_iki, Foreign Language 1], if_rejected: T}
+      Interdisziplinäre Projektarbeit: {row: 7, emi: [oth26_ba_ii, Software-Projekt], if_rejected: N, note: "project format"}
 
-# Soma's answers: "<candidate>|<candidate module>": {decision: confirm | reject, reason: "..."}. Rows not listed are
-# undecided (the proposed E2 verdict stands until Soma decides).
+# Soma's answers by sheet row (docs/handcheck_sheet.md, column "#"): confirm | reject | open, with Soma's reason or
+# note. Rows not listed are undecided (the proposed E2 verdict stands). A rejected row becomes its "if_rejected" type.
 decisions:
-  "robotics_b|RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse":
-    {decision: reject, reason: "Data Analytics is not statistics / scientific writing"}
-  "robotics_b|RO 34 Verteilte Softwaresysteme":
-    {decision: reject, reason: "cloud is not distributed systems"}
+  1: {decision: confirm}
+  2: {decision: confirm}
+  3: {decision: open, reason: "decided on content after the side-by-side comparison"}
+  4: {decision: confirm}
+  5: {decision: confirm, reason: "seminar format"}
+  6: {decision: confirm}
+  7: {decision: open, reason: "decided on content after the side-by-side comparison"}
+  8: {decision: confirm, reason: "project format"}
+  9: {decision: open, reason: "decided on content after the side-by-side comparison (an earlier reject was withdrawn)"}
+  10: {decision: confirm}
+  11: {decision: reject, reason: "cloud is not distributed systems"}
+  12: {decision: confirm, reason: "project format"}
+  13: {decision: confirm, reason: "project format"}
+  14: {decision: confirm, reason: "project format"}
+  15: {decision: confirm, reason: "project format"}
+  16: {decision: confirm, reason: "law part as teaching assignment"}
+  17: {decision: confirm}
