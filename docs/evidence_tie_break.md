@@ -1,23 +1,33 @@
-# Evidence: demand tie-break and the two-level answer
+# Evidence: hand check, three-level answer and demand tie-break
 
-Criteria (fixed before building): `docs/criteria_tie_break.md`. Generated tables: `reports/tie_break.md`
-(`python -m study_program_intelligence.analysis.tie_break`), `reports/candidates.md`, `reports/ranking.md`.
-Hand-check sheet for Soma: `docs/handcheck_sheet.md`. The ranking is not recomputed until Soma's hand check is in.
+Criteria (fixed before building): `docs/criteria_tie_break.md`, `docs/criteria_handcheck_part1.md`,
+`docs/criteria_handcheck_part2.md`. Generated tables: `reports/tie_break.md`
+(`python -m study_program_intelligence.analysis.tie_break`), the gate and sensitivity tables below
+(`python -m study_program_intelligence.report.handcheck_sheet`), `reports/ranking.md`. Hand-check sheet:
+`docs/handcheck_sheet.md`. The demand ranking is not rerun before the 1 Nov job ads and the Trends downloads.
 
-## Two-level answer
+## Three-level answer
 
-**(a) Existing resources only (primary answer; the supervisor's constraint).** Two candidates pass the feasibility
-gate: AR/VR & visual computing and Robotics + AI path B (assistive / service). Their ranking was an open tie that
-hangs on one step of the fit rule (`docs/evidence_candidates.md`). **On the demand evidence collected so far the tie is
-not broken.** Robotics path B has the larger feeder pool in Destatis; AR/VR has far fewer competitors. These are the
-two independent demand signals available for both, and they point in opposite directions. The signals that could
-decide it are not in yet: job ads for the AR/VR and service-robotics keywords (from the 1 Nov snapshot) and Google
-Trends for the AR/VR terms (Soma's download). A decision rule for them is fixed below, before the data arrive. Both
-gate passes also wait for Soma's hand check of the adapted modules.
+**What "existing resources" means here.** The supervisor's constraint is "feasible with EMI's existing staff and labs".
+The project turned it into a testable rule, `configs/feasibility.yaml`, committed before any candidate was re-scored
+(commit 71d281a, decision log "Feasibility rule pre-registered"): at least 80 % of the taught ECTS covered by existing
+EMI modules (F1); at most 10 ECTS of teaching assignments and at most 10 ECTS of new modules by existing professors, and
+at most 20 % new content in total, for a bachelor (F2); existing labs only (F3); at most 50 % from one OTH programme
+(F4). **The 10-ECTS cap is the project's own operationalisation, not the supervisor's wording.** The same file
+pre-registered a lenient sensitivity (F1 at least 70 %, up to 20 ECTS of new modules by existing professors); it is
+reported, never used to decide.
 
-**(b) With investment (the baseline result).** If EMI could add staff and a lab, the baseline ranking stands:
-Cybersecurity B.Sc. first, P(rank 1) 91.7 % (`reports/ranking.md`). What the investment would buy, from the baseline
-evidence:
+| Level | Best option | Gate result | What it costs | How robust | Main risk |
+|---|---|---|---|---|---|
+| (a) Strict existing resources (the decision) | **None passes.** Nearest: Robotics + AI path B | robotics path B fails F2 only: 15 ECTS of new modules by existing professors against the cap of 10; AR/VR fails F1 (79.3 %) and F2 (25); the other four fail as in the equal-evidence step | - (robotics path B would need 5 ECTS more new teaching by existing professors than the cap allows) | the no-pass result would change only if row 9 or row 11 were confirmed instead of rejected (single-flip table) | the cap is our own operationalisation: a reader who accepts 15 ECTS of new teaching by existing staff as "existing resources" gets level (b) |
+| (b) Lenient existing resources (small stretch, pre-registered sensitivity) | **Robotics + AI B.Sc., path B** (assistive / service), the only candidate that passes | F1 83.0 %, teaching assignments 8.25 ECTS, new modules by existing professors 15 ECTS, new content 17.0 % of 137 taught ECTS, F4 34.3 % (KI family); labs thin | no new professorship or lab; 15 ECTS of new modules by existing professors and 8.25 ECTS of teaching assignments (mechanics 5, quality management 2, the law part of RO 71 1.25) | thin: rejecting any further 5-ECTS module, or teaching all of RO 71 as a teaching assignment, makes it fail (single-flip table); the demand ranking is pending, so its demand position against other options is not measured | robotics projects on teaching-grade robots only (lab capacity unknown); its feeder subjects shrink (German first-years Bavaria -3.3 %/yr) |
+| (c) With investment (the baseline) | **Cybersecurity B.Sc.** | fails the gate by design: it needs new staff and a lab | 2 new professorships, 1 lab engineer, a security lab (cost not estimated) | P(rank 1) 91.7 % in the baseline ranking; 78.2 % with demand trends from German first-years only, below the 80 % bar (docs/evidence_ranking.md) | most of the growing demand is foreign students (German cyber-proxy first-years Bavaria +1.9 %/yr); the intake estimate rests on THI's capacity 25 and an anecdotal Deggendorf ~60 |
+
+**Recommendation by level.** Under the supervisor's constraint as we operationalised it, no candidate is feasible.
+If the faculty accepts the small stretch, robotics path B is the recommendation. If it can invest, the cybersecurity
+bachelor is. Which level applies is the faculty's decision, not the project's.
+
+What the investment at level (c) would buy, from the baseline evidence:
 
 | Item | Cybersecurity B.Sc. (with investment) | Source |
 |---|---|---|
@@ -28,11 +38,16 @@ evidence:
 | Job market | "Cyber Security" 851 ads in Germany, Bavaria 30.9 %, 191 within 100 km | docs/evidence_outlet_jobs.md |
 | Competition | 4 dedicated bachelors within 150 km, none within about 80 km (THI 82 km) | configs/scores.yaml (cyber B.Sc. differentiation) |
 
-Against the existing-resources candidates, the investment buys a growing pool (Informatik-led, mostly foreign) and an
-anchored intake estimate; it does not buy a larger modelled intake than AR/VR's unanchored estimate (net new central
-41.5), and it costs what constraint 1 rules out.
+Against robotics path B, the investment buys a growing pool (Informatik-led, mostly foreign) and an anchored intake
+estimate (net new central 32.0 against 23.6 for robotics path B, both from the same model); it costs what constraint 1
+rules out.
 
 ## Side-by-side demand comparison (AR/VR vs robotics path B)
+
+**Status: pending.** This comparison was built to break the tie between the two candidates that passed the gate at
+the time. After Soma's hand check AR/VR passes neither rule, so at level (b) robotics path B stands alone and the
+comparison no longer decides between gate passes. It is kept, unchanged, for the demand ranking that is rerun after
+the 1 Nov job ads and the Trends downloads.
 
 Destatis first-years (1st university semester, winter semesters), 2019 -> 2024; "%/yr" is the yearly growth rate.
 AR/VR's closest code is Medieninformatik (visual computing has no Destatis code of its own); robotics path B uses the
@@ -135,58 +150,78 @@ broken on demand yet. Two parts of the attack go too far:
 The decision now rests on the pre-registered rule above: with the existing signals split one to one, a candidate wins
 on demand only if both missing signals point to it.
 
-## Hand check, part 1 (Soma's verdicts) and single-flip sensitivity
+## Hand check (Soma's verdicts), gates under both rules, single-flip sensitivity
 
 Soma's verdicts are recorded per sheet row in `configs/handcheck_sheet.yaml` (with reasons) and shown in
-`docs/handcheck_sheet.md`: rows 1, 2, 4, 5, 6, 8, 10 and 12-17 confirmed, row 11 (RO 34 Verteilte Softwaresysteme)
-rejected, rows 3, 7 and 9 open. The open rows are compared side by side, facts only, in `docs/handcheck_open_rows.md`.
-Row 16 is confirmed with the note "law part as teaching assignment". The tables count it as adapted (E2) with no
-teaching-assignment ECTS: that is Claude's reading, to be confirmed by Soma, because the handbook does not say how many
-of its 5 ECTS are law. If the law part were taught as a teaching assignment (T), robotics path B stays within the T cap
-of 10 ECTS up to 3 ECTS (T is 7 now); the full 5 ECTS would make T 12 and fail F2 (single-flip row 16).
+`docs/handcheck_sheet.md`: rows 1, 2, 4, 5, 6, 8, 10 and 12-17 confirmed; rows 3, 7, 9 and 11 rejected (reasons in the
+YAML; the side-by-side facts behind rows 3, 7 and 9 are in `docs/handcheck_open_rows.md`). Row 16 is confirmed with its
+law part taught as a teaching assignment. By Soma's instruction the law part is counted by its share of RO 71's
+learning outcomes: outcome 1 of 4 is the legal framework („Verständnis rechtlicher Rahmenbedingungen“, hske_ba_robotik.pdf
+p. 118), so 1.25 of its 5 ECTS. Outcome 4 also names the rules and laws machines must follow; counting it as law too
+gives 2.5 ECTS, and teaching assignments of 9.5 ECTS still stay within the cap of 10.
 
-F1-F4 with part 1 applied (open rows shown both ways), and every adapted-module row flipped on its own (confirm ->
-reject, reject -> confirm, open -> reject) with all other rows as recorded and the other open rows counted as
-confirmed. F3 does not depend on the verdicts. A row belongs to one candidate, so a flip never affects the other.
+Gates for all candidates under the strict rule (the decision) and the lenient sensitivity. AR/VR and robotics path B
+with Soma's verdicts; the other four as in the equal-evidence step (`docs/evidence_candidates.md`); F3 = no module of
+the path needs a lab EMI lacks:
 
-Reading of the two tables (no verdict on the open rows): with the open rows counted as confirmed, both candidates sit
-exactly at the cap of 10 ECTS for new modules by existing professors (N), so a further rejected row that becomes N
-fails F2. Robotics path B passes if row 9 is confirmed; if row 9 is rejected it passes only if row 11 were confirmed
-instead. AR/VR passes only if rows 3 and 7 are both confirmed. The one row whose rejection would not flip a gate is
-row 6 (AR/VR English, which would become a 2-ECTS teaching assignment).
+<!-- gate table: generated by report.handcheck_sheet, do not edit -->
+
+| candidate | rule | F1 % | T | N | F2 pass | F3 pass | F4 % | F4 pass | gate |
+|---|---|---|---|---|---|---|---|---|---|
+| robotics_b | strict | 83.0 | 8.25 | 15 | no | yes | 34.3 | yes | fail |
+| robotics_b | lenient | 83.0 | 8.25 | 15 | yes | yes | 34.3 | yes | pass |
+| arvr | strict | 79.3 | 0 | 25 | no | yes | 28.9 | yes | fail |
+| arvr | lenient | 79.3 | 0 | 25 | no | yes | 28.9 | yes | fail |
+| autonomous | strict | 93.4 | 0 | 10 | yes | yes | 77.0 | no | fail |
+| autonomous | lenient | 93.4 | 0 | 10 | yes | yes | 77.0 | no | fail |
+| energydata | strict | 69.4 | 26 | 18 | no | yes | 47.2 | yes | fail |
+| energydata | lenient | 69.4 | 26 | 18 | no | yes | 47.2 | yes | fail |
+| geodata | strict | 100.0 | 0 | 0 | yes | yes | 62.3 | no | fail |
+| geodata | lenient | 100.0 | 0 | 0 | yes | yes | 62.3 | no | fail |
+| ot_master | strict | 100.0 | 0 | 0 | yes | yes | 83.3 | no | fail |
+| ot_master | lenient | 100.0 | 0 | 0 | yes | yes | 83.3 | no | fail |
+
+<!-- end of gate table -->
+
+Every adapted-module row flipped on its own (confirm -> reject, reject -> confirm), all other rows as recorded, under
+both rules. A row belongs to one candidate, so a flip never affects the other. Reading: under the strict rule no
+candidate passes, and robotics path B would pass if row 9 or row 11 were confirmed. Under the lenient rule robotics path
+B passes; rejecting any further 5-ECTS module (rows 10, 12, 13, 15, 17), or teaching all of RO 71 as a teaching
+assignment (row 16), makes it fail, while rejecting row 8 (4 ECTS) or row 14 (3 ECTS) alone does not. AR/VR would pass
+the lenient rule if row 3 or row 7 were confirmed.
 
 <!-- sensitivity table: generated by report.handcheck_sheet, do not edit -->
 
-F1-F4 with part 1 applied:
+F1-F4 with Soma's verdicts (strict rule):
 
 | candidate | open rows | open rows counted as | rows confirmed / rejected | F1 % | T | N | F2 pass | F4 % | F4 programme | gate (F1, F2, F4) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| robotics_b | 9 | confirm | 8 / 1 | 87.6 | 7 | 10 | yes | 34.3 | KI family: ba_ki + ba_iki | pass |
-| robotics_b | 9 | reject | 8 / 1 | 83.9 | 7 | 15 | no | 34.3 | KI family: ba_ki + ba_iki | fail |
-| arvr | 3, 7 | confirm | 5 / 0 | 91.7 | 0 | 10 | yes | 32.2 | ba_ii | pass |
-| arvr | 3, 7 | reject | 5 / 0 | 79.3 | 0 | 25 | no | 28.9 | KI family: ba_ki + ba_iki | fail |
+| robotics_b | - | confirm | 8 / 2 | 83.0 | 8.25 | 15 | no | 34.3 | KI family: ba_ki + ba_iki | fail |
+| robotics_b | - | reject | 8 / 2 | 83.0 | 8.25 | 15 | no | 34.3 | KI family: ba_ki + ba_iki | fail |
+| arvr | - | confirm | 5 / 2 | 79.3 | 0 | 25 | no | 28.9 | KI family: ba_ki + ba_iki | fail |
+| arvr | - | reject | 5 / 2 | 79.3 | 0 | 25 | no | 28.9 | KI family: ba_ki + ba_iki | fail |
 
 Single flips:
 
-| # | candidate | module | recorded | flipped to | F1 % | T | N | gate before | gate after flip | flips the gate | other candidate |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | arvr | Grundlagen des Visual Computing | confirm | reject | 86.0 | 0 | 17 | pass | fail | yes | robotics_b: no effect |
-| 2 | arvr | Bildverarbeitung 2 | confirm | reject | 87.6 | 0 | 15 | pass | fail | yes | robotics_b: no effect |
-| 3 | arvr | Mathematik für Visual Computing | open | reject | 87.6 | 0 | 15 | pass | fail | yes | robotics_b: no effect |
-| 4 | arvr | Mensch-Maschine-Interaktion 2 | confirm | reject | 87.6 | 0 | 15 | pass | fail | yes | robotics_b: no effect |
-| 5 | arvr | Visual-Computing-Seminar | confirm | reject | 89.3 | 0 | 13 | pass | fail | yes | robotics_b: no effect |
-| 6 | arvr | Englisch (GER B2) 2 | confirm | reject | 90.1 | 2 | 10 | pass | pass | no | robotics_b: no effect |
-| 7 | arvr | Interdisziplinäre Projektarbeit | open | reject | 83.5 | 0 | 20 | pass | fail | yes | robotics_b: no effect |
-| 8 | robotics_b | RO 262 Robotik Projekt 1 | confirm | reject | 84.7 | 7 | 14 | pass | fail | yes | arvr: no effect |
-| 9 | robotics_b | RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse | open | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
-| 10 | robotics_b | RO 33 Aktorik | confirm | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
-| 11 | robotics_b | RO 34 Verteilte Softwaresysteme | reject | confirm | 91.2 | 7 | 5 | pass | pass | no | arvr: no effect |
-| 12 | robotics_b | RO 36 Robotik Projekt 2 | confirm | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
-| 13 | robotics_b | RO 45 Robotik Projekt 3 | confirm | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
-| 14 | robotics_b | RO 632 Robotik Projekt 4 Teil 1 | confirm | reject | 85.4 | 7 | 13 | pass | fail | yes | arvr: no effect |
-| 15 | robotics_b | RO 633 Robotik Projekt 4 Teil 2 | confirm | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
-| 16 | robotics_b | RO 71 Ethik und Recht im Kontext der Robotik | confirm | reject | 83.9 | 12 | 10 | pass | fail | yes | arvr: no effect |
-| 17 | robotics_b | RO 6221 Mensch-Maschine-Interaktion | confirm | reject | 83.9 | 7 | 15 | pass | fail | yes | arvr: no effect |
+| # | candidate | module | recorded | flipped to | F1 % | T | N | gate before | gate after flip | flips the gate | lenient gate before | lenient gate after flip | flips the lenient gate | other candidate |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | arvr | Grundlagen des Visual Computing | confirm | reject | 73.6 | 0 | 32 | fail | fail | no | fail | fail | no | robotics_b: no effect |
+| 2 | arvr | Bildverarbeitung 2 | confirm | reject | 75.2 | 0 | 30 | fail | fail | no | fail | fail | no | robotics_b: no effect |
+| 3 | arvr | Mathematik für Visual Computing | reject | confirm | 83.5 | 0 | 20 | fail | fail | no | fail | pass | yes | robotics_b: no effect |
+| 4 | arvr | Mensch-Maschine-Interaktion 2 | confirm | reject | 75.2 | 0 | 30 | fail | fail | no | fail | fail | no | robotics_b: no effect |
+| 5 | arvr | Visual-Computing-Seminar | confirm | reject | 76.9 | 0 | 28 | fail | fail | no | fail | fail | no | robotics_b: no effect |
+| 6 | arvr | Englisch (GER B2) 2 | confirm | reject | 77.7 | 2 | 25 | fail | fail | no | fail | fail | no | robotics_b: no effect |
+| 7 | arvr | Interdisziplinäre Projektarbeit | reject | confirm | 87.6 | 0 | 15 | fail | fail | no | fail | pass | yes | robotics_b: no effect |
+| 8 | robotics_b | RO 262 Robotik Projekt 1 | confirm | reject | 80.1 | 8.25 | 19 | fail | fail | no | pass | pass | no | arvr: no effect |
+| 9 | robotics_b | RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse | reject | confirm | 86.7 | 8.25 | 10 | fail | pass | yes | pass | pass | no | arvr: no effect |
+| 10 | robotics_b | RO 33 Aktorik | confirm | reject | 79.4 | 8.25 | 20 | fail | fail | no | pass | fail | yes | arvr: no effect |
+| 11 | robotics_b | RO 34 Verteilte Softwaresysteme | reject | confirm | 86.7 | 8.25 | 10 | fail | pass | yes | pass | pass | no | arvr: no effect |
+| 12 | robotics_b | RO 36 Robotik Projekt 2 | confirm | reject | 79.4 | 8.25 | 20 | fail | fail | no | pass | fail | yes | arvr: no effect |
+| 13 | robotics_b | RO 45 Robotik Projekt 3 | confirm | reject | 79.4 | 8.25 | 20 | fail | fail | no | pass | fail | yes | arvr: no effect |
+| 14 | robotics_b | RO 632 Robotik Projekt 4 Teil 1 | confirm | reject | 80.8 | 8.25 | 18 | fail | fail | no | pass | pass | no | arvr: no effect |
+| 15 | robotics_b | RO 633 Robotik Projekt 4 Teil 2 | confirm | reject | 79.4 | 8.25 | 20 | fail | fail | no | pass | fail | yes | arvr: no effect |
+| 16 | robotics_b | RO 71 Ethik und Recht im Kontext der Robotik | confirm | reject | 80.3 | 12 | 15 | fail | fail | no | pass | fail | yes | arvr: no effect |
+| 17 | robotics_b | RO 6221 Mensch-Maschine-Interaktion | confirm | reject | 79.4 | 8.25 | 20 | fail | fail | no | pass | fail | yes | arvr: no effect |
 
 <!-- end of sensitivity table -->
 

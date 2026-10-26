@@ -36,21 +36,23 @@ candidates:
 
 # Soma's answers by sheet row (docs/handcheck_sheet.md, column "#"): confirm | reject | open, with Soma's reason or
 # note. Rows not listed are undecided (the proposed E2 verdict stands). A rejected row becomes its "if_rejected" type.
+# t_ects on a confirmed row: that many ECTS of the module are taught as a teaching assignment (T), the rest stays E2.
 decisions:
   1: {decision: confirm}
   2: {decision: confirm}
-  3: {decision: open, reason: "decided on content after the side-by-side comparison"}
+  3: {decision: reject, reason: "3 of 8 topics missing and 4 only partly covered, so new content is over a third (38-88 %)"}
   4: {decision: confirm}
   5: {decision: confirm, reason: "seminar format"}
   6: {decision: confirm}
-  7: {decision: open, reason: "decided on content after the side-by-side comparison"}
+  7: {decision: reject, reason: "the workload doubles (150 h -> 300 h), so half of it is new, over a third"}
   8: {decision: confirm, reason: "project format"}
-  9: {decision: open, reason: "decided on content after the side-by-side comparison (an earlier reject was withdrawn)"}
+  9: {decision: reject, reason: "none of the scientific-work part is covered and regression and experiment design are missing, so new content is over a third"}
   10: {decision: confirm}
   11: {decision: reject, reason: "cloud is not distributed systems"}
   12: {decision: confirm, reason: "project format"}
   13: {decision: confirm, reason: "project format"}
   14: {decision: confirm, reason: "project format"}
   15: {decision: confirm, reason: "project format"}
-  16: {decision: confirm, reason: "law part as teaching assignment"}
+  16: {decision: confirm, reason: "law part as teaching assignment", t_ects: 1.25,
+       t_basis: "law part = its share of RO 71's learning outcomes: outcome 1 of 4 is the legal framework (hske_ba_robotik.pdf p. 118); 1/4 of 5 ECTS = 1.25. Outcome 4 also names the rules and laws machines must follow; counted as law as well it would be 2/4 = 2.5 ECTS (sensitivity)"}
   17: {decision: confirm}

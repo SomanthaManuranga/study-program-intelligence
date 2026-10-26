@@ -73,12 +73,13 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md): AR/VR & visual computing
-and robotics path B pass the gate, the other four fail. Demand tie-break and two-level answer in
-docs/evidence_tie_break.md: demand does not break the tie yet; a pre-registered rule says when the 1 Nov job ads and
-the Trends downloads would break it (both must favour the same candidate); otherwise the tie stands. Waiting for Soma: the hand check
-of the adapted-module verdicts (docs/handcheck_sheet.md; answers go into configs/handcheck_sheet.yaml decisions, then
-F1-F4 and the ranking are recomputed) and the Google Trends downloads listed in docs/evidence_tie_break.md. Fixed date:
+Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md). Soma's hand check is in
+(configs/handcheck_sheet.yaml, docs/handcheck_sheet.md). Three-level answer in docs/evidence_tie_break.md: (a) strict
+existing resources: no candidate passes (robotics path B fails F2 only: 15 ECTS of new modules by existing professors,
+cap 10); (b) lenient sensitivity: robotics path B passes; (c) with investment: the cybersecurity baseline. The 10-ECTS
+cap is the project's own operationalisation, pre-registered in configs/feasibility.yaml. The demand comparison is
+pending; the demand ranking is rerun after the 1 Nov job ads and the Google Trends downloads (terms in
+docs/evidence_tie_break.md). Fixed date:
 job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.

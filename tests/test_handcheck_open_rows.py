@@ -9,9 +9,9 @@ import yaml
 
 REPO = Path(__file__).resolve().parents[1]
 needs = lambda *files: pytest.mark.skipif(not all((REPO / f).exists() for f in files), reason="no generated data")
-SOMA_PART1 = {1: "confirm", 2: "confirm", 3: "open", 4: "confirm", 5: "confirm", 6: "confirm", 7: "open", 8: "confirm",
-              9: "open", 10: "confirm", 11: "reject", 12: "confirm", 13: "confirm", 14: "confirm", 15: "confirm",
-              16: "confirm", 17: "confirm"}   # Soma's message, hand check part 1
+SOMA = {1: "confirm", 2: "confirm", 3: "reject", 4: "confirm", 5: "confirm", 6: "confirm", 7: "reject", 8: "confirm",
+        9: "reject", 10: "confirm", 11: "reject", 12: "confirm", 13: "confirm", 14: "confirm", 15: "confirm",
+        16: "confirm", 17: "confirm"}   # Soma's messages, hand check parts 1 and 2
 PDFS = {"ref_visual_computing_coburg.pdf": "data/raw/references/ref_visual_computing_coburg.pdf",
         "oth_hb_ii_mi_ba.pdf": "data/raw/oth handbooks 2026/oth_hb_ii_mi_ba.pdf",
         "hske_ba_robotik.pdf": "data/raw/anchors/hske_ba_robotik.pdf",
@@ -26,7 +26,8 @@ def sheet_cfg():
 
 def test_recorded_verdicts_match_somas_list_row_by_row():
     dec = sheet_cfg()["decisions"]
-    assert {r: d["decision"] for r, d in dec.items()} == SOMA_PART1
+    assert {r: d["decision"] for r, d in dec.items()} == SOMA
+    assert dec[16]["t_ects"] == 1.25          # law part: 1 of RO 71's 4 learning outcomes x 5 ECTS (part 2)
 
 
 def test_yaml_rows_are_1_to_17_without_gaps():
@@ -70,5 +71,31 @@ def test_sensitivity_flips_every_row_once_and_matches_the_doc():
     assert set(t["candidate"]) == {"arvr", "robotics_b"} and t["other candidate"].str.endswith("no effect").all()
     doc = (REPO / "docs" / "evidence_tie_break.md").read_text(encoding="utf-8")
     assert H._md(t) in doc                                    # the doc shows the current table
-    flips = dict(zip(t["#"], t["flips the gate"]))
-    assert flips[6] == "no" and flips[9] == "yes" and flips[3] == "yes" and flips[7] == "yes"
+    strict, lenient = dict(zip(t["#"], t["flips the gate"])), dict(zip(t["#"], t["flips the lenient gate"]))
+    assert strict[9] == strict[11] == "yes" and strict[3] == "no"           # robotics passes strictly if 9 or 11 confirmed
+    assert lenient[3] == lenient[7] == "yes" and lenient[8] == lenient[14] == "no" and lenient[16] == "yes"
+
+
+@needs("data/interim/feasibility_modules.csv")
+def test_robotics_f1_f4_by_hand_under_both_rules():
+    """Hand-computed example (Soma's verdicts): robotics path B, core + path B = 137 taught ECTS. Teaching assignments
+    T = RO 13 mechanics 5 + RO 631 quality management 2 + RO 71 law part 1.25 = 8.25. New modules by existing professors
+    N = RO 6223 5 (week 2) + RO 31 5 + RO 34 5 (rejected) = 15. Covered = 137 - 23.25 = 113.75 -> F1 83.0 %.
+    Strict: N 15 > 10 -> F2 fails. Lenient: F1 >= 70 %, N <= 20, T <= 10, new share 23.25 / 137 = 17.0 % <= 20 % -> passes."""
+    from study_program_intelligence.report import handcheck_sheet as H
+    cfg, hc, rule = H.config()
+    t = H.verdict_table("robotics_b", cfg, hc)
+    assert t["ects"].sum() == 137
+    s, l = H.f1_f4(t, rule), H.f1_f4(t, rule, lenient=True)
+    assert (s["F1 %"], s["T"], s["N"]) == (83.0, 8.25, 15)
+    assert s["F1 pass"] and not s["F2 pass"] and s["F4 pass"]
+    assert l["F1 pass"] and l["F2 pass"] and l["F4 pass"]
+    assert round(100 * (s["T"] + s["N"]) / 137, 1) == 17.0
+
+
+@needs("data/raw/anchors/hske_ba_robotik.pdf")
+def test_law_share_quote_is_on_its_page():
+    import pypdf
+    comp = lambda s: re.sub(r"[^a-z0-9äöüß]", "", s.lower())
+    page = pypdf.PdfReader(REPO / "data/raw/anchors/hske_ba_robotik.pdf").pages[117].extract_text()
+    assert comp("Verständnis rechtlicher Rahmenbedingungen") in comp(page)

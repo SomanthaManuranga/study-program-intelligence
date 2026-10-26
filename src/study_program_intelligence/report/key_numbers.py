@@ -371,7 +371,7 @@ def tie_break(n: Numbers) -> None:
 
 
 TIE_BREAK_LITERALS = [   # stated in docs/evidence_tie_break.md, from the sources named there
-    ("tb_baseline_p1_cyber", "Baseline: P(rank 1) Cybersecurity B.Sc.", 91.7, "91.7 %", "Cybersecurity B.Sc. first, P(rank 1) 91.7 %"),
+    ("tb_baseline_p1_cyber", "Baseline: P(rank 1) Cybersecurity B.Sc.", 91.7, "91.7 %", "P(rank 1) 91.7 % in the baseline ranking"),
     ("cyber_professorships", "Baseline: new professorships the cyber bachelor needs", 2, "2", "2 new professorships, 1 lab engineer, a security lab"),
     ("cyber_security_cover", "Baseline: EMI's cover of a cyber bachelor's security content (upper end)", 31, "31 %", "security content (31 %)"),
     ("cyber_proxy_by", "Baseline: cyber proxy first-years Bavaria, growth 2019-24 (all / German)", [5.9, 1.9], "+5.9 / +1.9 %/yr",
