@@ -65,7 +65,8 @@ new positions, and the lab engineer adds a position with no teaching. On new tea
 by the new professors, docs/evidence_benchmarks.md, plus 10 ECTS of teaching assignments) cyber needs 1.22
 professor-equivalents, 0.020 / 0.038 per first-year (central / low; 0.031 / 0.058 without the trend projection),
 against 0.018 / 0.035 for robotics path B on the 137-ECTS reference base; scaled to 165 taught ECTS robotics path B
-needs 0.62, 0.022 / 0.042 per first-year, so on new teaching alone it is not cheaper per first-year. So the column does not show that robotics path B teaches a student more
+needs 0.62, 0.022 / 0.042 per first-year: against cyber with its trend projection (0.020 / 0.038) it is not cheaper
+per first-year, against cyber without it (0.031 / 0.058) it is; the order depends on the intake forecast. So the column does not show that robotics path B teaches a student more
 cheaply; it shows that it needs no new position, which is constraint 1 itself. The reviewer also noted: the numerator
 is a fixed yearly load, so the ratio moves one-for-one with the intake forecast and means little below the minimum
 cohort (robotics low 14.9, central year 1 17.1); the existing professors' share of level (b) (15 ECTS) is taken from other work, not free; extra
