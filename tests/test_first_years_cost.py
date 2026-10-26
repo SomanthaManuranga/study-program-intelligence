@@ -86,6 +86,10 @@ def test_professor_equivalents_recomputed_from_config():
         assert row["professor-equivalents, total"] == round(v, 3), prefix
     cy = t[t.index.str.startswith("(c)")].iloc[0]
     assert cy["professor-equivalents, all new teaching (no positions)"] == round((45 + 10) * cfg["sws_per_ects"] / year, 3)
+    k = 165 / 137                                                                       # OTH taught ECTS / reference base
+    scaled = {"(a)": (15 * k - 10) * cfg["sws_per_ects"] / year, "(b)": (15 + 8.25) * k * cfg["sws_per_ects"] / year}
+    for prefix, v in scaled.items():
+        assert t[t.index.str.startswith(prefix)].iloc[0]["all new teaching scaled to 165 taught ECTS"] == round(v, 3), prefix
     fy = pd.read_csv(INTERIM / "candidate_first_years.csv")
     rc = fy[(fy["candidate"] == "robotics_b") & (fy["scenario"] == "central") & (fy["phase"] == "steady state")]["gross"].iloc[0]
     assert t[t.index.str.startswith("(b)")].iloc[0]["professor-equivalents per first-year, central"] == round(by_hand["(b)"] / rc, 3)

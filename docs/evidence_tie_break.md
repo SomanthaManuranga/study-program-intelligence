@@ -36,8 +36,8 @@ The F4 figure for robotics path B has three values in the documents: 25.5 % in w
 
 | Level | Option | First-years, year 1 (low / central / high) | First-years, steady state (low / central / high); central German + international | Minimum cohort of 20 | Professor-equivalents | Per expected first-year, steady state (central / low) |
 |---|---|---|---|---|---|---|
-| (a) | none passes; smallest new resource for robotics path B | – | – | – | 0.11 (5 ECTS, 4 SWS a year) | – |
-| (b) | Robotics + AI path B | 8.9 / 17.1 / 33.0 | 14.9 / 28.6 / 55.1; 12.4 + 16.2 | missed in the low case (14.9) and in year 1 of the central case (17.1) | 0.52 (15 + 8.25 ECTS, 18.6 SWS a year; no new position) | 0.018 / 0.035 |
+| (a) | none passes; smallest new resource for robotics path B | – | – | – | 0.11 (5 ECTS, 4 SWS a year, 137-ECTS reference base; about 0.18 scaled to 165 taught ECTS) | – |
+| (b) | Robotics + AI path B | 8.9 / 17.1 / 33.0 | 14.9 / 28.6 / 55.1; 12.4 + 16.2 | missed in the low case (14.9) and in year 1 of the central case (17.1) | 0.52 (15 + 8.25 ECTS, 18.6 SWS a year, 137-ECTS reference base; 0.62 scaled to 165 taught ECTS; no new position) | 0.018 / 0.035 (scaled: 0.022 / 0.042) |
 | (c) | Cybersecurity B.Sc. | 16.6 / 30.8 / 59.2 | 32.2 / 59.8 / 115.1; 24.3 + 35.6 | missed only in year 1 of the low case (16.6) | 3.22 (2 professorships, 1 lab engineer, 10 ECTS of teaching assignments) | 0.054 / 0.100 (without the trend projection, 39 / 21 first-years: 0.083 / 0.153) |
 
 How the numbers are made (`analysis/first_years.py`, `analysis/cost.py`; inputs `configs/first_years.yaml`,
@@ -51,24 +51,25 @@ How the numbers are made (`analysis/first_years.py`, `analysis/cost.py`; inputs 
 - **The pool trend is not a validated forecast.** In a rolling-origin backtest of robotics' German pool (origins
   2012-2023, horizons 1-5) no model beats the naive scale: best MASE 1.30 (last value carried forward); a trend model
   (drift) scores 2.03. The forecast does not beat naive. Cyber's German pool: drift 0.92.
-- **Professor-equivalent** = 18 SWS per semester, the regular teaching load (Regellehrverpflichtung) of a professor in civil-servant
-  status at a Bavarian HAW (AVBayHIG § 4
-  Abs. 1 Nr. 1: "Professorinnen und Professoren 18 Lehrveranstaltungsstunden", gesetze-bayern.de), so 36 SWS a year;
+- **Professor-equivalent** = 18 SWS per semester, the regular teaching load (Regellehrverpflichtung) of a professor
+  in civil-servant status at a Bavarian HAW (AVBayHIG § 4 Abs. 1 Nr. 1: "Professorinnen und Professoren 18
+  Lehrveranstaltungsstunden", gesetze-bayern.de), so 36 SWS-semesters a year;
   ECTS to SWS by the configs/feasibility.yaml assumption (10 ECTS ≈ 8 SWS a year). A new professorship counts 1; the
   lab engineer is counted as one position (a headcount convention, not a salary comparison). Lab and equipment cost:
   not estimated.
 
 **Opposing view on the cost comparison (fresh-context reviewer, E6).** Attack: the per-first-year column compares
-different kinds of cost. Level (b) counts only the new teaching hours of existing professors; level (c) counts whole
+different kinds of cost. Level (b) counts only new teaching (15 ECTS by existing professors plus 8.25 ECTS of teaching
+assignments); level (c) counts whole
 new positions, and the lab engineer adds a position with no teaching. On new teaching alone (cyber: the 45 ECTS taught
 by the new professors, docs/evidence_benchmarks.md, plus 10 ECTS of teaching assignments) cyber needs 1.22
 professor-equivalents, 0.020 / 0.038 per first-year (central / low; 0.031 / 0.058 without the trend projection),
-against 0.018 / 0.035 for robotics path B. So the column does not show that robotics path B teaches a student more
+against 0.018 / 0.035 for robotics path B on the 137-ECTS reference base; scaled to 165 taught ECTS robotics path B
+needs 0.62, 0.022 / 0.042 per first-year, so on new teaching alone it is not cheaper per first-year. So the column does not show that robotics path B teaches a student more
 cheaply; it shows that it needs no new position, which is constraint 1 itself. The reviewer also noted: the numerator
 is a fixed yearly load, so the ratio moves one-for-one with the intake forecast and means little below the minimum
-cohort (robotics low 14.9, central year 1 17.1); the hours of level (b) are taken from other work, not free; extra
-lab and exercise groups that grow with the cohort are not counted for either option; and robotics path B's figures
-are on the 137-ECTS reference base. Answer: accepted. The column is kept only with this reading: annual new resource divided by
+cohort (robotics low 14.9, central year 1 17.1); the existing professors' share of level (b) (15 ECTS) is taken from other work, not free; extra
+lab and exercise groups that grow with the cohort are not counted for either option. Answer: accepted. The column is kept only with this reading: annual new resource divided by
 annual intake, not cost per enrolled student and not a cost-efficiency ranking.
 
 **The project's answer.** Under the decision rule, no candidate passes. The closest is robotics path B: it misses only
@@ -161,7 +162,10 @@ percentage points a year. The 3-of-4 rule above is unchanged.
 | Robotics path B vs minimum cohort of 20 | Trends slope of "Robotik Studium" | >= +0.1 | between | <= -0.1 |
 
 Downgrade from "conditional candidate" to "not recommended": both robotics-vs-minimum-cohort signals go against; or
-one goes against and the capture model's central steady-state gross first-years for robotics path B are below 20.
+one goes against and the capture model's central steady-state gross first-years for robotics path B are below 20
+(28.7, the model's base-year value; 28.6 with the trend projection). At pre-registration robotics already had 162
+"Robotik" ads within 100 km (17 Oct snapshot), above the 150 threshold, and 28.7 is above 20, so a downgrade needs the
+count to fall to 74 or fewer and the "Robotik Studium" slope to be -0.1 or lower.
 AR/VR winning the 3-of-4 rule does not downgrade robotics on its own, because AR/VR fails the feasibility gate.
 
 ## XR hardware (feasibility side, a limitation)

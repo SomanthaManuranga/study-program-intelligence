@@ -75,3 +75,12 @@ def test_rules_applied_as_written():
     snap, tr = _synthetic(60, 5, 50, 40, 30, flat, flat, flat)
     assert evaluate(snap, tr, central_gross=19.9)["downgrade robotics to not recommended"]
     assert not evaluate(snap, tr, central_gross=20.0)["downgrade robotics to not recommended"]
+
+
+def test_incomplete_snapshot_is_skipped():
+    from study_program_intelligence.analysis import demand_thresholds as D
+    cfg = D.config()
+    region = cfg["robotics_vs_arvr"]["job_ads"]["region"]
+    keys = [k for g in cfg["groups"].values() for k in g]
+    full = pd.DataFrame({"keyword_id": keys, "region_id": region, "total": 1})
+    assert D.complete(full, cfg) and not D.complete(full.iloc[1:], cfg)

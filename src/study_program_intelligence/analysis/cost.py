@@ -36,7 +36,8 @@ def robotics_new_teaching() -> dict:
     from study_program_intelligence.report import handcheck_sheet as H
     cfg, hc, rule = H.config()
     r = H.f1_f4(H.verdict_table("robotics_b", cfg, hc), rule)
-    return {"T": float(r["T"]), "N": float(r["N"]), "N above cap": float(r["N"]) - rule["rule"]["F2_max_N_ects"]["bachelor"]}
+    return {"T": float(r["T"]), "N": float(r["N"]), "N above cap": float(r["N"]) - rule["rule"]["F2_max_N_ects"]["bachelor"],
+            "scale to OTH": rule["unit"]["bachelor"]["taught_ects"] / float(r["taught ECTS"])}   # 165 / 137
 
 
 def prof_eq(cfg: dict, ects: float = 0.0, professorships: float = 0.0, lab_engineers: float = 0.0) -> float:
@@ -58,11 +59,19 @@ def table(cfg: dict | None = None) -> pd.DataFrame:
         pe_teach = prof_eq(cfg, new_mod + ta)
         total = prof_eq(cfg, new_mod + ta, profs, lab)
         all_teach = prof_eq(cfg, new_mod + ta + lv.get("new_modules_by_new_professors_ects", 0))   # like for like
+        # robotics path B's figures are on the 137-ECTS reference base; cyber's come from a full OTH curriculum.
+        # Scaled: N and T grow with 165 / 137, the cap of 10 does not.
+        k = rob["scale to OTH"]
+        new_mod_s = {"from_handcheck_excess": rob["N"] * k - rob["N"] + rob["N above cap"],
+                     "from_handcheck_N": rob["N"] * k}.get(lv.get("new_modules_ects"), 0.0)
+        ta_s = rob["T"] * k if lv.get("teaching_assignments_ects") == "from_handcheck_T" else ta
+        all_teach_s = prof_eq(cfg, new_mod_s + ta_s + lv.get("new_modules_by_new_professors_ects", 0))
         row = {"level": lv["label"], "new modules by existing professors (ECTS)": round(new_mod, 2),
                "teaching assignments (ECTS)": round(float(ta), 2), "new teaching (SWS a year)": round((new_mod + ta) * cfg["sws_per_ects"], 2),
                "new professorships": profs, "lab engineers": lab, "professor-equivalents, teaching": round(pe_teach, 3),
                "professor-equivalents, total": round(total, 3),
-               "professor-equivalents, all new teaching (no positions)": round(all_teach, 3), "lab and equipment cost": "not estimated"}
+               "professor-equivalents, all new teaching (no positions)": round(all_teach, 3),
+               "all new teaching scaled to 165 taught ECTS": round(all_teach_s, 3), "lab and equipment cost": "not estimated"}
         if lv.get("first_years"):
             c, lo = steady(lv["first_years"], "central"), steady(lv["first_years"], "low")
             row.update({"first-years steady state, central / low": f"{c} / {lo}",
@@ -74,7 +83,9 @@ def table(cfg: dict | None = None) -> pd.DataFrame:
                         "per first-year without projection, low": round(total / lo0, 3),
                         "all new teaching per first-year, central / low": f"{round(all_teach / c, 3)} / {round(all_teach / lo, 3)}",
                         "all new teaching per first-year without projection, central / low":
-                            f"{round(all_teach / c0, 3)} / {round(all_teach / lo0, 3)}"})
+                            f"{round(all_teach / c0, 3)} / {round(all_teach / lo0, 3)}",
+                        "all new teaching scaled, per first-year, central / low":
+                            f"{round(all_teach_s / c, 3)} / {round(all_teach_s / lo, 3)}"})
         rows.append(row)
     return pd.DataFrame(rows)
 

@@ -36,6 +36,19 @@ def group_count(snap: pd.DataFrame, keys: list[str], region: str) -> int:
     return int(d["total"].max())
 
 
+def complete(snap: pd.DataFrame, cfg: dict | None = None) -> bool:
+    """True if the snapshot has every keyword of both groups in every region the thresholds use."""
+    cfg = cfg or config()
+    regions = {cfg[k]["job_ads"]["region"] for k in ("robotics_vs_arvr", "robotics_vs_min_cohort")}
+    try:
+        for keys in cfg["groups"].values():
+            for region in regions:
+                group_count(snap, keys, region)
+    except ValueError:
+        return False
+    return True
+
+
 def slope(yearly: pd.Series) -> float:
     """OLS slope of yearly values (index = year), percentage points per year."""
     return float(np.polyfit(yearly.index.astype(float), yearly.values.astype(float), 1)[0])
@@ -97,9 +110,9 @@ def load_trends(path: Path = TRENDS) -> pd.DataFrame:
 
 def main() -> None:
     snaps = pd.DataFrame(json.loads(SNAPSHOTS.read_text(encoding="utf-8")))
-    later = sorted(d for d in snaps["date"].unique() if d >= FIRST_DATE)
+    later = [d for d in sorted(snaps["date"].unique()) if d >= FIRST_DATE and complete(snaps[snaps["date"] == d])]
     if not later or not TRENDS.exists():
-        raise SystemExit("1 Nov snapshot or Trends download missing: nothing to evaluate yet")
+        raise SystemExit("complete 1 Nov (or later) snapshot or Trends download missing: nothing to evaluate yet")
     snap = snaps[snaps["date"] == later[0]]
     central = pd.read_csv(REPO_ROOT / "data" / "interim" / "candidate_first_years.csv").query(
         "candidate == 'robotics_b' and scenario == 'central' and phase == 'steady state'")["gross (model, base year)"].iloc[0]
