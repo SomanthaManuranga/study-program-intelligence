@@ -104,6 +104,23 @@ What would change the reading of the existing signals: a public figure for Cobur
 anchor AR/VR's capture model), or a Destatis breakdown that shows under which code visual-computing first-years are
 counted.
 
+**Demand thresholds (pre-registered before the 1 Nov data; `configs/demand_thresholds.yaml`, applied by
+`analysis/demand_thresholds.py`).** Job ads: the 1 Nov snapshot, within 100 km of Amberg, each group's largest single
+keyword count (robotics: "Robotik", "Servicerobotik"; AR/VR: "Virtual Reality", "Augmented Reality", "Computergrafik").
+Trends: the OLS slope 2022-2026 of each term's yearly (January-October) mean share of "Informatik Studium", in
+percentage points a year. The 3-of-4 rule above is unchanged.
+
+| Comparison | Signal | Favours robotics path B | Neutral | Goes against robotics path B |
+|---|---|---|---|---|
+| Robotics path B vs AR/VR | job ads | robotics count > 1.10 x AR/VR count | larger / smaller <= 1.10 | AR/VR count > 1.10 x robotics count |
+| Robotics path B vs AR/VR | Trends slope | robotics slope higher by >= 0.1 | difference < 0.1 | AR/VR best slope higher by >= 0.1 |
+| Robotics path B vs minimum cohort of 20 | job ads | robotics count >= 150 (the ">150 ads within 100 km" anchor, configs/scores.yaml) | 75-149 | <= 74 |
+| Robotics path B vs minimum cohort of 20 | Trends slope of "Robotik Studium" | >= +0.1 | between | <= -0.1 |
+
+Downgrade from "conditional candidate" to "not recommended": both robotics-vs-minimum-cohort signals go against; or
+one goes against and the capture model's central steady-state gross first-years for robotics path B are below 20.
+AR/VR winning the 3-of-4 rule does not downgrade robotics on its own, because AR/VR fails the feasibility gate.
+
 ## XR hardware (feasibility side, a limitation)
 
 - OTH's public pages give no headset count. The Digitaler Campus page lists a "Labor VR/AR" (three responsible
