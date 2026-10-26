@@ -25,7 +25,8 @@ levels:
     first_years: robotics_b
   c_investment:
     label: "(c) with investment: Cybersecurity B.Sc."
-    new_professorships: 2                     # docs/evidence_fit_staff.md (they teach the 45 new ECTS; not counted again)
+    new_professorships: 2                     # docs/evidence_fit_staff.md
+    new_modules_by_new_professors_ects: 45    # docs/evidence_benchmarks.md; inside the 2 positions, only for the all-new-teaching column
     lab_engineers: 1                          # docs/evidence_fit_staff.md
     teaching_assignments_ects: 10             # OTH draft curriculum, docs/evidence_benchmarks.md
     first_years: cyber_bsc

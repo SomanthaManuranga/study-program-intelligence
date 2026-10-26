@@ -84,6 +84,8 @@ def test_professor_equivalents_recomputed_from_config():
     for prefix, v in by_hand.items():
         row = t[t.index.str.startswith(prefix)].iloc[0]
         assert row["professor-equivalents, total"] == round(v, 3), prefix
+    cy = t[t.index.str.startswith("(c)")].iloc[0]
+    assert cy["professor-equivalents, all new teaching (no positions)"] == round((45 + 10) * cfg["sws_per_ects"] / year, 3)
     fy = pd.read_csv(INTERIM / "candidate_first_years.csv")
     rc = fy[(fy["candidate"] == "robotics_b") & (fy["scenario"] == "central") & (fy["phase"] == "steady state")]["gross"].iloc[0]
     assert t[t.index.str.startswith("(b)")].iloc[0]["professor-equivalents per first-year, central"] == round(by_hand["(b)"] / rc, 3)

@@ -57,10 +57,12 @@ def table(cfg: dict | None = None) -> pd.DataFrame:
         profs, lab = lv.get("new_professorships", 0), lv.get("lab_engineers", 0)
         pe_teach = prof_eq(cfg, new_mod + ta)
         total = prof_eq(cfg, new_mod + ta, profs, lab)
+        all_teach = prof_eq(cfg, new_mod + ta + lv.get("new_modules_by_new_professors_ects", 0))   # like for like
         row = {"level": lv["label"], "new modules by existing professors (ECTS)": round(new_mod, 2),
                "teaching assignments (ECTS)": round(float(ta), 2), "new teaching (SWS a year)": round((new_mod + ta) * cfg["sws_per_ects"], 2),
                "new professorships": profs, "lab engineers": lab, "professor-equivalents, teaching": round(pe_teach, 3),
-               "professor-equivalents, total": round(total, 3), "lab and equipment cost": "not estimated"}
+               "professor-equivalents, total": round(total, 3),
+               "professor-equivalents, all new teaching (no positions)": round(all_teach, 3), "lab and equipment cost": "not estimated"}
         if lv.get("first_years"):
             c, lo = steady(lv["first_years"], "central"), steady(lv["first_years"], "low")
             row.update({"first-years steady state, central / low": f"{c} / {lo}",
@@ -69,7 +71,10 @@ def table(cfg: dict | None = None) -> pd.DataFrame:
             c0, lo0 = (steady(lv["first_years"], sc, "gross (model, base year)") for sc in ("central", "low"))
             row.update({"first-years without trend projection, central / low": f"{c0} / {lo0}",
                         "per first-year without projection, central": round(total / c0, 3),
-                        "per first-year without projection, low": round(total / lo0, 3)})
+                        "per first-year without projection, low": round(total / lo0, 3),
+                        "all new teaching per first-year, central / low": f"{round(all_teach / c, 3)} / {round(all_teach / lo, 3)}",
+                        "all new teaching per first-year without projection, central / low":
+                            f"{round(all_teach / c0, 3)} / {round(all_teach / lo0, 3)}"})
         rows.append(row)
     return pd.DataFrame(rows)
 

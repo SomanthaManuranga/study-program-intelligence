@@ -10,8 +10,7 @@
 # Assumptions (stated in docs/evidence_tie_break.md):
 # - the intake mix of German and international students follows the Bavarian subject pool in the base year;
 # - each group's pool keeps its yearly growth of the window up to the projection year (German and foreign apart);
-# - first intake in winter semester 2028/29 (about two years for curriculum, accreditation and approval; no OTH
-#   timetable is public); steady state = year 3 of the ramp-up (2030/31).
+# - first intake in winter semester 2028/29 (an assumption); steady state = year 3 of the ramp-up (2030/31).
 
 first_intake_year: 2028
 candidates:

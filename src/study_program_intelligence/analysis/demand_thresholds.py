@@ -102,7 +102,7 @@ def main() -> None:
         raise SystemExit("1 Nov snapshot or Trends download missing: nothing to evaluate yet")
     snap = snaps[snaps["date"] == later[0]]
     central = pd.read_csv(REPO_ROOT / "data" / "interim" / "candidate_first_years.csv").query(
-        "candidate == 'robotics_b' and scenario == 'central' and phase == 'steady state'")["gross"].iloc[0]
+        "candidate == 'robotics_b' and scenario == 'central' and phase == 'steady state'")["gross (model, base year)"].iloc[0]
     for k, v in evaluate(snap, load_trends(), float(central)).items():
         print(f"{k}: {v}")
 
