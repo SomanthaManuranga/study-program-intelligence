@@ -51,8 +51,8 @@ def test_sheet_row_numbers_and_decisions_match_the_yaml():
 def test_every_quote_in_the_open_rows_doc_is_on_its_stated_page():
     import pypdf
     text = (REPO / "docs" / "handcheck_open_rows.md").read_text(encoding="utf-8")
-    quotes = re.findall(r"„(.+?)“ \[([^\]]+?) p\. (\d+)\]", text)
-    assert len(quotes) >= 40
+    quotes = re.findall(r"„(.+?)“\s*\[([^\]]+?) p\. (\d+)\]", text, re.S)   # also quotes that wrap a line
+    assert len(quotes) == text.count("„") - text.count("„Zufallsvektoren")
     comp = lambda s: re.sub(r"[^a-z0-9äöüß]", "", s.lower())
     pages = {}
     for q, f, p in quotes:

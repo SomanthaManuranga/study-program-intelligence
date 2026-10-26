@@ -140,8 +140,10 @@ on demand only if both missing signals point to it.
 Soma's verdicts are recorded per sheet row in `configs/handcheck_sheet.yaml` (with reasons) and shown in
 `docs/handcheck_sheet.md`: rows 1, 2, 4, 5, 6, 8, 10 and 12-17 confirmed, row 11 (RO 34 Verteilte Softwaresysteme)
 rejected, rows 3, 7 and 9 open. The open rows are compared side by side, facts only, in `docs/handcheck_open_rows.md`.
-Row 16 is confirmed with the note "law part as teaching assignment"; it is counted as adapted (E2) and adds no
-teaching-assignment ECTS.
+Row 16 is confirmed with the note "law part as teaching assignment". The tables count it as adapted (E2) with no
+teaching-assignment ECTS: that is Claude's reading, to be confirmed by Soma, because the handbook does not say how many
+of its 5 ECTS are law. If the law part were taught as a teaching assignment (T), robotics path B stays within the T cap
+of 10 ECTS up to 3 ECTS (T is 7 now); the full 5 ECTS would make T 12 and fail F2 (single-flip row 16).
 
 F1-F4 with part 1 applied (open rows shown both ways), and every adapted-module row flipped on its own (confirm ->
 reject, reject -> confirm, open -> reject) with all other rows as recorded and the other open rows counted as
