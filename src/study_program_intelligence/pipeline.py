@@ -41,6 +41,8 @@ DOC_LISTS = [  # (config, out folder, manifest, pdf only)
     ("configs/anchor_documents.yaml", "data/raw/anchors", "docs/anchor_manifest.json", True),
     ("configs/intake_benchmark_documents.yaml", "data/raw/intake_benchmark", "docs/intake_benchmark_manifest.json", True),
     ("configs/ministry_documents.yaml", "data/raw/ministry", "docs/ministry_manifest.json", True),
+    ("configs/oth_handbooks_documents.yaml", "data/raw/oth handbooks 2026", "docs/oth_handbooks_manifest.json", True),
+    ("configs/regulation_documents.yaml", "data/raw/regulation", "docs/regulation_manifest.json", False),
 ]
 
 # (step name, stage, module, arguments)
@@ -48,11 +50,17 @@ INGEST = [("ingest.documents", "ingest", "ingest.documents", [])] + [
     (f"ingest.documents:{Path(c).stem}", "ingest", "ingest.documents",
      ["--config", c, "--out", o, "--manifest", m] + (["--pdf-only"] if pdf else [])) for c, o, m, pdf in DOC_LISTS
 ] + [("ingest.genesis", "ingest", "ingest.genesis", ["tables"]),
-     ("ingest.studiensuche", "ingest", "ingest.studiensuche", ["harvest"])]
+     ("ingest.studiensuche", "ingest", "ingest.studiensuche", ["harvest"]),
+     ("ingest.studiensuche:full", "ingest", "ingest.studiensuche",
+      ["harvest", "--config", "configs/studiensuche_full.yaml", "--out", "data/raw/studiensuche_full",
+       "--manifest", "docs/studiensuche_full_manifest.json"])]
 SNAPSHOT = [("ingest.jobsuche", "ingest", "ingest.jobsuche", ["snapshot"])]
 BUILD = [
     ("transform.programmes", "transform", "transform.programmes", []),
+    ("transform.programmes:full", "transform", "transform.programmes", ["--set", "full"]),
     ("transform.modules", "transform", "transform.modules", []),
+    ("transform.modules:emi2026", "transform", "transform.modules", ["--set", "emi2026"]),
+    ("transform.modules:references", "transform", "transform.modules", ["--set", "references"]),
     ("transform.thm_modules", "transform", "transform.thm_modules", []),
     ("transform.school_leavers", "transform", "transform.school_leavers", []),
     ("analysis.first_look", "analysis", "analysis.first_look", []),
@@ -61,6 +69,9 @@ BUILD = [
     ("analysis.theme_check:sample", "analysis", "analysis.theme_check", ["sample"]),   # only if the sheet is missing
     ("analysis.theme_check", "analysis", "analysis.theme_check", ["score"]),
     ("analysis.module_gaps", "analysis", "analysis.module_gaps", []),
+    ("analysis.feasibility", "analysis", "analysis.feasibility", []),
+    ("analysis.recombination", "analysis", "analysis.recombination", []),
+    ("analysis.rarity", "analysis", "analysis.rarity", []),
     ("analysis.catchment:geo", "analysis", "analysis.catchment", ["geo"]),
     ("analysis.catchment:run", "analysis", "analysis.catchment", ["run"]),
     ("analysis.labour", "analysis", "analysis.labour", []),
@@ -72,6 +83,20 @@ BUILD = [
     ("analysis.cannibalisation", "analysis", "analysis.cannibalisation", []),
     ("analysis.options", "analysis", "analysis.options", []),
     ("analysis.ranking", "analysis", "analysis.ranking", []),
+    ("analysis.candidates", "analysis", "analysis.candidates", []),
+    ("analysis.ranking:candidates", "analysis", "analysis.ranking", ["--candidates"]),
+    ("analysis.tie_break", "analysis", "analysis.tie_break", []),
+    ("report.handcheck_sheet", "report", "report.handcheck_sheet", []),
+    ("analysis.first_years", "analysis", "analysis.first_years", []),
+    ("analysis.cost", "analysis", "analysis.cost", []),
+    # deep-analysis layer (docs/criteria_deep_analysis.md): additive robustness and benchmarking evidence
+    ("analysis.data_quality", "analysis", "analysis.data_quality", []),
+    ("analysis.spec_curve", "analysis", "analysis.spec_curve", []),
+    ("analysis.intake_model", "analysis", "analysis.intake_model", []),
+    ("analysis.capture_benchmark", "analysis", "analysis.capture_benchmark", []),
+    ("analysis.cannibalisation_similarity", "analysis", "analysis.cannibalisation_similarity", []),
+    ("analysis.demand_corridor", "analysis", "analysis.demand_corridor", []),
+    ("report.figures_deep", "report", "report.figures_deep", []),
     ("report.build", "report", "report.build", []),
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),
@@ -167,8 +192,9 @@ def main(argv: list[str] | None = None) -> int:
             r = subprocess.run(cmd, cwd=REPO_ROOT, stdout=out, stderr=subprocess.STDOUT)
             sec = time.time() - t
             # a download list exits with 1 when some documents could not be fetched (known gaps such as robots.txt
-            # blocks or dead links, recorded in the manifest); that is not a reason to stop the rebuild
-            gaps = stage == "ingest" and r.returncode == 1
+            # blocks or dead links, recorded in the manifest); that is not a reason to stop the rebuild. The job-ad
+            # snapshot is the exception: errors on a dated snapshot stop the run, because the date cannot be rerun later
+            gaps = stage == "ingest" and r.returncode == 1 and name != "ingest.jobsuche"
             ok = r.returncode == 0 or gaps
             status = "ok, with gaps (see output log)" if gaps else ("ok" if ok else f"FAILED ({r.returncode})")
             print(f"{status} ({sec:.0f} s)")

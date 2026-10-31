@@ -156,6 +156,13 @@ sources:
     access: public pages via sitemap; robots.txt respected (person pages skipped, see decision log); manifest docs/oth_web_manifest.json
     status: downloaded
 
+  - id: oth_web_xr
+    owner: OTH Amberg-Weiden
+    url: https://www.oth-aw.de/hochschule/ueber-uns/einrichtungen/kompetenzzentrum-digitaler-campus/
+    use: XR (AR/VR) lab and hardware check for the demand tie-break (Digitaler Campus pages, IKKI page)
+    access: public pages; robots.txt checked per page; configs/oth_xr_documents.yaml, manifest docs/oth_xr_manifest.json
+    status: downloaded
+
   - id: avbayhig_4
     owner: Freistaat Bayern
     url: https://www.gesetze-bayern.de/Content/Document/BayAVHIG-4
@@ -257,3 +264,20 @@ sources:
     use: exact wording on programmes, IT security and digitalisation (docs/evidence_ministry_contracts.md)
     access: public PDFs via ingest/documents.py; manifest docs/ministry_manifest.json
     status: downloaded
+
+  # Added in the re-scope (week 1).
+  - id: oth_handbooks_2026
+    owner: OTH Amberg-Weiden (Fakultaet EMI)
+    url: see configs/oth_handbooks_documents.yaml (oth-aw.de/files/oth-aw/Studiengaenge/...)
+    table: current module handbooks of 12 EMI programmes (II and MI share one) plus the faculty's bachelor elective catalogue and the E&IT FW catalogue
+    use: complete EMI module inventory for the feasibility gate and recombination candidates
+    access: public PDFs via ingest/documents.py; linked from the public programme pages; /files/ is not disallowed by robots.txt (only /fileadmin/ is); manifest docs/oth_handbooks_manifest.json; KI B.Sc. lists no handbook online (earlier manual copy used)
+    status: downloaded
+
+  - id: ba_studiensuche_full
+    owner: Bundesagentur fuer Arbeit (data from the HRK Hochschulkompass)
+    url: https://rest.arbeitsagentur.de/infosysbub/studisu/pc/v1/
+    table: programme offers of all 90 study fields, first and further degree (configs/studiensuche_full.yaml)
+    use: rarity of programme types Germany-wide (re-scope R4); the 13-field harvest stays for the baseline
+    access: public REST API via ingest/studiensuche.py (separate cache data/raw/studiensuche_full); manifest docs/studiensuche_full_manifest.json
+    status: downloaded (180 queries; 22,093 unique offers, 20,383 bachelor/master, 15,207 of them full-time)

@@ -26,7 +26,8 @@ OUT = REPO_ROOT / "reports" / "key_numbers.yaml"
 INTERIM = REPO_ROOT / "data" / "interim"
 DOCS = REPO_ROOT / "docs"
 JOB_SNAPSHOT = "2026-10-15"   # snapshot the evidence doc's table shows; move to the frozen snapshot on 4 Dec
-SECTIONS = ["M_method", "S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking"]
+SECTIONS = ["M_method", "S_selection", "A_demand", "B_capture", "C_fit", "D_outlet", "E_cannibalisation", "F_ranking",
+            "G_candidates", "H_tie_break"]
 
 
 def _norm(s: str) -> str:
@@ -292,7 +293,189 @@ def collect() -> Numbers:
     for k, label, v, disp, src, chk in LITERALS:
         sec, key = k.split("__")
         n.add(key, sec, label, v, disp, src, check=chk)
+    candidates(n)
+    tie_break(n)
     return n
+
+
+def tie_break(n: Numbers) -> None:
+    """Demand tie-break (docs/evidence_tie_break.md), read from data/interim/tie_break.csv."""
+    s, g, src = "docs/evidence_tie_break.md", "H_tie_break", "data/interim/tie_break.csv"
+    t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
+    val = lambda c, ser, reg, grp, m: t[(t["candidate"] == c) & (t["series"].fillna("") == ser) & (t["region"].fillna("") == reg)
+                                       & (t["group"].fillna("") == grp) & (t["metric"] == m)]["value"].iloc[0]
+    sign = lambda v: f"+{float(v):.1f}" if float(v) > 0 else f"{float(v):.1f}"
+    num = lambda v: f"{int(v):,}"
+    closest = {"arvr": ("Medieninformatik", "Medieninformatik"), "robotics_b": ("Mechatronik + Technische Informatik", "Mechatronik + TI")}
+    for c, (ser, label) in closest.items():
+        for reg, grp, pre, key in (("BY", "all", f"{label} ", "by_all"), ("BY", "German", "", "by_german"),
+                                   ("BY", "foreign", "", "by_foreign"), ("DE", "all", "", "de_all")):
+            a, b, gr = (val(c, ser, reg, grp, m) for m in ("2019", "2024", "%/yr 2019-24"))
+            disp = f"{pre}{num(a)} -> {num(b)}, {sign(gr)} %/yr"
+            n.add(f"{c}_{key}", g, f"{label} first-years {reg} {grp} 2019 -> 2024 and growth", [int(a), int(b), float(gr)], disp, s,
+                  data=src)
+        share = val(c, ser, "BY", "all", "foreign share 2024 %")
+        n.add(f"{c}_foreign_share_by", g, f"Foreign share of {label} first-years, Bavaria 2024", int(share), f"{share} %", s,
+              check=f"| Foreign share 2024, Bavaria | {val('arvr', 'Medieninformatik', 'BY', 'all', 'foreign share 2024 %')} % | "
+                    f"{val('robotics_b', 'Mechatronik + Technische Informatik', 'BY', 'all', 'foreign share 2024 %')} % |", data=src)
+    a, b, gr = (val("arvr", "Informatik (broad pool)", "BY", "all", m) for m in ("2019", "2024", "%/yr 2019-24"))
+    gg = val("arvr", "Informatik (broad pool)", "BY", "German", "%/yr 2019-24")
+    n.add("informatik_pool_by", g, "Informatik first-years Bavaria 2019 -> 2024 (broad pool)", [int(a), int(b), float(gr)],
+          f"Informatik {num(a)} -> {num(b)}, {sign(gr)} %/yr (German {sign(gg)})", s, data=src)
+    for ser, label in (("Mechatronik", "Mechatronik"), ("Technische Informatik", "TI")):
+        a, b, gr = (val("robotics_b", ser, "BY", "all", m) for m in ("2019", "2024", "%/yr 2019-24"))
+        n.add(f"robotics_{label.lower()}_by", g, f"{ser} first-years Bavaria 2019 -> 2024", [int(a), int(b), float(gr)],
+              f"{label} {num(a)} -> {num(b)}, {sign(gr)} %/yr", s, data=src)
+    for c in ("arvr", "robotics_b"):
+        cells = [val(c, "", "", "", m) for m in ("dedicated institutions Germany", "dedicated institutions Bavaria",
+                                                 "dedicated institutions within 150 km", "dedicated institutions within 80 km")]
+        n.add(f"{c}_competitors", g, f"Dedicated competitor institutions (Germany, Bavaria, 150 km, 80 km), {c}", [int(x) for x in cells],
+              f"{cells[0]} in Germany, {cells[1]} in Bavaria, {cells[2]} within 150 km", s, data=src)
+        cap = val(c, "(b) net new to OTH", "", "", "low / central / high")
+        n.add(f"{c}_net_new", g, f"Capture model, net new first-years low / central / high, {c}", cap, cap, s, data=src)
+    jobs = {r: val("robotics_b", "robotik", r, "", t[(t["series"] == "robotik")]["metric"].iloc[0]) for r in ("germany", "bayern", "amberg_100km", "amberg_50km")}
+    n.add("robotik_ads", g, "Job ads 'Robotik' (Germany, Bavaria, 100 km, 50 km), latest snapshot", [int(v) for v in jobs.values()],
+          f'"Robotik" {jobs["germany"]} in Germany, {jobs["bayern"]} Bavaria, {jobs["amberg_100km"]} within 100 km, {jobs["amberg_50km"]} within 50 km', s,
+          data="docs/jobsuche_snapshots.json")
+    for k, label, v, disp, chk in TIE_BREAK_LITERALS:
+        n.add(k, g, label, v, disp, s, check=chk)
+    for c in ("arvr", "robotics_b"):   # proxy fit, German first-years per competitor, German-only trend score
+        prox = val(c, "", "", "", "dedicated offers whose catalogue subject is the proxy subject")
+        n.add(f"{c}_proxy_tagged", g, f"Dedicated offers whose catalogue subject is the proxy subject, {c}", int(prox), prox, s, data=src,
+              check={"arvr": f"carries the catalogue subject Medieninformatik ({prox})", "robotics_b": f"{prox} of 19 carry"}[c])
+        ser = closest[c][0]
+        per = val(c, ser, "BY", "German", "2024 per dedicated Bavarian institution")
+        n.add(f"{c}_german_per_competitor", g, f"German first-years per dedicated Bavarian competitor institution 2024, {c}", int(per),
+              per, s, data=src, check=f"| {per} ({val(c, '', '', '', 'dedicated institutions Bavaria')} institution")
+        n.add(f"{c}_german_trend_score", g, f"German-only trend score by the rule, {c}", int(val(c, ser, "BY", "German", "trend score (rule)")),
+              val(c, ser, "BY", "German", "trend score (rule)"), s, data=src, check="(1 and 1 by the pre-registered rule)")
+    for c in ("arvr", "robotics_b"):   # nearest competitor, from the same table
+        near = val(c, "", "", "", "nearest 1")
+        km = int(near.rsplit(" ", 2)[-2])
+        n.add(f"{c}_nearest_km", g, f"Distance to the nearest dedicated competitor, {c}", km, f"{km} km", s, data=src)
+    # hand-check sheet (docs/handcheck_sheet.md): F1-F4 now and if every adapted module were rejected
+    from study_program_intelligence.report import handcheck_sheet as H
+    cfg, hc, rule = H.config()
+    for c in ("arvr", "robotics_b"):
+        t = H.verdict_table(c, {**cfg, "decisions": {}}, hc)
+        now = H.f1_f4(t, rule)
+        for mod, m in cfg["candidates"][c]["modules"].items():
+            t.loc[t["module"] == mod, ["verdict", "prog"]] = [m["if_rejected"], None]
+        worst = H.f1_f4(t, rule)
+        n.add(f"sheet_{c}_e2_rows", g, f"Adapted-module (E2) verdicts on the hand-check sheet, {c}", len(cfg["candidates"][c]["modules"]),
+              str(len(cfg["candidates"][c]["modules"])), "docs/handcheck_sheet.md",
+              check=f"F1 {now['F1 %']} %, T {now['T']:g}, N {now['N']:g}")
+        n.add(f"sheet_{c}_f1_worst", g, f"F1 if every E2 verdict were rejected, {c}", worst["F1 %"], f"{worst['F1 %']} %",
+              "docs/handcheck_sheet.md", check=f"If every E2 is rejected: F1 {worst['F1 %']} %, T {worst['T']:g}, N {worst['N']:g}",
+              data="configs/handcheck_sheet.yaml")
+
+
+TIE_BREAK_LITERALS = [   # stated in docs/evidence_tie_break.md, from the sources named there
+    ("tb_baseline_p1_cyber", "Baseline: P(rank 1) Cybersecurity B.Sc.", 91.7, "91.7 %", "P(rank 1) 91.7 % in the baseline ranking"),
+    ("cyber_professorships", "Baseline: new professorships the cyber bachelor needs", 2, "2", "2 new professorships, 1 lab engineer, a security lab"),
+    ("cyber_security_cover", "Baseline: EMI's cover of a cyber bachelor's security content (upper end)", 31, "31 %", "security content (31 %)"),
+    ("cyber_proxy_by", "Baseline: cyber proxy first-years Bavaria, growth 2019-24 (all / German)", [5.9, 1.9], "+5.9 / +1.9 %/yr",
+     "cyber proxy first-years Bavaria +5.9 %/yr 2019-24, but German only +1.9 %/yr"),
+    ("cyber_gross", "Baseline: cyber bachelor gross first-years low / central / high", [21, 39, 75], "21 / 39 / 75", "gross first-years 21 / 39 / 75"),
+    ("cyber_net_new", "Baseline: cyber bachelor net new low / central / high", [15.3, 32.0, 64.4], "15.3 / 32.0 / 64.4", "net new to OTH 15.3 / 32.0 / 64.4"),
+    ("cyber_ads", "Baseline: job ads 'Cyber Security' Germany / Bavaria share / 100 km", [851, 30.9, 191], "851 / 30.9 % / 191",
+     '"Cyber Security" 851 ads in Germany, Bavaria 30.9 %, 191 within 100 km'),
+    ("cyber_competitors_150km", "Baseline: dedicated cyber bachelors within 150 km", 4, "4", "4 dedicated bachelors within 150 km"),
+    ("trends_robotik_share", "'Robotik Studium' share of 'Informatik Studium', 2019 / 2021 / 2026", [2.4, 3.5, 3.4], "2.4 / 3.5 / 3.4 %",
+     '"Robotik Studium" 2.4 % (2019), 3.5 % (2021), 3.4 % (2026, Jan-Oct)'),
+    ("gross_share_informatik", "AR/VR central gross first-years as a share of Bavarian Informatik first-years 2024", 1.4, "1.4 %",
+     "would be 1.4 % of Bavaria's 4,110"),
+    ("rule_groups", "Decision rule: signal groups a candidate must lead to win on demand", [3, 4], "3 of 4", "leads in at least three of the four"),
+    ("rule_jobs_band", "Decision rule: job-ad counts within this margin are neutral", 10, "10 %", "within 10 % of each other is neutral"),
+    ("rule_trends_band", "Decision rule: Trends slope difference below this is neutral (pp/yr)", 0.1, "0.1", "under 0.1 percentage points a year"),
+    ("rule_jobs_radius", "Decision rule: radius for the job-ad comparison", 100, "100 km", "within 100 km of Amberg: the largest"),
+    ("gpu_workstations", "GPU workstations listed on the IKKI page", 32, "32", "GPU lab with 32 workstations"),
+    ("xr_headsets_estimate", "XR headsets a cohort of about 40 would need (assumption)", [10, 20], "10-20", "estimate 10-20 for a cohort of about 40"),
+]
+
+
+def candidates(n: Numbers) -> None:
+    """Equal-evidence step (docs/evidence_candidates.md): read from the generated tables where they exist."""
+    s, g = "docs/evidence_candidates.md", "G_candidates"
+    hc = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
+    names = {"Autonomous mobile systems B.Eng.": "autonomous", "AR/VR & visual computing B.Sc.": "arvr",
+             "Energy data management B.Sc.": "energydata", "Geo-data & geovisualisation B.Sc.": "geodata"}
+    pid = {"autonomous": "thd_ba_em", "arvr": "hsc_ba_vc", "energydata": "fhdo_ba_eedm", "geodata": "hm_ba_gds"}
+    auto = pd.read_csv(INTERIM / "feasibility_modules.csv")
+    for option, t in hc.groupby("option"):
+        k = names[option]
+        tot = t["ects"].sum()
+        e12 = 100 * t.loc[t["verdict"].isin(["E1", "E2"]), "ects"].sum() / tot
+        e1 = 100 * t.loc[t["verdict"] == "E1", "ects"].sum() / tot
+        a = auto[auto["programme_id"] == pid[k]]
+        e5 = round(100 * a.loc[a["covered"], "ects_used"].sum() / a["ects_used"].sum(), 1)
+        tf = round(100 * a.loc[a["tfidf_covered"], "ects_used"].sum() / a["ects_used"].sum(), 1)
+        row = f"| {k} | {e5:.1f} % | {tf:.1f} % | {e5 - tf:.1f} pp | {e12:.1f} % | {e1:.1f} % |"
+        src = "data/interim/feasibility_handcheck_candidates.csv"
+        n.add(f"f1_hand_{k}", g, f"F1 after the hand check (E1+E2), {k}", round(e12, 1), f"{e12:.1f} %", s, check=row, data=src)
+        n.add(f"f1_e1only_{k}", g, f"F1 without adapted modules (E1 only), {k}", round(e1, 1), f"{e1:.1f} %", s, check=row, data=src)
+        n.add(f"e5_tfidf_gap_{k}", g, f"Gap e5 vs TF-IDF coverage, {k}", round(e5 - tf, 1), f"{e5 - tf:.1f} pp", s, check=row,
+              data="data/interim/feasibility_modules.csv")
+        el = a[a["elective"]]
+        if len(el) and k in ("arvr", "energydata"):   # elective coverage stated in the electives paragraph
+            cov = el.loc[el["covered"], "ects_used"].sum()
+            n.add(f"electives_covered_{k}", g, f"Listed elective ECTS the automatic match covers, {k}", float(cov), f"{cov:g}", s,
+                  check=f"the automatic match covers {cov:g}", data="data/interim/feasibility_modules.csv")
+    by = pd.read_csv(INTERIM / "candidate_demand.csv")
+    by = by[by["region"] == "BY"].set_index("candidate")
+    for k in by.index:
+        r = by.loc[k]
+        chk = f"| {int(r['all start']):,} -> {int(r['all end']):,} | {r['all %/yr']} | {r['German %/yr']} | {r['foreign %/yr']} |"
+        n.add(f"by_growth_{k}", g, f"Bavarian growth of the demand series, {k} (%/yr)", float(r["all %/yr"]), f"{r['all %/yr']}", s,
+              check=chk, data="data/interim/candidate_demand.csv")
+        n.add(f"by_german_growth_{k}", g, f"Bavarian growth, German nationality only, {k} (%/yr)", float(r["German %/yr"]),
+              f"{r['German %/yr']}", s, check=chk, data="data/interim/candidate_demand.csv")
+    comp = pd.read_csv(INTERIM / "candidate_competition.csv").set_index("candidate")
+    for k in comp.index:
+        r = comp.loc[k]
+        chk = (f"| {k} | {r['dedicated institutions DE']} | {r['dedicated institutions BY']} | "
+               f"{r['dedicated institutions <=150 km']} | {r['dedicated institutions <=80 km']} |")
+        n.add(f"competitors_150km_{k}", g, f"Dedicated competitor institutions within 150 km, {k}",
+              int(r["dedicated institutions <=150 km"]), str(r["dedicated institutions <=150 km"]), s, check=chk,
+              data="data/interim/candidate_competition.csv")
+        n.add(f"competitors_de_{k}", g, f"Dedicated competitor institutions in Germany, {k}", int(r["dedicated institutions DE"]),
+              str(r["dedicated institutions DE"]), s, check=chk, data="data/interim/candidate_competition.csv")
+    sc = pd.read_csv(INTERIM / "candidate_scenarios.csv")
+    for k, t in sc.groupby("option"):
+        t = t.set_index("scenario")
+        levels = ("low", "central", "high")
+        gross = " / ".join(f"{t.at[x, 'gross first-years']:.1f}" for x in levels)
+        net = " / ".join(f"{t.at[x, '(b) net new to OTH']:.1f}" for x in levels)
+        n.add(f"gross_{k}", g, f"Gross first-years low / central / high, {k}",
+              [float(t.at[x, "gross first-years"]) for x in levels], gross, s, check=f"| {gross} | {net} |",
+              data="data/interim/candidate_scenarios.csv")
+    rs = pd.read_csv(INTERIM / "ranking_candidates_summary.csv")
+    slug = lambda x: "".join(ch if ch.isalnum() else "_" for ch in x.lower()).strip("_")
+    for _, r in rs.dropna(subset=["P(rank 1)"]).iterrows():   # only rules where a ranking was simulated (two or more gate passers)
+        p = 100 * float(r["P(rank 1)"])
+        n.add(f"p1_{r['option']}_{slug(r['rule'])}", g, f"P(rank 1) {r['option']}, {r['rule']}", round(p, 1), f"{p:.1f} %", s,
+              data="data/interim/ranking_candidates_summary.csv")
+    # central weighted totals (deterministic, base weights)
+    from study_program_intelligence.analysis import ranking as R
+    cfg, sc, cap = R.load(sheet_path=R.CAND_SCORES, scen_path=R.CAND_SCEN)
+    for r in R.deterministic(cfg, sc, cap).itertuples():
+        n.add(f"total_{r.option}", g, f"Weighted total at central scores, {r.option}", float(r._8), f"{r.option} {r._8:.2f}", s)
+    for k, label, v, disp, chk in CANDIDATE_LITERALS:
+        n.add(k, g, label, v, disp, s, check=chk)
+
+
+CANDIDATE_LITERALS = [   # stated in docs/evidence_candidates.md
+    ("f4_ot_strict", "Reduced OT master: share listed by IT und Automation", 83.3, "83.3 %", "83.3 % of it is listed by IT und Automation"),
+    ("f4_ot_lenient", "Reduced OT master: largest share if shared modules count elsewhere", 58.3, "58.3 %", "58.3 % comes from the KI master"),
+    ("f4_geodata", "Geo-data: share from OTH's Geoinformatik und Landmanagement", 62.3, "62.3 %", "| geodata | fails | 62.3 % from OTH's own"),
+    ("f4_autonomous", "Autonomous systems (FR track): share from E&IT", 77.0, "77.0 %", "77.0 % from E&IT (F4)"),
+    ("arvr_share_of_mi", "AR/VR central gross as a share of Bavarian Medieninformatik first-years 2024", 41, "41 %", "would be 41 % of all 141"),
+    ("arvr_rel_capture", "AR/VR: OTH new relative to the Coburg site, all model variants", "1.50-1.91", "1.50-1.91",
+     "draw 1.50-1.91 times Coburg's intake"),
+    ("arvr_e2_margin", "AR/VR: ECTS of E2 verdicts that could be rejected before F1 falls below 80 %", 14, "14 ECTS", "F1 falls below 80 % above 14 ECTS"),
+    ("plzen_km", "Distance Amberg - Plzen (straight line)", 115, "about 115 km", "about 115 km from Amberg"),
+    ("baseline_p1_cyber", "Baseline winner P(rank 1), Cybersecurity B.Sc.", 91.7, "91.7 %", "Cybersecurity B.Sc., P(rank 1) 91.7 %"),
+]
 
 
 # Numbers taken as stated in an evidence doc (key prefix = section). check = verbatim text in that doc.

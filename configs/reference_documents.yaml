@@ -1,0 +1,13 @@
+# Reference curricula for the confirmed candidates (equal-evidence step): one public module handbook of an existing
+# programme of the same type, for the feasibility check F1-F4 and the e5 / TF-IDF method agreement (E3). Downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/reference_documents.yaml \
+#       --out "data/raw/references" --manifest docs/reference_manifest.json --pdf-only
+# robots.txt checked per file. Not usable: the HFT Stuttgart AR/VR handbook (only a studycheck.de mirror, whose
+# robots.txt disallows PDFs) and THWS Geovisualisierung (THWS /fileadmin/ is disallowed); replaced by the closest
+# Bavarian programmes of the same type.
+
+documents:
+  - {id: ref_visual_computing_coburg, owner: Hochschule Coburg, programme: Visual Computing B.Sc. (candidate AR/VR & visual computing), title: Modulhandbuch VC, version: "SoSe 2025", url: "https://www.hs-coburg.de/wp-content/uploads/2025/05/Modulhandbuch_VC_SoSe25.pdf"}
+  - {id: ref_energydata_dortmund, owner: Fachhochschule Dortmund, programme: Energiewirtschaft und Energiedatenmanagement B.Sc. (candidate energy data), title: Modulhandbuch, version: "PO 2024, 21.11.2024", url: "https://fh-dortmund.de/medien/21_11_2024_Energiewirtschaft-Energiedatenmanagement_Modulhandbuch.pdf"}
+  - {id: ref_autonomous_deggendorf, owner: TH Deggendorf, programme: Elektromobilität, autonomes Fahren und mobile Robotik B.Eng. (candidate autonomous systems), title: Modulhandbuch EM-B, version: "14.04.2025", url: "https://th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_em-b.pdf"}
+  - {id: ref_geodata_hm, owner: Hochschule München, programme: Geodata Science B.Sc. (candidate geo-data), title: Modulhandbuch GSB, version: "WiSe 2026/27", url: "https://mediapool.hm.edu/media/mucdai/mucdai_lehre/modulhandbuch_10/wise26_1/gsb222_modulhandbuch.pdf"}

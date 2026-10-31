@@ -237,6 +237,194 @@ Decided by: team (Somantha Manuranga).
 Decision: the feasibility test with existing resources is fixed in configs/feasibility.yaml (F1 coverage at least 80 % of taught ECTS by existing EMI modules unchanged or adapted, F2 new content at most 20 % with teaching assignments and new modules by existing professors each at most 10 ECTS bachelor / 5 ECTS master, F3 existing labs only, F4 at most 50 % of taught ECTS from any one OTH programme; e5 match at the calibrated Step 41 threshold, every counted match for a shortlisted candidate confirmed by hand; lenient values as a sensitivity only). Committed before any candidate is re-scored; the commit time is the proof of order.
 Decided by: team (Somantha Manuranga).
 
+## 2026-10-19: EMI module handbooks downloaded by script from /files/
+Decision: the current handbooks of all EMI programmes are linked from the public programme pages and served under oth-aw.de/files/, which OTH's robots.txt does not disallow (it disallows /fileadmin/; a header check showed no redirect). They are therefore downloaded by ingest/documents.py (configs/oth_handbooks_documents.yaml, robots.txt checked per file, 3 s delay), not by hand: 12 handbooks (Industrie-4.0-Informatik and Medieninformatik share one) and two elective catalogues. The KI B.Sc. page lists no handbook; the earlier manual copy is used. The earlier manual copies stay unchanged for the baseline. The full Studiensuche catalogue (90 fields, both levels) is harvested separately for the rarity step (R4); the 13-field harvest behind the baseline is not changed.
+Decided by: team (Somantha Manuranga).
+
+## 2026-10-19: Parsing the current EMI handbooks (re-scope week 1)
+Decision: the current EMI handbooks are parsed by transform/modules.py --set emi2026 into a separate table (data/interim/modules_emi_2026.csv, check report reports/modules_emi_2026_check.md); the baseline module table is unchanged (verified byte for byte). Two parser options were added and used only for this set: a "numbered" contents style (MT, MP: numbered entries, page numbers missing or 3-level numbering, cross-references "vgl." and elective-group headings skipped, numbering stripped when matching body headings) and an "unordered" second search for handbooks whose contents order differs from the body (GI). Result: 412 unique modules from 13 handbooks; 3 contents entries not found (DD Fotodesign, GI Ausgleichungsrechnung, EDU E-Assessments in MINT-Fächern); EDU's credit fields are not in the PDF text layer, so its ECTS will be imputed and flagged. E&IT's dropped entries are cross-references of shared modules, not lost modules. The faculty elective catalogues are kept for a later names-only check. The full catalogue is built by transform/programmes.py --set full into separate files; the baseline catalogue is unchanged (verified).
+Decided by: team (Somantha Manuranga).
+
+## 2026-10-19: Rarity screen amended before running
+Decision: configs/rarity.yaml (committed 22:23) defined a programme type by the exact normalised title. A dry count before any screening result showed 2,872 of 2,996 title types at no more than 3 institutions: exact titles measure wording, not rarity. The primary type is therefore a rare topic word: a content word of the normalised titles that appears in the full-time titles of at most 3 institutions (e.g. "motorsport"); subject and exact-title counts are still reported. The threshold (3 institutions), the study fields and the teachability ranking are unchanged.
+Decided by: team (Somantha Manuranga); amendment proposed by Claude.
+
+## 2026-10-19: Re-scope week 2: feasibility re-check, recombination and rarity screen
+Decision: (1) Feasibility of the current options checked against the pre-registered rule (analysis/feasibility.py; reference curricula THI/THD/THWS, THI/THD/HDBW, Hochschule Kempten Robotik, parsed by transform/modules.py --set references; Kempten's credits split by teaching form are summed). The Step 41 matching method is reused; its threshold recalibrated on this module set (0.277, AUC 0.762) as the rule requires; TF-IDF shown as a cross-check. The cyber bachelor and the cyber/OT master fail F1, F2 and F3; a reduced cyber bachelor is not viable (10 security ECTS at bachelor level). Robotics: path A (industrial robotics) fails F3 (no robot cell in EMI's public lab list, configs/emi_labs.yaml); path B (assistive / service robotics) passes F1-F4 on a hand check proposed by Claude (configs/feasibility_handcheck.yaml), pending Soma's confirmation. (2) Recombination (analysis/recombination.py): 263 distinct EMI modules clustered (agglomerative, cosine on centred e5; k by silhouette 8-30 gave k = 30, silhouette 0.092, i.e. weak structure); profiles are hypotheses for the hand review. (3) Rarity (analysis/rarity.py, configs/rarity.yaml as amended): 1,017 rare topic words in 5,034 EMI-linked full-time offers; the top 40 by teachability go to a hand review. (4) Proposed week-3 candidates: robotics path B, autonomous mobile systems, AR/VR & visual computing, energy data management, geo-data & geovisualisation, reduced OT-security master (docs/evidence_feasibility.md). Cluster labels and rarity verdicts are proposed by Claude and reviewed by Soma.
+Decided by: team (Somantha Manuranga); proposals by Claude pending review.
 ## 2026-10-21: Branch workflow for two collaborators
 Decision: main holds only reviewed work and changes only through pull requests (CONTRIBUTING.md); each person works on topic branches named <name>/<topic>. The eight unreviewed re-scope commits (week 1 and 2, be0b3eb..43a3800) were moved to branch soma/rescope, and main was reset to the reviewed baseline (13aa60b, tag baseline-new-resources) and force-pushed once, before any collaborator cloned the repository. Nothing was lost: soma/rescope holds all eight commits. From now on main is never force-pushed. Reason: pushing everything to main makes parallel work by two people unsafe.
 Decided by: team (Somantha Manuranga).
+
+## 2026-10-24: Candidates for the equal-evidence step
+Decision: all six week-2 candidates get the same evidence as the baseline options (criteria fixed first in docs/criteria_equal_evidence.md): robotics + AI B.Sc. path B (assistive / service), autonomous mobile systems, AR/VR & visual computing, energy data management, geo-data & geovisualisation, and the reduced OT-security master. Soma delegated the choice ("evaluate yourself"); Claude kept all six because dropping a candidate before it has equal evidence would decide the ranking by omission. The robotics path B hand check (configs/feasibility_handcheck.yaml) is treated as delegated in the same way and stays marked "proposed". Reference curricula (configs/reference_documents.yaml, robots.txt checked per file): TH Deggendorf EM-B (autonomous), FH Dortmund Energiewirtschaft und Energiedatenmanagement (energy data), Hochschule Coburg Visual Computing (AR/VR; the HFT Stuttgart handbook exists only on a studycheck.de mirror whose robots.txt disallows PDFs), Hochschule München Geodata Science (geo; the THWS Geovisualisierung handbook is under the disallowed /fileadmin/).
+Decided by: Claude, on Soma's delegation; to be reviewed by Soma.
+
+## 2026-10-24: Equal evidence for the six candidates: method decisions
+Decision: (1) Feasibility: the week-2 method unchanged; thresholds calibrated on the week-2 reference programmes only and TF-IDF fitted on the week-2 module set, so week-2 results do not move (verified). Practical-phase items and placeholder electives of the new references are frame modules. Every taught core module of the four new references got a hand verdict (configs/feasibility_handcheck.yaml, proposed by Claude). The reduced OT-security master has no fitting reference and is assessed as a design from EMI's existing master modules. (2) Demand: closest Destatis subject codes per candidate (configs/candidates.yaml); trend score by a numeric rule written before any candidate series was computed, which reproduces all six baseline trend scores. (3) Competition: theme regexes on titles (dedicated) and focus fields; exclusions added after the hand check of every hit within 150 km (physiotherapy, economics, technical communication, cyber-physical systems, cybernetics, MBA/defence/law/security studies), before any score was set. (4) Capture: Step 47/48 model unchanged; no new candidate has an intake anchor, so the robotics logic (assumed comparator 20-60 at the nearest dedicated site) applies to the three own runs (autonomous, AR/VR, geo-data); the OT master reuses the cyber-master run with its THI anchor; energy data has no competitor site in Bavaria, so its gross range is widened to 10-60 and its shares are the span of the other runs. (5) Scores: numeric versions of the Step 49 anchors (configs/scores_candidates.yaml), written after the evidence and before the ranking, each checked against the baseline scores it can reproduce (tests/test_candidates.py). Labour relevance uses only the shortage condition until the 1 Nov ad snapshot; weak ranges are symmetric. (6) Result: two candidates pass the gate (robotics path B, AR/VR & visual computing); AR/VR leads with P(rank 1) 73.5 %, below the 80 % robustness bar (docs/evidence_candidates.md). Google Trends for the new terms and neighbouring-country programmes were not collected (manual download; only a sensitivity).
+Decided by: Claude on Soma's delegation; to be reviewed by Soma.
+
+## 2026-10-25: FH Dortmund handbook re-parsed (review finding)
+Decision: the third claim review found that the second of two FH Dortmund modules titled "Regulatorische Energiewirtschaft" (pp. 33 and 36) had been matched to a course row inside the first, and that the thesis heading ("103 Thesis") was missed, so the thesis ECTS defaulted to 5. Fixed in transform/modules.py: module headings must open a page (heading_first, Dortmund only), three-digit module numbers are stripped, and the contents is page 2 only; feasibility.py now drops exact repeats (same title, section and page) and a second listing of the same elective; two modules with one title in core sections are kept. Result: all 40 modules with their ECTS; energy data F1 69.4 % (was 72.5 %), T 26 ECTS (was 20), fit score 2 (was 3); its gate verdict (fail) and the ranking of the two candidates that pass are unchanged. Week-2 rows and the EMI module table are unchanged (verified).
+Decided by: Claude, on Soma's approval of a fourth review round.
+
+## 2026-10-25: Fourth review: Digital Design "AR/VR" module and Deggendorf specialisations
+Decision: (1) transform/modules.py treated every all-caps contents line as a section heading, so the Digital Design module "AR/VR" (5 ECTS) was merged into "Web-Anwendungsentwicklung". Only all-caps lines longer than six characters are headings now; the module is in the EMI table, the baseline and reference tables are unchanged (verified byte for byte). As the pre-registered rule requires when the EMI module set changes, the e5 threshold was recalibrated: 0.285 (was 0.277). Automatic numbers moved (e.g. robotics 80.7 % -> 75.4 %, cyber bachelor references 49-76 %); no overall verdict changed (robotics' automatic match now also fails F1; its verdict rests on the hand check), and this supersedes the 2026-10-24 note that week-2 results do not move; and the hand checks do not depend on the threshold. (2) TH Deggendorf's EM-B has two specialisations (Elektromobilität EM, Autonomes Fahren / mobile Robotik FR; handbook pp. 96-113). As for Kempten's paths, the candidate is assessed on its own track (FR): F1 93.4 %, T 0, N 10, labs sufficient, F4 77.0 % from E&IT, so it fails on F4 only (before: both tracks counted, F2 and F3 also failed). Its fit score is 5 by the rule; it stays excluded by the gate.
+Decided by: Claude, on Soma's approval of a fifth review round.
+
+## 2026-10-25: Hand-check sheet and demand tie-break
+Decision: (1) Hand-check sheet (docs/handcheck_sheet.md, report/handcheck_sheet.py; F4 there counts each E2 row for the programme (family: KI and KI International count as one) of the EMI module the sheet names, which gives robotics path B 38.0 % for the KI family instead of week 2's 25.5 % from the automatic match; still under 50 %): every adapted-module (E2) verdict behind the two gate passes (7 AR/VR, 10 robotics path B) with the EMI module behind it (configs/handcheck_sheet.yaml). The texts shown are 300 characters starting at each module's learning-outcome heading (Lernziele / Qualifikationsziele / Learning Outcomes, in that order), not the first 300 characters of the whole text, because the whole text starts with form fields that contain professors' names (project rule: no names); names are masked. A rejected module becomes a teaching assignment or a new module by an existing professor as stated per row; F1-F4 and the ranking are recomputed only after Soma's answers. (2) Demand tie-break (analysis/tie_break.py, docs/evidence_tie_break.md) from data already collected; the broad Informatik pool is shown as a pool both candidates share (favours neither, weak); an English-title count of competitors was considered as a language-of-instruction indicator and not used (a title does not show the teaching language; the catalogue has no language field). (3) XR hardware: no public headset count; the Digitaler Campus page, its Creative Space and Maker Space pages and the IKKI page were downloaded (robots.txt checked, configs/oth_xr_documents.yaml); a need of 10-20 headsets for a cohort of about 40 is an assumption. (4) Google Trends: three downloads specified for Soma with the baseline settings; file names do not start with trends_ so the baseline Trends step is unchanged. (5) Two-level answer: (a) existing resources: demand does not break the AR/VR vs robotics path B tie yet (the first draft said robotics leads moderately; the opposing review showed that the Destatis rows are one signal and that AR/VR's proxy matches none of its competitors); a decision rule for the pending job ads and Trends was fixed before those data arrive (docs/evidence_tie_break.md); (b) with investment: the baseline Cybersecurity B.Sc. result.
+Decided by: Claude, on Soma's instruction; to be reviewed by Soma.
+
+## 2026-10-26: Fourth claim-review round as a documented exception
+Decision: the third claim review of the hand-check sheet and demand tie-break found two wrong claims with one cause: the robotics F4 on docs/handcheck_sheet.md was labelled "ba_ki" although KI and KI International are counted as one family. The fix changes labels only (sheet intro, summary label "KI family: ba_ki + ba_iki", the 2026-10-25 log entry); no number changed (F4 stays 38.0 %, key numbers unchanged). A fourth review round limited to this fix is an exception to the three-round limit of the standing rule, allowed by Soma for this label-only case; the criteria were not changed.
+Decided by: Soma.
+
+## 2026-10-26: Soma's hand check, first answers
+Decision: Soma rejected two adapted-module (E2) verdicts of robotics path B: RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse ("Data Analytics is not statistics / scientific writing") and RO 34 Verteilte Softwaresysteme ("cloud is not distributed systems"); both become new modules by existing professors (N), as configs/handcheck_sheet.yaml states. Recorded in configs/handcheck_sheet.yaml (decisions, with reasons) and docs/handcheck_sheet.md. Result with these two (the other rows keep the proposed verdict until decided): robotics path B F1 83.9 % (passes), T 7, N 15 ECTS, so F2 fails (N above 10); F4 34.3 % (KI family). Any split of the two modules between T and N also breaks F2 (T would exceed 10 or N would exceed 10). AR/VR unchanged (no decision recorded). The other answers in Soma's message used row numbers that the sheet did not show and did not match the two stated reasons; the sheet now numbers its rows 1-17 and those answers are to be re-sent. The ranking is not rerun before the 1 Nov job ads and the Trends downloads.
+Decided by: Soma (verdicts); recorded by Claude.
+
+## 2026-10-26: Soma's hand check, part 1 (by sheet row)
+Decision: Soma's verdicts, recorded per sheet row in configs/handcheck_sheet.yaml (decisions, with reasons) and shown in docs/handcheck_sheet.md: rows 1, 2, 4, 5 (seminar format), 6, 8 (project format), 10, 12-15 (project format), 16 (law part as teaching assignment) and 17 confirmed; row 11 (RO 34 Verteilte Softwaresysteme) rejected ("cloud is not distributed systems"); rows 3 (Mathematik für Visual Computing), 7 (Interdisziplinäre Projektarbeit) and 9 (RO 31 Wissenschaftliches Arbeiten und statistische Datenanalyse) open, to be decided on content. The earlier reject of row 9 is withdrawn (now open). Row 16: Claude counts it as adapted (E2) with no teaching-assignment ECTS, a reading to be confirmed by Soma (the law part's ECTS are not stated; more than 3 ECTS as teaching assignment would make robotics path B fail F2). Soma's request named five mathematics topics to check in row 3: 3D rotations, coordinate transforms, optimisation, multivariate analysis, eigenvalues. For the open rows a side-by-side comparison with quotes and PDF pages, without a proposed verdict: docs/handcheck_open_rows.md. Recompute and single-flip sensitivity: docs/evidence_tie_break.md (generated by report/handcheck_sheet.py). With the open rows counted as confirmed both candidates pass F1-F4 and sit exactly at the cap of 10 ECTS for new modules by existing professors; robotics path B passes only if row 9 is confirmed (or row 11 reversed), AR/VR only if rows 3 and 7 are both confirmed. The ranking is not rerun before the 1 Nov job ads and the Trends downloads.
+Decided by: Soma (verdicts); recorded by Claude (row-16 reading: Claude, pending Soma).
+
+## 2026-10-26: Soma's hand check, part 2, and the three-level answer
+Decision: Soma rejected rows 3 (Mathematik für Visual Computing: 3 of 8 topics missing and 4 only partly covered, so new content is over a third, 38-88 %), 7 (Interdisziplinäre Projektarbeit: the workload doubles, 150 h -> 300 h, so half of it is new) and 9 (RO 31: none of the scientific-work part is covered and regression and experiment design are missing). Row 16: the law part is counted by its share of RO 71's learning outcomes, as Soma instructed; outcome 1 of 4 is the legal framework (hske_ba_robotik.pdf p. 118), so 1.25 of 5 ECTS become a teaching assignment (2.5 ECTS if outcome 4, which also names laws, is counted too; both stay within the cap). Recomputed under the strict rule (decision) and the lenient sensitivity, both pre-registered in configs/feasibility.yaml (commit 71d281a): no candidate passes the strict rule (robotics path B fails F2 only, 15 ECTS of new modules by existing professors against the cap of 10; AR/VR fails F1 79.3 % and F2); under the lenient rule only robotics path B passes (F1 83.0 %, T 8.25, N 15, new content 17.0 %). The conclusion has three levels: (a) strict existing resources: none; (b) lenient existing resources: robotics path B; (c) with investment: the cybersecurity baseline. The 10-ECTS cap is recorded as the project's own operationalisation of the supervisor's constraint. The demand comparison is marked pending; the demand ranking is not rerun before the 1 Nov job ads and the Trends downloads. The reviewer's three optional wording notes on docs/handcheck_open_rows.md are left out, as Soma asked. After the opposing review (E4) the answer was sharpened: level (b) is labelled a sensitivity, not a decision; the project's answer is that no candidate passes the decision rule and robotics path B is a conditional candidate (conditions: the faculty confirms about 15 ECTS, about 12 SWS a year (on the 137-ECTS reference base; about 18 ECTS scaled to 165 taught ECTS), of new teaching by existing professors as absorbable, and the demand data due after 1 Nov do not go against it); the smallest new resource is stated (5 ECTS, about 4 SWS a year, with whole modules; 3.25 ECTS, about 2.6 SWS, if 1.75 ECTS fill the free teaching-assignment headroom; about 8 ECTS scaled to 165 taught ECTS); the three candidates that fail only F4 are named apart; the 137 vs 165 ECTS base is disclosed; level (c) is marked outside constraint 1.
+Decided by: Soma (verdicts, row-16 rule, structure); computed and recorded by Claude.
+
+## 2026-10-26: Fourth claim-review round for the three-level answer, a documented exception
+Decision: the third claim review of the three-level answer found two overstated claims: the resource figures for robotics path B (5 ECTS / 4 SWS, 3.25 ECTS / 2.6 SWS, 15 ECTS / 12 SWS) were stated without saying they are on the 137-ECTS reference base, and the cybersecurity pool was called "mostly foreign" although only its growth is (80 %; the 2024 pool is 44 % foreign). The fix adds qualifiers and the scaled figures (about 8 ECTS / 6.5 SWS beyond the caps and about 18 ECTS / 14.5 SWS as the condition at 165 taught ECTS) and corrects the wording, including a third change in the same commit ("its new teaching rose from 5 to 15 ECTS" became "its new modules by existing professors rose from 5 to 15 ECTS", the same figure); no computed result, gate or table changes. The round-4 check confirmed both fixes; its one finding (this entry did not name the third change) was fixed here and, by Soma's decision, pushed without a further review round. A fourth review round limited to these two fixes is an exception to the three-round limit of the standing rule, allowed by Soma for this wording/qualifier-only case; the criteria were not changed.
+Decided by: Soma.
+
+## 2026-10-26: Demand thresholds pre-registered (commit a4a6908)
+Decision: configs/demand_thresholds.yaml fixes, before any 1 Nov data exists, how the 1 Nov job ads and the Google Trends download are read: robotics path B vs AR/VR (job ads within 100 km, largest single keyword per group, neutral within a ratio of 1.10; Trends slope 2022-2026 of each term as a share of "Informatik Studium", neutral below 0.1 percentage points a year), robotics path B vs the minimum cohort of 20 (job ads >= 150 favours, <= 74 goes against; Trends slope >= +0.1 favours, <= -0.1 goes against), and the downgrade of robotics path B to "not recommended" (both against, or one against and central steady-state gross first-years below 20). The 3-of-4 rule is unchanged. Committed in a4a6908 and pushed to soma/rescope; data/raw/jobsuche then held only the 15 and 17 Oct snapshots (tests/test_demand_thresholds.py checks the order).
+Decided by: Soma (task); thresholds written by Claude.
+
+## 2026-10-26: First-years and professor-equivalents for the three-level answer
+Decision: (1) First-years for robotics path B, AR/VR, the cybersecurity bachelor and, as the one reference F4-only fail, the reduced OT-security master (the F4-only fail with the highest central total, 3.14) run through one shared layer (analysis/first_years.py, configs/first_years.yaml) on top of the unchanged Step 47/48 model: German / international split by the Bavarian subject pool's mix in its base year, each group projected with its pool's yearly growth over the window (robotics path B: German -3.3 %/yr, foreign +3.1 %/yr, as model inputs), ramp-up 60 / 80 / 100 % and the minimum cohort of 20 from analysis/capture.py. Assumptions: first intake winter 2028/29 (an assumption), steady state in year 3. The cyber model values (21 / 39 / 75) are unchanged (tests/test_first_years_cost.py). A rolling-origin backtest of each German pool series is reported with MASE; for robotics path B no model beats the naive scale (best 1.30, drift 2.03), so its pool trend is stated as an assumption. (2) Cost in professor-equivalents (analysis/cost.py, configs/cost.yaml): one professor-equivalent = 18 SWS per semester, the regular teaching load of a professor in civil-servant status (AVBayHIG § 4 Abs. 1 Nr. 1, configs/regulation_documents.yaml) in both semesters; ECTS to SWS by the configs/feasibility.yaml assumption; a new professorship counts 1 and the lab engineer is counted as one position; lab and equipment cost not estimated. Cost per expected first-year is shown with and without the trend projection, because cyber's projection rises mainly through foreign growth carried on to 2030.
+Decided by: Soma (task); assumptions written by Claude.
+Review round 1 fixes (before any 1 Nov data): analysis/demand_thresholds.py now reads the capture model's own central steady-state gross for robotics path B (28.7, column "gross (model, base year)"), as the pre-registered text says, instead of the trend-projected 28.6; the thresholds are unchanged. The cost comparison adds a like-for-like column (all new teaching, no positions) after the E6 attack.
+Review round 2 fixes (before any 1 Nov data): the cost table adds robotics path B's figures scaled to 165 taught ECTS (N and T scaled, the cap of 10 not), which shows that on new teaching alone robotics path B is not cheaper per first-year than cyber with cyber's trend projection (it is cheaper without it); analysis/demand_thresholds.py now applies the pre-registered fallback (the first complete snapshot on or after 1 Nov); the thresholds section states what a downgrade would need given the 17 Oct count. Thresholds unchanged.
+
+## 2026-10-31: Hand-check decisions applied to the candidate score sheet (external review, finding B1)
+Decision: configs/scores_candidates.yaml now carries the decided gate state recorded in configs/handcheck_sheet.yaml
+(Soma's verdicts of 26 Oct) instead of the proposed one: robotics path B fails the strict gate (F1 83.0 %, T 8.25,
+N 15 against the cap of 10, F4 34.3 % KI family) and passes the lenient sensitivity; AR/VR fails both rules (F1
+79.3 %, N 25, new content 20.7 %); the lenient pass list is robotics path B alone. By the pre-registered fit rule the
+decided values set AR/VR's institutional fit to 4 (T+N 25 ECTS; was 5 on the proposed verdicts); robotics path B's
+fit stays 4 (T+N 23.25 ECTS). Both candidates carry feasibility 1 under the strict rule (gate failed, kill rule 2);
+the lenient sensitivity restores robotics path B's pre-registered 4 / 5 / 5 via sensitivity.lenient_gate.feasibility.
+analysis/ranking.py --candidates now sizes the Monte Carlo by the gate population per rule and simulates a ranking
+only when at least two candidates pass (currently: strict none, lenient robotics path B alone, so no ranking is
+simulated and the report states that); the central-score comparison of all six is kept (strict rule: ot_master 3.14,
+autonomous 2.90, robotics_b 2.85, arvr 2.83, energydata 2.58, geodata 2.43; lenient: robotics_b 3.45), and the AR/VR
+counter-argument scenarios of the pre-hand-check ranking are retired (docs/evidence_candidates.md section 7 records
+them as the superseded state). report/key_numbers.py reads the new summary schema (P(rank 1) only where a ranking was
+simulated); tests/test_candidates.py now checks the sheet's gates, fit scores and lenient list against the recorded
+decisions (report/handcheck_sheet.py) instead of the proposed verdicts, and a new test fails if the sheet and the
+decisions ever drift apart again. This applies recorded evidence; no pre-registered criterion, threshold or scoring
+rule changed. Known consequence for the 4 Dec freeze: the superseded passages of docs/evidence_candidates.md (gate
+passes, P(rank 1) 73.5 %, central totals 3.63 / 3.45) no longer match the regenerated outputs, so the verbatim
+key-number check will flag them until that doc is updated (external review, finding M2).
+Reason: the post-1-Nov demand-ranking rerun and the 4 Dec freeze rerun would otherwise have reproduced the superseded
+"AR/VR passes, 73.5 %" result from the stale sheet (external review, finding B1).
+Decided by: Soma (instruction to apply the review's fix B1); carried out by the external reviewer in the review copy,
+to be ported and committed on soma/rescope.
+
+## 2026-10-31: Review fixes M1-M5, foreign-pool backtests and supporting actions (external review)
+Decision: (1) M1: analysis/feasibility.py appends the DECIDED gates (configs/handcheck_sheet.yaml, computed by
+report/handcheck_sheet.all_gates) to reports/feasibility.md and retitles its hand-check tables as proposed verdicts;
+configs/feasibility_handcheck.yaml marks robotics_bsc and arvr_bsc as decided. (2) M2: supersession banners on
+docs/evidence_candidates.md and docs/evidence_feasibility.md, the stale week-2 verdict cell and the stale open-risks
+bullet corrected, the handover's stale-docs list completed. (3) M3: the snapshot done-when is 92 counts (23 keywords
+x 4 regions) with no null totals (CLAUDE.md, both handover copies). (4) M4: ingest/jobsuche.py treats a missing total
+field as ERROR and refuses to replace a day's stored snapshot with a more incomplete rerun;
+analysis/demand_thresholds.py rejects null totals (a null can no longer silently drop a keyword from a group
+maximum); pipeline.py no longer tolerates a failed snapshot step as "ok with gaps"; a null-total case was added to
+tests/test_demand_thresholds.py. A probe on 31 Oct confirmed the endpoint (v6, maxErgebnisse; "Cyber Security" 872 in
+Germany against 851 / 858 on 15 / 17 Oct). (5) M5 presentation: a reading note under the three-level table makes the
+model base-year first-years the primary figures; evidence_forecast's interval is labelled a bias-corrected band and
+its origins caveat corrected to 12 (2012-2023); evidence_tie_break states that, given the 17 Oct count of 162 ads,
+the pre-registered downgrade is practically out of reach, so the operative level-(b) condition is the faculty's
+answer on the new teaching. (6) NEW EVIDENCE: analysis/first_years.py now backtests each pool's German AND foreign
+series (rolling origin, MASE). Result: the foreign cyber-proxy pool is far from forecastable (best MASE 4.22, drift
+5.02; robotics foreign best 2.76; only AR/VR's small foreign series beats the scale at 0.79), so the compounded
+foreign growth behind the projected steady states is recorded as a scenario, not a forecast
+(reports/first_years.md, data/interim/pool_backtest.csv with a new "group" column, docs/evidence_tie_break.md). In
+the review copy the long table was read from data/interim/demand_split.csv because data/raw is not shipped; a rerun
+from raw reproduces it (the German rows were verified to match the shipped values exactly). (7) Housekeeping:
+ot_master's lenient gate row shows the most favourable attribution (58.3 %, with a note in the generated gate
+block); README qualifies the catalogue size (4,875 unique offers, 4,806 bachelor or master; counted from
+data/processed/programmes.csv); the two dead LUFV entries left docs/regulation_manifest.json; robots.txt errors
+(5xx or unreachable) now count as blocked instead of allowed (ingest/documents.py); pypdf moved to the core
+dependencies (capture, demand_split and school_leavers import it); module_gaps.embed imports sentence-transformers
+only when a text is missing from the embedding cache, so cached reruns work without torch; a CI workflow
+(.github/workflows/tests.yml) runs pytest on every push (data-dependent tests skip in a clean clone); scores.yaml
+notes the clipping asymmetry of the German-only robotics range (1 / 1 / 2, mean 1.33); evidence_feasibility notes
+the in-sample threshold calibration. (8) Neighbours check (rescope_plan (e), time-boxed, docs/neighbours_check.md,
+pending Soma's review): no robotics-titled bachelor found in Plzeň; ZČU's Kybernetika a řídicí technika bachelor
+carries robotics as a specialisation, a focus-type competitor under the pre-registered rule, so the differentiation
+score is unchanged; Austria's nearest sites lie beyond 150 km; AR/VR is moot (fails the gate). Verification after
+the changes: all 340 committed key numbers still occur verbatim in their source docs; the decided gates, the
+baseline ranking (91.7 / 6.0 / 2.3) and the German pool backtests reproduce; the test suite is unchanged apart from
+the additions (82 passed; the 3 known environment failures of the bundle remain). No pre-registered criterion,
+threshold, weight or score changed.
+Reason: the user's instruction to apply review fixes M1-M4 and the actions the pipeline had not taken (external
+review findings and section 6 of the handover).
+Decided by: Soma (instruction); carried out by the external reviewer in the review copy, to be ported and committed
+on soma/rescope. The neighbours check and the M5 reading note are reviewer proposals pending Soma's review.
+
+## 2026-10-31: Deep-analysis layer added (Soma's instruction; criteria fixed first in docs/criteria_deep_analysis.md)
+Decision: on Soma's instruction ("build the deep analysis for the arguments now; git handling stays with me") the
+additive deep-analysis layer was built under its own pre-fixed criteria D1-D7: (1) a data-quality gate
+(analysis/data_quality.py, 26 structural checks, runs in the pipeline); (2) a specification-curve analysis
+(analysis/spec_curve.py) that reruns the pre-registered Step 47/48 machinery from the generated tables behind a
+reproduction gate (the pre-registered specification reproduces 21/39/75, 15.3/32.0/64.4 and 14.9/28.7/55.3 exactly)
+and then under every reasonable alternative: the central intake clears the minimum cohort of 20 in 100.0 % (cyber)
+and 91.2 % (robotics path B) of 2,880 capture specifications, and the baseline winner is first in 100.0 % of 192
+ranking specifications (P(rank 1) 0.659-0.945, median 0.804; seed noise about 0.2 points; single weights scaled
+0.5x-1.5x keep it within 0.858-0.958); the spread is driven by the declared assumptions (cyber: pool trend 62.2 %;
+robotics: high anchor 48.9 %); (3) a Gamma-Poisson shrinkage model over the published comparable intakes
+(analysis/intake_model.py): 92.5 % of the OTH predictive mass inside the pre-registered 21-75, median 39.2, 3.8 %
+below the minimum cohort; (4) a required-share benchmark and accessibility indices (analysis/capture_benchmark.py):
+the minimum cohort is 0.36 % and the central cyber case 0.71 % of the own pool against a reported 1.07 % (one student review) at
+TH Deggendorf's equivalent pool; (5) an embedding-based cannibalisation profile
+(analysis/cannibalisation_similarity.py): substitution concentrates on the programmes the Huff model names
+(cyber: the security-focus pair, 52.6 %; robotics: the KI family, 41.3 %); (6) demand corridors to 2030 from the
+rolling-origin errors (analysis/demand_corridor.py): cyber 39.4-63.2 with a conservative point of 42.7 that needs no
+foreign compounding, robotics 22.7-29.4; (7) figures f09/f10 (report/figures_deep.py), the synthesis
+docs/evidence_deep_analysis.md with the D1-D7 scorecard, and the professor-facing docs/argument_brief.md mapping
+every claim to its evidence, strength and counterargument. All modules are pipeline steps and covered by
+tests/test_deep_analysis.py (incl. the reproduction gate). Nothing pre-registered changed; every new result is
+framed as a sensitivity, benchmark or corridor around the three-level answer.
+Reason: the defence needs arguments that survive attack; the layer quantifies robustness instead of asserting it.
+Decided by: Soma (instruction); built by the external reviewer in the working clone; commits and pushes stay with
+Soma.
+
+## 2026-10-31: External review merged into soma/rescope; E8 recorded as failed
+Decision: (1) The external review's changes (findings B1, M1-M5, the minors, the foreign-pool backtests, the
+neighbours check, CI and the deep-analysis layer; entries above) are applied to soma/rescope and verified on the full
+data: the affected steps and all deep-analysis modules rerun, the outputs reproduce the review's numbers, 322 key
+numbers are found verbatim (the retired pre-hand-check keys are gone, as intended) and 115 tests pass. (2) Three
+overstatements in the new docs are corrected before committing: the shrinkage model is not independent of the
+anchors (THI 25 and Deggendorf ~60 are in its sample; the two Saarland values are one research-university programme
+in two years, while Bochum is left out for being a research university), so it is described as a consistency check;
+Deggendorf's ~60 is a reported value (one student review), not a demonstrated one; robotics' 58 ads within 50 km
+are the strongest local signal among the specialist keywords, not among all keywords (IT-Sicherheit 113,
+Softwareentwickler 97, Informatiker 92); the 192 ranking specifications concern the three baseline options (level
+(c)), not robotics path B. (3) Process notes: the deep-analysis criteria were written first in the review copy, which
+had no git history, so their order before building is not provable by commit; the layer implements items of the
+Phase-5 backlog early, on Soma's instruction. (4) E8 of the capture/cost/demand step stays recorded as failed after
+three rounds; the unreviewed wording fix 373d3fd is pushed with this, and its check is folded into the claim review
+of the re-scope report rewrite. No criterion is loosened and no fourth round is counted as passed.
+Decided by: Soma (merge and push); wording corrections and verification by Claude.
+
+## 2026-10-31: Commit history rewritten to remove AI co-author lines (one-time exception)
+Decision: 68 earlier commits (17-21 Oct) carried a "Co-Authored-By" trailer naming the AI assistant, which made it
+appear as a repository contributor, against the rule "no AI attribution in commits". On Soma's explicit instruction
+the history of main, soma/rescope and the tag baseline-new-resources was rewritten once (git filter-branch, message
+filter only) and force-pushed. Verified before pushing: every commit keeps its file tree, author and dates (80 commits
+on main, 124 on soma/rescope); only the trailer lines are gone. A backup bundle of the old history was kept outside
+the repository. This is a one-time exception to "never rewrite or force-push main"; the rule stands. Collaborators
+must re-clone or reset their local branches to the new history.
+Decided by: Soma.

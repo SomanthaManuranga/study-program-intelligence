@@ -19,6 +19,17 @@ Sensitivity: leave-one-criterion-out (weights renormalised), independent capture
 earlier skewed robotics fit/feasibility range 2 / 3 / 5, and demand trend scores from German first-years / graduates
 only (scores.yaml sensitivity.trend_german, all three options).
 Outputs: reports/ranking.md, data/interim/ranking_summary.csv, data/interim/ranking_loo.csv.
+
+Equal-evidence candidates (`--candidates`): the same model on configs/scores_candidates.yaml (gates = Soma's recorded
+hand-check decisions, configs/handcheck_sheet.yaml) and data/interim/candidate_scenarios.csv (analysis/candidates.py).
+Candidates that fail the strict gate (the decision rule) carry feasibility 1 and drop out as above; the lenient rule
+(the pre-registered sensitivity) restores the feasibility of its passers from sensitivity.lenient_gate. A Monte Carlo
+ranking is simulated per rule only when at least two candidates pass its gate (variants: German-only trends, 50 %
+cannibalisation for same-campus near-twins, independent capture draws; leave-one-criterion-out for the decision rule);
+with one or no passer the report states that instead of a ranking. Central weighted scores of all candidates are kept
+for comparison. The AR/VR counter-argument scenarios of the pre-hand-check ranking are retired (superseded state:
+docs/evidence_candidates.md section 7).
+Outputs: reports/ranking_candidates.md, data/interim/ranking_candidates_summary.csv, data/interim/ranking_candidates_loo.csv.
 """
 
 from __future__ import annotations
@@ -36,6 +47,11 @@ SCEN = REPO_ROOT / "data" / "interim" / "option_scenarios.csv"
 REPORT = REPO_ROOT / "reports" / "ranking.md"
 SUMMARY = REPO_ROOT / "data" / "interim" / "ranking_summary.csv"
 LOO = REPO_ROOT / "data" / "interim" / "ranking_loo.csv"
+CAND_SCORES = REPO_ROOT / "configs" / "scores_candidates.yaml"
+CAND_SCEN = REPO_ROOT / "data" / "interim" / "candidate_scenarios.csv"
+CAND_REPORT = REPO_ROOT / "reports" / "ranking_candidates.md"
+CAND_SUMMARY = REPO_ROOT / "data" / "interim" / "ranking_candidates_summary.csv"
+CAND_LOO = REPO_ROOT / "data" / "interim" / "ranking_candidates_loo.csv"
 LEVELS = ("low", "central", "high")
 HAND = ("labour_relevance", "institutional_fit", "feasibility", "differentiation")
 
@@ -56,9 +72,10 @@ def tri_ppf(u, lo, mode, hi):
     return np.where(u < f, lo + np.sqrt(u * (hi - lo) * (mode - lo)), hi - np.sqrt((1 - u) * (hi - lo) * (hi - mode)))
 
 
-def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_trend: bool = False) -> tuple[dict, dict, dict]:
+def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_trend: bool = False,
+         sheet_path: Path = SCORES, scen_path: Path = SCEN, cannib_50: tuple = ("robotics_bsc",)) -> tuple[dict, dict, dict]:
     cfg = yaml.safe_load(ANALYSIS.read_text(encoding="utf-8"))
-    sheet = yaml.safe_load(SCORES.read_text(encoding="utf-8"))
+    sheet = yaml.safe_load(sheet_path.read_text(encoding="utf-8"))
     sc = sheet["options"]
     if german_trend:  # sensitivity: trend anchor applied to German first-years / graduates only (all options)
         for o, t in sheet["sensitivity"]["trend_german"].items():
@@ -66,13 +83,13 @@ def load(robotics_cannib_50: bool = False, robotics_skew: bool = False, german_t
     if robotics_skew:  # sensitivity: the earlier skewed 2 / 3 / 5 for robotics fit and feasibility (mean 3.33)
         for k in ("institutional_fit", "feasibility"):
             sc["robotics_bsc"][k].update(low=2, central=3, high=5)
-    model = pd.read_csv(SCEN)
+    model = pd.read_csv(scen_path)
     cap = {}
     for o in sc:
         d = model[model["option"] == o].set_index("scenario")
         n = [float(d.at[k, "(b) net new to OTH"]) for k in LEVELS]
         c = [float(d.at[k, "(c) kept in region"]) for k in LEVELS]
-        if robotics_cannib_50 and o == "robotics_bsc":
+        if robotics_cannib_50 and o in cannib_50:
             share = [float(d.at[k, "net-new share"]) for k in LEVELS]
             n = [0.5 * float(d.at[k, "gross first-years"]) for k in LEVELS]
             c = [ci * 0.5 / s for ci, s in zip(c, share)]
@@ -152,7 +169,100 @@ def _md(df: pd.DataFrame) -> str:
     return "\n".join(out)
 
 
+RULE_STRICT, RULE_LENIENT = "strict (decision rule)", "lenient (sensitivity)"
+
+
+def main_candidates() -> None:
+    kw = {"sheet_path": CAND_SCORES, "scen_path": CAND_SCEN}
+    sheet = yaml.safe_load(CAND_SCORES.read_text(encoding="utf-8"))
+    sens = sheet["sensitivity"]
+    cfg, sc, cap = load(**kw)
+    gate = {o: sc[o]["gate"]["result"] + ": " + sc[o]["gate"]["evidence"] for o in sc}
+
+    def lenient(c: dict, s: dict, k: dict) -> tuple[dict, dict, dict]:
+        """Lenient-rule sheet: its passers get their pre-registered feasibility back (sensitivity.lenient_gate);
+        every other candidate stays excluded (feasibility 1)."""
+        for o, f in (sens["lenient_gate"].get("feasibility") or {}).items():
+            s[o]["feasibility"].update(f)
+        for o in s:
+            if o not in sens["lenient_gate"]["pass"]:
+                s[o]["feasibility"].update(low=1, central=1, high=1)
+        return c, s, k
+
+    sheets = {RULE_STRICT: (cfg, sc, cap), RULE_LENIENT: lenient(*load(**kw))}
+    pops = {RULE_STRICT: [o for o in sc if sc[o]["gate"]["result"] == "pass"],
+            RULE_LENIENT: list(sens["lenient_gate"]["pass"])}
+    det = {rule: deterministic(*args) for rule, args in sheets.items()}
+    detg = deterministic(*load(german_trend=True, **kw))
+
+    mc, variants, notes = {}, {}, {}
+    for rule, pop in pops.items():
+        c, s, k = sheets[rule]
+        if len(pop) < 2:   # a ranking needs at least two candidates in the gate population
+            notes[rule] = ("no candidate passes the gate: nothing to rank" if not pop else
+                           f"only {pop[0]} passes the gate: a ranking needs at least two candidates")
+            continue
+        mc[rule] = summarise(simulate(c, s, k, c["weights"]))
+        wrap = lenient if rule == RULE_LENIENT else (lambda *a: a)
+        v = {"German-only trends": wrap(*load(german_trend=True, **kw)),
+             "50 % cannibalisation": wrap(*load(robotics_cannib_50=True, cannib_50=tuple(sens["cannibalisation_50"]), **kw))}
+        variants[rule] = {name: summarise(simulate(cc, ss, kk, cc["weights"])) for name, (cc, ss, kk) in v.items()}
+        variants[rule]["independent capture draws"] = summarise(simulate(c, s, k, c["weights"], common=False))
+    loo = (leave_one_out(*sheets[RULE_STRICT]) if len(pops[RULE_STRICT]) >= 2 else
+           pd.DataFrame([{"note": "no leave-one-out: fewer than two candidates pass the decision rule"}]))
+
+    rows = []
+    for rule, d in det.items():
+        cen = d.set_index("option")["weighted total"]
+        p1 = mc[rule].set_index("option")["P(rank 1)"] if rule in mc else None
+        rows += [{"rule": rule, "option": o, "gate": "pass" if o in pops[rule] else "fail",
+                  "central weighted score": cen[o],
+                  "P(rank 1)": (round(float(p1[o]), 4) if p1 is not None and o in p1.index else "")} for o in sc]
+    out = pd.DataFrame(rows)
+    CAND_SUMMARY.parent.mkdir(parents=True, exist_ok=True)
+    out.to_csv(CAND_SUMMARY, index=False)
+    loo.to_csv(CAND_LOO, index=False)
+
+    lines = ["# Ranking of the equal-evidence candidates (generated)", "",
+             f"Score sheet configs/scores_candidates.yaml: gates are Soma's recorded hand-check decisions "
+             f"(configs/handcheck_sheet.yaml; gate and single-flip tables in docs/evidence_tie_break.md). The strict "
+             f"rule is the decision rule, the lenient rule the pre-registered sensitivity (configs/feasibility.yaml). "
+             f"A Monte Carlo ranking (draws {cfg['monte_carlo']['draws']}, Dirichlet concentration "
+             f"{cfg['monte_carlo']['dirichlet_concentration']}, seed {cfg['monte_carlo']['seed']}) is simulated per "
+             f"rule only when at least two candidates pass its gate.", "",
+             "## Gate F1-F4 (after the hand-check decisions)", "", *[f"- {o}: {g}" for o, g in gate.items()], "",
+             "## Ranking per gate rule", ""]
+    for rule in pops:
+        if rule in mc:
+            lines += [f"### {rule}", "", _md(mc[rule]), ""]
+            for name, r in variants[rule].items():
+                lines += [f"{name}:", "", _md(r), ""]
+        else:
+            lines += [f"- {rule}: {notes[rule]}."]
+    lines += ["",
+              "The pre-hand-check ranking (AR/VR first at P(rank 1) 73.5 %) rested on the proposed verdicts and is "
+              "superseded by the gates above.", "",
+              f"## Central weighted scores, {RULE_STRICT} (gate failed = feasibility 1; comparison, not a ranking)",
+              "", _md(det[RULE_STRICT]), "",
+              f"## Central weighted scores, {RULE_LENIENT}", "", _md(det[RULE_LENIENT]), "",
+              "## Central weighted scores, German-only trends (strict-rule feasibility)", "", _md(detg), ""]
+    if len(pops[RULE_STRICT]) >= 2:
+        lines += ["## Leave-one-criterion-out (strict rule)", "", _md(loo), ""]
+    lines += ["## Evidence strength", "", _md(strength_matrix(sc)), ""]
+    CAND_REPORT.write_text("\n".join(lines), encoding="utf-8")
+    pd.set_option("display.width", 250)
+    for rule, pop in pops.items():
+        print(f"== {rule}: " + notes.get(rule, f"{len(pop)} candidates ranked"))
+        if rule in mc:
+            print(mc[rule].to_string(index=False))
+    print(); print(out.to_string(index=False))
+    print(f"\nWritten: {CAND_REPORT.relative_to(REPO_ROOT)}, {CAND_SUMMARY.relative_to(REPO_ROOT)}")
+
+
 def main() -> None:
+    import sys
+    if "--candidates" in sys.argv[1:]:
+        return main_candidates()
     cfg, sc, cap = load()
     base = summarise(simulate(cfg, sc, cap, cfg["weights"]))
     indep = summarise(simulate(cfg, sc, cap, cfg["weights"], common=False))

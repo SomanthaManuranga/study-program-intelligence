@@ -1,0 +1,32 @@
+# Resource need of each level in one unit: professor-equivalents (analysis/cost.py, docs/evidence_tie_break.md).
+#
+# Teaching load: AVBayHIG § 4 Abs. 1 Nr. 1 (Ausführungsverordnung zum Bayerischen Hochschulinnovationsgesetz, text valid
+# from 1 Mar 2026; data/raw/regulation/avbayhig_4.bin, configs/regulation_documents.yaml): "Professorinnen und
+# Professoren 18 Lehrveranstaltungsstunden" per semester week at a Hochschule für angewandte Wissenschaften.
+# One professor-equivalent of teaching = 18 SWS in each of the two semesters = 36 SWS-semesters a year.
+# ECTS to SWS: 10 ECTS = 8 SWS, each module taught once a year (configs/feasibility.yaml, assumptions).
+# Positions: a new professorship = 1 professor-equivalent; the lab engineer is counted as one full-time position
+# (a headcount convention, not a cost ratio: no salary comparison is made). Lab and equipment cost: not estimated.
+
+teaching_load_sws_per_semester: 18
+semesters_per_year: 2
+sws_per_ects: 0.8
+regulation: {source: "AVBayHIG § 4 Abs. 1 Nr. 1", quote: "Professorinnen und Professoren 18 Lehrveranstaltungsstunden",
+             file: data/raw/regulation/avbayhig_4.bin}
+
+levels:
+  a_strict:
+    label: "(a) strict existing resources: smallest new resource for robotics path B"
+    new_modules_ects: from_handcheck_excess   # robotics path B's new modules by existing professors above the cap of 10
+  b_lenient:
+    label: "(b) lenient existing resources: robotics path B"
+    new_modules_ects: from_handcheck_N        # docs/handcheck_sheet.md, after Soma's verdicts
+    teaching_assignments_ects: from_handcheck_T
+    first_years: robotics_b
+  c_investment:
+    label: "(c) with investment: Cybersecurity B.Sc."
+    new_professorships: 2                     # docs/evidence_fit_staff.md
+    new_modules_by_new_professors_ects: 45    # docs/evidence_benchmarks.md; inside the 2 positions, only for the all-new-teaching column
+    lab_engineers: 1                          # docs/evidence_fit_staff.md
+    teaching_assignments_ects: 10             # OTH draft curriculum, docs/evidence_benchmarks.md
+    first_years: cyber_bsc

@@ -1,0 +1,21 @@
+# Run the test suite on every push and pull request (added 31 Oct 2026, external review).
+# Tests that need generated data (data/interim, reports/) or raw downloads skip themselves in a clean clone,
+# so this checks the configs, the model building blocks, the number rules and the pre-registration order.
+name: tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # test_demand_thresholds checks the commit order of the pre-registered thresholds via git log
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -e ".[dev]"
+      - run: python -m pytest -q

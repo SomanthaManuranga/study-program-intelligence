@@ -1,0 +1,7 @@
+# Legal teaching load of professors at Bavarian HAWs, for the cost comparison in professor-equivalents
+# (docs/evidence_tie_break.md; source register: configs/sources.yaml avbayhig_4). Downloaded by:
+#   python -m study_program_intelligence.ingest.documents --config configs/regulation_documents.yaml --out data/raw/regulation --manifest docs/regulation_manifest.json
+# robots.txt checked per page.
+
+documents:
+  - {id: avbayhig_4, owner: Freistaat Bayern (BAYERN.RECHT), title: "AVBayHIG § 4 Regellehrverpflichtung an Hochschulen für angewandte Wissenschaften", url: "https://www.gesetze-bayern.de/Content/Document/BayAVHIG-4"}

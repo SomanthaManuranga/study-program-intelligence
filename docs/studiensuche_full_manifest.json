@@ -1,0 +1,2342 @@
+[
+  {
+    "id": "f2509_ba",
+    "params": {
+      "sfe": "94116;93995",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2509_ba",
+    "status": "cached",
+    "pages": 36,
+    "items": 719,
+    "retrieved_utc": "2026-10-19T18:55:09+00:00",
+    "label": "Informatik (first degree)"
+  },
+  {
+    "id": "f2101_ba",
+    "params": {
+      "sfe": "93701;93796",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2101_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:55:30+00:00",
+    "pages": 3,
+    "items": 50,
+    "label": "Agrarwissenschaften (first degree)"
+  },
+  {
+    "id": "f2101_ma",
+    "params": {
+      "sfe": "93701;93796",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2101_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:55:40+00:00",
+    "pages": 4,
+    "items": 80,
+    "label": "Agrarwissenschaften (further degree)"
+  },
+  {
+    "id": "f2103_ba",
+    "params": {
+      "sfe": "93986;93802",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2103_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:55:48+00:00",
+    "pages": 3,
+    "items": 43,
+    "label": "Ernährungswissenschaften (first degree)"
+  },
+  {
+    "id": "f2103_ma",
+    "params": {
+      "sfe": "93986;93802",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2103_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:55:56+00:00",
+    "pages": 3,
+    "items": 45,
+    "label": "Ernährungswissenschaften (further degree)"
+  },
+  {
+    "id": "f2105_ba",
+    "params": {
+      "sfe": "94163;94014",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2105_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:55:59+00:00",
+    "pages": 1,
+    "items": 20,
+    "label": "Forstwissenschaften, -wirtschaft (first degree)"
+  },
+  {
+    "id": "f2105_ma",
+    "params": {
+      "sfe": "94163;94014",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2105_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:02+00:00",
+    "pages": 1,
+    "items": 16,
+    "label": "Forstwissenschaften, -wirtschaft (further degree)"
+  },
+  {
+    "id": "f2107_ba",
+    "params": {
+      "sfe": "93858;94010",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2107_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:05+00:00",
+    "pages": 1,
+    "items": 18,
+    "label": "Garten-, Landschaftsbau (first degree)"
+  },
+  {
+    "id": "f2107_ma",
+    "params": {
+      "sfe": "93858;94010",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2107_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:08+00:00",
+    "pages": 1,
+    "items": 13,
+    "label": "Garten-, Landschaftsbau (further degree)"
+  },
+  {
+    "id": "f2109_ba",
+    "params": {
+      "sfe": "94329;93757",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2109_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:13+00:00",
+    "pages": 2,
+    "items": 33,
+    "label": "Lebensmittel-, Getränketechnologie (first degree)"
+  },
+  {
+    "id": "f2109_ma",
+    "params": {
+      "sfe": "94329;93757",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2109_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:19+00:00",
+    "pages": 2,
+    "items": 27,
+    "label": "Lebensmittel-, Getränketechnologie (further degree)"
+  },
+  {
+    "id": "f2301_ba",
+    "params": {
+      "sfe": "93936;93958",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2301_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:56:37+00:00",
+    "pages": 7,
+    "items": 128,
+    "label": "Architektur, Raumplanung (first degree)"
+  },
+  {
+    "id": "f2301_ma",
+    "params": {
+      "sfe": "93936;93958",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2301_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:57:00+00:00",
+    "pages": 9,
+    "items": 169,
+    "label": "Architektur, Raumplanung (further degree)"
+  },
+  {
+    "id": "f2303_ba",
+    "params": {
+      "sfe": "94030;93598",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2303_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:57:13+00:00",
+    "pages": 5,
+    "items": 100,
+    "label": "Automatisierungs-, Produktionstechnik (first degree)"
+  },
+  {
+    "id": "f2303_ma",
+    "params": {
+      "sfe": "94030;93598",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2303_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:57:23+00:00",
+    "pages": 4,
+    "items": 77,
+    "label": "Automatisierungs-, Produktionstechnik (further degree)"
+  },
+  {
+    "id": "f2305_ba",
+    "params": {
+      "sfe": "93819;93690",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2305_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:57:43+00:00",
+    "pages": 8,
+    "items": 158,
+    "label": "Bautechnik (first degree)"
+  },
+  {
+    "id": "f2305_ma",
+    "params": {
+      "sfe": "93819;93690",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2305_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:58:00+00:00",
+    "pages": 7,
+    "items": 139,
+    "label": "Bautechnik (further degree)"
+  },
+  {
+    "id": "f2306_ba",
+    "params": {
+      "sfe": "136538;136539",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2306_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:58:08+00:00",
+    "pages": 3,
+    "items": 54,
+    "label": "Chemietechnik (first degree)"
+  },
+  {
+    "id": "f2306_ma",
+    "params": {
+      "sfe": "136538;136539",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2306_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:58:13+00:00",
+    "pages": 2,
+    "items": 36,
+    "label": "Chemietechnik (further degree)"
+  },
+  {
+    "id": "f2307_ba",
+    "params": {
+      "sfe": "93970;93853",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2307_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:59:01+00:00",
+    "pages": 19,
+    "items": 363,
+    "label": "Elektro- und Informationstechnik (first degree)"
+  },
+  {
+    "id": "f2307_ma",
+    "params": {
+      "sfe": "93970;93853",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2307_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:59:36+00:00",
+    "pages": 14,
+    "items": 264,
+    "label": "Elektro- und Informationstechnik (further degree)"
+  },
+  {
+    "id": "f2309_ba",
+    "params": {
+      "sfe": "94362;94319",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2309_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T18:59:58+00:00",
+    "pages": 9,
+    "items": 162,
+    "label": "Energietechnik, Energiemanagement (first degree)"
+  },
+  {
+    "id": "f2309_ma",
+    "params": {
+      "sfe": "94362;94319",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2309_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:00:18+00:00",
+    "pages": 8,
+    "items": 148,
+    "label": "Energietechnik, Energiemanagement (further degree)"
+  },
+  {
+    "id": "f2311_ba",
+    "params": {
+      "sfe": "94324;94394",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2311_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:00:33+00:00",
+    "pages": 6,
+    "items": 115,
+    "label": "Fahrzeug-, Verkehrstechnik (first degree)"
+  },
+  {
+    "id": "f2311_ma",
+    "params": {
+      "sfe": "94324;94394",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2311_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:00:45+00:00",
+    "pages": 5,
+    "items": 100,
+    "label": "Fahrzeug-, Verkehrstechnik (further degree)"
+  },
+  {
+    "id": "f2313_ba",
+    "params": {
+      "sfe": "93815;94121",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2313_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:00:53+00:00",
+    "pages": 3,
+    "items": 55,
+    "label": "Fertigungstechnologien (first degree)"
+  },
+  {
+    "id": "f2313_ma",
+    "params": {
+      "sfe": "93815;94121",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2313_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:00:58+00:00",
+    "pages": 2,
+    "items": 36,
+    "label": "Fertigungstechnologien (further degree)"
+  },
+  {
+    "id": "f2315_ba",
+    "params": {
+      "sfe": "93751;94262",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2315_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:01:06+00:00",
+    "pages": 3,
+    "items": 57,
+    "label": "Gebäude-, Versorgungstechnik, Facility-Management (first degree)"
+  },
+  {
+    "id": "f2315_ma",
+    "params": {
+      "sfe": "93751;94262",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2315_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:01:11+00:00",
+    "pages": 2,
+    "items": 32,
+    "label": "Gebäude-, Versorgungstechnik, Facility-Management (further degree)"
+  },
+  {
+    "id": "f2317_ba",
+    "params": {
+      "sfe": "94420;94056",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2317_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:01:16+00:00",
+    "pages": 2,
+    "items": 36,
+    "label": "Geoinformation, Vermessung (first degree)"
+  },
+  {
+    "id": "f2317_ma",
+    "params": {
+      "sfe": "94420;94056",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2317_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:01:24+00:00",
+    "pages": 3,
+    "items": 43,
+    "label": "Geoinformation, Vermessung (further degree)"
+  },
+  {
+    "id": "f2319_ba",
+    "params": {
+      "sfe": "94114;93999",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2319_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:02:04+00:00",
+    "pages": 16,
+    "items": 314,
+    "label": "Maschinenbau, Mechanik (first degree)"
+  },
+  {
+    "id": "f2319_ma",
+    "params": {
+      "sfe": "94114;93999",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2319_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:02:31+00:00",
+    "pages": 11,
+    "items": 213,
+    "label": "Maschinenbau, Mechanik (further degree)"
+  },
+  {
+    "id": "f2321_ba",
+    "params": {
+      "sfe": "93896;94237",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2321_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:02:50+00:00",
+    "pages": 8,
+    "items": 155,
+    "label": "Mechatronik, Mikro- und Optotechnik (first degree)"
+  },
+  {
+    "id": "f2321_ma",
+    "params": {
+      "sfe": "93896;94237",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2321_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:03:13+00:00",
+    "pages": 7,
+    "items": 125,
+    "label": "Mechatronik, Mikro- und Optotechnik (further degree)"
+  },
+  {
+    "id": "f2323_ba",
+    "params": {
+      "sfe": "94145;94284",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2323_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:03:30+00:00",
+    "pages": 2,
+    "items": 21,
+    "label": "Medien-, Veranstaltungstechnik (first degree)"
+  },
+  {
+    "id": "f2323_ma",
+    "params": {
+      "sfe": "94145;94284",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2323_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:03:36+00:00",
+    "pages": 1,
+    "items": 18,
+    "label": "Medien-, Veranstaltungstechnik (further degree)"
+  },
+  {
+    "id": "f2325_ba",
+    "params": {
+      "sfe": "93584;94187",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2325_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:03:56+00:00",
+    "pages": 5,
+    "items": 82,
+    "label": "Medizintechnik, Technisches Gesundheitswesen (first degree)"
+  },
+  {
+    "id": "f2325_ma",
+    "params": {
+      "sfe": "93584;94187",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2325_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:06+00:00",
+    "pages": 3,
+    "items": 60,
+    "label": "Medizintechnik, Technisches Gesundheitswesen (further degree)"
+  },
+  {
+    "id": "f2327_ba",
+    "params": {
+      "sfe": "94231;94378",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2327_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:11+00:00",
+    "pages": 1,
+    "items": 11,
+    "label": "Nanowissenschaften (first degree)"
+  },
+  {
+    "id": "f2327_ma",
+    "params": {
+      "sfe": "94231;94378",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2327_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:17+00:00",
+    "pages": 1,
+    "items": 18,
+    "label": "Nanowissenschaften (further degree)"
+  },
+  {
+    "id": "f2329_ba",
+    "params": {
+      "sfe": "94269;93918",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2329_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:20+00:00",
+    "pages": 1,
+    "items": 16,
+    "label": "Physikalische Technik (first degree)"
+  },
+  {
+    "id": "f2329_ma",
+    "params": {
+      "sfe": "94269;93918",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2329_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:29+00:00",
+    "pages": 1,
+    "items": 4,
+    "label": "Physikalische Technik (further degree)"
+  },
+  {
+    "id": "f2331_ba",
+    "params": {
+      "sfe": "93795;93574",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2331_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:45+00:00",
+    "pages": 2,
+    "items": 23,
+    "label": "Produktentwicklung, Konstruktion (first degree)"
+  },
+  {
+    "id": "f2331_ma",
+    "params": {
+      "sfe": "93795;93574",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2331_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:04:59+00:00",
+    "pages": 2,
+    "items": 38,
+    "label": "Produktentwicklung, Konstruktion (further degree)"
+  },
+  {
+    "id": "f2333_ba",
+    "params": {
+      "sfe": "94408;93627",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2333_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:04+00:00",
+    "pages": 0,
+    "items": 0,
+    "label": "Qualitätsmanagement (first degree)"
+  },
+  {
+    "id": "f2333_ma",
+    "params": {
+      "sfe": "94408;93627",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2333_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:09+00:00",
+    "pages": 1,
+    "items": 12,
+    "label": "Qualitätsmanagement (further degree)"
+  },
+  {
+    "id": "f2335_ba",
+    "params": {
+      "sfe": "93907;93772",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2335_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:16+00:00",
+    "pages": 1,
+    "items": 3,
+    "label": "Rohstoffgewinnung, Hüttenwesen (first degree)"
+  },
+  {
+    "id": "f2335_ma",
+    "params": {
+      "sfe": "93907;93772",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2335_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:17+00:00",
+    "pages": 0,
+    "items": 0,
+    "label": "Rohstoffgewinnung, Hüttenwesen (further degree)"
+  },
+  {
+    "id": "f2337_ba",
+    "params": {
+      "sfe": "94120;94383",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2337_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:25+00:00",
+    "pages": 1,
+    "items": 15,
+    "label": "Sicherheit und Gefahrenabwehr, Rettungsingenieurwesen (first degree)"
+  },
+  {
+    "id": "f2337_ma",
+    "params": {
+      "sfe": "94120;94383",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2337_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:30+00:00",
+    "pages": 1,
+    "items": 19,
+    "label": "Sicherheit und Gefahrenabwehr, Rettungsingenieurwesen (further degree)"
+  },
+  {
+    "id": "f2339_ba",
+    "params": {
+      "sfe": "94307;93592",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2339_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:05:46+00:00",
+    "pages": 5,
+    "items": 93,
+    "label": "Technik, Ingenieurwissenschaften (übergreifend) (first degree)"
+  },
+  {
+    "id": "f2339_ma",
+    "params": {
+      "sfe": "94307;93592",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2339_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:06:15+00:00",
+    "pages": 5,
+    "items": 84,
+    "label": "Technik, Ingenieurwissenschaften (übergreifend) (further degree)"
+  },
+  {
+    "id": "f2341_ba",
+    "params": {
+      "sfe": "94256;93861",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2341_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:06:45+00:00",
+    "pages": 5,
+    "items": 91,
+    "label": "Umwelttechnik, Umweltschutz (first degree)"
+  },
+  {
+    "id": "f2341_ma",
+    "params": {
+      "sfe": "94256;93861",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2341_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:07:07+00:00",
+    "pages": 5,
+    "items": 92,
+    "label": "Umwelttechnik, Umweltschutz (further degree)"
+  },
+  {
+    "id": "f2343_ba",
+    "params": {
+      "sfe": "93724;94204",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2343_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:02:44+00:00",
+    "pages": 7,
+    "items": 140,
+    "label": "Verfahrenstechnik (first degree)"
+  },
+  {
+    "id": "f2343_ma",
+    "params": {
+      "sfe": "93724;94204",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2343_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:03:01+00:00",
+    "pages": 6,
+    "items": 113,
+    "label": "Verfahrenstechnik (further degree)"
+  },
+  {
+    "id": "f2345_ba",
+    "params": {
+      "sfe": "93850;94143",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2345_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:03:09+00:00",
+    "pages": 3,
+    "items": 57,
+    "label": "Werkstoff-, Materialwissenschaften (first degree)"
+  },
+  {
+    "id": "f2345_ma",
+    "params": {
+      "sfe": "93850;94143",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2345_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:07:48+00:00",
+    "pages": 4,
+    "items": 68,
+    "label": "Werkstoff-, Materialwissenschaften (further degree)"
+  },
+  {
+    "id": "f2347_ba",
+    "params": {
+      "sfe": "93814;93581",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2347_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:08:52+00:00",
+    "pages": 16,
+    "items": 309,
+    "label": "Wirtschaftsingenieurwesen, Technologiemanagement (first degree)"
+  },
+  {
+    "id": "f2347_ma",
+    "params": {
+      "sfe": "93814;93581",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2347_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:10:06+00:00",
+    "pages": 13,
+    "items": 252,
+    "label": "Wirtschaftsingenieurwesen, Technologiemanagement (further degree)"
+  },
+  {
+    "id": "f2501_ba",
+    "params": {
+      "sfe": "94405;94249",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2501_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:10:11+00:00",
+    "pages": 1,
+    "items": 17,
+    "label": "Angewandte Naturwissenschaften (first degree)"
+  },
+  {
+    "id": "f2501_ma",
+    "params": {
+      "sfe": "94405;94249",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2501_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:10:22+00:00",
+    "pages": 1,
+    "items": 8,
+    "label": "Angewandte Naturwissenschaften (further degree)"
+  },
+  {
+    "id": "f2503_ba",
+    "params": {
+      "sfe": "93901;93935",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2503_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:11:03+00:00",
+    "pages": 9,
+    "items": 180,
+    "label": "Bio-, Umweltwissenschaften (first degree)"
+  },
+  {
+    "id": "f2503_ma",
+    "params": {
+      "sfe": "93901;93935",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2503_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:11:50+00:00",
+    "pages": 12,
+    "items": 231,
+    "label": "Bio-, Umweltwissenschaften (further degree)"
+  },
+  {
+    "id": "f2505_ba",
+    "params": {
+      "sfe": "94374;93928",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2505_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:12:53+00:00",
+    "pages": 12,
+    "items": 227,
+    "label": "Chemie, Pharmazie (first degree)"
+  },
+  {
+    "id": "f2505_ma",
+    "params": {
+      "sfe": "94374;93928",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2505_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:14:05+00:00",
+    "pages": 13,
+    "items": 250,
+    "label": "Chemie, Pharmazie (further degree)"
+  },
+  {
+    "id": "f2507_ba",
+    "params": {
+      "sfe": "93649;94179",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2507_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:14:43+00:00",
+    "pages": 8,
+    "items": 147,
+    "label": "Geowissenschaften, -technologie (first degree)"
+  },
+  {
+    "id": "f2507_ma",
+    "params": {
+      "sfe": "93649;94179",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2507_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:15:27+00:00",
+    "pages": 11,
+    "items": 205,
+    "label": "Geowissenschaften, -technologie (further degree)"
+  },
+  {
+    "id": "f2509_ma",
+    "params": {
+      "sfe": "94116;93995",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2509_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:04:41+00:00",
+    "pages": 34,
+    "items": 661,
+    "label": "Informatik (further degree)"
+  },
+  {
+    "id": "f2511_ba",
+    "params": {
+      "sfe": "94144;94403",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2511_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:05:13+00:00",
+    "pages": 12,
+    "items": 240,
+    "label": "Mathematik, Statistik (first degree)"
+  },
+  {
+    "id": "f2511_ma",
+    "params": {
+      "sfe": "94144;94403",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2511_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:05:48+00:00",
+    "pages": 13,
+    "items": 250,
+    "label": "Mathematik, Statistik (further degree)"
+  },
+  {
+    "id": "f2513_ba",
+    "params": {
+      "sfe": "93825;93651",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2513_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:06:10+00:00",
+    "pages": 8,
+    "items": 141,
+    "label": "Physik (first degree)"
+  },
+  {
+    "id": "f2513_ma",
+    "params": {
+      "sfe": "93825;93651",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2513_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:17:33+00:00",
+    "pages": 9,
+    "items": 165,
+    "label": "Physik (further degree)"
+  },
+  {
+    "id": "f2701_ba",
+    "params": {
+      "sfe": "94373;93720",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2701_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:17:41+00:00",
+    "pages": 3,
+    "items": 42,
+    "label": "Biomedizin, Neurowissenschaften (first degree)"
+  },
+  {
+    "id": "f2701_ma",
+    "params": {
+      "sfe": "94373;93720",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2701_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:17:52+00:00",
+    "pages": 4,
+    "items": 75,
+    "label": "Biomedizin, Neurowissenschaften (further degree)"
+  },
+  {
+    "id": "f2703_ba",
+    "params": {
+      "sfe": "93891;94197",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2703_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:18:14+00:00",
+    "pages": 9,
+    "items": 172,
+    "label": "Gesundheitswissenschaften (first degree)"
+  },
+  {
+    "id": "f2703_ma",
+    "params": {
+      "sfe": "93891;94197",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2703_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:18:35+00:00",
+    "pages": 8,
+    "items": 150,
+    "label": "Gesundheitswissenschaften (further degree)"
+  },
+  {
+    "id": "f2705_ba",
+    "params": {
+      "sfe": "93698;93575",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2705_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:18:47+00:00",
+    "pages": 5,
+    "items": 100,
+    "label": "Human-, Tier-, Zahnmedizin (first degree)"
+  },
+  {
+    "id": "f2705_ma",
+    "params": {
+      "sfe": "93698;93575",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2705_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:18:58+00:00",
+    "pages": 4,
+    "items": 68,
+    "label": "Human-, Tier-, Zahnmedizin (further degree)"
+  },
+  {
+    "id": "f2706_ba",
+    "params": {
+      "sfe": "138468;138478",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2706_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:19:15+00:00",
+    "pages": 7,
+    "items": 134,
+    "label": "Pflegepraxis, -management, -pädagogik (first degree)"
+  },
+  {
+    "id": "f2706_ma",
+    "params": {
+      "sfe": "138468;138478",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2706_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:19:25+00:00",
+    "pages": 4,
+    "items": 75,
+    "label": "Pflegepraxis, -management, -pädagogik (further degree)"
+  },
+  {
+    "id": "f2707_ba",
+    "params": {
+      "sfe": "94393;93804",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2707_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:19:53+00:00",
+    "pages": 11,
+    "items": 217,
+    "label": "Psychologie (first degree)"
+  },
+  {
+    "id": "f2707_ma",
+    "params": {
+      "sfe": "94393;93804",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2707_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:20:33+00:00",
+    "pages": 16,
+    "items": 306,
+    "label": "Psychologie (further degree)"
+  },
+  {
+    "id": "f2709_ba",
+    "params": {
+      "sfe": "94098;93685",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2709_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:20:47+00:00",
+    "pages": 5,
+    "items": 98,
+    "label": "Sport (first degree)"
+  },
+  {
+    "id": "f2709_ma",
+    "params": {
+      "sfe": "94098;93685",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2709_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:00+00:00",
+    "pages": 5,
+    "items": 93,
+    "label": "Sport (further degree)"
+  },
+  {
+    "id": "f2711_ba",
+    "params": {
+      "sfe": "94037;93871",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2711_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:16+00:00",
+    "pages": 6,
+    "items": 116,
+    "label": "Therapien (first degree)"
+  },
+  {
+    "id": "f2711_ma",
+    "params": {
+      "sfe": "94037;93871",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2711_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:29+00:00",
+    "pages": 5,
+    "items": 88,
+    "label": "Therapien (further degree)"
+  },
+  {
+    "id": "f2901_ba",
+    "params": {
+      "sfe": "94304;94384",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2901_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:32+00:00",
+    "pages": 1,
+    "items": 6,
+    "label": "Automobilwirtschaft (first degree)"
+  },
+  {
+    "id": "f2901_ma",
+    "params": {
+      "sfe": "94304;94384",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2901_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:35+00:00",
+    "pages": 1,
+    "items": 4,
+    "label": "Automobilwirtschaft (further degree)"
+  },
+  {
+    "id": "f2903_ba",
+    "params": {
+      "sfe": "94228;94252",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2903_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:43+00:00",
+    "pages": 3,
+    "items": 41,
+    "label": "Bau-, Immobilienwirtschaft (first degree)"
+  },
+  {
+    "id": "f2903_ma",
+    "params": {
+      "sfe": "94228;94252",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2903_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:21:48+00:00",
+    "pages": 2,
+    "items": 25,
+    "label": "Bau-, Immobilienwirtschaft (further degree)"
+  },
+  {
+    "id": "f2905_ba",
+    "params": {
+      "sfe": "94008;94158",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2905_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:23:19+00:00",
+    "pages": 35,
+    "items": 689,
+    "label": "Betriebswirtschaft (first degree)"
+  },
+  {
+    "id": "f2905_ma",
+    "params": {
+      "sfe": "94008;94158",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2905_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:24:36+00:00",
+    "pages": 30,
+    "items": 587,
+    "label": "Betriebswirtschaft (further degree)"
+  },
+  {
+    "id": "f2907_ba",
+    "params": {
+      "sfe": "93659;93818",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2907_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:24:47+00:00",
+    "pages": 4,
+    "items": 62,
+    "label": "Finanz- und Rechnungswesen, Controlling, Steuern (first degree)"
+  },
+  {
+    "id": "f2907_ma",
+    "params": {
+      "sfe": "93659;93818",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2907_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:00+00:00",
+    "pages": 5,
+    "items": 95,
+    "label": "Finanz- und Rechnungswesen, Controlling, Steuern (further degree)"
+  },
+  {
+    "id": "f2909_ba",
+    "params": {
+      "sfe": "93909;94020",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2909_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:07+00:00",
+    "pages": 3,
+    "items": 44,
+    "label": "Finanzdienstleistungen, Versicherungswirtschaft (first degree)"
+  },
+  {
+    "id": "f2909_ma",
+    "params": {
+      "sfe": "93909;94020",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2909_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:13+00:00",
+    "pages": 2,
+    "items": 38,
+    "label": "Finanzdienstleistungen, Versicherungswirtschaft (further degree)"
+  },
+  {
+    "id": "f2911_ba",
+    "params": {
+      "sfe": "93989;93846",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2911_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:28+00:00",
+    "pages": 6,
+    "items": 111,
+    "label": "Gesundheitsmanagement, -ökonomie (first degree)"
+  },
+  {
+    "id": "f2911_ma",
+    "params": {
+      "sfe": "93989;93846",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2911_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:43+00:00",
+    "pages": 6,
+    "items": 118,
+    "label": "Gesundheitsmanagement, -ökonomie (further degree)"
+  },
+  {
+    "id": "f2913_ba",
+    "params": {
+      "sfe": "94087;93718",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2913_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:46+00:00",
+    "pages": 1,
+    "items": 15,
+    "label": "Handel, Industrie, Handwerk (first degree)"
+  },
+  {
+    "id": "f2913_ma",
+    "params": {
+      "sfe": "94087;93718",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2913_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:25:49+00:00",
+    "pages": 1,
+    "items": 6,
+    "label": "Handel, Industrie, Handwerk (further degree)"
+  },
+  {
+    "id": "f2915_ba",
+    "params": {
+      "sfe": "94375;94221",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2915_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:26:05+00:00",
+    "pages": 6,
+    "items": 104,
+    "label": "Internationale Wirtschaft (first degree)"
+  },
+  {
+    "id": "f2915_ma",
+    "params": {
+      "sfe": "94375;94221",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2915_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:26:23+00:00",
+    "pages": 7,
+    "items": 140,
+    "label": "Internationale Wirtschaft (further degree)"
+  },
+  {
+    "id": "f2917_ba",
+    "params": {
+      "sfe": "93953;93904",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2917_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:26:34+00:00",
+    "pages": 4,
+    "items": 67,
+    "label": "Logistik, Verkehr (first degree)"
+  },
+  {
+    "id": "f2917_ma",
+    "params": {
+      "sfe": "93953;93904",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2917_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:26:42+00:00",
+    "pages": 3,
+    "items": 56,
+    "label": "Logistik, Verkehr (further degree)"
+  },
+  {
+    "id": "f2919_ba",
+    "params": {
+      "sfe": "94000;93719",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2919_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:27:00+00:00",
+    "pages": 7,
+    "items": 122,
+    "label": "Management (first degree)"
+  },
+  {
+    "id": "f2919_ma",
+    "params": {
+      "sfe": "94000;93719",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2919_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:27:31+00:00",
+    "pages": 12,
+    "items": 237,
+    "label": "Management (further degree)"
+  },
+  {
+    "id": "f2921_ba",
+    "params": {
+      "sfe": "93977;93736",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2921_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:27:46+00:00",
+    "pages": 6,
+    "items": 102,
+    "label": "Marketing, Vertrieb (first degree)"
+  },
+  {
+    "id": "f2921_ma",
+    "params": {
+      "sfe": "93977;93736",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2921_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:00+00:00",
+    "pages": 5,
+    "items": 88,
+    "label": "Marketing, Vertrieb (further degree)"
+  },
+  {
+    "id": "f2923_ba",
+    "params": {
+      "sfe": "93799;93739",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2923_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:08+00:00",
+    "pages": 3,
+    "items": 48,
+    "label": "Medienwirtschaft, -management (first degree)"
+  },
+  {
+    "id": "f2923_ma",
+    "params": {
+      "sfe": "93799;93739",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2923_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:14+00:00",
+    "pages": 2,
+    "items": 36,
+    "label": "Medienwirtschaft, -management (further degree)"
+  },
+  {
+    "id": "f2925_ba",
+    "params": {
+      "sfe": "94178;93900",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2925_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:19+00:00",
+    "pages": 2,
+    "items": 36,
+    "label": "Personalmanagement, -dienstleistung (first degree)"
+  },
+  {
+    "id": "f2925_ma",
+    "params": {
+      "sfe": "94178;93900",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2925_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:30+00:00",
+    "pages": 4,
+    "items": 63,
+    "label": "Personalmanagement, -dienstleistung (further degree)"
+  },
+  {
+    "id": "f2927_ba",
+    "params": {
+      "sfe": "94357;94217",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2927_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:48+00:00",
+    "pages": 7,
+    "items": 139,
+    "label": "Tourismuswirtschaft, Sport- und Eventmanagement (first degree)"
+  },
+  {
+    "id": "f2927_ma",
+    "params": {
+      "sfe": "94357;94217",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2927_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:28:56+00:00",
+    "pages": 3,
+    "items": 57,
+    "label": "Tourismuswirtschaft, Sport- und Eventmanagement (further degree)"
+  },
+  {
+    "id": "f2928_ba",
+    "params": {
+      "sfe": "130048;130047",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2928_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:29:26+00:00",
+    "pages": 12,
+    "items": 225,
+    "label": "Wirtschaftsinformatik (first degree)"
+  },
+  {
+    "id": "f2928_ma",
+    "params": {
+      "sfe": "130048;130047",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2928_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:29:46+00:00",
+    "pages": 8,
+    "items": 145,
+    "label": "Wirtschaftsinformatik (further degree)"
+  },
+  {
+    "id": "f2929_ba",
+    "params": {
+      "sfe": "94033;94303",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2929_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:30:22+00:00",
+    "pages": 14,
+    "items": 271,
+    "label": "Wirtschaftswissenschaften, Volkswirtschaft (first degree)"
+  },
+  {
+    "id": "f2929_ma",
+    "params": {
+      "sfe": "94033;94303",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2929_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:10+00:00",
+    "pages": 18,
+    "items": 352,
+    "label": "Wirtschaftswissenschaften, Volkswirtschaft (further degree)"
+  },
+  {
+    "id": "f2931_ba",
+    "params": {
+      "sfe": "93648;93611",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f2931_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:18+00:00",
+    "pages": 3,
+    "items": 42,
+    "label": "Öffentliche Verwaltung (first degree)"
+  },
+  {
+    "id": "f2931_ma",
+    "params": {
+      "sfe": "93648;93611",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f2931_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:26+00:00",
+    "pages": 3,
+    "items": 47,
+    "label": "Öffentliche Verwaltung (further degree)"
+  },
+  {
+    "id": "f3101_ba",
+    "params": {
+      "sfe": "94240;93650",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3101_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:29+00:00",
+    "pages": 1,
+    "items": 3,
+    "label": "Arbeitsmarktmanagement (first degree)"
+  },
+  {
+    "id": "f3101_ma",
+    "params": {
+      "sfe": "94240;93650",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3101_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:32+00:00",
+    "pages": 1,
+    "items": 1,
+    "label": "Arbeitsmarktmanagement (further degree)"
+  },
+  {
+    "id": "f3103_ba",
+    "params": {
+      "sfe": "93889;93915",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3103_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:31:45+00:00",
+    "pages": 5,
+    "items": 97,
+    "label": "Politikwissenschaften (first degree)"
+  },
+  {
+    "id": "f3103_ma",
+    "params": {
+      "sfe": "93889;93915",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3103_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:32:07+00:00",
+    "pages": 9,
+    "items": 180,
+    "label": "Politikwissenschaften (further degree)"
+  },
+  {
+    "id": "f3105_ba",
+    "params": {
+      "sfe": "94352;94358",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3105_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:32:36+00:00",
+    "pages": 11,
+    "items": 214,
+    "label": "Rechtswissenschaften (first degree)"
+  },
+  {
+    "id": "f3105_ma",
+    "params": {
+      "sfe": "94352;94358",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3105_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:33:07+00:00",
+    "pages": 12,
+    "items": 227,
+    "label": "Rechtswissenschaften (further degree)"
+  },
+  {
+    "id": "f3107_ba",
+    "params": {
+      "sfe": "94258;93959",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3107_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:33:43+00:00",
+    "pages": 14,
+    "items": 268,
+    "label": "Sozialwesen (first degree)"
+  },
+  {
+    "id": "f3107_ma",
+    "params": {
+      "sfe": "94258;93959",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3107_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:34:09+00:00",
+    "pages": 10,
+    "items": 185,
+    "label": "Sozialwesen (further degree)"
+  },
+  {
+    "id": "f3109_ba",
+    "params": {
+      "sfe": "94348;93694",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3109_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:34:31+00:00",
+    "pages": 9,
+    "items": 177,
+    "label": "Sozialwissenschaften, Soziologie (first degree)"
+  },
+  {
+    "id": "f3109_ma",
+    "params": {
+      "sfe": "94348;93694",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3109_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:35:02+00:00",
+    "pages": 12,
+    "items": 234,
+    "label": "Sozialwissenschaften, Soziologie (further degree)"
+  },
+  {
+    "id": "f3301_ba",
+    "params": {
+      "sfe": "94363;94142",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3301_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:35:36+00:00",
+    "pages": 13,
+    "items": 259,
+    "label": "Erziehungs-, Bildungswissenschaften (first degree)"
+  },
+  {
+    "id": "f3301_ma",
+    "params": {
+      "sfe": "94363;94142",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3301_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:36:14+00:00",
+    "pages": 15,
+    "items": 281,
+    "label": "Erziehungs-, Bildungswissenschaften (further degree)"
+  },
+  {
+    "id": "f3303_ba",
+    "params": {
+      "sfe": "94333;94334",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3303_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:43:21+00:00",
+    "pages": 143,
+    "items": 2859,
+    "label": "Lehrämter (first degree)"
+  },
+  {
+    "id": "f3303_ma",
+    "params": {
+      "sfe": "94333;94334",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3303_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:48:23+00:00",
+    "pages": 105,
+    "items": 2088,
+    "label": "Lehrämter (further degree)"
+  },
+  {
+    "id": "f3501_ba",
+    "params": {
+      "sfe": "94101;93828",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3501_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:48:40+00:00",
+    "pages": 7,
+    "items": 123,
+    "label": "Altertumswissenschaften, Archäologie (first degree)"
+  },
+  {
+    "id": "f3501_ma",
+    "params": {
+      "sfe": "94101;93828",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3501_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:48:55+00:00",
+    "pages": 6,
+    "items": 113,
+    "label": "Altertumswissenschaften, Archäologie (further degree)"
+  },
+  {
+    "id": "f3503_ba",
+    "params": {
+      "sfe": "93638;94412",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3503_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:49:10+00:00",
+    "pages": 6,
+    "items": 109,
+    "label": "Anglistik, Amerikanistik (first degree)"
+  },
+  {
+    "id": "f3503_ma",
+    "params": {
+      "sfe": "93638;94412",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3503_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:49:25+00:00",
+    "pages": 6,
+    "items": 107,
+    "label": "Anglistik, Amerikanistik (further degree)"
+  },
+  {
+    "id": "f3505_ba",
+    "params": {
+      "sfe": "93842;94328",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3505_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:49:28+00:00",
+    "pages": 1,
+    "items": 15,
+    "label": "Archiv, Bibliothek, Dokumentation (first degree)"
+  },
+  {
+    "id": "f3505_ma",
+    "params": {
+      "sfe": "93842;94328",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3505_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:49:33+00:00",
+    "pages": 2,
+    "items": 23,
+    "label": "Archiv, Bibliothek, Dokumentation (further degree)"
+  },
+  {
+    "id": "f3507_ba",
+    "params": {
+      "sfe": "94321;93583",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3507_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:49:48+00:00",
+    "pages": 6,
+    "items": 111,
+    "label": "Außereuropäische Sprachen und Kulturen (first degree)"
+  },
+  {
+    "id": "f3507_ma",
+    "params": {
+      "sfe": "94321;93583",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3507_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:50:03+00:00",
+    "pages": 6,
+    "items": 103,
+    "label": "Außereuropäische Sprachen und Kulturen (further degree)"
+  },
+  {
+    "id": "f3509_ba",
+    "params": {
+      "sfe": "94322;94253",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3509_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:50:20+00:00",
+    "pages": 7,
+    "items": 137,
+    "label": "Germanistik (first degree)"
+  },
+  {
+    "id": "f3509_ma",
+    "params": {
+      "sfe": "94322;94253",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3509_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:50:40+00:00",
+    "pages": 8,
+    "items": 152,
+    "label": "Germanistik (further degree)"
+  },
+  {
+    "id": "f3511_ba",
+    "params": {
+      "sfe": "93911;94041",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3511_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:50:57+00:00",
+    "pages": 7,
+    "items": 128,
+    "label": "Geschichtswissenschaften (first degree)"
+  },
+  {
+    "id": "f3511_ma",
+    "params": {
+      "sfe": "93911;94041",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3511_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:17+00:00",
+    "pages": 8,
+    "items": 155,
+    "label": "Geschichtswissenschaften (further degree)"
+  },
+  {
+    "id": "f3513_ba",
+    "params": {
+      "sfe": "93817;94122",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3513_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:20+00:00",
+    "pages": 1,
+    "items": 20,
+    "label": "Jüdische Studien, Judaistik (first degree)"
+  },
+  {
+    "id": "f3513_ma",
+    "params": {
+      "sfe": "93817;94122",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3513_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:22+00:00",
+    "pages": 1,
+    "items": 16,
+    "label": "Jüdische Studien, Judaistik (further degree)"
+  },
+  {
+    "id": "f3515_ba",
+    "params": {
+      "sfe": "94246;94330",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3515_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:25+00:00",
+    "pages": 1,
+    "items": 6,
+    "label": "Kleinere europäische Sprachen und Kulturen (first degree)"
+  },
+  {
+    "id": "f3515_ma",
+    "params": {
+      "sfe": "94246;94330",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3515_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:28+00:00",
+    "pages": 1,
+    "items": 4,
+    "label": "Kleinere europäische Sprachen und Kulturen (further degree)"
+  },
+  {
+    "id": "f3517_ba",
+    "params": {
+      "sfe": "93888;93821",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3517_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:51:58+00:00",
+    "pages": 12,
+    "items": 223,
+    "label": "Kommunikation und Medien (first degree)"
+  },
+  {
+    "id": "f3517_ma",
+    "params": {
+      "sfe": "93888;93821",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3517_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:52:25+00:00",
+    "pages": 11,
+    "items": 215,
+    "label": "Kommunikation und Medien (further degree)"
+  },
+  {
+    "id": "f3519_ba",
+    "params": {
+      "sfe": "93699;94398",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3519_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:52:47+00:00",
+    "pages": 9,
+    "items": 162,
+    "label": "Kulturwissenschaften (first degree)"
+  },
+  {
+    "id": "f3519_ma",
+    "params": {
+      "sfe": "93699;94398",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3519_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:53:19+00:00",
+    "pages": 13,
+    "items": 245,
+    "label": "Kulturwissenschaften (further degree)"
+  },
+  {
+    "id": "f3520_ba",
+    "params": {
+      "sfe": "128341",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3520_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:53:22+00:00",
+    "pages": 1,
+    "items": 4,
+    "label": "Liberal Arts (first degree)"
+  },
+  {
+    "id": "f3520_ma",
+    "params": {
+      "sfe": "128341",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3520_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:53:22+00:00",
+    "pages": 0,
+    "items": 0,
+    "label": "Liberal Arts (further degree)"
+  },
+  {
+    "id": "f3521_ba",
+    "params": {
+      "sfe": "93988;93836",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3521_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:54:04+00:00",
+    "pages": 17,
+    "items": 321,
+    "label": "Philosophie, Theologie, Religionspädagogik (first degree)"
+  },
+  {
+    "id": "f3521_ma",
+    "params": {
+      "sfe": "93988;93836",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3521_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:54:39+00:00",
+    "pages": 14,
+    "items": 278,
+    "label": "Philosophie, Theologie, Religionspädagogik (further degree)"
+  },
+  {
+    "id": "f3523_ba",
+    "params": {
+      "sfe": "94224;94063",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3523_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:54:49+00:00",
+    "pages": 4,
+    "items": 71,
+    "label": "Regionalwissenschaften (first degree)"
+  },
+  {
+    "id": "f3523_ma",
+    "params": {
+      "sfe": "94224;94063",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3523_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:55:01+00:00",
+    "pages": 5,
+    "items": 85,
+    "label": "Regionalwissenschaften (further degree)"
+  },
+  {
+    "id": "f3525_ba",
+    "params": {
+      "sfe": "93797;93946",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3525_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:55:27+00:00",
+    "pages": 10,
+    "items": 199,
+    "label": "Romanistik (first degree)"
+  },
+  {
+    "id": "f3525_ma",
+    "params": {
+      "sfe": "93797;93946",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3525_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:55:43+00:00",
+    "pages": 6,
+    "items": 112,
+    "label": "Romanistik (further degree)"
+  },
+  {
+    "id": "f3527_ba",
+    "params": {
+      "sfe": "94310;93979",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3527_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:55:54+00:00",
+    "pages": 4,
+    "items": 64,
+    "label": "Slawistik (first degree)"
+  },
+  {
+    "id": "f3527_ma",
+    "params": {
+      "sfe": "94310;93979",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3527_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:56:00+00:00",
+    "pages": 2,
+    "items": 37,
+    "label": "Slawistik (further degree)"
+  },
+  {
+    "id": "f3529_ba",
+    "params": {
+      "sfe": "93705;93677",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3529_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:56:27+00:00",
+    "pages": 10,
+    "items": 186,
+    "label": "Sprach-, Literaturwissenschaften, Dolmetschen und Übersetzen (first degree)"
+  },
+  {
+    "id": "f3529_ma",
+    "params": {
+      "sfe": "93705;93677",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3529_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:56:59+00:00",
+    "pages": 12,
+    "items": 223,
+    "label": "Sprach-, Literaturwissenschaften, Dolmetschen und Übersetzen (further degree)"
+  },
+  {
+    "id": "f3531_ba",
+    "params": {
+      "sfe": "94257;94170",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3531_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:57:09+00:00",
+    "pages": 4,
+    "items": 66,
+    "label": "Ältere europäische Sprachen und Kulturen (first degree)"
+  },
+  {
+    "id": "f3531_ma",
+    "params": {
+      "sfe": "94257;94170",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3531_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:57:18+00:00",
+    "pages": 3,
+    "items": 44,
+    "label": "Ältere europäische Sprachen und Kulturen (further degree)"
+  },
+  {
+    "id": "f3701_ba",
+    "params": {
+      "sfe": "93890;93625",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3701_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:57:21+00:00",
+    "pages": 1,
+    "items": 12,
+    "label": "Bühnenbild, Szenografie (first degree)"
+  },
+  {
+    "id": "f3701_ma",
+    "params": {
+      "sfe": "93890;93625",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3701_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:57:24+00:00",
+    "pages": 1,
+    "items": 8,
+    "label": "Bühnenbild, Szenografie (further degree)"
+  },
+  {
+    "id": "f3703_ba",
+    "params": {
+      "sfe": "93733;94379",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3703_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:57:59+00:00",
+    "pages": 13,
+    "items": 256,
+    "label": "Gestaltung, Design (first degree)"
+  },
+  {
+    "id": "f3703_ma",
+    "params": {
+      "sfe": "93733;94379",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3703_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:58:20+00:00",
+    "pages": 8,
+    "items": 151,
+    "label": "Gestaltung, Design (further degree)"
+  },
+  {
+    "id": "f3705_ba",
+    "params": {
+      "sfe": "94230;94299",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3705_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:58:42+00:00",
+    "pages": 8,
+    "items": 144,
+    "label": "Kunst (first degree)"
+  },
+  {
+    "id": "f3705_ma",
+    "params": {
+      "sfe": "94230;94299",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3705_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:58:58+00:00",
+    "pages": 6,
+    "items": 115,
+    "label": "Kunst (further degree)"
+  },
+  {
+    "id": "f3707_ba",
+    "params": {
+      "sfe": "94065;93774",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3707_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T19:59:57+00:00",
+    "pages": 22,
+    "items": 424,
+    "label": "Musik (first degree)"
+  },
+  {
+    "id": "f3707_ma",
+    "params": {
+      "sfe": "94065;93774",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3707_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:01:15+00:00",
+    "pages": 29,
+    "items": 562,
+    "label": "Musik (further degree)"
+  },
+  {
+    "id": "f3709_ba",
+    "params": {
+      "sfe": "94406;94422",
+      "st": 0
+    },
+    "folder": "data/raw/studiensuche_full/f3709_ba",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:01:28+00:00",
+    "pages": 5,
+    "items": 85,
+    "label": "Schauspiel, Tanz, Film, Fernsehen (first degree)"
+  },
+  {
+    "id": "f3709_ma",
+    "params": {
+      "sfe": "94406;94422",
+      "st": 1
+    },
+    "folder": "data/raw/studiensuche_full/f3709_ma",
+    "status": "downloaded",
+    "retrieved_utc": "2026-10-19T20:01:39+00:00",
+    "pages": 4,
+    "items": 67,
+    "label": "Schauspiel, Tanz, Film, Fernsehen (further degree)"
+  }
+]

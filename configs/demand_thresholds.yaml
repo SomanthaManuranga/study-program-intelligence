@@ -1,0 +1,49 @@
+# Demand thresholds, pre-registered before any 1 Nov data exists (docs/evidence_tie_break.md, "Demand thresholds").
+# Read by tests/test_demand_thresholds.py. Do not change after the 1 Nov snapshot; any later change is logged and the
+# old values are kept as a sensitivity.
+#
+# Inputs, defined exactly:
+# - job ads: docs/jobsuche_snapshots.json, snapshot date 2026-11-01 (if that run fails: the first complete snapshot
+#   after it), field "total", keyword ids as in configs/jobsuche.yaml. A group's count is the LARGEST single keyword
+#   count of the group in the region (not the sum, so one ad is not counted twice).
+# - Google Trends: data/raw/trends/tiebreak_DE_anchored.csv (Soma's download, settings in docs/evidence_tie_break.md).
+#   Monthly share = term / "Informatik Studium" x 100; yearly value = mean of the monthly shares January-October;
+#   slope = ordinary least-squares slope of the five yearly values 2022-2026, in percentage points per year.
+# A result exactly on a boundary belongs to the band stated with ">=" or "<=".
+
+groups:
+  robotics: [robotik, servicerobotik]
+  arvr: [virtual_reality, augmented_reality, computergrafik]
+trends_terms:
+  robotics: ["Robotik Studium"]
+  arvr: ["Virtual Reality Studium", "Visual Computing Studium"]   # the term with the higher slope counts
+  anchor: "Informatik Studium"
+
+# A. Robotics path B vs AR/VR: decision-rule groups (3) and (4) of the 3-of-4 rule (unchanged: a candidate wins on
+#    demand only if it leads in at least three of the four groups: Destatis pool, competitors, job ads, Trends).
+robotics_vs_arvr:
+  job_ads:
+    region: amberg_100km
+    neutral_max_ratio: 1.10     # larger / smaller <= 1.10 -> neutral; otherwise the larger group leads
+  trends:
+    neutral_max_diff_pp_per_year: 0.1   # |slope robotics - slope AR/VR best term| < 0.1 -> neutral; otherwise the higher leads
+
+# B. Robotics path B vs the minimum-cohort level (is there enough demand to fill a cohort of 20?).
+robotics_vs_min_cohort:
+  job_ads:
+    region: amberg_100km
+    favours_min: 150            # robotics count >= 150 -> favours (the ">150 ads within 100 km" anchor, configs/scores.yaml)
+    against_max: 74             # robotics count <= 74 (under half of the anchor) -> goes against; 75-149 -> neutral
+  trends:
+    favours_min_pp_per_year: 0.1     # "Robotik Studium" slope >= +0.1 -> favours
+    against_max_pp_per_year: -0.1    # slope <= -0.1 -> goes against; between -> neutral
+
+# C. Downgrade of robotics path B from "conditional candidate" to "not recommended".
+downgrade:
+  # rule 1: both robotics-vs-minimum-cohort signals (job ads and Trends) go against
+  both_against: true
+  # rule 2: one of them goes against AND the capture model's central steady-state gross first-years for robotics
+  #         path B (docs/evidence_tie_break.md, computed before the 1 Nov data) are below the minimum cohort
+  one_against_and_central_below: 20
+  # AR/VR winning the 3-of-4 rule does not downgrade robotics on its own: AR/VR fails the feasibility gate.
+  arvr_win_alone_downgrades: false

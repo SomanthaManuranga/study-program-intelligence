@@ -20,6 +20,12 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 9. Internal OTH data: the supervisor will ask; do not plan around it. Public data only.
 
 ## How to work with me (Soma)
+- **Standing rule for every step: Build -> Evaluate -> Iterate -> Report.** Write the criteria and thresholds down
+  BEFORE building (committed first). Score your own output against them, run the tests, have a fresh-context reviewer
+  check every factual claim, fix what fails and repeat, at most 3 rounds. Then report a scorecard (criterion, target,
+  result, pass/fail, what was fixed). If a criterion still fails after 3 rounds, stop and tell Soma; never loosen a
+  criterion to make it pass.
+- No AI attribution in commits, pull requests or repo files (no "Co-Authored-By" or "Generated with" lines).
 - Work in numbered steps (Step N), one step at a time. Each step ends with a "Done when" check.
 - After giving a step, wait until I report back or paste the output. Check the result against "Done when".
   Only move to the next step when it succeeded; otherwise help me fix it (same step number).
@@ -44,12 +50,13 @@ review (Steps 50-52, 54, 55), defence Q&A (Step 56), preliminary plain-English s
 data-sufficiency audit with its collected items.
 
 Remaining work, in this order:
-0. Re-scope to existing resources (Scope constraint 1): plan in docs/rescope_plan.md, waiting for Soma's approval
-   (decisions R1-R6). No code changes before approval. The current results become "baseline: with new resources".
+0. Re-scope to existing resources (Scope constraint 1): plan in docs/rescope_plan.md (approved), timeline there
+   (decisions R1-R6). The current results are the "baseline: with new resources" (tag baseline-new-resources).
 1. Job-ad snapshots on 1 Nov, 15 Nov and 1 Dec 2026: `python -m study_program_intelligence.ingest.jobsuche snapshot`
-   (48 counts, about 2 minutes; a rerun on the same day replaces that day's rows). Done when: 48 counts without ERROR
-   for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the 15 Oct
-   snapshot until the freeze.
+   (92 counts: 23 keywords x 4 regions since the tie-break keywords were added, about 4 minutes; a rerun on the same
+   day replaces that day's rows only when it is at least as complete). Done when: 92 counts without ERROR and no null
+   totals for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the
+   15 Oct snapshot until the freeze.
 2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py to
    the frozen snapshot; add the snapshot series (15 Oct to 1 Dec) to docs/evidence_outlet_jobs.md; regenerate key numbers, figures, report,
    defence Q&A, dashboard screenshots.
@@ -67,7 +74,14 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope plan (item 0), waiting for Soma's approval. Next fixed date: job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
+Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md). Soma's hand check is in
+(configs/handcheck_sheet.yaml, docs/handcheck_sheet.md). Three-level answer in docs/evidence_tie_break.md: (a) strict
+existing resources: no candidate passes (robotics path B fails F2 only: 15 ECTS of new modules by existing professors,
+cap 10); (b) lenient sensitivity: robotics path B passes; (c) with investment: the cybersecurity baseline. The 10-ECTS
+cap is the project's own operationalisation, pre-registered in configs/feasibility.yaml. The demand comparison is
+pending; the demand ranking is rerun after the 1 Nov job ads and the Google Trends downloads (terms in
+docs/evidence_tie_break.md). Fixed date:
+job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
 (docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
 Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
@@ -82,7 +96,8 @@ check is not recorded yet. Title page of the report: second author and superviso
 - Scraping: respect robots.txt (allowed_by_robots in ingest/documents.py), User-Agent with CONTACT_EMAIL, delay 2 s for
   the APIs and at least 3 s (or the site's Crawl-delay) for documents, cache raw replies, record every source in
   configs/sources.yaml and a manifest in docs/. Hochschulkompass search pages and OTH /fileadmin/ are disallowed ->
-  manual download by me.
+  manual download by me. OTH /files/ (current module handbooks) is allowed and fetched by script. Check robots.txt
+  before fetching any page of a new host, also for one-off checks.
 - Anything blocked by robots.txt or a login: do not work around it; skip it and state it as a limitation.
 - Professors are shown as neutral labels (Prof. A-N), never by name; OTH person pages are not read.
 - Every method decision goes into docs/decision_log.md (date, decision, reason, decided by).

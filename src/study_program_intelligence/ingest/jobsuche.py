@@ -11,7 +11,9 @@ API (documented by the bundesAPI project, github.com/bundesAPI/jobsuche-api):
     search /pc/v4/jobs (or v4/app, v6, see probe) ?was=<keyword>&wo=<place>&umkreis=<km>&angebotsart=1
 
 Only the total number of matching ads is used (counts, no personal data). Each snapshot is a
-point in time: running it again on another day adds a new row, which builds a small time series.
+point in time: running it again on another day adds a new row, which builds a small time series. A missing total
+field counts as an ERROR (never as a silent null), and a rerun on the same day replaces the stored day only when it
+has at least as many counts, so a partial rerun cannot overwrite a complete snapshot.
 Output: data/raw/jobsuche/<date>/<query>.json  first result page (local, not committed)
         docs/jobsuche_snapshots.json             counts per date, keyword and region (committed)
 """
@@ -100,6 +102,9 @@ def snapshot() -> int:
                 payload = resp.json()
                 (folder / f"{qid}.json").write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
                 total = _total(payload)
+                if total is None:   # a count of 0 is valid; a reply without a total field is an error, never a null row
+                    raise RuntimeError("no total field in the reply "
+                                       f"({list(payload)[:8] if isinstance(payload, dict) else type(payload).__name__})")
                 rows.append({"date": today, "keyword_id": kw["id"], "keyword": kw["was"], "group": kw.get("group"),
                              "region_id": reg["id"], "total": total})
                 print(f"{kw['id']:<22} {reg['id']:<14} {total}")
@@ -108,6 +113,11 @@ def snapshot() -> int:
                 print(f"{kw['id']:<22} {reg['id']:<14} ERROR {exc}")
             time.sleep(DELAY_SECONDS)
 
+    stored = [r for r in history if r["date"] == today]
+    if len(rows) < len(stored):   # a partial rerun must not overwrite a more complete snapshot of the same day
+        print(f"\n{len(rows)} counts for {today}, but {len(stored)} are already stored: keeping the stored snapshot. "
+              "Fix the errors above and run again.")
+        return 1
     history = [r for r in history if r["date"] != today] + rows   # one snapshot per day
     SNAPSHOTS.write_text(json.dumps(history, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"\n{len(rows)} counts for {today}. Written: docs/jobsuche_snapshots.json")

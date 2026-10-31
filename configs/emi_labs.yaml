@@ -1,0 +1,37 @@
+# EMI's existing labs, for feasibility rule F3 (configs/feasibility.yaml: existing EMI labs only).
+# Source: the public EMI lab overview (oth-aw.de/forschung/forschungseinrichtungen/labore/fakultaet-elektrotechnik-medien-und-informatik/,
+# cached in data/raw/oth_web) and its sub-pages. Personal professor pages are not read (project rule).
+# capabilities = what a module's practical part may use the lab for (keyword groups used by analysis/feasibility.py).
+# A module whose practical part needs a capability no lab has fails F3 unless a hand check finds a lab.
+
+labs:
+  - {name: Rechnernetze, capabilities: [networks]}
+  - {name: Prozessdatentechnik, capabilities: [industrial_communication, automation]}
+  - {name: Automatisierungssysteme, capabilities: [automation, plc]}
+  - {name: Regelungs- und Steuerungstechnik, capabilities: [control]}
+  - {name: Anlagen- und Simulationstechnik, capabilities: [automation, simulation, industrial_communication]}
+  - {name: Mikrocomputertechnik, capabilities: [embedded]}
+  - {name: Digitaltechnik, capabilities: [digital_electronics]}
+  - {name: Schaltungstechnik, capabilities: [electronics]}
+  - {name: Mikrosystemtechnik, capabilities: [electronics, sensors]}
+  - {name: Grundlagen der Elektrotechnik, capabilities: [electronics]}
+  - {name: Elektrische Messtechnik, capabilities: [measurement, sensors]}
+  - {name: Elektrische Maschinen und Antriebe, capabilities: [drives]}
+  - {name: Leistungselektronik, capabilities: [power_electronics]}
+  - {name: Hochspannungstechnik, capabilities: [high_voltage]}
+  - {name: Übertragungstechnik, capabilities: [communication_engineering]}
+  - {name: Digitale Signalverarbeitung, capabilities: [signal_processing]}
+  - {name: Physik, capabilities: [physics]}
+  - {name: Software Projekte, capabilities: [software]}
+  - {name: Labor Medieninformatik / Physical Computing, capabilities: [physical_computing, educational_robots, xr],
+     note: "Arduino/ESP32/Raspberry Pi, Mindstorms and Aldebaran robot programming, 3D printing (public lab page); HTC Vive, Microsoft HoloLens, Kinect, NAO and Pepper (Labor Medieninformatik page, from about 2020)"}
+  - {name: Visual Computing, capabilities: [computer_vision, graphics, xr]}
+  - {name: Audio- und Videotechnik, capabilities: [audio, video]}
+  - {name: Mediengestaltung, capabilities: [media_design]}
+  - {name: "IKKI / Digitaler Campus (OTH AI competence centre, linked from the EMI lab overview)", capabilities: [gpu, xr],
+     note: "GPU-Rechnerlabor mit 32 Workstations, AR-/VR-Labor (IKKI public page); headset count not stated"}
+
+# Capabilities that NO public EMI lab offers (from the baseline evidence and the lab pages):
+missing:
+  - {capability: security_lab, needed_for: "isolated network / cyber range for penetration testing, forensics, incident response (SOC)"}
+  - {capability: industrial_robots, needed_for: "industrial or collaborative robot cells (Industrieroboter, Cobots)"}

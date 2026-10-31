@@ -1,0 +1,119 @@
+# Score sheet for the equal-evidence ranking (docs/criteria_equal_evidence.md). Proposed by Claude, to be reviewed by
+# Soma. Same scale, criteria, weights and Monte Carlo as configs/scores.yaml (Step 49); the anchors there are applied
+# through the numeric rules below, written after the evidence was collected and BEFORE the ranking was run (as in
+# Step 49). Each rule reproduces the baseline scores it can be checked against (tests/test_candidates.py).
+# Updated 31 Oct 2026 (decision log "Hand-check decisions applied to the candidate score sheet"): the gate fields,
+# the fit evidence and the lenient pass list now carry Soma's recorded verdicts (configs/handcheck_sheet.yaml,
+# applied by report/handcheck_sheet.py; gate and single-flip tables in docs/evidence_tie_break.md) instead of the
+# proposed ones. No pre-registered criterion, threshold or scoring rule changed; the numeric rules below are unchanged.
+#
+# gate                  F1-F4 under the strict rule (the decision rule, configs/feasibility.yaml) after Soma's
+#                       hand-check decisions (configs/handcheck_sheet.yaml); a candidate that fails is scored for
+#                       completeness but excluded from the ranking (feasibility 1, kill rule 2). The lenient rule is
+#                       the pre-registered sensitivity; its passers are listed in sensitivity.lenient_gate.
+# student_demand        0.5 x capture score (computed from data/interim/candidate_scenarios.csv) + 0.5 x trend score
+#                       (configs/candidates.yaml trend_rule on the Bavarian series, data/interim/candidate_demand.csv).
+# labour_relevance      ad counts for the new keywords come with the 1 Nov snapshot (configs/jobsuche.yaml), so only
+#                       the shortage condition of the anchor can be checked now (BA Engpassanalyse 2025, Tabelle 8,
+#                       specialist level, top 10 only): matching shortage occupation -> 2 / 3 / 4; not listed
+#                       (unknown, the table shows only the top 10) -> 1 / 2.5 / 4 (weak evidence: symmetric range,
+#                       docs/kill_rules.md); strength weak. Robotics path B and the
+#                       OT master keep the baseline robotics / cyber-master scores, which rest on ad counts.
+# institutional_fit     coverage score from the hand-checked E1+E2 share (>= 70 % -> 5, 50-70 -> 4, 30-50 -> 3,
+#                       20-30 -> 2, below -> 1) and staff score from new ECTS T+N (<= 10 -> 5, <= 25 -> 4, <= 40 -> 3,
+#                       above -> 2); central = min of the two; low = the same with the E1-only share (adapted modules
+#                       not counted); high = central + 0.5 (max 5); strength medium (module level, hand check proposed).
+# feasibility           gate passed with existing staff and labs -> 4 / 5 / 5 (low 4: the lab check found a thin case,
+#                       docs/evidence_candidates.md); gate failed -> 1 (excluded, kill rule 2).
+# differentiation       dedicated institutions within 150 km: 0 -> 5, 1-2 -> 4, 3-5 -> 3, more -> 1; minus 1 if one of
+#                       them is within 80 km, or OTH already offers a dedicated programme of the type, or a nearby one
+#                       already has the same profile; low = central - 1, high = central. Reproduces the baseline
+#                       (cyber B.Sc. 4 institutions -> 3; cyber master 4-5 -> 3 - 1 (Deggendorf OT profile) = 2;
+#                       robotics 5 -> 3).
+# regional_contribution computed from (c) kept in region.
+
+options:
+  robotics_b:
+    label: Robotics + AI B.Sc. (path B)
+    gate: {result: fail, evidence: "strict rule: F1 83.0 %, T 8.25, N 15 against the cap of 10 -> F2 fails; F3 educational robots (thin); F4 34.3 % (KI family). Passes the lenient sensitivity (N <= 20, new content 17.0 %)"}
+    student_demand:
+      capture: {strength: weak, source: "robotics_bsc model reused (no intake anchor, assumed 20-60)"}
+      trend: {low: 1, central: 2, high: 3, strength: medium, evidence: "Mechatronik + Technische Informatik first-years Bavaria -0.6 %/yr 2019-24 (German -3.3)"}
+    labour_relevance: {low: 3, central: 3.5, high: 4.5, strength: medium, evidence: "baseline robotics score (Step 43 ad counts, Engpassanalyse 2025)"}
+    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "decided: E1+E2 83.0 %, E1 only 56.9 %, T+N 23.25 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "strict gate failed (N 15 > 10): excluded, kill rule 2; lenient-rule values in sensitivity.lenient_gate.feasibility"}
+    differentiation: {low: 2, central: 3, high: 3, strength: strong, evidence: "5 dedicated institutions within 150 km, none within 80 km"}
+    regional_contribution: {strength: medium, source: "computed"}
+  arvr:
+    label: AR/VR & visual computing B.Sc.
+    gate: {result: fail, evidence: "strict rule: F1 79.3 % < 80 and N 25 > 10 -> F1 and F2 fail; lenient rule: F2 still fails (N 25 > 20, new content 20.7 %); F3 Visual Computing lab (thin); F4 28.9 % (KI family)"}
+    student_demand:
+      capture: {strength: weak, source: "own model run; no intake anchor, assumed comparator intake 20-60 at Hochschule Coburg"}
+      trend: {low: 1, central: 1, high: 2, strength: medium, evidence: "Medieninformatik first-years Bavaria -8.2 %/yr 2019-24 (German -10.8)"}
+    labour_relevance: {low: 2, central: 3, high: 4, strength: weak, evidence: "Berufe in der Informatik (4310) is a specialist shortage occupation (2.0); ad counts pending (1 Nov)"}
+    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "decided: E1+E2 79.3 %, E1 only 61.2 %, T+N 25 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed under both rules: excluded, kill rule 2"}
+    differentiation: {low: 3, central: 4, high: 4, strength: strong, evidence: "1 dedicated institution within 150 km (Coburg Visual Computing, 106 km)"}
+    regional_contribution: {strength: weak, source: "computed"}
+  autonomous:
+    label: Autonomous mobile systems B.Eng.
+    gate: {result: fail, evidence: "F4 (E&IT 77.0 %, FR track; F1 93.4 %, T 0, N 10, F3 passes)"}
+    student_demand:
+      capture: {strength: weak, source: "own model run; no intake anchor, assumed comparator intake 20-60 at FAU"}
+      trend: {low: 2, central: 3, high: 4, strength: medium, evidence: "Fahrzeugtechnik + Mechatronik first-years Bavaria +2.0 %/yr (German -3.0)"}
+    labour_relevance: {low: 2, central: 3, high: 4, strength: weak, evidence: "Elektrotechnik (2630) and technical R&D (2710) specialist shortages; ad counts pending"}
+    institutional_fit: {low: 5, central: 5, high: 5, strength: medium, evidence: "FR track: E1+E2 93.4 %, E1 only 73.0 %, T+N 10 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed"}
+    differentiation: {low: 1, central: 2, high: 2, strength: strong, evidence: "3 dedicated institutions within 150 km, FAU at 63 km"}
+    regional_contribution: {strength: weak, source: "computed"}
+  energydata:
+    label: Energy data management B.Sc.
+    gate: {result: fail, evidence: "F1 69.4 %, F2 (T 26, N 18)"}
+    student_demand:
+      capture: {strength: weak, source: "no competitor site in Bavaria: gross 10-60 assumed, shares from the other runs"}
+      trend: {low: 3, central: 4, high: 5, strength: weak, evidence: "Elektrische Energietechnik + Regenerative Energien first-years Bavaria +6.2 %/yr (109 -> 147, small base)"}
+    labour_relevance: {low: 1, central: 2.5, high: 4, strength: weak, evidence: "energy-economics occupations not in the top-10 shortage list (unknown); ad counts pending"}
+    institutional_fit: {low: 2, central: 2, high: 2.5, strength: medium, evidence: "E1+E2 69.4 %, E1 only 34.0 %, T+N 44 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed"}
+    differentiation: {low: 4, central: 5, high: 5, strength: strong, evidence: "no dedicated programme within 150 km (only FH Dortmund in Germany)"}
+    regional_contribution: {strength: weak, source: "computed"}
+  geodata:
+    label: Geo-data & geovisualisation B.Sc.
+    gate: {result: fail, evidence: "F4 (GI 62.3 %): mostly OTH's Geoinformatik und Landmanagement"}
+    student_demand:
+      capture: {strength: weak, source: "own model run; no intake anchor, assumed comparator intake 20-60 at Universität Augsburg"}
+      trend: {low: 1, central: 1, high: 2, strength: medium, evidence: "Vermessungswesen + Kartografie first-years Bavaria -7.7 %/yr (German -12.2)"}
+    labour_relevance: {low: 1, central: 2.5, high: 4, strength: weak, evidence: "geoinformatics not in the top-10 specialist list (unknown); Vermessungstechnik is a shortage at skilled-worker level only; ad counts pending"}
+    institutional_fit: {low: 4, central: 5, high: 5, strength: medium, evidence: "E1+E2 100 %, E1 only 68.5 %, T+N 0 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed"}
+    differentiation: {low: 1, central: 2, high: 2, strength: strong, evidence: "3 dedicated institutions within 150 km; OTH's own GI is a dedicated programme of the type"}
+    regional_contribution: {strength: weak, source: "computed"}
+  ot_master:
+    label: Reduced OT-security master
+    gate: {result: fail, evidence: "F4 (IA 83.3 % strict, MKI 58.3 % lenient)"}
+    student_demand:
+      capture: {strength: weak, source: "cyber_msc model reused"}
+      trend: {low: 3, central: 4, high: 5, strength: strong, evidence: "Informatik graduates Bavaria +10.2 %/yr 2019-25 (German +7.2)"}
+    labour_relevance: {low: 2, central: 3, high: 4, strength: medium, evidence: "baseline cyber-master score (Step 43 ad counts)"}
+    institutional_fit: {low: 5, central: 5, high: 5, strength: medium, evidence: "built from existing master modules (100 %), but only 20 security ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed"}
+    differentiation: {low: 1, central: 2, high: 2, strength: strong, evidence: "3 dedicated institutions within 150 km; Deggendorf already teaches OT security"}
+    regional_contribution: {strength: weak, source: "computed"}
+
+sensitivity:
+  trend_german:   # the trend rule on German first-years / graduates only (data/interim/candidate_demand.csv)
+    robotics_b: {low: 1, central: 1, high: 2}
+    arvr: {low: 1, central: 1, high: 2}
+    autonomous: {low: 1, central: 1, high: 2}
+    energydata: {low: 3, central: 4, high: 5}
+    geodata: {low: 1, central: 1, high: 2}
+    ot_master: {low: 3, central: 4, high: 5}
+  lenient_gate:   # configs/feasibility.yaml sensitivity (F1 >= 70 %, N <= 20/10): who passes AFTER Soma's verdicts
+    pass: [robotics_b]
+    feasibility:  # restored for the lenient scenario only; the sheet itself carries the strict-rule 1 (excluded)
+      robotics_b: {low: 4, central: 5, high: 5}   # lenient gate passed, no new position or lab; low 4: teaching-grade robots (thin)
+    note: "arvr now fails F2 under both rules (N 25 > 20, new content 20.7 %) and F1 under the strict rule (79.3 %); autonomous still fails F4, energydata F1 (69.4 % < 70 %) and F2 (T 26 > 10), geodata and ot_master F4"
+  cannibalisation_50: [robotics_b, arvr]   # (a) = 50 % for the candidates with a same-campus near-twin (KI; Medieninformatik / Digital Design); used only when a ranking is simulated
+  # The AR/VR counter-argument scenarios of the pre-hand-check ranking (capture = robotics' rows, differentiation one
+  # step lower, fit 4, all at once) were retired when AR/VR failed the decided gate; docs/evidence_candidates.md
+  # section 7 records them as the superseded state.
