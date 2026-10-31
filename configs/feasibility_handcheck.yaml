@@ -7,7 +7,7 @@
 # lab: capability from configs/emi_labs.yaml, or "missing: industrial_robots".
 
 robotics_bsc:
-  status: proposed
+  status: "decided: Soma's verdicts in configs/handcheck_sheet.yaml (26 Oct); the proposed verdicts below are kept for the record"
   modules:
     RO 11 Ingenieurmathematik 1: {verdict: E1, emi: "Mathematik 1 (several EMI bachelors)"}
     RO 12 Elektronik 1: {verdict: E1, emi: "E&IT electronics / Elektrotechnik modules", note: "automatic best match is MT 'Elektrotechnik'"}
@@ -99,7 +99,7 @@ autonomous_bsc:
     EM-26 Allgemeinwissenschaftliches Wahlpflichtmodul (AWP): {verdict: E1, elective: true, prog: oth26_ba_ki, emi: "Allgemeines Wahlpflichtmodul"}
 
 arvr_bsc:
-  status: proposed
+  status: "decided: Soma's verdicts in configs/handcheck_sheet.yaml (26 Oct); the proposed verdicts below are kept for the record"
   programme_id: hsc_ba_vc
   reference: Hochschule Coburg, Visual Computing B.Sc. (closest Bavarian programme; the HFT Stuttgart AR/VR handbook is not usable)
   modules:

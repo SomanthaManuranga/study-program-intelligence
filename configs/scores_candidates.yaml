@@ -2,9 +2,15 @@
 # Soma. Same scale, criteria, weights and Monte Carlo as configs/scores.yaml (Step 49); the anchors there are applied
 # through the numeric rules below, written after the evidence was collected and BEFORE the ranking was run (as in
 # Step 49). Each rule reproduces the baseline scores it can be checked against (tests/test_candidates.py).
+# Updated 31 Oct 2026 (decision log "Hand-check decisions applied to the candidate score sheet"): the gate fields,
+# the fit evidence and the lenient pass list now carry Soma's recorded verdicts (configs/handcheck_sheet.yaml,
+# applied by report/handcheck_sheet.py; gate and single-flip tables in docs/evidence_tie_break.md) instead of the
+# proposed ones. No pre-registered criterion, threshold or scoring rule changed; the numeric rules below are unchanged.
 #
-# gate                  F1-F4 after the hand check (reports/feasibility.md, configs/feasibility_handcheck.yaml); a
-#                       candidate that fails is scored for completeness but excluded from the ranking (feasibility 1).
+# gate                  F1-F4 under the strict rule (the decision rule, configs/feasibility.yaml) after Soma's
+#                       hand-check decisions (configs/handcheck_sheet.yaml); a candidate that fails is scored for
+#                       completeness but excluded from the ranking (feasibility 1, kill rule 2). The lenient rule is
+#                       the pre-registered sensitivity; its passers are listed in sensitivity.lenient_gate.
 # student_demand        0.5 x capture score (computed from data/interim/candidate_scenarios.csv) + 0.5 x trend score
 #                       (configs/candidates.yaml trend_rule on the Bavarian series, data/interim/candidate_demand.csv).
 # labour_relevance      ad counts for the new keywords come with the 1 Nov snapshot (configs/jobsuche.yaml), so only
@@ -29,24 +35,24 @@
 options:
   robotics_b:
     label: Robotics + AI B.Sc. (path B)
-    gate: {result: pass, evidence: "F1 91.2 %, T 7, N 5, F3 educational robots (thin), F4 25.5 % (KI family)"}
+    gate: {result: fail, evidence: "strict rule: F1 83.0 %, T 8.25, N 15 against the cap of 10 -> F2 fails; F3 educational robots (thin); F4 34.3 % (KI family). Passes the lenient sensitivity (N <= 20, new content 17.0 %)"}
     student_demand:
       capture: {strength: weak, source: "robotics_bsc model reused (no intake anchor, assumed 20-60)"}
       trend: {low: 1, central: 2, high: 3, strength: medium, evidence: "Mechatronik + Technische Informatik first-years Bavaria -0.6 %/yr 2019-24 (German -3.3)"}
     labour_relevance: {low: 3, central: 3.5, high: 4.5, strength: medium, evidence: "baseline robotics score (Step 43 ad counts, Engpassanalyse 2025)"}
-    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "E1+E2 91.2 %, E1 only 56.9 %, T+N 12 ECTS"}
-    feasibility: {low: 4, central: 5, high: 5, strength: medium, evidence: "gate passed; robotics projects on teaching-grade robots only (thin)"}
+    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "decided: E1+E2 83.0 %, E1 only 56.9 %, T+N 23.25 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "strict gate failed (N 15 > 10): excluded, kill rule 2; lenient-rule values in sensitivity.lenient_gate.feasibility"}
     differentiation: {low: 2, central: 3, high: 3, strength: strong, evidence: "5 dedicated institutions within 150 km, none within 80 km"}
     regional_contribution: {strength: medium, source: "computed"}
   arvr:
     label: AR/VR & visual computing B.Sc.
-    gate: {result: pass, evidence: "F1 91.7 %, T 0, N 10 (computer graphics), F3 Visual Computing lab (thin), F4 32.2 % (II)"}
+    gate: {result: fail, evidence: "strict rule: F1 79.3 % < 80 and N 25 > 10 -> F1 and F2 fail; lenient rule: F2 still fails (N 25 > 20, new content 20.7 %); F3 Visual Computing lab (thin); F4 28.9 % (KI family)"}
     student_demand:
       capture: {strength: weak, source: "own model run; no intake anchor, assumed comparator intake 20-60 at Hochschule Coburg"}
       trend: {low: 1, central: 1, high: 2, strength: medium, evidence: "Medieninformatik first-years Bavaria -8.2 %/yr 2019-24 (German -10.8)"}
     labour_relevance: {low: 2, central: 3, high: 4, strength: weak, evidence: "Berufe in der Informatik (4310) is a specialist shortage occupation (2.0); ad counts pending (1 Nov)"}
-    institutional_fit: {low: 4, central: 5, high: 5, strength: medium, evidence: "E1+E2 91.7 %, E1 only 61.2 %, T+N 10 ECTS"}
-    feasibility: {low: 4, central: 5, high: 5, strength: medium, evidence: "gate passed; XR equipment size unknown (thin)"}
+    institutional_fit: {low: 4, central: 4, high: 4.5, strength: medium, evidence: "decided: E1+E2 79.3 %, E1 only 61.2 %, T+N 25 ECTS"}
+    feasibility: {low: 1, central: 1, high: 1, strength: medium, evidence: "gate failed under both rules: excluded, kill rule 2"}
     differentiation: {low: 3, central: 4, high: 4, strength: strong, evidence: "1 dedicated institution within 150 km (Coburg Visual Computing, 106 km)"}
     regional_contribution: {strength: weak, source: "computed"}
   autonomous:
@@ -102,9 +108,12 @@ sensitivity:
     energydata: {low: 3, central: 4, high: 5}
     geodata: {low: 1, central: 1, high: 2}
     ot_master: {low: 3, central: 4, high: 5}
-  lenient_gate:   # configs/feasibility.yaml sensitivity (F1 >= 70 %, N <= 20/10): which candidates would pass
-    pass: [robotics_b, arvr]
-    note: "autonomous still fails F4, energydata F1 (69.4 % < 70 %) and F2 (T 26 > 10), geodata and ot_master F4"
-  cannibalisation_50: [robotics_b, arvr]   # (a) = 50 % for the candidates with a same-campus near-twin (KI; Medieninformatik / Digital Design)
-  arvr_capture_as_robotics: true           # AR/VR's capture rests on one comparator site: rerun with robotics' rows
-  arvr_differentiation_3: true             # neighbouring countries: a Czech or Austrian competitor could lower AR/VR's differentiation by one step
+  lenient_gate:   # configs/feasibility.yaml sensitivity (F1 >= 70 %, N <= 20/10): who passes AFTER Soma's verdicts
+    pass: [robotics_b]
+    feasibility:  # restored for the lenient scenario only; the sheet itself carries the strict-rule 1 (excluded)
+      robotics_b: {low: 4, central: 5, high: 5}   # lenient gate passed, no new position or lab; low 4: teaching-grade robots (thin)
+    note: "arvr now fails F2 under both rules (N 25 > 20, new content 20.7 %) and F1 under the strict rule (79.3 %); autonomous still fails F4, energydata F1 (69.4 % < 70 %) and F2 (T 26 > 10), geodata and ot_master F4"
+  cannibalisation_50: [robotics_b, arvr]   # (a) = 50 % for the candidates with a same-campus near-twin (KI; Medieninformatik / Digital Design); used only when a ranking is simulated
+  # The AR/VR counter-argument scenarios of the pre-hand-check ranking (capture = robotics' rows, differentiation one
+  # step lower, fit 4, all at once) were retired when AR/VR failed the decided gate; docs/evidence_candidates.md
+  # section 7 records them as the superseded state.

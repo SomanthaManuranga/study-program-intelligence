@@ -106,6 +106,8 @@ sensitivity:
     (unchanged).
     Robotics B.Sc.: Mechatronik + Technische Informatik, German first-years Bavaria -3.3 %/yr, Germany -4.7 %/yr:
     fell over five years -> 1 (was 2).
+    Note (31 Oct review): clipping at the scale floor makes robotics' German-only range asymmetric (1 / 1 / 2,
+    triangular mean 1.33), which slightly favours robotics in this sensitivity; conservative for the cyber lead.
   trend_german:
     cyber_bsc: {low: 2, central: 3, high: 4}
     cyber_msc: {low: 3, central: 4, high: 5}

@@ -1,25 +1,5 @@
 [
   {
-    "id": "baylufv_4",
-    "owner": "Freistaat Bayern (BAYERN.RECHT)",
-    "title": "Lehrverpflichtungsverordnung (LUFV) § 4",
-    "url": "https://www.gesetze-bayern.de/Content/Document/BayLUFV-4",
-    "mirror": false,
-    "file": "data/raw/regulation/baylufv_4.bin",
-    "status": "error",
-    "error": "HTTP 404"
-  },
-  {
-    "id": "baylufv",
-    "owner": "Freistaat Bayern (BAYERN.RECHT)",
-    "title": "Lehrverpflichtungsverordnung (LUFV), overview",
-    "url": "https://www.gesetze-bayern.de/Content/Document/BayLUFV",
-    "mirror": false,
-    "file": "data/raw/regulation/baylufv.bin",
-    "status": "error",
-    "error": "HTTP 404"
-  },
-  {
     "id": "avbayhig_4",
     "owner": "Freistaat Bayern (BAYERN.RECHT)",
     "title": "AVBayHIG § 4 Regellehrverpflichtung an Hochschulen für angewandte Wissenschaften",

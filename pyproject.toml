@@ -11,6 +11,7 @@ dependencies = [
   "pyyaml>=6.0",
   "requests>=2.31",
   "openpyxl>=3.1",
+  "pypdf>=5.0",   # core: capture.py, demand_split.py and school_leavers.py parse the statistical PDFs
 ]
 
 [project.optional-dependencies]

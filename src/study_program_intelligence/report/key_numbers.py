@@ -451,9 +451,9 @@ def candidates(n: Numbers) -> None:
               data="data/interim/candidate_scenarios.csv")
     rs = pd.read_csv(INTERIM / "ranking_candidates_summary.csv")
     slug = lambda x: "".join(ch if ch.isalnum() else "_" for ch in x.lower()).strip("_")
-    for r in rs.itertuples():   # every scenario of the robustness table
-        p = 100 * float(r._2)
-        n.add(f"p1_{r.option}_{slug(r.scenario)}", g, f"P(rank 1) {r.option}, {r.scenario}", round(p, 1), f"{p:.1f} %", s,
+    for _, r in rs.dropna(subset=["P(rank 1)"]).iterrows():   # only rules where a ranking was simulated (two or more gate passers)
+        p = 100 * float(r["P(rank 1)"])
+        n.add(f"p1_{r['option']}_{slug(r['rule'])}", g, f"P(rank 1) {r['option']}, {r['rule']}", round(p, 1), f"{p:.1f} %", s,
               data="data/interim/ranking_candidates_summary.csv")
     # central weighted totals (deterministic, base weights)
     from study_program_intelligence.analysis import ranking as R

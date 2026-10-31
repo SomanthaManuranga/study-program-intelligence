@@ -38,7 +38,7 @@ and job-ad counts are keyword matches, not vacancy statistics. All of these are 
 | Claim | Question | Main methods |
 |---|---|---|
 | A. Demand | Do enough students want this? | Destatis first-year series, KMK projection, forecasting with rolling-origin backtests (MASE), Google Trends |
-| B. Capture | How many would come to OTH? | Programme catalogue (4,875 offers), catchment from county school-leaver data, gravity/Huff model, cannibalisation model |
+| B. Capture | How many would come to OTH? | Programme catalogue (4,875 unique offers, 4,806 of them bachelor or master), catchment from county school-leaver data, gravity/Huff model, cannibalisation model |
 | C. Fit | Can EMI teach it? | NLP comparison of competitor and EMI module handbooks (multilingual embeddings + TF-IDF cross-check, CyBOK areas), staff and lab mapping |
 | D. Outlet | Are there jobs? | BA job-ad snapshots, Bavarian employment statistics, BA shortage analysis |
 

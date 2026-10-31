@@ -89,6 +89,14 @@ BUILD = [
     ("report.handcheck_sheet", "report", "report.handcheck_sheet", []),
     ("analysis.first_years", "analysis", "analysis.first_years", []),
     ("analysis.cost", "analysis", "analysis.cost", []),
+    # deep-analysis layer (docs/criteria_deep_analysis.md): additive robustness and benchmarking evidence
+    ("analysis.data_quality", "analysis", "analysis.data_quality", []),
+    ("analysis.spec_curve", "analysis", "analysis.spec_curve", []),
+    ("analysis.intake_model", "analysis", "analysis.intake_model", []),
+    ("analysis.capture_benchmark", "analysis", "analysis.capture_benchmark", []),
+    ("analysis.cannibalisation_similarity", "analysis", "analysis.cannibalisation_similarity", []),
+    ("analysis.demand_corridor", "analysis", "analysis.demand_corridor", []),
+    ("report.figures_deep", "report", "report.figures_deep", []),
     ("report.build", "report", "report.build", []),
     ("report.draft", "report", "report.draft", []),
     ("report.spotcheck", "report", "report.spotcheck", []),
@@ -184,8 +192,9 @@ def main(argv: list[str] | None = None) -> int:
             r = subprocess.run(cmd, cwd=REPO_ROOT, stdout=out, stderr=subprocess.STDOUT)
             sec = time.time() - t
             # a download list exits with 1 when some documents could not be fetched (known gaps such as robots.txt
-            # blocks or dead links, recorded in the manifest); that is not a reason to stop the rebuild
-            gaps = stage == "ingest" and r.returncode == 1
+            # blocks or dead links, recorded in the manifest); that is not a reason to stop the rebuild. The job-ad
+            # snapshot is the exception: errors on a dated snapshot stop the run, because the date cannot be rerun later
+            gaps = stage == "ingest" and r.returncode == 1 and name != "ingest.jobsuche"
             ok = r.returncode == 0 or gaps
             status = "ok, with gaps (see output log)" if gaps else ("ok" if ok else f"FAILED ({r.returncode})")
             print(f"{status} ({sec:.0f} s)")

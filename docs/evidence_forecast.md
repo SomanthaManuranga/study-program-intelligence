@@ -44,7 +44,7 @@ backtest period (2012-2024) was a growth phase; drift's errors were mostly under
 The central column is **a midpoint between the KMK floor and the drift trend, chosen by us as a planning value; it is
 not a model output.**
 
-| Series | Year | Conservative: KMK scenario (constant share x KMK Dok. 1 index) | Upside: drift (80 % band from backtest errors) | Central (midpoint, planning value) |
+| Series | Year | Conservative: KMK scenario (constant share x KMK Dok. 1 index) | Upside: drift (80 % bias-corrected band from backtest errors) | Central (midpoint, planning value) |
 |---|---|---|---|---|
 | DE Informatik | 2030 | 22,206 | 25,915 (24,727-28,832) | 24,060 |
 | DE Informatik | 2035 | 24,436 | 29,108 (27,330-33,728) | 26,772 |
@@ -73,6 +73,6 @@ KMK index (first-years by state of study, base 2024): Germany 1.03 (2030), 1.13 
 ## Caveats
 
 - The proxy is not cyber demand; cyber's own share inside it is not observable in Destatis.
-- 21 annual points per series; backtests use 13 origins and overlapping windows (errors are not independent).
+- 21 annual points per series; backtests use 12 origins (2012-2023) and overlapping windows (errors are not independent).
 - KMK projects state-run institutions and the study year (summer + winter); it is used only as a growth index.
 - Winter semesters only (summer starts missing), as in all Destatis-based steps.

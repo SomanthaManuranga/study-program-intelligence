@@ -1,5 +1,15 @@
 # Evidence: equal evidence for the confirmed candidates
 
+> **Superseded in part (31 Oct 2026).** This document records the equal-evidence step with the PROPOSED hand-check
+> verdicts. Soma's decisions (26 Oct, `configs/handcheck_sheet.yaml`) reversed the two gate passes: robotics path B
+> fails the strict rule (N 15 ECTS against the cap of 10; it passes only the lenient sensitivity) and AR/VR fails both
+> rules (F1 79.3 %, N 25). The "Result in one table", sections 6-8, the completeness table and the open risks below
+> therefore describe the superseded state, kept for the record. The decided gates, the single-flip sensitivity and the
+> current three-level answer are in `docs/evidence_tie_break.md`; the ranking under the decided gates is in
+> `reports/ranking_candidates.md`. Under the decided gates the central weighted scores (strict-rule feasibility,
+> gate failed = 1) are ot_master 3.14, autonomous 2.90, robotics_b 2.85, arvr 2.83, energydata 2.58, geodata 2.43;
+> under the lenient rule robotics_b 3.45. This body text is rewritten with the re-scope report rewrite.
+
 Criteria (fixed before building): `docs/criteria_equal_evidence.md`. Generated tables: `reports/feasibility.md`,
 `reports/candidates.md`, `reports/ranking_candidates.md`. Configs: `configs/candidates.yaml`,
 `configs/reference_documents.yaml`, `configs/feasibility_handcheck.yaml`, `configs/scores_candidates.yaml`.

@@ -84,3 +84,5 @@ def test_incomplete_snapshot_is_skipped():
     keys = [k for g in cfg["groups"].values() for k in g]
     full = pd.DataFrame({"keyword_id": keys, "region_id": region, "total": 1})
     assert D.complete(full, cfg) and not D.complete(full.iloc[1:], cfg)
+    nulled = full.assign(total=[None] + [1] * (len(keys) - 1))   # a null total counts as incomplete, not as zero
+    assert not D.complete(nulled, cfg)

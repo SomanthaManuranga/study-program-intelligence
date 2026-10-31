@@ -305,3 +305,116 @@ Decision: (1) First-years for robotics path B, AR/VR, the cybersecurity bachelor
 Decided by: Soma (task); assumptions written by Claude.
 Review round 1 fixes (before any 1 Nov data): analysis/demand_thresholds.py now reads the capture model's own central steady-state gross for robotics path B (28.7, column "gross (model, base year)"), as the pre-registered text says, instead of the trend-projected 28.6; the thresholds are unchanged. The cost comparison adds a like-for-like column (all new teaching, no positions) after the E6 attack.
 Review round 2 fixes (before any 1 Nov data): the cost table adds robotics path B's figures scaled to 165 taught ECTS (N and T scaled, the cap of 10 not), which shows that on new teaching alone robotics path B is not cheaper per first-year than cyber with cyber's trend projection (it is cheaper without it); analysis/demand_thresholds.py now applies the pre-registered fallback (the first complete snapshot on or after 1 Nov); the thresholds section states what a downgrade would need given the 17 Oct count. Thresholds unchanged.
+
+## 2026-10-31: Hand-check decisions applied to the candidate score sheet (external review, finding B1)
+Decision: configs/scores_candidates.yaml now carries the decided gate state recorded in configs/handcheck_sheet.yaml
+(Soma's verdicts of 26 Oct) instead of the proposed one: robotics path B fails the strict gate (F1 83.0 %, T 8.25,
+N 15 against the cap of 10, F4 34.3 % KI family) and passes the lenient sensitivity; AR/VR fails both rules (F1
+79.3 %, N 25, new content 20.7 %); the lenient pass list is robotics path B alone. By the pre-registered fit rule the
+decided values set AR/VR's institutional fit to 4 (T+N 25 ECTS; was 5 on the proposed verdicts); robotics path B's
+fit stays 4 (T+N 23.25 ECTS). Both candidates carry feasibility 1 under the strict rule (gate failed, kill rule 2);
+the lenient sensitivity restores robotics path B's pre-registered 4 / 5 / 5 via sensitivity.lenient_gate.feasibility.
+analysis/ranking.py --candidates now sizes the Monte Carlo by the gate population per rule and simulates a ranking
+only when at least two candidates pass (currently: strict none, lenient robotics path B alone, so no ranking is
+simulated and the report states that); the central-score comparison of all six is kept (strict rule: ot_master 3.14,
+autonomous 2.90, robotics_b 2.85, arvr 2.83, energydata 2.58, geodata 2.43; lenient: robotics_b 3.45), and the AR/VR
+counter-argument scenarios of the pre-hand-check ranking are retired (docs/evidence_candidates.md section 7 records
+them as the superseded state). report/key_numbers.py reads the new summary schema (P(rank 1) only where a ranking was
+simulated); tests/test_candidates.py now checks the sheet's gates, fit scores and lenient list against the recorded
+decisions (report/handcheck_sheet.py) instead of the proposed verdicts, and a new test fails if the sheet and the
+decisions ever drift apart again. This applies recorded evidence; no pre-registered criterion, threshold or scoring
+rule changed. Known consequence for the 4 Dec freeze: the superseded passages of docs/evidence_candidates.md (gate
+passes, P(rank 1) 73.5 %, central totals 3.63 / 3.45) no longer match the regenerated outputs, so the verbatim
+key-number check will flag them until that doc is updated (external review, finding M2).
+Reason: the post-1-Nov demand-ranking rerun and the 4 Dec freeze rerun would otherwise have reproduced the superseded
+"AR/VR passes, 73.5 %" result from the stale sheet (external review, finding B1).
+Decided by: Soma (instruction to apply the review's fix B1); carried out by the external reviewer in the review copy,
+to be ported and committed on soma/rescope.
+
+## 2026-10-31: Review fixes M1-M5, foreign-pool backtests and supporting actions (external review)
+Decision: (1) M1: analysis/feasibility.py appends the DECIDED gates (configs/handcheck_sheet.yaml, computed by
+report/handcheck_sheet.all_gates) to reports/feasibility.md and retitles its hand-check tables as proposed verdicts;
+configs/feasibility_handcheck.yaml marks robotics_bsc and arvr_bsc as decided. (2) M2: supersession banners on
+docs/evidence_candidates.md and docs/evidence_feasibility.md, the stale week-2 verdict cell and the stale open-risks
+bullet corrected, the handover's stale-docs list completed. (3) M3: the snapshot done-when is 92 counts (23 keywords
+x 4 regions) with no null totals (CLAUDE.md, both handover copies). (4) M4: ingest/jobsuche.py treats a missing total
+field as ERROR and refuses to replace a day's stored snapshot with a more incomplete rerun;
+analysis/demand_thresholds.py rejects null totals (a null can no longer silently drop a keyword from a group
+maximum); pipeline.py no longer tolerates a failed snapshot step as "ok with gaps"; a null-total case was added to
+tests/test_demand_thresholds.py. A probe on 31 Oct confirmed the endpoint (v6, maxErgebnisse; "Cyber Security" 872 in
+Germany against 851 / 858 on 15 / 17 Oct). (5) M5 presentation: a reading note under the three-level table makes the
+model base-year first-years the primary figures; evidence_forecast's interval is labelled a bias-corrected band and
+its origins caveat corrected to 12 (2012-2023); evidence_tie_break states that, given the 17 Oct count of 162 ads,
+the pre-registered downgrade is practically out of reach, so the operative level-(b) condition is the faculty's
+answer on the new teaching. (6) NEW EVIDENCE: analysis/first_years.py now backtests each pool's German AND foreign
+series (rolling origin, MASE). Result: the foreign cyber-proxy pool is far from forecastable (best MASE 4.22, drift
+5.02; robotics foreign best 2.76; only AR/VR's small foreign series beats the scale at 0.79), so the compounded
+foreign growth behind the projected steady states is recorded as a scenario, not a forecast
+(reports/first_years.md, data/interim/pool_backtest.csv with a new "group" column, docs/evidence_tie_break.md). In
+the review copy the long table was read from data/interim/demand_split.csv because data/raw is not shipped; a rerun
+from raw reproduces it (the German rows were verified to match the shipped values exactly). (7) Housekeeping:
+ot_master's lenient gate row shows the most favourable attribution (58.3 %, with a note in the generated gate
+block); README qualifies the catalogue size (4,875 unique offers, 4,806 bachelor or master; counted from
+data/processed/programmes.csv); the two dead LUFV entries left docs/regulation_manifest.json; robots.txt errors
+(5xx or unreachable) now count as blocked instead of allowed (ingest/documents.py); pypdf moved to the core
+dependencies (capture, demand_split and school_leavers import it); module_gaps.embed imports sentence-transformers
+only when a text is missing from the embedding cache, so cached reruns work without torch; a CI workflow
+(.github/workflows/tests.yml) runs pytest on every push (data-dependent tests skip in a clean clone); scores.yaml
+notes the clipping asymmetry of the German-only robotics range (1 / 1 / 2, mean 1.33); evidence_feasibility notes
+the in-sample threshold calibration. (8) Neighbours check (rescope_plan (e), time-boxed, docs/neighbours_check.md,
+pending Soma's review): no robotics-titled bachelor found in Plzeň; ZČU's Kybernetika a řídicí technika bachelor
+carries robotics as a specialisation, a focus-type competitor under the pre-registered rule, so the differentiation
+score is unchanged; Austria's nearest sites lie beyond 150 km; AR/VR is moot (fails the gate). Verification after
+the changes: all 340 committed key numbers still occur verbatim in their source docs; the decided gates, the
+baseline ranking (91.7 / 6.0 / 2.3) and the German pool backtests reproduce; the test suite is unchanged apart from
+the additions (82 passed; the 3 known environment failures of the bundle remain). No pre-registered criterion,
+threshold, weight or score changed.
+Reason: the user's instruction to apply review fixes M1-M4 and the actions the pipeline had not taken (external
+review findings and section 6 of the handover).
+Decided by: Soma (instruction); carried out by the external reviewer in the review copy, to be ported and committed
+on soma/rescope. The neighbours check and the M5 reading note are reviewer proposals pending Soma's review.
+
+## 2026-10-31: Deep-analysis layer added (Soma's instruction; criteria fixed first in docs/criteria_deep_analysis.md)
+Decision: on Soma's instruction ("build the deep analysis for the arguments now; git handling stays with me") the
+additive deep-analysis layer was built under its own pre-fixed criteria D1-D7: (1) a data-quality gate
+(analysis/data_quality.py, 26 structural checks, runs in the pipeline); (2) a specification-curve analysis
+(analysis/spec_curve.py) that reruns the pre-registered Step 47/48 machinery from the generated tables behind a
+reproduction gate (the pre-registered specification reproduces 21/39/75, 15.3/32.0/64.4 and 14.9/28.7/55.3 exactly)
+and then under every reasonable alternative: the central intake clears the minimum cohort of 20 in 100.0 % (cyber)
+and 91.2 % (robotics path B) of 2,880 capture specifications, and the baseline winner is first in 100.0 % of 192
+ranking specifications (P(rank 1) 0.659-0.945, median 0.804; seed noise about 0.2 points; single weights scaled
+0.5x-1.5x keep it within 0.858-0.958); the spread is driven by the declared assumptions (cyber: pool trend 62.2 %;
+robotics: high anchor 48.9 %); (3) a Gamma-Poisson shrinkage model over the published comparable intakes
+(analysis/intake_model.py): 92.5 % of the OTH predictive mass inside the pre-registered 21-75, median 39.2, 3.8 %
+below the minimum cohort; (4) a required-share benchmark and accessibility indices (analysis/capture_benchmark.py):
+the minimum cohort is 0.36 % and the central cyber case 0.71 % of the own pool against a reported 1.07 % (one student review) at
+TH Deggendorf's equivalent pool; (5) an embedding-based cannibalisation profile
+(analysis/cannibalisation_similarity.py): substitution concentrates on the programmes the Huff model names
+(cyber: the security-focus pair, 52.6 %; robotics: the KI family, 41.3 %); (6) demand corridors to 2030 from the
+rolling-origin errors (analysis/demand_corridor.py): cyber 39.4-63.2 with a conservative point of 42.7 that needs no
+foreign compounding, robotics 22.7-29.4; (7) figures f09/f10 (report/figures_deep.py), the synthesis
+docs/evidence_deep_analysis.md with the D1-D7 scorecard, and the professor-facing docs/argument_brief.md mapping
+every claim to its evidence, strength and counterargument. All modules are pipeline steps and covered by
+tests/test_deep_analysis.py (incl. the reproduction gate). Nothing pre-registered changed; every new result is
+framed as a sensitivity, benchmark or corridor around the three-level answer.
+Reason: the defence needs arguments that survive attack; the layer quantifies robustness instead of asserting it.
+Decided by: Soma (instruction); built by the external reviewer in the working clone; commits and pushes stay with
+Soma.
+
+## 2026-10-31: External review merged into soma/rescope; E8 recorded as failed
+Decision: (1) The external review's changes (findings B1, M1-M5, the minors, the foreign-pool backtests, the
+neighbours check, CI and the deep-analysis layer; entries above) are applied to soma/rescope and verified on the full
+data: the affected steps and all deep-analysis modules rerun, the outputs reproduce the review's numbers, 322 key
+numbers are found verbatim (the retired pre-hand-check keys are gone, as intended) and 115 tests pass. (2) Three
+overstatements in the new docs are corrected before committing: the shrinkage model is not independent of the
+anchors (THI 25 and Deggendorf ~60 are in its sample; the two Saarland values are one research-university programme
+in two years, while Bochum is left out for being a research university), so it is described as a consistency check;
+Deggendorf's ~60 is a reported value (one student review), not a demonstrated one; robotics' 58 ads within 50 km
+are the strongest local signal among the specialist keywords, not among all keywords (IT-Sicherheit 113,
+Softwareentwickler 97, Informatiker 92); the 192 ranking specifications concern the three baseline options (level
+(c)), not robotics path B. (3) Process notes: the deep-analysis criteria were written first in the review copy, which
+had no git history, so their order before building is not provable by commit; the layer implements items of the
+Phase-5 backlog early, on Soma's instruction. (4) E8 of the capture/cost/demand step stays recorded as failed after
+three rounds; the unreviewed wording fix 373d3fd is pushed with this, and its check is folded into the claim review
+of the re-scope report rewrite. No criterion is loosened and no fourth round is counted as passed.
+Decided by: Soma (merge and push); wording corrections and verification by Claude.

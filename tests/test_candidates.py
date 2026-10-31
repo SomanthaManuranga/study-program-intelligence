@@ -128,22 +128,30 @@ def _fit(cov: float, new: float) -> int:
     return min(c, st)
 
 
-@needs("data/interim/feasibility_handcheck_candidates.csv")
+@needs("data/interim/feasibility_handcheck_candidates.csv", "data/interim/feasibility_modules.csv")
 def test_fit_scores_follow_the_hand_check():
     t = pd.read_csv(INTERIM / "feasibility_handcheck_candidates.csv")
-    key = {"Autonomous mobile systems B.Eng.": "autonomous", "AR/VR & visual computing B.Sc.": "arvr",
-           "Energy data management B.Sc.": "energydata", "Geo-data & geovisualisation B.Sc.": "geodata"}
+    key = {"Autonomous mobile systems B.Eng.": "autonomous", "Energy data management B.Sc.": "energydata",
+           "Geo-data & geovisualisation B.Sc.": "geodata"}   # proposed verdicts (no decisions recorded for these)
     sheet = load("configs/scores_candidates.yaml")["options"]
     for option, g in t.groupby("option"):
+        if option not in key:
+            continue
         tot = g["ects"].sum()
         e12 = 100 * g.loc[g["verdict"].isin(["E1", "E2"]), "ects"].sum() / tot
         e1 = 100 * g.loc[g["verdict"] == "E1", "ects"].sum() / tot
         new = g.loc[g["verdict"].isin(["T", "N"]), "ects"].sum()
         f = sheet[key[option]]["institutional_fit"]
         assert (f["low"], f["central"]) == (_fit(e1, new), _fit(e12, new)), option
-    # robotics path B (week-2 hand check): E1+E2 91.2 %, E1 56.9 %, T+N 12
-    f = sheet["robotics_b"]["institutional_fit"]
-    assert (f["low"], f["central"]) == (_fit(56.9, 12), _fit(91.2, 12))
+    # AR/VR and robotics path B: Soma's decided verdicts (configs/handcheck_sheet.yaml via report/handcheck_sheet.py)
+    from study_program_intelligence.report import handcheck_sheet as H
+    cfg, hc, rule = H.config()
+    for cand in ("arvr", "robotics_b"):
+        v = H.verdict_table(cand, cfg, hc)
+        r = H.f1_f4(v, rule)
+        e1 = 100 * v.loc[v["verdict"] == "E1", "ects"].sum() / v["ects"].sum()
+        f = sheet[cand]["institutional_fit"]
+        assert (f["low"], f["central"]) == (_fit(e1, r["T"] + r["N"]), _fit(r["F1 %"], r["T"] + r["N"])), cand
 
 
 def test_gate_and_feasibility_scores_agree():
@@ -157,21 +165,43 @@ def test_gate_and_feasibility_scores_agree():
                 assert e["central"] - e["low"] == pytest.approx(e["high"] - e["central"]), (key, crit)
 
 
+@needs("data/interim/feasibility_handcheck_candidates.csv", "data/interim/feasibility_modules.csv")
+def test_gate_fields_match_the_decided_hand_check():
+    """The sheet's gates and the lenient pass list equal the recorded decisions (configs/handcheck_sheet.yaml),
+    recomputed by the same code that writes the gate tables in docs/evidence_tie_break.md."""
+    from study_program_intelligence.report import handcheck_sheet as H
+    cfg, hc, rule = H.config()
+    sheet = load("configs/scores_candidates.yaml")
+    lenient = set(sheet["sensitivity"]["lenient_gate"]["pass"])
+    for cand in ("robotics_b", "arvr"):
+        assert (sheet["options"][cand]["gate"]["result"] == "pass") == H.gate(cand, cfg, hc, rule)["gate"], cand
+        assert (cand in lenient) == H.gate(cand, cfg, hc, rule, lenient=True)["gate"], cand
+    for cand in lenient:   # every lenient passer needs a restored feasibility for the lenient scenario
+        assert sheet["sensitivity"]["lenient_gate"]["feasibility"][cand]["central"] > 1
+
+
 # ---------------- ranking ----------------
 
 @needs("data/interim/candidate_scenarios.csv", "data/interim/ranking_candidates_summary.csv")
-def test_candidate_ranking_reproduces_with_the_fixed_seed():
+def test_candidate_ranking_respects_the_gates_and_reproduces():
     from study_program_intelligence.analysis import ranking as R
     cfg, sc, cap = R.load(sheet_path=R.CAND_SCORES, scen_path=R.CAND_SCEN)
     a = R.simulate(cfg, sc, cap, cfg["weights"])
     b = R.simulate(cfg, sc, cap, cfg["weights"])
-    assert np.array_equal(a.to_numpy(), b.to_numpy())
-    assert set(a.columns) == {k for k, v in sc.items() if v["gate"]["result"] == "pass"}
+    assert np.array_equal(a.to_numpy(), b.to_numpy())                     # fixed seed: reproducible
+    strict = {k for k, v in sc.items() if v["gate"]["result"] == "pass"}
+    assert set(a.columns) == strict                                        # only gate passers are ranked
+    sheet = load("configs/scores_candidates.yaml")
     stored = pd.read_csv(INTERIM / "ranking_candidates_summary.csv")
-    stored = stored[stored["scenario"] == "base"].set_index("option")["P(rank 1)"]
-    now = R.summarise(a).set_index("option")["P(rank 1)"]
-    for o in now.index:
-        assert now[o] == pytest.approx(stored[o]), o
+    passers = lambda rule: set(stored.loc[(stored["rule"] == rule) & (stored["gate"] == "pass"), "option"])
+    assert passers(R.RULE_STRICT) == strict
+    assert passers(R.RULE_LENIENT) == set(sheet["sensitivity"]["lenient_gate"]["pass"])
+    for rule, pop in ((R.RULE_STRICT, strict), (R.RULE_LENIENT, passers(R.RULE_LENIENT))):
+        p1 = stored.loc[stored["rule"] == rule, "P(rank 1)"]
+        if len(pop) < 2:                                                   # no ranking is simulated below two passers
+            assert p1.isna().all(), rule
+        else:
+            assert p1.notna().any(), rule
 
 
 @needs("data/interim/modules_emi_2026.csv")

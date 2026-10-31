@@ -134,11 +134,11 @@ def chunks(text: str, n: int = CHUNK_WORDS) -> list[str]:
 
 def embed(texts: list[str]) -> np.ndarray:
     """Chunked e5 embeddings, cached per text hash."""
-    from sentence_transformers import SentenceTransformer
     CACHE.mkdir(parents=True, exist_ok=True)
     keys = [hashlib.sha256(t.encode("utf-8")).hexdigest()[:20] for t in texts]
     todo = [(k, t) for k, t in zip(keys, texts) if not (CACHE / f"{k}.npy").exists()]
     if todo:
+        from sentence_transformers import SentenceTransformer   # only needed when a text is missing from the cache
         model = SentenceTransformer(MODEL)
         for k, t in todo:
             parts = chunks(t)

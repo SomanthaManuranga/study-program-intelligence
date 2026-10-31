@@ -40,6 +40,11 @@ The F4 figure for robotics path B has three values in the documents: 25.5 % in w
 | (b) | Robotics + AI path B | 8.9 / 17.1 / 33.0 | 14.9 / 28.6 / 55.1; 12.4 + 16.2 | missed in the low case (14.9) and in year 1 of the central case (17.1) | 0.52 (15 + 8.25 ECTS, 18.6 SWS a year, 137-ECTS reference base; 0.62 scaled to 165 taught ECTS; no new position) | 0.018 / 0.035 (scaled: 0.022 / 0.042) |
 | (c) | Cybersecurity B.Sc. | 16.6 / 30.8 / 59.2 | 32.2 / 59.8 / 115.1; 24.3 + 35.6 | missed only in year 1 of the low case (16.6) | 3.22 (2 professorships, 1 lab engineer, 10 ECTS of teaching assignments) | 0.054 / 0.100 (without the trend projection, 39 / 21 first-years: 0.083 / 0.153) |
 
+Reading note (31 Oct review): the steady-state first-years above carry each pool's 2019-24 trend to 2030; the model's
+base-year values (robotics path B 14.9 / 28.7 / 55.3; cyber 21 / 39 / 75, the cost table's "without the trend
+projection" columns) are the primary planning figures, because the foreign-pool compounding is an assumption whose
+backtest is reported below.
+
 How the numbers are made (`analysis/first_years.py`, `analysis/cost.py`; inputs `configs/first_years.yaml`,
 `configs/cost.yaml`; generated tables `reports/first_years.md`, `reports/cost.md`):
 - **Same code path for every option.** The Step 47/48 Huff model's gross steady-state intake (cyber 21 / 39 / 75,
@@ -50,7 +55,10 @@ How the numbers are made (`analysis/first_years.py`, `analysis/cost.py`; inputs 
   without). Cyber's projected numbers rise mainly through foreign first-years growing 12.8 %/yr, carried on to 2030.
 - **The pool trend is not a validated forecast.** In a rolling-origin backtest of robotics' German pool (origins
   2012-2023, horizons 1-5) no model beats the naive scale: best MASE 1.30 (last value carried forward); a trend model
-  (drift) scores 2.03. The forecast does not beat naive. Cyber's German pool: drift 0.92.
+  (drift) scores 2.03. The forecast does not beat naive. Cyber's German pool: drift 0.92. The foreign pools (backtest
+  added 31 Oct, reports/first_years.md): no model comes near the naive scale for cyber (best MASE 4.22, drift 5.02)
+  or robotics (best 2.76), so the compounded foreign growth (+12.8 %/yr and +3.1 %/yr) behind the projected steady
+  states is historically unforecastable with these models; the projected values are scenarios, not forecasts.
 - **Professor-equivalent** = 18 SWS per semester, the regular teaching load (Regellehrverpflichtung) of a professor
   in civil-servant status at a Bavarian HAW (AVBayHIG § 4 Abs. 1 Nr. 1: "Professorinnen und Professoren 18
   Lehrveranstaltungsstunden", gesetze-bayern.de), so 36 SWS-semesters a year;
@@ -78,7 +86,10 @@ the cap on new modules by existing professors (15 against 10 ECTS, the project's
 conditional candidate, not a recommendation, until two conditions hold: the faculty confirms that about 15 ECTS (about
 12 SWS a year; about 18 ECTS or 14.5 SWS scaled to 165 taught ECTS) of new teaching by existing professors is
 absorbable, and the demand data due after 1 Nov do not go
-against it. If the faculty can invest instead, the cybersecurity bachelor is the baseline answer, outside constraint 1.
+against it. Given the 17 Oct baseline (162 "Robotik" ads within 100 km, above the 150 bar), the pre-registered
+downgrade is practically out of reach, so the demand condition can realistically only confirm robotics path B; the
+operative condition is the faculty's answer on the new teaching. If the faculty can invest instead, the cybersecurity
+bachelor is the baseline answer, outside constraint 1.
 
 **What would change this answer:** the faculty ruling out about 15 ECTS of new teaching by existing professors (level
 (b) falls away); confirming hand-check row 9 or row 11 (robotics path B passes the strict rule); or the demand data
@@ -284,7 +295,9 @@ the path needs a lab EMI lacks:
 | geodata | strict | 100.0 | 0 | 0 | yes | yes | 62.3 | no | fail |
 | geodata | lenient | 100.0 | 0 | 0 | yes | yes | 62.3 | no | fail |
 | ot_master | strict | 100.0 | 0 | 0 | yes | yes | 83.3 | no | fail |
-| ot_master | lenient | 100.0 | 0 | 0 | yes | yes | 83.3 | no | fail |
+| ot_master | lenient | 100.0 | 0 | 0 | yes | yes | 58.3 | no | fail |
+
+ot_master's lenient row uses the most favourable attribution of shared modules (58.3 % from the KI master, analysis/feasibility.py); it fails F4 under either attribution.
 
 <!-- end of gate table -->
 
@@ -334,5 +347,12 @@ Single flips:
 
 - AR/VR's Destatis proxy does not match its competitors' classification; the Destatis signal is weak as a comparison.
 - AR/VR job ads and Trends are missing until 1 Nov and Soma's download; "Robotik" is a generic keyword.
-- Both gate passes wait for Soma's hand check (`docs/handcheck_sheet.md`); the ranking is recomputed only after it.
+- Soma's hand check is in (`configs/handcheck_sheet.yaml`): no candidate passes the strict gate and only robotics
+  path B passes the lenient sensitivity, so there is no two-candidate ranking to recompute
+  (`reports/ranking_candidates.md` states the gate populations); the demand ranking question returns with the 1 Nov
+  job ads and the Trends downloads.
 - XR headset count unknown (estimate 10-20 for a cohort of about 40).
+- Neighbouring countries (31 Oct check, docs/neighbours_check.md, pending Soma's review): no robotics-titled bachelor
+  found in Plzeň; ZČU's cybernetics bachelor carries robotics as a specialisation, which the pre-registered rule
+  counts as a focus programme, not a dedicated competitor, so the differentiation score is unchanged. Austria's
+  nearest sites lie beyond 150 km.

@@ -23,6 +23,9 @@ F2 is checked on the uncovered share scaled to OTH's taught ECTS (bachelor 165, 
 part needs a capability no EMI lab has (configs/emi_labs.yaml "missing"). F4: covered ECTS attributed to the OTH
 programme of each best match; the largest share must not exceed 50 %.
 The matches are automatic; every match counted as covered for a SHORTLISTED candidate is confirmed by hand later.
+The hand-check tables below the automatic ones show the PROPOSED verdicts (configs/feasibility_handcheck.yaml); the
+report ends with the DECIDED gates (Soma's verdicts, configs/handcheck_sheet.yaml, via report/handcheck_sheet.py),
+so this report and docs/evidence_tie_break.md cannot disagree after a rerun.
 Outputs: data/interim/feasibility_modules.csv, reports/feasibility.md.
 """
 
@@ -323,6 +326,10 @@ def main() -> None:
     cand_mods.to_csv(OUT.with_name("feasibility_handcheck_candidates.csv"), index=False)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     mods.to_csv(OUT, index=False)
+    # decided gates (Soma's verdicts, configs/handcheck_sheet.yaml): computed AFTER the interim CSVs are written,
+    # because the verdict tables read them; reuses the code that writes the gate table in docs/evidence_tie_break.md
+    from study_program_intelligence.report import handcheck_sheet as H
+    decided = H.all_gates(*H.config())
     draft = OTH_DRAFT
     draft_rows = pd.DataFrame([{"curriculum": "OTH draft cyber bachelor (Step 45)", "taught ECTS": draft["taught"],
                                 "reused or adapted EMI modules": draft["reused_or_adapted"],
@@ -339,11 +346,18 @@ def main() -> None:
         "## Reference curricula against the current EMI modules", "", _md(res), "",
         f"TF-IDF cross-check threshold (same procedure): {tau_tf:.3f}.", "",
         "## Robotics: modules the automatic match leaves uncovered (for the hand check)", "", _md(gaps), "",
-        "## Robotics after the hand check (configs/feasibility_handcheck.yaml)", "", _md(paths), "",
+        "## Robotics: proposed week-2 verdicts by path (configs/feasibility_handcheck.yaml; "
+        "path B superseded by Soma's decisions, see the decided gates below)", "", _md(paths), "",
         "## Reduced variants: what EMI's existing modules could carry (shared modules counted once)", "", _md(red), "",
-        "## Equal-evidence candidates after the hand check (configs/feasibility_handcheck.yaml)", "", _md(cand), "",
+        "## Equal-evidence candidates: proposed verdicts (configs/feasibility_handcheck.yaml; "
+        "AR/VR superseded by Soma's decisions, see the decided gates below)", "", _md(cand), "",
         "## Reduced OT-security master: design from existing master modules", "", _md(otm), "",
-        "Matches are automatic (e5). For a shortlisted candidate every match counted as covered is confirmed by hand.", ""]),
+        "Matches are automatic (e5). For a shortlisted candidate every match counted as covered is confirmed by hand.", "",
+        "## Decided gates after Soma's hand check (configs/handcheck_sheet.yaml; strict rule = the decision)", "",
+        _md(decided), "",
+        "These rows match the gate table in docs/evidence_tie_break.md (written by report/handcheck_sheet.py). "
+        "ot_master's lenient row uses the most favourable attribution of shared modules (58.3 % from the KI master); "
+        "it fails F4 under either attribution.", ""]),
         encoding="utf-8")
     pd.set_option("display.width", 250); pd.set_option("display.max_columns", 30)
     print(f"threshold {tau:.3f} (AUC {auc:.3f}, {npos}/{nneg})")

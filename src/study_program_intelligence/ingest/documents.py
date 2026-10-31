@@ -9,7 +9,8 @@ Run from the repository root:
         --out "data/raw/competitor modules" --manifest docs/competitor_modules_manifest.json --pdf-only
 
 Rules this script follows:
-- checks each site's robots.txt and skips a URL the site disallows;
+- checks each site's robots.txt and skips a URL the site disallows (a missing robots.txt, 4xx, counts as no
+  restrictions declared; a server error or an unreachable robots.txt counts as blocked, retry later);
 - identifies itself with a User-Agent that includes CONTACT_EMAIL from .env;
 - waits between requests (3 s, or the site's robots.txt Crawl-delay if longer) and never re-downloads a file;
 - records URL, retrieval time, size and SHA-256 for every file;
@@ -59,6 +60,8 @@ def user_agent() -> str:
 
 
 _robots_cache: dict[str, robotparser.RobotFileParser | None] = {}
+_BLOCK_ALL = robotparser.RobotFileParser()
+_BLOCK_ALL.parse(["User-agent: *", "Disallow: /"])
 
 
 def allowed_by_robots(url: str, agent: str) -> bool:
@@ -68,12 +71,14 @@ def allowed_by_robots(url: str, agent: str) -> bool:
         rp = robotparser.RobotFileParser()
         try:
             resp = requests.get(f"{root}/robots.txt", headers={"User-Agent": agent}, timeout=TIMEOUT_SECONDS)
-            if resp.status_code >= 400:
-                rp = None  # no robots.txt: no restrictions declared
+            if 400 <= resp.status_code < 500:
+                rp = None  # no robots.txt (4xx): no restrictions declared
+            elif resp.status_code >= 500:
+                rp = _BLOCK_ALL  # server error: treat as blocked rather than assume permission
             else:
                 rp.parse(resp.text.splitlines())
         except requests.RequestException:
-            rp = None
+            rp = _BLOCK_ALL  # robots.txt unreachable: treat as blocked rather than assume permission
         _robots_cache[root] = rp
         time.sleep(delay_for(url, agent))  # robots.txt and the file are two requests to the same host
     rp = _robots_cache[root]

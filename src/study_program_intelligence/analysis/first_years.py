@@ -14,7 +14,9 @@ candidates: candidate_scenarios.csv). For every candidate the same steps follow:
    falls by 3.3 % a year, which therefore lowers its German first-years.
 3. Ramp-up 60 / 80 / 100 % (analysis/capture.py RAMP); year 1 = 60 % of the projected first-intake value.
 4. Comparison with the assumed minimum cohort of 20 (analysis/capture.py MIN_COHORT).
-Plus a rolling-origin backtest (analysis/forecast.py) of each pool's German series, scored by MASE.
+Plus a rolling-origin backtest (analysis/forecast.py) of each pool's German AND foreign series, scored by MASE; the
+foreign rows test the compounded foreign growth that the projection carries forward (e.g. cyber +12.8 %/yr), which
+the original run left unvalidated (31 Oct review).
 Outputs: data/interim/candidate_first_years.csv, data/interim/pool_backtest.csv, reports/first_years.md.
 """
 
@@ -98,20 +100,23 @@ def pool_inputs(cfg: dict, long: pd.DataFrame) -> pd.DataFrame:
 
 
 def pool_backtest(cfg: dict, long: pd.DataFrame) -> pd.DataFrame:
-    """Rolling-origin backtest (analysis/forecast.py) of each pool's German series in Bavaria; MASE per model."""
+    """Rolling-origin backtest (analysis/forecast.py) of each pool's German and foreign series in Bavaria; MASE per
+    model. The foreign rows test the compounded foreign growth the projection carries to 2030, which the original
+    run left unvalidated (31 Oct review)."""
     rows = []
     for key, c in cfg["candidates"].items():
         p, last = c["pool"], c["pool"]["window"][1]
-        d = long[(long["kind"] == p["kind"]) & (long["region"] == "BY") & (long["nationality"] == "German")]
-        y = d[d["code"].isin(p["codes"])].groupby("year")["value"].sum()
-        total = d.groupby("year")["value"].sum()
-        bt = backtest(y, total, last)
-        m = bt.groupby("model")["ase"].mean()
-        stat = m.drop(index="share (actual total)")
-        rows.append({"candidate": key, "series": f"BY German {p['kind']} " + "+".join(p["codes"]),
-                     "origins": f"{bt['origin'].min()}-{bt['origin'].max()}", "horizons": f"1-{MAX_H}",
-                     **{f"MASE {k}": round(v, 2) for k, v in m.items()}, "best statistical model": stat.idxmin(),
-                     "best MASE": round(stat.min(), 2), "beats naive scale (MASE < 1)": bool(stat.min() < 1)})
+        for nat in ("German", "foreign"):
+            d = long[(long["kind"] == p["kind"]) & (long["region"] == "BY") & (long["nationality"] == nat)]
+            y = d[d["code"].isin(p["codes"])].groupby("year")["value"].sum()
+            total = d.groupby("year")["value"].sum()
+            bt = backtest(y, total, last)
+            m = bt.groupby("model")["ase"].mean()
+            stat = m.drop(index="share (actual total)")
+            rows.append({"candidate": key, "group": nat, "series": f"BY {nat} {p['kind']} " + "+".join(p["codes"]),
+                         "origins": f"{bt['origin'].min()}-{bt['origin'].max()}", "horizons": f"1-{MAX_H}",
+                         **{f"MASE {k}": round(v, 2) for k, v in m.items()}, "best statistical model": stat.idxmin(),
+                         "best MASE": round(stat.min(), 2), "beats naive scale (MASE < 1)": bool(stat.min() < 1)})
     return pd.DataFrame(rows)
 
 
@@ -130,7 +135,9 @@ def main() -> None:
     REPORT.parent.mkdir(parents=True, exist_ok=True)
     REPORT.write_text("\n".join(["# First-years per candidate (generated)", "", "Config: configs/first_years.yaml.", "",
                                  "## Pool inputs (Bavaria)", "", _md(pin), "", "## First-years", "", _md(fy), "",
-                                 "## Rolling-origin backtest of the German pool series", "", _md(bt), ""]), encoding="utf-8")
+                                 "## Rolling-origin backtest of the pool series (German and foreign)", "",
+                                 "The foreign rows test the compounded foreign growth the projection carries to 2030.", "",
+                                 _md(bt), ""]), encoding="utf-8")
     pd.set_option("display.width", 250)
     print(pin.to_string(index=False)); print(); print(fy.to_string(index=False)); print(); print(bt.to_string(index=False))
 

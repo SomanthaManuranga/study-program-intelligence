@@ -33,6 +33,8 @@ def group_count(snap: pd.DataFrame, keys: list[str], region: str) -> int:
     d = snap[snap["keyword_id"].isin(keys) & (snap["region_id"] == region)]
     if set(d["keyword_id"]) != set(keys):
         raise ValueError(f"snapshot lacks keywords {set(keys) - set(d['keyword_id'])} for {region}")
+    if d["total"].isna().any():   # a null total must never silently drop a keyword from the maximum
+        raise ValueError(f"snapshot has null totals for {sorted(d.loc[d['total'].isna(), 'keyword_id'])} in {region}")
     return int(d["total"].max())
 
 

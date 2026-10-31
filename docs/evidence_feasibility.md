@@ -1,5 +1,10 @@
 # Evidence: feasibility with existing resources (re-scope, week 2)
 
+> **Superseded in part (31 Oct 2026).** The hand-check rows below show the PROPOSED verdicts of week 2. After Soma's
+> decisions (26 Oct, `configs/handcheck_sheet.yaml`) robotics path B fails the strict rule (F2: N 15 ECTS against the
+> cap of 10) and passes only the lenient sensitivity; the decided gates for all candidates are in
+> `docs/evidence_tie_break.md` and at the end of `reports/feasibility.md`.
+
 Rule: `configs/feasibility.yaml` (pre-registered before any re-scoring). Labs: `configs/emi_labs.yaml`. Tables:
 `reports/feasibility.md` (`python -m study_program_intelligence.analysis.feasibility`). Hand check:
 `configs/feasibility_handcheck.yaml` (proposed by Claude, to be confirmed by Soma).
@@ -19,6 +24,9 @@ Rule: `configs/feasibility.yaml` (pre-registered before any re-scoring). Labs: `
 - **Known artefact:** the TH Deggendorf master scores 0 %. Its handbook has only security modules, and centring it
   removes the shared security signal; the matches are meaningless (e.g. "Cybersecurity Fundamentals" to
   "Fahrzeugautomatisierung"). The verdict for the master rests on THI and HDBW.
+- **Threshold caveat (31 Oct review):** the e5 threshold is calibrated on the same week-2 reference programmes that
+  are then assessed (in-sample Youden), so the automatic coverage shares are optimistic at the margin; every decisive
+  verdict rests on the hand check, which does not depend on the threshold.
 
 ## The current three options
 
@@ -31,7 +39,7 @@ Rule: `configs/feasibility.yaml` (pre-registered before any re-scoring). Labs: `
 | Reduced OT-security master | EMI's security and OT modules | - | - | - | - | **open**: 16 distinct modules (80 ECTS), half at bachelor level; at master level IT und Automation supplies most of them, so F4 against IA is the risk. Carried into the recombination step |
 | Robotics + AI B.Sc. | Kempten, automatic | 75.4 % (TF-IDF 48 %) | about 41 ECTS new | industrial robot cells | 23 % | fails F1, F2 and F3 automatically |
 | Robotics + AI B.Sc., path A (industrial robotics) | Kempten, hand check | 94.9 % | 7 ECTS (teaching assignments) | **two modules need industrial robot cells, which EMI lacks** | 29 % | **fails F3** |
-| Robotics + AI B.Sc., path B (assistive / service robotics) | Kempten, hand check | 91.2 % | 7 ECTS teaching assignments + 5 ECTS existing professor | educational / humanoid robots in the Physical Computing lab | 26 % (KI family) | **passes F1-F4, pending Soma's confirmation of the hand check** |
+| Robotics + AI B.Sc., path B (assistive / service robotics) | Kempten, hand check | 91.2 % | 7 ECTS teaching assignments + 5 ECTS existing professor | educational / humanoid robots in the Physical Computing lab | 26 % (KI family) | **passed on the proposed verdicts; superseded: after Soma's decisions it fails F2 under the strict rule (N 15 ECTS) and passes only the lenient sensitivity** (docs/evidence_tie_break.md) |
 
 - **Labs (public EMI lab list):** no isolated security lab and no industrial or collaborative robot cell. The only
   robots are teaching-grade ones (Mindstorms, Aldebaran humanoids) in the Physical Computing lab.

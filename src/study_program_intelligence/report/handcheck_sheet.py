@@ -184,7 +184,9 @@ def main() -> None:
             lines += [f"After Soma's decisions ({counts}); open rows shown both ways:", "", _md(res), ""]
     OUT.write_text("\n".join(lines), encoding="utf-8")
     write_sensitivity(sensitivity(cfg, hc, rule), recompute(cfg, hc, rule))
-    write_block(GATES, all_gates(cfg, hc, rule))
+    write_block(GATES, all_gates(cfg, hc, rule),
+                note="ot_master's lenient row uses the most favourable attribution of shared modules (58.3 % from the "
+                     "KI master, analysis/feasibility.py); it fails F4 under either attribution.")
     print(f"Written: {OUT.relative_to(REPO_ROOT)} ({len(rows)} rows), sensitivity block in {EVIDENCE.relative_to(REPO_ROOT)}")
 
 
@@ -271,16 +273,19 @@ def all_gates(cfg: dict, hc: dict, rule: dict) -> pd.DataFrame:
     from study_program_intelligence.analysis.feasibility import ot_master
     o = ot_master(rule).iloc[0]
     for lenient in (False, True):
+        # the lenient row shows the most favourable attribution of shared modules (it fails F4 under either one)
+        f4, f4p = (o["F4 lenient %"], o["F4 pass (lenient)"]) if lenient else (o["F4 strict %"], o["F4 pass (strict)"])
         rows.append({"candidate": "ot_master", "rule": "lenient" if lenient else "strict", "F1 %": o["F1 %"], "T": "0",
-                     "N": "0", "F2 pass": True, "F3 pass": True, "F4 %": o["F4 strict %"], "F4 pass": bool(o["F4 pass (strict)"]),
-                     "gate": "fail" if not o["F4 pass (strict)"] else "pass"})
+                     "N": "0", "F2 pass": True, "F3 pass": True, "F4 %": f4, "F4 pass": bool(f4p),
+                     "gate": "pass" if f4p else "fail"})
     return pd.DataFrame(rows)
 
 
-def write_block(markers: tuple, t: pd.DataFrame) -> None:
+def write_block(markers: tuple, t: pd.DataFrame, note: str = "") -> None:
     doc = EVIDENCE.read_text(encoding="utf-8")
     a, b = doc.index(markers[0]), doc.index(markers[1]) + len(markers[1])
-    EVIDENCE.write_text(doc[:a] + "\n".join([markers[0], "", _md(t), "", markers[1]]) + doc[b:], encoding="utf-8")
+    block = [markers[0], "", _md(t), ""] + ([note, ""] if note else []) + [markers[1]]
+    EVIDENCE.write_text(doc[:a] + "\n".join(block) + doc[b:], encoding="utf-8")
 
 
 if __name__ == "__main__":
