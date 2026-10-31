@@ -418,3 +418,13 @@ Phase-5 backlog early, on Soma's instruction. (4) E8 of the capture/cost/demand 
 three rounds; the unreviewed wording fix 373d3fd is pushed with this, and its check is folded into the claim review
 of the re-scope report rewrite. No criterion is loosened and no fourth round is counted as passed.
 Decided by: Soma (merge and push); wording corrections and verification by Claude.
+
+## 2026-10-31: Commit history rewritten to remove AI co-author lines (one-time exception)
+Decision: 68 earlier commits (17-21 Oct) carried a "Co-Authored-By" trailer naming the AI assistant, which made it
+appear as a repository contributor, against the rule "no AI attribution in commits". On Soma's explicit instruction
+the history of main, soma/rescope and the tag baseline-new-resources was rewritten once (git filter-branch, message
+filter only) and force-pushed. Verified before pushing: every commit keeps its file tree, author and dates (80 commits
+on main, 124 on soma/rescope); only the trailer lines are gone. A backup bundle of the old history was kept outside
+the repository. This is a one-time exception to "never rewrite or force-push main"; the rule stands. Collaborators
+must re-clone or reset their local branches to the new history.
+Decided by: Soma.
