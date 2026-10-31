@@ -11,6 +11,12 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 
 ## Result (preliminary, as of 18 Oct 2026; final after the 4 Dec 2026 data freeze)
 
+> **Status note:** the result below is the **baseline with new resources**. The supervisor has since made "existing
+> staff and labs only" binding, and the cybersecurity bachelor needs new staff and a lab. Current answer
+> (`docs/evidence_tie_break.md`): under the strict existing-resources rule no candidate passes; under the lenient
+> sensitivity, Robotics + AI B.Sc. (path B, assistive / service robotics) is a conditional candidate; with investment,
+> the cybersecurity bachelor below remains the answer. This section is rewritten after the 4 Dec 2026 freeze.
+
 **Recommendation: a Cyber Security B.Sc. at the EMI faculty.**
 
 | | Result |
