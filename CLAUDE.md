@@ -74,16 +74,18 @@ Remaining work, in this order:
    hand-made), time limit, OTH template, live demo. Done when: deck complete within the time limit, every number from
    key_numbers.yaml.
 
-Current: re-scope week 3. Equal evidence for six candidates (docs/evidence_candidates.md). Soma's hand check is in
-(configs/handcheck_sheet.yaml, docs/handcheck_sheet.md). Three-level answer in docs/evidence_tie_break.md: (a) strict
-existing resources: no candidate passes (robotics path B fails F2 only: 15 ECTS of new modules by existing professors,
-cap 10); (b) lenient sensitivity: robotics path B passes; (c) with investment: the cybersecurity baseline. The 10-ECTS
-cap is the project's own operationalisation, pre-registered in configs/feasibility.yaml. The demand comparison is
-pending; the demand ranking is rerun after the 1 Nov job ads and the Google Trends downloads (terms in
-docs/evidence_tie_break.md). Fixed date:
-job-ad snapshot on 1 Nov 2026 (item 1). Done: data-sufficiency audit
-(docs/data_gap_audit.md) with items G1, G3, G4, G5 and the German-only trend scores (reviewed by Soma); Step 56 defence
-Q&A updated, fact-checked (docs/data_sufficiency_review.md) and reviewed by Soma.
+Current: re-scope week 3, merged into main. Three-level answer in docs/evidence_tie_break.md: (a) strict existing
+resources: no candidate passes (robotics path B fails F2 only: 15 ECTS of new modules by existing professors, cap 10;
+the cap is the project's own operationalisation, pre-registered in configs/feasibility.yaml); (b) lenient
+sensitivity: robotics path B passes as a conditional candidate (first-years 14.9 / 28.6 / 55.1, 0.52
+professor-equivalents, no new position); (c) with investment: the cybersecurity baseline (3.22 professor-equivalents).
+The binding open condition for (b) is the faculty's answer on absorbing about 15 ECTS of new teaching. Demand
+thresholds are pre-registered (configs/demand_thresholds.yaml); the demand ranking is rerun after the 1 Nov job ads
+and the Google Trends tie-break download (terms in docs/evidence_tie_break.md). The external review's fixes and the
+deep-analysis layer are in (docs/evidence_deep_analysis.md, docs/argument_brief.md). E8 of the capture/cost/demand
+step is recorded as failed; its wording fix is checked in the claim review of the report rewrite. The report, README
+result, summary, Q&A and dashboard still show the baseline and are rewritten before the freeze. Main is protected:
+changes go through a pull request with one approval and the tests check.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
