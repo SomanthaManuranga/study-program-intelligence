@@ -77,3 +77,25 @@ Every candidate keeps a dossier from step to step, so the final answer can be tr
   - the encoder is not chosen by benchmark: the cached project encoder is used, with TF-IDF as the cross-check.
 - **Agents:** fresh-context agents review rules and claims. An agent is not a human rater and never replaces the
   hand check or the second team member's check.
+
+## Amendments after the independent attack (before any result)
+
+A fresh-context reviewer attacked version 1 and found five blockers and seven major problems. No programme type had
+been computed. Version 2 of `configs/funnel.yaml` makes these changes:
+
+| Problem found | Change |
+|---|---|
+| Net-new would equal gross for every survivor | OTH offers assigned to a type become OTH sites at weight w, or the nearest OTH offer if none |
+| Shortlist score needed gate results not yet computed | Pre-gate score without feasibility; automatic gate down the list; replacements from the list |
+| Most catalogue labels have no exact Destatis name | Full label-to-code table committed before clustering |
+| Intake anchor undefined for masters, ambiguous for bachelors | German numerator, all-form denominator, fractional offers, separate master rule, numeric validation bar |
+| EMI-domain bar degenerate | Raw cosine, calibrated on EMI against other OTH offers; flag instead of drop if AUC < 0.8 |
+| Trend screen kills whole subject fields | Only a validated trend (own MASE < 1) can drop a type; a stress list carries dropped types forward |
+| "At OTH" depended on cluster size | Only a close OTH offer drops a type; otherwise it counts as an OTH site |
+| Selection rewarded many small clusters | Selected on share of offers in stable clusters, with a limit on the largest cluster |
+| Text mixed content with administrative notes | Notes and degree markers removed |
+| Part-time offers invisible as competitors | Assigned afterwards and counted as supply |
+| Fit and feasibility measured one number twice | Feasibility is now the tightest gate margin; minimum cohort is a gate |
+| Decision undefined with one passer or a cap conflict | Rules for two or more, one and no passers; cap 10 until the faculty answers |
+
+Limitation stated: a programme not yet offered anywhere in Germany cannot be found by clustering offers.

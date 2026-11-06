@@ -1,113 +1,139 @@
 # Data-driven funnel: pre-registered rules (docs/funnel_preregistration.md). Committed before any programme type is
 # computed. Do not change after the step that uses a value has run; a later change is logged in docs/decision_log.md
-# and the old value is kept as a sensitivity.
+# and the old value is kept as a sensitivity. Version 2: amended after the independent attack, before any result.
 
-universe:                     # every offer that could be a model for a new programme or a competitor
-  degrees: [Bachelor/Bakkalaureus, Master]
-  study_form: Vollzeitstudium # scope 7: full-time only
-  country: Deutschland
+universe:
+  fit_on: {degrees: [Bachelor/Bakkalaureus, Master], study_form: Vollzeitstudium, country: Deutschland}   # scope 7
+  assign_afterwards: other forms of the same degrees and offers left unclustered are assigned to their nearest type without refitting, if within the type's 90th percentile member distance
+  counted_as_supply: all assigned offers except Fernstudium (reported separately); variants of one institution and title count once
+  dedupe: same institution, title and degree count as one offer
 
-text:                         # what is embedded for each offer
-  fields: [title, subjects, content]
-  strip: ["Inhalte bitte bei der Hochschule erfragen", "Anmerkung der Hochschule: :", "Schwerpunkte: :"]
-  strip_title_suffix: [Bachelor, Master]
-  encoder: intfloat/multilingual-e5-base     # the project's encoder, cached; TF-IDF is the cross-check
-  crosscheck: tfidf
+text:
+  fields: title without degree words; Schwerpunkte items only; subject labels without the level marker
+  dropped: notes of the institution ("Anmerkung der Hochschule"), "Inhalte bitte bei der Hochschule erfragen", "(grundstaendig)", "(weiterfuehrend)"
+  encoder: intfloat/multilingual-e5-base
+  report: noise share and cluster mix by focus-items-present and by institution type
 
 discovery:
   umap: {n_neighbors: 15, n_components: 10, metric: cosine, min_dist: 0.0, seeds: [42, 43, 44]}
   hdbscan_grid: {min_cluster_size: [10, 15, 20, 30, 50], method: [eom, leaf], min_samples: 5}
   bootstrap: {refits: 10, subsample: 0.8, seed: 20261106}
-  stable_jaccard: 0.75        # Hennig (2007): mean best-match Jaccard >= 0.75 counts as a stable cluster
-  max_noise_share: 0.50
-  selection: most stable clusters among settings within max_noise_share; tie goes to the lower noise share
-  rare_path:                  # scope 8: rare programmes are welcome, and a type with 2-9 offers cannot be a dense cluster
-    source: offers left as noise
-    method: average-linkage agglomerative on cosine distance
-    distance_cutoff: median distance of an offer to its centroid in the stable types
-    min_size: 2
-    max_size: 9
+  stable_jaccard: 0.75       # Hennig (2007): mean best-match Jaccard >= 0.75 counts as stable
+  selection: highest share of offers in stable clusters, among settings with noise <= 0.50 and largest cluster <= 0.10 of offers; tie goes to more stable clusters
+  unstable_clusters: treated as noise
+  rare_path:                 # scope 8; "not yet offered anywhere in Germany" cannot be found by clustering offers: a stated limitation
+    source: offers treated as noise
+    method: average-linkage agglomerative in the 768-d embedding space on cosine distance
+    distance_cutoff: median within-cluster pairwise cosine distance of the stable types
+    min_institutions: 2
+    max_size: selected min_cluster_size minus 1
+    evidence_flag: rare types carry the flag "rare, not stability-tested"
+  crosscheck: TF-IDF k-means with the same k; a type whose best TF-IDF match has Jaccard < 0.3 is flagged "method-dependent"
+  validation: ARI against the catalogue's study fields; afterwards, how many of the 18 old topic lists are recovered at Jaccard >= 0.5
 
-screen:                       # applied to every type x level; a candidate is one type at one level
-  at_oth: drop if OTH already has an offer of this type at this level   # scope: a NEW programme
-  supply_gap: {max_offers_within_100km: 3}    # the existing G5 number, unchanged
+pool_mapping:                # committed before clustering: configs/funnel_subject_map.csv
+  method: every catalogue subject label to one Destatis subject code; exact name, else nearest by the encoder; then checked by a second look
+  weights: fractional per offer over its labels; per type, the mean over its offers
+  no_unmapped: every label gets a code; matches below the review line are listed
+
+screen:                      # applied to every type x level
+  at_oth:
+    assign: every OTH offer of any form and any faculty goes to its nearest type
+    drop_if: distance of the OTH offer <= the type's median member distance, at the same level
+    otherwise: keep the type; that OTH offer is an OTH site in the capture model
+  supply_gap: {max_offers_within_100km: 3}    # old G5 number, on a new unit; in the stress grid
   trend:
-    # German first-years of the mapped subject pool in Bavaria. Foreign growth is reported, not used: it cannot be
-    # forecast (best MASE 4.22 for the cyber pool). Number inherited unchanged from G5; the old "and Germany" is removed.
-    drop_if_german_bavaria_pct_per_year_below: -3.0
-    window: [2019, 2024]
-    unmapped_pool: keep, flagged low confidence
+    measure: log-linear slope of German first-years of the mapped pool in Bavaria, 2019-2024, %/yr
+    drop_if_below: -3.0
+    only_if: the pool's own backtest MASE < 1; an unvalidated trend cannot drop a type
+    master: German graduates of the mapped pool instead of first-years
   emi_domain:
-    # share of a type's focus items that match an EMI module; bar taken from EMI's own programmes, not chosen by hand
-    item_source: Schwerpunkte items in content, else the title
-    item_match: best EMI module, same encoder, calibrated threshold of configs/feasibility.yaml
-    pass_bar: 10th percentile of the same score over EMI's own offers in the catalogue
-    negative_control: OTH offers outside EMI should mostly fail; reported
+    offer_score: mean over focus items and title of the highest raw e5 cosine to any EMI module, leaving out the programme's own modules
+    type_score: mean over the type's offers with focus items; title only if no offer has any
+    calibration: positives = EMI offers in the catalogue (configs/oth_portfolio.yaml); negatives = other OTH full-time offers
+    bar: Youden cut on the calibration set
+    if_auc_below: {auc: 0.8, action: flag instead of drop}
 
 freeze:
-  candidate_list: data/interim/funnel_candidates.csv
+  lists: {primary: all screens, stress: only the at_oth screen}   # both carried through steps 4-6 by script
+  files: [data/interim/funnel_candidates.csv, data/interim/funnel_candidates_stress.csv]
   hash_recorded_in: docs/funnel_reasoning.md
   rule: nothing enters after the freeze; nothing is added by hand
 
 demand:
-  pool_mapping: catalogue subject labels of a type's offers -> Destatis subject codes, weighted by offers; label matching is scripted and every mapping is listed
-  backtest: {origins_from: 2012, horizons: [1, 2, 3, 4, 5], metric: MASE, pooled: true}
+  backtest: {origins_from: 2012, horizons: [1, 2, 3, 4, 5], metric: MASE}
   model_choice: lowest pooled MASE among naive, drift, ets; a type's trend counts as validated only if its own MASE < 1
   horizon_year: 2030
   foreign: corridor from flat to compounded, never a point forecast
 
 labour:
-  keywords: top distinctive term of each candidate (c-TF-IDF), scripted, listed before counting
+  keywords: top 5 c-TF-IDF unigrams and bigrams of each candidate after a stoplist of degree and catalogue words, German and English where the catalogue has both; listed before counting
   regions: [germany, bayern, amberg_100km]
-  count: largest single keyword count of the candidate (no summing)
+  count: largest single keyword count on one date (no summing); keywords stored with the snapshot
 
 capture:
-  model: the Step 47/48 Huff model (analysis/options.py), competitors = offers of the type, nothing by hand
+  model: the Step 47/48 Huff model (analysis/options.py); competitors = offers of the type; nothing by hand
+  oth_sites: OTH offers assigned to the type, else the nearest OTH offer of that level, at weight w
+  w: {low: 0.25, central: 0.5, high: 1.0}
   anchor:
-    # replaces THI 25 and Deggendorf ~60 as the source of the level
-    rule: Bavarian first-years of the mapped pool / Bavarian offers mapped to the same pool = average first-years per offer
-    scale: OTH's relative Huff attractiveness against the average Bavarian site of the type
-    validation: compare with the published intakes in configs/intake_benchmark_documents.yaml, THI capacity 25 and Deggendorf ~60; report the error
-  range: {low: 0.5, high: 1.5}   # multiplicative judgement band; widened nowhere by hand
-  location_attractiveness: reported for peers of OTH's size; no effect is assumed in the central case (backlog F3)
-  min_cohort: {central: 20, sensitivity: [15, 25]}   # assumption until the faculty answers
-  primary_outcome: net-new first-years at steady state (year 3), unprojected; trend projection is a labelled sensitivity
+    bachelor: German first-years of the mapped pool in Bavaria / Bavarian bachelor offers of that pool in all forms, offers counted fractionally
+    master: German graduates of the pool in Bavaria x transition 0.5 / Bavarian master offers of that pool; transition is an assumption, stress 0.3 and 0.7
+    no_bavarian_offer: Germany-wide mean per offer; flagged
+    scale: OTH's Huff attractiveness over the mean of the type's Bavarian sites
+    international: reported as a corridor on top, from 0 to the pool's foreign share; not in the central number
+    validation: median absolute log error against the published intakes in configs/intake_benchmark_documents.yaml, THI 25 and Deggendorf 60
+    if_error_above_log_1_5: multiply by the pre-registered shrink factor (median published / anchor)
+  range: {low: 0.5, high: 2.0}   # judgement band
+  min_cohort: {value: 20, gate: central steady-state gross below this drops the candidate; low case is reported, sensitivity: [15, 25]}
+  primary_outcome: net-new first-years at steady state, unprojected; trend projection is a labelled sensitivity
+  known_limits: straight-line distance, Bavarian origins only, no location-attractiveness effect (backlog F3)
 
 shortlist:
-  rule: top candidates by central weighted score before the gate, at most 3 per level and 6 in total (kill rule 5)
+  pre_gate_score: weighted score with fit replaced by the emi_domain score and feasibility left out, weights renormalised
+  gate_list: automatic F1-F4 down the ranked list until 6 candidates pass (at most 3 per level, kill rule 5) or 20 were tried
+  hand_check: only those; a candidate rejected by hand is replaced from the list
 
 feasibility_gate:
-  rule: configs/feasibility.yaml unchanged (F1-F4, strict decides)
-  reference_curriculum: offer nearest the type's centroid with a handbook obtainable under robots.txt; next nearest up to 5 tries; else manual download by Soma
-  base: scale to 165 / 60 taught ECTS before applying the caps  # corrects the 137-ECTS base problem
-  hand_check: Soma confirms every module counted as covered; a second rater repeats a sample and Cohen's kappa is reported
-  report_caps_for_N_ects: {bachelor: [10, 15, 20], master: [5, 10]}   # the faculty's answer selects the row
+  rule: configs/feasibility.yaml unchanged (F1-F4)
+  reference_curriculum: HAW offer of the same level nearest the type's centroid with a handbook obtainable under robots.txt; next nearest up to 5 tries; universities only if no HAW offer exists; a second reference is reported where available
+  scaling: proportional to 165 / 60 taught ECTS is the primary; the unscaled figure is reported
+  hand_check: Soma confirms every module counted as covered; a second person repeats a sample; Cohen's kappa is reported
+  caps_for_N_ects: {bachelor: [10, 15, 20], master: [5, 10]}
+  default_cap: 10 / 5 until the faculty answers; other rows are labelled conditional
 
 ranking:
+  ranked_set: gate-passers only
   weights: configs/analysis.yaml unchanged   # demand .30, labour .20, fit .20, feasibility .15, differentiation .10, regional .05
-  # value functions on the 1-5 scale, piecewise linear between the anchors, clipped
-  value_functions:
-    demand: "mean of trend {-3: 1, 0: 3, 3: 5} (German first-years Bavaria, %/yr) and net_new {10: 1, 40: 5} (central first-years)"
-    labour: {10: 1, 150: 5}   # ads within 100 km, log scale
-    fit: {0.60: 1, 1.00: 5}   # F1 coverage
-    feasibility: {33: 1, 0: 5}   # T + N in ECTS on 165 taught ECTS (bachelor); master scaled by 60/165
-    differentiation: {10: 1, 0: 5}   # offers of the type within 150 km
-    regional: {0: 1, 15: 5}   # first-years kept in the region
+  value_functions:   # 1-5 scale, piecewise linear between anchors, clipped
+    trend_pct_per_year: {-3: 1, 0: 3, 3: 5}
+    net_new: {10: 1, 40: 5}
+    demand_is: mean of trend and net_new
+    labour_ads_within_100km_log: {10: 1, 150: 5}
+    fit_F1: {0.60: 1, 1.00: 5}
+    feasibility_tightest_margin: {1.0: 1, 0.0: 5}   # max(T / cap, N / cap, F4 / 0.5)
+    differentiation_offers_within_150km: {10: 1, 0: 5}
+    regional_share_of_net_new_kept_in_region: {0.0: 1, 0.4: 5}
   uncertainty: {weights: Dirichlet concentration 50, draws: 10000, seed: 42, scores: triangular over each input's low / central / high}
   cross_check: PROMETHEE II with the same weights
+  disclosed: competition enters three times (screen, Huff, differentiation); trend twice
 
 stress_tests:
-  grid:
-    trend_threshold: [-3, -5, off]
-    supply_gap_max_offers_within_100km: [2, 3, 5]
+  downstream_factorial:
     min_cohort: [15, 20, 25]
-    anchor_range: [[0.5, 1.5], [0.33, 2.0]]
+    anchor_range: [[0.5, 2.0], [0.33, 3.0]]
     pool_trend: [unprojected, projected, foreign held flat]
-    n_cap_bachelor: [10, 15, 20]
     dirichlet_concentration: [10, 50, 200]
-    clustering: [selected setting, next best setting by stable clusters]
-  report: share of specifications each candidate wins; regret table; which single missing number would change the winner
+    n_cap_bachelor: [10, 15, 20]
+  list_changing_one_at_a_time:
+    trend_threshold: [-5, off]
+    supply_gap_max_offers_within_100km: [2, 5]
+    at_oth: any member of the type
+    clustering: next best setting; types matched at Jaccard >= 0.5
+  report: win share over the factorial with no-winner specs in the denominator; list-changing specs separately; regret table; which missing number would change the winner
 
 decision:
-  recommend_if: {p_rank1_min: 0.5, multiverse_win_share_min: 0.5, passes_strict_gate: true}
+  two_or_more_passers: recommend the top one if P(rank 1) >= 0.5, P(beats the runner-up) >= 0.8 and win share >= 0.5
+  one_passer: recommend it if central gross >= the minimum cohort and central net-new >= 15
+  no_passer: report that no candidate passes and the smallest new resource for the closest one
+  promethee_disagrees_on_rank_1: shortlist instead of a recommendation
   otherwise: report the shortlist and the missing number that would settle it
