@@ -99,3 +99,8 @@ been computed. Version 2 of `configs/funnel.yaml` makes these changes:
 | Decision undefined with one passer or a cap conflict | Rules for two or more, one and no passers; cap 10 until the faculty answers |
 
 Limitation stated: a programme not yet offered anywhere in Germany cannot be found by clustering offers.
+
+Pool mapping: 330 of 398 catalogue labels were matched by nearest name and reviewed by a fresh-context agent (178
+corrected, each with a reason in `configs/funnel_subject_map_corrections.yaml`), blind to any type. Teacher-training
+labels have no real Destatis series (those students count under their teaching subjects), so a type mainly made of
+them has a nominal pool and is flagged low confidence. Wirtschaftsingenieurwesen goes to its engineering-focus code.
