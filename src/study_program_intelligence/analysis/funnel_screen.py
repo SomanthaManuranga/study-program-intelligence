@@ -113,7 +113,11 @@ def slope_pct(y: pd.Series, window=WINDOW) -> float:
 
 
 def own_mase(y: pd.Series, total: pd.Series, last: int) -> float:
-    y = y[y > 0]
+    y = y[(y > 0) & (y.index <= last)].sort_index()
+    if y.empty or y.index[-1] != last:
+        return float("nan")
+    gaps = np.where(np.diff(y.index) != 1)[0]       # longest unbroken run of years up to the last year
+    y = y.iloc[gaps[-1] + 1:] if len(gaps) else y
     if len(y) < 12 or y.index.min() > 2008:
         return float("nan")
     bt = backtest(y, total, last)
