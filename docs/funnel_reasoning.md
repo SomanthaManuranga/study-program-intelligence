@@ -229,3 +229,28 @@ score fall away, and cybersecurity fails again for the same reason as in the bas
 **Process slips, logged.** While finding handbooks, agents made one request to a host whose robots.txt disallows it
 (Hochschule Hof; nothing from the reply was used) and a few fetches before the robots check; all those hosts were
 allowed when checked. The Kiel handbook was replaced because it listed only 67 % of its ECTS.
+
+**Second references.** The pre-registered check on a second curriculum changes the picture:
+
+| Candidate | First reference, F1 % | Second reference, F1 % |
+|---|---|---|
+| Informatik, bachelor | 93.5 (Westfälische Hochschule) | 88.1 (Hochschule Darmstadt): still passes |
+| Geoinformation, bachelor | 87.9 (BHT Berlin) | 60.9 (KIT): fails |
+| Angewandte Informatik, master | 91.7 (Hochschule Mainz) | 58.3 (Hochschule Wismar): fails |
+| Visual Computing, master | 100.0 (Universität Magdeburg) | no second offer in the type |
+
+## Where the funnel stands: a validity problem found before the hand check
+
+**The Informatik pass is partly an artefact.** Informatik (type 380) shows 0 offers within 100 km, but this holds only for
+its small cluster of 2 offers. In the catalogue, 15 bachelors with Informatik or Computer Science in the title lie within
+100 km of OTH, including OTH Regensburg, TH Nürnberg, FAU Erlangen-Nürnberg, Hochschule Hof, TH Ingolstadt, Universität
+Bayreuth and Universität Bamberg. Clustering split general informatics across many types, so supply measured by cluster
+membership understates real competition.
+
+**Why it matters.** The same weakness can affect every rare type, including cybersecurity (0-1 offers within 100 km by
+type). This is a failure of the supply test as pre-registered, so the funnel's list is not yet trustworthy, and the
+ranking and the hand check should not proceed on it.
+
+**Proposed correction, for Soma's decision.** Measure competition by content, not by cluster: count offers near OTH whose
+text is close to the candidate's centroid, with the radius fixed in advance. Then rerun steps 3-7 by script. This
+tightens a test after seeing a result, and it would be logged as such.
