@@ -1,5 +1,8 @@
 # Funnel reasoning: why each programme stays or goes
 
+> **Status: run 1, not a result.** A claim review found errors in this text and in how the code applied the rules. See
+> `docs/funnel_run1_review.md`. Do not quote numbers from this file until the rerun replaces it.
+
 The argument chain of the data-driven funnel. Rules: `configs/funnel.yaml`, `docs/funnel_preregistration.md`.
 Generated tables: `reports/funnel/`. Each step answers one question, and its result is the next step's input.
 
