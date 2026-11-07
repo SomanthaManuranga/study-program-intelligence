@@ -104,3 +104,8 @@ Pool mapping: 330 of 398 catalogue labels were matched by nearest name and revie
 corrected, each with a reason in `configs/funnel_subject_map_corrections.yaml`), blind to any type. Teacher-training
 labels have no real Destatis series (those students count under their teaching subjects), so a type mainly made of
 them has a nominal pool and is flagged low confidence. Wirtschaftsingenieurwesen goes to its engineering-focus code.
+
+Gate details fixed before the gate ran:
+- A reference must list at least 80 % of its total ECTS, otherwise the next option is used.
+- Electives: a degree needs only some of them, so the curriculum is filled up to OTH's taught ECTS with the listed
+  electives, best covered first. F1 on compulsory modules alone is reported next to it.

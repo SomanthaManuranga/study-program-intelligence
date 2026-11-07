@@ -64,16 +64,23 @@ def assess(key: tuple[int, str], ref: pd.DataFrame, emi: pd.DataFrame, e: np.nda
     ref["EMI programme"] = sub["programme_id"].iloc[best].str.replace("oth26_", "").values
     ref["similarity"] = np.round(sim.max(axis=1), 3)
     ref["covered"] = ref["similarity"] >= tau
-    core = ref[ref["kind"] == "taught"]
-    taught = float(core["ects"].sum())
     unit = rule["unit"]["bachelor" if level == "bachelor" else "master"]["taught_ects"]
+    compulsory = ref[ref["kind"] == "taught"]
+    # a degree needs only some electives: fill up to OTH's taught ECTS with the listed electives, best covered first
+    missing = max(0.0, unit - float(compulsory["ects"].sum()))
+    pool = ref[ref["kind"] == "elective"].sort_values("similarity", ascending=False)
+    chosen = pool[pool["ects"].cumsum().shift(fill_value=0.0) < missing]
+    core = pd.concat([compulsory, chosen])
+    ref["counted"] = ref.index.isin(core.index)
+    taught = float(core["ects"].sum())
+    core_f1 = float(compulsory.loc[compulsory["covered"], "ects"].sum() / compulsory["ects"].sum()) if compulsory["ects"].sum() else float("nan")
     covered = float(core.loc[core["covered"], "ects"].sum())
     f1 = covered / taught if taught else float("nan")
     new_scaled = (taught - covered) * unit / taught if taught else float("nan")
     fam = core[core["covered"]].assign(f=lambda d: d["EMI programme"].map(lambda p: FAMILY.get(p, p))).groupby("f")["ects"].sum()
     f4 = float(fam.max() / taught) if len(fam) and taught else 0.0
     t_cap = rule["rule"]["F2_max_T_ects"]["bachelor" if level == "bachelor" else "master"]
-    out = {"type": typ, "level": level, "taught ECTS": taught, "F1 %": round(100 * f1, 1), "new ECTS scaled": round(new_scaled, 1),
+    out = {"type": typ, "level": level, "taught ECTS": taught, "F1 %": round(100 * f1, 1), "F1 compulsory only %": round(100 * core_f1, 1), "new ECTS scaled": round(new_scaled, 1),
            "new share %": round(100 * new_scaled / unit, 1), "F4 %": round(100 * f4, 1), "F4 programme": fam.idxmax() if len(fam) else "-",
            "F1 pass": f1 >= rule["rule"]["F1_min_covered_share"], "F4 pass": f4 <= rule["rule"]["F4_max_share_from_one_programme"]}
     for n in caps["bachelor" if level == "bachelor" else "master"]:
@@ -91,7 +98,7 @@ def main() -> None:
     emi, e = emi_modules()
     gl = pd.read_csv(INTERIM / "funnel_gate_list.csv")
     sources = []
-    for f in REFS.glob("sources_*.yaml"):
+    for f in sorted(REFS.glob("sources_*.yaml")):
         sources += yaml.safe_load(f.read_text(encoding="utf-8")) or []
     src = {(s["type"], s["level"]): s for s in sources}
     rows, mods = [], []
