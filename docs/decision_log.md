@@ -428,3 +428,7 @@ on main, 124 on soma/rescope); only the trailer lines are gone. A backup bundle 
 the repository. This is a one-time exception to "never rewrite or force-push main"; the rule stands. Collaborators
 must re-clone or reset their local branches to the new history.
 Decided by: Soma.
+
+## 2026-11-07: Restart as a data-driven funnel; rules pre-registered
+Decision: Soma judged that starting from programmes we chose ourselves biased the analysis, and asked to start again step by step, correcting the known failures, with a written reasoning part at every step. New branch soma/funnel; earlier results stay as the baseline. Rules in configs/funnel.yaml and docs/funnel_preregistration.md, committed before any programme type was computed (9cf9072); amended after a fresh-context attack, still before any result (895c10f); label-to-Destatis table reviewed blind to results and committed before clustering (66487a9). Deviation after seeing the step 3 list: 27 mainly teacher-training candidates are excluded from the ranking, because they lead to state qualifications a faculty cannot open with existing staff alone; they stay in the stress list. Job-ad snapshot run on 7 Nov as the pre-registered fallback for the missed 1 Nov date.
+Decided by: Soma (restart and instruction); rules and implementation by Claude, for Soma's review.
