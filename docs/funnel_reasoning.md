@@ -106,3 +106,126 @@ which the next steps test on students, jobs and teaching.
 **Logged deviation after seeing the list.** 27 of the 143 candidates are mainly teacher-training types. They lead to
 state teaching qualifications, which a faculty cannot open with existing staff alone, so they are excluded from the
 ranking. This rule was added after seeing the list; they remain in the stress list.
+
+## Step 4: are students coming?
+
+**Question.** Is the student pool behind each candidate growing or shrinking?
+
+**Evidence.** Destatis first-years (bachelor) and graduates (master) in Bavaria, split by nationality, for each
+candidate's mapped subjects. Rolling-origin backtests per pool.
+
+**Rule.** The pre-registered measure is the log-linear trend 2019-2024 of German students. Foreign growth is shown but
+never used as a point forecast.
+
+**Result, for the candidates that reached the gate.**
+
+| Candidate | Reference | German %/yr | Foreign %/yr | Own MASE |
+|---|---|---|---|---|
+| Informatik (type 380), bachelor | Westfälische Hochschule | +2.65 | +14.0 | 0.79 |
+| Geoinformation (213), bachelor | BHT Berlin | +1.16 | +12.4 | 0.72 |
+| Angewandte Informatik (237), master | Hochschule Mainz | +5.88 | +15.1 | 2.74 |
+| Visual Computing (397), master | Universität Magdeburg | +6.15 | +15.2 | 2.86 |
+| Cybersecurity (172), bachelor | Hochschule Esslingen | +2.36 | +13.8 | 0.74 |
+
+**What this means for OTH.** The computing pools still grow among German students, slowly. The bachelor trends are
+validated (MASE below 1). The master trends are not (MASE above 2), so they count only as direction.
+
+**Strongest objection.** "These candidates share one pool." Yes: most computing types map to Informatik, so the trend
+separates them little. Demand here tells computing from non-computing, not one computing type from another.
+
+## Step 5: are there jobs nearby?
+
+**Question.** Is there an outlet for graduates in OTH's region?
+
+**Evidence.** BA job-ad counts within 100 km (7 Nov 2026), 557 counts, up to five keywords per candidate.
+
+**Result.** Counts run from 144 to 5,710 for the candidates above.
+
+**Weakest point, stated plainly.** This measure is unreliable as built. Keywords come from each type's text by script,
+as pre-registered, and some are generic ("allgemein", "sicherheit"). The rule takes the largest single count, so one
+generic word can dominate. Informatik's 5,710 is inflated in this way. At the ranking step, labour is reported with the
+keyword behind it, and a stress test replaces it with occupation-specific keywords.
+
+## Step 6: how many students would be new to OTH?
+
+**Question.** How many first-years would OTH get, and how many of them are new?
+
+**Evidence.** The Huff model on Bavarian school leavers by county (masters: Bavarian HAW students), with the type's
+offers as competitors and the level from Destatis first-years per offer.
+
+**Validation.** The level was checked against published intakes on the cyber types: anchor 29.6 first-years per offer,
+median absolute log error 0.398 against a limit of 0.405. It passes narrowly, on one programme family only, and the
+published values include a capacity and a single student review. No shrink factor was applied.
+
+**Rule and result.** Of the 116 candidates left after the teacher-training exclusion, 35 miss the minimum cohort of 20
+in the central case, and 81 go on. The top 20 by pre-gate score went to the gate.
+
+| Candidate | First-years low / central / high | From OTH programmes, central | Net new, central |
+|---|---|---|---|
+| Informatik (380), bachelor | 15.3 / 30.6 / 61.2 | 57 % | 13.2 |
+| Geoinformation (213), bachelor | 23.6 / 47.3 / 94.6 | 56 % | 21.0 |
+| Angewandte Informatik (237), master | 14.6 / 29.1 / 58.2 | 24 % | 22.3 |
+| Visual Computing (397), master | 11.8 / 23.5 / 47.0 | 78 % | 5.2 |
+| Cybersecurity (172), bachelor | 17.6 / 35.2 / 70.4 | 27 % | 25.7 |
+
+**What this means for OTH.** Several computing profiles could reach a cohort, but in the low case most do not.
+
+**Weakest point, stated plainly.**
+- The share taken from OTH depends on how many competitors a type has. A rare type has few, so OTH's own programmes
+  take a large share in the model (78 % for Visual Computing with one offer, 12 % for Angewandte Informatik's type 89
+  with 48 offers). This overstates cannibalisation for rare types, and it is not evidence that those students would
+  otherwise have chosen OTH.
+- Types with no Bavarian offer have a Huff scale of 1.0 by rule, so their level is not scaled to OTH's location.
+- Geoinformation's level rests on a very small mapped pool of offers, so 47 first-years deserves caution.
+
+## Step 7: can EMI teach it with what it has?
+
+**Question.** Does each candidate pass the pre-registered rule F1-F4 on a real curriculum?
+
+**Evidence.** One public module handbook per candidate, found by agents in the pre-registered order under robots.txt,
+scaled to OTH's taught ECTS. Modules are matched to EMI's modules with the calibrated threshold. Automatic only: every
+counted match still needs Soma's hand check.
+
+**Result.** 20 candidates were tried, as the rule allows. Automatic pass (F1, F2, F4; labs are decided by hand):
+
+| Rank | Candidate | Reference | F1 % | F1 compulsory only % | New ECTS, scaled | F4 % |
+|---|---|---|---|---|---|---|
+| 9 | Angewandte Informatik, master | Hochschule Mainz | 91.7 | no compulsory modules | 5.0 | 25.0 |
+| 12 | Geoinformation, bachelor | BHT Berlin | 87.9 | 73.3 | 20.0 | 39.4 |
+| 13 | Informatik, bachelor | Westfälische Hochschule | 93.5 | 89.2 | 10.8 | 32.7 |
+| 18 | Visual Computing, master | Universität Magdeburg | 100.0 | no compulsory modules | 0.0 | 30.0 |
+
+Failed, with the reason for OTH:
+
+| Candidate | F1 % | Why it fails |
+|---|---|---|
+| Coaching und Führung, master | 0.0 | no EMI teaching |
+| Heilpädagogik, master and bachelor | 0.0 and 9.8 | no EMI teaching |
+| Kunsttherapie, bachelor | 5.6 | no EMI teaching |
+| Soziale Arbeit management, master | 23.7 | little EMI teaching |
+| Bau-Projektmanagement, bachelor | 30.3 | little EMI teaching |
+| Digitale Verwaltung, bachelor | 32.0 | little EMI teaching |
+| Cybersecurity, bachelor | 63.3 | security content needs new staff: 60.5 new ECTS scaled |
+| Applied AI, bachelor | 62.0 | 62.6 new ECTS |
+| Angewandte Informatik (types 89 and 237), bachelor | 73.1 and 69.7 | 44-50 new ECTS |
+| Digitale Technologien, master | 72.7 | 16.4 new ECTS against a limit of 15 (T 5 + N 10) at the highest cap |
+| Angewandte Informatik (89), master | 67.2 | 19.7 new ECTS |
+| Umweltinformatik, master | 17.4 | little EMI teaching |
+
+Two candidates have no reference and need a manual download: AI and Robotics master (Hochschule Hof: robots.txt blocks
+the module host and the handbook folder returns 403) and Informatik - Smart Systems bachelor (Frankfurt UAS: site
+relaunch; pages announced for 16 Nov 2026).
+
+**What this means for OTH.** This is the first step that truly separates the candidates. The false positives of the EMI
+score fall away, and cybersecurity fails again for the same reason as in the baseline: EMI lacks its security teaching.
+
+**Weakest point, stated plainly.**
+- The two master passes have no compulsory modules, so the curriculum is filled from elective pools, best covered
+  first. That is optimistic by construction: 100 % for Visual Computing does not mean EMI could run that programme.
+- The result depends on the reference. General informatics gives 93.5 % with one handbook and 69.7 to 73.1 % with
+  others. Second references are therefore being added before the hand check.
+- Module content was extracted by agents up to 600 characters, while the threshold was calibrated on longer texts.
+
+**Process slips, logged.** While finding handbooks, agents made one request to a host whose robots.txt disallows it
+(Hochschule Hof; nothing from the reply was used) and a few fetches before the robots check; all those hosts were
+allowed when checked. The Kiel handbook was replaced because it listed only 67 % of its ECTS.
