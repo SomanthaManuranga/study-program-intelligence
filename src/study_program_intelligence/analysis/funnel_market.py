@@ -12,6 +12,7 @@ Outputs: data/interim/funnel_market.csv, funnel_labour.csv, funnel_anchor_check.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
 import sys
@@ -109,7 +110,7 @@ def labour() -> None:
             total = J._total(payload)
             if total is None:
                 raise RuntimeError("no total field")
-            (folder / f"{abs(hash((t, g))) % 10**10}.json").write_text(json.dumps({"keyword": t, "region": g, "total": total}), encoding="utf-8")
+            (folder / f"{hashlib.sha256((t + g).encode()).hexdigest()[:16]}.json").write_text(json.dumps({"keyword": t, "region": g, "total": total}), encoding="utf-8")
             done.append({"keyword": t, "region": g, "total": total, "date": date.today().isoformat()})
         except Exception as e:
             print("ERROR", t, g, e, flush=True)
@@ -164,8 +165,7 @@ def value(x: float, lo: float, hi: float, log: bool = False) -> float:
 def score() -> None:
     cfg = config()
     c = candidates()
-    weights = yaml.safe_load(ANALYSIS.read_text(encoding="utf-8"))
-    w = next(v for k, v in weights.items() if isinstance(v, dict) and "demand" in v)
+    w = yaml.safe_load(ANALYSIS.read_text(encoding="utf-8"))["weights"]
     offers = pd.read_csv(INTERIM / "funnel_offers.csv", low_memory=False)
     smap = pd.read_csv(SUBJECT_MAP).set_index("label")["code"]
     long = load_destatis()
@@ -241,7 +241,8 @@ def score() -> None:
     m["v fit proxy"] = m["emi score"].map(lambda x: value(x, bar, emi_top))
     m["v differentiation"] = m["within 150 km"].map(lambda x: value(x, 10, 0))
     m["v regional"] = m["kept in region share"].map(lambda x: value(x, 0.0, 0.4))
-    parts = {"v demand": w["demand"], "v labour": w["labour"], "v fit proxy": w["fit"], "v differentiation": w["differentiation"], "v regional": w["regional"]}
+    parts = {"v demand": w["student_demand"], "v labour": w["labour_relevance"], "v fit proxy": w["institutional_fit"],
+             "v differentiation": w["differentiation"], "v regional": w["regional_contribution"]}
     tot = sum(parts.values())
     m["pre-gate score"] = sum(m[k].fillna(1) * v for k, v in parts.items()) / tot
     m = m.sort_values(["pre-gate score"], ascending=False)
