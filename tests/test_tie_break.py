@@ -68,16 +68,20 @@ def test_tie_break_competitors_match_the_competition_table():
 def test_job_ads_match_the_snapshot_they_name_and_missing_keywords_say_why():
     """The baseline tie-break stays on the snapshot named in docs/evidence_tie_break.md until the freeze (CLAUDE.md), so
     the count is checked against the snapshot of the date in its own row, not against the newest snapshot."""
+    from study_program_intelligence.analysis.tie_break import SNAPSHOT_UNTIL
     t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
     s = pd.DataFrame(json.loads((REPO / "docs" / "jobsuche_snapshots.json").read_text(encoding="utf-8")))
+    s = s[s["date"] <= SNAPSHOT_UNTIL]
     total = s.set_index(["keyword_id", "region_id", "date"])["total"]
     jobs = t[t["signal"] == "job ads"]
     assert (jobs["series"] == "robotik").any()
     for r in jobs.itertuples():
+        rows = s[s["keyword_id"] == r.series]
         if r.value.startswith("no data"):
+            assert rows.empty                                  # no snapshot row on or before the pinned date
             continue
-        date = r.metric.replace("ads ", "")
-        assert int(r.value) == total[(r.series, r.region, date)]
+        assert r.metric == f"ads {rows['date'].max()}"          # the newest snapshot up to the pinned date, one date per keyword
+        assert int(r.value) == total[(r.series, r.region, rows["date"].max())]
 
 
 def test_new_keywords_are_in_the_snapshot_config():

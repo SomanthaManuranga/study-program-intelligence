@@ -77,6 +77,20 @@ def test_timetables_are_complete_and_carry_no_names():
         assert not [n for n in names if re.search(rf"(?<![A-Za-zÄÖÜäöüß]){re.escape(n)}(?![A-Za-zÄÖÜäöüß])", text) and n not in set(t["subject"].str.split().explode())]
 
 
+def test_offer_list_does_not_depend_on_the_file_order(monkeypatch):
+    """Of several variants the full-time one is kept, then the lowest programme id (rule universe.dedupe)."""
+    import pandas as pd
+    from study_program_intelligence.analysis import funnel_common as C
+    rows = [("1", "Vollzeitstudium"), ("2", "Vollzeitstudium"), ("3", "Teilzeitstudium")]
+    frame = lambda order: pd.DataFrame([{"programme_id": i, "institution": "H", "title": "T", "degree": "Master", "country": "Deutschland",
+                                         "study_form": f, "content": f"variant {i}"} for i, f in order])
+    kept = set()
+    for order in (rows, rows[::-1], [rows[1], rows[2], rows[0]]):
+        monkeypatch.setattr(pd, "read_csv", lambda *a, _o=order, **k: frame(_o))
+        kept.add(C.universe()["programme_id"].iloc[0])
+    assert kept == {"1"}
+
+
 def test_internal_files_are_not_tracked():
     tracked = subprocess.run(["git", "-C", str(REPO), "ls-files", "data"], capture_output=True, text=True).stdout
     assert "oth_internal" not in tracked and "timetable" not in tracked
@@ -86,7 +100,7 @@ def test_internal_files_are_not_tracked():
 def test_inventory_covers_the_laender_and_fixes_the_threshold():
     inv = json.loads((INTERIM / "funnel2_inventory.json").read_text(encoding="utf-8"))
     assert inv["stamp"]["clean"] is True
-    assert all(v["covers_2019_2024"] for v in inv["laender"].values()) and len(inv["laender"]) == 15
+    assert all(v["covers_2019_2024"] and v["own_land_only"] for v in inv["laender"].values()) and len(inv["laender"]) == 15
     assert inv["catalogue"]["subject_labels_not_in_map"] == 0
     assert inv["timetables"]["names_in_table"] == 0
     thr = inv["threshold"]

@@ -34,6 +34,24 @@ def run_stamp(allow_dirty: bool = False) -> dict:
     return {"commit": _git("rev-parse", "--short", "HEAD"), "date": date.today().isoformat(), "clean": not dirty}
 
 
+def universe():
+    """Bachelor and master offers in Germany, one row per institution, title and degree (configs/funnel.yaml, universe).
+
+    Of several variants the full-time one is kept; among equal variants the one with the lowest programme id, so that the
+    result does not depend on the order of the file. Adds full_time, distance_only and level.
+    """
+    import pandas as pd
+    u = config()["universe"]["fit_on"]
+    d = pd.read_csv(REPO_ROOT / "data" / "processed" / "programmes_full.csv", low_memory=False, dtype={"programme_id": str})
+    d = d[d["degree"].isin(u["degrees"]) & (d["country"] == u["country"])].copy()
+    d["full_time"] = d["study_form"] == u["study_form"]
+    d["distance_only"] = d["study_form"] == "Fernstudium"
+    d["_id"] = pd.to_numeric(d["programme_id"], errors="coerce")
+    d = d.sort_values(["full_time", "_id"], ascending=[False, True], kind="stable").drop_duplicates(["institution", "title", "degree"])
+    d["level"] = d["degree"].map(dict(zip(u["degrees"], ("bachelor", "master"))))
+    return d.drop(columns="_id").reset_index(drop=True)
+
+
 def md_table(df) -> str:
     cols = list(df.columns)
     lines = ["| " + " | ".join(map(str, cols)) + " |", "|" + "---|" * len(cols)]
