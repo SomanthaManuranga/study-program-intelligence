@@ -143,3 +143,99 @@ Candidates reach the check in the order of the pre-gate ranking, not by automati
 cross-university calibration set (handbook downloads and about 160 to 200 pairs marked by two people).
 
 **No programme stays or goes in this step.**
+
+## Step 2: what kinds of programme exist? (not passed)
+
+**Question.** Which programme types does the catalogue hold, found from the offers' texts with no topic list?
+
+**Rule.** `configs/funnel.yaml`, blocks `universe`, `text`, `similarity`, `discovery`; criteria in
+`docs/criteria_funnel_step2.md`, committed before the code. Code: `analysis/funnel_types.py` (scan, embed, run).
+Result files carry code commit 01c4047.
+
+**What was done.** One text per offer (title without degree words, focus items, subject labels), encoded, and the
+14,902 full-time offers grouped over a grid of 10 settings; a group counts as stable if it comes back on 80 % samples;
+left-over offers form rare types (2 or more institutions); all other offers go to the nearest type if inside its
+radius.
+
+**Result of the pre-registered procedure.**
+
+| | |
+|---|---|
+| Offers | 19,872; 9,456 with focus items, 10,416 with title and subject labels only; 17,154 distinct texts |
+| Text check | 0 texts with a dropped phrase, 0 empty; 4 boilerplate strings removed as whole items in 113 offers |
+| Scan | 25,758 distinct focus-item strings; 317 in 20 or more offers, of which 4 name no subject matter (international, forschung, interdisziplinaritaet, forschungsmethoden) |
+| Grid | 10 settings, all inside the limits; share of offers in stable groups from 0.453 to 0.646 |
+| Setting the rule selects | smallest group 50, method eom: share in stable groups 0.646; next 30/eom 0.633, then 10/eom 0.614 |
+| Types | 63 stable (median 121 offers, largest 535) and 229 rare (median 6) |
+| Full-time offers | 9,632 in a stable type, 2,326 in a rare type, 2,944 left without a type by the fit |
+| Assigned afterwards | 5,970 offers; 1,944 offers have no type at the end |
+| Units (type x level, 2 or more institutions) | 496: 126 from stable types, 370 from rare types |
+| Agreement with the catalogue's study fields | ARI 0.248 on 11,958 offers |
+| TF-IDF cross-check (stable types) | 37 of 63 flagged method-dependent; 24 of 63 if k-means only has to place the typed offers |
+| Old topic lists | 17 of 18 testable (energy_informatics has no title match); 3 recovered on both offer sets (ai_data, data_science, mobility_vehicle) |
+| Second run | identical: same type for all 19,872 offers, same file hashes |
+
+**The quality bar (criterion G9) is not met.** An independent reader judged 30 types drawn at random, 10 titles each:
+are at least 8 of 10 the same kind of programme (same subject, same kind of qualification)?
+
+| Grouping | Types | Sample of all types | Sample of stable types |
+|---|---|---|---|
+| The rule's choice (50, eom) | 63 stable, 229 rare | 17 of 30 (57 %) | 14 of 30 (47 %) |
+| Diagnostic: 20, eom | 140 stable, 425 rare | 19 of 30 (63 %) | 20 of 30 (67 %) |
+| Diagnostic: 10, eom (finest of the grid) | 263 stable, 409 rare | 21 of 30 (70 %) | 21 of 30 (70 %) |
+| Diagnostic: the catalogue's own subject labels as types | 339 labels | 10 of 30 (33 %) | 13 of 30 (43 %) |
+
+The bar is 80 %. Each row was read by a different reader with the same instructions; the readers marked borderline
+cases, and no row reaches 80 % in the reader's own verdict (the most lenient reading of the finest grouping gives 80 %
+and 83 %). The diagnostics are not results: they bypass the selection rule and only inform the decision below.
+
+What the readers saw: the stable types of the rule's choice are broad fields that merge neighbouring subjects
+(Geographie with geophysics and urban planning, Politikwissenschaft with Soziologie, Physik with micro- and
+nanotechnology); teacher-training types merge school subjects; some types are held together by one word (health,
+culture, design). Teaching and non-teaching programmes are separated cleanly. Finer groupings are more coherent, but
+still fail in about 3 of 10 types.
+
+**Two more weaknesses of the method, found by the reviews.**
+
+- **The choice of the setting is fragile.** 50/eom leads 30/eom by 1.4 points (203 offers). Three stable types sit
+  just above the stability bar (0.752 to 0.753 on 10 refits); if two of them fell below it, 30/eom would win and
+  there would be 97 stable types instead of 63. The rule (highest share of offers in stable groups) favours large
+  groups.
+- **Mid-sized groups fall through.** The rare path keeps only groups smaller than the selected group size. 30 groups
+  of 50 to 203 offers were therefore dropped (2,513 full-time offers; 898 of them end without any type), among them
+  Architektur, Psychologie, Medieninformatik and a second Informatik group. The rule does not say what happens to
+  such a group; the code drops it.
+
+**What went wrong on the way.**
+
+- A first complete run (commit e578105) is void: 1,804 texts still carried the level marker in its long form
+  ("grundständig außer Staatsexamen"), which the text check did not look for. That run had selected 20/eom with 145
+  stable types; the choice of the setting therefore also depends on small changes of the text.
+- Review round 1 (3 blockers, 8 majors): the title cleaning deleted subject words after "Master of"; the rare-path
+  cut-off used at most 60 members per type; the cross-check flagged rare types that cannot match; note headings cut
+  inside the word were left in; tests could pass with a wrong result. All fixed before the run reported here.
+- Review round 2 (0 blockers, 3 majors): every number was recomputed independently with 0 mismatches. A rule that
+  removes a doubled name also removed a real word in 21 titles; it is fixed in the code (37 titles change), but the
+  result files were not rebuilt, because the step does not pass anyway.
+
+**Choices the rules left open** (now written in the yaml comments, the code or the decision log): noise for the
+selection is counted before unstable groups are dissolved; the rare-path cut-off is the median over all within-type
+pairs (0.0944; the median of the types' own medians, 0.0869, would give 319 rare types); the cross-check uses k = the
+number of stable types and tests stable types only; stability uses 10 refits per setting on the three UMAP seeds in
+turn, and UMAP is not refitted on the samples; a boilerplate string is dropped only as a whole focus item (1,779
+longer items contain one and stay); old lists are matched on titles.
+
+**Scorecard.** G1 pass. G2 not met as worded (the boilerplate part can only hold for whole items). G3 to G8 pass.
+**G9 fail (57 % against 80 %).** G10 pass. G11 open (the title fix is not yet in the result files; the handling of
+mid-sized groups is undecided). G12 checked by a fresh reviewer. G13 pass.
+
+**Open for Soma.** The types are not good enough to carry the next steps as they are, and no setting of the
+pre-registered grid reaches the bar. Options:
+
+1. Redo Step 2 with the finest setting (10/eom) as a logged deviation, keep mid-sized left-over groups as types with
+   the flag "not stability-tested", and repeat the reader's check in Step 3 on the types that survive the screen (same
+   bar; a type that fails is flagged "mixed" and cannot become a candidate without a full reading of its titles).
+2. One more attempt to improve the grouping itself (finer settings than the grid, or titles only), with the same
+   reader's check; no guarantee that it reaches the bar.
+
+**No programme stays or goes in this step.**
