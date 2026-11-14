@@ -12,7 +12,7 @@
 #       no stress value (listed in docs/funnel_preregistration.md)
 
 definitions:
-  type: a group of offers found in Step 2 (stable cluster or rare group); it holds bachelor and master offers together
+  type: a group of offers found in Step 2 (stable cluster, mid-sized group or rare group); it holds bachelor and master offers together
   fitted_members: the full-time offers that the clustering or the rare path put into the type
   assigned_offers: the fitted members plus the offers assigned afterwards (universe.assign_afterwards)
   unit: a type x level; it exists if the type has assigned offers of that level at 2 or more institutions   # 2 [C] rare_path.min_institutions
@@ -51,6 +51,7 @@ similarity:                    # one definition, used for assignment, competitio
   centroid: normalised mean embedding of the type's fitted members
   radius_90: 90th percentile of the fitted members' distances to the centroid   # 90 [C] stress 75 and 95
   rare_types: radius_90 is the larger of the type's largest fitted-member distance and the median radius_90 of the stable types
+  mid_sized_types: radius_90 as for a stable type (the 90th percentile of its fitted members' distances)
   similar_offer: an offer of the unit's level that is counted_as_supply and is either an assigned offer of the type or lies within radius_90 of the type's centroid, whatever cluster it belongs to
   disclosed: the same encoder defines the types and the similar offers; the TF-IDF cross-check and the validity check below are the guards
 
@@ -59,7 +60,7 @@ discovery:                     # unchanged from version 2; rerun because the tex
   hdbscan_grid: {min_cluster_size: [10, 15, 20, 30, 50], method: [eom, leaf], min_samples: 5}      # [C]
   bootstrap: {refits: 10, subsample: 0.8, seed: 20261106}                                          # [C]
   stable_jaccard: 0.75         # [L] Hennig (2007): mean best-match Jaccard >= 0.75 counts as stable
-  selection: highest share of offers in stable clusters, among settings with noise <= 0.50 and largest cluster <= 0.10 of offers; tie goes to more stable clusters   # 0.50, 0.10 [C]
+  selection: the smallest min_cluster_size of the grid, among settings with noise <= 0.50 and largest cluster <= 0.10 of offers; between the two methods the higher share of offers in stable clusters, a tie goes to more stable clusters   # deviation, Soma 14 Nov 2026 [K]: the former rule (highest share of offers in stable clusters over the whole grid) chose 50/eom, whose types failed the reader's check (17 of 30; the finest setting 21 of 30); the former rule's setting is the stress spec "clustering"
   unstable_clusters: treated as noise
   rare_path:                   # scope 8; a programme offered nowhere in Germany cannot be found from offers (stated limit)
     source: offers treated as noise
@@ -67,6 +68,7 @@ discovery:                     # unchanged from version 2; rerun because the tex
     distance_cutoff: median within-cluster pairwise cosine distance of the stable types   # every pair of every stable type once, all pooled; the median of the types' own medians is reported next to it
     min_institutions: 2        # [C]
     max_size: selected min_cluster_size minus 1
+    larger_groups: a left-over group above max_size with offers of at least min_institutions institutions is kept as a mid-sized type with the flag "mid-sized, not stability-tested"; it is neither a stable nor a rare type   # Soma 14 Nov 2026 [K]: the first run dropped 30 such groups (2,513 full-time offers)
     evidence_flag: rare types carry the flag "rare, not stability-tested"
   crosscheck: TF-IDF k-means with the same k; a type whose best TF-IDF match has Jaccard < 0.3 is flagged "method-dependent"   # 0.3 [C]; k is the number of stable types and only stable types are tested (a rare type of a few offers cannot match a k-means group); k-means runs on all fitted offers, and the figure on the typed offers only is reported next to it
   validation:
@@ -100,6 +102,12 @@ screen:                        # Step 3, applied to every unit
     calibration: positives are the EMI offers in the catalogue (configs/oth_portfolio.yaml); negatives are the other OTH full-time offers
     bar: Youden cut on the calibration set
     if_auc_below: {auc: 0.8, action: flag instead of drop}   # [C]
+  type_coherence:              # Soma 14 Nov 2026, after Step 2's reader's check failed for all types together (17 of 30; bar 24)
+    read: every type with a unit on the primary list; 10 fitted-member titles drawn by numpy default_rng(42).choice from the members in file order, all members if fewer; a fresh-context reader who sees titles only   # 10 [N]
+    question: are at least 80 % of the titles shown the same kind of programme (same subject, same kind of qualification)   # 80 % [N] the bar of criterion G9
+    reported: the share of the read types that pass, next to the bar of 80 %; whatever it shows
+    mixed: a type that fails is flagged "mixed"; it stays on the list with the flag, and its competition counts and keywords are flagged with it
+    before_the_gate: a mixed type that would take a gate slot is read in full (every fitted-member title marked as the type's main kind or not); with at least 80 % in the main kind the flag is lifted, otherwise the type is named "mixed, not a candidate" and takes no slot
   competition:                 # measured for every unit; NOT a cut in the primary list [S]
     unit_counted: similar offers, each institution and title once
     distance: straight line from Amberg (EMI's site)
@@ -302,7 +310,7 @@ stress_tests:
     labour_keywords: [top 5, generic line 2 %, generic line 10 %, phrases in one title allowed]
     quotient_pseudo_offers: [2, 10]
     merging: none (every unit its own candidate)
-    clustering: next best setting; types matched at Jaccard >= 0.5
+    clustering: the former rule's setting (highest share of offers in stable clusters); types matched at Jaccard >= 0.5
     feasibility: former strict rule
   list_changing_scope: these specs are run up to the pre-gate ranking; reported is how many of the primary gate candidates stay in the first 20
   report: win share over the factorial with no-winner specs in the denominator; list-changing specs separately; regret table; which missing number would change the winner

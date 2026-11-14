@@ -23,3 +23,22 @@ and nothing about OTH or EMI is used.
 G9 is a quality bar on the result. If it fails, the types are not repaired by hand: the step stops and Soma is told.
 
 If a criterion still fails after 3 rounds, the step stops and Soma is told. No criterion is loosened.
+
+## Redo after Soma's decision (14 Nov 2026)
+
+Written and committed before the changed code runs. The redo uses the changed rules `discovery.selection`,
+`rare_path.larger_groups` and `similarity.mid_sized_types` (docs/decision_log.md).
+
+| # | Criterion | Target | How it is checked |
+|---|---|---|---|
+| R1 | The changed rules are fixed first | yaml, pre-registration and decision log are committed before the code changes and before any run | `git log` |
+| R2 | G1 to G8 and G10 to G13 hold for the redo | as above | as above |
+| R3 | The selected setting is the one the changed rule gives; the former rule's setting is recorded | recomputed from the grid file by a test | test |
+| R4 | No left-over group with offers of 2 or more institutions is dropped | 0 dropped; every mid-sized type carries its flag; their number and offers are reported | test on the output files, recomputed from the vectors |
+| R5 | The stored texts are those the current code builds | 0 differences when all offer texts are built again from the catalogue | test |
+| R6 | The reader's check on all types (G9) is measured again in the same way and reported, whatever it shows | 30 types and 30 stable types, a fresh reader, titles only; the bar stays 24 of 30 | reader's table |
+
+If R6 is again below the bar, the result is reported as such. By Soma's decision the types then go to Step 3 with
+the check `screen.type_coherence` on every surviving type; the bar itself is not lowered and G9 is not counted as
+passed.
+

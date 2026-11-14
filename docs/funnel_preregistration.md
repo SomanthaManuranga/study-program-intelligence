@@ -135,6 +135,14 @@ be traced back. The full documentation is written after Step 8.
   decides a module match. A fresh-context reviewer (an AI agent) marks every row from the module texts by marking
   rules written first; Soma checks 10 rows per candidate and every row the reviewer is unsure about, and marks all
   rows of a candidate whose sample fails. The second team member's blind repetition stays.
+- **Changed after Step 2's first result (Soma, 14 Nov 2026).** The types of the pre-registered selection rule were
+  too broad: 17 of 30 held one kind of programme in the reader's check, the bar was 24. No type had been screened or
+  scored at that point. Three rules changed, each marked [K] in the yaml: the finest setting of the grid is used
+  (`discovery.selection`; the former rule's setting is a stress spec); left-over groups too large for the rare path
+  are kept as mid-sized types with a flag (`rare_path.larger_groups`); and every type that survives the Step 3
+  screen is read for coherence, a failing type is flagged "mixed" and cannot take a gate slot without a full
+  reading (`screen.type_coherence`). The finest setting was chosen by the reader's check alone (21 of 30, still
+  below the bar), not by any candidate.
 - **Hours of existing staff** cannot be known from public data. Every candidate reports its new teaching in ECTS
   and professor-equivalents; whether the faculty can absorb it is the faculty's answer.
 - **Demand is measured per subject, not per programme type.** Two candidates in the same Destatis subject share a
