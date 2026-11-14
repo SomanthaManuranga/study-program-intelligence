@@ -46,7 +46,7 @@ FOCUS_MARK = re.compile(r"Schwerpunkte\s*:\s*:?")
 OF_DEGREE = r"(?:Fine\s+Arts|Business\s+Administration|Public\s+(?:Health|Administration|Policy|Management)|[A-Z][\w.-]*)"
 ABBREV = r"(?:B|M)\.\s?(?:Sc|A|Eng|Ed|Mus|F\.?A)\.?|L\.?L\.?\s?(?:B|M)\.?|E?MBA|M\.B\.A\.?|[BM]Sc"
 DEGREE_WORDS = re.compile(rf"\b(?:Bachelor|Master)\s+of\s+{OF_DEGREE}|(?<![\w.])(?:{ABBREV})(?![\w])|[\w-]*(?:bachelor|master)[\w-]*", re.I)
-LEVEL_MARKER = re.compile(r"\s*\((?:grundständig|weiterführend)\)", re.I)
+LEVEL_MARKER = re.compile(r"\s*\((?:grundständig|weiterführend)[^)]*\)", re.I)   # also "(grundständig außer Staatsexamen)"
 STOPWORDS = sorted(set("""und der die das des den dem für fur von mit im in an am auf zu zur zum sowie oder als bei nach aus ein eine einer
     of and the for on with to studiengang studium science arts engineering hochschule universität fachhochschule university""".split()))
 NOISE_MAX, LARGEST_MAX = 0.50, 0.10      # discovery.selection
@@ -154,8 +154,11 @@ def offer_text(title: str, items: list[str], labels: list[str]) -> str:
     return ". ".join(x for x in [title, ", ".join(items), ", ".join(labels)] if x)
 
 
-def unclean(texts, phrases: list[str]) -> list[int]:
-    """Rule text.check: positions of the texts that still contain one of the phrases after normalising."""
+def unclean(texts, phrases) -> list[int]:
+    """Rule text.check: positions of the texts that still contain one of the phrases after normalising. A level marker is
+    also found in its longer forms ("(grundständig außer Staatsexamen)"): a phrase in brackets is looked for without
+    its closing bracket."""
+    phrases = [p[:-1] if p.startswith("(") and p.endswith(")") else p for p in phrases]
     return [i for i, t in enumerate(texts) if any(p in normalise(t) for p in phrases)]
 
 
