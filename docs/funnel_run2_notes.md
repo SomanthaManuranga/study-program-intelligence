@@ -13,7 +13,7 @@ answers and a fix for each problem of run 1 (`docs/funnel_preregistration.md`). 
 **Question.** Does every rule have the data it needs, how old is it, and what is missing?
 
 **Rule.** Data table in `docs/funnel_preregistration.md`; criteria in `docs/criteria_funnel_step1.md`. Inventory run
-on 14 Nov 2026 with code commit 678af4d; tracked files were clean.
+on 14 Nov 2026 with code commit 8fddcb2; tracked files were clean.
 
 **What is there** (one row per line of the pre-registered data table).
 
