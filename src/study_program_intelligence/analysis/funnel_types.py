@@ -362,14 +362,28 @@ def grid_search(coords: list[np.ndarray], cfg: dict) -> tuple[pd.DataFrame, dict
     return pd.DataFrame(rows), runs
 
 
-def select(grid: pd.DataFrame) -> pd.Series:
-    """Rule discovery.selection: the highest share of offers in stable clusters among the settings with noise <= 0.50 and
-    largest cluster <= 0.10 of the offers; a tie goes to more stable clusters. Noise and largest cluster are those of the
-    clustering as fitted, before unstable clusters are treated as noise. Remaining ties: the first setting of the grid."""
-    ok = grid[(grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)]
+def within_limits(grid: pd.DataFrame) -> pd.DataFrame:
+    """The settings with noise <= 0.50, largest cluster <= 0.10 of the offers and at least one stable cluster. Noise and
+    largest cluster are those of the clustering as fitted, before unstable clusters are treated as noise."""
+    return grid[(grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)]
+
+
+def select_former(grid: pd.DataFrame) -> pd.Series:
+    """The rule before 14 Nov 2026: the highest share of offers in stable clusters over the whole grid; a tie goes to
+    more stable clusters, then to the first setting of the grid. Kept for the stress spec "clustering"."""
+    ok = within_limits(grid)
     if ok.empty:
         raise SystemExit("no setting meets the pre-registered limits: stop and report")
     return ok.sort_values(["share in stable", "stable clusters"], ascending=False, kind="stable").iloc[0]
+
+
+def select(grid: pd.DataFrame) -> pd.Series:
+    """Rule discovery.selection: among the settings inside the limits, the smallest min_cluster_size; between the two
+    methods the higher share of offers in stable clusters, a tie goes to more stable clusters, then to the first one."""
+    ok = within_limits(grid)
+    if ok.empty:
+        raise SystemExit("no setting meets the pre-registered limits: stop and report")
+    return select_former(ok[ok["min_cluster_size"] == ok["min_cluster_size"].min()])
 
 
 def within_distances(emb: np.ndarray, labels: np.ndarray) -> dict[int, np.ndarray]:
@@ -388,44 +402,58 @@ def rare_cutoff(emb: np.ndarray, labels: np.ndarray) -> tuple[float, float]:
     return float(np.median(np.concatenate(list(w.values())))), float(np.median([np.median(v) for v in w.values()]))
 
 
-def rare_path(emb: np.ndarray, institution: np.ndarray, noise: np.ndarray, cutoff: float, max_size: int, min_inst: int) -> np.ndarray:
-    """Groups among the offers left without a stable type: average linkage, cut at the distance cutoff, at least
-    min_inst institutions, at most max_size offers (rule discovery.rare_path). A larger group is not cut further."""
+def rare_path(emb: np.ndarray, institution: np.ndarray, noise: np.ndarray, cutoff: float, max_size: int, min_inst: int) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Groups among the offers left without a stable type: average linkage, cut at the distance cutoff (rule
+    discovery.rare_path). A group with offers of at least min_inst institutions is a rare type if it has at most
+    max_size offers and a mid-sized type if it has more (rare_path.larger_groups); it is not cut further. Returns the
+    rare group and the mid-sized group of every offer (-1 none) and the counts of what was left out."""
     from sklearn.cluster import AgglomerativeClustering
-    out = np.full(len(emb), -1)
+    rare, mid = np.full(len(emb), -1), np.full(len(emb), -1)
+    info = {"left_over_offers": int(noise.sum()), "single_offers": 0, "groups_at_one_institution": 0, "offers_in_groups_at_one_institution": 0}
     idx = np.where(noise)[0]
     if len(idx) < 2:
-        return out
+        info["single_offers"] = len(idx)
+        return rare, mid, info
     lab = AgglomerativeClustering(n_clusters=None, metric="cosine", linkage="average", distance_threshold=cutoff).fit_predict(emb[idx])
-    next_id = 0
+    n_rare = n_mid = 0
     for c in np.unique(lab):
         m = idx[lab == c]
-        if 2 <= len(m) <= max_size and len(set(institution[m])) >= min_inst:
-            out[m] = next_id
-            next_id += 1
-    return out
+        if len(m) < 2:
+            info["single_offers"] += 1
+        elif len(set(institution[m])) < min_inst:
+            info["groups_at_one_institution"] += 1
+            info["offers_in_groups_at_one_institution"] += len(m)
+        elif len(m) <= max_size:
+            rare[m] = n_rare
+            n_rare += 1
+        else:
+            mid[m] = n_mid
+            n_mid += 1
+    return rare, mid, info
 
 
-def radii(dist_own: dict[int, np.ndarray], stable: set[int], pct: float = 90) -> dict[int, float]:
-    """Rules similarity.radius_90 and similarity.rare_types. dist_own: for each type, its fitted members' distances to its
-    centroid. A rare type takes the larger of its largest member distance and the median radius of the stable types."""
+def radii(dist_own: dict[int, np.ndarray], stable: set[int], pct: float = 90, mid: frozenset[int] = frozenset()) -> dict[int, float]:
+    """Rules similarity.radius_90, mid_sized_types and rare_types. dist_own: for each type, its fitted members' distances
+    to its centroid. Stable and mid-sized types take the percentile of their members' distances. A rare type takes the
+    larger of its largest member distance and the median radius of the stable types."""
     r = {c: float(np.percentile(v, pct)) for c, v in dist_own.items() if c in stable}
     med = float(np.median(list(r.values()))) if r else 0.0
-    r.update({c: max(float(np.max(v)), med) for c, v in dist_own.items() if c not in stable})
+    r.update({c: float(np.percentile(v, pct)) for c, v in dist_own.items() if c in mid})
+    r.update({c: max(float(np.max(v)), med) for c, v in dist_own.items() if c not in stable and c not in mid})
     return r
 
 
-def centroids_and_assignment(emb: np.ndarray, lab: np.ndarray, n_stable: int) -> dict:
-    """Rules similarity.centroid, radius_90, rare_types and universe.assign_afterwards. lab: type of every offer (-1 none),
-    types numbered 0..n-1 with the stable ones first. No refit: an offer without a type goes to the type with the nearest
-    centroid if it lies inside that type's radius_90."""
+def centroids_and_assignment(emb: np.ndarray, lab: np.ndarray, n_stable: int, n_mid: int = 0) -> dict:
+    """Rules similarity.centroid, radius_90, mid_sized_types, rare_types and universe.assign_afterwards. lab: type of every
+    offer (-1 none), types numbered 0..n-1: the stable ones first, then the mid-sized, then the rare. No refit: an offer
+    without a type goes to the type with the nearest centroid if it lies inside that type's radius_90."""
     ids = np.unique(lab[lab >= 0])
     cent = np.vstack([emb[lab == c].mean(axis=0) for c in ids])
     cent /= np.linalg.norm(cent, axis=1, keepdims=True)
     dist = 1 - emb @ cent.T
     own = {int(c): dist[lab == c, c] for c in ids}
-    stable = set(range(n_stable))
-    r = {p: radii(own, stable, p) for p in (75, 90, 95)}
+    stable, mid = set(range(n_stable)), frozenset(range(n_stable, n_stable + n_mid))
+    r = {p: radii(own, stable, p, mid) for p in (75, 90, 95)}
     radius = np.array([r[90][int(c)] for c in ids])
     near = dist.argmin(axis=1)
     near_d = dist[np.arange(len(emb)), near]
@@ -495,7 +523,8 @@ def mix(d: pd.DataFrame, by: str) -> pd.DataFrame:
     whether they have a type after the assignment."""
     f = d[d["full_time"]]
     g = f.groupby(by, dropna=False).agg(**{"full-time offers": ("type", "size"), "in a stable type": ("kind", lambda k: (k == "stable").mean()),
-                                           "noise (no stable type)": ("kind", lambda k: (k != "stable").mean()), "in a rare type": ("kind", lambda k: (k == "rare").mean()),
+                                           "noise (no stable type)": ("kind", lambda k: (k != "stable").mean()), "in a mid-sized type": ("kind", lambda k: (k == "mid-sized").mean()),
+                                           "in a rare type": ("kind", lambda k: (k == "rare").mean()),
                                            "assigned afterwards": ("assigned_only", "mean"), "without any type": ("assigned_type", lambda a: (a < 0).mean())})
     a = d.groupby(by, dropna=False).agg(**{"all offers": ("type", "size"), "all: with a type": ("assigned_type", lambda a: (a >= 0).mean())})
     return g.join(a).round(3).reset_index()
@@ -556,14 +585,17 @@ def run(setting: tuple[int, str] | None = None) -> None:
     cut, cut_alt = rare_cutoff(emb, lab)
     ft = d["full_time"].to_numpy()
     inst = d["institution"].to_numpy()
-    rare = rare_path(emb, inst, (lab < 0) & ft, cut, mcs - 1, cfg["rare_path"]["min_institutions"])
-    rare_alt = rare_path(emb, inst, (lab < 0) & ft, cut_alt, mcs - 1, cfg["rare_path"]["min_institutions"])
-    lab[rare >= 0] = rare[rare >= 0] + n_stable
+    rare, mid, left = rare_path(emb, inst, (lab < 0) & ft, cut, mcs - 1, cfg["rare_path"]["min_institutions"])
+    rare_alt, mid_alt, _ = rare_path(emb, inst, (lab < 0) & ft, cut_alt, mcs - 1, cfg["rare_path"]["min_institutions"])
+    n_mid = int(mid.max() + 1)
+    lab[mid >= 0] = mid[mid >= 0] + n_stable
+    lab[rare >= 0] = rare[rare >= 0] + n_stable + n_mid
     ids = np.unique(lab[lab >= 0])
-    g = centroids_and_assignment(emb, lab, n_stable)
+    g = centroids_and_assignment(emb, lab, n_stable, n_mid)
+    kind_of = lambda c: "stable" if c < n_stable else "mid-sized" if c < n_stable + n_mid else "rare"
     dist, own, assigned, near, near_d = g["dist"], g["own"], g["assigned"], g["nearest"], g["nearest_dist"]
     d["type"] = lab
-    d["kind"] = np.where(lab < 0, "none", np.where(lab < n_stable, "stable", "rare"))
+    d["kind"] = [kind_of(c) if c >= 0 else "none" for c in lab]
     d["assigned_type"] = assigned
     d["assigned_only"] = (lab < 0) & (assigned >= 0)
     d["dist_to_assigned"] = np.where(assigned >= 0, dist[np.arange(len(d)), np.maximum(assigned, 0)], np.nan)
@@ -572,7 +604,7 @@ def run(setting: tuple[int, str] | None = None) -> None:
     terms = ctfidf_terms(d["text"], lab)
     tf_hard, tf_easy = tfidf_crosscheck(d["text"].iloc[fit].reset_index(drop=True), lab[fit], n_stable)
     inv = {v: k for k, v in remap.items()}
-    flag = cfg["rare_path"]["evidence_flag"].split('"')[1]
+    flags = {"stable": "", "rare": cfg["rare_path"]["evidence_flag"].split('"')[1], "mid-sized": cfg["rare_path"]["larger_groups"].split('"')[1]}
     rows = []
     for c in ids:
         c = int(c)
@@ -581,7 +613,7 @@ def run(setting: tuple[int, str] | None = None) -> None:
         central = [t for t in d["clean_title"].iloc[mi[np.argsort(dist[mi, c], kind="stable")]].drop_duplicates().tolist() if isinstance(t, str) and t][:5]
         n_inst = {lv: int(a.loc[a["level"] == lv, "institution"].nunique()) for lv in ("bachelor", "master")}
         is_stable = c < n_stable
-        rows.append({"type": c, "kind": "stable" if is_stable else "rare", "label": ", ".join(terms[c][:4]), "central titles": "; ".join(central),
+        rows.append({"type": c, "kind": kind_of(c), "label": ", ".join(terms[c][:4]), "central titles": "; ".join(central),
                      "members": len(m), "member institutions": int(m["institution"].nunique()), "assigned offers": len(a),
                      "bachelor": int((a["level"] == "bachelor").sum()), "master": int((a["level"] == "master").sum()),
                      "bachelor institutions": n_inst["bachelor"], "master institutions": n_inst["master"],
@@ -594,7 +626,7 @@ def run(setting: tuple[int, str] | None = None) -> None:
                      "tfidf best Jaccard": round(tf_hard[c], 3) if is_stable else np.nan,
                      "tfidf best Jaccard (typed offers only)": round(tf_easy[c], 3) if is_stable else np.nan,
                      "method-dependent": ("yes" if tf_hard[c] < METHOD_DEPENDENT else "no") if is_stable else "not tested",
-                     "evidence flag": "" if is_stable else flag, "terms": "; ".join(terms[c])})
+                     "evidence flag": flags[kind_of(c)], "terms": "; ".join(terms[c])})
     types = pd.DataFrame(rows)
     f = pd.read_csv(FIELDS, dtype={"programme_id": str}).drop_duplicates("programme_id").set_index("programme_id")["field_key"]
     fk = d["programme_id"].map(f)
@@ -607,20 +639,25 @@ def run(setting: tuple[int, str] | None = None) -> None:
     types.to_csv(out(TYPES), index=False)
     np.save(out(CENTROIDS), g["centroids"].astype(np.float32))
     stable_t = types[types["kind"] == "stable"]
-    limits = (grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)
-    n_rare = int(len(ids) - n_stable)
+    n_rare = int(len(ids) - n_stable - n_mid)
+    former = select_former(grid)
+    by_kind = types.groupby("kind")["units"].sum().to_dict()
     res = {"stamp": stamp, "diagnostic_setting": list(setting) if setting else None, "embed_commit": meta["stamp"]["commit"], "offers": len(d), "full_time": int(ft.sum()),
            "umap_seeds": u["seeds"], "refits_per_setting": cfg["bootstrap"]["refits"], "subsample": cfg["bootstrap"]["subsample"], "settings": len(grid),
            "selected": {"min_cluster_size": mcs, "method": pick["method"], "clusters": int(pick["clusters"]), "stable_clusters": int(pick["stable clusters"]),
                         "share_in_stable": round(float(pick["share in stable"]), 4), "noise": round(float(pick["noise"]), 4),
                         "largest_cluster_share": round(float(pick["largest cluster share"]), 4)},
-           "settings_within_limits": int(limits.sum()), "stable_types": n_stable, "rare_types": n_rare, "rare_cutoff": round(cut, 4),
+           "former_rule_setting": [int(former["min_cluster_size"]), former["method"]],
+           "settings_within_limits": len(within_limits(grid)), "stable_types": n_stable, "mid_sized_types": n_mid, "rare_types": n_rare, "rare_cutoff": round(cut, 4),
            "rare_cutoff_median_of_type_medians": round(cut_alt, 4), "rare_types_with_that_cutoff": int(len(np.unique(rare_alt[rare_alt >= 0]))),
+           "mid_sized_types_with_that_cutoff": int(len(np.unique(mid_alt[mid_alt >= 0]))), "left_over": left,
+           "rare_types_with_the_stable_median_radius": int((types.loc[types["kind"] == "rare", "radius_90"] > types.loc[types["kind"] == "rare", "largest distance"] + 1e-12).sum()),
            "median_radius_90_stable": round(float(stable_t["radius_90"].median()), 4),
-           "full_time_in_stable": int(((lab >= 0) & (lab < n_stable)).sum()), "full_time_in_rare": int((lab >= n_stable).sum()),
+           "full_time_in_stable": int(((lab >= 0) & (lab < n_stable)).sum()), "full_time_in_mid_sized": int(((lab >= n_stable) & (lab < n_stable + n_mid)).sum()),
+           "full_time_in_rare": int((lab >= n_stable + n_mid).sum()),
            "full_time_without_type": int(((lab < 0) & ft).sum()), "assigned_afterwards": int(d["assigned_only"].sum()),
            "assigned_afterwards_full_time": int((d["assigned_only"] & d["full_time"]).sum()), "offers_without_any_type": int((assigned < 0).sum()),
-           "units": int(types["units"].sum()), "types_with_a_unit": int((types["units"] > 0).sum()),
+           "units": int(types["units"].sum()), "units_by_kind": {k: int(v) for k, v in by_kind.items()}, "types_with_a_unit": int((types["units"] > 0).sum()),
            "largest_type_members": int(types["members"].max()), "median_stable_members": float(stable_t["members"].median()),
            "ari_study_fields": round(ari, 3), "offers_in_ari": int(both.sum()), "tfidf_k": int(max(n_stable, 2)),
            "method_dependent_stable": int((stable_t["method-dependent"] == "yes").sum()),
@@ -637,15 +674,20 @@ def run(setting: tuple[int, str] | None = None) -> None:
         f"Code commit {stamp['commit']} (texts and vectors: {res['embed_commit']}), run on {stamp['date']}, tracked files clean: {stamp['clean']}.", "",
         f"- Offers: {len(d)}; full-time offers used for the fit: {int(ft.sum())}.",
         f"- Grid: {len(grid)} settings, UMAP seeds {u['seeds']}, {res['refits_per_setting']} refits per setting on {res['subsample']:.0%} subsamples (the seeds in turn).",
-        f"- Selected setting: min_cluster_size {mcs}, method {pick['method']} ({res['settings_within_limits']} of {len(grid)} settings are within the limits).",
-        f"- Types: {n_stable} stable, {n_rare} rare (flag: {flag}). Rare-path cutoff {cut:.4f} (median of all within-type pairs); "
-        f"with the median of the types' medians ({cut_alt:.4f}) there would be {res['rare_types_with_that_cutoff']} rare types.",
-        f"- Full-time offers: {res['full_time_in_stable']} in a stable type, {res['full_time_in_rare']} in a rare type, {res['full_time_without_type']} left without a type by the fit.",
+        f"- Selected setting: min_cluster_size {mcs}, method {pick['method']} ({res['settings_within_limits']} of {len(grid)} settings are within the limits; "
+        f"the former rule would select {res['former_rule_setting'][0]}/{res['former_rule_setting'][1]}).",
+        f"- Types: {n_stable} stable, {n_mid} mid-sized (flag: {flags['mid-sized']}), {n_rare} rare (flag: {flags['rare']}). Rare-path cutoff {cut:.4f} "
+        f"(median of all within-type pairs); with the median of the types' medians ({cut_alt:.4f}) there would be {res['mid_sized_types_with_that_cutoff']} "
+        f"mid-sized and {res['rare_types_with_that_cutoff']} rare types.",
+        f"- Left over by the grouping: {left['left_over_offers']} full-time offers; of these {left['single_offers']} stay single, "
+        f"{left['offers_in_groups_at_one_institution']} are in {left['groups_at_one_institution']} groups at one institution only (no type).",
+        f"- Full-time offers: {res['full_time_in_stable']} in a stable type, {res['full_time_in_mid_sized']} in a mid-sized type, {res['full_time_in_rare']} in a rare type, "
+        f"{res['full_time_without_type']} left without a type by the fit.",
         f"- Assigned afterwards (inside the radius of the nearest type): {res['assigned_afterwards']} offers; without any type after that: {res['offers_without_any_type']}.",
-        f"- Units (type x level with offers at 2 or more institutions): {res['units']}.",
+        f"- Units (type x level with offers at 2 or more institutions): {res['units']} ({res['units_by_kind']}).",
         f"- Agreement with the catalogue's study fields (ARI; fitted members, first-listed field): {ari:.3f}.",
         f"- TF-IDF cross-check (k-means, k = {res['tfidf_k']}, stable types only): method-dependent {res['method_dependent_stable']} of {n_stable} "
-        f"when k-means also has to place the offers without a stable type; {res['method_dependent_stable_typed_offers_only']} of {n_stable} on the typed offers only. Rare types are not tested.",
+        f"when k-means also has to place the offers without a stable type; {res['method_dependent_stable_typed_offers_only']} of {n_stable} on the offers in stable types only. Mid-sized and rare types are not tested.",
         f"- Old topic lists (title patterns): {res['old_lists']} lists; on the fitted full-time offers {res['old_lists_tested_fitted']} tested and "
         f"{res['old_lists_recovered_fitted']} recovered (Jaccard >= {RECOVERED}); on all assigned offers {res['old_lists_tested_assigned']} tested and {res['old_lists_recovered_assigned']} recovered.", "",
         "## Grid", "", md_table(grid.round(4)), "", "## Mix by focus items present", "", md_table(mix(d, "has_focus")), "",

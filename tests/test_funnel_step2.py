@@ -100,8 +100,13 @@ def test_best_jaccard_and_selection_rule():
         {"min_cluster_size": 20, "method": "eom", "clusters": 9, "stable clusters": 4, "share in stable": 0.40, "noise": 0.30, "largest cluster share": 0.05},
         {"min_cluster_size": 30, "method": "leaf", "clusters": 9, "stable clusters": 6, "share in stable": 0.40, "noise": 0.30, "largest cluster share": 0.05},
         {"min_cluster_size": 50, "method": "eom", "clusters": 9, "stable clusters": 9, "share in stable": 0.39996, "noise": 0.30, "largest cluster share": 0.05}])
-    pick = T.select(grid)                 # too much noise; too large a cluster; a tie goes to more stable clusters; 0.39996 is not a tie
+    pick = T.select_former(grid)          # too much noise; too large a cluster; a tie goes to more stable clusters; 0.39996 is not a tie
     assert (pick["min_cluster_size"], pick["method"]) == (30, "leaf")
+    pick = T.select(grid)                 # the smallest size inside the limits: 10 has too much noise, 15 too large a cluster
+    assert (pick["min_cluster_size"], pick["method"]) == (20, "eom")
+    both = pd.concat([grid, grid.iloc[[2]].assign(method="leaf", **{"share in stable": 0.45})], ignore_index=True)
+    pick = T.select(both)                 # between the two methods of the smallest size, the higher share in stable clusters
+    assert (pick["min_cluster_size"], pick["method"]) == (20, "leaf")
 
 
 def test_rare_cutoff_is_the_median_of_all_within_type_pairs():
@@ -116,6 +121,8 @@ def test_radius_of_a_rare_type_is_never_below_the_stable_median():
     r = T.radii(own, stable={0, 1})
     assert r[0] == pytest.approx(0.09) and r[1] == pytest.approx(0.18)
     assert r[2] == pytest.approx(0.135) and r[3] == pytest.approx(0.40)       # the median of 0.09 and 0.18; its own largest distance
+    r = T.radii(own, stable={0, 1}, mid=frozenset({3}))
+    assert r[3] == pytest.approx(0.05 + 0.9 * 0.35) and r[2] == pytest.approx(0.135)   # a mid-sized type takes its own percentile
 
 
 def test_offers_are_assigned_afterwards_only_inside_the_radius_and_nothing_is_refitted():
@@ -134,8 +141,10 @@ def test_rare_path_needs_two_institutions_and_respects_the_size_limit():
     e = np.array([[1, 0, 0], [1, 0.01, 0], [0, 1, 0], [0, 1, 0.01], [0, 0, 1], [0, 0.01, 1], [0.01, 0, 1]], float)
     e /= np.linalg.norm(e, axis=1, keepdims=True)
     inst = np.array(["a", "b", "c", "c", "d", "e", "f"])
-    out = T.rare_path(e, inst, np.ones(7, bool), cutoff=0.05, max_size=2, min_inst=2)
-    assert out[0] == out[1] >= 0 and (out[2:] == -1).all()   # one institution only; three offers are more than max_size
+    rare, mid, info = T.rare_path(e, inst, np.ones(7, bool), cutoff=0.05, max_size=2, min_inst=2)
+    assert rare[0] == rare[1] >= 0 and (rare[2:] == -1).all()                  # two offers of two institutions: a rare type
+    assert mid[4] == mid[5] == mid[6] >= 0 and (mid[:4] == -1).all()           # three offers are more than max_size: kept as a mid-sized type
+    assert info["groups_at_one_institution"] == 1 and info["offers_in_groups_at_one_institution"] == 2 and info["left_over_offers"] == 7
 
 
 def test_old_list_recovery_counts_offers_outside_any_type_against_the_list():
@@ -179,13 +188,13 @@ def test_grid_is_complete_and_the_selected_setting_is_the_one_the_rule_gives():
     want = {(m, k) for m in cfg["hdbscan_grid"]["min_cluster_size"] for k in cfg["hdbscan_grid"]["method"]}
     assert set(zip(grid["min_cluster_size"], grid["method"])) == want and len(grid) == len(want) == 10
     assert r["umap_seeds"] == cfg["umap"]["seeds"] and r["refits_per_setting"] == cfg["bootstrap"]["refits"] == 10
-    best, key = None, None                                          # the rule, written out again without the code's function
-    for row in grid.to_dict("records"):
-        if row["noise"] <= 0.50 and row["largest cluster share"] <= 0.10 and row["stable clusters"] > 0:
-            k = (row["share in stable"], row["stable clusters"])
-            if key is None or k > key:
-                best, key = row, k
-    assert (best["min_cluster_size"], best["method"]) == (r["selected"]["min_cluster_size"], r["selected"]["method"])
+    ok = [row for row in grid.to_dict("records") if row["noise"] <= 0.50 and row["largest cluster share"] <= 0.10 and row["stable clusters"] > 0]
+    best = lambda rows: max(rows, key=lambda row: (row["share in stable"], row["stable clusters"]))    # the rules, written out again without the code's functions
+    finest = best([row for row in ok if row["min_cluster_size"] == min(x["min_cluster_size"] for x in ok)])
+    assert (finest["min_cluster_size"], finest["method"]) == (r["selected"]["min_cluster_size"], r["selected"]["method"])
+    assert [best(ok)["min_cluster_size"], best(ok)["method"]] == r["former_rule_setting"]
+    assert r["stable_types"] == finest["stable clusters"] and r["full_time_in_stable"] == round(finest["share in stable"] * r["full_time"])
+    assert r["diagnostic_setting"] is None
     assert r["old_lists"] == 18 and r["old_lists_tested_fitted"] <= 18
 
 
@@ -208,24 +217,27 @@ def test_types_are_built_as_the_rules_say():
     d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
     emb = np.load(INTERIM / "funnel2_embeddings.npy").astype(np.float64)
     lab = d["type"].to_numpy()
-    stable, rare = t[t["kind"] == "stable"], t[t["kind"] == "rare"]
+    stable, mid, rare = t[t["kind"] == "stable"], t[t["kind"] == "mid-sized"], t[t["kind"] == "rare"]
     n = len(t)
-    assert list(t["type"]) == list(range(n)) and len(stable) == r["stable_types"] and len(rare) == r["rare_types"]
-    assert (stable["type"] < len(stable)).all() and (stable["stability"] >= RULES["discovery"]["stable_jaccard"]).all()
+    assert list(t["type"]) == list(range(n)) and (len(stable), len(mid), len(rare)) == (r["stable_types"], r["mid_sized_types"], r["rare_types"])
+    assert len(stable) + len(mid) + len(rare) == n and list(t["kind"]) == ["stable"] * len(stable) + ["mid-sized"] * len(mid) + ["rare"] * len(rare)
+    assert (stable["stability"] >= RULES["discovery"]["stable_jaccard"]).all()
+    assert (mid["evidence flag"] == "mid-sized, not stability-tested").all() and (rare["evidence flag"] == "rare, not stability-tested").all()
     assert d.loc[lab >= 0, "full_time"].all()                                           # only full-time offers are fitted members
     members = d[lab >= 0].groupby("type").agg(n=("type", "size"), inst=("institution", "nunique"))
     assert (members["n"].to_numpy() == t["members"].to_numpy()).all()
-    assert (members.loc[rare["type"], "inst"] >= RULES["discovery"]["rare_path"]["min_institutions"]).all()
-    assert (members.loc[rare["type"], "n"] < r["selected"]["min_cluster_size"]).all()
+    assert (members.loc[list(rare["type"]) + list(mid["type"]), "inst"] >= RULES["discovery"]["rare_path"]["min_institutions"]).all()
+    assert (members.loc[rare["type"], "n"] < r["selected"]["min_cluster_size"]).all() and (members.loc[mid["type"], "n"] >= r["selected"]["min_cluster_size"]).all()
     cent = np.vstack([emb[lab == c].mean(axis=0) for c in range(n)])
     cent /= np.linalg.norm(cent, axis=1, keepdims=True)
     assert np.allclose(cent, np.load(INTERIM / "funnel2_centroids.npy"), atol=1e-5)
     dist = 1 - emb @ cent.T
     r90 = np.array([np.percentile(dist[lab == c, c], 90) for c in range(len(stable))])
     assert np.allclose(r90, stable["radius_90"], atol=1e-6)
+    mid_r = np.array([np.percentile(dist[lab == c, c], 90) for c in mid["type"]])
     rare_r = np.array([max(dist[lab == c, c].max(), np.median(r90)) for c in rare["type"]])
-    assert np.allclose(rare_r, rare["radius_90"], atol=1e-6)
-    radius = np.concatenate([r90, rare_r])
+    assert np.allclose(mid_r, mid["radius_90"], atol=1e-6) and np.allclose(rare_r, rare["radius_90"], atol=1e-6)
+    radius = np.concatenate([r90, mid_r, rare_r])
     near = dist.argmin(axis=1)
     near_d = dist[np.arange(len(d)), near]
     want = np.where(lab >= 0, lab, np.where(near_d <= radius[near], near, -1))
@@ -235,3 +247,47 @@ def test_types_are_built_as_the_rules_say():
     assert (counts.to_numpy() == t["assigned offers"].to_numpy()).all()
     units = sum(int(d[(want == c) & (d["level"] == lv)]["institution"].nunique() >= 2) for c in range(n) for lv in ("bachelor", "master"))
     assert units == r["units"] == int(t["units"].sum())
+
+
+@needs(*RUN)
+def test_no_left_over_group_of_two_institutions_is_dropped():
+    """Criterion R4: the left-over offers are grouped again here; every group with offers of 2 or more institutions is a type."""
+    from sklearn.cluster import AgglomerativeClustering
+    r = json.loads((INTERIM / "funnel2_step2.json").read_text(encoding="utf-8"))
+    d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
+    emb = np.load(INTERIM / "funnel2_embeddings.npy").astype(np.float64)
+    stable = np.where(d["kind"] == "stable", d["type"], -1)
+    pairs = []
+    for c in np.unique(stable[stable >= 0]):
+        m = np.where(stable == c)[0]
+        pairs.append((1 - emb[m] @ emb[m].T)[np.triu_indices(len(m), 1)])
+    cut = float(np.median(np.concatenate(pairs)))
+    assert round(cut, 4) == r["rare_cutoff"]
+    idx = np.where(d["full_time"] & (d["kind"] != "stable"))[0]
+    assert len(idx) == r["left_over"]["left_over_offers"]
+    grp = AgglomerativeClustering(n_clusters=None, metric="cosine", linkage="average", distance_threshold=cut).fit_predict(emb[idx])
+    typ, inst, kind = d["type"].to_numpy()[idx], d["institution"].to_numpy()[idx], d["kind"].to_numpy()[idx]
+    size = r["selected"]["min_cluster_size"]
+    kept = dropped = 0
+    for g in np.unique(grp):
+        m = grp == g
+        if m.sum() >= 2 and len(set(inst[m])) >= 2:
+            assert len(set(typ[m])) == 1 and typ[m][0] >= 0, "a group of two institutions has no type of its own"
+            assert set(kind[m]) == ({"rare"} if m.sum() < size else {"mid-sized"})
+            kept += 1
+        else:
+            assert (typ[m] == -1).all()
+            dropped += int(m.sum() >= 2)
+    assert kept == r["rare_types"] + r["mid_sized_types"] and dropped == r["left_over"]["groups_at_one_institution"]
+
+
+@needs("data/interim/funnel2_offers.csv", "data/processed/programmes_full.csv", "configs/funnel_boilerplate.yaml")
+def test_stored_texts_are_those_the_current_code_builds():
+    """Criterion R5: all offer texts are built again from the catalogue."""
+    stored = pd.read_csv(INTERIM / "funnel2_offers.csv", low_memory=False)
+    drop = tuple(T.normalise(p) for p in yaml.safe_load((REPO / "configs" / "funnel_boilerplate.yaml").read_text(encoding="utf-8"))["dropped"])
+    built = T.build_offers(drop)
+    assert len(built) == len(stored) and (built["programme_id"].astype(str).to_numpy() == stored["programme_id"].astype(str).to_numpy()).all()
+    assert (built["text"].to_numpy() == stored["text"].to_numpy()).all()
+    assert int((~built["has_focus"]).sum()) == json.loads((INTERIM / "funnel2_embed.json").read_text(encoding="utf-8"))["without_focus_items"]
+
