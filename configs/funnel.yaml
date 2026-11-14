@@ -60,7 +60,7 @@ discovery:                     # unchanged from version 2; rerun because the tex
   hdbscan_grid: {min_cluster_size: [10, 15, 20, 30, 50], method: [eom, leaf], min_samples: 5}      # [C]
   bootstrap: {refits: 10, subsample: 0.8, seed: 20261106}                                          # [C]
   stable_jaccard: 0.75         # [L] Hennig (2007): mean best-match Jaccard >= 0.75 counts as stable
-  selection: the smallest min_cluster_size of the grid, among settings with noise <= 0.50 and largest cluster <= 0.10 of offers; between the two methods the higher share of offers in stable clusters, a tie goes to more stable clusters   # deviation, Soma 14 Nov 2026 [K]: the former rule (highest share of offers in stable clusters over the whole grid) chose 50/eom, whose types failed the reader's check (17 of 30; the finest setting 21 of 30); the former rule's setting is the stress spec "clustering"
+  selection: the smallest min_cluster_size of the grid, among settings with noise <= 0.50, largest cluster <= 0.10 of offers and at least one stable cluster; between the two methods the higher share of offers in stable clusters, a tie goes to more stable clusters   # deviation, Soma 14 Nov 2026 [K]: the former rule (highest share of offers in stable clusters over the whole grid) chose 50/eom, whose types failed the reader's check (17 of 30; the finest setting 21 of 30); the former rule's setting is the stress spec "clustering"
   unstable_clusters: treated as noise
   rare_path:                   # scope 8; a programme offered nowhere in Germany cannot be found from offers (stated limit)
     source: offers treated as noise

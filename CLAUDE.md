@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Step 2 has run but did not pass (below); next is Soma's decision on how to redo it. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Step 2 is done (redo, below). Next: Step 3, after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -111,11 +111,14 @@ universities; the matcher ranks well (true partner in the top 3 for 74 %) but no
 no threshold decides in Step 7. A fresh-context reviewer marks every row from the three closest EMI modules by marking
 rules written first; Soma checks 10 rows per candidate and marks all rows of a candidate whose sample fails.
 Step 2 (analysis/funnel_types.py: scan, embed, run; rule file configs/funnel_boilerplate.yaml; the Step 5 list
-configs/funnel_title_stoplist.yaml was committed with it): the pre-registered procedure gives 63 stable and 229 rare types, reproducibly, but the
-reader's check fails (17 of 30 types hold one kind of programme; bar 24). Finer settings do better (10/eom: 21 of 30)
-and the catalogue's own subject labels do worse (10 of 30); none reaches the bar. Also open: mid-sized left-over
-groups are dropped by the rare path, and the choice between settings is fragile. No type list is accepted; details
-and options in docs/funnel_run2_notes.md. `run <size> <method>` is a diagnostic mode, never a result.
+configs/funnel_title_stoplist.yaml was committed with it): the pre-registered rule gave 63 broad stable types that
+failed the reader's check (17 of 30 types hold one kind of programme; bar 24). Soma changed three rules: the finest
+setting of the grid is used, left-over groups too large for the rare path are kept as mid-sized types, and Step 3
+reads every type that survives the screen (`screen.type_coherence`; a mixed type is flagged and takes no gate slot
+without a full reading). Redo: 824 types (233 stable, 130 mid-sized, 461 rare; mid-sized and rare are flagged as not
+stability-tested), reproducible; reader's check 22 of 30, still below the bar, so G9 stays recorded as not passed.
+Outputs for the next steps: data/interim/funnel2_offer_types.csv, funnel2_types.csv, funnel2_centroids.npy,
+funnel2_embeddings.npy. Details in docs/funnel_run2_notes.md. `run <size> <method>` is a diagnostic mode, never a result.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via

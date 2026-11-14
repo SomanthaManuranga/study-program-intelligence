@@ -281,7 +281,7 @@ def test_no_left_over_group_of_two_institutions_is_dropped():
     assert kept == r["rare_types"] + r["mid_sized_types"] and dropped == r["left_over"]["groups_at_one_institution"]
 
 
-@needs("data/interim/funnel2_offers.csv", "data/processed/programmes_full.csv", "configs/funnel_boilerplate.yaml")
+@needs("data/interim/funnel2_offers.csv", "data/interim/funnel2_embed.json", "data/processed/programmes_full.csv", "configs/funnel_boilerplate.yaml")
 def test_stored_texts_are_those_the_current_code_builds():
     """Criterion R5: all offer texts are built again from the catalogue."""
     stored = pd.read_csv(INTERIM / "funnel2_offers.csv", low_memory=False)
