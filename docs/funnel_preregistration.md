@@ -78,7 +78,7 @@ Rules written knowing a run-1 number (marked [K] in the yaml), with the directio
 | `references.electives` | "best covered first" raised overlap | Changed to the mean coverage of the electives, because the band now has an upper end; both extremes are reported. |
 | `references.two` | second references removed two run-1 passers | A second reference is required; this makes passing harder. |
 | `capture.scale.without` | 75 of 143 run-1 candidates used the silent default | Default kept at 1.0, now stated and flagged. |
-| `feasibility_gate.covered_threshold` | the former value 0.285 came from the baseline's cybersecurity and robotics references | Calibrated again on EMI's own handbooks only, with the procedure committed before the value was seen (0.463, flagged weak). The higher value makes the automatic match stricter for every candidate and does not carry over to handbooks of other universities; 0.285 stays as a stress value. Neither value should decide which candidates reach the hand check; the rule `eligible` is to be settled with Soma before Step 7 (docs/funnel_run2_notes.md, Step 1b). |
+| `feasibility_gate.covered_threshold` | the former value 0.285 came from the baseline's cybersecurity and robotics references | Calibrated again on EMI's own handbooks only, with the procedure committed before the value was seen (0.463, flagged weak). The higher value makes the automatic match stricter for every candidate and does not carry over to handbooks of other universities; 0.285 stays as a stress value. Neither value decides which candidates reach the hand check: Soma settled that no threshold decides (`eligible`, `hand_check.first_marking`, `sample_check`). |
 | `one_programme.max` | run-1 gate tables held one-programme shares (not opened) | Set to the band's upper end of 0.80 after Soma's answer on the supervisor's meaning; this is easier to pass than the former 0.50, which stays as a stress value. |
 | Supply cut removed from the primary list | the cut by cluster membership was invalid | The supervisor's point 5 is the reason; the cut stays as a stress test on the corrected unit. |
 | `discovery.validation.old_lists` | full-time offers recover more old lists | Both offer sets are reported side by side; neither is called primary. |
@@ -116,11 +116,11 @@ be traced back. The full documentation is written after Step 8.
 
 - **Own numbers without a literature anchor** carry [J] or [C] in the yaml, and every [J] number names its stress
   values. Numbers marked [N] have none, because another value would need another manual check: the samples of the
-  competition check (10 units, 5 offers each side) and its pass rule (70 % / 30 %), the hand-check scope (automatic
-  overlap 0.30-0.90), the 3 timetable subjects shown as a prompt, the 2 published numbers of popularity tier 1, the
+  competition check (10 units, 5 offers each side) and its pass rule (70 % / 30 %), the 10 rows per candidate of Soma's
+  sample check and its pass rule (at most 1 of 10), the 3 EMI modules and 3 timetable subjects shown per row, the 2 published numbers of popularity tier 1, the
   10 stress-only units that are named, the one candidate per level for the second rater, and the 0.10 widening
   after a low kappa. Two of these can change a candidate's numbers: the pass rule of the competition check (it
-  decides which radius is in force) and the hand-check scope. Also without a stress value: the two thresholds of the
+  decides which radius is in force) and the pass rule of the sample check. Also without a stress value: the two thresholds of the
   PROMETHEE cross-check, and four [K] numbers (the 90th percentile of the fit proxy, the 80 % completeness of a
   reference, "MASE below 1", and the scale of 1.0 without a Bavarian comparator).
 - **Settled by Soma after the first review of these rules** (to be shown to the supervisor at the next progress
@@ -131,7 +131,10 @@ be traced back. The full documentation is written after Step 8.
   10 and 20 ECTS are stress specs, and the recommendation states the professor-equivalents. (2) "Too much
   overlap" means a relabelled copy of one existing programme: the 80 % end applies to the share from one
   programme, the 40 % end to the overlap with all EMI modules. The reading with both ends on all EMI modules and
-  the former 50 % limit per programme (kill rule 1) are stress specs.
+  the former 50 % limit per programme (kill rule 1) are stress specs. (3) After Step 1b: no similarity threshold
+  decides a module match. A fresh-context reviewer (an AI agent) marks every row from the module texts by marking
+  rules written first; Soma checks 10 rows per candidate and every row the reviewer is unsure about, and marks all
+  rows of a candidate whose sample fails. The second team member's blind repetition stays.
 - **Hours of existing staff** cannot be known from public data. Every candidate reports its new teaching in ECTS
   and professor-equivalents; whether the faculty can absorb it is the faculty's answer.
 - **Demand is measured per subject, not per programme type.** Two candidates in the same Destatis subject share a
@@ -142,8 +145,9 @@ be traced back. The full documentation is written after Step 8.
   is reused instead of a nested logit with travel times; the encoder is the project's cached one, with TF-IDF and a
   hand-labelled sample as the checks.
 - **Limit:** a programme offered nowhere in Germany cannot be found from a catalogue of German offers.
-- **Agents:** fresh-context agents review rules, code and claims. An agent is not a human rater and never replaces
-  the hand check or the second team member's check.
+- **Agents:** fresh-context agents review rules, code and claims, and one makes the first marking of the module
+  rows in Step 7. An agent is not a human rater: its marks count only together with Soma's sample check, and it
+  never replaces the second team member's check.
 
 ## Review record of this step
 

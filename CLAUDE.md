@@ -107,8 +107,9 @@ Step 1 added: first-years by subject for all 16 Laender (data/raw/destatis/21311
 funnel_common.py (universe(): the one offer list for all steps; run_stamp(): code is committed before a step runs).
 Step 1b: the matching threshold for Step 7 is 0.463, calibrated on EMI's own handbooks only (analysis/funnel_modules.py;
 vectors() is the one text preparation for module matching). It is flagged weak and does not carry over to other
-universities; the matcher ranks well (true partner in the top 3 for 74 %) but no cut-off is reliable. Open for Soma
-before Step 7: let a person decide every row (computer shows the top 3) or build a labelled calibration set.
+universities; the matcher ranks well (true partner in the top 3 for 74 %) but no cut-off is reliable. Settled by Soma:
+no threshold decides in Step 7. A fresh-context reviewer marks every row from the three closest EMI modules by marking
+rules written first; Soma checks 10 rows per candidate and marks all rows of a candidate whose sample fails.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via

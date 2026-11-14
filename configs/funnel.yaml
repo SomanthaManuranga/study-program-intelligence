@@ -193,7 +193,7 @@ shortlist:
 feasibility_gate:              # Step 7
   emi_modules: a bachelor candidate is compared with EMI's bachelor modules, a master candidate with all EMI modules   # [C] run-1 code
   threshold: the value of the neutral calibration (analysis/funnel_modules.py, docs/criteria_funnel_step1b.md) on EMI's own handbooks only; module texts and vectors of Step 7 come from the same function (vectors)
-  covered_threshold: 0.463   # [K] written in Step 1b; WEAK: true-positive rate 0.57, false-positive rate 0.28, AUC 0.627 on 121 positive and 119 negative values, bootstrap interval 0.382 to 0.538; stress 0.285, the former value calibrated on the baseline's cybersecurity and robotics references
+  covered_threshold: 0.463   # [K] written in Step 1b; WEAK: true-positive rate 0.57, false-positive rate 0.28, AUC 0.627 on 121 positive and 119 negative values, bootstrap interval 0.382 to 0.538; stress 0.285, the former value calibrated on the baseline's cybersecurity and robotics references; since the marking rule below (eligible, hand_check) it decides nothing: it only produces the automatic overlaps that are reported next to the marked ones
   references:
     choice: among the unit's assigned full-time offers at universities of applied sciences other than OTH, the one nearest the type's centroid whose handbook can be fetched under robots.txt and is complete; next nearest, up to 5 tries per reference; universities only if no such offer exists   # 5 [C]
     two: a second reference from a different institution, chosen the same way
@@ -204,16 +204,21 @@ feasibility_gate:              # Step 7
     electives: the ECTS missing up to OTH's taught ECTS are filled with electives; the fill is split like all listed electives, ECTS-weighted, for coverage, for each OTH programme's share and for the new-teaching kinds; the figures with the best-covered and the worst-covered electives first are reported   # [K] changed from "best covered first" because the band now has an upper end
     scaling: new ECTS are scaled to 165 (bachelor) / 60 (master) taught ECTS; overlap is a ratio and needs no scaling   # [C] configs/feasibility.yaml unit
   automatic_overlap: ECTS of reference modules whose best EMI module reaches the threshold / counted taught ECTS
-  eligible: both references (or the single one) have an automatic overlap of at least 0.30 and an automatic one-programme share of at most 0.90; the others are named with their numbers and not hand-checked   # [N] scope of the hand check, equal to the widest band of the stress grid; the automatic figures of all tried candidates are kept for the stress grid
+  eligible: a tried candidate with at least one complete reference; the automatic overlap does not decide who is checked, because Step 1b showed that no cut-off is reliable (Soma, 14 Nov 2026); the automatic figures of all tried candidates are kept for information and for the stress grid
   hand_check:
-    rows: every counted module of both references of every eligible candidate, with its best EMI module, shown in shuffled order without the candidate's name
-    verdicts: Soma sets each row to E1, E2, N, "new, not N" or "lab" (below) with a one-line reason where the automatic proposal is changed; a row can gain or lose "covered"
+    rows: every counted module of both references of every eligible candidate, with the 3 EMI modules most similar to it (funnel_modules.vectors) and the 3 nearest timetable subjects, in shuffled order, without the candidate's name, rank, institution or programme title and without any similarity value or proposal   # 3 [N]
+    marking_rules: docs/funnel_marking_rules.md, one page on when a row is E1, E2, N, "new, not N" or "lab" (below), committed before the rows are made
+    first_marking: a fresh-context reviewer (an AI agent that has seen none of this project's results) reads the module's text and the texts of the 3 EMI modules and sets each row to one of the five verdicts with a one-line reason; it flags a row "unsure" when the texts do not settle it
+    sample_check: Soma checks 10 rows per eligible candidate, drawn by numpy default_rng(42).choice from that candidate's rows sorted by reference and module order, and every "unsure" row; each row is a side-by-side table (reference module, the 3 EMI modules, the reviewer's verdict and reason) and Soma marks agree or sets another verdict   # 10 [N]
+    sample_pass: at most 1 of a candidate's 10 drawn rows changes between covered and not covered; with 2 or more, Soma marks all rows of that candidate   # 1 of 10 [N]
+    final_verdict: Soma's verdict where Soma looked at the row, the reviewer's elsewhere; per candidate, the share of covered ECTS that rests on the reviewer alone is reported
+    disclosed: the first marking is made by an AI and Soma's check is not blind to it; a module's own text can show what kind of programme it comes from; the guards are the marking rules written first, the sample check and the second rater, who is blind
     E1_E2: covered; an existing EMI module unchanged, or adapted with at most a third new content (configs/feasibility.yaml)   # third [C]
     N: new module on a topic a current lecturer already teaches; evidence is a subject in the EMI timetables (summer 2026, winter 2026/27) whose name or handbook text has the module's main topic; the 3 nearest timetable subjects by the encoder are shown as a prompt only   # [S] timetables; 3 [N]
     new_not_N: new module on a topic no current lecturer teaches
     lab: a module that needs a lab outside the labs list of configs/emi_labs.yaml (its "missing" list is not used)
     computed_T_and_X: per reference, the "new, not N" ECTS up to 10 (bachelor) or 5 (master) are T (teaching assignments), the ECTS above that are X; every "lab" row is X   # 10, 5 [C] configs/feasibility.yaml F2_max_T_ects
-    second_rater: the other team member repeats, blind to Soma's verdicts, all rows of one candidate per level, drawn by numpy default_rng(42).choice from the eligible candidates of that level sorted by type number; Cohen's kappa on covered / not covered is reported   # one per level [N]
+    second_rater: the other team member repeats, blind to all recorded verdicts, all rows of one candidate per level, drawn by numpy default_rng(42).choice from the eligible candidates of that level sorted by type number; Cohen's kappa on covered / not covered against the final verdicts is reported   # one per level [N]
     kappa_bar: 0.6             # [L] Landis and Koch (1977), "substantial" from 0.61; below it, disagreements are settled together, a second candidate per level is repeated, and the overlap ranges are widened by 0.10 each way (0.10 [N], consequence of a manual check)
   overlap: covered ECTS / counted taught ECTS after the hand check, against all EMI modules allowed for that level
   band: {min: 0.40, max: 0.80}   # [S] email; both ends included; stress 0.50-0.80 (meeting) and 0.30-0.90

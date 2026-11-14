@@ -133,13 +133,13 @@ on 14 Nov 2026 with code commit d64fe10; the procedure was not changed afterward
   reach the hand check, this value would exclude candidates wrongly. This must be settled before Step 7; Step 2
   to Step 6 do not use it.
 
-**Open for Soma (decision before Step 7).** Two ways to take the decision away from an unreliable number:
-
-1. The computer never decides. It shows, for every module of a reference curriculum, the three most similar EMI
-   modules, without a proposal. Soma marks each row. Candidates reach the hand check in the order of the pre-gate
-   ranking, not by automatic overlap. No threshold is needed for any decision. Cost: more rows to mark in Step 7.
-2. A labelled calibration set: about 160 to 200 pairs of a module of another university and its best EMI match,
-   from programmes that cannot be candidates (counterparts of EMI's existing programmes), marked by two people
-   without seeing the similarity. This gives a valid threshold but needs handbook downloads and labelling now.
+**Settled by Soma: no threshold decides a module match.** In Step 7 the computer lists, for every module of a
+reference curriculum, the three most similar EMI modules, without a similarity value or a proposal. A fresh-context
+reviewer (an AI agent) reads the texts and marks every row by marking rules that are written first. Soma checks 10
+rows per candidate and every row the reviewer is unsure about; if 2 or more of a candidate's 10 rows change between
+covered and not covered, Soma marks all rows of that candidate. The second team member's blind repetition stays.
+Candidates reach the check in the order of the pre-gate ranking, not by automatic overlap. Rules:
+`feasibility_gate.eligible` and `hand_check` in `configs/funnel.yaml`. The option not taken was a labelled
+cross-university calibration set (handbook downloads and about 160 to 200 pairs marked by two people).
 
 **No programme stays or goes in this step.**
