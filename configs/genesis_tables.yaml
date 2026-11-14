@@ -52,3 +52,51 @@ tables:
      title: "Pruefungen: Bundeslaender (Bayern), Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Studienfach"}
   - {<<: *defaults, id: "21321-0004_DE", name: "21321-0004",
      title: "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Abgelegte Abschlusspruefung"}
+
+  # ---- first-year students by subject in the other Laender (funnel rules: screen.regional_gap, popularity tier 2) ----
+  # 2018-2025 only: the rule needs the slope 2019-2024. One table per Land keeps each request small.
+  - {id: "21311-0015_SH", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "01"},
+     title: "Studienanfaenger: Bundeslaender (Schleswig-Holstein), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_HH", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "02"},
+     title: "Studienanfaenger: Bundeslaender (Hamburg), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_NI", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "03"},
+     title: "Studienanfaenger: Bundeslaender (Niedersachsen), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_HB", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "04"},
+     title: "Studienanfaenger: Bundeslaender (Bremen), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_NW", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "05"},
+     title: "Studienanfaenger: Bundeslaender (Nordrhein-Westfalen), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_HE", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "06"},
+     title: "Studienanfaenger: Bundeslaender (Hessen), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_RP", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "07"},
+     title: "Studienanfaenger: Bundeslaender (Rheinland-Pfalz), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_BW", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "08"},
+     title: "Studienanfaenger: Bundeslaender (Baden-Wuerttemberg), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_SL", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "10"},
+     title: "Studienanfaenger: Bundeslaender (Saarland), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_BE", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "11"},
+     title: "Studienanfaenger: Bundeslaender (Berlin), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_BB", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "12"},
+     title: "Studienanfaenger: Bundeslaender (Brandenburg), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_MV", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "13"},
+     title: "Studienanfaenger: Bundeslaender (Mecklenburg-Vorpommern), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_SN", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "14"},
+     title: "Studienanfaenger: Bundeslaender (Sachsen), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_ST", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "15"},
+     title: "Studienanfaenger: Bundeslaender (Sachsen-Anhalt), Semester, Nationalitaet, Geschlecht, Studienfach"}
+  - {id: "21311-0015_TH", name: "21311-0015", startyear: 2018, endyear: 2025,
+     params: {regionalvariable: DLAND, regionalkey: "16"},
+     title: "Studienanfaenger: Bundeslaender (Thueringen), Semester, Nationalitaet, Geschlecht, Studienfach"}
