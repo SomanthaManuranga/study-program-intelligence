@@ -98,8 +98,10 @@ plain-English paragraph on what was achieved; notes per step in docs/funnel_run2
 the end. Steps: 0 rules (done), 1 data inventory, 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
 8 ranking, stress tests, decision. Next: Step 1, after Soma's OK. The supervisor's timetable PDFs are internal: they
-stay outside the repository and lecturers appear only as neutral labels. Open questions for the supervisor: is new
-teaching beyond existing staff acceptable inside the band; does the 80 % end mean all of EMI or one programme.
+stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
+count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
+with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
+the supervisor: notebooks/funnel_progress.ipynb, one section added and executed after every finished step.
 Known failing test: tests/test_tie_break.py (the tie-break table predates the 7 Nov job-ad snapshot).
 
 ## Rules

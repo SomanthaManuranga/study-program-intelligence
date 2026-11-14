@@ -15,8 +15,8 @@ baseline and are not inputs. Method background: research report "Data driven stu
 | 4 | Are students coming? | The trend of German first-years in the matching subjects in Bavaria, with a backtest that says whether the trend can be trusted. |
 | 5 | Are there jobs nearby? | Job ads within 100 km for keywords taken from the type's own programme titles. |
 | 6 | How many students would be new to OTH? | A location model gives low, central and high first-years and subtracts those taken from OTH's own programmes; a central value under 20 drops the candidate. |
-| 7 | Can EMI teach it? | Two real curricula per candidate: 40 to 80 % of the credits must be covered by modules EMI already teaches, and at most half by one existing programme. Soma checks every module of the short list by hand. |
-| 8 | Which one, and how sure are we? | Weighted ranking with uncertainty and stress tests; first among candidates existing staff can teach, then among all that fit the band. |
+| 7 | Can EMI teach it? | Two real curricula per candidate: at least 40 % of the credits must be covered by modules EMI already teaches, and at most 80 % may come from one existing programme. Soma checks every module of the short list by hand. |
+| 8 | Which one, and how sure are we? | Weighted ranking with uncertainty and stress tests; the recommendation comes only from candidates existing staff and labs can carry. |
 
 ## What the supervisor said and the rule it becomes
 
@@ -24,7 +24,7 @@ baseline and are not inputs. Method background: research report "Data driven stu
 |---|---|---|
 | 1 | An entire new degree programme, not extra modules; not already at OTH | `universe.new_programme_only`, `screen.at_oth` |
 | 2 | Bachelor or master | both levels; no change |
-| 3 | Overlap with existing lectures of 40-80 % is ideal; more is a relabelled programme, less costs too many resources (email, replacing the 50-80 % of the meeting) | `feasibility_gate.band`. He gave no rule on staff, so the earlier scope "no new professorships, no new labs" still stands: `verdict.existing_resources_passer`, `labs` |
+| 3 | Overlap with existing lectures of 40-80 % is ideal; more is a relabelled programme, less costs too many resources (email, replacing the 50-80 % of the meeting) | `feasibility_gate.band`, `band_reading`: at least 40 % overlap with all EMI modules, at most 80 % from one existing programme (Soma, as the supervisor's meaning). Only existing facilities count: `verdict.existing_resources_passer`, `labs` |
 | 4 | Asked for a minimum cohort, he gave none: assume students come and argue why | `capture.min_cohort` stays 20 as the project's own assumption. It is also run at 25, and at 15 and without any minimum up to the pre-gate ranking, to show how the candidate list changes |
 | 5 | Need not be unique in Germany; other countries are fine as inspiration | competition is measured, not a cut (`screen.competition`); the catalogue covers Germany only, so programmes that exist only abroad are a stated limit |
 | 6 | Valid arguments: unique in Germany, or only a few similar programmes elsewhere (north) that attract many students, with nothing comparable in the south | `screen.regional_gap`: flags for "absent in Bavaria" and "none in the south", a Bavarian quotient, and how well the popularity elsewhere is shown (three tiers) |
@@ -78,10 +78,10 @@ Rules written knowing a run-1 number (marked [K] in the yaml), with the directio
 | `references.electives` | "best covered first" raised overlap | Changed to the mean coverage of the electives, because the band now has an upper end; both extremes are reported. |
 | `references.two` | second references removed two run-1 passers | A second reference is required; this makes passing harder. |
 | `capture.scale.without` | 75 of 143 run-1 candidates used the silent default | Default kept at 1.0, now stated and flagged. |
-| `one_programme.max` | run-1 gate tables held one-programme shares (not opened) | The former 0.50 is kept; 0.80 and "none" are stress values. |
+| `one_programme.max` | run-1 gate tables held one-programme shares (not opened) | Set to the band's upper end of 0.80 after Soma's answer on the supervisor's meaning; this is easier to pass than the former 0.50, which stays as a stress value. |
 | Supply cut removed from the primary list | the cut by cluster membership was invalid | The supervisor's point 5 is the reason; the cut stays as a stress test on the corrected unit. |
 | `discovery.validation.old_lists` | full-time offers recover more old lists | Both offer sets are reported side by side; neither is called primary. |
-| `feasibility_gate.band` | under the former rule no candidate passed | The band is the supervisor's number. The former rule is kept as a stress spec, and the recommendation still asks for existing staff. |
+| `feasibility_gate.band` | under the former rule no candidate passed | The band is the supervisor's number. The former rule is kept as a stress spec, and the recommendation comes only from candidates existing staff and labs can carry. |
 
 Cyber and robotics are old hypotheses. They get no special treatment and count only if they come out of the funnel.
 
@@ -122,13 +122,15 @@ be traced back. The full documentation is written after Step 8.
   decides which radius is in force) and the hand-check scope. Also without a stress value: the two thresholds of the
   PROMETHEE cross-check, and four [K] numbers (the 90th percentile of the fit proxy, the 80 % completeness of a
   reference, "MASE below 1", and the scale of 1.0 without a Bavarian comparator).
-- **Open questions for the supervisor:** (1) inside the 40-80 % band, is new teaching beyond existing staff
-  acceptable? Until he answers, the recommendation is taken from candidates whose new modules lie on topics a
-  current lecturer already teaches (apart from a small part for teaching assignments), and the best candidate that
-  needs new expertise is reported second. The amount of such new modules is not capped; caps of 10 and 20 ECTS are
-  stress specs, and the recommendation states the professor-equivalents. (2) Does the 80 % end mean overlap with all of EMI or with
-  one programme? Until he answers, both ends are measured against all EMI modules and the former 50 % limit per
-  programme stays; the other reading is a stress spec.
+- **Settled by Soma after the first review of these rules** (to be shown to the supervisor at the next progress
+  meeting): (1) only the university's existing facilities count. The recommendation is taken only from
+  candidates whose new modules lie on topics a current lecturer already teaches (apart from a small part for
+  teaching assignments) and that need no new lab. The best candidate that needs new expertise is reported for
+  information, never as a recommendation. The amount of new modules by current lecturers is not capped; caps of
+  10 and 20 ECTS are stress specs, and the recommendation states the professor-equivalents. (2) "Too much
+  overlap" means a relabelled copy of one existing programme: the 80 % end applies to the share from one
+  programme, the 40 % end to the overlap with all EMI modules. The reading with both ends on all EMI modules and
+  the former 50 % limit per programme (kill rule 1) are stress specs.
 - **Hours of existing staff** cannot be known from public data. Every candidate reports its new teaching in ECTS
   and professor-equivalents; whether the faculty can absorb it is the faculty's answer.
 - **Demand is measured per subject, not per programme type.** Two candidates in the same Destatis subject share a
@@ -148,4 +150,6 @@ A fresh-context reviewer attacked the rules in three rounds, blind to all run-1 
 points in round 1, 9 blockers and 5 major points in round 2, 3 blockers in round 3. All were reworded as proposed.
 The last three rewordings (the draw of the manual-check samples, the widening of the value anchors, the pass rule
 of the second overlap reading) were not reviewed again. Criterion C3 fails on its wording: the numbers listed above
-have no stress value. Criterion C9 fails on one test that predates this step (`tests/test_tie_break.py`).
+have no stress value. Criterion C9 fails on one test that predates this step (`tests/test_tie_break.py`). Soma accepted
+the step with these two exceptions. The two points settled by Soma were written in after the review rounds and
+before any run-2 code ran.

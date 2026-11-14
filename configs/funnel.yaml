@@ -204,7 +204,7 @@ feasibility_gate:              # Step 7
     electives: the ECTS missing up to OTH's taught ECTS are filled with electives; the fill is split like all listed electives, ECTS-weighted, for coverage, for each OTH programme's share and for the new-teaching kinds; the figures with the best-covered and the worst-covered electives first are reported   # [K] changed from "best covered first" because the band now has an upper end
     scaling: new ECTS are scaled to 165 (bachelor) / 60 (master) taught ECTS; overlap is a ratio and needs no scaling   # [C] configs/feasibility.yaml unit
   automatic_overlap: ECTS of reference modules whose best EMI module reaches the threshold / counted taught ECTS
-  eligible: both references (or the single one) have an automatic overlap between 0.30 and 0.90; the others are named with their numbers and not hand-checked   # [N] scope of the hand check, equal to the widest band of the stress grid; the automatic figures of all tried candidates are kept for the stress grid
+  eligible: both references (or the single one) have an automatic overlap of at least 0.30 and an automatic one-programme share of at most 0.90; the others are named with their numbers and not hand-checked   # [N] scope of the hand check, equal to the widest band of the stress grid; the automatic figures of all tried candidates are kept for the stress grid
   hand_check:
     rows: every counted module of both references of every eligible candidate, with its best EMI module, shown in shuffled order without the candidate's name
     verdicts: Soma sets each row to E1, E2, N, "new, not N" or "lab" (below) with a one-line reason where the automatic proposal is changed; a row can gain or lose "covered"
@@ -217,15 +217,16 @@ feasibility_gate:              # Step 7
     kappa_bar: 0.6             # [L] Landis and Koch (1977), "substantial" from 0.61; below it, disagreements are settled together, a second candidate per level is repeated, and the overlap ranges are widened by 0.10 each way (0.10 [N], consequence of a manual check)
   overlap: covered ECTS / counted taught ECTS after the hand check, against all EMI modules allowed for that level
   band: {min: 0.40, max: 0.80}   # [S] email; both ends included; stress 0.50-0.80 (meeting) and 0.30-0.90
+  band_reading: the lower end applies to the overlap with all EMI modules (too little costs too many resources); the upper end applies to the share from one existing programme (too much is a relabelled programme)   # Soma, 14 Nov 2026, as the supervisor's meaning; the other reading is a stress spec
   one_programme:
     share: largest share of counted taught ECTS covered by the modules of one existing OTH programme of that level (KI family counted as one); a covered row counts for the programme of its hand-confirmed best EMI module and for every other handbook that lists a module with the same normalised title
-    max: 0.50                  # [C] kill rule 1, unchanged; the supervisor gave no number per programme; stress 0.80 and off
+    max: 0.80                  # [S] the band's upper end (band_reading); stress 0.50 (the former kill rule 1) and none
   labs: a candidate with any "lab" row fails   # scope 1, no new labs
   verdict:
-    band_passer: overlap inside the band on both references (or on the single one), one_programme within max, labs pass
-    reference_dependent: exactly one of two references inside the band; not a band passer in the primary result, one in the stress spec "references, primary only" if the primary reference is the one inside
+    band_passer: on both references (or on the single one) the overlap is at least band min and the one-programme share is at most band max; labs pass
+    reference_dependent: exactly one of two references meets both conditions; not a band passer in the primary result, one in the stress spec "references, primary only" if the primary reference is the one that meets them
     existing_resources_passer: a band passer with no X ECTS on any reference; N ECTS are not capped in the primary result (stress existing_resources_N_cap)
-    fail: everything else, with the reason recorded (too little overlap, too much overlap, one programme, lab, mixed)
+    fail: everything else, with the reason recorded (too little overlap, too much from one programme, lab, mixed)
   reported_for_every_band_passer:
     new_teaching_ects: (1 - overlap) x taught ECTS, split into N, T and X
     professor_equivalents: new ECTS x 0.8 SWS per ECTS / 36 SWS-semesters a year   # 36 [L] AVBayHIG par. 4; 0.8 [C] configs/cost.yaml assumption
@@ -242,7 +243,7 @@ ranking:                       # Step 8
     net_new: {10: 1, 40: 5}                                          # [C]
     demand_is: mean of the trend value and the net_new value
     labour_ads_within_100km_log: {10: 1, 150: 5}                     # [C]
-    fit_overlap: {0.40: 1, 0.80: 5}                                  # ends [S]; rising shape [J], stress is flat inside the band
+    fit_overlap: {0.40: 1, 0.80: 5}                                  # ends [S]; rising shape [J], stress is flat from 0.40 upwards
     feasibility_share_of_new_ects_in_N: {0.0: 1, 1.0: 5}             # [J] stress is feasibility left out, weights renormalised
     differentiation_is: mean of the two values below; the offers half alone if the quotient is not used (regional_gap.quotient_from)
     differentiation_similar_offers_within_150km: {10: 1, 0: 5}       # [C] anchors on the new unit; stress 20
@@ -271,11 +272,11 @@ stress_tests:
     master_transition: [0.5, 0.3, 0.7]
     dirichlet_concentration: [10, 50, 200]
     overlap_band: [[0.40, 0.80], [0.50, 0.80], [0.30, 0.90]]
-    overlap_reading: [both ends on all EMI modules, lower end on all EMI modules and upper end on one programme]   # second reading: a band passer has overlap >= band min and one_programme.share <= band max; one_programme_max is not applied in those specs
-    one_programme_max: [0.50, 0.80, none]
+    overlap_reading: [lower end on all EMI modules and upper end on one programme, both ends on all EMI modules]   # second reading: a band passer has band min <= overlap <= band max on all EMI modules and a one-programme share <= one_programme_max
+    one_programme_max: [0.80, 0.50, none]
     existing_resources_N_cap: [none, 20 bachelor and 10 master, 10 bachelor and 5 master]   # ECTS, configs/feasibility.yaml
     references: [both inside, primary only]
-    fit_value: [rising with overlap, flat inside the band]
+    fit_value: [rising with overlap, flat from 0.40 upwards]
     feasibility_value: [included, left out]
     differentiation: [both halves with anchor 10, anchor 20, quotient half left out]
     labour_measure: [median keyword, largest keyword]
@@ -301,15 +302,15 @@ stress_tests:
   report: win share over the factorial with no-winner specs in the denominator; list-changing specs separately; regret table; which missing number would change the winner
 
 decision:
-  first: among the existing-resources passers, by the rule below; this is the recommendation; its sentence states the new teaching in ECTS and professor-equivalents
-  second: among all band passers, by the same rule; reported as "needs new expertise", with its X rows and professor-equivalents
+  first: among the existing-resources passers, by the rule below; this is the only recommendation, because only the university's existing facilities count (Soma, 14 Nov 2026); its sentence states the new teaching in ECTS and professor-equivalents
+  second: among all band passers, by the same rule; reported for information as "outside the scope, needs new expertise", with its X rows and professor-equivalents; never a recommendation
   rule:
     two_or_more: recommend the top one if P(rank 1) >= 0.5, P(beats the runner-up) >= 0.8 and win share >= 0.5   # [C] judgement bars; stress decision_bars
     one: recommend it if its central net-new is at least 15   # [C] stress 10
     zero: say that no candidate passes and name the closest one with what it lacks
     promethee_disagrees_on_rank_1: shortlist instead of a recommendation
     otherwise: report the shortlist and the missing number that would settle it
-  open_for_the_supervisor: whether new teaching beyond existing staff is acceptable inside the 40-80 % band, and whether the 80 % end means all of EMI or one programme
+  settled_by_soma: existing facilities only; the 80 % end means one programme; both are shown to the supervisor at the next progress meeting
 
 conformance:                   # how run 1's rule-versus-code differences are prevented
   code_first: each step's code is committed before it runs; outputs carry the commit hash; a dirty working tree stops the run
