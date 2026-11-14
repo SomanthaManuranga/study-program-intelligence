@@ -66,8 +66,8 @@ def test_tie_break_competitors_match_the_competition_table():
 
 @needs("data/interim/tie_break.csv")
 def test_job_ads_match_the_snapshot_they_name_and_missing_keywords_say_why():
-    """The baseline tie-break stays on the snapshot named in docs/evidence_tie_break.md until the freeze (CLAUDE.md), so
-    the count is checked against the snapshot of the date in its own row, not against the newest snapshot."""
+    """The baseline tie-break stays on the snapshot pinned in analysis/tie_break.py (SNAPSHOT_UNTIL) until the freeze: every
+    count must come from the newest snapshot up to that date, and a "no data" keyword must have no row up to it."""
     from study_program_intelligence.analysis.tie_break import SNAPSHOT_UNTIL
     t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
     s = pd.DataFrame(json.loads((REPO / "docs" / "jobsuche_snapshots.json").read_text(encoding="utf-8")))

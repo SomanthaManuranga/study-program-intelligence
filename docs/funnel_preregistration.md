@@ -96,7 +96,7 @@ Cyber and robotics are old hypotheses. They get no special treatment and count o
 | 5 | job-ad counts for the new keywords | BA Jobsuche, one day's counts (no history for new keywords) | asked again the next day; then a missing input |
 | 5 | language of instruction per offer | catalogue field, if it exists | no English pairing; stated |
 | 6 | school leavers by county (bachelor); students at Bavarian universities of applied sciences by campus (master) | Bavarian statistics, as in the baseline capture model | - |
-| 6 | published first-year numbers of single programmes | the four rows already collected | level check reported as it is; no correction either way |
+| 6 | published first-year numbers of single programmes | the 3 documents already collected and the two baseline anchors | level check reported as it is; no correction either way |
 | 7 | handbooks of two reference programmes per candidate | other universities' websites under robots.txt | next nearest offer, up to 5 tries; then single reference or no reference |
 | 7 | EMI timetables, summer 2026 and winter 2026/27 | provided by the supervisor (internal) | - |
 | 7 | published first-year numbers of similar programmes outside the south | university statistics pages under robots.txt | popularity tier 1 cannot be shown; stated |

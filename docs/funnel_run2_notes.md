@@ -27,7 +27,7 @@ on 14 Nov 2026 with code commit 678af4d; tracked files were clean.
 | Language of instruction per offer | no such field in the catalogue | - | German and English keywords cannot be paired by rule (`labour.english`) |
 | School leavers by county | 96 counties | 2014-2024 | 2019 is missing |
 | Students by campus (master origins) | 17 campuses, 83,481 students | winter 2024/25 | none |
-| Published first-year numbers of single programmes (level check) | 3 documents from 2 universities; with the two baseline anchors, one row per programme gives 4 rows | 2024, winter 2024/25, winter 2025/26 | one subject only |
+| Published first-year numbers of single programmes (level check) | 3 documents from 2 universities, plus the two baseline anchors | 2024, winter 2024/25, winter 2025/26 | one subject only; the rows per programme are built in Step 6 |
 | Reference handbooks of other universities | 27 files left from run 1, counted and not opened | - | collected again in Step 7 |
 | EMI timetables (internal) | 80 group plans (40 per semester), 1,028 timetable entries (494 distinct sessions, because a session shared by several groups appears once per group), 314 subject names, 98 lecturers as labels | summer 2026 (plan printed 20 Jan 2026), winter 2026/27 (printed 22 Sep 2026) | no ECTS, no hours, no student numbers; 46 room lists are cut off in the PDF |
 | Published first-year numbers of similar programmes outside the south | not collected yet | - | looked for after the gate list is fixed, for the gate candidates only |
@@ -72,8 +72,10 @@ on 14 Nov 2026 with code commit 678af4d; tracked files were clean.
 **No programme stays or goes in this step.** Nothing was grouped or scored.
 
 **How it was built.** The timetable reader was developed on the PDFs and then committed; the tables above come from
-runs of the committed code. A fresh-context check recomputed the numbers; its findings (two wrongly worded numbers,
-one missing inventory row, the unpinned baseline snapshot) are corrected here.
+runs of the committed code. A fresh-context check recomputed the numbers in two rounds; its findings (two wrongly
+worded numbers, one missing inventory row, the unpinned baseline snapshot) are corrected here. The pre-registration's
+data table said "the four rows already collected" for the published numbers; that count was not derived from the
+rule and is replaced by what exists (3 documents and two anchors).
 
 **Strongest objection.** The catalogue is a single snapshot of 19 Oct 2026 and half of it has no content text.
 **Answer.** It is the only complete public catalogue; the date is stated, and the grouping in Step 2 reports its

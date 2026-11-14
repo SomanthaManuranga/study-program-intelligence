@@ -32,6 +32,8 @@ LAENDER = {"SH": "01", "HH": "02", "NI": "03", "HB": "04", "NW": "05", "HE": "06
            "BB": "12", "MV": "13", "SN": "14", "ST": "15", "TH": "16"}          # Bavaria (09) is 21311-0015_BY
 PHRASE = "inhalte bitte bei der hochschule erfragen"
 NOTE = "anmerkung der hochschule"
+LAND_NAMES = {"Baden-Württemberg", "Bayern", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern", "Niedersachsen",
+              "Nordrhein-Westfalen", "Rheinland-Pfalz", "Saarland", "Sachsen", "Sachsen-Anhalt", "Schleswig-Holstein", "Thüringen"}
 
 
 def manifest(name: str) -> list[dict]:
@@ -64,7 +66,7 @@ def catalogue() -> dict:
             "bachelor_master_germany": int((raw["degree"].isin(["Bachelor/Bakkalaureus", "Master"]) & (raw["country"] == "Deutschland")).sum()),
             "after_dedupe": len(ded), "full_time_after_dedupe": int(ded["full_time"].sum()),
             "bachelor_after_dedupe": int((ded["level"] == "bachelor").sum()), "master_after_dedupe": int((ded["level"] == "master").sum()),
-            "institutions": int(ded["institution"].nunique()), "offers_without_a_land": int((~ded["state"].isin(ded["state"].value_counts().index[:16])).sum()),
+            "institutions": int(ded["institution"].nunique()), "offers_without_a_land": int((~ded["state"].isin(LAND_NAMES)).sum()),
             "share_with_focus_items": round(float(content.str.contains("Schwerpunkte").mean()), 3),
             "offers_with_the_phrase": int(has_phrase.sum()),
             "offers_with_only_the_phrase": int((low.str.strip().str.strip(".") == PHRASE).sum()),
@@ -213,8 +215,8 @@ def main() -> None:
         ("Students by campus (master origins)", "6", "data/raw/regional/by_studierende_ws2024.pdf",
          f"{oth['master_origins']['campuses']} campuses, {oth['master_origins']['students']:,} students", "winter 2024/25", oth["school_leavers"]["retrieved"], "-"),
         ("Published first-year numbers of single programmes (level check)", "6", "data/raw/intake_benchmark/",
-         f"{pi['documents']} documents from {len(pi['universities'])} universities; with the two baseline anchors, one row per programme gives 4 rows", ", ".join(pi["versions"]), pi["retrieved"],
-         "one subject only; reported as a check, no correction"),
+         f"{pi['documents']} documents from {len(pi['universities'])} universities, plus the two baseline anchors", ", ".join(pi["versions"]), pi["retrieved"],
+         "one subject only; the rows per programme are built in Step 6; reported as a check, no correction"),
         ("Reference handbooks of other universities", "7", "data/interim/funnel_refs/", f"{oth['reference_files_from_run_1']} files left from run 1 (counted, not opened)",
          "-", "not recorded here", "collected again in Step 7 for the new candidates"),
         ("EMI timetables (internal)", "7", "data/raw/oth_internal/ (not in the repository)",

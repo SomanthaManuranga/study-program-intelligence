@@ -59,7 +59,7 @@ Remaining work, in this order:
    day replaces that day's rows only when it is at least as complete). Done when: 92 counts without ERROR and no null
    totals for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the
    15 Oct snapshot until the freeze.
-2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py to
+2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py and SNAPSHOT_UNTIL in analysis/tie_break.py to
    the frozen snapshot; add the snapshot series (15 Oct to 1 Dec) to docs/evidence_outlet_jobs.md; regenerate key numbers, figures, report,
    defence Q&A, dashboard screenshots.
 3. Step 57 Plain-English project summary: a short PDF (about 10-15 pages) for readers with no data-analytics
@@ -95,14 +95,16 @@ Funnel redo (branch soma/funnel): the programme must come out of the data, not f
 not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml, docs/funnel_preregistration.md
 (supervisor's input, run-1 fixes, what was known beforehand). One step at a time, each with Soma's OK and a short
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
-the end. Steps: 0 rules (done), 1 data inventory, 2 programme types, 3 screen and competition by content similarity,
+the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Next: Step 1, after Soma's OK. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Next: Step 2, after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
 the supervisor: notebooks/funnel_progress.ipynb, one section added and executed after every finished step.
-Known failing test: tests/test_tie_break.py (the tie-break table predates the 7 Nov job-ad snapshot).
+Step 1 added: first-years by subject for all 16 Laender (data/raw/destatis/21311-0015_<Land>.csv), the timetable table
+(transform/timetables.py -> data/interim/timetable_subjects.csv, labels only), analysis/funnel_inventory.py and
+funnel_common.py (universe(): the one offer list for all steps; run_stamp(): code is committed before a step runs).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via
