@@ -9,15 +9,17 @@ Run from the repository root, each command from committed code on a clean tree:
     python -m study_program_intelligence.analysis.funnel_types run      # grid, stability, types, checks
 
 No type is judged, scored or dropped here, and nothing about OTH or EMI is used.
-Outputs: data/interim/funnel2_scan.csv, funnel2_offers.csv, funnel2_embeddings.npy, funnel2_grid.csv,
-funnel2_types.csv, funnel2_offer_types.csv, funnel2_centroids.npy, funnel2_step2.json;
-reports/funnel2/step2_scan.md, step2_types.md, step2_sample.md.
+Outputs: data/interim/funnel2_scan.csv, funnel2_offers.csv, funnel2_embeddings.npy, funnel2_embed.json, funnel2_grid.csv,
+funnel2_types.csv, funnel2_offer_types.csv, funnel2_centroids.npy, funnel2_step2.json (commit and file hashes of
+all outputs); reports/funnel2/step2_scan.md, step2_scan_decisions.md, step2_types.md, step2_sample.md.
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
 import re
+import subprocess
 import sys
 from collections import Counter
 from functools import lru_cache
@@ -29,11 +31,11 @@ import yaml
 from .funnel_common import INTERIM, REPO_ROOT, REPORTS, config, md_table, run_stamp, universe
 
 BOILERPLATE = REPO_ROOT / "configs" / "funnel_boilerplate.yaml"
-STOPLIST = REPO_ROOT / "configs" / "funnel_title_stoplist.yaml"
 FIELDS = REPO_ROOT / "data" / "processed" / "programme_fields_full.csv"
 SCAN = INTERIM / "funnel2_scan.csv"
 OFFERS = INTERIM / "funnel2_offers.csv"
 EMB = INTERIM / "funnel2_embeddings.npy"
+EMBED_META = INTERIM / "funnel2_embed.json"
 GRID = INTERIM / "funnel2_grid.csv"
 TYPES = INTERIM / "funnel2_types.csv"
 OFFER_TYPES = INTERIM / "funnel2_offer_types.csv"
@@ -42,13 +44,17 @@ RESULT = INTERIM / "funnel2_step2.json"
 MODEL = "intfloat/multilingual-e5-base"
 
 NOTE = "Anmerkung der Hochschule"
-FOCUS_MARK = re.compile(r"Schwerpunkte\s*:\s*:?")
-OF_DEGREE = r"(?:Fine\s+Arts|Business\s+Administration|Public\s+(?:Health|Administration|Policy|Management)|[A-Z][\w.-]*)"
-ABBREV = r"(?:B|M)\.\s?(?:Sc|A|Eng|Ed|Mus|F\.?A)\.?|L\.?L\.?\s?(?:B|M)\.?|E?MBA|M\.B\.A\.?|[BM]Sc"
-DEGREE_WORDS = re.compile(rf"\b(?:Bachelor|Master)\s+of\s+{OF_DEGREE}|(?<![\w.])(?:{ABBREV})(?![\w])|[\w-]*(?:bachelor|master)[\w-]*", re.I)
-LEVEL_MARKER = re.compile(r"\s*\((?:grundständig|weiterführend)[^)]*\)", re.I)   # also "(grundständig außer Staatsexamen)"
+FOCUS_MARK = "Schwerpunkte: :"
+STANDARD_DEGREE = r"(?:Science|Arts|Engineering|Education|Laws|Music|Fine\s+Arts|Musical\s+Arts|Business\s+Administration)"
+STANDARD = re.compile(rf"\b(?:Bachelor|Master)\s+of\s+{STANDARD_DEGREE}\b(?:\s+in\b)?", re.I)
+ABBREVS = re.compile(r"(?<![\w.])(?:(?:B|M)\.\s?(?:Sc|A|Eng|Ed|Mus|F\.?A)\.?|L\.?L\.?\s?(?:B|M)\.?|E?MBA|M\.B\.A\.?|[BM]Sc)(?![\w])", re.I)
+UPPER_ABBREVS = re.compile(r"(?<![\w.-])(?:BA|MA|BBA|LLM|LLB|MEng|BEng)(?![\w-])")     # as written only: "ma" and "ba" are no degrees
+DEGREE_TOKEN = re.compile(r"[\w-]*(?:bachelor|master)[\w-]*(?:\s+(?:of|in)\b)?", re.I)
+ORGANISATION_PARTS = {"ein", "zwei", "fach", "faecher", "hauptfaecher", "doppel", "doppelfach", "mono", "kombi", "q"}
+DEGREE_BRACKET = re.compile(r"\((?:\s*(?:&|/|,|;|-|\.|und|and|eng\.?))*\s*\)", re.I)       # what is left of "(MBA & Eng.)" or "(B.A.)"
+LEVEL_MARKER = re.compile(r"\s*\((?:grundständig|weiterführend)[^)]*\)", re.I)          # also "(grundständig außer Staatsexamen)"
 STOPWORDS = sorted(set("""und der die das des den dem für fur von mit im in an am auf zu zur zum sowie oder als bei nach aus ein eine einer
-    of and the for on with to studiengang studium science arts engineering hochschule universität fachhochschule university""".split()))
+    of and the for on with to studiengang studium hochschule universität fachhochschule university""".split()))
 NOISE_MAX, LARGEST_MAX = 0.50, 0.10      # discovery.selection
 RECOVERED, METHOD_DEPENDENT = 0.5, 0.3   # discovery.validation.old_lists, discovery.crosscheck
 SAMPLE_TYPES, SAMPLE_TITLES, SAMPLE_SEED = 30, 10, 42   # criterion G9
@@ -72,38 +78,47 @@ def dropped_phrases() -> tuple[str, ...]:
 
 @lru_cache(maxsize=1)
 def dropped_patterns() -> tuple[re.Pattern, ...]:
-    """The same phrases as patterns that also match the text as written (umlauts, any case)."""
-    alt = lambda p: re.escape(p).replace("ae", "(?:ae|ä)").replace("oe", "(?:oe|ö)").replace("ue", "(?:ue|ü)").replace("ss", "(?:ss|ß)")
+    """The same phrases as patterns that also match the text as written (umlauts, any case, any spacing)."""
+    alt = lambda p: re.escape(p).replace("ae", "(?:ae|ä)").replace("oe", "(?:oe|ö)").replace("ue", "(?:ue|ü)").replace("ss", "(?:ss|ß)").replace(r"\ ", r"\s+")
     return tuple(re.compile(alt(p), re.I) for p in dropped_phrases())
 
 
 def boilerplate() -> list[str]:
-    if not BOILERPLATE.exists():
-        raise SystemExit(f"{BOILERPLATE.relative_to(REPO_ROOT)} is missing: run the scan, write the list and commit it first")
+    """The strings of configs/funnel_boilerplate.yaml; the file must be committed and unchanged."""
+    rel = BOILERPLATE.relative_to(REPO_ROOT).as_posix()
+    git = lambda *a: subprocess.run(["git", *a], cwd=REPO_ROOT, capture_output=True, text=True).stdout.strip()
+    if not BOILERPLATE.exists() or not git("ls-files", rel) or git("status", "--porcelain", rel):
+        raise SystemExit(f"{rel} is missing or not committed: run the scan, write the list and commit it first")
     return [normalise(p) for p in yaml.safe_load(BOILERPLATE.read_text(encoding="utf-8"))["dropped"]]
 
 
 def cut_note(text: str) -> str:
-    """Everything from the university's note on is dropped. The catalogue cuts long contents, so the note's heading can
-    itself be cut ("Anmerkung der Hoc…:"); such a tail is dropped too."""
+    """Everything from the university's note on is dropped. The catalogue cuts long contents; a content that ends in
+    "…:" was cut inside the note's heading ("Anmerkung der Hoc…:", "Anm…:"), and that piece of the heading goes too."""
     i = text.lower().find(NOTE.lower())
     if i >= 0:
         return text[:i]
-    m = re.search(r"Anmerkung([^,]{0,20})$", text)
-    if m and (" " + normalise(NOTE.split(" ", 1)[1])).startswith(re.sub(r"[…:.\s\xa0]+$", "", m.group(1).lower())):
-        return text[:m.start()]
-    return text
+    m = re.search(r"…\s*:\s*$", text)
+    if not m:
+        return text
+    head = text[:m.start()].rstrip()
+    low = head.lower()
+    for k in range(len(NOTE), 0, -1):
+        p = NOTE[:k].lower().rstrip()
+        if low.endswith(p) and (len(low) == len(p) or low[-len(p) - 1].isspace()):
+            return head[:len(head) - len(p)]
+    return head
 
 
 def split_items(text: str) -> list[str]:
-    """Split at commas that are not inside brackets."""
+    """Split at commas and semicolons that are not inside brackets."""
     out, depth, cur = [], 0, []
     for ch in text:
         if ch == "(":
             depth += 1
         elif ch == ")":
             depth = max(0, depth - 1)
-        if ch == "," and depth == 0:
+        if ch in ",;" and depth == 0:
             out.append("".join(cur))
             cur = []
         else:
@@ -113,31 +128,50 @@ def split_items(text: str) -> list[str]:
 
 
 def focus_items(content, drop: tuple[str, ...] = ()) -> list[str]:
-    """The Schwerpunkte items of an offer (rule text.fields). Text before the heading, the note and the phrases of
-    text.dropped are left out; an item whose normalised form is in `drop` (the boilerplate list) is left out."""
+    """The Schwerpunkte items of an offer (rule text.fields). The note is cut first, so a "Schwerpunkte:" inside a note is
+    no heading. Text before the heading and the phrases of text.dropped are left out; an item whose normalised form is
+    in `drop` (the boilerplate list) is left out. A last item cut by the catalogue stays as it is."""
     if not isinstance(content, str):
         return []
-    m = FOCUS_MARK.search(content)
-    if not m:
+    t = cut_note(content)
+    i = t.find(FOCUS_MARK)
+    if i < 0:
         return []
-    t = cut_note(content[m.end():])
+    t = t[i + len(FOCUS_MARK):]
     for p in dropped_patterns():
         t = p.sub(" ", t)
-    items = [re.sub(r"\s+", " ", x).strip(" …\xa0;:.-") for x in split_items(t)]
-    return [x for x in items if len(x) >= 2 and normalise(x) not in drop]
+    items = [re.sub(r"\s+", " ", x).strip(" …\xa0").rstrip(" ;:.-").lstrip(" ;:-") for x in split_items(t)]
+    return [x for x in items if re.search(r"\w", x) and normalise(x) not in drop]
+
+
+def _degree_token(m: re.Match) -> str:
+    """Of a token such as "Zwei-Fach-Bachelor" or "Arp-Schnitger-Master" only the parts that name no degree stay."""
+    word = m.group(0).split()[0]
+    keep = [p for p in word.split("-") if p and not re.search("bachelor|master", p, re.I) and normalise(p) not in ORGANISATION_PARTS and not p.isdigit()]
+    return " " + "-".join(keep) + " "
+
+
+def _tidy(t: str) -> str:
+    t = DEGREE_BRACKET.sub(" ", t)
+    t = re.sub(r"\(\s+", "(", re.sub(r"\s+\)", ")", t))
+    words = re.sub(r"\s+", " ", t).strip(" -,;/&").split(" ")
+    for k in range(len(words) // 2, 0, -1):          # "<name> Master of <name>" leaves the name twice
+        if [w.lower() for w in words[:k]] == [w.lower() for w in words[-k:]]:
+            words = words[:-k]
+            break
+    return re.sub(r"^(?:in|of)\s+|\s+(?:in|of)$", "", " ".join(words), flags=re.I).strip(" -,;/&")
 
 
 def clean_title(title: str) -> str:
-    """The title without degree words (rule text.fields). The catalogue writes "<name> <degree>"; where the name itself
-    is a degree ("Master of Finance Master of Science"), only the last degree and the words Bachelor, Master, of go."""
-    tidy = lambda x: re.sub(r"\s+", " ", re.sub(r"\(\s*[.,/;-]*\s*\)", " ", x)).strip(" -,;/")
+    """The title without degree words (rule text.fields). Standard degrees ("Master of Science", "B.A.", "MBA") go as a
+    whole. Of any other "Master of <name>" only the words Master and of go, because the name is the subject
+    ("Master of Landscape Architecture"). If nothing but a standard degree is there, its name is the title ("Laws")."""
     t = LEVEL_MARKER.sub(" ", str(title))
-    out = tidy(DEGREE_WORDS.sub(" ", t))
-    if out:
+    strip = lambda x: _tidy(DEGREE_TOKEN.sub(_degree_token, UPPER_ABBREVS.sub(" ", ABBREVS.sub(" ", x))))
+    out = strip(STANDARD.sub(" ", t))
+    if re.search(r"[^\W\d_]{2}", re.sub(r"\([^)]*\)", " ", out)):
         return out
-    last = list(DEGREE_WORDS.finditer(t))[-1]
-    name = re.sub(rf"\b(?:bachelor|master|of)\b|(?<![\w.])(?:{ABBREV})(?![\w])", " ", t[:last.start()] + t[last.end():], flags=re.I)
-    return tidy(name)
+    return strip(t)
 
 
 def clean_label(label: str) -> str:
@@ -160,6 +194,10 @@ def unclean(texts, phrases) -> list[int]:
     its closing bracket."""
     phrases = [p[:-1] if p.startswith("(") and p.endswith(")") else p for p in phrases]
     return [i for i, t in enumerate(texts) if any(p in normalise(t) for p in phrases)]
+
+
+def sha(path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()[:16]
 
 
 # ---------------------------------------------------------------------------------------------------------- scan
@@ -242,17 +280,19 @@ def embed() -> None:
     d.to_csv(OFFERS, index=False)
     scan_t = pd.read_csv(SCAN)
     scan_t["decision"] = np.where(scan_t["item"].isin(drop), "dropped", "kept")
-    (REPORTS / "step2_scan.md").write_text("\n".join([
+    (REPORTS / "step2_scan_decisions.md").write_text("\n".join([
         "# Funnel step 2: focus-item strings found in many offers, with the decision (generated)", "",
-        f"Code commit {stamp['commit']}, run on {stamp['date']}. Dropped: the strings of configs/funnel_boilerplate.yaml (they name no subject matter).", "",
+        f"Code commit {stamp['commit']}, run on {stamp['date']}. Scan: reports/funnel2/step2_scan.md. Dropped: the strings of "
+        "configs/funnel_boilerplate.yaml (they name no subject matter), where they are a whole focus item.", "",
         md_table(scan_t)]) + "\n", encoding="utf-8")
     meta = {"stamp": stamp, "offers": len(d), "full_time": int(d["full_time"].sum()), "distinct_texts": len(texts),
             "with_focus_items": int(d["has_focus"].sum()), "without_focus_items": int((~d["has_focus"]).sum()),
             "full_time_without_focus_items": int((~d["has_focus"] & d["full_time"]).sum()),
             "texts_longer_than_the_encoder_reads": int(too_long), "boilerplate_strings": len(drop),
             "offers_with_a_boilerplate_item_dropped": int((d["boilerplate_items_dropped"] > 0).sum()),
-            "offers_left_without_focus_items_by_the_boilerplate_list": int(((d["boilerplate_items_dropped"] > 0) & ~d["has_focus"]).sum()), "check": chk}
-    (INTERIM / "funnel2_embed.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+            "offers_left_without_focus_items_by_the_boilerplate_list": int(((d["boilerplate_items_dropped"] > 0) & ~d["has_focus"]).sum()), "check": chk,
+            "files": {OFFERS.name: sha(OFFERS), EMB.name: sha(EMB)}}
+    EMBED_META.write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(meta, indent=2))
 
 
@@ -281,8 +321,9 @@ def best_jaccard(a: np.ndarray, b: np.ndarray) -> dict[int, float]:
 
 
 def stability(ref: np.ndarray, coords: list[np.ndarray], mcs: int, method: str, ms: int, boot: dict) -> dict[int, float]:
-    """Mean best-match Jaccard of each reference cluster over the refits (Hennig 2007): 80 % subsamples, the UMAP seeds in
-    turn. A cluster is compared on the offers of the subsample only."""
+    """Mean best-match Jaccard of each reference cluster over the refits (Hennig 2007). Each refit clusters an 80 %
+    subsample of the offers again, on the UMAP coordinates of the seeds in turn; a cluster is compared on the offers of
+    the subsample only. UMAP itself is fitted once per seed on all offers, not on the subsample."""
     rng = np.random.default_rng(boot["seed"])
     n, ids = len(ref), [int(c) for c in np.unique(ref) if c >= 0]
     scores = {c: [] for c in ids}
@@ -304,10 +345,10 @@ def grid_search(coords: list[np.ndarray], cfg: dict) -> tuple[pd.DataFrame, dict
             good = [c for c, s in st.items() if s >= stable]
             sizes = pd.Series(ref[ref >= 0]).value_counts()
             rows.append({"min_cluster_size": mcs, "method": method, "clusters": len(st), "stable clusters": len(good),
-                         "share in stable": round(float(np.isin(ref, good).mean()), 4), "noise": round(float((ref < 0).mean()), 4),
-                         "largest cluster share": round(float(sizes.max() / n), 4) if len(sizes) else 0.0})
+                         "share in stable": float(np.isin(ref, good).mean()), "noise": float((ref < 0).mean()),
+                         "largest cluster share": float(sizes.max() / n) if len(sizes) else 0.0})
             runs[(mcs, method)] = (ref, st)
-            print(rows[-1], flush=True)
+            print({k: round(v, 4) if isinstance(v, float) else v for k, v in rows[-1].items()}, flush=True)
     return pd.DataFrame(rows), runs
 
 
@@ -321,21 +362,25 @@ def select(grid: pd.DataFrame) -> pd.Series:
     return ok.sort_values(["share in stable", "stable clusters"], ascending=False, kind="stable").iloc[0]
 
 
-def within_cutoff(emb: np.ndarray, labels: np.ndarray, rng: np.random.Generator) -> float:
-    """Median pairwise cosine distance inside the stable types; at most 60 members per type, so that large types do not
-    decide the value alone."""
-    vals = []
+def within_distances(emb: np.ndarray, labels: np.ndarray) -> dict[int, np.ndarray]:
+    """For every type, the cosine distances of all pairs of its members."""
+    out = {}
     for c in np.unique(labels[labels >= 0]):
         m = np.where(labels == c)[0]
-        m = rng.choice(m, min(60, len(m)), replace=False)
-        s = 1 - emb[m] @ emb[m].T
-        vals.append(s[np.triu_indices(len(m), 1)])
-    return float(np.median(np.concatenate(vals)))
+        out[int(c)] = (1 - emb[m] @ emb[m].T)[np.triu_indices(len(m), 1)]
+    return out
+
+
+def rare_cutoff(emb: np.ndarray, labels: np.ndarray) -> tuple[float, float]:
+    """Rule discovery.rare_path.distance_cutoff: the median of all within-type pairwise cosine distances of the stable
+    types, every pair once. Second value, for information: the median of the types' own medians."""
+    w = within_distances(emb, labels)
+    return float(np.median(np.concatenate(list(w.values())))), float(np.median([np.median(v) for v in w.values()]))
 
 
 def rare_path(emb: np.ndarray, institution: np.ndarray, noise: np.ndarray, cutoff: float, max_size: int, min_inst: int) -> np.ndarray:
     """Groups among the offers left without a stable type: average linkage, cut at the distance cutoff, at least
-    min_inst institutions, at most max_size offers (rule discovery.rare_path)."""
+    min_inst institutions, at most max_size offers (rule discovery.rare_path). A larger group is not cut further."""
     from sklearn.cluster import AgglomerativeClustering
     out = np.full(len(emb), -1)
     idx = np.where(noise)[0]
@@ -360,6 +405,24 @@ def radii(dist_own: dict[int, np.ndarray], stable: set[int], pct: float = 90) ->
     return r
 
 
+def centroids_and_assignment(emb: np.ndarray, lab: np.ndarray, n_stable: int) -> dict:
+    """Rules similarity.centroid, radius_90, rare_types and universe.assign_afterwards. lab: type of every offer (-1 none),
+    types numbered 0..n-1 with the stable ones first. No refit: an offer without a type goes to the type with the nearest
+    centroid if it lies inside that type's radius_90."""
+    ids = np.unique(lab[lab >= 0])
+    cent = np.vstack([emb[lab == c].mean(axis=0) for c in ids])
+    cent /= np.linalg.norm(cent, axis=1, keepdims=True)
+    dist = 1 - emb @ cent.T
+    own = {int(c): dist[lab == c, c] for c in ids}
+    stable = set(range(n_stable))
+    r = {p: radii(own, stable, p) for p in (75, 90, 95)}
+    radius = np.array([r[90][int(c)] for c in ids])
+    near = dist.argmin(axis=1)
+    near_d = dist[np.arange(len(emb)), near]
+    assigned = np.where(lab >= 0, lab, np.where(near_d <= radius[near], near, -1))
+    return {"centroids": cent, "dist": dist, "own": own, "radii": r, "nearest": near, "nearest_dist": near_d, "assigned": assigned}
+
+
 def ctfidf_terms(texts: pd.Series, labels: np.ndarray, top: int = 8) -> dict[int, list[str]]:
     from sklearn.feature_extraction.text import CountVectorizer
     ids = [c for c in np.unique(labels) if c >= 0]
@@ -373,8 +436,23 @@ def ctfidf_terms(texts: pd.Series, labels: np.ndarray, top: int = 8) -> dict[int
     for i, c in enumerate(ids):
         row = m.getrow(i)
         score = row.data / max(row.sum(), 1) * idf[row.indices]
-        out[int(c)] = terms[row.indices[np.argsort(-score)[:top]]].tolist()
+        out[int(c)] = terms[row.indices[np.argsort(-score, kind="stable")[:top]]].tolist()
     return out
+
+
+def tfidf_crosscheck(texts: pd.Series, lab: np.ndarray, n_stable: int) -> tuple[dict[int, float], dict[int, float]]:
+    """Rule discovery.crosscheck for the stable types: k-means on TF-IDF with k = the number of stable types. First
+    result (the rule's flag): k-means on all fitted texts, also those the grouping left without a stable type. Second
+    result (for information): k-means only on the texts inside a stable type."""
+    from sklearn.cluster import KMeans
+    from sklearn.feature_extraction.text import TfidfVectorizer
+    k = max(n_stable, 2)
+    vec = lambda t: TfidfVectorizer(lowercase=True, stop_words=STOPWORDS, min_df=2, sublinear_tf=True).fit_transform(t)
+    stable = np.where(lab < n_stable, lab, -1)
+    hard = best_jaccard(stable, KMeans(n_clusters=k, random_state=42, n_init=3).fit_predict(vec(texts)))
+    inside = stable >= 0
+    easy = best_jaccard(stable[inside], KMeans(n_clusters=k, random_state=42, n_init=3).fit_predict(vec(texts[inside])))
+    return hard, easy
 
 
 def old_lists() -> dict[str, str]:
@@ -384,57 +462,64 @@ def old_lists() -> dict[str, str]:
 
 
 def recovery(title: pd.Series, labels: np.ndarray, subset: np.ndarray) -> pd.DataFrame:
-    """Rule discovery.validation.old_lists on the offers of `subset`: for each old list (title pattern) the type with the
-    highest Jaccard. A list without any matching offer cannot be tested."""
+    """Rule discovery.validation.old_lists on the offers of `subset`: an old list is the offers whose title matches its
+    pattern; for each list the type with the highest Jaccard. Offers of the list that are in no type count against it.
+    A list without any matching offer cannot be tested."""
     rows = []
     for name, pat in old_lists().items():
         hit = title.str.contains(pat, case=False, regex=True, na=False).to_numpy() & subset
         if not hit.any():
-            rows.append({"old list": name, "offers": 0, "best Jaccard": np.nan, "type": -1, "recovered": "not testable: no offer matches", "share in any type": np.nan})
+            rows.append({"old list": name, "offers": 0, "best Jaccard": np.nan, "type": -1, "recovered": "not testable: no title matches", "share in any type": np.nan})
             continue
-        j = best_jaccard(np.where(hit, 0, -1), np.where(subset, labels, -1))[0]
         inter = pd.Series(labels[hit & (labels >= 0)]).value_counts()
         sizes = pd.Series(labels[subset & (labels >= 0)]).value_counts()
         jac = (inter / (hit.sum() + sizes.reindex(inter.index) - inter)).sort_values(ascending=False, kind="stable")
+        j = float(jac.iloc[0]) if len(jac) else 0.0
         rows.append({"old list": name, "offers": int(hit.sum()), "best Jaccard": round(j, 3), "type": int(jac.index[0]) if len(jac) else -1,
                      "recovered": "yes" if j >= RECOVERED else "no", "share in any type": round(float((labels[hit] >= 0).mean()), 3)})
     return pd.DataFrame(rows)
 
 
 def mix(d: pd.DataFrame, by: str) -> pd.DataFrame:
+    """Rule text.report. Full-time offers: where the fit put them (noise = left without a stable type). All offers:
+    whether they have a type after the assignment."""
     f = d[d["full_time"]]
-    g = f.groupby(by).agg(offers=("type", "size"), in_stable=("kind", lambda k: (k == "stable").mean()), in_rare=("kind", lambda k: (k == "rare").mean()),
-                          no_type=("kind", lambda k: (k == "none").mean()), assigned_later=("assigned_only", "mean")).reset_index()
-    for c in ("in_stable", "in_rare", "no_type", "assigned_later"):
-        g[c] = g[c].round(3)
-    return g.rename(columns={"in_stable": "in a stable type", "in_rare": "in a rare type", "no_type": "left without a type by the fit",
-                             "assigned_later": "assigned afterwards"})
+    g = f.groupby(by, dropna=False).agg(**{"full-time offers": ("type", "size"), "in a stable type": ("kind", lambda k: (k == "stable").mean()),
+                                           "noise (no stable type)": ("kind", lambda k: (k != "stable").mean()), "in a rare type": ("kind", lambda k: (k == "rare").mean()),
+                                           "assigned afterwards": ("assigned_only", "mean"), "without any type": ("assigned_type", lambda a: (a < 0).mean())})
+    a = d.groupby(by, dropna=False).agg(**{"all offers": ("type", "size"), "all: with a type": ("assigned_type", lambda a: (a >= 0).mean())})
+    return g.join(a).round(3).reset_index()
 
 
 def sample_for_review(d: pd.DataFrame) -> str:
-    """Criterion G9: 30 types and 10 member titles each, drawn with one generator (seed 42)."""
-    rng = np.random.default_rng(SAMPLE_SEED)
-    ids = np.sort(d.loc[d["type"] >= 0, "type"].unique())
-    pick = np.sort(rng.choice(ids, min(SAMPLE_TYPES, len(ids)), replace=False))
-    lines = ["# Funnel step 2: sample of types for the reader's check (generated)", "",
-             f"{len(pick)} types drawn with numpy default_rng({SAMPLE_SEED}); for each, {SAMPLE_TITLES} member titles drawn with the same generator "
-             "(all members if fewer). Question per type: are at least 8 of 10 titles (or 80 %) the same kind of programme?", ""]
-    for c in pick:
-        m = d[d["type"] == c]
-        take = m.iloc[np.sort(rng.choice(len(m), min(SAMPLE_TITLES, len(m)), replace=False))]
-        lines += [f"## Type {int(c)} ({m['kind'].iloc[0]}, {len(m)} members)", ""] + [f"- {t} ({i})" for t, i in zip(take["title"], take["institution"])] + [""]
+    """Criterion G9: 30 types and 10 member titles each, drawn with one generator (seed 42) from all types. A second
+    sample of 30 stable types (seed 43) is added, because rare types are small groups of near-identical titles."""
+    lines = ["# Funnel step 2: samples of types for the reader's check (generated)", "",
+             f"Question per type: are at least 8 of 10 titles (or 80 % of those shown) the same kind of programme?", ""]
+    for name, seed, pool in (("Sample A (criterion G9): all types", SAMPLE_SEED, d["type"] >= 0), ("Sample B (additional): stable types only", SAMPLE_SEED + 1, d["kind"] == "stable")):
+        rng = np.random.default_rng(seed)
+        ids = np.sort(d.loc[pool, "type"].unique())
+        pick = np.sort(rng.choice(ids, min(SAMPLE_TYPES, len(ids)), replace=False))
+        lines += [f"## {name}", "", f"{len(pick)} types drawn with numpy default_rng({seed}); for each, {SAMPLE_TITLES} member titles drawn with the same generator (all members if fewer).", ""]
+        for c in pick:
+            m = d[d["type"] == c]
+            take = m.iloc[np.sort(rng.choice(len(m), min(SAMPLE_TITLES, len(m)), replace=False))]
+            lines += [f"### Type {int(c)} ({m['kind'].iloc[0]}, {len(m)} members)", ""] + [f"- {t} ({i})" for t, i in zip(take["title"], take["institution"])] + [""]
     return "\n".join(lines) + "\n"
 
 
 def run() -> None:
     import umap
-    from sklearn.cluster import MiniBatchKMeans
-    from sklearn.feature_extraction.text import TfidfVectorizer
     from sklearn.metrics import adjusted_rand_score
     stamp, rules = run_stamp(), config()
     cfg = rules["discovery"]
+    meta = json.loads(EMBED_META.read_text(encoding="utf-8"))
+    if meta["files"] != {OFFERS.name: sha(OFFERS), EMB.name: sha(EMB)}:
+        raise SystemExit("the offer texts or the vectors are not the ones the embedding step wrote: run embed again")
     d = pd.read_csv(OFFERS, low_memory=False, dtype={"programme_id": str})
     emb = np.load(EMB).astype(np.float64)
+    if len(d) != len(emb) or d["institution"].isna().any():
+        raise SystemExit("offers and vectors do not match, or an offer has no institution")
     fit = np.where(d["full_time"])[0]
     u = cfg["umap"]
     coords = [umap.UMAP(n_neighbors=u["n_neighbors"], n_components=u["n_components"], metric=u["metric"], min_dist=u["min_dist"],
@@ -444,105 +529,110 @@ def run() -> None:
     grid.to_csv(GRID, index=False)
     pick = select(grid)
     mcs = int(pick["min_cluster_size"])
-    print("selected", pick.to_dict(), flush=True)
+    print("selected", mcs, pick["method"], flush=True)
     ref, st = runs[(mcs, pick["method"])]
     good = sorted(c for c, s in st.items() if s >= cfg["stable_jaccard"])
     remap = {c: i for i, c in enumerate(good)}
     lab = np.full(len(d), -1)
     lab[fit] = [remap.get(int(r), -1) for r in ref]
     n_stable = len(remap)
-    cut = within_cutoff(emb, lab, np.random.default_rng(cfg["bootstrap"]["seed"]))
-    noise = (lab < 0) & d["full_time"].to_numpy()
-    rare = rare_path(emb, d["institution"].to_numpy(), noise, cut, mcs - 1, cfg["rare_path"]["min_institutions"])
+    cut, cut_alt = rare_cutoff(emb, lab)
+    ft = d["full_time"].to_numpy()
+    inst = d["institution"].to_numpy()
+    rare = rare_path(emb, inst, (lab < 0) & ft, cut, mcs - 1, cfg["rare_path"]["min_institutions"])
+    rare_alt = rare_path(emb, inst, (lab < 0) & ft, cut_alt, mcs - 1, cfg["rare_path"]["min_institutions"])
     lab[rare >= 0] = rare[rare >= 0] + n_stable
     ids = np.unique(lab[lab >= 0])
-    cent = np.vstack([emb[lab == c].mean(axis=0) for c in ids])
-    cent /= np.linalg.norm(cent, axis=1, keepdims=True)
-    dist = 1 - emb @ cent.T                                   # type ids are 0..n-1, so the column is the type
-    own = {int(c): dist[lab == c, c] for c in ids}
-    stable_set = set(range(n_stable))
-    r90, r75, r95 = radii(own, stable_set, 90), radii(own, stable_set, 75), radii(own, stable_set, 95)
-    radius = np.array([r90[int(c)] for c in ids])
-    near = dist.argmin(axis=1)
-    near_d = dist[np.arange(len(d)), near]
-    assigned = np.where(lab >= 0, lab, np.where(near_d <= radius[near], near, -1))
+    g = centroids_and_assignment(emb, lab, n_stable)
+    dist, own, assigned, near, near_d = g["dist"], g["own"], g["assigned"], g["nearest"], g["nearest_dist"]
     d["type"] = lab
     d["kind"] = np.where(lab < 0, "none", np.where(lab < n_stable, "stable", "rare"))
     d["assigned_type"] = assigned
     d["assigned_only"] = (lab < 0) & (assigned >= 0)
-    d["dist_to_assigned"] = np.where(assigned >= 0, np.round(dist[np.arange(len(d)), np.maximum(assigned, 0)], 4), np.nan)
+    d["dist_to_assigned"] = np.where(assigned >= 0, dist[np.arange(len(d)), np.maximum(assigned, 0)], np.nan)
     d["nearest_type"] = near
-    d["dist_to_nearest"] = np.round(near_d, 4)
+    d["dist_to_nearest"] = near_d
     terms = ctfidf_terms(d["text"], lab)
-    # cross-check: TF-IDF k-means with the same number of groups as there are stable types, on the full-time offers
-    tf = TfidfVectorizer(lowercase=True, stop_words=STOPWORDS, min_df=2, sublinear_tf=True).fit_transform(d["text"].iloc[fit])
-    km = MiniBatchKMeans(n_clusters=max(n_stable, 2), random_state=42, n_init=3).fit_predict(tf)
-    tf_best = best_jaccard(lab[fit], km)
+    tf_hard, tf_easy = tfidf_crosscheck(d["text"].iloc[fit].reset_index(drop=True), lab[fit], n_stable)
     inv = {v: k for k, v in remap.items()}
+    flag = cfg["rare_path"]["evidence_flag"].split('"')[1]
     rows = []
     for c in ids:
         c = int(c)
-        m, a = d[lab == c], d[assigned == c]
-        order = np.argsort(dist[:, c])
-        central = [t for t in d["title"].iloc[order[:40]].map(clean_title).drop_duplicates().tolist() if t][:5]
-        inst = {lv: int(a.loc[a["level"] == lv, "institution"].nunique()) for lv in ("bachelor", "master")}
-        rows.append({"type": c, "kind": "stable" if c < n_stable else "rare", "label": ", ".join(terms[c][:4]), "central titles": "; ".join(central),
+        mi = np.where(lab == c)[0]
+        m, a = d.iloc[mi], d[assigned == c]
+        central = [t for t in d["clean_title"].iloc[mi[np.argsort(dist[mi, c], kind="stable")]].drop_duplicates().tolist() if isinstance(t, str) and t][:5]
+        n_inst = {lv: int(a.loc[a["level"] == lv, "institution"].nunique()) for lv in ("bachelor", "master")}
+        is_stable = c < n_stable
+        rows.append({"type": c, "kind": "stable" if is_stable else "rare", "label": ", ".join(terms[c][:4]), "central titles": "; ".join(central),
                      "members": len(m), "member institutions": int(m["institution"].nunique()), "assigned offers": len(a),
                      "bachelor": int((a["level"] == "bachelor").sum()), "master": int((a["level"] == "master").sum()),
-                     "bachelor institutions": inst["bachelor"], "master institutions": inst["master"],
-                     "units": int(inst["bachelor"] >= 2) + int(inst["master"] >= 2),
-                     "stability": round(st[inv[c]], 3) if c < n_stable else np.nan,
-                     "median distance": round(float(np.median(own[c])), 4), "largest distance": round(float(np.max(own[c])), 4),
-                     "radius_75": round(r75[c], 4), "radius_90": round(r90[c], 4), "radius_95": round(r95[c], 4),
+                     "bachelor institutions": n_inst["bachelor"], "master institutions": n_inst["master"],
+                     "units": int(n_inst["bachelor"] >= 2) + int(n_inst["master"] >= 2),
+                     "stability": round(st[inv[c]], 3) if is_stable else np.nan,
+                     "median distance": float(np.median(own[c])), "largest distance": float(np.max(own[c])),
+                     "radius_75": g["radii"][75][c], "radius_90": g["radii"][90][c], "radius_95": g["radii"][95][c],
                      "share with focus": round(float(m["has_focus"].mean()), 3),
                      "share HAW": round(float(m["institution_type"].str.startswith("Fachhochschule").mean()), 3),
-                     "tfidf best Jaccard": round(tf_best[c], 3), "method-dependent": bool(tf_best[c] < METHOD_DEPENDENT),
-                     "evidence flag": "" if c < n_stable else cfg["rare_path"]["evidence_flag"].split('"')[1], "terms": "; ".join(terms[c])})
+                     "tfidf best Jaccard": round(tf_hard[c], 3) if is_stable else np.nan,
+                     "tfidf best Jaccard (typed offers only)": round(tf_easy[c], 3) if is_stable else np.nan,
+                     "method-dependent": ("yes" if tf_hard[c] < METHOD_DEPENDENT else "no") if is_stable else "not tested",
+                     "evidence flag": "" if is_stable else flag, "terms": "; ".join(terms[c])})
     types = pd.DataFrame(rows)
     f = pd.read_csv(FIELDS, dtype={"programme_id": str}).drop_duplicates("programme_id").set_index("programme_id")["field_key"]
     fk = d["programme_id"].map(f)
     both = (lab >= 0) & fk.notna().to_numpy()
     ari = float(adjusted_rand_score(fk[both].astype(str), lab[both]))
-    ft = d["full_time"].to_numpy()
     rec_fit = recovery(d["title"], lab, ft)
     rec_all = recovery(d["title"], assigned, np.ones(len(d), bool))
     rec = rec_fit.merge(rec_all, on="old list", suffixes=(" (fitted, full-time)", " (all assigned)"))
     d.to_csv(OFFER_TYPES, index=False)
     types.to_csv(TYPES, index=False)
-    np.save(CENTROIDS, cent.astype(np.float32))
-    stable_t, rare_t = types[types["kind"] == "stable"], types[types["kind"] == "rare"]
-    res = {"stamp": stamp, "offers": len(d), "full_time": int(ft.sum()),
+    np.save(CENTROIDS, g["centroids"].astype(np.float32))
+    stable_t = types[types["kind"] == "stable"]
+    limits = (grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)
+    n_rare = int(len(ids) - n_stable)
+    res = {"stamp": stamp, "embed_commit": meta["stamp"]["commit"], "offers": len(d), "full_time": int(ft.sum()),
+           "umap_seeds": u["seeds"], "refits_per_setting": cfg["bootstrap"]["refits"], "subsample": cfg["bootstrap"]["subsample"], "settings": len(grid),
            "selected": {"min_cluster_size": mcs, "method": pick["method"], "clusters": int(pick["clusters"]), "stable_clusters": int(pick["stable clusters"]),
-                        "share_in_stable": float(pick["share in stable"]), "noise": float(pick["noise"]), "largest_cluster_share": float(pick["largest cluster share"])},
-           "settings_within_limits": int(((grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)).sum()),
-           "stable_types": n_stable, "rare_types": int(len(ids) - n_stable), "rare_cutoff": round(cut, 4), "median_radius_90_stable": round(float(stable_t["radius_90"].median()), 4),
-           "full_time_in_stable": int(((lab >= 0) & (lab < n_stable) & ft).sum()), "full_time_in_rare": int(((lab >= n_stable) & ft).sum()),
+                        "share_in_stable": round(float(pick["share in stable"]), 4), "noise": round(float(pick["noise"]), 4),
+                        "largest_cluster_share": round(float(pick["largest cluster share"]), 4)},
+           "settings_within_limits": int(limits.sum()), "stable_types": n_stable, "rare_types": n_rare, "rare_cutoff": round(cut, 4),
+           "rare_cutoff_median_of_type_medians": round(cut_alt, 4), "rare_types_with_that_cutoff": int(len(np.unique(rare_alt[rare_alt >= 0]))),
+           "median_radius_90_stable": round(float(stable_t["radius_90"].median()), 4),
+           "full_time_in_stable": int(((lab >= 0) & (lab < n_stable)).sum()), "full_time_in_rare": int((lab >= n_stable).sum()),
            "full_time_without_type": int(((lab < 0) & ft).sum()), "assigned_afterwards": int(d["assigned_only"].sum()),
            "assigned_afterwards_full_time": int((d["assigned_only"] & d["full_time"]).sum()), "offers_without_any_type": int((assigned < 0).sum()),
            "units": int(types["units"].sum()), "types_with_a_unit": int((types["units"] > 0).sum()),
            "largest_type_members": int(types["members"].max()), "median_stable_members": float(stable_t["members"].median()),
            "ari_study_fields": round(ari, 3), "offers_in_ari": int(both.sum()), "tfidf_k": int(max(n_stable, 2)),
-           "method_dependent_stable": int(stable_t["method-dependent"].sum()), "method_dependent_rare": int(rare_t["method-dependent"].sum()),
-           "old_lists": len(rec), "old_lists_recovered_fitted": int((rec_fit["recovered"] == "yes").sum()), "old_lists_recovered_assigned": int((rec_all["recovered"] == "yes").sum()),
-           "old_lists_not_testable": int(rec_fit["recovered"].str.startswith("not testable").sum())}
+           "method_dependent_stable": int((stable_t["method-dependent"] == "yes").sum()),
+           "method_dependent_stable_typed_offers_only": int((stable_t["tfidf best Jaccard (typed offers only)"] < METHOD_DEPENDENT).sum()),
+           "old_lists": len(rec),
+           "old_lists_tested_fitted": int((~rec_fit["recovered"].str.startswith("not testable")).sum()), "old_lists_recovered_fitted": int((rec_fit["recovered"] == "yes").sum()),
+           "old_lists_tested_assigned": int((~rec_all["recovered"].str.startswith("not testable")).sum()), "old_lists_recovered_assigned": int((rec_all["recovered"] == "yes").sum()),
+           "files": {p.name: sha(p) for p in (OFFERS, EMB, GRID, TYPES, OFFER_TYPES, CENTROIDS)}}
     RESULT.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     REPORTS.mkdir(parents=True, exist_ok=True)
-    show = types.drop(columns=["terms", "radius_75", "radius_95", "largest distance", "evidence flag"])
+    show = types.drop(columns=["terms", "radius_75", "radius_95", "largest distance"]).round(4)
     (REPORTS / "step2_types.md").write_text("\n".join([
         "# Funnel step 2: programme types (generated)", "",
-        f"Code commit {stamp['commit']}, run on {stamp['date']}, tracked files clean: {stamp['clean']}.", "",
+        f"Code commit {stamp['commit']} (texts and vectors: {res['embed_commit']}), run on {stamp['date']}, tracked files clean: {stamp['clean']}.", "",
         f"- Offers: {len(d)}; full-time offers used for the fit: {int(ft.sum())}.",
+        f"- Grid: {len(grid)} settings, UMAP seeds {u['seeds']}, {res['refits_per_setting']} refits per setting on {res['subsample']:.0%} subsamples (the seeds in turn).",
         f"- Selected setting: min_cluster_size {mcs}, method {pick['method']} ({res['settings_within_limits']} of {len(grid)} settings are within the limits).",
-        f"- Types: {n_stable} stable, {res['rare_types']} rare (flag: {cfg['rare_path']['evidence_flag']}).",
+        f"- Types: {n_stable} stable, {n_rare} rare (flag: {flag}). Rare-path cutoff {cut:.4f} (median of all within-type pairs); "
+        f"with the median of the types' medians ({cut_alt:.4f}) there would be {res['rare_types_with_that_cutoff']} rare types.",
         f"- Full-time offers: {res['full_time_in_stable']} in a stable type, {res['full_time_in_rare']} in a rare type, {res['full_time_without_type']} left without a type by the fit.",
         f"- Assigned afterwards (inside the radius of the nearest type): {res['assigned_afterwards']} offers; without any type after that: {res['offers_without_any_type']}.",
         f"- Units (type x level with offers at 2 or more institutions): {res['units']}.",
-        f"- Agreement with the catalogue's study fields (ARI, offers in a type): {ari:.3f}.",
-        f"- TF-IDF cross-check (k-means, k = {res['tfidf_k']}): method-dependent {res['method_dependent_stable']} of {n_stable} stable types and {res['method_dependent_rare']} of {res['rare_types']} rare types.",
-        f"- Old topic lists: {res['old_lists']} tested; recovered (Jaccard >= {RECOVERED}) {res['old_lists_recovered_fitted']} on the fitted full-time offers, "
-        f"{res['old_lists_recovered_assigned']} on all assigned offers; not testable {res['old_lists_not_testable']}.", "",
-        "## Grid", "", md_table(grid), "", "## Mix of the full-time offers, by focus items present", "", md_table(mix(d, "has_focus")), "",
-        "## Mix of the full-time offers, by institution type", "", md_table(mix(d, "institution_type")), "",
+        f"- Agreement with the catalogue's study fields (ARI; fitted members, first-listed field): {ari:.3f}.",
+        f"- TF-IDF cross-check (k-means, k = {res['tfidf_k']}, stable types only): method-dependent {res['method_dependent_stable']} of {n_stable} "
+        f"when k-means also has to place the offers without a stable type; {res['method_dependent_stable_typed_offers_only']} of {n_stable} on the typed offers only. Rare types are not tested.",
+        f"- Old topic lists (title patterns): {res['old_lists']} lists; on the fitted full-time offers {res['old_lists_tested_fitted']} tested and "
+        f"{res['old_lists_recovered_fitted']} recovered (Jaccard >= {RECOVERED}); on all assigned offers {res['old_lists_tested_assigned']} tested and {res['old_lists_recovered_assigned']} recovered.", "",
+        "## Grid", "", md_table(grid.round(4)), "", "## Mix by focus items present", "", md_table(mix(d, "has_focus")), "",
+        "## Mix by institution type", "", md_table(mix(d, "institution_type")), "",
         "## The old topic lists (counts only)", "", md_table(rec), "", "## Types", "", md_table(show)]) + "\n", encoding="utf-8")
     (REPORTS / "step2_sample.md").write_text(sample_for_review(d), encoding="utf-8")
     print(json.dumps(res, indent=2, ensure_ascii=False), flush=True)

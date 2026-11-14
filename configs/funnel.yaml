@@ -42,7 +42,7 @@ text:
   normalise: lower case and ä/ö/ü/ß written as ae/oe/ue/ss, on both sides, before a phrase is dropped or checked
   boilerplate_scan: identical focus-item strings found in 20 or more offers are listed; those naming no subject matter are added to configs/funnel_boilerplate.yaml, committed before embedding   # 20 [J] stress 10
   empty_after_cleaning: the offer counts as having no focus items
-  check: the run stops if any normalised offer text still contains a normalised dropped phrase or a phrase of configs/funnel_boilerplate.yaml
+  check: the run stops if any normalised offer text still contains a normalised dropped phrase, or if any focus item is a phrase of configs/funnel_boilerplate.yaml   # worded more exactly in Step 2: a listed string is dropped where it is a whole focus item; inside a longer item ("International Management") it is content; a level marker is also dropped in its longer forms ("(grundständig außer Staatsexamen)")
   encoder: intfloat/multilingual-e5-base with the query prefix, normalised   # [C]
   report: noise share and cluster mix by focus-items-present and by institution type
 
@@ -64,11 +64,11 @@ discovery:                     # unchanged from version 2; rerun because the tex
   rare_path:                   # scope 8; a programme offered nowhere in Germany cannot be found from offers (stated limit)
     source: offers treated as noise
     method: average-linkage agglomerative in the similarity space
-    distance_cutoff: median within-cluster pairwise cosine distance of the stable types
+    distance_cutoff: median within-cluster pairwise cosine distance of the stable types   # every pair of every stable type once, all pooled; the median of the types' own medians is reported next to it
     min_institutions: 2        # [C]
     max_size: selected min_cluster_size minus 1
     evidence_flag: rare types carry the flag "rare, not stability-tested"
-  crosscheck: TF-IDF k-means with the same k; a type whose best TF-IDF match has Jaccard < 0.3 is flagged "method-dependent"   # 0.3 [C]
+  crosscheck: TF-IDF k-means with the same k; a type whose best TF-IDF match has Jaccard < 0.3 is flagged "method-dependent"   # 0.3 [C]; k is the number of stable types and only stable types are tested (a rare type of a few offers cannot match a k-means group); k-means runs on all fitted offers, and the figure on the typed offers only is reported next to it
   validation:
     ari: against the catalogue's study fields
     old_lists: all 18 old topic lists, after discovery; recovered means best-match Jaccard >= 0.5; both offer sets are reported side by side (fitted full-time offers, all assigned offers); a list that cannot be tested is named with its reason   # 0.5 [C]
@@ -320,6 +320,6 @@ decision:
 
 conformance:                   # how run 1's rule-versus-code differences are prevented
   code_first: each step's code is committed before it runs; outputs carry the commit hash; a dirty working tree stops the run
-  rule_tests: tests/test_funnel_rules.py asserts the checkable rules (no boilerplate left, both lists processed, w_substitute order, one row per published programme, every keyword in every region, all 18 lists tested, no input filled with a middle value)
+  rule_tests: tests/test_funnel_step*.py assert the checkable rules (no boilerplate left, both lists processed, w_substitute order, one row per published programme, every keyword in every region, all 18 lists tested, no input filled with a middle value)
   review: a fresh-context reviewer compares each step's code with this file before the step's output counts as a result
   steps_stop: every step ends with short notes on why each programme stays or goes (docs/funnel_run2_notes.md) and waits for Soma's OK
