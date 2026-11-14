@@ -88,9 +88,9 @@ robotics programmes, the candidates of the earlier analysis. What is the thresho
 used?
 
 **Rule.** Procedure and criteria in `docs/criteria_funnel_step1b.md`, committed before any value was computed. Run
-on 14 Nov 2026 with code commit d64fe10; the code ran once and the procedure was not changed afterwards.
+on 14 Nov 2026 with code commit d64fe10; the procedure was not changed afterwards.
 
-**Result.**
+**Result of the pre-registered procedure.**
 
 | | |
 |---|---|
@@ -98,26 +98,48 @@ on 14 Nov 2026 with code commit d64fe10; the code ran once and the procedure was
 | Same-title pairs across different handbooks | 190, of which 74 are copied texts and left out |
 | Anchor modules | 121 (2 have only generic words in the title and get no negative value) |
 | Values | 121 positive (median 0.476), 119 negative (median 0.376) |
-| **Threshold** | **0.463** (bootstrap interval 0.382 to 0.538) |
-| Quality | true-positive rate 0.57, false-positive rate 0.28, AUC 0.627: **weak** (below the bar of 0.70) |
+| Threshold | 0.463 (bootstrap interval 0.382 to 0.538) |
+| Quality of the cut-off | true-positive rate 0.57, false-positive rate 0.28, AUC 0.627: weak (below the bar of 0.70) |
 | The former 0.285 on this set | true-positive rate 0.83, false-positive rate 0.82 |
 
-**What it means.**
+**What a fresh-context check and two diagnostics after the run add** (not part of the pre-registered result):
 
-- The new value is in the rules (`feasibility_gate.covered_threshold: 0.463`), flagged weak; 0.285 stays as a stress
-  value (`stress_tests.downstream_factorial.matching_threshold`). The bias towards the old candidates is gone.
-- The automatic match is a weak instrument. On this set it separates true from wrong matches only a little better
-  than chance. At the former 0.285 almost every module finds "a match" (false-positive rate 0.82 on this set).
-- A look at the extremes after the run (no change to the procedure) shows why the set is not clean. Among the 14
-  highest "wrong" matches are thesis, seminar and elective placeholder modules (for example "Bachelorarbeit" against
-  "Masterarbeit", 0.83) and real synonyms ("Websysteme" against "Web-Client-Technologien", 0.82). Some true
-  matches score near 0 because two handbooks describe one title with unrelated texts. So part of the weakness is
-  the test set, not the matcher: the wrong matches were chosen by title words, without a human judgement.
-- Consequence for Step 7: the automatic overlap only proposes; the hand check decides. The automatic step still
-  decides which candidates reach the hand check, so its weakness matters there.
+- **The ranking is good, the cut-off is not.** For 51 % of the 121 anchors the true partner is the single most
+  similar module among about 408 modules of the other handbooks; for 74 % it is among the top 3, for 83 % among the
+  top 5. Against a random other module the true match wins almost always (AUC 0.973). Only the test "true match
+  against the hardest wrong match" is weak.
+- **0.463 is not a sharp value.** The criterion is nearly flat: every threshold from 0.378 to 0.47 is within 0.03 of
+  the best one.
+- **The value does not carry over to other universities.** Two EMI handbooks share wording habits that a handbook of
+  another university does not have; this limit was named before the run, and its size is large. The checker looked
+  at the earlier cross-university scores: of 26 foundation modules EMI certainly teaches (Mathematik 1,
+  Programmierung 1, ...), 92 % reach 0.285 but only 19 % reach 0.463. With 0.463 as a gate most candidates would be
+  stopped before the hand check.
+- **The test set is not clean.** The "wrong" matches were chosen by title words, without a human judgement. Thesis,
+  seminar and elective placeholder modules are in it (28 of 121 anchors), and so are real synonyms ("Websysteme"
+  against "Web-Client-Technologien", 0.82). Some true matches score near 0 because of data defects (a
+  cross-reference stub instead of a text). The false-positive rate of 0.82 for the former value is therefore an
+  upper bound, not a measured error rate; in the earlier cross-university calibration it was 0.14.
+- **Undeclared choices of the procedure:** bachelor and master modules were mixed, although the gate compares a
+  bachelor candidate with bachelor modules only; thesis and placeholder modules were not excluded; square-bracket
+  codes in titles were not removed, so two handbook sets contributed no anchors.
 
-**Open for Soma.** A clean threshold needs human labels: a sample of EMI module pairs, thesis and placeholder
-modules excluded, marked "same topic: yes or no" without seeing the similarity. That would replace 0.463 before
-Step 3. It costs about an hour of Soma's time.
+**Conclusion.**
+
+- The dependence on the old candidates is removed, but it is replaced by a same-university effect of unknown size
+  per candidate. Neither 0.285 nor 0.463 is a value that should decide anything.
+- 0.463 is in the rules as pre-registered (`feasibility_gate.covered_threshold`), flagged weak, with 0.285 as a
+  stress value. As long as the rule `feasibility_gate.eligible` lets the automatic overlap decide which candidates
+  reach the hand check, this value would exclude candidates wrongly. This must be settled before Step 7; Step 2
+  to Step 6 do not use it.
+
+**Open for Soma (decision before Step 7).** Two ways to take the decision away from an unreliable number:
+
+1. The computer never decides. It shows, for every module of a reference curriculum, the three most similar EMI
+   modules, without a proposal. Soma marks each row. Candidates reach the hand check in the order of the pre-gate
+   ranking, not by automatic overlap. No threshold is needed for any decision. Cost: more rows to mark in Step 7.
+2. A labelled calibration set: about 160 to 200 pairs of a module of another university and its best EMI match,
+   from programmes that cannot be candidates (counterparts of EMI's existing programmes), marked by two people
+   without seeing the similarity. This gives a valid threshold but needs handbook downloads and labelling now.
 
 **No programme stays or goes in this step.**
