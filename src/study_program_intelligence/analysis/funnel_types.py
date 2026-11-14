@@ -20,6 +20,7 @@ import json
 import re
 import sys
 from collections import Counter
+from functools import lru_cache
 
 import numpy as np
 import pandas as pd
@@ -59,13 +60,21 @@ def normalise(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()
 
 
-def dropped_phrases(cfg: dict | None = None) -> list[str]:
+@lru_cache(maxsize=1)
+def dropped_phrases() -> tuple[str, ...]:
     """The phrases of the rule text.dropped, normalised (the first entry of the rule is a description around a quoted phrase)."""
     out = []
-    for p in (cfg or config())["text"]["dropped"]:
+    for p in config()["text"]["dropped"]:
         m = re.match(r'^"(.*)" and everything after it$', p)
         out.append(normalise(m.group(1) if m else p))
-    return out
+    return tuple(out)
+
+
+@lru_cache(maxsize=1)
+def dropped_patterns() -> tuple[re.Pattern, ...]:
+    """The same phrases as patterns that also match the text as written (umlauts, any case)."""
+    alt = lambda p: re.escape(p).replace("ae", "(?:ae|ä)").replace("oe", "(?:oe|ö)").replace("ue", "(?:ue|ü)").replace("ss", "(?:ss|ß)")
+    return tuple(re.compile(alt(p), re.I) for p in dropped_phrases())
 
 
 def boilerplate() -> list[str]:
@@ -112,8 +121,8 @@ def focus_items(content, drop: tuple[str, ...] = ()) -> list[str]:
     if not m:
         return []
     t = cut_note(content[m.end():])
-    for p in dropped_phrases():
-        t = re.sub(re.escape(p).replace("ae", "(?:ae|ä)").replace("ue", "(?:ue|ü)").replace("oe", "(?:oe|ö)"), " ", t, flags=re.I)
+    for p in dropped_patterns():
+        t = p.sub(" ", t)
     items = [re.sub(r"\s+", " ", x).strip(" …\xa0;:.-") for x in split_items(t)]
     return [x for x in items if len(x) >= 2 and normalise(x) not in drop]
 

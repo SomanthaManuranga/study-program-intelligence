@@ -43,7 +43,7 @@ def test_offer_text_has_no_dropped_phrase_and_no_level_marker():
                                          "Informatik (grundständig); Künstliche Intelligenz (grundständig)")
     text = T.offer_text(title, items, labels)
     assert text == "Informatik. KI. Informatik, Künstliche Intelligenz"
-    assert T.unclean([text], T.dropped_phrases()) == []
+    assert T.unclean([text], list(T.dropped_phrases())) == []
     assert T.unclean(["Recht (Grundständig)", "Inhalte bitte bei der HOCHSCHULE erfragen", "Recht"], T.dropped_phrases()) == [0, 1]
 
 
