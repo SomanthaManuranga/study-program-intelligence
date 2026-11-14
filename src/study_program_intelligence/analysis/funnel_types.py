@@ -508,11 +508,18 @@ def sample_for_review(d: pd.DataFrame) -> str:
     return "\n".join(lines) + "\n"
 
 
-def run() -> None:
+def run(setting: tuple[int, str] | None = None) -> None:
+    """Without an argument: the grid and the setting the rule selects (the result of the step). With a setting
+    (min_cluster_size, method) the selection rule is bypassed: a diagnostic, never the result; its files carry the
+    setting in their names and the result files are not touched."""
     import umap
     from sklearn.metrics import adjusted_rand_score
     stamp, rules = run_stamp(), config()
     cfg = rules["discovery"]
+    tag = f"_diag_{setting[0]}_{setting[1]}" if setting else ""
+    out = lambda path: path.with_name(path.stem + tag + path.suffix)
+    if setting:
+        cfg = {**cfg, "hdbscan_grid": {**cfg["hdbscan_grid"], "min_cluster_size": [int(setting[0])], "method": [setting[1]]}}
     meta = json.loads(EMBED_META.read_text(encoding="utf-8"))
     if meta["files"] != {OFFERS.name: sha(OFFERS), EMB.name: sha(EMB)}:
         raise SystemExit("the offer texts or the vectors are not the ones the embedding step wrote: run embed again")
@@ -526,7 +533,7 @@ def run() -> None:
                         random_state=s).fit_transform(emb[fit]) for s in u["seeds"]]
     print("umap done", flush=True)
     grid, runs = grid_search(coords, cfg)
-    grid.to_csv(GRID, index=False)
+    grid.to_csv(out(GRID), index=False)
     pick = select(grid)
     mcs = int(pick["min_cluster_size"])
     print("selected", mcs, pick["method"], flush=True)
@@ -586,13 +593,13 @@ def run() -> None:
     rec_fit = recovery(d["title"], lab, ft)
     rec_all = recovery(d["title"], assigned, np.ones(len(d), bool))
     rec = rec_fit.merge(rec_all, on="old list", suffixes=(" (fitted, full-time)", " (all assigned)"))
-    d.to_csv(OFFER_TYPES, index=False)
-    types.to_csv(TYPES, index=False)
-    np.save(CENTROIDS, g["centroids"].astype(np.float32))
+    d.to_csv(out(OFFER_TYPES), index=False)
+    types.to_csv(out(TYPES), index=False)
+    np.save(out(CENTROIDS), g["centroids"].astype(np.float32))
     stable_t = types[types["kind"] == "stable"]
     limits = (grid["noise"] <= NOISE_MAX) & (grid["largest cluster share"] <= LARGEST_MAX) & (grid["stable clusters"] > 0)
     n_rare = int(len(ids) - n_stable)
-    res = {"stamp": stamp, "embed_commit": meta["stamp"]["commit"], "offers": len(d), "full_time": int(ft.sum()),
+    res = {"stamp": stamp, "diagnostic_setting": list(setting) if setting else None, "embed_commit": meta["stamp"]["commit"], "offers": len(d), "full_time": int(ft.sum()),
            "umap_seeds": u["seeds"], "refits_per_setting": cfg["bootstrap"]["refits"], "subsample": cfg["bootstrap"]["subsample"], "settings": len(grid),
            "selected": {"min_cluster_size": mcs, "method": pick["method"], "clusters": int(pick["clusters"]), "stable_clusters": int(pick["stable clusters"]),
                         "share_in_stable": round(float(pick["share in stable"]), 4), "noise": round(float(pick["noise"]), 4),
@@ -611,12 +618,12 @@ def run() -> None:
            "old_lists": len(rec),
            "old_lists_tested_fitted": int((~rec_fit["recovered"].str.startswith("not testable")).sum()), "old_lists_recovered_fitted": int((rec_fit["recovered"] == "yes").sum()),
            "old_lists_tested_assigned": int((~rec_all["recovered"].str.startswith("not testable")).sum()), "old_lists_recovered_assigned": int((rec_all["recovered"] == "yes").sum()),
-           "files": {p.name: sha(p) for p in (OFFERS, EMB, GRID, TYPES, OFFER_TYPES, CENTROIDS)}}
-    RESULT.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+           "files": {p.name: sha(p) for p in (OFFERS, EMB, out(GRID), out(TYPES), out(OFFER_TYPES), out(CENTROIDS))}}
+    out(RESULT).write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     REPORTS.mkdir(parents=True, exist_ok=True)
     show = types.drop(columns=["terms", "radius_75", "radius_95", "largest distance"]).round(4)
-    (REPORTS / "step2_types.md").write_text("\n".join([
-        "# Funnel step 2: programme types (generated)", "",
+    (REPORTS / f"step2_types{tag}.md").write_text("\n".join([
+        "# Funnel step 2: programme types (generated)" + (f" - DIAGNOSTIC, setting {setting} forced, not the rule's choice" if setting else ""), "",
         f"Code commit {stamp['commit']} (texts and vectors: {res['embed_commit']}), run on {stamp['date']}, tracked files clean: {stamp['clean']}.", "",
         f"- Offers: {len(d)}; full-time offers used for the fit: {int(ft.sum())}.",
         f"- Grid: {len(grid)} settings, UMAP seeds {u['seeds']}, {res['refits_per_setting']} refits per setting on {res['subsample']:.0%} subsamples (the seeds in turn).",
@@ -634,9 +641,12 @@ def run() -> None:
         "## Grid", "", md_table(grid.round(4)), "", "## Mix by focus items present", "", md_table(mix(d, "has_focus")), "",
         "## Mix by institution type", "", md_table(mix(d, "institution_type")), "",
         "## The old topic lists (counts only)", "", md_table(rec), "", "## Types", "", md_table(show)]) + "\n", encoding="utf-8")
-    (REPORTS / "step2_sample.md").write_text(sample_for_review(d), encoding="utf-8")
+    (REPORTS / f"step2_sample{tag}.md").write_text(sample_for_review(d), encoding="utf-8")
     print(json.dumps(res, indent=2, ensure_ascii=False), flush=True)
 
 
 if __name__ == "__main__":
-    {"scan": scan, "embed": embed, "run": run}[sys.argv[1]]()
+    if sys.argv[1] == "run" and len(sys.argv) == 4:
+        run((int(sys.argv[2]), sys.argv[3]))
+    else:
+        {"scan": scan, "embed": embed, "run": run}[sys.argv[1]]()
