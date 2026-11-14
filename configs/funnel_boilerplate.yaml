@@ -7,11 +7,11 @@
 # Strings are in the normalised form of text.normalise.
 
 scan:
-  code_commit: 76d8a27
+  code_commit: b94ea23
   date: 2026-11-14
-  distinct_strings: 25769
+  distinct_strings: 25758
   strings_in_20_or_more_offers: 317
-  strings_in_10_or_more_offers: 762
+  strings_in_10_or_more_offers: 764
 
 dropped:                       # of the 317 strings found in 20 or more offers
   - international
@@ -21,7 +21,6 @@ dropped:                       # of the 317 strings found in 20 or more offers
 
 stress_from_10:                # dropped in addition under the stress spec boilerplate_scan_from 10 (10 to 19 offers)
   - wissenschaftliches arbeiten
-  - methoden
   - methodenkompetenz
   - projektarbeit
   - fachwissenschaftliche vertiefung
