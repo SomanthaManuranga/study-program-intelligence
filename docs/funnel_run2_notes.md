@@ -150,7 +150,7 @@ cross-university calibration set (handbook downloads and about 160 to 200 pairs 
 
 **Rule.** `configs/funnel.yaml`, blocks `universe`, `text`, `similarity`, `discovery`; criteria in
 `docs/criteria_funnel_step2.md`, committed before the code. Code: `analysis/funnel_types.py` (scan, embed, run).
-Result files carry code commit 01c4047.
+Texts, vectors and types carry code commit 01c4047, the scan b94ea23, the diagnostics 3fdf469.
 
 **What was done.** One text per offer (title without degree words, focus items, subject labels), encoded, and the
 14,902 full-time offers grouped over a grid of 10 settings; a group counts as stable if it comes back on 80 % samples;
@@ -178,14 +178,15 @@ radius.
 **The quality bar (criterion G9) is not met.** An independent reader judged 30 types drawn at random, 10 titles each:
 are at least 8 of 10 the same kind of programme (same subject, same kind of qualification)?
 
-| Grouping | Types | Sample of all types | Sample of stable types |
+| Grouping | Types | Sample of all types | Second sample (stable types; for the labels, 30 other labels) |
 |---|---|---|---|
 | The rule's choice (50, eom) | 63 stable, 229 rare | 17 of 30 (57 %) | 14 of 30 (47 %) |
 | Diagnostic: 20, eom | 140 stable, 425 rare | 19 of 30 (63 %) | 20 of 30 (67 %) |
 | Diagnostic: 10, eom (finest of the grid) | 263 stable, 409 rare | 21 of 30 (70 %) | 21 of 30 (70 %) |
 | Diagnostic: the catalogue's own subject labels as types | 339 labels | 10 of 30 (33 %) | 13 of 30 (43 %) |
 
-The bar is 80 %. Each row was read by a different reader with the same instructions; the readers marked borderline
+The bar is 80 %. Each row was read by a different reader with the same question and bar (the first reader looked up
+three titles on the web; the later ones were told to judge from the titles only); the readers marked borderline
 cases, and no row reaches 80 % in the reader's own verdict (with every borderline case counted as a pass, the finest
 grouping reaches 80 % and 83 %, the 20/eom grouping 77 % and 83 %). The diagnostics are not results: they bypass the
 selection rule and only inform the decision below. Record: reports/funnel2/step2_reader_checks.md.
@@ -193,23 +194,23 @@ selection rule and only inform the decision below. Record: reports/funnel2/step2
 What the readers saw: the stable types of the rule's choice are broad fields that merge neighbouring subjects
 (Geographie with geophysics and urban planning, Politikwissenschaft with Soziologie, Physik with micro- and
 nanotechnology); teacher-training types merge school subjects; some types are held together by one word (health,
-culture, design). Teaching and non-teaching programmes are separated cleanly. Finer groupings are more coherent, but
+culture, AI, sustainable energy). Teaching and non-teaching programmes are separated cleanly. Finer groupings are more coherent, but
 still fail in about 3 of 10 types.
 
 **Two more weaknesses of the method, found by the reviews.**
 
 - **The choice of the setting is fragile.** 50/eom leads 30/eom by 1.4 points (203 offers). Three stable types sit
   just above the stability bar (0.752 to 0.753 on 10 refits); if two of them fell below it, 30/eom would win and
-  there would be 97 stable types instead of 63. The rule (highest share of offers in stable groups) favours large
-  groups.
+  there would be 97 stable types instead of 63. The two largest group sizes score highest here, but the order is not
+  monotone (10/eom is third).
 - **Mid-sized groups fall through.** The rare path keeps only groups smaller than the selected group size. 30 groups
   of 50 to 203 offers were therefore dropped (2,513 full-time offers; 898 of them end without any type), among them
   Architektur, Psychologie, Medieninformatik and a second Informatik group. The rule does not say what happens to
-  such a group; the code drops it.
+  such a group; the code drops it. These groups were never tested for stability.
 
 **What went wrong on the way.**
 
-- A first complete run (commit e578105) is void: 1,804 texts still carried the level marker in its long form
+- A first complete run (commit e578105) is void: 1,798 texts still carried the level marker in its long form
   ("grundständig außer Staatsexamen"), which the text check did not look for. That run had selected 20/eom with 145
   stable types; the choice of the setting therefore also depends on small changes of the text.
 - Review round 1 (3 blockers, 8 majors): the title cleaning deleted subject words after "Master of"; the rare-path
@@ -226,9 +227,11 @@ number of stable types and tests stable types only; stability uses 10 refits per
 turn, and UMAP is not refitted on the samples; a boilerplate string is dropped only as a whole focus item (1,779
 longer items contain one and stay); old lists are matched on titles.
 
-**Scorecard.** G1 pass. G2 not met as worded (the boilerplate part can only hold for whole items). G3 to G8 pass.
-**G9 fail (57 % against 80 %).** G10 pass. G11 open (the title fix is not yet in the result files; the handling of
-mid-sized groups is undecided). G12 checked by a fresh reviewer. G13 pass.
+**Scorecard.** G1 pass. G2 not met as worded (the boilerplate part can only hold for whole items). G3 pass, except
+that the sample file carries no commit line. G4 to G7 pass. G8 pass (two runs compared file by file; the comparison
+itself is not kept as a file). **G9 fail (57 % against 80 %).** G10 pass. G11 open (the title fix is not yet in the
+result files; the handling of mid-sized groups is undecided). G12: one check round, 12 wordings corrected, no wrong
+number in the notes. G13 pass (168 tests; the tests on generated files do not rebuild the titles).
 
 **Open for Soma.** The types are not good enough to carry the next steps as they are, and no setting of the
 pre-registered grid reaches the bar. Options:

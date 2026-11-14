@@ -110,8 +110,8 @@ vectors() is the one text preparation for module matching). It is flagged weak a
 universities; the matcher ranks well (true partner in the top 3 for 74 %) but no cut-off is reliable. Settled by Soma:
 no threshold decides in Step 7. A fresh-context reviewer marks every row from the three closest EMI modules by marking
 rules written first; Soma checks 10 rows per candidate and marks all rows of a candidate whose sample fails.
-Step 2 (analysis/funnel_types.py: scan, embed, run; rule files configs/funnel_boilerplate.yaml and
-funnel_title_stoplist.yaml): the pre-registered procedure gives 63 stable and 229 rare types, reproducibly, but the
+Step 2 (analysis/funnel_types.py: scan, embed, run; rule file configs/funnel_boilerplate.yaml; the Step 5 list
+configs/funnel_title_stoplist.yaml was committed with it): the pre-registered procedure gives 63 stable and 229 rare types, reproducibly, but the
 reader's check fails (17 of 30 types hold one kind of programme; bar 24). Finer settings do better (10/eom: 21 of 30)
 and the catalogue's own subject labels do worse (10 of 30); none reaches the bar. Also open: mid-sized left-over
 groups are dropped by the rare path, and the choice between settings is fragile. No type list is accepted; details
