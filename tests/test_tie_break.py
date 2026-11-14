@@ -65,21 +65,19 @@ def test_tie_break_competitors_match_the_competition_table():
 
 
 @needs("data/interim/tie_break.csv")
-def test_job_ads_come_from_the_latest_snapshot_and_missing_keywords_say_why():
+def test_job_ads_match_the_snapshot_they_name_and_missing_keywords_say_why():
+    """The baseline tie-break stays on the snapshot named in docs/evidence_tie_break.md until the freeze (CLAUDE.md), so
+    the count is checked against the snapshot of the date in its own row, not against the newest snapshot."""
     t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
     s = pd.DataFrame(json.loads((REPO / "docs" / "jobsuche_snapshots.json").read_text(encoding="utf-8")))
-    rob = s[(s["keyword_id"] == "robotik") & (s["date"] == s["date"].max()) & (s["region_id"] == "germany")]["total"].iloc[0]
-    got = t[(t["series"] == "robotik") & (t["region"] == "germany")]["value"].iloc[0]
-    assert int(got) == rob
-    # a keyword without any snapshot row says why; a keyword with rows carries its counts (the AR/VR keywords have
-    # counts since the 7 Nov snapshot)
+    total = s.set_index(["keyword_id", "region_id", "date"])["total"]
     jobs = t[t["signal"] == "job ads"]
-    counted = set(s["keyword_id"])
-    for series, values in jobs.groupby("series")["value"]:
-        if series in counted:
-            assert values.str.fullmatch(r"\d+").all()
-        else:
-            assert values.str.startswith("no data").all()
+    assert (jobs["series"] == "robotik").any()
+    for r in jobs.itertuples():
+        if r.value.startswith("no data"):
+            continue
+        date = r.metric.replace("ads ", "")
+        assert int(r.value) == total[(r.series, r.region, date)]
 
 
 def test_new_keywords_are_in_the_snapshot_config():

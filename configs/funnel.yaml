@@ -193,7 +193,7 @@ shortlist:
 feasibility_gate:              # Step 7
   emi_modules: a bachelor candidate is compared with EMI's bachelor modules, a master candidate with all EMI modules   # [C] run-1 code
   threshold: the value produced by calibrate() in analysis/feasibility.py (Step 41 procedure, best-match Youden on its topic reference pairs) on the EMI module set; the procedure and its pairs are not changed; the value is written here in Step 1, before Step 2 runs
-  covered_threshold: null
+  covered_threshold: 0.285   # written in Step 1 from calibrate(); true-positive rate 0.66, false-positive rate 0.14, AUC 0.762 on 80 positive and 88 negative reference modules; the same value as in the earlier feasibility report
   references:
     choice: among the unit's assigned full-time offers at universities of applied sciences other than OTH, the one nearest the type's centroid whose handbook can be fetched under robots.txt and is complete; next nearest, up to 5 tries per reference; universities only if no such offer exists   # 5 [C]
     two: a second reference from a different institution, chosen the same way
