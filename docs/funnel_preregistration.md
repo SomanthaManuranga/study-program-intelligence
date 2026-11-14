@@ -78,6 +78,7 @@ Rules written knowing a run-1 number (marked [K] in the yaml), with the directio
 | `references.electives` | "best covered first" raised overlap | Changed to the mean coverage of the electives, because the band now has an upper end; both extremes are reported. |
 | `references.two` | second references removed two run-1 passers | A second reference is required; this makes passing harder. |
 | `capture.scale.without` | 75 of 143 run-1 candidates used the silent default | Default kept at 1.0, now stated and flagged. |
+| `feasibility_gate.covered_threshold` | the former value 0.285 came from the baseline's cybersecurity and robotics references | Calibrated again on EMI's own handbooks only, with the procedure committed before the value was seen (0.463, flagged weak). The higher value makes the automatic match stricter for every candidate; 0.285 stays as a stress value. |
 | `one_programme.max` | run-1 gate tables held one-programme shares (not opened) | Set to the band's upper end of 0.80 after Soma's answer on the supervisor's meaning; this is easier to pass than the former 0.50, which stays as a stress value. |
 | Supply cut removed from the primary list | the cut by cluster membership was invalid | The supervisor's point 5 is the reason; the cut stays as a stress test on the corrected unit. |
 | `discovery.validation.old_lists` | full-time offers recover more old lists | Both offer sets are reported side by side; neither is called primary. |

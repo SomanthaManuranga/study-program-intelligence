@@ -192,8 +192,8 @@ shortlist:
 
 feasibility_gate:              # Step 7
   emi_modules: a bachelor candidate is compared with EMI's bachelor modules, a master candidate with all EMI modules   # [C] run-1 code
-  threshold: the value produced by calibrate() in analysis/feasibility.py (Step 41 procedure, best-match Youden on its topic reference pairs) on the EMI module set; the procedure and its pairs are not changed; the value is written here in Step 1, before Step 2 runs
-  covered_threshold: 0.285   # written in Step 1 from calibrate(); true-positive rate 0.66, false-positive rate 0.14, AUC 0.762 on 80 positive and 88 negative reference modules; the same value as in the earlier feasibility report
+  threshold: the value of the neutral calibration (analysis/funnel_modules.py, docs/criteria_funnel_step1b.md) on EMI's own handbooks only; module texts and vectors of Step 7 come from the same function (vectors)
+  covered_threshold: 0.463   # [K] written in Step 1b; WEAK: true-positive rate 0.57, false-positive rate 0.28, AUC 0.627 on 121 positive and 119 negative values, bootstrap interval 0.382 to 0.538; stress 0.285, the former value calibrated on the baseline's cybersecurity and robotics references
   references:
     choice: among the unit's assigned full-time offers at universities of applied sciences other than OTH, the one nearest the type's centroid whose handbook can be fetched under robots.txt and is complete; next nearest, up to 5 tries per reference; universities only if no such offer exists   # 5 [C]
     two: a second reference from a different institution, chosen the same way
@@ -274,6 +274,7 @@ stress_tests:
     overlap_band: [[0.40, 0.80], [0.50, 0.80], [0.30, 0.90]]
     overlap_reading: [lower end on all EMI modules and upper end on one programme, both ends on all EMI modules]   # second reading: a band passer has band min <= overlap <= band max on all EMI modules and a one-programme share <= one_programme_max
     one_programme_max: [0.80, 0.50, none]
+    matching_threshold: [0.463, 0.285]     # automatic overlaps only; hand verdicts are not changed by it
     existing_resources_N_cap: [none, 20 bachelor and 10 master, 10 bachelor and 5 master]   # ECTS, configs/feasibility.yaml
     references: [both inside, primary only]
     fit_value: [rising with overlap, flat from 0.40 upwards]

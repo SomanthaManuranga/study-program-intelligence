@@ -105,6 +105,9 @@ the supervisor: notebooks/funnel_progress.ipynb, one section added and executed 
 Step 1 added: first-years by subject for all 16 Laender (data/raw/destatis/21311-0015_<Land>.csv), the timetable table
 (transform/timetables.py -> data/interim/timetable_subjects.csv, labels only), analysis/funnel_inventory.py and
 funnel_common.py (universe(): the one offer list for all steps; run_stamp(): code is committed before a step runs).
+Step 1b: the matching threshold for Step 7 is 0.463, calibrated on EMI's own handbooks only (analysis/funnel_modules.py;
+vectors() is the one text preparation for module matching). It is flagged weak (AUC 0.627); a hand-labelled set by Soma is
+proposed to replace it before Step 3.
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via

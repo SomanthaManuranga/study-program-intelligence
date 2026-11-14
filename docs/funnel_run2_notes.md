@@ -80,3 +80,44 @@ rule and is replaced by what exists (3 documents and two anchors).
 **Strongest objection.** The catalogue is a single snapshot of 19 Oct 2026 and half of it has no content text.
 **Answer.** It is the only complete public catalogue; the date is stated, and the grouping in Step 2 reports its
 results separately for offers with and without focus items.
+
+## Step 1b: a matching threshold that does not come from the old candidates
+
+**Question.** The threshold of 0.285 for "EMI already teaches this module" was tuned on seven cybersecurity and
+robotics programmes, the candidates of the earlier analysis. What is the threshold if only EMI's own handbooks are
+used?
+
+**Rule.** Procedure and criteria in `docs/criteria_funnel_step1b.md`, committed before any value was computed. Run
+on 14 Nov 2026 with code commit d64fe10; the code ran once and the procedure was not changed afterwards.
+
+**Result.**
+
+| | |
+|---|---|
+| Source | `data/interim/modules_emi_2026.csv` only: 447 modules in 13 handbook files |
+| Same-title pairs across different handbooks | 190, of which 74 are copied texts and left out |
+| Anchor modules | 121 (2 have only generic words in the title and get no negative value) |
+| Values | 121 positive (median 0.476), 119 negative (median 0.376) |
+| **Threshold** | **0.463** (bootstrap interval 0.382 to 0.538) |
+| Quality | true-positive rate 0.57, false-positive rate 0.28, AUC 0.627: **weak** (below the bar of 0.70) |
+| The former 0.285 on this set | true-positive rate 0.83, false-positive rate 0.82 |
+
+**What it means.**
+
+- The new value is in the rules (`feasibility_gate.covered_threshold: 0.463`), flagged weak; 0.285 stays as a stress
+  value (`stress_tests.downstream_factorial.matching_threshold`). The bias towards the old candidates is gone.
+- The automatic match is a weak instrument. On this set it separates true from wrong matches only a little better
+  than chance. At the former 0.285 almost every module finds "a match" (false-positive rate 0.82 on this set).
+- A look at the extremes after the run (no change to the procedure) shows why the set is not clean. Among the 14
+  highest "wrong" matches are thesis, seminar and elective placeholder modules (for example "Bachelorarbeit" against
+  "Masterarbeit", 0.83) and real synonyms ("Websysteme" against "Web-Client-Technologien", 0.82). Some true
+  matches score near 0 because two handbooks describe one title with unrelated texts. So part of the weakness is
+  the test set, not the matcher: the wrong matches were chosen by title words, without a human judgement.
+- Consequence for Step 7: the automatic overlap only proposes; the hand check decides. The automatic step still
+  decides which candidates reach the hand check, so its weakness matters there.
+
+**Open for Soma.** A clean threshold needs human labels: a sample of EMI module pairs, thesis and placeholder
+modules excluded, marked "same topic: yes or no" without seeing the similarity. That would replace 0.463 before
+Step 3. It costs about an hour of Soma's time.
+
+**No programme stays or goes in this step.**
