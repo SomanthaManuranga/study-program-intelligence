@@ -8,7 +8,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Scope (binding; confirmed by the supervisor)
 1. **Existing resources only:** the new programme must be feasible with EMI's existing staff and labs (no new
-   professorships, no new labs). The pre-registered test is in docs/rescope_plan.md (once approved).
+   professorships, no new labs). The supervisor's own measure: 40-80 % of the new programme should overlap with
+   existing lectures (more = relabelled programme, less = too many resources); a whole new degree, not extra modules.
+   He gave no minimum cohort. Earlier test: docs/rescope_plan.md; funnel test: configs/funnel.yaml.
 2. Competition and trends: Germany-wide. Student numbers: Bavaria and the OTH catchment.
 3. Bachelor and master both allowed.
 4. Target group: German AND international students.
@@ -88,6 +90,17 @@ result, summary, Q&A and dashboard still show the baseline and are rewritten bef
 changes go through a pull request with one approval and the tests check.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
+
+Funnel redo (branch soma/funnel): the programme must come out of the data, not from hand-picked candidates. Run 1 is
+not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml, docs/funnel_preregistration.md
+(supervisor's input, run-1 fixes, what was known beforehand). One step at a time, each with Soma's OK and a short
+plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
+the end. Steps: 0 rules (done), 1 data inventory, 2 programme types, 3 screen and competition by content similarity,
+4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
+8 ranking, stress tests, decision. Next: Step 1, after Soma's OK. The supervisor's timetable PDFs are internal: they
+stay outside the repository and lecturers appear only as neutral labels. Open questions for the supervisor: is new
+teaching beyond existing staff acceptable inside the band; does the 80 % end mean all of EMI or one programme.
+Known failing test: tests/test_tie_break.py (the tie-break table predates the 7 Nov job-ad snapshot).
 
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via
