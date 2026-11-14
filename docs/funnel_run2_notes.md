@@ -13,55 +13,67 @@ answers and a fix for each problem of run 1 (`docs/funnel_preregistration.md`). 
 **Question.** Does every rule have the data it needs, how old is it, and what is missing?
 
 **Rule.** Data table in `docs/funnel_preregistration.md`; criteria in `docs/criteria_funnel_step1.md`. Inventory run
-on 14 Nov 2026 with code commit 9544d62 on a clean working tree.
+on 14 Nov 2026 with code commit 678af4d; tracked files were clean.
 
-**What is there.**
+**What is there** (one row per line of the pre-registered data table).
 
 | Source | Size | Period or date | Gaps |
 |---|---|---|---|
-| Study catalogue | 22,093 offers; 19,872 bachelor and master offers in Germany after merging variants (9,703 bachelor, 10,169 master), 14,902 of them full-time, at 404 institutions | retrieved 19 Oct 2026 | 10,183 offers have only the phrase "Inhalte bitte bei der Hochschule erfragen" as content; focus items exist for 48 %; no language-of-instruction field; 1 offer without a Land |
-| Subject labels to Destatis codes | 396 labels in use, all with a code | - | none |
-| EMI modules | 447 modules (333 bachelor, 114 master) from 14 handbook sets; 46 OTH offers in the catalogue; 23 labs listed | handbooks retrieved 19 Oct 2026 | 38 modules without ECTS |
+| Study catalogue | 22,093 offers; 19,872 bachelor and master offers in Germany after merging variants (9,703 bachelor, 10,169 master), 14,902 of them full-time, at 404 institutions; 90 study fields; 396 subject labels, all with a Destatis code | retrieved 19 Oct 2026 | 10,184 offers carry the phrase "Inhalte bitte bei der Hochschule erfragen"; 10,139 have no content left once the phrase and the university's note are dropped; focus items exist for 48 %; 1 offer without a Land |
+| EMI modules and OTH offers | 447 module rows (293 distinct titles; 333 bachelor, 114 master rows) from 14 handbook sets; 46 OTH offers in the catalogue; 23 labs listed | handbooks retrieved 19 Oct 2026 | 38 modules without ECTS; 1 of 15 EMI programmes has no handbook set (Ingenieurpaedagogik, which is phasing out) |
 | First-years and graduates by subject, Bavaria and Germany | 4 tables, 297 subjects each | 2005-2025, retrieved 14 Oct 2026 | none |
 | First-years by subject, other Laender | 15 of 15 Laender, 297 subjects each | 2018-2025, retrieved 14 Nov 2026 | none |
-| Job ads | 3 snapshots: 48, 48 and 92 counts, 23 old keywords | 15 Oct, 17 Oct, 7 Nov 2026 | the new keywords have no history; they are counted on one day in Step 5 |
+| Job ads | 3 snapshots: 48 counts for 12 keywords on 15 Oct and on 17 Oct, 92 counts for 23 keywords on 7 Nov 2026 | day counts | the keywords of Step 5 are new and have no history; they are counted on one day |
+| Language of instruction per offer | no such field in the catalogue | - | German and English keywords cannot be paired by rule (`labour.english`) |
 | School leavers by county | 96 counties | 2014-2024 | 2019 is missing |
 | Students by campus (master origins) | 17 campuses, 83,481 students | winter 2024/25 | none |
-| Published first-year numbers of single programmes | 3 documents from 2 universities | 2024, 2025 | one subject only |
-| Reference handbooks | 27 files left from run 1, not opened | - | collected again in Step 7 |
-| EMI timetables (internal) | 80 group plans (40 per semester), 1,028 timetable entries, 314 subject names, 98 lecturers as labels | summer 2026, winter 2026/27 | no ECTS, no hours, no student numbers |
+| Published first-year numbers of single programmes (level check) | 3 documents from 2 universities; with the two baseline anchors, one row per programme gives 4 rows | 2024, winter 2024/25, winter 2025/26 | one subject only |
+| Reference handbooks of other universities | 27 files left from run 1, counted and not opened | - | collected again in Step 7 |
+| EMI timetables (internal) | 80 group plans (40 per semester), 1,028 timetable entries (494 distinct sessions, because a session shared by several groups appears once per group), 314 subject names, 98 lecturers as labels | summer 2026 (plan printed 20 Jan 2026), winter 2026/27 (printed 22 Sep 2026) | no ECTS, no hours, no student numbers; 46 room lists are cut off in the PDF |
+| Published first-year numbers of similar programmes outside the south | not collected yet | - | looked for after the gate list is fixed, for the gate candidates only |
 
 **New in this step.**
 
 - First-years by subject were downloaded for the 15 Laender other than Bavaria (Destatis table 21311-0015, official
-  API, 2 s delay). Each file was checked to hold its own Land. This makes the north/south check possible at the
-  level of subjects.
+  API, 2 s delay). The inventory checks that each file holds only its own Land and covers 2019-2024. This makes
+  the north/south check possible at the level of subjects.
 - The two timetable PDFs were read into one table: per group and day, the subject, the lecturer as a neutral label
   and the room. 160 of 160 pages were read and no text of a weekly grid was left over. 19 subjects are listed for a
   group without a weekly slot (block courses or dates by arrangement); they are kept without a lecturer. Four pages
-  were compared by eye with the PDFs: 59 of 59 cells match. The PDFs, the name-to-label table and the spot-check
-  sheet stay in `data/raw/oth_internal/`, outside the repository.
+  were compared by eye with the PDFs: 59 of 59 cells match; a second, independent reading of all 80 grid pages with
+  another PDF library gave the same 1,028 cells. The PDFs, the name-to-label table, the salt that sets the label
+  order and the spot-check sheet stay in `data/raw/oth_internal/`, outside the repository. Two lecturers with the
+  same surname would share one label; the PDFs do not allow telling them apart.
+- The offer list is now built by one function for all steps: of several variants of an offer the full-time one is
+  kept, then the one with the lowest programme id, so the list does not depend on the order of the file.
 - The matching threshold for Step 7 is fixed at 0.285 (`feasibility_gate.covered_threshold`). The existing
   calibration procedure gives exactly the value of the earlier feasibility report. Its quality is moderate
-  (true-positive rate 0.66, false-positive rate 0.14, AUC 0.762, on 80 positive and 88 negative reference modules),
-  which is why every match in Step 7 is checked by hand.
-- The test that failed in Step 0 is repaired. It compared the baseline tie-break table with the newest job-ad
-  snapshot, but the baseline stays on its own snapshot (17 Oct) until the freeze. The test now checks every count
-  against the snapshot of the date named in its row. The baseline table and `docs/evidence_tie_break.md` are
-  unchanged. All 124 tests pass.
+  (true-positive rate 0.66, false-positive rate 0.14, AUC 0.762, on 80 positive and 88 negative reference modules).
+  The reference modules come from the 7 cybersecurity and robotics programmes of the baseline, so the threshold is
+  tuned on two subject areas only. For both reasons every match in Step 7 is checked by hand.
+- The test that failed in Step 0 is repaired. `analysis/tie_break.py` always took the newest job-ad snapshot, while
+  `docs/evidence_tie_break.md` stays on the 17 Oct snapshot until the freeze. The snapshot is now pinned in the code
+  (`SNAPSHOT_UNTIL`, to be moved at the freeze together with `JOB_SNAPSHOT`), and the test checks that every count
+  comes from the newest snapshot up to that date. The regenerated table shows the 17 Oct counts that the evidence
+  document states (945 / 289 / 162 / 58 for "Robotik"). All 125 tests pass.
 
 **What this means for the next steps.**
 
-- Step 2: about half of the offers (10,183) have no content beyond a boilerplate sentence. After that sentence is
-  removed they are grouped by title and subject labels only. The two rule files Step 2 needs
-  (`configs/funnel_boilerplate.yaml`, `configs/funnel_title_stoplist.yaml`) do not exist yet and are written first.
-- Step 5: the catalogue has no language field, so German and English keywords cannot be paired by rule
-  (`labour.english`); this is a stated limit.
-- Step 7: 252 of 447 EMI module titles appear word for word among the timetable subjects. This is a first look
-  only; Step 7 matches by content and by hand.
+- Step 2: about half of the offers (10,139) have no content text once the boilerplate is removed. They are grouped
+  by title and subject labels only. The two rule files Step 2 needs (`configs/funnel_boilerplate.yaml`,
+  `configs/funnel_title_stoplist.yaml`) do not exist yet and are written first.
+- Step 5: the catalogue has no language field, so German and English keywords cannot be paired by rule; this is a
+  stated limit.
+- Step 7: by title, 252 of 447 EMI module rows are found among the timetable subjects after the titles are
+  normalised (175 letter for letter); that is 169 of 293 distinct titles. This is a first look only; Step 7
+  matches by content and by hand. The timetables give no hours, so they show who teaches a topic, not who has time.
 - All 18 old topic lists are available for the validation in Step 2.
 
 **No programme stays or goes in this step.** Nothing was grouped or scored.
+
+**How it was built.** The timetable reader was developed on the PDFs and then committed; the tables above come from
+runs of the committed code. A fresh-context check recomputed the numbers; its findings (two wrongly worded numbers,
+one missing inventory row, the unpinned baseline snapshot) are corrected here.
 
 **Strongest objection.** The catalogue is a single snapshot of 19 Oct 2026 and half of it has no content text.
 **Answer.** It is the only complete public catalogue; the date is stated, and the grouping in Step 2 reports its
