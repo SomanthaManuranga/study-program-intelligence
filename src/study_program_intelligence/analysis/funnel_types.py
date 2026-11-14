@@ -51,7 +51,7 @@ ABBREVS = re.compile(r"(?<![\w.])(?:(?:B|M)\.\s?(?:Sc|A|Eng|Ed|Mus|F\.?A)\.?|L\.
 UPPER_ABBREVS = re.compile(r"(?<![\w.-])(?:BA|MA|BBA|LLM|LLB|MEng|BEng)(?![\w-])")     # as written only: "ma" and "ba" are no degrees
 DEGREE_TOKEN = re.compile(r"[\w-]*(?:bachelor|master)[\w-]*(?:\s+(?:of|in)\b)?", re.I)
 ORGANISATION_PARTS = {"ein", "zwei", "fach", "faecher", "hauptfaecher", "doppel", "doppelfach", "mono", "kombi", "q"}
-DEGREE_BRACKET = re.compile(r"\((?:\s*(?:&|/|,|;|-|\.|und|and|eng\.?))*\s*\)", re.I)       # what is left of "(MBA & Eng.)" or "(B.A.)"
+DEGREE_BRACKET = re.compile(r"\((?:\s*(?:\x00|&|/|,|;|-|\.|und|and|eng\.?))*\s*\)", re.I)       # what is left of "(MBA & Eng.)" or "(B.A.)"
 LEVEL_MARKER = re.compile(r"\s*\((?:grundständig|weiterführend)[^)]*\)", re.I)          # also "(grundständig außer Staatsexamen)"
 STOPWORDS = sorted(set("""und der die das des den dem für fur von mit im in an am auf zu zur zum sowie oder als bei nach aus ein eine einer
     of and the for on with to studiengang studium hochschule universität fachhochschule university""".split()))
@@ -144,31 +144,41 @@ def focus_items(content, drop: tuple[str, ...] = ()) -> list[str]:
     return [x for x in items if re.search(r"\w", x) and normalise(x) not in drop]
 
 
+MARK = "\x00"     # stands where a degree word was removed, until the title is tidied
+
+
 def _degree_token(m: re.Match) -> str:
     """Of a token such as "Zwei-Fach-Bachelor" or "Arp-Schnitger-Master" only the parts that name no degree stay."""
     word = m.group(0).split()[0]
     keep = [p for p in word.split("-") if p and not re.search("bachelor|master", p, re.I) and normalise(p) not in ORGANISATION_PARTS and not p.isdigit()]
-    return " " + "-".join(keep) + " "
+    return f" {'-'.join(keep)} {MARK} "
 
 
 def _tidy(t: str) -> str:
+    """Brackets emptied by the removal go. A piece that only repeats the start of an earlier piece goes too, but only
+    across a removed degree word ("<name> Master of <name>"); a word repeated inside the name stays."""
     t = DEGREE_BRACKET.sub(" ", t)
-    t = re.sub(r"\(\s+", "(", re.sub(r"\s+\)", ")", t))
-    words = re.sub(r"\s+", " ", t).strip(" -,;/&").split(" ")
-    for k in range(len(words) // 2, 0, -1):          # "<name> Master of <name>" leaves the name twice
-        if [w.lower() for w in words[:k]] == [w.lower() for w in words[-k:]]:
-            words = words[:-k]
-            break
-    return re.sub(r"^(?:in|of)\s+|\s+(?:in|of)$", "", " ".join(words), flags=re.I).strip(" -,;/&")
+    kept: list[str] = []
+    for piece in t.split(MARK):
+        piece = re.sub(r"\s+", " ", piece).strip()
+        words = piece.lower().strip(" -,;/&:").split()
+        if not words or any(k.lower().strip(" -,;/&:").split()[:len(words)] == words for k in kept):
+            continue
+        kept.append(piece)
+    t = re.sub(r"\(\s+", "(", re.sub(r"\s+\)", ")", " ".join(kept)))
+    t = re.sub(r"\(\s*\)", " ", t)
+    t = re.sub(r"\s+", " ", t).strip(" -,;/&:")
+    return re.sub(r"^(?:in|of)\s+|\s+(?:in|of)$", "", t, flags=re.I).strip(" -,;/&:")
 
 
 def clean_title(title: str) -> str:
     """The title without degree words (rule text.fields). Standard degrees ("Master of Science", "B.A.", "MBA") go as a
     whole. Of any other "Master of <name>" only the words Master and of go, because the name is the subject
     ("Master of Landscape Architecture"). If nothing but a standard degree is there, its name is the title ("Laws")."""
-    t = LEVEL_MARKER.sub(" ", str(title))
-    strip = lambda x: _tidy(DEGREE_TOKEN.sub(_degree_token, UPPER_ABBREVS.sub(" ", ABBREVS.sub(" ", x))))
-    out = strip(STANDARD.sub(" ", t))
+    t = LEVEL_MARKER.sub(" ", str(title)).replace(MARK, " ")
+    mark = f" {MARK} "
+    strip = lambda x: _tidy(DEGREE_TOKEN.sub(_degree_token, UPPER_ABBREVS.sub(mark, ABBREVS.sub(mark, x))))
+    out = strip(STANDARD.sub(mark, t))
     if re.search(r"[^\W\d_]{2}", re.sub(r"\([^)]*\)", " ", out)):
         return out
     return strip(t)

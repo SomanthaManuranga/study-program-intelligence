@@ -46,6 +46,10 @@ def test_the_four_dropped_phrases_are_read_from_the_rules():
     ("Master in Management Master of Science in Management", "Management"),
     ("Arp-Schnitger-Master Orgel Master of Music", "Arp-Schnitger Orgel"),
     ("Informatik Bachelor of Science (grundständig)", "Informatik"),
+    ("Informatik - Technische Informatik Bachelor", "Informatik - Technische Informatik"),                              # a word repeated inside the name stays
+    ("Psychologie mit Schwerpunkt Forensische Psychologie Master", "Psychologie mit Schwerpunkt Forensische Psychologie"),
+    ("Compliance Master of Laws Compliance", "Compliance"),
+    ("Bachelor of Music: Hauptfach Klavier", "Hauptfach Klavier"),
 ])
 def test_title_loses_degree_words_only(raw, clean):
     assert T.clean_title(raw) == clean
