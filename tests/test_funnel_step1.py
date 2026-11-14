@@ -105,4 +105,4 @@ def test_inventory_covers_the_laender_and_fixes_the_threshold():
     assert inv["timetables"]["names_in_table"] == 0
     thr = inv["threshold"]
     assert thr["earlier_report_value"] is None or abs(thr["value"] - thr["earlier_report_value"]) < 0.0005
-    assert rules()["feasibility_gate"]["covered_threshold"] == thr["value"]
+    assert thr["value"] == 0.285            # the former value (baseline references); replaced in Step 1b, kept as a stress value
