@@ -235,7 +235,9 @@ lists are matched on titles.
 **Scorecard.** G1 pass. G2 not met as worded (the boilerplate part can only hold for whole items; the rule's wording
 was made exact). G3 pass, except that the sample file carries no commit line. G4 to G8 pass. **G9 not passed (22 of
 30; bar 24).** G10 pass. G11: no open blocker or major; 11 minor points of the last review are not changed in the
-code. G12: one check round on these notes. G13 pass (170 tests). R1 pass. R3, R4, R5 pass (tests recompute the
+code. G12: one check round on these notes (2 wrong statements and 3 misleading wordings corrected, no wrong number).
+G13 pass (170 tests). R1 pass (rules 5101371 before code 92da989 before the run; the selection rule's wording was
+completed after the run to name the third limit, with no effect on the selection). R3, R4, R5 pass (tests recompute the
 selection, the left-over groups and all texts; 0 groups dropped, 0 texts differ). R6 measured as above.
 
 **No programme stays or goes in this step.** By Soma's decision the types go to Step 3 with the coherence check on

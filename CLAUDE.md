@@ -111,8 +111,9 @@ universities; the matcher ranks well (true partner in the top 3 for 74 %) but no
 no threshold decides in Step 7. A fresh-context reviewer marks every row from the three closest EMI modules by marking
 rules written first; Soma checks 10 rows per candidate and marks all rows of a candidate whose sample fails.
 Step 2 (analysis/funnel_types.py: scan, embed, run; rule file configs/funnel_boilerplate.yaml; the Step 5 list
-configs/funnel_title_stoplist.yaml was committed with it): the pre-registered rule gave 63 broad stable types that
-failed the reader's check (17 of 30 types hold one kind of programme; bar 24). Soma changed three rules: the finest
+configs/funnel_title_stoplist.yaml was committed with the Step 2 code): the pre-registered rule gave 63 stable and 229
+rare types that failed the reader's check (17 of 30 types hold one kind of programme, stable types alone 14 of 30;
+bar 24). Soma changed three rules: the finest
 setting of the grid is used, left-over groups too large for the rare path are kept as mid-sized types, and Step 3
 reads every type that survives the screen (`screen.type_coherence`; a mixed type is flagged and takes no gate slot
 without a full reading). Redo: 824 types (233 stable, 130 mid-sized, 461 rare; mid-sized and rare are flagged as not
