@@ -186,8 +186,9 @@ are at least 8 of 10 the same kind of programme (same subject, same kind of qual
 | Diagnostic: the catalogue's own subject labels as types | 339 labels | 10 of 30 (33 %) | 13 of 30 (43 %) |
 
 The bar is 80 %. Each row was read by a different reader with the same instructions; the readers marked borderline
-cases, and no row reaches 80 % in the reader's own verdict (the most lenient reading of the finest grouping gives 80 %
-and 83 %). The diagnostics are not results: they bypass the selection rule and only inform the decision below.
+cases, and no row reaches 80 % in the reader's own verdict (with every borderline case counted as a pass, the finest
+grouping reaches 80 % and 83 %, the 20/eom grouping 77 % and 83 %). The diagnostics are not results: they bypass the
+selection rule and only inform the decision below. Record: reports/funnel2/step2_reader_checks.md.
 
 What the readers saw: the stable types of the rule's choice are broad fields that merge neighbouring subjects
 (Geographie with geophysics and urban planning, Politikwissenschaft with Soziologie, Physik with micro- and
