@@ -71,8 +71,15 @@ def test_job_ads_come_from_the_latest_snapshot_and_missing_keywords_say_why():
     rob = s[(s["keyword_id"] == "robotik") & (s["date"] == s["date"].max()) & (s["region_id"] == "germany")]["total"].iloc[0]
     got = t[(t["series"] == "robotik") & (t["region"] == "germany")]["value"].iloc[0]
     assert int(got) == rob
-    missing = t[(t["signal"] == "job ads") & (t["candidate"] == "arvr")]["value"]
-    assert missing.str.startswith("no data").all()
+    # a keyword without any snapshot row says why; a keyword with rows carries its counts (the AR/VR keywords have
+    # counts since the 7 Nov snapshot)
+    jobs = t[t["signal"] == "job ads"]
+    counted = set(s["keyword_id"])
+    for series, values in jobs.groupby("series")["value"]:
+        if series in counted:
+            assert values.str.fullmatch(r"\d+").all()
+        else:
+            assert values.str.startswith("no data").all()
 
 
 def test_new_keywords_are_in_the_snapshot_config():
