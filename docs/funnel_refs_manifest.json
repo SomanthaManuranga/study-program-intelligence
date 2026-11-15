@@ -1,0 +1,1320 @@
+[
+ {
+  "id": "312_bachelor_a_page1",
+  "url": "https://www.hof-university.de/studium/studienangebot/bachelor/informatik-bsc/",
+  "asked_utc": "2026-11-15T18:24:27+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "256_bachelor_a_page1",
+  "url": "https://www.th-luebeck.de/studium/studienangebot/studiengaenge/stadtplanung-bsc/studienverlauf",
+  "asked_utc": "2026-11-15T18:24:28+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/256_bachelor_a_page1.html",
+  "bytes": 88268,
+  "sha256": "4441cb8db26acff5c7631b1781505da9ef087c37df0fbc4304223951d2fc9a44",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "312_master_a_handbook",
+  "url": "https://www.th-bingen.de/fileadmin/studium/master/informatik-computer-science/MHB_M-IN_SS26_V39.pdf",
+  "asked_utc": "2026-11-15T18:24:28+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "300_master_a_handbook",
+  "url": "https://www.htwk-leipzig.de/fileadmin/portal/htwk/studieren/1_unsere_studiengaenge/3_studien_pruefungsordnungen/FB_2025/2025-07-15_SPO_BIM_RK_Onlinefassung-red._Ber._Modulhandbuch.pdf",
+  "asked_utc": "2026-11-15T18:24:29+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/300_master_a_handbook.pdf",
+  "bytes": 1018624,
+  "sha256": "dcdd1aa37b3a83b3ac08d628a4d339751e8ee2533e472613f41377e48aa3e028",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "425_master_a_page1",
+  "url": "https://www.fom.de/de/hochschulbereiche/it-management/ki-and-business-analytics-ma.html",
+  "asked_utc": "2026-11-15T18:24:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/425_master_a_page1.html",
+  "bytes": 314042,
+  "sha256": "0726ff42224656de425fe8c6da1f26febb2bd76d22208d7bdafe977074433fa5",
+  "content_type": "text/html;charset=utf-8"
+ },
+ {
+  "id": "312_bachelor_b_page1",
+  "url": "https://www.oth-regensburg.de/studiengang/international-computer-science-studieren-bachelor",
+  "asked_utc": "2026-11-15T18:24:36+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_b_page1.html",
+  "bytes": 142217,
+  "sha256": "b5173feb2f6b9ca94ee400c5acdac9ceb68ee2511c2328d9d358c84dc28c1caf",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "312_master_a_page1",
+  "url": "https://www.th-bingen.de/studium/master/informatik-computer-science",
+  "asked_utc": "2026-11-15T18:24:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_master_a_page1.html",
+  "bytes": 424611,
+  "sha256": "b6487984ebf5369180a1116c6a91bdf097a4f1f23cf029a3553b9fc16fc38ae2",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "256_bachelor_a_handbook",
+  "url": "https://pubdoc.th-luebeck.de/402c7a9c66",
+  "asked_utc": "2026-11-15T18:24:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/256_bachelor_a_handbook.pdf",
+  "bytes": 234174,
+  "sha256": "c4ddfb90c3af9cbcb0056f1e8e8cd5a9655b6c908bd568792b3e3f4ee59454e1",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_page1",
+  "url": "https://module.informatik.th-mannheim.de/CSB",
+  "asked_utc": "2026-11-15T18:24:54+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_page1.html",
+  "bytes": 109064,
+  "sha256": "e182b2cd8c2fc67a0fa5a5910506a34d323d0b6fb9e0928dccb5c067434bbe8f",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "312_master_a_handbook",
+  "url": "https://www.th-bingen.de/fileadmin/studium/master/informatik-computer-science/MHB_M-IN_WS26_V45.pdf",
+  "asked_utc": "2026-11-15T18:24:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_master_a_handbook.pdf",
+  "bytes": 258713,
+  "sha256": "f9a1d2e610dd8b6f24eeffd427630e3fddc174dd0a0c7b3abb0d2ef4dc063395",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "312_bachelor_a_page2",
+  "url": "https://www.hof-university.de/studium/studiengaenge-und-weiterbildungs-programme/computer-science-bsc.html",
+  "asked_utc": "2026-11-15T18:25:03+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_a_page2.html",
+  "bytes": 83013,
+  "sha256": "3556eabb289758ab2feeef45da6b3cc9bad78dc56c6310fc7bfed93231a6b7e0",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "312_bachelor_b_handbook",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/international_computer_science/Module_Handbook_ICS.pdf",
+  "asked_utc": "2026-11-15T18:25:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_b_handbook.pdf",
+  "bytes": 1262443,
+  "sha256": "055a760633573b210228337636b63b42735c61233b1bb3c16589a08fea88cbbb",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "312_bachelor_b_curriculum",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/international_computer_science/Curriculum_ICS.pdf",
+  "asked_utc": "2026-11-15T18:25:20+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_b_curriculum.pdf",
+  "bytes": 261663,
+  "sha256": "bf05adafdb4756a506011af08aeed57d7dcad914ede5552cead402b34091202c",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "312_bachelor_b_electives",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/international_computer_science/Vertiefungsmodulkatalog_ICS.pdf",
+  "asked_utc": "2026-11-15T18:25:28+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_b_electives.pdf",
+  "bytes": 84190,
+  "sha256": "44f7351b206e5581c60ff57433965e897d0209d61de74ee04bd1368ad9b4014e",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "312_bachelor_a_modules1",
+  "url": "https://module.hof-university.de/",
+  "asked_utc": "2026-11-15T19:03:48+00:00",
+  "status": "skipped_robots"
+ },
+ {
+  "id": "312_bachelor_a_index",
+  "url": "https://www.hof-university.de/fileadmin/user_upload/modulhandbuecher/",
+  "asked_utc": "2026-11-15T19:04:20+00:00",
+  "status": "error",
+  "error": "HTTP 403"
+ },
+ {
+  "id": "223_bachelor_a_page2",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=288&studiengang=CSB&lang=DE&hotlink=false",
+  "asked_utc": "2026-11-15T19:04:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_page2.html",
+  "bytes": 9787,
+  "sha256": "1d17fab3b41c418b70729f79dd7096ce69009d6073a01e75ea9dcad0f5eb7a2a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "312_bachelor_a_page3",
+  "url": "https://www.hof-university.de/studium/informationen/modulhandbuch.html",
+  "asked_utc": "2026-11-15T19:04:46+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_a_page3.html",
+  "bytes": 4030,
+  "sha256": "2a15cd6ee38fd2bcd41f2b0c018ce61cd76ac18849e6f0c0c8a7db2b21c81146",
+  "content_type": "text/html"
+ },
+ {
+  "id": "312_bachelor_a_generator",
+  "url": "https://studiengangsgenerator2.hof-university.de/en/degrees/8/11",
+  "asked_utc": "2026-11-15T19:05:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_bachelor_a_generator.html",
+  "bytes": 129435,
+  "sha256": "49c47255bd4b4e178605029735f20970d85dda322f68b13f768d1059205bf286",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "312_master_b_handbook",
+  "url": "https://www.hs-schmalkalden.de/fileadmin/portal/Dokumente/Fakult%C3%A4t_Inf/Studium/MaACS/MaACS_MD_250318_de.pdf",
+  "asked_utc": "2026-11-15T19:05:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_master_b_handbook.pdf",
+  "bytes": 277593,
+  "sha256": "ed0920a23005435f4e2cccfbe47ca3318081a93d612897234305dcc2fed32b12",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_b_handbook",
+  "url": "https://www.th-deg.de/Studierende/Antraege-und-Organisatorisches/Modulhandbuecher/modulhandbuch_cy_bachelor_2024.pdf",
+  "asked_utc": "2026-11-15T19:05:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_b_handbook.pdf",
+  "bytes": 399452,
+  "sha256": "a9dc199258b7c1dcb7d8d7453517395c4e6e4afae48e684597befb9695896f81",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "312_master_b_so",
+  "url": "https://www.hs-schmalkalden.de/fileadmin/portal/Dokumente/Fakult%C3%A4t_Inf/Studium/MaACS/MaACS_SO_250318_en.pdf",
+  "asked_utc": "2026-11-15T19:05:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/312_master_b_so.pdf",
+  "bytes": 199667,
+  "sha256": "ef6f7db2da242a72d6c22afb4c23a5ca23bd43b6c0e6674d64f24d60c462a92a",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "300_master_b_handbook",
+  "url": "https://www.hochschule-biberach.de/sites/default/files/medien/dokumente/Master%20B%20Modulhandbuch%202026-02-26.pdf",
+  "asked_utc": "2026-11-15T19:05:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/300_master_b_handbook.pdf",
+  "bytes": 1132065,
+  "sha256": "5d7060ae4402419cecfd4b1b0a7bfa6a3f91f2a9010f5110f7b51f3a77cd15dd",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "736_master_a_page1",
+  "url": "https://moduldb.htwsaar.de/cgi-bin/moduldb-b?bkeys=dfmees&lang=de",
+  "asked_utc": "2026-11-15T19:05:45+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_a_page1.html",
+  "bytes": 13586,
+  "sha256": "cb9b4feb98b8898675be73276bbd348b4cd22a8d626c1a071bb923e3f6bd0193",
+  "content_type": "text/html; charset=iso-8859-1"
+ },
+ {
+  "id": "736_master_a_handbook",
+  "url": "https://moduldb.htwsaar.de/moduldb/pdf/modulbook_dfmees_de.pdf",
+  "asked_utc": "2026-11-15T19:05:55+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_a_handbook.pdf",
+  "bytes": 410676,
+  "sha256": "19886ff0d4053d4a68516e800602ebc76a993335b1f76e81b5085e9dd5728732",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod288",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=288&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:07:49+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod288.html",
+  "bytes": 9787,
+  "sha256": "1d17fab3b41c418b70729f79dd7096ce69009d6073a01e75ea9dcad0f5eb7a2a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod1",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=1&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod1.html",
+  "bytes": 10044,
+  "sha256": "8b5f968b1339d842b509769891bbfe69fe3a14a10d3df0cb3df33b972e6fc8d0",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod197",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=197&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod197.html",
+  "bytes": 9838,
+  "sha256": "1b8cf7d1a41962a03da50129aa00877516aa285e930dc580f50b7ab11c039544",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod5",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=5&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod5.html",
+  "bytes": 9976,
+  "sha256": "f7aa729a34c84af7b227ebe270ece89cf61ff8eb4ec7eccdc4e0ebeaa92d6e7e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "662_master_a_page1",
+  "url": "https://www.mediadesign.de/en/master/design-management-ma",
+  "asked_utc": "2026-11-15T19:08:25+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_a_page1.html",
+  "bytes": 139280,
+  "sha256": "eb957750472fac515cde6fc6ee71e8842f41c10ae8b6c252dc4fcbe9bb4527b3",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod4",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=4&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:32+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod4.html",
+  "bytes": 10973,
+  "sha256": "eab2d620555455c2226fe20f0ab3621e067b261afc6112f7e3ebbe0ddf57942e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod196",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=196&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod196.html",
+  "bytes": 9529,
+  "sha256": "111472ac725d66b23fadce7c1ca67c3c169fc82fe4876f0f4675bf95ba96f57c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "662_master_a_page2",
+  "url": "https://www.mediadesign.de/en/downloads",
+  "asked_utc": "2026-11-15T19:08:49+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_a_page2.html",
+  "bytes": 79550,
+  "sha256": "b3b40d4b3e3e98fa65792cce4fa21ddbe13726bbe34f1eb125286af93edcd41e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod10",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=10&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:08:54+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod10.html",
+  "bytes": 14099,
+  "sha256": "80cc76d1147f60272f00ed7453af7d2e773073ebf7270546c6844def2f32d9fb",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "662_master_a_spo",
+  "url": "https://www.mediadesign.de/sites/default/files/2023-03/SPO%20DM%20MA_ENG_1.pdf",
+  "asked_utc": "2026-11-15T19:09:03+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_a_spo.pdf",
+  "bytes": 584849,
+  "sha256": "233c2220f0f5c522ed8da5097e20df1e1fe796e4170a6f2c8c76fa2b3288a628",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod9",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=9&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:04+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod9.html",
+  "bytes": 11050,
+  "sha256": "0dff8b1140e45bdea1ac11f4494e2d47e77b3b73031414882aced2658a9c2601",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod8",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=8&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod8.html",
+  "bytes": 11509,
+  "sha256": "72ac728ba2d9f3ab8fc163ba04cb5c652a613aec7e640a861b31a7eae90897d1",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod192",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=192&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod192.html",
+  "bytes": 10052,
+  "sha256": "7f85ac011b8854d1a24482ac35d4cba5ad899cec2db39edc6284fa1b71138dbc",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "662_master_a_page3",
+  "url": "https://www.mediadesign.de/de/downloads",
+  "asked_utc": "2026-11-15T19:09:27+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_a_page3.html",
+  "bytes": 78793,
+  "sha256": "6530b646c599f6cebbf55381c49cef1a428361c6cc9a953b5954044d4b740fa7",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod307",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=307&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:34+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod307.html",
+  "bytes": 10094,
+  "sha256": "4c62a64203c1077e092c228434dc1ca84d42801ac5b337e38060980dfada515a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod262",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=262&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod262.html",
+  "bytes": 10830,
+  "sha256": "df8282216b3f405a4b0d31006b54283b4335939dee80977d647097065c0dd0e1",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod14",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=14&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:09:54+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod14.html",
+  "bytes": 10590,
+  "sha256": "b234e257fdd83f3bc85ea67c04be2c30bba91ffd52564877313e8df1b667f66f",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod16",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=16&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:05+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod16.html",
+  "bytes": 10343,
+  "sha256": "f47c14cc4fba35cf0eb82b6e99af5ba4f6d07562ce50bdaeeba8dc88a73b0798",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod13",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=13&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod13.html",
+  "bytes": 12261,
+  "sha256": "009bb7e0e105170b78272ecac55f02d46bdcbbfd244e46112b4c7111de953b53",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod15",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=15&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:27+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod15.html",
+  "bytes": 10642,
+  "sha256": "c3129ca2d8853e9ee5281d4464a59227f7abdf37a64f04b6669cdff90a65e9d8",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod193",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=193&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:37+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod193.html",
+  "bytes": 7931,
+  "sha256": "a2381219ff6272db63c12363fa6171c0fe367ee79476893913a28e38f17cd418",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod194",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=194&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod194.html",
+  "bytes": 7142,
+  "sha256": "9ec798f02f598853f2ebe1673a6e29d228f565c7e5de3eded2c9d999efcb435c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod24",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=24&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:10:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod24.html",
+  "bytes": 8473,
+  "sha256": "d03bd242bc9047d78a8415ff73aab45182eb963561ac6ad811adb4bc6a2b682a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page1",
+  "url": "https://www.srh-university.de/de/master/projektmanagement-bau/",
+  "asked_utc": "2026-11-15T19:11:05+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "223_bachelor_a_mod25",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=25&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod25.html",
+  "bytes": 9988,
+  "sha256": "bcb123717f352127d8a181a0c9a2c73d43b02ad46b85767932561007f2b9371a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod200",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=200&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod200.html",
+  "bytes": 8043,
+  "sha256": "45545786e775602f08fdbd22ed2d5e7e986d6e70ef721e373a0015041c7abe53",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page2",
+  "url": "https://www.srh-university.de/de/",
+  "asked_utc": "2026-11-15T19:11:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_a_page2.html",
+  "bytes": 342297,
+  "sha256": "cd999f01402e88e7f6dee64780877950a77335e9f32befce001c2ae001d992ad",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod20",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=20&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:26+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod20.html",
+  "bytes": 9367,
+  "sha256": "4fa09ffff15e41a3ec080ab6c6e51d171e5b1d94e182770a322d18721f6bf239",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page3",
+  "url": "https://www.srh-university.de/de/master/",
+  "asked_utc": "2026-11-15T19:11:32+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_a_page3.html",
+  "bytes": 311148,
+  "sha256": "0091af3d04583f1849f78de15a5534e6296c6c7a42af45c3357bd9c95eb615bd",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod29",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=29&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:36+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod29.html",
+  "bytes": 7019,
+  "sha256": "fbe39d72c407129ce6596a0ea76e88bcd4f268809b609799ac98999c108a2fc8",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod28",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=28&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:45+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod28.html",
+  "bytes": 7524,
+  "sha256": "b118c3a75f510f71d1137e12c0a97b6450b2c0031665c4bac2b49c7fc455097c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod30",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=30&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:11:55+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod30.html",
+  "bytes": 8363,
+  "sha256": "81ed17f98f0cab41d22b4355eff0816a280e601300075e5f2ce30df5dd875777",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page4",
+  "url": "https://www.srh-university.de/sitemap.xml",
+  "asked_utc": "2026-11-15T19:11:58+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_a_page4.html",
+  "bytes": 704,
+  "sha256": "d675d8605a855ab63ea75df92c0989e169111a4763e7fe1c450715600001afc2",
+  "content_type": "application/xml;charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod285",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=285&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:04+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod285.html",
+  "bytes": 12378,
+  "sha256": "7dc2946d0788ef4533a9d64369ed41cd2c2fcf63532485f1bc600358dfff7f7b",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod184",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=184&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod184.html",
+  "bytes": 10744,
+  "sha256": "a82f3468aa70fcfc2d4f62e988ee9e482438407464111b9994d10877ae66c334",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page5",
+  "url": "https://www.srh-university.de/de/sitemap-type/pages/sitemap.xml",
+  "asked_utc": "2026-11-15T19:12:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_a_page5.html",
+  "bytes": 330556,
+  "sha256": "9f545767db5d97a3e0dbce6f938dcd19eb065723dd1ff4a83c942d1de29491ac",
+  "content_type": "application/xml;charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod250",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=250&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:23+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod250.html",
+  "bytes": 11067,
+  "sha256": "4610881248c18e6cc1e1e0949ade794f1154344f41a6e5c76d6044d980470a3e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod280",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=280&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod280.html",
+  "bytes": 12402,
+  "sha256": "38d6edd73c4ecf66eec76325600e0af749a064d125a083efd27d154495e0d66c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_a_page6",
+  "url": "https://www.srh-university.de/de/master/projektmanagement-bau/e/",
+  "asked_utc": "2026-11-15T19:12:39+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_a_page6.html",
+  "bytes": 303362,
+  "sha256": "04bf4c80f4a6e1897e07f05b69bba4737374e69c0c84c39520ec0e3b93d1706e",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod45",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=45&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod45.html",
+  "bytes": 11908,
+  "sha256": "9f395fcae55e00423b93038f6101e1af7353b433754c9bbd5bba9930ad19751f",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod276",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=276&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:12:52+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod276.html",
+  "bytes": 10574,
+  "sha256": "ab0751e19e01ebc19b1ccc9f2b6d1445ecd1b6fac88c10ba4f5a8e4ca8335997",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod46",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=46&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:03+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod46.html",
+  "bytes": 10111,
+  "sha256": "b9f929b638747b707c6d8ee5adcd54c912e8f25007cfaa720ff667108bed1554",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod290",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=290&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:12+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod290.html",
+  "bytes": 10248,
+  "sha256": "7f0d10b798625f107f0ad2753699ca2f59a377ff3e8590d419886f025e004f39",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod34",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=34&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod34.html",
+  "bytes": 9074,
+  "sha256": "c6b69d266facd30d068ee436363b2dae76f1befae7c8191c0719bdd8a9f9c153",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_b_page1",
+  "url": "https://rh-koeln.de/master-projektmanagement",
+  "asked_utc": "2026-11-15T19:13:29+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_b_page1.html",
+  "bytes": 242942,
+  "sha256": "181d433eb62979219c76ed521d4d27eb797f5f423dced088acf88dbea4450a74",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod180",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=180&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod180.html",
+  "bytes": 11676,
+  "sha256": "84b2531c0280c6f442cc9a0937688e543a351ec713efa3be2d8449cd8cc5e708",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod102",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=102&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod102.html",
+  "bytes": 11121,
+  "sha256": "6e6f62396cbce1a4b6ea3b745e616276d3e4f8aea632b4a7ab4f12f13fd9ca16",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod49",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=49&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:13:50+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod49.html",
+  "bytes": 10410,
+  "sha256": "e202e081979a6f491653566530cd06e3d1190c9b1edf17f468a958eed5d949d7",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_b_plan",
+  "url": "https://rh-koeln.de/hubfs/Dokumente/Studienverlaufsplaene/Master/rh-studienverlaufsplan-projektmanagement.pdf",
+  "asked_utc": "2026-11-15T19:13:51+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_b_plan.pdf",
+  "bytes": 403185,
+  "sha256": "bf3af1c319281e9a9ab67d8d72497b0fd794a91df5b04b8fc9bccce0ba4362f5",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod298",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=298&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:00+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod298.html",
+  "bytes": 10533,
+  "sha256": "1d1bfa80c3d5118b6e71a18d14b4ca888658b0489250d6518ffaac59fe0359cc",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod318",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=318&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:09+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod318.html",
+  "bytes": 10318,
+  "sha256": "cdd3d820710f45411065d9cdda9f5bd5c4b76f405389238a698ee68f76d9207e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "789_master_b_page2",
+  "url": "https://rh-koeln.de/sitemap.xml",
+  "asked_utc": "2026-11-15T19:14:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/789_master_b_page2.html",
+  "bytes": 1959421,
+  "sha256": "d45156c0510e8088f804c7470007fb347d147b553497a94e908c07276ee02b38",
+  "content_type": "application/xml"
+ },
+ {
+  "id": "223_bachelor_a_mod303",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=303&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:19+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod303.html",
+  "bytes": 10505,
+  "sha256": "62f969cfd2a1d5b65cf79a06d26424e65f4fd6e188f947d7cd4c096ed70c709c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod256",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=256&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:28+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod256.html",
+  "bytes": 11151,
+  "sha256": "f77d5b93646e4afda4e1c2658a3e85cc6e7c6fd07ac8a80bb1934a05b6f83769",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod266",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=266&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:38+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod266.html",
+  "bytes": 12278,
+  "sha256": "e43d15dd10c56a30c6a6e4f9e036aa7511e2f1c9eda5c7d909e3f1489947d64b",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod284",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=284&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod284.html",
+  "bytes": 10004,
+  "sha256": "221fe3b6aed867d31458d68cf0c0b320150c8aa002b506e8a91a8f8e90886b98",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod277",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=277&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:14:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod277.html",
+  "bytes": 9724,
+  "sha256": "f737acd9d0a1038ce811fe44128024458c51160866f32a316a59f222e5e8dda4",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod106",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=106&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod106.html",
+  "bytes": 13856,
+  "sha256": "5cf1d01e0464993bab79a04db72241d957f178aec891ba9c654ab2e8fd719379",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_a_handbook",
+  "url": "https://www.hs-offenburg.de/fileadmin/Studium/unterlagen_studium/modulhandbuch/Modulhandbuch_MUK-M_20222_akt.pdf",
+  "asked_utc": "2026-11-15T19:15:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_a_handbook.pdf",
+  "bytes": 257695,
+  "sha256": "a7c045cd70cc2fe1d626552cb5207f97aaf314046fca3a5a1ff032c10a2fd0bd",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod278",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=278&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod278.html",
+  "bytes": 11598,
+  "sha256": "d0c312ea31f14c0751d24f99cacfd2d2030e8f552947a927917f209982830ef4",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod306",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=306&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:26+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod306.html",
+  "bytes": 10565,
+  "sha256": "675baf1a4c412b9d3906d0f75649e24700f3c92dbaf8f9bd5cd0a25726dc66c9",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod54",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=54&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:36+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod54.html",
+  "bytes": 10929,
+  "sha256": "e71b1343b1e03990efae45c46b9f7f4d3d6552ab8a10cc2692f35d1127a8a3f3",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_a_page1",
+  "url": "https://www.hs-offenburg.de/studium/masterstudiengaenge/medien-und-kommunikation",
+  "asked_utc": "2026-11-15T19:15:39+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "223_bachelor_a_mod177",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=177&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:46+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod177.html",
+  "bytes": 10139,
+  "sha256": "3f24b78f61c1eee246d9e39c2b2ed50e9287343650f74074538bc0b2f2e1fc7d",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_a_page2",
+  "url": "https://www.hs-offenburg.de/en/studies/masters-programs/medien-und-kommunikation",
+  "asked_utc": "2026-11-15T19:15:51+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_a_page2.html",
+  "bytes": 90026,
+  "sha256": "15d363979eede2af49b47d4db6ea7949cf68d76fb3c71a7cd412353057da6976",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod176",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=176&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:15:55+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod176.html",
+  "bytes": 10616,
+  "sha256": "4ebdbb3d06b2726352f78f7d3416d574409186e7d9d1d0463292a8a85a234179",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod53",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=53&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:05+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod53.html",
+  "bytes": 10169,
+  "sha256": "b41f0c3ba2b51df5449fadf0296225d79222825085f38372388325b3b0a3af55",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_a_stupo",
+  "url": "https://www.hs-offenburg.de/fileadmin/Studium/unterlagen_studium/stupo/master/StuPO_Besonderer_Teil_MUK-M_akt.pdf",
+  "asked_utc": "2026-11-15T19:16:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_a_stupo.pdf",
+  "bytes": 251250,
+  "sha256": "3a50cb6eeb4f312337839ae3acc504d2c138f1322a531e86677ca11842a9455c",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod201",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=201&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:15+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod201.html",
+  "bytes": 9235,
+  "sha256": "fb18cbd6054d5fd16be38420ca8cc75e1ce84168fb171615f6faf4ce9e08d415",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod304",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=304&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:25+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod304.html",
+  "bytes": 11065,
+  "sha256": "191284c8d399c34fceb9f8b899602cf10faf5180b72a1e17bf64992aa69295c8",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod279",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=279&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:35+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod279.html",
+  "bytes": 10839,
+  "sha256": "e5d497e9c6f21afe624f27ae1935c1260593ec17b899c11ef3be7fb565e8e439",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod215",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=215&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:45+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod215.html",
+  "bytes": 11167,
+  "sha256": "e52b98671f9a6bcec6597c8e1f6734733b3f0cec434fc2d7173c2879e363ad18",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try2_page1",
+  "url": "https://www.h-ka.de/kommunikation-und-medienmanagement-master",
+  "asked_utc": "2026-11-15T19:16:54+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "223_bachelor_a_mod294",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=294&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:16:55+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod294.html",
+  "bytes": 10580,
+  "sha256": "d4fd8e6f0443621bc18e669f00b809361a093e7d8c582c67ef46ebb157375dd9",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod292",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=292&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:04+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod292.html",
+  "bytes": 11643,
+  "sha256": "a9df5e7f94ba51a2e51ea42886e1dea392a845d6a305c6540960f11d9cb34df7",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod333",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=333&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod333.html",
+  "bytes": 12683,
+  "sha256": "0d9ca68e755414b486f0a6cd4fb4f55794bbe5de7c38a22d317efdc1febf1633",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try2_page2",
+  "url": "https://www.h-ka.de/en/kmm-m/content",
+  "asked_utc": "2026-11-15T19:17:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_try2_page2.html",
+  "bytes": 225152,
+  "sha256": "77c0c00f8035f37bdd5d226df03ca6c867b837b1a49db8cd2f3497186ee491ee",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod173",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=173&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod173.html",
+  "bytes": 13038,
+  "sha256": "5cd95eaed1e9f1777c97893b8512552c2a924769c9198d3796fc8cc47bf5f74f",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try2_handbook",
+  "url": "https://www.h-ka.de/fileadmin/Hochschule_Karlsruhe_HKA/Bilder_FK-IMM/IMM_KMM/Dokumente/HKA_FK-IMM_KMMM_Module-Catalog_SPOV4_20230227.pdf",
+  "asked_utc": "2026-11-15T19:17:29+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_try2_handbook.pdf",
+  "bytes": 651476,
+  "sha256": "15c13d54504ee2afc422a29c071001f2a6ae7204f0583abbb1e8dbf3ee525741",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod329",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=329&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:34+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod329.html",
+  "bytes": 12788,
+  "sha256": "00500cce591ef6086df360d321d6cf83c96dd00452142595514bd93b1813c0c9",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod185",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=185&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod185.html",
+  "bytes": 10203,
+  "sha256": "43355613ba330e82f75eb4ab499f33dc8ff14c206c9e48d2f58c80b25aa52911",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod108",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=108&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:17:53+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod108.html",
+  "bytes": 10153,
+  "sha256": "3bb245beb7dfec0138308e7a1ed9ba568cbfd73515d92c3bd62af8ed540e6add",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod59",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=59&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:03+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod59.html",
+  "bytes": 9977,
+  "sha256": "d3952d76ba897bcf500a4907770b30218f272cc0e1396b460ff2317664a31e64",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod316",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=316&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:13+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod316.html",
+  "bytes": 11491,
+  "sha256": "52f2cc97d07b4cfbb0381b62047d51b51c4fd88b08868a57fc6a3cd21eb2de9b",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod270",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=270&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:23+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod270.html",
+  "bytes": 11419,
+  "sha256": "72bd9ac16729c7b16c24dbfd01a6c76bd63b636168dccc77095065d59271d6f3",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod258",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=258&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod258.html",
+  "bytes": 11421,
+  "sha256": "008856a900eaf534c90c71ad96000a1f99c452a216ab69b9d06907ffe4ef2b60",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try3_page1",
+  "url": "https://www.hs-mittweida.de/en/studying/course-offerings/media-management-and-technology-masters/",
+  "asked_utc": "2026-11-15T19:18:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_try3_page1.html",
+  "bytes": 372738,
+  "sha256": "4855c2bb13fe5f3e51d7320920347f930f921c419cc8c8098aa803f0f14877ef",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "223_bachelor_a_mod191",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=191&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod191.html",
+  "bytes": 11066,
+  "sha256": "95d592cb4cd5deba074d32d17081c71bf489448eb330d08943ef7b6f30786003",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod282",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=282&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:18:53+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod282.html",
+  "bytes": 10848,
+  "sha256": "d22cc4019f5741ee01c18a86f46e8e98be44dd45a6451643a18ff02f430fbfed",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try3_handbook",
+  "url": "https://www.hs-mittweida.de/fileadmin/www/zentrale_elemente/studienangebote/fk_me/Media_Management_and_Technology_M/dokumente/Modulhandbuch_Media_Management_and_Technology_Master.pdf",
+  "asked_utc": "2026-11-15T19:18:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_try3_handbook.pdf",
+  "bytes": 244275,
+  "sha256": "6394e75680a910a880526f077be2e074121a0c6019c474e7732609743310ad07",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod254",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=254&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:02+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod254.html",
+  "bytes": 10525,
+  "sha256": "2eb8adf31cb98dbe27ad069ea6b1ae5d183ef465323e9ae32292aeda49a94595",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod330",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=330&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:12+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod330.html",
+  "bytes": 12289,
+  "sha256": "77e2de5898ccdb09028c7628ca1759afb893a25313bb61dced01dcae7479de14",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod116",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=116&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod116.html",
+  "bytes": 11853,
+  "sha256": "98613e6bf5f5933ed8c66303eba6d6181e2a4f28cf228a65fba0363339c4289b",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_master_try3_spo",
+  "url": "https://www.hs-mittweida.de/fileadmin/www/zentrale_elemente/studienangebote/fk_me/Media_Management_and_Technology_M/dokumente/SPO_Media_Management_and_Technology_Master.pdf",
+  "asked_utc": "2026-11-15T19:19:26+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_master_try3_spo.pdf",
+  "bytes": 399774,
+  "sha256": "08c35d11e2943666356bf1dae78f7a37e8eafe2455fae3d468d93ae8a66d5f29",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "223_bachelor_a_mod257",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=257&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:32+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod257.html",
+  "bytes": 11932,
+  "sha256": "82a7e99c7f3f6a1671a78b0847dbc85d1e24a02c2e869b479bd66c20c357a6ac",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod295",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=295&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod295.html",
+  "bytes": 10748,
+  "sha256": "016986d12f0f06af2c3832a1e6ee5f964ebc7720f5b5540f6bc34262d129d9cf",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod265",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=265&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:19:51+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod265.html",
+  "bytes": 10446,
+  "sha256": "569bf00d16be66ce6661f17145eda9db9ff295a3ccd42bba89c7da7cb59886b0",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod203",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=203&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod203.html",
+  "bytes": 9105,
+  "sha256": "c4954451b88bf7c2c7fb68ed46f91e0e1fd5faa146f9e2c26d9c0b4619c8bf86",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod264",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=264&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod264.html",
+  "bytes": 9777,
+  "sha256": "cfd1033f7be5b00a066ccc6f3b2e0d4cbe4f43eab712d5993b9fed87fe5a23b8",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod291",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=291&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod291.html",
+  "bytes": 10863,
+  "sha256": "e0dddfbf8b2e5c5c3bacbd4628712ad76c8dd5779a39a440d856dd1cfbe84d61",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod202",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=202&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod202.html",
+  "bytes": 9148,
+  "sha256": "a2dcda0aba3db4dc75455f1a772b602cf2b3d0b8d8520058e2556daab1822f3d",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod214",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=214&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod214.html",
+  "bytes": 9322,
+  "sha256": "13dd34b4676c0f6b5967edae6d44b727668baa34c14eaab55b86720fc4a225fb",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod33",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=33&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:20:51+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod33.html",
+  "bytes": 10035,
+  "sha256": "c83df6163fbd358de21a9e11f0be2845d21d1afc583f6c881c718f2e64d0e332",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod314",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=314&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:02+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod314.html",
+  "bytes": 11413,
+  "sha256": "27f93b427208bc72e505218bad5f0d80b6bccca6f3c98cccc5b5f1ad9d0c9650",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod274",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=274&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:12+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod274.html",
+  "bytes": 10422,
+  "sha256": "1f3e03be8e928cd906db1b2879a2581c8968a4d4c86727213cc5933d01f56a30",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod263",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=263&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod263.html",
+  "bytes": 9764,
+  "sha256": "b8af54d539f79d1573059304017314498a590bbf9375396d8fbebff746150501",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod311",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=311&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod311.html",
+  "bytes": 11189,
+  "sha256": "8c7ad4621514d967fccb8c6e724f15245e8bdee8a647e0aa5d464ef27805b599",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod31",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=31&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod31.html",
+  "bytes": 10722,
+  "sha256": "ebdc2a41ecda64814152e11282c41e5dc5b9703443a5e54cfffb8fc66141ef1b",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "223_bachelor_a_mod32",
+  "url": "https://module.informatik.th-mannheim.de/modul.php?id=32&studiengang=CSB&lang=DE",
+  "asked_utc": "2026-11-15T19:21:50+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/223_bachelor_a_mod32.html",
+  "bytes": 11236,
+  "sha256": "21161893bef64535e826fc7d9f907a4812561c407a76bce28960c6cd9bf84c16",
+  "content_type": "text/html; charset=UTF-8"
+ }
+]
