@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 4 are done. Next: Step 5 (job ads), after Soma's OK. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 5 are done. Next: Step 6 (first-years new to OTH), after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -134,6 +134,11 @@ Step 4 (analysis/funnel_demand.py): student numbers of every unit's subject pool
 On the primary list 128 units have a growing and 229 a falling German pool in Bavaria (median -2.0 % a year); foreign
 students grow (+9.3 %). Trends are weak evidence: naive is the best model on average (MASE 2.01), so the 2030
 projection is the last value; only 51 units (23 primary) have a validated trend.
+Step 5 (analysis/funnel_labour.py: keywords, fetch, measure): keywords by rule from programme titles
+(docs/funnel_keywords.csv, committed before the first request), job-ad counts of 15 Nov 2026
+(data/interim/funnel2_job_counts.csv, funnel2_labour.csv). Primary list: all 365 units counted; median 50 ads within
+100 km for the median keyword. The measure counts words in ads, not jobs for graduates: general words lead
+(elektrotechnik, management), 121 units reach the scale's top of 150 and 107 its bottom of 10.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
