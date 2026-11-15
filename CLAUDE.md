@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Next: Soma confirms the changed Step 3 rules and marks the 100 offers; then Step 4. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Next: Soma marks the 100 offers (the changed Step 3 rules are confirmed); then Step 4. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -121,7 +121,7 @@ stability-tested), reproducible; reader's check 22 of 30, still below the bar, s
 Outputs for the next steps: data/interim/funnel2_offer_types.csv, funnel2_types.csv, funnel2_centroids.npy,
 funnel2_embeddings.npy. Details in docs/funnel_run2_notes.md. `run <size> <method>` is a diagnostic mode, never a result.
 Step 3 (analysis/funnel_units.py: items, labels, run, sheet): three rules did not work with the finer types and were
-changed as a proposal for Soma (merged groups without chaining; EMI-field score against module titles with a bar from
+changed, confirmed by Soma (merged groups without chaining; EMI-field score against module titles with a bar from
 300 units marked by an AI reader, docs/funnel_emi_labels.csv; "at OTH" when an OTH offer belongs to the type or lies
 within its median distance). Result: 1,285 units,
 365 on the primary list (268 candidates), 1,241 on the stress list; the EMI screen is a generous filter (about half

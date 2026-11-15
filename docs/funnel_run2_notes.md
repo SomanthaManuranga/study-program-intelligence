@@ -252,7 +252,7 @@ near Amberg, in Bavaria, in the south and in Germany?
 `docs/criteria_funnel_step3.md`. Code: `analysis/funnel_units.py` (items, labels, run, sheet). Result files carry
 code commit 7f24b79. A unit is a type x level (bachelor or master) with offers at 2 or more institutions.
 
-**Three rules did not work with the finer types of Step 2 and were changed (proposal, to be confirmed by Soma).**
+**Three rules did not work with the finer types of Step 2 and were changed (confirmed by Soma on 15 Nov 2026).**
 The step ran three times; the first two results are void.
 
 | Rule | As first written | What happened | Changed to |
@@ -383,9 +383,9 @@ replaced by the changed rules (S17, S18, S20). S9
 done: 70 % of the types pass, below the bar of 80 %; mixed types are flagged. S10 the sheet is ready; the competition
 counts are flagged "not validated yet". S11 pass. S12 pass (two runs identical). S13 after two review rounds and a final recomputation of all units: no
 open blocker. S14 one check round (1 wrong statement and 10 unclear wordings corrected, no wrong number). S15 pass. S16 above. S17 pass (largest group 6; every pair mutual). S18 pass (AUC
-0.965; 47 of 49 kept), with the limit that nothing was held out. S19 open: Soma's confirmation. S20 pass (45 of 46).
+0.965; 47 of 49 kept), with the limit that nothing was held out. S19 pass: Soma confirmed the three changed rules on 15 Nov 2026. S20 pass (45 of 46).
 S21 above.
 
-**Open for Soma.** (1) Confirm or reject the three changed rules. (2) Mark the 100 offers in
+**Open for Soma.** Mark the 100 offers in
 `docs/funnel_similarity_check.csv` ("same kind of programme?" yes or no). Until then the competition counts are
 provisional and Step 4 does not start.
