@@ -382,7 +382,9 @@ def verdict() -> None:
                       "automatic overlap (mean)": g["automatic overlap"].mean(), "largest share from one programme": g["largest share from one programme"].max(),
                       "new teaching ECTS (mean)": g["new teaching ECTS (scaled)"].mean(), "N ECTS (mean)": g["N ECTS"].mean(), "T ECTS (mean)": g["T ECTS"].mean(), "X ECTS (mean)": g["X ECTS"].mean(),
                       "professor-equivalents (mean)": g["professor-equivalents"].mean(), "share of new ECTS in N (mean)": g["share of new ECTS in N"].mean(),
-                      "verdict": v, "why": "mixed" if v == "fail" and len(why.split("; ")) > 1 else why,
+                      "verdict": v, "why": why,
+                      "covered ECTS on the first reviewer alone": float(k.loc[(k["type"] == t) & (k["level"] == lv) & k["final"].isin(COVERED) & (k["basis"] == "first reviewer alone"), "ects"].sum()
+                                                                        / max(float(k.loc[(k["type"] == t) & (k["level"] == lv) & k["final"].isin(COVERED), "ects"].sum()), 1e-9)),
                       "sample: rows that differ": info[(t, lv)]["differ"], "sample failed": info[(t, lv)]["sample failed"]})
     cands = pd.DataFrame(cands).sort_values("gate order").reset_index(drop=True)
     refs.to_csv(GATE_REFS, index=False)
