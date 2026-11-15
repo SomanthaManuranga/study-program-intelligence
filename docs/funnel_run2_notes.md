@@ -404,3 +404,59 @@ open blocker. S14 one check round (1 wrong statement and 10 unclear wordings cor
 S21 above.
 
 **Step 3 is complete.** Nothing is open for Soma; Step 4 starts with Soma's OK.
+
+## Step 4: are students coming?
+
+**Question.** How do the student numbers behind every unit develop, in Bavaria and in Germany, for German and for
+foreign students?
+
+**Rule.** `configs/funnel.yaml`, block `demand` (with `pool_mapping`); criteria in `docs/criteria_funnel_step4.md`.
+Code: `analysis/funnel_demand.py`. Result files carry code commit 5300f91. No unit is removed in this step.
+
+**What the numbers are.** Destatis counts students by subject, not by programme. Every unit therefore gets a *pool*:
+the Destatis subjects of its offers, weighted by how often they occur. The trend is that of the pool, not of the
+programme type. Two units with the same subjects have the same trend (for example the media-design master units 245
+and 408).
+
+**Result.**
+
+| | |
+|---|---|
+| Units with demand numbers | 1,285 (primary list 365, stress list 1,241) |
+| Distinct pools (weight mixes) | 1,141; 1,118 backtested, 23 too short |
+| Backtest: average error (MASE) over pools and horizons 1 to 5 | naive 2.01, drift 2.41, ets 2.53 |
+| Model for the projection to 2030 | naive: the last value is the best forecast; no model beats it on average |
+| Reliable trends (drift beats naive and MASE below 1) | 51 units, 23 of them on the primary list (22 growing, 1 falling) |
+| Primary list, German trend in Bavaria (first-years 2019-2024; master: graduates 2019-2025) | 128 growing, 93 falling by up to 3 % a year, 136 falling faster, 8 without a slope |
+| Primary list, German trend in Germany | 95 growing, 269 falling, 1 without a slope; 76 units grow in both |
+| Median trend on the primary list | German: -2.0 % a year in Bavaria, -1.9 % in Germany; foreign: +9.3 % in Bavaria, +6.3 % in Germany |
+| Foreign students' share in the pool (Bavaria, last year, median of the primary list) | 30 % |
+| Second run | identical table |
+
+**What it means.**
+
+- **Most pools lose German students.** On the primary list 229 of 365 units have a falling German pool in Bavaria, and
+  the middle unit loses about 2 % a year. Foreign students grow in most pools. This repeats the baseline finding for
+  Informatik on the level of all candidates.
+- **The trends are weak evidence.** For only 51 of 1,285 units does a trend forecast better than "next year is like
+  this year", and on average the naive model wins. The projection to 2030 is therefore the last value, and a slope
+  says what happened since 2019, not what will happen.
+- **Growing German pools with at least 100 students** on the primary list are mainly media design (Gestaltung,
+  +22 % a year for master graduates), Informationstechnologie and Informatik master units (+7 to +10 %), and two
+  bachelor units in the pool "Angewandte Systemwissenschaften" (Bionik, Service Engineering; +13 %). The largest falls
+  are in media production and media technology bachelor units (-9 to -13 %).
+- **Foreign students are a corridor.** For each unit the 2030 value lies between "as many as today" and "growth
+  continues at the slope since 2019"; it is reported next to the German number and never added to it.
+
+**Limits.** A pool is as coarse as the Destatis subject list: a niche programme inside "Informatik" shares the trend
+of all of Informatik. 21 primary units have a pool of fewer than 50 German students in the last year. 322 of the 365
+primary units have a weight mix of their own, but many mixes are nearly the same subject. Master units use
+graduates, which react years later than first-years. The first-years series ends in 2024 because 2025 is the
+Bavarian G9 gap year.
+
+**Scorecard.** T1 pass. T2 pass (1,285 units, both lists). T3 pass (slopes recomputed from the Destatis tables for 40
+units). T4 pass. T5 pass (naive). T6 pass. T7 pass (slope and "validated" equal Step 3 for every unit). T8 above.
+T9 pass (two runs identical). T10 one review round. T11 pass.
+
+**No programme stays or goes in this step.** The full table: `data/interim/funnel2_demand.csv`,
+`reports/funnel2/step4_demand.md`.

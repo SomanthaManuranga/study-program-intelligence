@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 and 3 are done. Next: Step 4, after Soma's OK. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 4 are done. Next: Step 5 (job ads), after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -130,6 +130,10 @@ of the list is outside EMI's field by the marks); 75 of the 247 types on the lis
 and, with a common radius, 64 % / 46 % yes inside / outside; needed 70 % / 30 %): all competition counts are flagged
 "not validated" and the offers half of the differentiation value takes the range 1 to 5 in the ranking
 (data/interim/funnel2_similarity_result.json, _2.json; docs/funnel_similarity_marks.csv, _2.csv).
+Step 4 (analysis/funnel_demand.py): student numbers of every unit's subject pool (data/interim/funnel2_demand.csv).
+On the primary list 128 units have a growing and 229 a falling German pool in Bavaria (median -2.0 % a year); foreign
+students grow (+9.3 %). Trends are weak evidence: naive is the best model on average (MASE 2.01), so the 2030
+projection is the last value; only 51 units (23 primary) have a validated trend.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
