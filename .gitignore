@@ -252,3 +252,6 @@ reports/final/*
 
 # Hand-checked theme labels (Step 38): the team's reviewed labels, committed so the pipeline is reproducible from git
 !docs/theme_labels.csv
+!docs/funnel_emi_labels.csv
+!docs/funnel_similarity_check.csv
+!docs/funnel_type_coherence.csv
