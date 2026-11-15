@@ -256,5 +256,6 @@ reports/final/*
 !docs/funnel_similarity_check.csv
 !docs/funnel_type_coherence.csv
 !docs/funnel_similarity_marks.csv
+!docs/funnel_keywords.csv
 !docs/funnel_similarity_check_2.csv
 !docs/funnel_similarity_marks_2.csv
