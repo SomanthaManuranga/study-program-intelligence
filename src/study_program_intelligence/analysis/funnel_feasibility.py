@@ -49,6 +49,7 @@ COVERED, VERDICTS = ("E1", "E2"), ("E1", "E2", "N", "new", "lab")
 SEED, NEAREST, TITLE_EXTRA, SUBJECTS, DRAWN, MAY_DIFFER = 42, 5, 5, 3, 10, 1     # hand_check: rows, sample_check, sample_pass
 SWS_PER_ECTS, SWS_A_YEAR = 0.8, 36.0                              # professor_equivalents
 SINGLE_WIDEN = 0.10                                               # references.one_only
+NEAR_BAND = 0.10                                                  # hand_check.sample_check: candidates this close to a band end are marked twice in full
 EMI_TEXT, MODULE_TEXT = 3000, 1500                                # characters of text shown to a marker (the module's own text is cut by the collectors at 1,500)
 PERSON = re.compile(r"(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?)(?:\s*(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?|-?[A-ZÄÖÜ][a-zäöüß]+|[A-Z]\.)){0,4}")
 
@@ -61,6 +62,29 @@ def emi_text(text: str, title: str) -> str:
     return re.sub(r"\s+", " ", PERSON.sub("", t)).strip()[:EMI_TEXT]
 
 
+# hand_check.rows: title matching crosses English and German; each group of words counts as one word
+WORD_GROUPS = [
+    ("theoretical", "theoretische", "theoretischen"), ("mathematics", "mathematik", "math", "maths"), ("programming", "programmierung", "programmieren", "programmiertechnik"),
+    ("database", "databases", "datenbanken", "datenbank", "datenbanksysteme"), ("network", "networks", "networking", "netze", "netzwerke", "computernetzwerke", "rechnernetze", "netzwerktechnik"),
+    ("security", "sicherheit", "informationssicherheit", "cybersicherheit", "cybersecurity", "netzwerksicherheit"), ("operating", "betriebssysteme", "betriebssystem"),
+    ("algorithms", "algorithmen", "algorithm"), ("data", "daten"), ("statistics", "statistik", "stochastik", "stochastics", "probability", "wahrscheinlichkeitsrechnung"),
+    ("physics", "physik"), ("electronics", "elektronik"), ("electrical", "elektrotechnik"), ("distributed", "verteilte", "verteilter", "verteilten"),
+    ("embedded", "eingebettete"), ("intelligence", "intelligenz"), ("learning", "lernen"), ("cryptography", "kryptographie", "kryptologie", "kryptografie"),
+    ("forensics", "forensik"), ("english", "englisch"), ("german", "deutsch"), ("law", "recht", "rechtliche"), ("ethics", "ethik"),
+    ("graphics", "grafik", "graphik", "computergrafik"), ("visualization", "visualisierung"), ("systems", "systeme", "system"), ("robotics", "robotik"),
+    ("computer", "informatik", "rechner"), ("business", "betriebswirtschaft", "betriebswirtschaftslehre", "bwl"), ("economics", "volkswirtschaft", "wirtschaft"),
+    ("signals", "signale", "signal"), ("control", "regelungstechnik", "steuerung"), ("communication", "kommunikation"), ("media", "medien"), ("design", "gestaltung"),
+    ("vision", "bildverarbeitung"), ("automation", "automatisierung", "automatisierungstechnik"), ("compiler", "compilerbau", "uebersetzerbau"),
+    ("software", "softwaretechnik"), ("web", "webtechnologien", "webentwicklung", "internettechnologien"), ("mobile", "mobil"), ("linear", "lineare"), ("analysis", "analyse"),
+]
+WORD = {w: g[0] for g in WORD_GROUPS for w in g}
+
+
+def title_words(title: str) -> frozenset[str]:
+    """The content words of a title, with English and German forms of a word mapped to one (WORD_GROUPS)."""
+    return frozenset(WORD.get(w, w) for w in content_words(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(title))))
+
+
 def same_module(title: str) -> str:
     """The normalised title by which copies of one module in several EMI handbooks are found ("[ CNW ]    Computernetzwerke" = "Computernetzwerke")."""
     return norm_title(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(title)))
@@ -71,6 +95,8 @@ def subject_name(s: str) -> str:
     return re.sub(r"\s*\((vorlesung|praktikum|übung|uebung|seminar|seminaristischer unterricht|su|vl|pr|ü|labor)[^)]*\)\s*$", "", str(s), flags=re.I).strip()
 
 
+LAENDER = ("Baden-Württemberg", "Bayern", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern", "Niedersachsen", "Nordrhein-Westfalen",
+           "Rheinland-Pfalz", "Saarland", "Sachsen-Anhalt", "Sachsen", "Schleswig-Holstein", "Thüringen")
 ACRONYMS = ("HTWK", "HKA", "THD", "OTH", "HSMW", "HTW", "THM", "THB", "HS", "TH", "FH")     # short forms of institutions, matched as whole upper-case words
 
 
@@ -94,6 +120,10 @@ def redact(text: str, terms: list[str]) -> str:
     for t in terms:
         text = re.sub(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", "[university]", text, flags=re.I)
     text = re.sub(r"\b[BM]-[A-Z]{2,4}-\d{1,3}\b\s*", "", text)                  # a handbook's own module codes ("B-CY-19") name its programme
+    text = re.sub(r"\b[A-Z]{1,3}\d{1,2}[A-Z]?(?:-[IVX]+)(?:-\d{1,2})?\b\s*", "", text)   # codes such as "BM3A-II-1"
+    text = re.sub(r"\s*\((?:[A-Z]{3,4})\)", "", text)                              # programme abbreviations in brackets such as "(KIB)"
+    for land in LAENDER:
+        text = re.sub(rf"(?<![\wäöüß]){re.escape(land)}(?![\wäöüß])", "[region]", text)
     return re.sub(rf"\b({'|'.join(ACRONYMS)})\b(?=[\s.,;:)-]|$)", "[university]", text)
 
 
@@ -140,7 +170,7 @@ def nearest(sim: np.ndarray, titles: np.ndarray, allowed: np.ndarray, n: int = N
 
 def title_matches(module: str, sim: np.ndarray, titles: np.ndarray, words: list[frozenset], allowed: np.ndarray, shown: list[int], n: int = TITLE_EXTRA) -> list[int]:
     """hand_check.rows: up to n more allowed EMI modules whose title shares a content word with the module's title, the most similar first."""
-    mine = content_words(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(module)))
+    mine = title_words(module)
     seen, out = {titles[j] for j in shown}, []
     for j in np.argsort(-sim, kind="mergesort"):
         if allowed[j] and titles[j] not in seen and mine & words[j]:
@@ -175,7 +205,7 @@ def rows() -> None:
     rv = vectors(ref.rename(columns={"module": "title", "content": "text"}), handbook="ref")
     sim = rv @ ev.T
     titles = emi["title"].map(same_module).to_numpy()
-    words = [content_words(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(t))) for t in emi["title"]]
+    words = [title_words(t) for t in emi["title"]]
     tt = sorted({subject_name(s) for s in pd.read_csv(TIMETABLE)["subject"].dropna()} - {""})
     tv, mv = embed(tt), embed(ref["module"].astype(str).tolist())
     mean = tv.mean(axis=0)
@@ -206,6 +236,11 @@ def rows() -> None:
                       "rows": len(sheet), "rows per reference": pd.DataFrame(key).groupby("ref").size().to_dict(), "rows_hash": sha(ROWS), "key_hash": sha(KEY)}, indent=1))
 
 
+def which_numbers(w) -> list[int]:
+    """The EMI module numbers a marker named: "3", "3+5" (two modules together), or nothing."""
+    return [int(float(x)) for x in re.findall(r"\d+(?:\.0)?", str(w))] if isinstance(w, str) or (isinstance(w, float) and np.isfinite(w)) else []
+
+
 def read_marks(k: int) -> pd.DataFrame:
     m = pd.read_csv(MARKS[k], keep_default_na=False)
     if not m["verdict"].isin(VERDICTS).all() or m["row"].duplicated().any():
@@ -221,16 +256,29 @@ def drawn_rows(key: pd.DataFrame) -> dict[tuple[int, str], list[str]]:
     return out
 
 
+def near_band(key: pd.DataFrame, first: pd.DataFrame, rule: dict | None = None) -> dict[tuple[int, str], list[float]]:
+    """hand_check.sample_check: candidates whose first-marking overlap on any reference lies within 0.10 of a band end."""
+    band = (rule or config()["feasibility_gate"])["band"]
+    out = {}
+    for (t, lv), g in key.assign(v=first["verdict"].reindex(key["row"]).to_numpy()).groupby(["type", "level"]):
+        ov = [fill_figures(r, r["v"].isin(COVERED), TAUGHT[lv])["share"] for _, r in g.groupby("ref")]
+        if any(abs(o - e) <= NEAR_BAND for o in ov for e in (band["min"], band["max"])):
+            out[(int(t), lv)] = [round(o, 3) for o in ov]
+    return out
+
+
 def sample() -> None:
     key, first = pd.read_csv(KEY), read_marks(1)
     if set(key["row"]) != set(first.index):
         raise SystemExit("the first marking does not cover exactly the rows of the key")
     drawn = drawn_rows(key)
-    want = sorted({r for v in drawn.values() for r in v} | set(first.index[first["unsure"]]))
+    near = near_band(key, first)
+    want = sorted({r for v in drawn.values() for r in v} | set(first.index[first["unsure"]]) | set(key.loc[[(t, lv) in near for t, lv in zip(key["type"], key["level"])], "row"]))
     sheet = json.loads(ROWS.read_text(encoding="utf-8"))
     sheet["rows"] = [r for r in sheet["rows"] if r["row"] in set(want)]
     SAMPLE.write_text(json.dumps(sheet, indent=1, ensure_ascii=False), encoding="utf-8")
-    print(json.dumps({"drawn": {f"{t} {lv}": v for (t, lv), v in drawn.items()}, "unsure rows": int(first["unsure"].sum()), "rows for the second reviewer": len(want)}, indent=1))
+    print(json.dumps({"drawn": {f"{t} {lv}": v for (t, lv), v in drawn.items()}, "unsure rows": int(first["unsure"].sum()),
+                      "candidates near a band end (all rows)": {f"{t} {lv}": v for (t, lv), v in near.items()}, "rows for the second reviewer": len(want)}, indent=1))
 
 
 def third() -> None:
@@ -298,7 +346,7 @@ def one_programme(g: pd.DataFrame, emi: pd.DataFrame, level: str, taught: float)
     best, name = 0.0, ""
     progs = sorted({FAMILY.get(p, p) for p in emi.loc[emi["level"] == lv, "programme_id"]})
     for p in progs:
-        hit = pd.Series([bool(r["final"] in COVERED and p in {FAMILY.get(x, x) for x in ({r["confirmed programme"]} | prog_of.get(r["confirmed title"], set())) if level_of.get(x) == lv})
+        hit = pd.Series([bool(r["final"] in COVERED and p in {FAMILY.get(x, x) for x in set(r["confirmed programmes"]).union(*[prog_of.get(t, set()) for t in r["confirmed titles"]]) if level_of.get(x) == lv})
                          for _, r in g.iterrows()], index=g.index)
         s = fill_figures(g, hit, taught)["share"]
         if np.isfinite(s) and s > best:
@@ -364,13 +412,13 @@ def verdict() -> None:
     key = pd.read_csv(KEY)
     k, info = final_marks(key)
     emi = pd.read_csv(EMI_MODULES, low_memory=False).set_index("module_id", drop=False)
-    which = pd.to_numeric(k["which final"], errors="coerce")
-    conf = [k.at[i, f"emi {int(w)}"] if np.isfinite(w) and f"emi {int(w)}" in k.columns and isinstance(k.at[i, f"emi {int(w)}"], str) else None for i, w in zip(k.index, which)]
-    k["confirmed module"] = conf
-    k["confirmed programme"] = [emi.at[c, "programme_id"] if c in emi.index else "" for c in conf]
-    k["confirmed title"] = [same_module(emi.at[c, "title"]) if c in emi.index else "" for c in conf]
+    conf = [[k.at[i, f"emi {n}"] for n in which_numbers(w) if f"emi {n}" in k.columns and isinstance(k.at[i, f"emi {n}"], str) and k.at[i, f"emi {n}"] in emi.index]
+            for i, w in zip(k.index, k["which final"])]
+    k["confirmed module"] = ["+".join(c) for c in conf]
+    k["confirmed programmes"] = [sorted({emi.at[c, "programme_id"] for c in cs}) for cs in conf]
+    k["confirmed titles"] = [sorted({same_module(emi.at[c, "title"]) for c in cs}) for cs in conf]
     tt = {norm_title(s) for s in pd.read_csv(TIMETABLE)["subject"].dropna().map(lambda x: re.sub(r"\(.*?\)", "", str(x)))}
-    k["in the timetable"] = [t != "" and t in tt for t in k["confirmed title"]]
+    k["in the timetable"] = [any(t in tt for t in ts) for ts in k["confirmed titles"]]
     _, metas = references(0.8)
     refs = []
     for ref, g in k.groupby("ref", sort=True):

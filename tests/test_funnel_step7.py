@@ -57,6 +57,23 @@ def test_copies_of_one_module_are_one_title():
     assert F.same_module("[ MA2 ]    Mathematik 2 (Diskrete Mathematik)") == "mathematik 2"
 
 
+def test_title_words_cross_english_and_german():
+    assert F.title_words("Theoretical Computer Science") & F.title_words("Theoretische Informatik")
+    assert F.title_words("Datenbanksysteme") == F.title_words("Databases")
+    assert F.title_words("[ CNW ]    Computernetzwerke") & F.title_words("Computer Networks")
+
+
+def test_which_may_name_two_modules():
+    assert F.which_numbers("3+5") == [3, 5] and F.which_numbers("2") == [2] and F.which_numbers("2.0") == [2] and F.which_numbers("") == [] and F.which_numbers(np.nan) == []
+
+
+def test_near_band_marks_whole_candidates():
+    key = pd.DataFrame({"row": ["R1", "R2", "R3", "R4"], "ref": ["1_bachelor_a"] * 2 + ["2_bachelor_a"] * 2, "type": [1, 1, 2, 2], "level": ["bachelor"] * 4,
+                        "kind": ["compulsory"] * 4, "ects": [70.0, 95.0, 20.0, 145.0], "order": [0, 1, 0, 1]})
+    first = pd.DataFrame({"verdict": ["E2", "N", "E1", "new"]}, index=["R1", "R2", "R3", "R4"])
+    assert F.near_band(key, first, {"band": {"min": 0.4, "max": 0.8}}) == {(1, "bachelor"): [0.424]}          # 70/165 near 0.40; 20/165 = 0.12 is not
+
+
 def test_timetable_subject_without_its_form():
     assert F.subject_name("Informatik 1 (Vorlesung)") == "Informatik 1"
     assert F.subject_name("Elektrotechnik 2 (Praktikum)") == "Elektrotechnik 2"
@@ -98,6 +115,8 @@ def test_rows_are_blind():
         assert not re.search(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", text, flags=re.I), t
     assert not re.search(rf"\b({'|'.join(F.ACRONYMS)})\b(?=[\s.,;:)-]|$)", text)
     assert not re.search(r"\b[BM]-[A-Z]{2,4}-\d{1,3}\b", text) and F.redact("B-CY-19 Software Engineering", []) == "Software Engineering"
+    assert not any(re.search(rf"(?<![\wäöüß]){re.escape(x)}(?![\wäöüß])", text) for x in F.LAENDER)
+    assert F.redact("BM3A-II-1 FEM (KIB) in Schleswig-Holstein", []) == "FEM in [region]"
     assert F.redact("an der HTWK Leipzig und der OTH Regensburg; other Tübbingen", ["Leipzig", "Regensburg"]) == "an der [university] [university] und der [university] [university]; other Tübbingen"
     for r in sheet["rows"]:
         assert set(r) == {"row", "module", "credit points", "level of the programme", "description", "EMI modules", "timetable subjects"}
