@@ -9,8 +9,8 @@ Run from the repository root:
 
 tries: for the first 20 candidates of the gate order, the unit's assigned full-time offers at universities of applied
 sciences other than OTH, nearest the type's centroid first (universities only if there is no such offer).
-fetch: every request goes through ingest.documents (robots.txt, User-Agent, delay); the manifest is
-docs/funnel_refs_manifest.json. A blocked or missing document is recorded, never worked around.
+fetch: every request goes through ingest.documents (robots.txt, User-Agent, delay); `manifest` writes all requests
+to docs/funnel_refs_manifest.json. A blocked or missing document is recorded, never worked around.
 check: a reference is complete if its module table lists at least 80 % of the programme's ECTS, thesis included.
 """
 
@@ -64,7 +64,6 @@ def fetch(doc_id: str, url: str) -> None:
     load_env(REPO_ROOT / ".env")
     agent = user_agent()
     RAW.mkdir(parents=True, exist_ok=True)
-    log = json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else []
     rec = {"id": doc_id, "url": url, "asked_utc": datetime.now(timezone.utc).isoformat(timespec="seconds")}
     if not allowed_by_robots(url, agent):
         rec["status"] = "skipped_robots"
@@ -81,9 +80,19 @@ def fetch(doc_id: str, url: str) -> None:
                 rec.update(status="downloaded", file=dest.relative_to(REPO_ROOT).as_posix(), bytes=len(resp.content), sha256=sha256(dest), content_type=resp.headers.get("Content-Type"))
         except requests.RequestException as exc:
             rec.update(status="error", error=type(exc).__name__)
-    log.append(rec)
-    MANIFEST.write_text(json.dumps(log, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    (RAW / "log").mkdir(exist_ok=True)                 # one file per request: several collectors may run at once
+    (RAW / "log" / f"{rec['asked_utc'].replace(':', '')}_{doc_id}.json").write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
     print(json.dumps(rec, ensure_ascii=False))
+
+
+def manifest() -> None:
+    """All requests of the collectors, in time order, as the committed manifest."""
+    old = [r for r in (json.loads(MANIFEST.read_text(encoding="utf-8")) if MANIFEST.exists() else [])]
+    new = [json.loads(f.read_text(encoding="utf-8")) for f in sorted((RAW / "log").glob("*.json"))]
+    seen = {(r["id"], r["asked_utc"]) for r in new}
+    log = sorted([r for r in old if (r["id"], r["asked_utc"]) not in seen] + new, key=lambda r: (r["asked_utc"], r["id"]))
+    MANIFEST.write_text(json.dumps(log, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(len(log), "requests;", pd.Series([r["status"] for r in log]).value_counts().to_dict())
 
 
 def text(doc_id: str) -> None:
@@ -119,4 +128,4 @@ def check() -> None:
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
-    {"tries": tries, "fetch": lambda: fetch(sys.argv[2], sys.argv[3]), "text": lambda: text(sys.argv[2]), "check": check}[cmd]()
+    {"tries": tries, "fetch": lambda: fetch(sys.argv[2], sys.argv[3]), "text": lambda: text(sys.argv[2]), "check": check, "manifest": manifest}[cmd]()
