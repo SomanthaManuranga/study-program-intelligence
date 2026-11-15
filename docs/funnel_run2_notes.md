@@ -242,3 +242,142 @@ selection, the left-over groups and all texts; 0 groups dropped, 0 texts differ)
 
 **No programme stays or goes in this step.** By Soma's decision the types go to Step 3 with the coherence check on
 every surviving type; G9 stays recorded as not passed.
+
+## Step 3: which units stay, and how much competition do they have?
+
+**Question.** Which programme types are open to OTH and inside EMI's field, and how many similar programmes exist
+near Amberg, in Bavaria, in the south and in Germany?
+
+**Rule.** `configs/funnel.yaml`, blocks `definitions`, `pool_mapping`, `screen`, `freeze`; criteria in
+`docs/criteria_funnel_step3.md`. Code: `analysis/funnel_units.py` (items, labels, run, sheet). Result files carry
+code commit 7f24b79. A unit is a type x level (bachelor or master) with offers at 2 or more institutions.
+
+**Three rules did not work with the finer types of Step 2 and were changed (proposal, to be confirmed by Soma).**
+The step ran three times; the first two results are void.
+
+| Rule | As first written | What happened | Changed to |
+|---|---|---|---|
+| Merged candidates | units linked through chains of close centroids | 411 of 613 bachelor units and 448 of 672 master units fell into one group each; the whole group was dropped as "at OTH" (840 units); 43 units were left | a group only if every pair is close to each other; largest group 6 |
+| EMI's field | raw similarity of an offer's title and focus areas to the full text of EMI's modules; bar from 11 EMI and 30 other OTH offers | Informatik and Elektrotechnik fell outside, Philosophie and Kunstgeschichte inside; on 300 units marked by an independent reader the score reached AUC 0.71 | similarity to the titles of EMI's modules on centred vectors, mean over all offers of the unit; bar set on the 300 marked units so that 95 % of the field's units are kept; AUC 0.965 |
+| Already at OTH | an OTH offer within the type's median member distance | 24 of OTH's 46 offers dropped no unit (7 of the 12 EMI offers); units holding an OTH programme stayed | an OTH offer is assigned to the type, or lies within the median distance; 45 of 46 OTH offers now drop a unit; a merged group is no longer dropped as a whole |
+
+All three changes were chosen by checks that look at no candidate: group sizes, agreement with labels made from
+titles only, and the share of OTH's own offers that trigger the test. The former rules are stress specs.
+
+**Result.**
+
+| | |
+|---|---|
+| Units tested | 1,285 (613 bachelor, 672 master) from 780 types |
+| Dropped: already at OTH | 44 units (29 for this reason only) |
+| Dropped: teacher training (half or more of the offers) | 244 (32 for this reason only) |
+| Dropped: falling and validated trend (below -3 % a year) | 17, none for this reason only; only 51 units have a validated trend, 35 could not be backtested, 29 have no slope |
+| Dropped: outside EMI's field | 859 (620 for this reason only) |
+| Primary list | 365 units (183 bachelor, 182 master) of 247 types, in 268 candidates after merging; 201 from rare, 100 from stable, 64 from mid-sized types |
+| Stress list (only "at OTH" applied) | 1,241 units |
+| Merged groups | 300 groups hold 734 units; the largest has 6 |
+| Second run | identical screen table and lists |
+
+**The EMI-field screen is a generous first filter, not a statement that a unit is in EMI's field.** The bar keeps 47
+of the 49 marked field units and 49 of the 251 marked outside units. Of the 77 marked units on the primary list,
+38 are outside EMI's field by the reader's labels: about half of the list. 68 units lie just above the bar and 75
+just below (within 0.02). The score rewards any subject that appears among EMI's module titles, so Physik and
+Mathematik rank at the top, and look-alike words pass (Philosophie, Komposition). Step 7 measures the real fit on
+curricula; a unit dropped here would be lost, which is why the bar is generous. Of the 10 marked field units that
+are not on the list, 6 are teacher training, 2 are already at OTH and 2 fall just below the bar.
+
+**Head of the primary list by EMI score** (the full list with all numbers: `reports/funnel2/step3_screen.md`,
+`data/interim/funnel2_candidates.csv`):
+
+| Unit | Titles nearest the centre | Kind | EMI score | Similar offers in Germany | within 150 km | Mixed type |
+|---|---|---|---|---|---|---|
+| 12 bachelor | Physik; Physics; Physik / Physics; Mathematische Physik; Physik, Theor... | stable | 0.89 | 53 | 12 | no |
+| 438 master | Mechatronische Systeme; Mechatronische Systementwicklung; Mechatronisc... | rare | 0.84 | 28 | 5 | no |
+| 12 master | Physik; Physics; Physik / Physics; Mathematische Physik; Physik, Theor... | stable | 0.79 | 53 | 11 | no |
+| 206 bachelor | Elektrotechnik; Elektrotechnik / Electrical Engineering; Electrical En... | stable | 0.76 | 283 | 41 | no |
+| 6 master | Mathematik; Mathematik (2-Fächer); Mathematik in Medizin und Lebenswis... | stable | 0.71 | 65 | 10 | no |
+| 206 master | Elektrotechnik; Elektrotechnik / Electrical Engineering; Electrical En... | stable | 0.70 | 193 | 39 | no |
+| 684 bachelor | Creative Technologies; Creative Engineering | rare | 0.69 | 2 | 1 | yes |
+| 736 master | Elektrotechnik - Erneuerbare Energien und Systemtechnik (dt.-frz. Stud... | rare | 0.68 | 6 | 0 | no |
+| 235 master | Embedded Systems; Embedded Systems Engineering; Embedded Systems - Aer... | mid-sized | 0.67 | 7 | 0 | no |
+| 6 bachelor | Mathematik; Mathematik (2-Fächer); Mathematik in Medizin und Lebenswis... | stable | 0.67 | 78 | 12 | no |
+| 648 bachelor | Künstliche Intelligenz in der Medizin; Künstliche Intelligenz in der M... | rare | 0.67 | 5 | 0 | yes |
+| 284 bachelor | Medienwissenschaften; Medieninformatik; Medienwissenschaft (Verbund); ... | mid-sized | 0.66 | 22 | 3 | yes |
+| 793 master | Artificial Intelligence; Artificial Intelligence and Intelligent Syste... | rare | 0.66 | 4 | 1 | no |
+| 368 bachelor | Informationssystemtechnik; Informationstechnik / Medizintechnik; Infot... | rare | 0.65 | 32 | 3 | yes |
+| 237 master | Energietechnik; Energie- und Umwelttechnik: Energietechnik; Energie-, ... | mid-sized | 0.65 | 39 | 6 | no |
+| 666 master | Advanced Information Technology; Advanced Information Technology (beru... | rare | 0.65 | 5 | 0 | no |
+| 734 bachelor | Medien- und Kommunikationsmanagement; Kultur- und Medienmanagement; Me... | rare | 0.65 | 13 | 3 | yes |
+| 704 bachelor | Vermessung; Vermessung (ausbildungsbegleitend); Geovisualisierung | rare | 0.65 | 8 | 2 | yes |
+| 710 master | Strategische Produkt- und Innovationsentwicklung; Management and Innov... | rare | 0.64 | 5 | 1 | yes |
+| 809 bachelor | Design | rare | 0.64 | 1 | 0 | no |
+| 809 master | Design | rare | 0.64 | 3 | 1 | no |
+| 703 bachelor | Kooperatives Ingenieurstudium Elektrotechnik; Elektrotechnik - Koopera... | rare | 0.64 | 5 | 0 | yes |
+| 734 master | Medien- und Kommunikationsmanagement; Kultur- und Medienmanagement; Me... | rare | 0.64 | 12 | 1 | yes |
+| 407 master | Künstliche Intelligenz und industrielle Digitalisierung; Robotics, Cog... | rare | 0.64 | 25 | 6 | yes |
+| 294 bachelor | Technische Informatik; Informatik und Systems-Engineering; Informatik ... | mid-sized | 0.64 | 15 | 1 | no |
+
+**Competition and regional gap on the primary list** (similar offers by content: offers of the type plus offers
+inside its radius, each institution and cleaned title once, without OTH and distance learning). 90 units have no
+similar offer within 150 km; 80 have none in Bavaria although the kind exists elsewhere; 33 have none within 150 km
+and none in the south ("gap"). For 30 units the subject pool is not shrinking in the Laender that host the
+programme (popularity tier 2). These counts are **not validated yet**: they hold only if "inside the radius" means
+"the same kind of programme", which Soma's check of 100 offers tests (`docs/funnel_similarity_check.csv`).
+
+**Coherence of the types on the list (rule `screen.type_coherence`).** Independent readers read 10 titles of each of
+the 247 types: 172 hold one kind of programme (70 %; bar 80 %), 75 are flagged "mixed" (103 of the 365 units). With
+every borderline case counted as a pass it is 203, as a fail 129. By kind: stable 43 of 59, mid-sized 32 of 38,
+rare 97 of 150. A mixed type keeps its place on the list with the flag and cannot take a gate slot without a full
+reading (`docs/funnel_type_coherence.csv`).
+
+**Spot check for Soma** (source for every row: `data/interim/funnel2_screen.csv`):
+
+| Unit | Titles nearest the centre | Result | Test | Numbers (data/interim/funnel2_screen.csv) |
+|---|---|---|---|---|
+| 112 master | Logistikmanagement; Logistik, Infrastruktur und Mobilität; Supply Chai... | dropped: already at OTH | an OTH offer of this level belongs to the type | Logistik & Digitalisierung Master of Science |
+| 216 bachelor | Maschinenbau; Maschinenbau und Design; Maschinenbau/Verfahrenstechnik;... | dropped: already at OTH | an OTH offer of this level belongs to the type | Maschinenbau Bachelor of Engineering |
+| 216 master | Maschinenbau; Maschinenbau und Design; Maschinenbau/Verfahrenstechnik;... | dropped: already at OTH | an OTH offer of this level belongs to the type | Innovationsfokussierter Maschinenbau Master of Engineering |
+| 262 bachelor | Betriebswirtschaft; Betriebswirtschaftslehre; Betriebswirtschaft & Man... | dropped: already at OTH | an OTH offer of this level belongs to the type | Handels- und Dienstleistungsmanagement Bachelor of Arts |
+| 297 bachelor | Engineering Science; Mechanical Engineering; Engineering; Engineering ... | dropped: already at OTH | an OTH offer of this level belongs to the type | Technical Engineering Bachelor of Engineering |
+| 51 bachelor | Tourismusmanagement; Internationales Tourismus- und Eventmanagement; I... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -3.6 %/yr, validated False; EMI score 0.374 |
+| 326 master | Gesundheitswissenschaft; Public Health; Health Sciences; Gesundheitswi... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -1.1 %/yr, validated False; EMI score 0.325 |
+| 528 master | Soziologie; Soziologie: Diversität und Gesellschaft; Demokratiewissens... | dropped: other screen | outside EMI's field | teacher share 0.00; trend 0.5 %/yr, validated False; EMI score 0.237 |
+| 551 master | Inklusive Pädagogik und Elementarbildung; Blinden- und Sehbehindertenp... | dropped: other screen | teacher training | outside EMI's field | teacher share 1.00; trend 0.4 %/yr, validated False; EMI score 0.304 |
+| 791 bachelor | Wirtschaftsingenieurwesen; Wirtschaftsingenieurwesen/Technischer Vertr... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -3.8 %/yr, validated False; EMI score 0.358 |
+| 189 master | Digital Engineering; Digital Engineering Elektrotechnik; Digital Engin... | kept | passes all four screens | teacher share 0.00; trend -1.1 %/yr; EMI score 0.593; similar offers within 150 km 1 |
+| 294 bachelor | Technische Informatik; Informatik und Systems-Engineering; Informatik ... | kept | passes all four screens | teacher share 0.00; trend 0.7 %/yr; EMI score 0.636; similar offers within 150 km 1 |
+| 352 master | Umweltingenieurwesen; Umwelttechnik; Umweltingenieurwissenschaften; Um... | kept | passes all four screens | teacher share 0.00; trend -2.0 %/yr; EMI score 0.458; similar offers within 150 km 6 |
+| 386 bachelor | Intermedia Design; Design interaktiver Medien; Intermedia Design mit P... | kept | passes all four screens | teacher share 0.00; trend -2.3 %/yr; EMI score 0.472; similar offers within 150 km 0 |
+| 691 master | Agrarmanagement; Land- und Ernährungswirtschaft - Agrarmanagement; Lan... | kept | passes all four screens | teacher share 0.00; trend -18.3 %/yr; EMI score 0.475; similar offers within 150 km 1 |
+
+**Limits and choices.**
+
+- A type that only resembles an OTH programme, without holding an OTH offer, stays on the list (for example a second
+  Medieninformatik type). The capture model and the one-programme limit of the gate deal with it later.
+- The trend screen is almost inert: 521 units have a slope below -3 % a year in the second run's table, but only
+  validated trends drop a unit, and few trends are validated.
+- The bar and the choice of the score were set on the same 300 marked units; nothing was held out. The labels were
+  made by one AI reader from titles only; a second reader agreed on 27 of 30 units.
+- 15 of EMI's 293 module titles name no subject (change table, theses, internships, elective placeholders) and are
+  left out. Units' scores are the mean over all their offers.
+- An offer without a Land or coordinates counts for Germany only (1 offer). Bavaria's base share for the quotient is
+  taken over all offers of the level (0.123 bachelor, 0.125 master).
+- The first-years backtest ends in 2024, because 2025 is the Bavarian G9 gap year.
+
+**Reviews.** First review: 2 blockers, 12 majors, 12 minors (the two rule failures above; teacher share on labels
+with the level marker; backtest details; sheet could leak the side). Second review: every number recomputed without
+mismatch; 2 blockers, 6 majors, 9 minors (similar offers undercounted in 176 units; a parsing leftover among the
+module titles; the "at OTH" test missed half of OTH's offers; the bar is fragile). All fixed or stated above. The
+third result was checked once more together with these notes.
+
+**Scorecard.** S1 pass (labels file was untracked when first used; its hash is recorded). S2 to S8 pass (tests
+recompute units, at-OTH, teacher share on 60 units, EMI score on 80 units, all counts, flags and quotients). S9
+done: 70 % of the types pass, below the bar of 80 %; mixed types are flagged. S10 the sheet is ready; the competition
+counts are flagged "not validated yet". S11 pass. S12 pass (two runs identical). S13 after two review rounds: no
+open blocker. S14 one check round. S15 pass. S16 above. S17 pass (largest group 6; every pair mutual). S18 pass (AUC
+0.965; 47 of 49 kept), with the limit that nothing was held out. S19 open: Soma's confirmation. S20 pass (45 of 46).
+S21 above.
+
+**Open for Soma.** (1) Confirm or reject the three changed rules. (2) Mark the 100 offers in
+`docs/funnel_similarity_check.csv` ("same kind of programme?" yes or no). Until then the competition counts are
+provisional and Step 4 does not start.
