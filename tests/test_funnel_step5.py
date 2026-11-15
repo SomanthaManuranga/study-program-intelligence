@@ -15,7 +15,7 @@ needs = lambda *files: pytest.mark.skipif(not all((REPO / f).exists() for f in f
 
 
 def test_titles_are_split_as_the_rule_says():
-    assert L.title_parts("Elektro- und Informationstechnik (dual)") == ["elektro", "informationstechnik"]
+    assert L.title_parts("Elektro- und Informationstechnik (dual)") == ["elektro-", "informationstechnik"]      # hyphens stay
     assert L.title_parts("Data Science & Artificial Intelligence / KI, Robotik + Automation") == ["data science", "artificial intelligence", "ki", "robotik", "automation"]
     assert L.title_parts("Industrie-4.0-Informatik") == ["industrie-4.0-informatik"]            # hyphens stay
     assert L.title_parts("Sound and Music Production") == ["sound", "music production"]
@@ -62,6 +62,12 @@ def test_the_measure_is_the_median_keyword_count_within_100_km():
     r = json.loads((INTERIM / "funnel2_step5.json").read_text(encoding="utf-8"))
     latest = c.sort_values("date").drop_duplicates(["keyword", "region"], keep="last").set_index(["keyword", "region"])["total"]
     assert len(out) == r["units"] == 1285 and (c["total"] >= 0).all()
+    assert L.REGIONS["amberg_100km"]["wo"] == "Amberg, Oberpfalz" and r["all_ads"]["amberg_100km"] < 0.06 * r["all_ads"]["germany"]
+    raw = sorted((REPO / "data" / "raw" / "jobsuche_funnel").glob("*/*.json"))                 # every stored radius reply is centred on the right Amberg
+    for f in raw[::25]:
+        j = json.loads(f.read_text(encoding="utf-8"))
+        if j["region"] == "amberg_100km":
+            assert abs(j["reply"]["woOutput"]["koordinaten"][0]["lat"] - 49.4537) < 0.05, f.name
     for row in out[out["labour input"] == "ok"].sample(60, random_state=0).itertuples():
         kws = k.loc[(k["type"] == row.type) & (k["rank"] > 0), "keyword"]
         near = [latest[(x, "amberg_100km")] for x in kws]

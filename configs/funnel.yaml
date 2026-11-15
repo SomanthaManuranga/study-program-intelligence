@@ -159,14 +159,14 @@ labour:                        # Step 5
   phrases: each fitted member's cleaned title (degree words and bracketed text removed, lower case) is split at "und", "and", "&", "/", "," and "+"; each part is one phrase; hyphens stay
   per: type (the same keywords for both levels)
   share: share of the type's fitted members that have the phrase as a part
-  drop_generic: phrases in configs/funnel_title_stoplist.yaml (degree and catalogue words, committed before Step 2), and phrases that would be among the 3 highest-share phrases of more than 5 % of all types   # 5 % [J] stress 2 % and 10 %
+  drop_generic: phrases in configs/funnel_title_stoplist.yaml (degree and catalogue words, committed before Step 2), and phrases that would be among the 3 highest-share phrases (phrases tied with the third count too) of more than 5 % of all types   # 5 % [J] stress 2 % and 10 %
   keywords: after drop_generic, the 3 phrases with the highest share that occur in at least 2 member titles; if none occurs twice, the parts of the fitted member nearest the centroid in title order, at most 3   # 3 [J] stress 5; 2 titles [J] stress 1
   phrase_ties: the phrase in more member titles first, then alphabetical order
   english: if the catalogue has a language-of-instruction field (Step 1 says so), the highest-share phrase among the type's English-taught members is added when it is not yet a keyword; otherwise nothing is paired and this is a stated limit
   strike_only_review: before any count is fetched, Soma may strike an off-topic keyword with a written reason; nothing may be added
   stored_first: the keyword file is committed with its hash before the first request
   query: the phrase as the search text of ingest/jobsuche.py, unquoted; all requests of a list on one recorded day
-  regions: [germany, bayern, amberg_100km]      # every keyword in every region
+  regions: [germany, bayern, amberg_100km]      # every keyword in every region; the place is sent as "Amberg, Oberpfalz" and every reply's coordinates are checked, because the job board reads a bare "Amberg" as Amberg bei Buchloe
   measure: median over the type's keywords of the count within 100 km; stress is the largest keyword count (version 2)
   also_reported: Bavaria's share of the German count next to the baseline share of all ads
   no_keyword: a candidate without a keyword has a missing labour input (ranking.inputs.missing)

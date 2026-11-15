@@ -35,7 +35,8 @@ STOPLIST = REPO_ROOT / "configs" / "funnel_title_stoplist.yaml"
 KEYWORDS = REPO_ROOT / "docs" / "funnel_keywords.csv"
 RAW = REPO_ROOT / "data" / "raw" / "jobsuche_funnel"
 COUNTS, LABOUR, STEP5 = INTERIM / "funnel2_job_counts.csv", INTERIM / "funnel2_labour.csv", INTERIM / "funnel2_step5.json"
-REGIONS = {"germany": {}, "bayern": {"wo": "Bayern"}, "amberg_100km": {"wo": "Amberg", "umkreis": 100}}     # labour.regions
+REGIONS = {"germany": {}, "bayern": {"wo": "Bayern"}, "amberg_100km": {"wo": "Amberg, Oberpfalz", "umkreis": 100}}     # labour.regions
+AMBERG = (49.4537, 11.8481)     # the job board reads a bare "Amberg" as Amberg bei Buchloe; every reply's place is checked against this
 SPLIT = re.compile(r"\s+(?:und|and)\s+|[&/,+]")           # labour.phrases
 TOP, MIN_TITLES, GENERIC_SHARE = 3, 2, 0.05               # labour.keywords, labour.drop_generic
 ALL_ADS = "(all ads)"
@@ -43,9 +44,10 @@ ALL_ADS = "(all ads)"
 
 def title_parts(clean_title: str) -> list[str]:
     """Rule labour.phrases: the cleaned title without bracketed text, lower case, split at "und", "and", "&", "/", ","
-    and "+"; hyphens stay. A part needs a letter and at least 2 characters."""
+    and "+"; hyphens stay ("elektro-" of "Elektro- und Informationstechnik"). A part needs a letter and at least 2
+    characters."""
     t = re.sub(r"\([^)]*\)|\[[^\]]*\]", " ", str(clean_title)).lower()
-    parts = [re.sub(r"\s+", " ", p).strip(" .:;-–") for p in SPLIT.split(t)]
+    parts = [re.sub(r"\s+", " ", p).strip(" .:;") for p in SPLIT.split(t)]
     return [p for p in parts if len(p) >= 2 and re.search(r"[^\W\d_]", p)]
 
 
@@ -79,7 +81,11 @@ def keywords_of(titles: list[str], nearest_title: str, drop: set[str]) -> tuple[
 def build_keywords(d: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     stop = stoplist()
     members = {int(c): g.sort_values("dist_to_assigned", kind="stable") for c, g in d[d["type"] >= 0].groupby("type")}
-    first = {c: [normalise(p) for p, _ in ranked_phrases(g["clean_title"].tolist(), stop)[:TOP]] for c, g in members.items()}
+    first = {}
+    for c, g in members.items():                  # the 3 highest-share phrases of a type; phrases tied with the third count too
+        ranked = ranked_phrases(g["clean_title"].tolist(), stop)
+        cut = ranked[TOP - 1][1] if len(ranked) >= TOP else 0
+        first[c] = [normalise(p) for p, n in ranked if n >= cut]
     in_top = Counter(p for ps in first.values() for p in ps)
     generic = {p for p, n in in_top.items() if n > GENERIC_SHARE * len(members)}                   # labour.drop_generic, second part
     rows = []
@@ -122,6 +128,7 @@ def fetch(which: str) -> None:
             subprocess.run(["git", "ls-files", str(KEYWORDS.relative_to(REPO_ROOT))], cwd=REPO_ROOT, capture_output=True, text=True).stdout.strip():
         raise SystemExit("docs/funnel_keywords.csv must be committed before the first request (labour.stored_first)")
     endpoint = yaml.safe_load((REPO_ROOT / "configs" / "jobsuche.yaml").read_text(encoding="utf-8"))["endpoint"]
+    import hashlib
     today = date.today().isoformat()
     folder = RAW / today
     folder.mkdir(parents=True, exist_ok=True)
@@ -131,7 +138,9 @@ def fetch(which: str) -> None:
     print(f"{which}: {len(todo)} requests to do on {today} ({len(done)} already counted today)", flush=True)
     rows, errors = [], 0
     for i, (k, r) in enumerate(todo, 1):
-        params = {"was": None if k == ALL_ADS else k, **REGIONS[r], "angebotsart": 1, "page": 1, "size": 1}
+        params = {"was": None if k == ALL_ADS else k, **REGIONS[r], "angebotsart": 1, "page": 1, "size": 1}     # angebotsart 1: regular jobs of every level
+        if date.today().isoformat() != today:
+            raise SystemExit("the day changed during the run: a list is counted on one day (labour.query); run it again on one day")
         try:
             resp = _get(endpoint, params)
             if resp.status_code != 200:
@@ -140,7 +149,11 @@ def fetch(which: str) -> None:
             total = _total(payload)
             if total is None:
                 raise RuntimeError("no total in the reply")
-            (folder / f"{len(done) + i:05d}.json").write_text(json.dumps({"keyword": k, "region": r, "reply": payload}, ensure_ascii=False), encoding="utf-8")
+            if r == "amberg_100km":
+                place = (payload.get("woOutput") or {}).get("koordinaten") or [{}]
+                if abs(place[0].get("lat", 0) - AMBERG[0]) > 0.05 or abs(place[0].get("lon", 0) - AMBERG[1]) > 0.05:
+                    raise RuntimeError(f"the reply is not centred on Amberg in der Oberpfalz: {payload.get('woOutput')}")
+            (folder / f"{hashlib.sha256((k + '|' + r).encode()).hexdigest()[:16]}.json").write_text(json.dumps({"keyword": k, "region": r, "reply": payload}, ensure_ascii=False), encoding="utf-8")
             rows.append({"date": today, "keyword": k, "region": r, "total": int(total), "keywords_file": sha(KEYWORDS), "commit": stamp["commit"]})
         except Exception as exc:                                   # counted as missing; asked again by the next call
             errors += 1
