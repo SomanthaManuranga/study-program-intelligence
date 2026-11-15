@@ -41,3 +41,12 @@ merged groups chained most units together and the EMI-field score could not tell
 | S18 | The EMI-field score works on units it has not been tuned on by hand | AUC of at least 0.8 on the 300 marked units ("yes" or "partly" against "no"); the bar keeps at least 95 % of the marked field units; the share of marked outside units it keeps is reported | test on docs/funnel_emi_labels.csv |
 | S19 | Soma confirms or rejects the two changed rules | asked at the end of the step, with the first run's result next to the new one | Soma's answer |
 
+## After the second review (15 Nov 2026)
+
+Written and committed before the changed code runs.
+
+| # | Criterion | Target | How it is checked |
+|---|---|---|---|
+| S20 | The "already at OTH" test fires for OTH's own programmes | every OTH offer that is assigned to a type with a unit of its level drops that unit; the number of OTH offers that drop a unit is reported | test, recomputed from the offer table |
+| S21 | The primary list is described as what it is | the notes say how many of the marked units above the bar are outside EMI's field, and how many units lie close to the bar | notes, checked by the claim reviewer |
+

@@ -93,14 +93,23 @@ def test_emi_score_is_the_centred_cosine_to_module_titles():
     assert title_only[0] == pytest.approx(cos(item_vec[0], module_vec[0])) and all_items[1] == title_only[1]
 
 
-def test_gap_numbers_and_flags():
+def test_gap_numbers_count_an_institution_and_title_once():
     land = np.array(["BY", "BW", "NW", "NW", "", "HH"])
     km = np.array([40.0, 140.0, 400.0, 400.0, np.nan, 500.0])
-    n = U.gap_numbers(np.array([False, False, True, True, True, True]), np.zeros(6, bool), land, km, 0.125)
-    assert (n["similar offers"], n["similar in Bavaria"], n["similar in the south"], n["similar within 150 km"]) == (4, 0, 0, 0)
+    key = np.array([0, 1, 2, 2, 3, 4])                        # rows 2 and 3: the same institution and cleaned title
+    none = np.zeros(6, bool)
+    n = U.gap_numbers(np.array([False, False, True, True, True, True]), none, land, km, 0.125, key)
+    assert (n["similar offers"], n["similar in Bavaria"], n["similar in the south"], n["similar within 150 km"]) == (3, 0, 0, 0)
     assert n["exists elsewhere"] and n["absent flag"] and n["gap flag"] and np.isnan(n["bavarian quotient"])     # fewer than 5 similar offers: no quotient
-    n = U.gap_numbers(np.ones(6, bool), np.zeros(6, bool), land, km, 0.125)
-    assert not n["absent flag"] and not n["gap flag"] and n["bavarian quotient"] == pytest.approx(((1 + 5 * 0.125) / 11) / 0.125)
+    n = U.gap_numbers(np.ones(6, bool), none, land, km, 0.125, key)
+    assert n["similar offers"] == 5 and not n["absent flag"] and not n["gap flag"]
+    assert n["bavarian quotient"] == pytest.approx(((1 + 5 * 0.125) / 10) / 0.125)
+
+
+def test_module_titles_that_name_no_subject_are_left_out():
+    keep = U.subject_titles(["Change History", "Bachelorarbeit", "Master thesis", "Praxisphase mit Seminar", "Fachspezifisches Wahlpflichtmodul 2",
+                             "Regelungstechnik", "Projektarbeit Robotik 2", "Mathematik 1", "Physikalisches Praktikum und Messtechnik"])
+    assert list(keep) == [False, False, False, False, False, True, True, True, True]
 
 
 @needs(*RUN)
@@ -120,8 +129,8 @@ def test_every_unit_is_tested_and_the_lists_follow_from_the_screens():
     assert not s.loc[s["backtest years"] < 12, "trend validated"].any()
     assert (s["outside EMI"] == (s["emi score"] < cal["bar"])).all() and (s["drop: outside EMI"] == (s["outside EMI"] & cal["screen_drops"])).all()
     assert cal["screen_drops"] == (cal["auc"] >= sc["emi_domain"]["if_auc_below"]["auc"])
-    dropped = s["at OTH (own or group)"] | s["drop: teacher training"] | s["drop: trend"] | s["drop: outside EMI"]
-    assert (s["primary"] == ~dropped).all() and (s["stress"] == ~s["at OTH (own or group)"]).all()
+    dropped = s["drop: at OTH"] | s["drop: teacher training"] | s["drop: trend"] | s["drop: outside EMI"]
+    assert (s["primary"] == ~dropped).all() and (s["stress"] == ~s["drop: at OTH"]).all()
     for name, col in (("funnel2_candidates.csv", "primary"), ("funnel2_candidates_stress.csv", "stress")):
         lst = pd.read_csv(INTERIM / name)
         assert list(zip(lst["type"], lst["level"])) == list(zip(s.loc[s[col], "type"], s.loc[s[col], "level"]))
@@ -129,13 +138,32 @@ def test_every_unit_is_tested_and_the_lists_follow_from_the_screens():
         assert h == r["hashes"][col]
     for name, h in r["files"].items():
         assert hashlib.sha256((INTERIM / name).read_bytes()).hexdigest()[:16] == h, name
+    teach = lambda x: bool(__import__("re").search(sc["teacher_training"]["pattern"], U.normalise(x)))     # the teacher share, again from the offers
+    for row in s.sample(60, random_state=0).itertuples():
+        o = d[(d["assigned_type"] == row.type) & (d["level"] == row.level)]
+        text = o["title"].fillna("") + " " + o["degree"].fillna("") + " " + o["subjects"].fillna("").str.replace(r"\s*\((?:grundständig|weiterführend)[^)]*\)", "", regex=True)
+        assert text.map(teach).mean() == pytest.approx(s.at[row.Index, "teacher share"])
 
 
-@needs(*RUN)
-def test_the_emi_score_separates_the_marked_units():
-    """Criterion S18, recomputed from the marks and the scores in the screen table."""
+@needs(*RUN, "funnel2_item_vectors.npy", "funnel2_item_index.csv", "funnel2_module_title_vectors.npy", "modules_emi_2026.csv")
+def test_the_emi_score_is_recomputed_and_separates_the_marked_units():
+    """Criterion S18: the unit scores are computed again from the vectors; bar and AUC from the marks."""
     r = json.loads((INTERIM / "funnel2_step3.json").read_text(encoding="utf-8"))["calibration"]
     s = pd.read_csv(INTERIM / "funnel2_screen.csv")
+    d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
+    vec = np.load(INTERIM / "funnel2_item_vectors.npy").astype(np.float64)
+    pos_of = {x: i for i, x in enumerate(pd.read_csv(INTERIM / "funnel2_item_index.csv", keep_default_na=False)["item"])}
+    titles = sorted(set(pd.read_csv(INTERIM / "modules_emi_2026.csv", low_memory=False)["title"].dropna().astype(str)))
+    mod = np.load(INTERIM / "funnel2_module_title_vectors.npy").astype(np.float64)[U.subject_titles(titles)]
+    assert (len(titles), len(mod)) == (r["module_titles"], r["module_titles_naming_a_subject"])
+    mean = vec.mean(axis=0)
+    norm = lambda v: v / np.linalg.norm(v, axis=1, keepdims=True)
+    best = (norm(vec - mean) @ norm(mod - mean).T).max(axis=1)
+    for row in s.sample(80, random_state=1).itertuples():
+        o = d[(d["assigned_type"] == row.type) & (d["level"] == row.level)]
+        o = o[~o["is_oth"]] if (~o["is_oth"]).any() else o
+        per_offer = [np.mean([best[pos_of[x]] for x in [t, *(f.split(" | ") if isinstance(f, str) and f else [])]]) for t, f in zip(o["clean_title"], o["focus_text"])]
+        assert np.mean(per_offer) == pytest.approx(s.at[row.Index, "emi score"])
     lab = pd.read_csv(REPO / "docs" / "funnel_emi_labels.csv", keep_default_na=False).merge(s[["type", "level", "emi score"]], on=["type", "level"])
     assert len(lab) == 300 == r["marked_units"]
     pos, neg = lab.loc[lab["label"] != "no", "emi score"].to_numpy(), lab.loc[lab["label"] == "no", "emi score"].to_numpy()
@@ -147,6 +175,7 @@ def test_the_emi_score_separates_the_marked_units():
 
 @needs(*RUN)
 def test_at_oth_groups_and_competition_are_recomputed_from_the_vectors():
+    r = json.loads((INTERIM / "funnel2_step3.json").read_text(encoding="utf-8"))
     s = pd.read_csv(INTERIM / "funnel2_screen.csv")
     d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
     t = pd.read_csv(INTERIM / "funnel2_types.csv")
@@ -154,31 +183,33 @@ def test_at_oth_groups_and_competition_are_recomputed_from_the_vectors():
     cent = np.load(INTERIM / "funnel2_centroids.npy").astype(np.float64)
     dist = 1 - emb @ cent.T
     oth, far = d["is_oth"].to_numpy(bool), (d["study_form"] == "Fernstudium").to_numpy()
-    once = ~d.duplicated(["institution", "clean_title", "level"]).to_numpy()
+    assigned = d["assigned_type"].to_numpy()
     by, south = (d["state"] == "Bayern").to_numpy(), d["state"].isin(["Bayern", "Baden-Württemberg"]).to_numpy()
     km150 = (d["km_amberg"] <= 150).to_numpy()
     at_level = {lv: (d["level"] == lv).to_numpy() for lv in U.LEVELS}
     p = {lv: (by & m).sum() / m.sum() for lv, m in at_level.items()}
-    sims = {}
-    for i, r in s.iterrows():
-        c, lv, m = r["type"], r["level"], at_level[r["level"]]
-        inside = m & ((d["assigned_type"].to_numpy() == c) | (dist[:, c] <= t.at[c, "radius_90"]))
-        sim = sims[(c, lv)] = ~oth & ~far & once & inside
-        n, n_by, n_s, n_150 = int(sim.sum()), int((sim & by).sum()), int((sim & south).sum()), int((sim & km150).sum())
-        assert (r["similar offers"], r["similar in Bavaria"], r["similar in the south"], r["similar within 150 km"]) == (n, n_by, n_s, n_150)
-        assert r["similar distance-learning offers (not counted)"] == int((~oth & far & once & inside).sum())
+    once = lambda mask: len(d.loc[mask, ["institution", "clean_title"]].drop_duplicates())     # each institution and cleaned title once, inside the set
+    sims, triggering = {}, set()
+    for i, r_ in s.iterrows():
+        c, lv, m = r_["type"], r_["level"], at_level[r_["level"]]
+        inside = m & ((assigned == c) | (dist[:, c] <= t.at[c, "radius_90"]))
+        sim = sims[(c, lv)] = ~oth & ~far & inside
+        n, n_by, n_s, n_150 = once(sim), once(sim & by), once(sim & south), once(sim & km150)
+        assert (r_["similar offers"], r_["similar in Bavaria"], r_["similar in the south"], r_["similar within 150 km"]) == (n, n_by, n_s, n_150)
+        assert r_["similar distance-learning offers (not counted)"] == once(~oth & far & inside)
         elsewhere = n - n_s >= 1
-        assert r["exists elsewhere"] == elsewhere and r["absent flag"] == (elsewhere and n_by == 0) and r["gap flag"] == (elsewhere and n_150 == 0 and n_s == 0)
-        assert np.isnan(r["bavarian quotient"]) if n < 5 else r["bavarian quotient"] == pytest.approx(((n_by + 5 * p[lv]) / (n + 5)) / p[lv])
-        assert r["drop: at OTH"] == bool((oth & m & (dist[:, c] <= t.at[c, "median distance"])).any())
+        assert r_["exists elsewhere"] == elsewhere and r_["absent flag"] == (elsewhere and n_by == 0) and r_["gap flag"] == (elsewhere and n_150 == 0 and n_s == 0)
+        assert np.isnan(r_["bavarian quotient"]) if n < 5 else r_["bavarian quotient"] == pytest.approx(((n_by + 5 * p[lv]) / (n + 5)) / p[lv])
+        hit = oth & m & ((assigned == c) | (dist[:, c] <= t.at[c, "median distance"]))             # criterion S20
+        assert r_["drop: at OTH"] == bool(hit.any())
+        triggering |= set(np.where(hit)[0])
+    units = set(zip(s["type"], s["level"]))
+    must = [i for i in np.where(oth)[0] if (assigned[i], d.at[i, "level"]) in units]
+    assert set(must) <= triggering and len(triggering) == r["oth_offers_that_drop_a_unit"]
     radius, cd = t["radius_90"].to_numpy(), 1 - cent @ cent.T
     for (lv, g), grp in s.groupby(["level", "group"]):          # criterion S17: every pair in a group is mutual; the union is counted
         ts = grp["type"].to_numpy()
         assert g == ts.min() and (grp["group size"] == len(ts)).all()
-        pair = cd[np.ix_(ts, ts)]
-        assert (pair <= np.minimum(radius[ts][:, None], radius[ts][None, :]) + 1e-12).all()
+        assert (cd[np.ix_(ts, ts)] <= np.minimum(radius[ts][:, None], radius[ts][None, :]) + 1e-12).all()
         union = np.any([sims[(c, lv)] for c in ts], axis=0)
-        assert (grp["group: similar offers"] == int(union.sum())).all() and (grp["group: similar within 150 km"] == int((union & km150).sum())).all()
-        assert (grp["at OTH (own or group)"] == grp["drop: at OTH"].any()).all()
-    single = s[s["group size"] == 1]                            # a single unit has at most partners that are already in a group
-    assert len(single) + len(s[s["group size"] > 1]) == len(s)
+        assert (grp["group: similar offers"] == once(union)).all() and (grp["group: similar within 150 km"] == once(union & km150)).all()

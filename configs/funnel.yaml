@@ -22,7 +22,7 @@ definitions:
     pool_mapping_teacher_share_emi_score_anchor_weights: assigned offers of the unit
     competition_regional_gap_capture_competitors: similar offers of the unit (similarity.similar_offer)
     reference_curricula: assigned offers of the unit
-  merged_candidates: units of the same level form one candidate if every pair of them has centroids inside each other's radius_90 (complete-linkage grouping on the centroid distance divided by the smaller of the two radii, cut at 1), formed on all units before the screens; a group with any unit dropped by at_oth is dropped as a whole; the other screens drop single units; the similar offers of a group are the union over its units; the group is represented by its surviving unit with the highest pre-gate score, the others are listed as its variants and take no gate slot; the largest group size is reported
+  merged_candidates: units of the same level form one candidate if every pair of them has centroids inside each other's radius_90 (complete-linkage grouping on the centroid distance divided by the smaller of the two radii, cut at 1), formed on all units before the screens; every screen drops single units; the similar offers of a group are the union over its units; the group is represented by its surviving unit with the highest pre-gate score, the others are listed as its variants and take no gate slot; the largest group size is reported
   merged_candidates_changed: 15 Nov 2026, proposed by Claude and to be confirmed by Soma; as first written (connected groups) the rule chained 411 of 613 bachelor units and 448 of 672 master units into one group each, and with it 840 units were dropped as "at OTH"; connected groups are a stress spec (merging)   # [K]
   ties: any tie between units in a ranking or a top-n rule is broken by the lower type number, then bachelor before master
 
@@ -85,9 +85,9 @@ pool_mapping:                  # configs/funnel_subject_map.csv, committed befor
 
 screen:                        # Step 3, applied to every unit
   at_oth:                      # [S] must not already exist at OTH
-    drop_if: any OTH offer of that level, of any form and faculty, lies within the type's median fitted-member distance of the type's centroid   # median [C]
-    otherwise: the OTH offers assigned to the type are OTH sites in the capture model
-    disclosed: a type that holds an OTH offer beyond the median survives this screen; the capture model and the one-programme limit of the gate then apply
+    drop_if: any OTH offer of that level, of any form and faculty, is assigned to the type or lies within the type's median fitted-member distance of the type's centroid   # median [C]
+    disclosed: a type that only resembles an OTH programme (its centroid is close, but no OTH offer is assigned to it) survives this screen; the capture model and the one-programme limit of the gate then apply
+    changed: 15 Nov 2026, proposed by Claude and to be confirmed by Soma; as first written (median distance only) 24 of OTH's 46 offers dropped no unit, 7 of the 12 EMI offers among them, and 16 units holding an OTH offer stayed on the list; a merged group is no longer dropped as a whole, because which units share a group depends on the order of merging   # [K]
   teacher_training:            # [K] run-1 deviation, now a rule
     share: share of the unit's assigned offers whose normalised title, degree or subject labels (without the level marker) match the pattern
     pattern: 'lehramt|staatsexamen|\b(grund|mittel|real|haupt|berufs|foerder|sonder)schul|\bschulen\b|sekundarstufe|gymnasien|sonderpaed'
@@ -100,7 +100,8 @@ screen:                        # Step 3, applied to every unit
     series: positive yearly values only; the backtest of first-years ends in 2024, the last year of the window, because 2025 is the year of the Bavarian G9 gap; graduates end in 2025
   emi_domain:
     offer_score: mean over focus items and title of the highest cosine to the title of any EMI module; all vectors are centred on the mean vector of all titles and focus items before the cosine
-    type_score: mean over the unit's assigned offers with focus items, OTH's own offers left out; title only if no offer has any
+    module_titles: the distinct module titles of EMI's handbooks that name a subject; a handbook's change table, theses, internships and elective placeholders are left out (15 of 293 titles)
+    type_score: mean over all assigned offers of the unit, OTH's own offers left out
     calibration: 300 units drawn by numpy default_rng(42).choice from all units in type order, marked by a fresh-context reader from titles only as inside (yes), partly inside or outside EMI's field (docs/funnel_emi_labels.csv); "yes" and "partly" count as EMI's field   # 300 [N]
     bar: the highest score that keeps at least 95 % of the marked units of EMI's field   # 95 % [J] stress is the Youden cut; a generous bar, because Step 7 measures the fit on real curricula and a unit dropped here is lost
     if_auc_below: {auc: 0.8, action: flag instead of drop}   # [C]
@@ -118,7 +119,7 @@ screen:                        # Step 3, applied to every unit
     report: similar offers within 50, 100 and 150 km, in Bavaria, in the south, in Germany   # [C] distances of the earlier evidence
     validity_check:
       sample: 10 units drawn without replacement by numpy default_rng(42).choice from the units of the primary list sorted by type number, then bachelor before master; for each, the 5 farthest similar offers inside the radius and the 5 nearest offers of that level outside it   # 10, 5 [N]
-      sample_details: only units with at least 5 similar offers inside the radius can be drawn (otherwise there would not be 100 offers); the unit is described by the 5 titles nearest its centroid, and an offer with one of these titles is not shown; "outside" is every offer counted as supply beyond the radius
+      sample_details: the unit is described by the 5 titles nearest its centroid, and an offer with one of these titles is not shown; only units that then have at least 5 different offers on each side can be drawn (otherwise there would not be 100 offers); "inside" and "outside" are the offers counted as supply within and beyond the radius
       labels: Soma marks each of the 100 offers "same kind of programme" yes or no, in shuffled order, without seeing which side it is on
       pass: at least 70 % yes inside and at most 30 % yes outside   # [N] pass rule; the spec "one common radius" shows the result under the fallback
       fallback: one common radius for all types (the median radius_90 of the stable types; its 75 and 95 variants are the median radius_75 and radius_95 of the stable types) and the check repeated once on a new sample drawn the same way with seed 43
@@ -310,7 +311,7 @@ stress_tests:
     boilerplate_scan_from: [10]
     supply_cut_similar_offers_within_100km: [3, 5]    # version 2's cut, on the new unit
     similarity_radius: [percentile 75, percentile 95, one common radius]
-    at_oth: [within radius_90, any fitted member]
+    at_oth: [within radius_90, any fitted member, within the median distance only (as first written)]
     teacher_training_share: [0.3, 0.7]
     labour_keywords: [top 5, generic line 2 %, generic line 10 %, phrases in one title allowed]
     quotient_pseudo_offers: [2, 10]

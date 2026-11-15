@@ -53,6 +53,9 @@ PSEUDO = 5.0                    # screen.regional_gap.bavarian_quotient
 QUOTIENT_FROM = 5               # screen.regional_gap.quotient_from
 KEEP = 0.95                     # screen.emi_domain.bar
 LABEL_UNITS, LABEL_TITLES = 300, 8
+# module rows that name no subject: a handbook's change table, theses, internships, elective placeholders (screen.emi_domain.module_titles)
+NOT_A_SUBJECT = re.compile(r"change history|arbeit$|thesis|kolloquium|colloquium|praktikum$|praxissemester|praxisphase|praktisches studiensemester|internship|"
+                           r"wahlpflicht|wahlmodul|wahlfach|interdisciplinary topic|schluesselqualifikation|studium generale")
 
 
 def plain(s: str) -> str:
@@ -79,6 +82,11 @@ def offer_items(d: pd.DataFrame) -> list[list[str]]:
 
 def module_titles() -> list[str]:
     return sorted(set(pd.read_csv(MODULES, low_memory=False)["title"].dropna().astype(str)))
+
+
+def subject_titles(titles: list[str]) -> np.ndarray:
+    """True for the module titles that name a subject (rule screen.emi_domain.module_titles)."""
+    return np.array([not NOT_A_SUBJECT.search(normalise(t)) for t in titles])
 
 
 def items() -> None:
@@ -247,12 +255,14 @@ def quotient(n_by: int, n_de: int, p: float, pseudo: float = PSEUDO) -> float:
     return ((n_by + pseudo * p) / (n_de + pseudo)) / p
 
 
-def gap_numbers(sim: np.ndarray, far: np.ndarray, land: np.ndarray, km: np.ndarray, p: float) -> dict:
-    """Counts and flags of one set of similar offers (rules screen.competition.report and screen.regional_gap)."""
+def gap_numbers(sim: np.ndarray, far: np.ndarray, land: np.ndarray, km: np.ndarray, p: float, key: np.ndarray) -> dict:
+    """Counts and flags of one set of similar offers (rules screen.competition.report and screen.regional_gap). key: one
+    number per institution and cleaned title; inside a set every key is counted once (competition.unit_counted)."""
     south, by = np.isin(land, SOUTH), land == "BY"
-    n = {"similar offers": int(sim.sum()), "similar in Bavaria": int((sim & by).sum()), "similar in the south": int((sim & south).sum()),
-         "similar within 50 km": int((sim & (km <= 50)).sum()), "similar within 100 km": int((sim & (km <= 100)).sum()),
-         "similar within 150 km": int((sim & (km <= 150)).sum()), "similar distance-learning offers (not counted)": int(far.sum())}
+    once = lambda m: int(len(np.unique(key[m])))
+    n = {"similar offers": once(sim), "similar in Bavaria": once(sim & by), "similar in the south": once(sim & south),
+         "similar within 50 km": once(sim & (km <= 50)), "similar within 100 km": once(sim & (km <= 100)),
+         "similar within 150 km": once(sim & (km <= 150)), "similar distance-learning offers (not counted)": once(far)}
     elsewhere = n["similar offers"] - n["similar in the south"] >= 1
     n.update({"exists elsewhere": bool(elsewhere), "absent flag": bool(elsewhere and n["similar in Bavaria"] == 0),
               "gap flag": bool(elsewhere and n["similar within 150 km"] == 0 and n["similar in the south"] == 0),
@@ -317,22 +327,37 @@ def run() -> None:
     oth, distance = d["is_oth"].to_numpy(bool), d["distance_only"].to_numpy(bool)
     land = d["state"].map(LAND).fillna("").to_numpy()        # an offer without a Land or coordinates counts for Germany only
     km = d["km_amberg"].to_numpy()                           # a missing distance is within no distance
-    first = ~d.duplicated(["institution", "clean_title", "level"]).to_numpy()      # competition.unit_counted: institution and cleaned title once
-    supply = ~oth & ~distance & first                                              # universe.counted_as_supply
-    far_supply = ~oth & distance & first
+    key = pd.factorize(d["institution"].astype(str) + "\x1f" + d["clean_title"].astype(str))[0]   # competition.unit_counted: institution and cleaned title
+    supply, far_supply = ~oth & ~distance, ~oth & distance                         # universe.counted_as_supply
 
     units = units_of(d)
     units["group"] = merged_groups(units, cent, radius)
 
     # EMI-field score (screen.emi_domain)
-    score_all, score_title = emi_offer_scores(offer_items(d), item_pos, np.load(ITEM_VEC).astype(np.float64), np.load(MODULE_VEC).astype(np.float64))
+    item_lists, item_vec = offer_items(d), np.load(ITEM_VEC).astype(np.float64)
+    titles = module_titles()
+    module_vec = np.load(MODULE_VEC).astype(np.float64)
+    if len(module_vec) != len(titles):
+        raise SystemExit("the module title vectors do not belong to the module table: run items again")
+    is_subject = subject_titles(titles)
+    score_all, _ = emi_offer_scores(item_lists, item_pos, item_vec, module_vec[is_subject])
     has_focus = d["has_focus"].to_numpy(bool)
 
-    def unit_score(c: int, lv: str) -> tuple[float, str]:
+    def unit_score(c: int, lv: str) -> tuple[float, int]:
         a = (assigned == c) & (level == lv)
         a = a & ~oth if (a & ~oth).any() else a
-        fo = a & has_focus
-        return (float(score_all[fo].mean()), "offers with focus items") if fo.any() else (float(score_title[a].mean()), "titles only")
+        return float(score_all[a].mean()), int(a.sum())
+
+    # the score as first written, for the report only: raw cosine to the full module texts, offers with focus items
+    from .module_gaps import embed as embed_module_texts
+    mods = pd.read_csv(MODULES, low_memory=False)
+    raw_best = (item_vec @ embed_module_texts(mods["text"].fillna(mods["title"]).astype(str).tolist()).T).max(axis=1)
+    raw_all = np.array([float(np.mean([raw_best[item_pos[x]] for x in lst])) for lst in item_lists])
+    raw_title = np.array([float(raw_best[item_pos[lst[0]]]) for lst in item_lists])
+
+    def first_written(c: int, lv: str) -> float:
+        a = (assigned == c) & (level == lv)
+        return float(raw_all[a & has_focus].mean()) if (a & has_focus).any() else float(raw_title[a].mean())
 
     smap = pd.read_csv(SUBJECT_MAP).set_index("label")["code"].to_dict()
     by, laender = destatis_bavaria(), destatis_laender()
@@ -345,40 +370,42 @@ def run() -> None:
         c, lv = int(u.type), str(u.level)
         at_level = level == lv
         a = d[(assigned == c) & at_level]
-        oth_near = np.where(oth & at_level & (dist[:, c] <= median[c]))[0]
+        oth_near = np.where(oth & at_level & ((assigned == c) | (dist[:, c] <= median[c])))[0]
         kind, y0, y1, last = SERIES[lv]
         w = pool_weights(a, smap)
         y = pool_series(by.loc[kind], w)
         slope, bt = slope_pct(y, y0, y1), backtest(y, last, rules["demand"])
-        emi, emi_from = unit_score(c, lv)
+        emi, emi_offers = unit_score(c, lv)
         inside = at_level & ((assigned == c) | (dist[:, c] <= radius[c]))
         sim, far = supply & inside, far_supply & inside
         similar_of[(c, lv)], far_of[(c, lv)] = sim, far
         other_laender = sorted(set(land[sim & ~np.isin(land, SOUTH)]) - {""})
         slope_else = slope_pct(pool_series(laender.loc[other_laender].groupby("year").sum(), w), 2019, 2024) if other_laender else float("nan")
-        g = gap_numbers(sim, far, land, km, p_by[lv])
+        g = gap_numbers(sim, far, land, km, p_by[lv], key)
+        once = lambda m: int(len(np.unique(key[m])))
         rows.append({"type": c, "level": lv, "kind": t.at[c, "kind"], "group": int(u.group), "central titles": t.at[c, "central titles"],
                      "assigned offers": len(a), "institutions": int(u.institutions),
-                     "OTH offer within the median distance": "; ".join(d["title"].to_numpy()[oth_near][:3]), "drop: at OTH": bool(len(oth_near)),
-                     "OTH offers assigned": "; ".join(d.loc[(assigned == c) & at_level & oth, "title"].head(3)),
+                     "OTH offer assigned or within the median distance": "; ".join(d["title"].to_numpy()[oth_near][:3]), "drop: at OTH": bool(len(oth_near)),
                      "teacher share": teacher_share(a, pattern),
                      "pool": "; ".join(f"{k}:{v:.2f}" for k, v in sorted(w.items(), key=lambda kv: (-kv[1], kv[0]))[:4]), "pool subjects": len(w), "pool weight sum": sum(w.values()),
                      "trend %/yr": slope, "backtest years": bt["years"], "MASE naive": bt["naive"], "MASE drift": bt["drift"], "trend validated": bt["validated"],
-                     "emi score": emi, "emi score from": emi_from, **g,
-                     "similar within 150 km (radius 75)": int((supply & at_level & ((assigned == c) | (dist[:, c] <= r75[c])) & (km <= 150)).sum()),
-                     "similar within 150 km (radius 95)": int((supply & at_level & ((assigned == c) | (dist[:, c] <= r95[c])) & (km <= 150)).sum()),
+                     "emi score": emi, "offers in the emi score": emi_offers, "score as first written": first_written(c, lv), **g,
+                     "similar within 150 km (radius 75)": once(supply & at_level & ((assigned == c) | (dist[:, c] <= r75[c])) & (km <= 150)),
+                     "similar within 150 km (radius 95)": once(supply & at_level & ((assigned == c) | (dist[:, c] <= r95[c])) & (km <= 150)),
                      "Laender elsewhere with a similar offer": len(other_laender), "trend elsewhere %/yr": slope_else,
                      "popularity tier": 2 if (g["exists elsewhere"] and slope_else >= 0) else 3,
                      "method-dependent": t.at[c, "method-dependent"], "evidence flag": t.at[c, "evidence flag"] if isinstance(t.at[c, "evidence flag"], str) else ""})
     s = pd.DataFrame(rows)
 
     # bar of the EMI-field screen from the marked units
-    lab = pd.read_csv(EMI_LABELS, keep_default_na=False).merge(s[["type", "level", "emi score"]], on=["type", "level"], how="left")
+    lab = pd.read_csv(EMI_LABELS, keep_default_na=False).merge(s[["type", "level", "emi score", "score as first written"]], on=["type", "level"], how="left")
     key, _ = label_sample(d, units)
     if list(zip(lab["group"], lab["type"], lab["level"])) != list(zip(key["group"], key["type"], key["level"])) or lab["emi score"].isna().any():
         raise SystemExit("docs/funnel_emi_labels.csv does not belong to the units of this Step 2 result")
     pos, neg = lab.loc[lab["label"].isin(["yes", "partly"]), "emi score"].to_numpy(), lab.loc[lab["label"] == "no", "emi score"].to_numpy()
     bar, emi_auc = keep_bar(pos), auc(pos, neg)
+    in_field = lab["label"].isin(["yes", "partly"]).to_numpy()
+    auc_first_written = auc(lab.loc[in_field, "score as first written"].to_numpy(), lab.loc[~in_field, "score as first written"].to_numpy())
     emi_drops = emi_auc >= sc["emi_domain"]["if_auc_below"]["auc"]
     cal = d[oth].copy()
     cal["emi"], cal["score"] = emi_positive(cal["title"]), score_all[oth]
@@ -388,21 +415,18 @@ def run() -> None:
     s["drop: trend"] = (s["trend %/yr"] < trend_line) & s["trend validated"]
     s["outside EMI"] = s["emi score"] < bar
     s["drop: outside EMI"] = s["outside EMI"] & emi_drops
-    at_oth_groups = s.loc[s["drop: at OTH"]].groupby("level")["group"].agg(set).to_dict()
-    s["drop: at OTH via merged group"] = [(not own) and g in at_oth_groups.get(lv, set()) for own, g, lv in zip(s["drop: at OTH"], s["group"], s["level"])]
-    s["at OTH (own or group)"] = s["drop: at OTH"] | s["drop: at OTH via merged group"]
     extra: dict[int, dict] = {}
     for (lv, g), part in s.groupby(["level", "group"]):                        # the merged group: union of its units' similar offers
         union = np.any([similar_of[(int(c), lv)] for c in part["type"]], axis=0)
         far_union = np.any([far_of[(int(c), lv)] for c in part["type"]], axis=0)
         numbers = {"group size": len(part), "group types": "; ".join(str(int(c)) for c in part["type"]),
-                   **{f"group: {k}": v for k, v in gap_numbers(union, far_union, land, km, p_by[lv]).items()}}
+                   **{f"group: {k}": v for k, v in gap_numbers(union, far_union, land, km, p_by[lv], key).items()}}
         extra.update({i: numbers for i in part.index})
     s = s.join(pd.DataFrame.from_dict(extra, orient="index"))
-    reasons = {"at OTH (own or group)": "already at OTH", "drop: teacher training": "teacher training", "drop: trend": "falling validated trend", "drop: outside EMI": "outside EMI's field"}
+    reasons = {"drop: at OTH": "already at OTH", "drop: teacher training": "teacher training", "drop: trend": "falling validated trend", "drop: outside EMI": "outside EMI's field"}
     s["reasons"] = [" | ".join(v for k, v in reasons.items() if r[k]) or "-" for r in s.to_dict("records")]
     s["primary"] = s["reasons"] == "-"
-    s["stress"] = ~s["at OTH (own or group)"]
+    s["stress"] = ~s["drop: at OTH"]
     s.to_csv(SCREEN, index=False)
     lists = {"primary": s[s["primary"]], "stress": s[s["stress"]]}
     lists["primary"].to_csv(PRIMARY, index=False)
@@ -428,9 +452,12 @@ def run() -> None:
            "largest_merged_group": int(sizes.max()),
            "calibration": {"marked_units": len(lab), "field_units": int(len(pos)), "outside_units": int(len(neg)), "auc": round(emi_auc, 3), "bar": bar, "screen_drops": bool(emi_drops),
                            "field_units_kept": int((pos >= bar).sum()), "outside_units_kept": int((neg >= bar).sum()), "youden_cut": youden(pos, neg),
+                           "auc_of_the_score_as_first_written": round(auc_first_written, 3), "module_titles": int(len(titles)), "module_titles_naming_a_subject": int(is_subject.sum()),
+                           "units_within_0.02_of_the_bar": {"just above (kept)": int(((s["emi score"] >= bar) & (s["emi score"] < bar + 0.02)).sum()),
+                                                            "just below (dropped)": int(((s["emi score"] < bar) & (s["emi score"] >= bar - 0.02)).sum())},
                            "auc_on_oth_offers": round(auc(oth_pos, oth_neg), 3), "oth_emi_offers": int(len(oth_pos)), "other_oth_offers": int(len(oth_neg)),
                            "p90_of_emi_offers": float(np.percentile(oth_pos, 90))},
-           "dropped": {"at OTH (own offer)": count("drop: at OTH"), "at OTH (via merged group)": count("drop: at OTH via merged group"),
+           "dropped": {"already at OTH": count("drop: at OTH"),
                        "teacher training": count("drop: teacher training"), "falling validated trend": count("drop: trend"), "outside EMI's field": count("drop: outside EMI")},
            "dropped_for_one_reason_only": {v: int((s["reasons"] == v).sum()) for v in reasons.values()},
            "units_with_a_validated_trend": count("trend validated"), "units_without_a_trend_value": int(s["trend %/yr"].isna().sum()),
@@ -441,7 +468,8 @@ def run() -> None:
                              "no similar offer within 150 km": int((prim["similar within 150 km"] == 0).sum()), "popularity tier 2": int((prim["popularity tier"] == 2).sum()),
                              "method-dependent stable type": int((prim["method-dependent"] == "yes").sum()), "not stability-tested": int((prim["evidence flag"] != "").sum())},
            "offers_without_a_land": int((land == "").sum()), "offers_without_a_distance": int(np.isnan(km).sum()),
-           "offers_counted_once_by_cleaned_title": int((~first).sum()), "bavaria_share_of_offers": {k: round(v, 4) for k, v in p_by.items()},
+           "oth_offers": int(oth.sum()), "oth_offers_that_drop_a_unit": int(len({i for u in units.itertuples() for i in np.where(oth & (level == str(u.level)) & ((assigned == int(u.type)) | (dist[:, int(u.type)] <= median[int(u.type)])))[0]})),
+           "bavaria_share_of_offers": {k: round(v, 4) for k, v in p_by.items()},
            "competition": "not validated yet (screen.competition.validity_check)",
            "inputs": {MODULES.name: sha(MODULES), EMI_LABELS.name: sha(EMI_LABELS), SUBJECT_MAP.name: sha(SUBJECT_MAP), "destatis tables": file_hash(DESTATIS.glob("213*.csv")),
                       ITEM_INDEX.name: sha(ITEM_INDEX), MODULE_VEC.name: sha(MODULE_VEC)},
@@ -458,9 +486,11 @@ def run() -> None:
         f"- Units tested: {len(s)} ({res['units_by_level']}) from {res['types_with_a_unit']} types; merged groups with more than one unit: "
         f"{res['merged_groups_with_more_than_one_unit']} holding {res['units_in_such_groups']} units (largest {res['largest_merged_group']}).",
         f"- EMI-field score on the {c['marked_units']} marked units: AUC {c['auc']:.3f} ({c['field_units']} field units against {c['outside_units']} others); bar {bar:.4f} "
-        f"keeps {c['field_units_kept']} of {c['field_units']} field units and {c['outside_units_kept']} of {c['outside_units']} others; "
+        f"keeps {c['field_units_kept']} of {c['field_units']} field units and {c['outside_units_kept']} of {c['outside_units']} others "
+        f"({c['units_within_0.02_of_the_bar']} units lie within 0.02 of the bar; the score as first written has AUC {c['auc_of_the_score_as_first_written']:.3f}); "
         f"{'the screen drops' if emi_drops else 'AUC below 0.8: the screen only flags'}. AUC on OTH's own offers ({c['oth_emi_offers']} EMI against {c['other_oth_offers']} others): {c['auc_on_oth_offers']:.3f}.",
-        f"- Dropped (a unit can have several reasons): {res['dropped']}; for one reason only: {res['dropped_for_one_reason_only']}.",
+        f"- Dropped (a unit can have several reasons): {res['dropped']}; for one reason only: {res['dropped_for_one_reason_only']}. "
+        f"{res['oth_offers_that_drop_a_unit']} of OTH's {res['oth_offers']} offers drop a unit.",
         f"- Primary list: {len(prim)} units of {res['primary_types']} types in {res['primary_candidates']} candidates (hash {hashes['primary']}); stress list: {len(lists['stress'])} units (hash {hashes['stress']}).",
         f"- On the primary list: {res['primary_flags']}.",
         "- Competition counts are similar offers by content (assigned offers of the type plus offers inside its radius, each institution and cleaned title once, without OTH "
@@ -487,9 +517,10 @@ def sheet() -> None:
     prim["level"] = pd.Categorical(prim["level"], LEVELS, ordered=True)
     prim = prim.sort_values(["type", "level"]).reset_index(drop=True)
     dist = 1 - emb @ cent.T
-    first = ~d.duplicated(["institution", "clean_title", "level"]).to_numpy()
-    supply = (~d["is_oth"] & ~d["distance_only"]).to_numpy(bool) & first
+    supply = (~d["is_oth"] & ~d["distance_only"]).to_numpy(bool)
     title = d["clean_title"].to_numpy()
+    key = pd.factorize(d["institution"].astype(str) + "\x1f" + d["clean_title"].astype(str))[0]
+    five = lambda idx: idx[np.sort(np.unique(key[idx], return_index=True)[1])][:5]          # the first five different offers in the given order
     parts = {}
     for k in range(len(prim)):
         c, lv = int(prim.at[k, "type"]), str(prim.at[k, "level"])
@@ -498,7 +529,7 @@ def sheet() -> None:
         pool = supply & (d["level"] == lv).to_numpy() & ~np.isin(title, shown)
         inside = np.where(pool & (dist[:, c] <= t.at[c, "radius_90"]))[0]
         outside = np.where(pool & (dist[:, c] > t.at[c, "radius_90"]))[0]
-        parts[k] = (shown, inside[np.argsort(-dist[inside, c], kind="stable")[:5]], outside[np.argsort(dist[outside, c], kind="stable")[:5]])
+        parts[k] = (shown, five(inside[np.argsort(-dist[inside, c], kind="stable")]), five(outside[np.argsort(dist[outside, c], kind="stable")]))
     rng = np.random.default_rng(42)
     usable = [k for k in range(len(prim)) if len(parts[k][1]) == 5 and len(parts[k][2]) == 5]
     pick = np.sort(rng.choice(usable, 10, replace=False))
