@@ -111,3 +111,32 @@ def test_emi_text_is_content_without_persons():
            "Lernziele/Qualifikationen des Moduls Learning Outcomes Die Studierenden kennen Netze, betreut von Prof. Dr. Erika Muster. " + "Sie bauen Netze auf. " * 12 + "Literatur Buch A")
     t = F.emi_text(raw, "Rechnernetze")
     assert t.startswith("Lernziele") and "Sie bauen" in t and "Muster" not in t and "Prof" not in t and "Modulverantwortliche" not in t and "Buch A" not in t
+
+
+@needs("data/interim/funnel2_rows_final.csv", "data/interim/funnel2_gate_references.csv", "data/interim/funnel2_gate.csv", "data/interim/funnel2_step7.json")
+def test_overlap_and_verdicts_recomputed_from_the_marks():
+    k = pd.read_csv(INTERIM / "funnel2_rows_final.csv", keep_default_na=False, na_values=[""])
+    refs = pd.read_csv(INTERIM / "funnel2_gate_references.csv")
+    gate = pd.read_csv(INTERIM / "funnel2_gate.csv")
+    m1, m2 = pd.read_csv(REPO / "docs" / "funnel_module_marks_1.csv", keep_default_na=False).set_index("row"), pd.read_csv(REPO / "docs" / "funnel_module_marks_2.csv", keep_default_na=False).set_index("row")
+    cov = lambda v: v in ("E1", "E2")
+    for r in k.itertuples():                                                    # the final verdict of every row, written out
+        first = m1.at[r.row, "verdict"]
+        if r.row not in m2.index:
+            assert r.final == first
+        elif cov(first) == cov(m2.at[r.row, "verdict"]):
+            assert r.final == first
+        else:
+            assert not cov(r.final)
+    for ref in refs.itertuples():
+        g = k[k["ref"] == ref.ref]
+        taught = 165.0 if ref.level == "bachelor" else 60.0
+        comp, elec = g[g["kind"] == "compulsory"], g[g["kind"] == "elective"]
+        fill = min(max(taught - comp["ects"].sum(), 0), elec["ects"].sum())
+        c = comp.loc[comp["final"].isin(["E1", "E2"]), "ects"].sum() + (fill * elec.loc[elec["final"].isin(["E1", "E2"]), "ects"].sum() / elec["ects"].sum() if len(elec) else 0)
+        assert ref.overlap == pytest.approx(c / (comp["ects"].sum() + fill))
+    for c in gate.itertuples():
+        rr = refs[(refs["type"] == c.type) & (refs["level"] == c.level)]
+        ok = (rr["overlap"] >= 0.40) & (rr["largest share from one programme"] <= 0.80) & (rr["share lab"] == 0)
+        want = ("existing-resources passer" if (rr["X ECTS"] <= 1e-9).all() else "band passer") if ok.all() else ("reference-dependent" if ok.sum() == 1 else "fail")
+        assert c.verdict == want and c.references == len(rr)
