@@ -503,15 +503,25 @@ def run() -> None:
 
 # -------------------------------------------------------------------------------------------------------- sheet
 
-def sheet() -> None:
+def round_files(rnd: int):
+    """Sheet, key, marks and result file of a round of the validity check (1: per-type radius; 2: the fallback)."""
+    tag = "" if rnd == 1 else f"_{rnd}"
+    return (SHEET.with_name(f"funnel_similarity_check{tag}.csv"), KEY.with_name(f"funnel2_similarity_key{tag}.csv"),
+            MARKS.with_name(f"funnel_similarity_marks{tag}.csv"), INTERIM / f"funnel2_similarity_result{tag}.json")
+
+
+def sheet(rnd: int = 1) -> None:
     """Rule screen.competition.validity_check: 10 units of the primary list with at least 5 similar offers inside the
     radius; for each the 5 farthest similar offers inside the radius and the 5 nearest supply offers of that level outside
     it; shuffled, without the side. The unit is described by the 5 titles nearest its centroid; an offer with one of
-    these titles is not shown."""
+    these titles is not shown. Round 2 is the rule's fallback: one common radius for all types (the median radius_90 of
+    the stable types) and a new sample drawn the same way with seed 43."""
     stamp = run_stamp()
-    if SHEET.exists() and pd.read_csv(SHEET, keep_default_na=False).iloc[:, -1].astype(str).str.strip().ne("").any():
-        raise SystemExit(f"{SHEET.name} already holds marks: it is not written again")
+    sheet_file, key_file, _, _ = round_files(rnd)
+    if sheet_file.exists() and pd.read_csv(sheet_file, keep_default_na=False).iloc[:, -1].astype(str).str.strip().ne("").any():
+        raise SystemExit(f"{sheet_file.name} already holds marks: it is not written again")
     d, t, emb, cent = load_step2()
+    rad = t["radius_90"].to_numpy() if rnd == 1 else np.full(len(t), float(t.loc[t["kind"] == "stable", "radius_90"].median()))
     res = json.loads(STEP3.read_text(encoding="utf-8"))
     prim = pd.read_csv(PRIMARY)
     if sha(PRIMARY) != res["files"][PRIMARY.name]:
@@ -529,10 +539,10 @@ def sheet() -> None:
         members = np.where(d["type"].to_numpy() == c)[0]
         shown = list(dict.fromkeys(title[members[np.argsort(dist[members, c], kind="stable")]]))[:5]
         pool = supply & (d["level"] == lv).to_numpy() & ~np.isin(title, shown)
-        inside = np.where(pool & (dist[:, c] <= t.at[c, "radius_90"]))[0]
-        outside = np.where(pool & (dist[:, c] > t.at[c, "radius_90"]))[0]
+        inside = np.where(pool & (dist[:, c] <= rad[c]))[0]
+        outside = np.where(pool & (dist[:, c] > rad[c]))[0]
         parts[k] = (shown, five(inside[np.argsort(-dist[inside, c], kind="stable")]), five(outside[np.argsort(dist[outside, c], kind="stable")]))
-    rng = np.random.default_rng(42)
+    rng = np.random.default_rng(42 if rnd == 1 else 43)
     usable = [k for k in range(len(prim)) if len(parts[k][1]) == 5 and len(parts[k][2]) == 5]
     pick = np.sort(rng.choice(usable, 10, replace=False))
     rows = []
@@ -541,22 +551,24 @@ def sheet() -> None:
         shown, far, near = parts[k]
         for side, idx in (("inside", far), ("outside", near)):
             rows += [{"type": c, "level": lv, "the kind of programme (5 typical titles)": "; ".join(shown), "offer": d.at[i, "title"],
-                      "institution": d.at[i, "institution"], "side": side, "distance": float(dist[i, c]), "radius": float(t.at[c, "radius_90"])} for i in idx]
+                      "institution": d.at[i, "institution"], "side": side, "distance": float(dist[i, c]), "radius": float(rad[c])} for i in idx]
     key = pd.DataFrame(rows).iloc[rng.permutation(len(rows))].reset_index(drop=True)
     key.insert(0, "row", range(1, len(key) + 1))
-    key.to_csv(KEY, index=False)
+    key.to_csv(key_file, index=False)
     out = key[["row", "level", "the kind of programme (5 typical titles)", "offer", "institution"]].copy()
     out["same kind of programme? (yes/no)"] = ""
-    out.to_csv(SHEET, index=False, encoding="utf-8-sig")
-    print(f"{len(out)} offers of {len(pick)} units ({len(usable)} of {len(prim)} units can be drawn) written to {SHEET.relative_to(REPO_ROOT)} (commit {stamp['commit']}, list {res['hashes']['primary']})")
+    out.to_csv(sheet_file, index=False, encoding="utf-8-sig")
+    print(f"round {rnd}: {len(out)} offers of {len(pick)} units ({len(usable)} of {len(prim)} units can be drawn) written to {sheet_file.relative_to(REPO_ROOT)} "
+          f"(commit {stamp['commit']}, list {res['hashes']['primary']}, radius {'per type' if rnd == 1 else round(float(rad[0]), 4)})")
 
 
-def verdict() -> None:
+def verdict(rnd: int = 1) -> None:
     """Rule screen.competition.validity_check.pass on the readers' marks (docs/funnel_similarity_marks.csv: row and one
     column per reader, yes or no). An offer counts as yes if at least two of the three readers say yes."""
     stamp = run_stamp()
-    marks = pd.read_csv(MARKS, keep_default_na=False)
-    key = pd.read_csv(KEY)
+    _, key_file, marks_file, result_file = round_files(rnd)
+    marks = pd.read_csv(marks_file, keep_default_na=False)
+    key = pd.read_csv(key_file)
     readers = [c for c in marks.columns if c != "row"]
     m = key.merge(marks, on="row", how="left")
     if len(readers) != 3 or len(marks) != len(key) or not m[readers].isin(["yes", "no"]).all().all():
@@ -570,17 +582,22 @@ def verdict() -> None:
         po = float((yes[a] == yes[c]).mean())
         pe = float(yes[a].mean() * yes[c].mean() + (1 - yes[a].mean()) * (1 - yes[c].mean()))
         return (po - pe) / (1 - pe) if pe < 1 else 1.0
-    res = {"stamp": stamp, "list": json.loads(STEP3.read_text(encoding="utf-8"))["hashes"]["primary"], "offers": len(m), "units": int(m.groupby(["type", "level"]).ngroups),
+    res = {"stamp": stamp, "round": rnd, "radius": "per type (radius_90)" if rnd == 1 else f"common: {float(key['radius'].iloc[0]):.4f}",
+           "list": json.loads(STEP3.read_text(encoding="utf-8"))["hashes"]["primary"], "offers": len(m), "units": int(m.groupby(["type", "level"]).ngroups),
            "yes_inside": round(share(m["majority"], "inside"), 3), "yes_outside": round(share(m["majority"], "outside"), 3),
            "pass": bool(share(m["majority"], "inside") >= 0.70 and share(m["majority"], "outside") <= 0.30),
            "by_reader": {r: {"yes_inside": round(share(yes[r], "inside"), 3), "yes_outside": round(share(yes[r], "outside"), 3)} for r in readers},
            "all_three_agree": round(float((yes.sum(axis=1).isin([0, 3])).mean()), 3), "kappa_pairs": {f"{a} / {c}": round(kappa(a, c), 2) for a, c in pairs},
            "by_unit": {f"{t} {lv}": {"yes_inside": int(g.loc[g["side"] == "inside", "majority"].sum()), "yes_outside": int(g.loc[g["side"] == "outside", "majority"].sum())}
                        for (t, lv), g in m.groupby(["type", "level"])},
-           "marked_by": "three fresh-context AI readers, majority of three", "files": {MARKS.name: sha(MARKS), KEY.name: sha(KEY)}}
-    (INTERIM / "funnel2_similarity_result.json").write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+           "identical_marks_of_all_readers": bool((yes.nunique(axis=1) == 1).all()),
+           "marked_by": "three fresh-context AI readers, majority of three", "files": {marks_file.name: sha(marks_file), key_file.name: sha(key_file)}}
+    result_file.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(res, indent=2, ensure_ascii=False))
 
 
 if __name__ == "__main__":
-    {"items": items, "labels": labels, "run": run, "sheet": sheet, "verdict": verdict}[sys.argv[1]]()
+    if sys.argv[1] in ("sheet", "verdict"):
+        {"sheet": sheet, "verdict": verdict}[sys.argv[1]](int(sys.argv[2]) if len(sys.argv) > 2 else 1)
+    else:
+        {"items": items, "labels": labels, "run": run}[sys.argv[1]]()
