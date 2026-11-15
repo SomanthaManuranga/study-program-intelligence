@@ -423,10 +423,10 @@ and 408).
 | | |
 |---|---|
 | Units with demand numbers | 1,285 (primary list 365, stress list 1,241) |
-| Distinct pools (weight mixes) | 1,141; 1,118 backtested, 23 too short |
-| Backtest: average error (MASE) over pools and horizons 1 to 5 | naive 2.01, drift 2.41, ets 2.53 |
+| Distinct pools (weight mixes per series) | 1,141; 1,118 backtested, 23 not (no students in the last year, or fewer than 12 consecutive years) |
+| Model comparison: average error (MASE) over pools and horizons 1 to 5 | naive 2.01, drift 2.41, ets 2.53 |
 | Model for the projection to 2030 | naive: the last value is the best forecast; no model beats it on average |
-| Reliable trends (drift beats naive and MASE below 1) | 51 units, 23 of them on the primary list (22 growing, 1 falling) |
+| Reliable trends (the test of Step 3: drift beats naive and its MASE is below 1) | 51 units in 39 pools, 23 of them on the primary list (22 growing, 1 falling); drift beats naive at all for 210 units |
 | Primary list, German trend in Bavaria (first-years 2019-2024; master: graduates 2019-2025) | 128 growing, 93 falling by up to 3 % a year, 136 falling faster, 8 without a slope |
 | Primary list, German trend in Germany | 95 growing, 269 falling, 1 without a slope; 76 units grow in both |
 | Median trend on the primary list | German: -2.0 % a year in Bavaria, -1.9 % in Germany; foreign: +9.3 % in Bavaria, +6.3 % in Germany |
@@ -438,15 +438,18 @@ and 408).
 - **Most pools lose German students.** On the primary list 229 of 365 units have a falling German pool in Bavaria, and
   the middle unit loses about 2 % a year. Foreign students grow in most pools. This repeats the baseline finding for
   Informatik on the level of all candidates.
-- **The trends are weak evidence.** For only 51 of 1,285 units does a trend forecast better than "next year is like
-  this year", and on average the naive model wins. The projection to 2030 is therefore the last value, and a slope
+- **The trends are weak evidence.** Only 51 of 1,285 units pass the test for a reliable trend, a trend line beats
+  "next year is like this year" at all for 210, and on average the naive model wins. The projection to 2030 is therefore the last value, and a slope
   says what happened since 2019, not what will happen.
-- **Growing German pools with at least 100 students** on the primary list are mainly media design (Gestaltung,
-  +22 % a year for master graduates), Informationstechnologie and Informatik master units (+7 to +10 %), and two
-  bachelor units in the pool "Angewandte Systemwissenschaften" (Bionik, Service Engineering; +13 %). The largest falls
-  are in media production and media technology bachelor units (-9 to -13 %).
-- **Foreign students are a corridor.** For each unit the 2030 value lies between "as many as today" and "growth
-  continues at the slope since 2019"; it is reported next to the German number and never added to it.
+- **The fastest-growing German pools with at least 100 students** on the primary list are media design (Destatis
+  subject "Neue Medien", +22 % a year for master graduates), two bachelor units whose pools are mostly
+  "Interdisziplinäre Studien (Schwerpunkt Ingenieurwissenschaften)" (Bionik, Service Engineering; +13 %),
+  Informationstechnologie and Informatik master units (+7 to +10 %) and media studies (master, +9 %). The largest
+  falls are Tonmeister and Medienproduktion (pool Medientechnik, -10 to -13 %), Visual Computing (Medieninformatik,
+  -10 %) and Energietechnik (-9 %), all bachelor units.
+- **Foreign students are a corridor.** For each unit the 2030 value lies between "as many as today" and "the slope
+  since 2019 continues" (up or down); it is reported next to the German number and never added to it. A unit
+  without a foreign slope has no corridor.
 
 **Limits.** A pool is as coarse as the Destatis subject list: a niche programme inside "Informatik" shares the trend
 of all of Informatik. 21 primary units have a pool of fewer than 50 German students in the last year. 322 of the 365
@@ -455,8 +458,10 @@ graduates, which react years later than first-years. The first-years series ends
 Bavarian G9 gap year.
 
 **Scorecard.** T1 pass. T2 pass (1,285 units, both lists). T3 pass (slopes recomputed from the Destatis tables for 40
-units). T4 pass. T5 pass (naive). T6 pass. T7 pass (slope and "validated" equal Step 3 for every unit). T8 above.
-T9 pass (two runs identical). T10 one review round. T11 pass.
+units). T4 pass: "validated" uses the backtest of Step 3; the comparison of the three models uses the same origins for
+all models (at least 5 training years) and has its own column names. T5 pass (naive under both). T6 pass. T7 pass (slope and "validated" equal Step 3 for every unit). T8 above.
+T9 pass (two runs identical). T10 one review round: every per-unit number recomputed without mismatch; 1 inconsistent headline number and 3
+wrong statements in these notes corrected. T11 pass.
 
 **No programme stays or goes in this step.** The full table: `data/interim/funnel2_demand.csv`,
 `reports/funnel2/step4_demand.md`.
