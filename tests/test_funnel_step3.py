@@ -115,7 +115,7 @@ def test_module_titles_that_name_no_subject_are_left_out():
 @needs(*RUN)
 def test_every_unit_is_tested_and_the_lists_follow_from_the_screens():
     r = json.loads((INTERIM / "funnel2_step3.json").read_text(encoding="utf-8"))
-    s = pd.read_csv(INTERIM / "funnel2_screen.csv")
+    s = pd.read_csv(INTERIM / "funnel2_screen.csv", float_precision="round_trip")
     d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
     a = d[d["assigned_type"] >= 0].groupby(["assigned_type", "level"])["institution"].nunique()
     want = {(int(c), lv) for (c, lv), n in a.items() if n >= 2}
@@ -149,7 +149,7 @@ def test_every_unit_is_tested_and_the_lists_follow_from_the_screens():
 def test_the_emi_score_is_recomputed_and_separates_the_marked_units():
     """Criterion S18: the unit scores are computed again from the vectors; bar and AUC from the marks."""
     r = json.loads((INTERIM / "funnel2_step3.json").read_text(encoding="utf-8"))["calibration"]
-    s = pd.read_csv(INTERIM / "funnel2_screen.csv")
+    s = pd.read_csv(INTERIM / "funnel2_screen.csv", float_precision="round_trip")
     d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
     vec = np.load(INTERIM / "funnel2_item_vectors.npy").astype(np.float64)
     pos_of = {x: i for i, x in enumerate(pd.read_csv(INTERIM / "funnel2_item_index.csv", keep_default_na=False)["item"])}
@@ -176,7 +176,7 @@ def test_the_emi_score_is_recomputed_and_separates_the_marked_units():
 @needs(*RUN)
 def test_at_oth_groups_and_competition_are_recomputed_from_the_vectors():
     r = json.loads((INTERIM / "funnel2_step3.json").read_text(encoding="utf-8"))
-    s = pd.read_csv(INTERIM / "funnel2_screen.csv")
+    s = pd.read_csv(INTERIM / "funnel2_screen.csv", float_precision="round_trip")
     d = pd.read_csv(INTERIM / "funnel2_offer_types.csv", low_memory=False)
     t = pd.read_csv(INTERIM / "funnel2_types.csv")
     emb = np.load(INTERIM / "funnel2_embeddings.npy").astype(np.float64)
