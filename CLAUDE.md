@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Next: Soma marks the 100 offers (the changed Step 3 rules are confirmed); then Step 4. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 and 3 are done. Next: Step 4, after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -126,8 +126,10 @@ changed, confirmed by Soma (merged groups without chaining; EMI-field score agai
 within its median distance). Result: 1,285 units,
 365 on the primary list (268 candidates), 1,241 on the stress list; the EMI screen is a generous filter (about half
 of the list is outside EMI's field by the marks); 75 of the 247 types on the list are flagged "mixed"
-(docs/funnel_type_coherence.csv). Competition counts are provisional until Soma marks
-docs/funnel_similarity_check.csv (100 offers; key in data/interim/funnel2_similarity_key.csv, not to be shown).
+(docs/funnel_type_coherence.csv). The check of "similar" (100 offers, marked by three AI readers by Soma's decision) failed in both rounds (46 % / 40 %
+and, with a common radius, 64 % / 46 % yes inside / outside; needed 70 % / 30 %): all competition counts are flagged
+"not validated" and the offers half of the differentiation value takes the range 1 to 5 in the ranking
+(data/interim/funnel2_similarity_result.json, _2.json; docs/funnel_similarity_marks.csv, _2.csv).
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 

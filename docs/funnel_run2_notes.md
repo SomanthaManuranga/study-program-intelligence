@@ -321,8 +321,24 @@ are not on the list, 6 are teacher training, 2 are already at OTH and 2 fall jus
 inside its radius, each institution and cleaned title once, without OTH and distance learning). 90 units have no
 similar offer within 150 km; 80 have none in Bavaria although the kind exists elsewhere; 33 have none within 150 km
 and none in the south ("gap"). For 30 units the subject pool is not shrinking in the Laender that host the
-programme outside the south (popularity tier 2; 2 of them are among the 33 gap units). These counts are **not validated yet**: they hold only if "inside the radius" means
-"the same kind of programme", which Soma's check of 100 offers tests (`docs/funnel_similarity_check.csv`).
+programme outside the south (popularity tier 2; 2 of them are among the 33 gap units). These counts are **not validated** (next paragraph).
+
+**The check of "similar" failed twice; the competition counts are not validated.** Soma decided that the 100
+offers are marked by three AI readers instead of by him (an offer counts as "yes" if two of three say yes). For 10
+units of the list each sample holds the 5 farthest offers inside the radius and the 5 nearest outside it.
+
+| Round | Radius | "Same kind" inside (needed: at least 70 %) | "Same kind" outside (allowed: at most 30 %) | Result |
+|---|---|---|---|---|
+| 1 | each type's own radius | 46 % | 40 % | fail |
+| 2 (the rule's fallback, new sample) | one common radius, 0.0494 | 64 % | 46 % | fail |
+
+By the rule (`validity_check.second_failure`) the per-type radius stays in force, every competition count carries
+the flag "not validated", and the offers half of the differentiation value takes the full range 1 to 5 in the
+ranking. What the check shows: the radius is not a sharp line. Just inside it about half of the offers are the
+same kind of programme, just outside it nearly as many. The counts are therefore a rough measure of how crowded a
+field is, not a count of direct competitors. The three readers are the same AI model: in round 1 their marks were
+identical on all 100 offers, in round 2 (separate folders, different row order) they differed on 2. They count as
+one judgement, not three, and no person has marked the offers.
 
 **Coherence of the types on the list (rule `screen.type_coherence`).** Independent readers read 10 titles of each of
 the 247 types: 172 hold one kind of programme (70 %; bar 80 %), 75 are flagged "mixed" (103 of the 365 units). With
@@ -364,9 +380,10 @@ reading (`docs/funnel_type_coherence.csv`).
   Units' scores are the mean over all their offers.
 - One offer lies exactly on a type's radius; the code counts it outside, exact arithmetic inside (unit 3 master, 398
   against 399 similar offers; not on the list).
-- The check of 100 offers has three weak points that Soma should know: 3 of the 50 "outside" rows are the type's own
-  offers beyond the radius; in 3 units the same title appears on both sides (the model tells them apart by focus
-  areas, which the sheet does not show); two descriptions have fewer than 5 titles.
+- The check of 100 offers has three weak points: in round 1, 3 of the 50 "outside" rows are the type's own offers
+  beyond the radius; in 3 units the same title appears on both sides (the model tells them apart by focus areas,
+  which the sheet does not show); two descriptions have fewer than 5 titles. It also tests the edge of the radius
+  only, where a clear difference between the two sides is hardest to reach.
 - An offer without a Land or coordinates counts for Germany only (1 offer). Bavaria's base share for the quotient is
   taken over all offers of the level (0.123 bachelor, 0.125 master).
 - The first-years backtest ends in 2024, because 2025 is the Bavarian G9 gap year.
@@ -380,12 +397,10 @@ third result was checked once more together with these notes.
 **Scorecard.** S1 pass (labels file was untracked when first used; its hash is recorded). S2, S4, S5, S7, S8 pass
 (tests recompute units, teacher share on 60 units, all counts, flags and quotients); S3 and S6 as first written are
 replaced by the changed rules (S17, S18, S20). S9
-done: 70 % of the types pass, below the bar of 80 %; mixed types are flagged. S10 the sheet is ready; the competition
-counts are flagged "not validated yet". S11 pass. S12 pass (two runs identical). S13 after two review rounds and a final recomputation of all units: no
+done: 70 % of the types pass, below the bar of 80 %; mixed types are flagged. S10 done: the check failed in both rounds; the competition
+counts are flagged "not validated". S11 pass. S12 pass (two runs identical). S13 after two review rounds and a final recomputation of all units: no
 open blocker. S14 one check round (1 wrong statement and 10 unclear wordings corrected, no wrong number). S15 pass. S16 above. S17 pass (largest group 6; every pair mutual). S18 pass (AUC
 0.965; 47 of 49 kept), with the limit that nothing was held out. S19 pass: Soma confirmed the three changed rules on 15 Nov 2026. S20 pass (45 of 46).
 S21 above.
 
-**Open for Soma.** Mark the 100 offers in
-`docs/funnel_similarity_check.csv` ("same kind of programme?" yes or no). Until then the competition counts are
-provisional and Step 4 does not start.
+**Step 3 is complete.** Nothing is open for Soma; Step 4 starts with Soma's OK.
