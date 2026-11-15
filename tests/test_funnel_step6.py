@@ -48,7 +48,7 @@ def test_a_stronger_oth_offer_gives_a_larger_share_from_oth_and_no_site_gives_ev
     assert alone["new"] == pytest.approx(400.0) and alone["a"] == alone["b"] == alone["c"] == 0
 
 
-def test_anchor_per_offer_and_germany_wide_fallback():
+def test_anchor_is_pool_students_over_pool_offers_with_a_germany_wide_fallback():
     d = pd.DataFrame({"level": ["bachelor"] * 3 + ["master"], "state": ["Bayern", "Bayern", "Hessen", "Bayern"],
                       "subjects": ["Informatik", "Informatik; Mathematik", "Physik", "Informatik"]})
     smap = {"Informatik": "A", "Mathematik": "B", "Physik": "P"}
@@ -58,13 +58,16 @@ def test_anchor_per_offer_and_germany_wide_fallback():
     import study_program_intelligence.analysis.funnel_capture as m
     old, m.map_label = m.map_label, lambda x: x
     try:
-        t = C.per_offer(d, smap, long, 0.5)
+        t = C.pool_tables(d, smap, long, 0.5)
     finally:
         m.map_label = old
-    assert t[("bachelor", "BY")]["A"] == pytest.approx(300 / 1.5) and t[("bachelor", "BY")]["B"] == pytest.approx(50 / 0.5)
-    assert t[("bachelor", "DE")]["P"] == pytest.approx(80.0) and t[("master", "BY")]["A"] == pytest.approx(40 * 0.5 / 1)
-    assert C.anchor_of({"A": 0.5, "P": 0.5}, t, "bachelor") == (pytest.approx(0.5 * 200 + 0.5 * 80), pytest.approx(0.5))
-    assert C.anchor_of({"A": 1.0}, t, "bachelor") == (pytest.approx(200.0), 0.0)
+    assert t[("bachelor", "BY")][1]["A"] == pytest.approx(1.5) and t[("bachelor", "BY")][0]["A"] == 300 and t[("master", "BY")][0]["A"] == pytest.approx(20.0)
+    a = C.anchor_of({"A": 0.5, "B": 0.5}, t, "bachelor")                       # pool students over pool offers, not the mean of the ratios
+    assert a["anchor"] == pytest.approx((0.5 * 300 + 0.5 * 50) / (0.5 * 1.5 + 0.5 * 0.5)) and not a["germany"] and a["offers"] == pytest.approx(1.0)
+    assert a["per_subject"] == pytest.approx(0.5 * 200 + 0.5 * 100) and a["no_students"] == 0
+    g = C.anchor_of({"P": 1.0}, t, "bachelor")                                # no Bavarian offer in the pool: Germany-wide, flagged
+    assert g["anchor"] == pytest.approx(80.0) and g["germany"] and g["offers"] == 0
+    assert C.anchor_of({"A": 0.5, "P": 0.5}, t, "bachelor")["anchor"] == pytest.approx(0.5 * 300 / (0.5 * 1.5))      # a Bavarian offer in the pool: Bavaria only
 
 
 @needs("data/interim/funnel2_capture.csv", "data/interim/funnel2_step6.json", "data/interim/funnel2_screen.csv", "data/interim/funnel2_demand.csv")
@@ -99,7 +102,8 @@ def test_sites_anchor_and_scale_recomputed_for_a_sample():
     o = pd.read_csv(INTERIM / "funnel2_capture.csv", float_precision="round_trip", keep_default_na=False, na_values=[""])
     d, t, emb, cent = load_step2()
     smap = pd.read_csv(SUBJECT_MAP).set_index("label")["code"].to_dict()
-    table = C.per_offer(d, smap, load(), C.TRANSITION)
+    table = C.pool_tables(d, smap, load(), C.TRANSITION)
+    long = load()
     pools = {lv: C.origins(x) for lv, x in C.ORIGINS.items()}
     for row in o[o["primary"]].sample(25, random_state=0).itertuples():
         c, lv = row.type, row.level
@@ -108,8 +112,18 @@ def test_sites_anchor_and_scale_recomputed_for_a_sample():
         sites = sim.drop_duplicates(["institution", "city"])
         assert o.at[row.Index, "competitor sites"] == len(sites) and o.at[row.Index, "Bavarian competitor sites"] == (sites["state"] == "Bayern").sum()
         a = d[(d["assigned_type"] == c) & (d["level"] == lv)]
-        anchor, de = C.anchor_of(pool_weights(a, smap), table, lv)
-        assert o.at[row.Index, "anchor"] == pytest.approx(anchor) and o.at[row.Index, "pool weight on Germany-wide values"] == pytest.approx(de)
+        w = pool_weights(a, smap)                                               # the anchor written out, without the module's functions
+        kind, year, _ = C.ANCHOR[lv]
+        st = long[(long["kind"] == kind) & (long["region"] == "BY") & (long["nationality"] == "German") & (long["year"] == year)].groupby("code")["value"].sum()
+        off = {}
+        for sub in d.loc[(d["level"] == lv) & (d["state"] == "Bayern"), "subjects"].astype(str):
+            for x in sub.split("; "):
+                off[smap[C.map_label(x)]] = off.get(smap[C.map_label(x)], 0.0) + 1 / len(sub.split("; "))
+        offers = sum(v * off.get(c, 0.0) for c, v in w.items())
+        if offers > 0:
+            students = sum(v * st.get(c, 0.0) for c, v in w.items()) * (C.TRANSITION if lv == "master" else 1.0)
+            assert o.at[row.Index, "anchor"] == pytest.approx(students / offers) and not o.at[row.Index, "anchor from Germany-wide values"]
+        assert o.at[row.Index, "anchor"] == pytest.approx(C.anchor_of(w, table, lv)["anchor"]) and o.at[row.Index, "Bavarian offers of the pool (weighted)"] == pytest.approx(offers)
         own = d[d["is_oth"].astype(bool) & (d["level"] == lv) & (d["assigned_type"] == c)]
         if own.empty:
             cand = d[d["is_oth"].astype(bool) & (d["level"] == lv)]
