@@ -55,6 +55,31 @@ def subject_name(s: str) -> str:
     return re.sub(r"\s*\((vorlesung|praktikum|übung|uebung|seminar|seminaristischer unterricht|su|vl|pr|ü|labor)[^)]*\)\s*$", "", str(s), flags=re.I).strip()
 
 
+ACRONYMS = ("HTWK", "HKA", "THD", "OTH", "HSMW", "HTW", "THM", "THB", "HS", "TH", "FH")     # short forms of institutions, matched as whole upper-case words
+
+
+def blind_terms(metas: dict) -> list[str]:
+    """Names that would show where a module comes from: every reference's institution, the city of its offer, and the
+    institution's distinctive words (a place or a name of four letters or more that is not a common word)."""
+    tries = pd.read_csv(INTERIM / "funnel2_reference_tries.csv")
+    common = {"hochschule", "technische", "university", "universität", "angewandte", "wissenschaften", "fachhochschule", "für", "und", "des", "der", "die", "applied", "sciences", "technology", "technik", "wirtschaft", "kultur", "gestaltung", "of", "and"}
+    out = set()
+    for m in metas.values():
+        out.add(m["institution"])
+        out |= {w for w in re.findall(r"[A-ZÄÖÜ][\wäöüß-]{3,}", m["institution"]) if w.lower() not in common}
+        city = tries.loc[tries["programme_id"].astype(str) == str(m.get("programme_id")), "city"]
+        if len(city):
+            out.add(re.split(r"[,(]", str(city.iloc[0]))[0].strip())
+    return sorted(out, key=len, reverse=True)
+
+
+def redact(text: str, terms: list[str]) -> str:
+    """Replaces the terms (whole words, any case) and the acronyms (whole upper-case words) by "[university]"."""
+    for t in terms:
+        text = re.sub(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", "[university]", text, flags=re.I)
+    return re.sub(rf"\b({'|'.join(ACRONYMS)})\b(?=[\s.,;:)-]|$)", "[university]", text)
+
+
 def complete(m: pd.DataFrame, meta: dict, share: float) -> tuple[bool, float]:
     """references.complete: modules for at least 80 % of the programme's ECTS, thesis included; of the listed electives
     only the ECTS a student must take count."""
@@ -127,6 +152,7 @@ def rows() -> None:
     tsim = unit(mv) @ unit(tv).T
     threshold = float(rules["feasibility_gate"]["covered_threshold"])
     order = np.random.default_rng(SEED).permutation(len(ref))
+    terms = [t for t in blind_terms({k: v for k, v in metas.items() if k in set(ref["ref"])}) if t]
     sheet, key = [], []
     for n, i in enumerate(order, 1):
         r = ref.iloc[i]
@@ -134,8 +160,8 @@ def rows() -> None:
         show = np.random.default_rng(SEED + n).permutation(len(near))                 # shuffled order of the 3 EMI modules
         near = [near[k] for k in show]
         best = max(sim[i][emi_allowed(emi, r["level"])])
-        sheet.append({"row": f"R{n:04d}", "module": r["module"], "credit points": float(r["ects"]), "level of the programme": r["level"],
-                      "description": str(r["content"])[:MODULE_TEXT] if isinstance(r["content"], str) else "",
+        sheet.append({"row": f"R{n:04d}", "module": redact(str(r["module"]), terms), "credit points": float(r["ects"]), "level of the programme": r["level"],
+                      "description": redact(str(r["content"])[:MODULE_TEXT], terms) if isinstance(r["content"], str) else "",
                       "EMI modules": [{"number": k + 1, "title": emi.at[j, "title"], "level": {"BA": "bachelor", "MA": "master"}.get(emi.at[j, "level"], emi.at[j, "level"]),
                                        "description": str(emi.at[j, "text"])[:EMI_TEXT]} for k, j in enumerate(near)],
                       "timetable subjects": [tt[j] for j in np.random.default_rng(SEED + n).permutation(np.argsort(-tsim[i], kind="mergesort")[:NEAREST])]})

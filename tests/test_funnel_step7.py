@@ -82,12 +82,16 @@ def test_rows_are_blind():
     sheet = json.loads((INTERIM / "funnel2_rows.json").read_text(encoding="utf-8"))
     key = pd.read_csv(INTERIM / "funnel2_rows_key.csv")
     assert len(sheet["rows"]) == len(key) and [r["row"] for r in sheet["rows"]] == list(key["row"])
-    text = json.dumps(sheet, ensure_ascii=False).lower()
-    for meta in (INTERIM / "funnel2_refs").glob("*_[ab].json"):
-        m = json.loads(meta.read_text(encoding="utf-8"))
-        assert m["institution"].lower() not in text, m["institution"]
+    import re
+    text = " ".join(r["module"] + " " + r["description"] for r in sheet["rows"])      # the reference's own texts; EMI's are OTH's by design
+    metas = {f.stem: json.loads(f.read_text(encoding="utf-8")) for f in (INTERIM / "funnel2_refs").glob("*_[ab].json")}
+    for t in F.blind_terms(metas):
+        assert not re.search(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", text, flags=re.I), t
+    assert not re.search(rf"\b({'|'.join(F.ACRONYMS)})\b(?=[\s.,;:)-]|$)", text)
+    assert F.redact("an der HTWK Leipzig und der OTH Regensburg; other Tübbingen", ["Leipzig", "Regensburg"]) == "an der [university] [university] und der [university] [university]; other Tübbingen"
     for r in sheet["rows"]:
         assert set(r) == {"row", "module", "credit points", "level of the programme", "description", "EMI modules", "timetable subjects"}
         assert len(r["EMI modules"]) == 3 and len(r["timetable subjects"]) == 3 and not any("similar" in k for e in r["EMI modules"] for k in e)
     tt = pd.read_csv(INTERIM / "timetable_subjects.csv")
-    assert not any(str(x).lower() in text for x in tt["lecturer"].dropna().unique() if len(str(x)) > 4 and not str(x).startswith("L"))
+    assert tt["lecturer"].dropna().astype(str).str.fullmatch(r"L\d{3}|.{0,3}").all()          # the timetable holds labels only, and no label is shown
+    assert not re.search(r"\bL\d{3}\b", json.dumps(sheet, ensure_ascii=False))
