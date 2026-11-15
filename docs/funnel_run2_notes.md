@@ -528,8 +528,10 @@ the day of a list was not enforced), all fixed; keywords and counts were then ma
 
 **Scorecard.** L1 pass (keywords recomputed by the reviewer for all 824 types and by a test for 40). L2 pass (keyword
 file committed before the first request; its hash is stored with every count). L3 pass for the primary list. L4
-pass. L5 pass (test recomputes the measure for 60 units and checks the place of the stored replies). L6: stress
-list below. L7 one review round, fixed. L8 pass.
+pass. L5 pass (test recomputes the measure for 60 units and checks the place of the stored replies). L6 pass: both lists were counted on 15 Nov 2026. L7 one review round, fixed. L8 pass.
+
+**Stress list.** All 1,241 units of the stress list have their counts too (1,115 distinct keywords, 3,348 counts in
+all, 0 errors, the same day). Their median is 5 ads within 100 km.
 
 **No programme stays or goes in this step.** Full table: `data/interim/funnel2_labour.csv`,
 `reports/funnel2/step5_labour.md`.
