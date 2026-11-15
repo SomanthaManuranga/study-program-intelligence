@@ -9,15 +9,18 @@ Set exactly one verdict per row and give one line of reason.
 
 | Verdict | When |
 |---|---|
-| **E1** | One of the EMI modules shown teaches essentially the same content at a comparable level. The module could be taken over unchanged. Name which one (its number). |
-| **E2** | One of the EMI modules shown covers at least two thirds of the content; at most one third would have to be added or changed. Name which one. |
-| **N** | No EMI module covers two thirds, but the module's main topic is clearly taught in EMI already: one of the 3 timetable subjects, or one of the EMI modules shown, is on the same main topic. A current lecturer could write this module. |
+| **E1** | One EMI module shown, or two together, teach essentially the same content at a comparable level. The module could be taken over unchanged. Name which (its number, or two numbers as "3+5"). |
+| **E2** | One EMI module shown, or two together, cover at least two thirds of the content; at most one third would have to be added or changed. Name which (one number, or two as "3+5"). |
+| **N** | No EMI module, alone or with one other, covers two thirds, but the module's main topic is clearly taught in EMI already: one of the 3 timetable subjects, or one of the EMI modules shown, is on the same main topic. A current lecturer could write this module. |
 | **new** | The main topic is not taught in EMI as far as the row shows. |
 | **lab** | The module cannot be taught without a laboratory or equipment that is not in the list of EMI labs given with the sheet (for example a chemistry wet lab, a workshop for vehicles, a clinic). This verdict wins over all others. |
 
 Rules of thumb:
 
 - Judge content, not titles. The same title with different content is not E1; different titles with the same content are.
+- Judge content, not credit points. EMI teaches mostly in 5-ECTS modules, so a larger module may be covered by one
+  EMI module with the same content, or by two EMI modules together (for example two programming modules for one
+  10-ECTS programming module). Never combine more than two.
 - Level matters: an introductory EMI module does not cover an advanced module of the same field (at most N).
 - A bachelor module of EMI does not cover a master module unless the content is clearly the same.
 - General modules (mathematics, physics, programming, English, business basics, project work, seminars) are judged
@@ -32,3 +35,5 @@ Covered means E1 or E2. Not covered means N, new or lab.
 
 Version 2 (before the second marking): 5 to 10 EMI modules are shown instead of 3, with longer texts; the
 verdicts and their meaning are unchanged.
+Version 3 (before the third marking): content counts, not credit points; up to two EMI modules together may cover a
+module (Soma).
