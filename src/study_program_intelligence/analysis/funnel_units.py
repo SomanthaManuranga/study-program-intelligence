@@ -399,8 +399,8 @@ def run() -> None:
 
     # bar of the EMI-field screen from the marked units
     lab = pd.read_csv(EMI_LABELS, keep_default_na=False).merge(s[["type", "level", "emi score", "score as first written"]], on=["type", "level"], how="left")
-    key, _ = label_sample(d, units)
-    if list(zip(lab["group"], lab["type"], lab["level"])) != list(zip(key["group"], key["type"], key["level"])) or lab["emi score"].isna().any():
+    drawn, _ = label_sample(d, units)
+    if list(zip(lab["group"], lab["type"], lab["level"])) != list(zip(drawn["group"], drawn["type"], drawn["level"])) or lab["emi score"].isna().any():
         raise SystemExit("docs/funnel_emi_labels.csv does not belong to the units of this Step 2 result")
     pos, neg = lab.loc[lab["label"].isin(["yes", "partly"]), "emi score"].to_numpy(), lab.loc[lab["label"] == "no", "emi score"].to_numpy()
     bar, emi_auc = keep_bar(pos), auc(pos, neg)
