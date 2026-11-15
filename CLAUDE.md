@@ -122,12 +122,13 @@ Outputs for the next steps: data/interim/funnel2_offer_types.csv, funnel2_types.
 funnel2_embeddings.npy. Details in docs/funnel_run2_notes.md. `run <size> <method>` is a diagnostic mode, never a result.
 Step 3 (analysis/funnel_units.py: items, labels, run, sheet): three rules did not work with the finer types and were
 changed as a proposal for Soma (merged groups without chaining; EMI-field score against module titles with a bar from
-300 marked units, docs/funnel_emi_labels.csv; "at OTH" when an OTH offer belongs to the type). Result: 1,285 units,
+300 units marked by an AI reader, docs/funnel_emi_labels.csv; "at OTH" when an OTH offer belongs to the type or lies
+within its median distance). Result: 1,285 units,
 365 on the primary list (268 candidates), 1,241 on the stress list; the EMI screen is a generous filter (about half
 of the list is outside EMI's field by the marks); 75 of the 247 types on the list are flagged "mixed"
 (docs/funnel_type_coherence.csv). Competition counts are provisional until Soma marks
 docs/funnel_similarity_check.csv (100 offers; key in data/interim/funnel2_similarity_key.csv, not to be shown).
-Read data/interim/funnel2_screen.csv with float_precision="round_trip". The hand-label CSVs in docs/ are tracked
+Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
 ## Rules

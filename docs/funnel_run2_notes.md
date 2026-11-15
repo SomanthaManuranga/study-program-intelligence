@@ -257,8 +257,8 @@ The step ran three times; the first two results are void.
 
 | Rule | As first written | What happened | Changed to |
 |---|---|---|---|
-| Merged candidates | units linked through chains of close centroids | 411 of 613 bachelor units and 448 of 672 master units fell into one group each; the whole group was dropped as "at OTH" (840 units); 43 units were left | a group only if every pair is close to each other; largest group 6 |
-| EMI's field | raw similarity of an offer's title and focus areas to the full text of EMI's modules; bar from 11 EMI and 30 other OTH offers | Informatik and Elektrotechnik fell outside, Philosophie and Kunstgeschichte inside; on 300 units marked by an independent reader the score reached AUC 0.71 | similarity to the titles of EMI's modules on centred vectors, mean over all offers of the unit; bar set on the 300 marked units so that 95 % of the field's units are kept; AUC 0.965 |
+| Merged candidates | units linked through chains of close centroids | 411 of 613 bachelor units and 448 of 672 master units fell into one group each; the whole group was dropped as "at OTH" (840 units); 424 units were left after this test and 43 after all four screens | a group only if every pair is close to each other; largest group 6 |
+| EMI's field | raw similarity of an offer's title and focus areas to the full text of EMI's modules; bar from 11 EMI and 30 other OTH offers | Informatik (type 13) and 30 of the 49 marked field units fell outside; 55 of the 251 marked outside units were inside, among them Philosophie (2 Fächer) and Kunstgeschichte (2-Fächer); on the 300 units marked by an independent reader the score reached AUC 0.71 | similarity to the titles of EMI's modules on centred vectors, mean over all offers of the unit; bar set on the 300 marked units so that 95 % of the field's units are kept; AUC 0.965 |
 | Already at OTH | an OTH offer within the type's median member distance | 24 of OTH's 46 offers dropped no unit (7 of the 12 EMI offers); units holding an OTH programme stayed | an OTH offer is assigned to the type, or lies within the median distance; 45 of 46 OTH offers now drop a unit; a merged group is no longer dropped as a whole |
 
 All three changes were chosen by checks that look at no candidate: group sizes, agreement with labels made from
@@ -276,7 +276,7 @@ titles only, and the share of OTH's own offers that trigger the test. The former
 | Primary list | 365 units (183 bachelor, 182 master) of 247 types, in 268 candidates after merging; 201 from rare, 100 from stable, 64 from mid-sized types |
 | Stress list (only "at OTH" applied) | 1,241 units |
 | Merged groups | 300 groups hold 734 units; the largest has 6 |
-| Second run | identical screen table and lists |
+| Repeat of the final run | identical screen table and lists |
 
 **The EMI-field screen is a generous first filter, not a statement that a unit is in EMI's field.** The bar keeps 47
 of the 49 marked field units and 49 of the 251 marked outside units. Of the 77 marked units on the primary list,
@@ -321,7 +321,7 @@ are not on the list, 6 are teacher training, 2 are already at OTH and 2 fall jus
 inside its radius, each institution and cleaned title once, without OTH and distance learning). 90 units have no
 similar offer within 150 km; 80 have none in Bavaria although the kind exists elsewhere; 33 have none within 150 km
 and none in the south ("gap"). For 30 units the subject pool is not shrinking in the Laender that host the
-programme (popularity tier 2). These counts are **not validated yet**: they hold only if "inside the radius" means
+programme outside the south (popularity tier 2; 2 of them are among the 33 gap units). These counts are **not validated yet**: they hold only if "inside the radius" means
 "the same kind of programme", which Soma's check of 100 offers tests (`docs/funnel_similarity_check.csv`).
 
 **Coherence of the types on the list (rule `screen.type_coherence`).** Independent readers read 10 titles of each of
@@ -342,7 +342,7 @@ reading (`docs/funnel_type_coherence.csv`).
 | 51 bachelor | Tourismusmanagement; Internationales Tourismus- und Eventmanagement; I... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -3.6 %/yr, validated False; EMI score 0.374 |
 | 326 master | Gesundheitswissenschaft; Public Health; Health Sciences; Gesundheitswi... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -1.1 %/yr, validated False; EMI score 0.325 |
 | 528 master | Soziologie; Soziologie: Diversität und Gesellschaft; Demokratiewissens... | dropped: other screen | outside EMI's field | teacher share 0.00; trend 0.5 %/yr, validated False; EMI score 0.237 |
-| 551 master | Inklusive Pädagogik und Elementarbildung; Blinden- und Sehbehindertenp... | dropped: other screen | teacher training | outside EMI's field | teacher share 1.00; trend 0.4 %/yr, validated False; EMI score 0.304 |
+| 551 master | Inklusive Pädagogik und Elementarbildung; Blinden- und Sehbehindertenp... | dropped: other screen | teacher training; outside EMI's field | teacher share 1.00; trend 0.4 %/yr, validated False; EMI score 0.304 |
 | 791 bachelor | Wirtschaftsingenieurwesen; Wirtschaftsingenieurwesen/Technischer Vertr... | dropped: other screen | outside EMI's field | teacher share 0.00; trend -3.8 %/yr, validated False; EMI score 0.358 |
 | 189 master | Digital Engineering; Digital Engineering Elektrotechnik; Digital Engin... | kept | passes all four screens | teacher share 0.00; trend -1.1 %/yr; EMI score 0.593; similar offers within 150 km 1 |
 | 294 bachelor | Technische Informatik; Informatik und Systems-Engineering; Informatik ... | kept | passes all four screens | teacher share 0.00; trend 0.7 %/yr; EMI score 0.636; similar offers within 150 km 1 |
@@ -353,13 +353,20 @@ reading (`docs/funnel_type_coherence.csv`).
 **Limits and choices.**
 
 - A type that only resembles an OTH programme, without holding an OTH offer, stays on the list (for example a second
-  Medieninformatik type). The capture model and the one-programme limit of the gate deal with it later.
+  Medieninformatik type), unless an OTH offer lies within its median distance (1 unit: 212 bachelor). The capture
+  model and the one-programme limit of the gate deal with it later.
 - The trend screen is almost inert: 521 units have a slope below -3 % a year, but only
   validated trends drop a unit, and few trends are validated.
 - The bar and the choice of the score were set on the same 300 marked units; nothing was held out. The labels were
-  made by one AI reader from titles only; a second reader agreed on 27 of 30 units.
-- 15 of EMI's 293 module titles name no subject (change table, theses, internships, elective placeholders) and are
-  left out. Units' scores are the mean over all their offers.
+  made by one AI reader from titles only; a second AI reader agreed on 27 of 30 units.
+- The 15 of EMI's 293 module titles matched by the pattern for change tables, theses, internships and elective
+  placeholders are left out; a few such titles with other spellings remain (2 units on the list depend on them).
+  Units' scores are the mean over all their offers.
+- One offer lies exactly on a type's radius; the code counts it outside, exact arithmetic inside (unit 3 master, 398
+  against 399 similar offers; not on the list).
+- The check of 100 offers has three weak points that Soma should know: 3 of the 50 "outside" rows are the type's own
+  offers beyond the radius; in 3 units the same title appears on both sides (the model tells them apart by focus
+  areas, which the sheet does not show); two descriptions have fewer than 5 titles.
 - An offer without a Land or coordinates counts for Germany only (1 offer). Bavaria's base share for the quotient is
   taken over all offers of the level (0.123 bachelor, 0.125 master).
 - The first-years backtest ends in 2024, because 2025 is the Bavarian G9 gap year.
@@ -370,11 +377,12 @@ mismatch; 2 blockers, 6 majors, 9 minors (similar offers undercounted in 176 uni
 module titles; the "at OTH" test missed half of OTH's offers; the bar is fragile). All fixed or stated above. The
 third result was checked once more together with these notes.
 
-**Scorecard.** S1 pass (labels file was untracked when first used; its hash is recorded). S2 to S8 pass (tests
-recompute units, at-OTH, teacher share on 60 units, EMI score on 80 units, all counts, flags and quotients). S9
+**Scorecard.** S1 pass (labels file was untracked when first used; its hash is recorded). S2, S4, S5, S7, S8 pass
+(tests recompute units, teacher share on 60 units, all counts, flags and quotients); S3 and S6 as first written are
+replaced by the changed rules (S17, S18, S20). S9
 done: 70 % of the types pass, below the bar of 80 %; mixed types are flagged. S10 the sheet is ready; the competition
-counts are flagged "not validated yet". S11 pass. S12 pass (two runs identical). S13 after two review rounds: no
-open blocker. S14 one check round. S15 pass. S16 above. S17 pass (largest group 6; every pair mutual). S18 pass (AUC
+counts are flagged "not validated yet". S11 pass. S12 pass (two runs identical). S13 after two review rounds and a final recomputation of all units: no
+open blocker. S14 one check round (1 wrong statement and 10 unclear wordings corrected, no wrong number). S15 pass. S16 above. S17 pass (largest group 6; every pair mutual). S18 pass (AUC
 0.965; 47 of 49 kept), with the limit that nothing was held out. S19 open: Soma's confirmation. S20 pass (45 of 46).
 S21 above.
 
