@@ -620,56 +620,71 @@ shrunk towards 1 with fewer than 3 comparator sites; net-new not scored for unit
 **No programme stays or goes in this step.** Full table: `data/interim/funnel2_capture.csv`,
 `reports/funnel2/step6_capture.md`.
 
-## Step 7: can EMI teach it with what it has? (first pass; open decision)
+## Step 7: can EMI teach it with what it has? (second pass; open decision on module size)
 
 **Question.** For the best candidates so far: how much of a real programme of that kind does EMI already teach?
 
 **Rule.** `configs/funnel.yaml`, blocks `shortlist` and `feasibility_gate`; criteria in
-`docs/criteria_funnel_step7.md`; marking rules in `docs/funnel_marking_rules.md` (committed before any row). Code:
+`docs/criteria_funnel_step7.md`; marking rules in `docs/funnel_marking_rules.md`. Code:
 `analysis/funnel_shortlist.py` (gate order), `funnel_refs.py` (references), `funnel_feasibility.py` (rows, sample,
-verdicts). Changed before any row existed (Soma): the sample check is made by a second, blind AI reviewer, not by
-Soma. No person has checked a module verdict.
+third reader, verdicts). Two changes by Soma, both before the rows they affect: the sample check is made by a
+second, blind AI reviewer instead of Soma; after the first pass, the sheet shows more of EMI and a third reader
+settles every disagreement. No person has checked a module verdict.
 
-**How it ran.** 268 candidates ordered by the pre-gate score. Down that order: 10 tried, 6 eligible (3 per level),
-2 mixed types not candidates, later bachelor candidates skipped once 3 were eligible. 4 tried masters had no
-public, complete module handbook (only a study plan, a request form, or half of a joint programme). 10 handbooks
-of the 6 eligible candidates, 357 modules; every request through the project fetcher (134 requests, 1 blocked by
-robots.txt and not worked around). Four AI markers set a verdict per module on a blind sheet; a second AI marker
-marked 169 rows blind (10 drawn per candidate and every unsure row). Every sample passed (at most 1 of 10
-differs); the two markers agree on covered or not covered in 90 % of the shared rows (kappa 0.69). A first
-marking was void: the sheet had shown EMI's form fields instead of the module content.
+**How it ran.**
 
-**Result (first pass).**
+- **Gate list.** 268 candidates ordered by the pre-gate score. Down that order: 10 tried, 6 eligible (3 per level),
+  2 mixed types not candidates, later bachelor candidates skipped once 3 were eligible. 4 tried masters had no
+  public, complete handbook (a study plan only, a request form, or half of a joint programme).
+- **References.** 10 handbooks, 357 modules. Every request went through the project fetcher (134 requests; 1 was
+  blocked by robots.txt and not worked around).
+- **Sheet.** Each module next to the 5 most similar EMI modules plus up to 5 more whose title shares a word
+  (copies shown once), EMI texts up to 3,000 characters, 3 timetable subjects; university names, cities and
+  module codes removed.
+- **Marking.** Four fresh AI markers marked all 357 rows; a second, blind marker the 10 drawn rows per candidate
+  and every unsure row. The cybersecurity sample failed (2 of 10 differ), so all its 115 rows were marked twice. A
+  third, blind reader settled the 23 rows where the two differed (19 to not covered, 4 to covered). Agreement on
+  covered or not covered: 90 % of 231 rows.
 
-| Gate | Candidate | Handbooks | Overlap with EMI | Verdict |
+**Result (second pass).** The candidate verdicts are the same as in the first pass; 25 of 357 rows changed between
+covered and not covered.
+
+| Gate | Candidate | Handbooks | Overlap with EMI (central; best / worst electives) | Verdict |
 |---|---|---|---|---|
-| 1 | Computer science, bachelor | 1 (Regensburg) | 44 % (range 34-54 %) | passes with existing resources: no new lab, no outside teaching beyond 7 ECTS; but 92 ECTS of new modules (85 by current lecturers), about 2 professor-equivalents |
-| 3 | Cybersecurity, bachelor | 2 (Mannheim, Deggendorf) | 38.5 % and 39.4 % | fails the 40 % bar by less than one module per handbook |
-| 10 | Computer science, master | 2 | 15 % and 29 % | fails |
-| 22 | Communication and media, master | 2 | 12 % and 10 % | fails |
+| 1 | Computer science, bachelor | 1 (Regensburg) | 46 % (51 / 42 %) | passes with existing resources: no new lab, 2 ECTS outside teaching; but 89 ECTS of new modules by current lecturers, about 2 professor-equivalents |
+| 3 | Cybersecurity, bachelor | 2 (Mannheim, Deggendorf) | 35 % (47 / 32 %) and 39 % | fails; reference B is 1 ECTS short of 40 %; needs outside teaching (forensics, IT law, auditing) in any case |
+| 10 | Computer science, master | 2 | 14 % and 29 % | fails |
+| 22 | Communication and media, master | 2 | 12 % and 8 % | fails |
 | 2 | Urban planning, bachelor | 1 | 9 % | fails |
-| 6 | Civil engineering, master | 2 | 5 % and 0 %, needs labs | fails |
+| 6 | Civil engineering, master | 2 | 3 % and 0 %, needs labs | fails |
 
-**Why this is not final (fresh-context review).** The reviewer recomputed every number without a mismatch and
-found:
+**Review of the second pass.** Every number recomputed without a mismatch. The findings:
 
-- **Blocker: the sheet can hide the right EMI module.** A row can only be "covered" if its EMI partner is among
-  the 3 modules shown; Step 1b measured that the partner is in the top 3 for 74 % of modules. Examples: "Software
-  Engineering", "Mathematik 1" and "Theoretical Computer Science" were not shown EMI's modules of the same name.
-  One such correction lifts each cybersecurity handbook above 40 %. Cybersecurity would still need new teaching
-  from outside (5 and 15 ECTS: penetration testing, forensics, auditing, IT law), so it would be a band passer, not
-  an existing-resources passer.
-- **Major:** the 17 rows on which the two markers differ all count as not covered (7 of them cybersecurity rows);
-  texts were cut at 1,500 characters (for 61 EMI modules the content section was never visible); the six slots
-  went to candidates that are plainly far from EMI (urban planning, civil engineering) because the pre-gate score
-  ranks them high; the computer science pass falls to 38 % if the least-covered electives are counted or two
-  debatable rows (German language courses, quantum computing) are not covered.
-- 24 of 357 rows showed one EMI module twice (copies from two handbooks), so they had 2 neighbours, not 3.
+- **Blocker: module size is not in the marking rules, and it decides both key verdicts.** "Covers two thirds of
+  the content" says nothing about credit points, and the readers treated size in opposite ways:
+  - Computer science counts four modules of 7 to 8 ECTS as covered by single 5-ECTS EMI modules (31 of its 69
+    covered compulsory ECTS).
+  - Cybersecurity's two 10-ECTS programming modules are not covered because EMI teaches them in two 5-ECTS
+    modules.
+  - If size counts (the EMI module must have at least two thirds of the credit points, as "at most a third new"
+    in `configs/feasibility.yaml` suggests): computer science falls to 28 %, cybersecurity A to 29 %, and no
+    bachelor candidate passes.
+  - If size does not count and is applied evenly: cybersecurity A rises to 41 %.
+- **Major:** 15 of the 37 computer science rows (65 % of its covered ECTS) were seen by one marker only; two of
+  them are doubtful (Programming 1 in C, German A2), and correcting them puts computer science at 40.0 %.
+- **Major:** word-based title matching does not cross languages: English "Theoretical Computer Science" still
+  does not show EMI's "Theoretische Informatik".
+- **Major:** cybersecurity misses the bar by less than one module on each handbook, inside the noise between
+  markers (7 of its 82 reference-A rows changed between the passes).
+- **Minor:** a region name and handbook codes remain in about 13 rows of the civil engineering and urban planning
+  references; some EMI module texts belong to another module (a handbook parsing problem); reference texts are
+  cut at 1,500 characters by the collectors.
 
-**Fixed without a rule change:** the reason label; the share of covered ECTS that rests on one marker alone is
-now given per candidate (60 % for computer science and for cybersecurity).
+**What this means.** The gate cleanly removes the four candidates far from EMI. For the two that matter, the step
+cannot give a firm answer until the size question is settled: computer science passes only if a smaller EMI module
+can cover a larger one, and cybersecurity fails by one module either way and needs outside teaching in any case.
 
-**Open for Soma (rule change, before Step 8).** Show each marker more of EMI: 5 nearest modules plus every EMI
-module whose title shares the module's main word, and the full content section; then re-mark all rows and settle
-every disagreement with a third reader. Without it the gate result for cybersecurity and computer science rests
-on what the matcher happened to show.
+**Open for Soma (rule change, before Step 8).** Write one rule on module size, for example: E2 needs EMI modules
+with at least two thirds of the module's credit points, one module or two together; apply it to the stored marks
+where the content verdict is clear, re-mark the rows it changes, have every computer science row marked twice, add
+an English-German word list to the title matching, and report both readings.

@@ -7,10 +7,11 @@ data/interim/funnel2_refs/ (analysis.funnel_refs):
     python -m study_program_intelligence.analysis.funnel_feasibility sample    # the rows for the second reviewer
     python -m study_program_intelligence.analysis.funnel_feasibility verdict   # overlap, new teaching, verdicts
 
-rows: every counted module of every complete reference with the 3 most similar EMI modules (funnel_modules.vectors)
-and the 3 nearest timetable subjects, shuffled, without candidate, institution, programme or similarity value. The
-key stays in data/interim. Marks are read from docs/funnel_module_marks_1.csv (first reviewer), _2.csv (second,
-blind to the first) and _3.csv (third reader, only for candidates whose sample failed).
+rows: every counted module of every complete reference with the 5 most similar EMI modules (funnel_modules.vectors)
+plus up to 5 more whose title shares a content word, and the 3 nearest timetable subjects, shuffled, without
+candidate, institution, programme or similarity value. The key stays in data/interim. `third` writes the sheet of
+the rows on which the first two reviewers differ. Marks are read from docs/funnel_module_marks_1.csv (first
+reviewer), _2.csv (second, blind to the first) and _3.csv (third reader, blind to both, every row that differs).
 Outputs: data/interim/funnel2_rows.json, funnel2_rows_key.csv, funnel2_rows_sample.json, funnel2_gate.csv,
 funnel2_gate_references.csv, funnel2_step7.json; reports/funnel2/step7_gate.md.
 """
@@ -188,7 +189,7 @@ def rows() -> None:
         r = ref.iloc[i]
         near = nearest(sim[i], titles, emi_allowed(emi, r["level"]))
         near = near + title_matches(r["module"], sim[i], titles, words, emi_allowed(emi, r["level"]), near)
-        show = np.random.default_rng(SEED + n).permutation(len(near))                 # shuffled order of the 3 EMI modules
+        show = np.random.default_rng(SEED + n).permutation(len(near))                 # shuffled order of the EMI modules shown
         near = [near[k] for k in show]
         best = max(sim[i][emi_allowed(emi, r["level"])])
         sheet.append({"row": f"R{n:04d}", "module": redact(str(r["module"]), terms), "credit points": float(r["ects"]), "level of the programme": r["level"],
