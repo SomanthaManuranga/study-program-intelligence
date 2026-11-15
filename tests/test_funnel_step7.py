@@ -95,3 +95,13 @@ def test_rows_are_blind():
     tt = pd.read_csv(INTERIM / "timetable_subjects.csv")
     assert tt["lecturer"].dropna().astype(str).str.fullmatch(r"L\d{3}|.{0,3}").all()          # the timetable holds labels only, and no label is shown
     assert not re.search(r"\bL\d{3}\b", json.dumps(sheet, ensure_ascii=False))
+    emi = [e["description"] for r in sheet["rows"] for e in r["EMI modules"]]
+    assert not any(re.search(r"Prof\.|Dr\.|Modulverantwortlich|Module Convenor", x) for x in emi)          # no person, no form header
+    assert np.median([len(x) for x in emi]) > 800                                                            # the content is shown, not the header
+
+
+def test_emi_text_is_content_without_persons():
+    raw = ("Basics Zuordnung zum Curriculum Modul-ID GBI 5 Modulverantwortliche Module Convenor Prof. Dr. Erika Muster Voraussetzungen keine "
+           "Lernziele/Qualifikationen des Moduls Learning Outcomes Die Studierenden kennen Netze, betreut von Prof. Dr. Erika Muster. " + "Sie bauen Netze auf. " * 12 + "Literatur Buch A")
+    t = F.emi_text(raw, "Rechnernetze")
+    assert t.startswith("Lernziele") and "Sie bauen" in t and "Muster" not in t and "Prof" not in t and "Modulverantwortliche" not in t and "Buch A" not in t

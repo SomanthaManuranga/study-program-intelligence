@@ -26,7 +26,7 @@ import pandas as pd
 import yaml
 
 from .funnel_common import INTERIM, REPO_ROOT, REPORTS, config, md_table, run_stamp
-from .funnel_modules import EMI_MODULES, norm_title, vectors
+from .funnel_modules import EMI_MODULES, cleaned, norm_title, vectors
 from .funnel_refs import LEFT_OUT, TABLES
 from .funnel_shortlist import ORDER
 from .funnel_types import sha
@@ -47,7 +47,16 @@ COVERED, VERDICTS = ("E1", "E2"), ("E1", "E2", "N", "new", "lab")
 SEED, NEAREST, DRAWN, MAY_DIFFER = 42, 3, 10, 1                   # hand_check: rows, sample_check, sample_pass
 SWS_PER_ECTS, SWS_A_YEAR = 0.8, 36.0                              # professor_equivalents
 SINGLE_WIDEN = 0.10                                               # references.one_only
-EMI_TEXT, MODULE_TEXT = 1200, 1500                                # characters of text shown to a marker
+EMI_TEXT, MODULE_TEXT = 1500, 1500                                # characters of text shown to a marker
+PERSON = re.compile(r"(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?)(?:\s*(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?|-?[A-ZÄÖÜ][a-zäöüß]+|[A-Z]\.)){0,4}")
+
+
+def emi_text(text: str, title: str) -> str:
+    """What a marker sees of an EMI module: content and learning outcomes as funnel_modules prepares them for matching
+    (the handbook's form fields, persons and literature left out), without the title, titles of persons removed."""
+    t = cleaned(pd.DataFrame({"text": [text], "title": [title]})).iloc[0]
+    t = t.split(". ", 1)[1] if ". " in t else t
+    return re.sub(r"\s+", " ", PERSON.sub("", t)).strip()[:EMI_TEXT]
 
 
 def subject_name(s: str) -> str:
@@ -163,7 +172,7 @@ def rows() -> None:
         sheet.append({"row": f"R{n:04d}", "module": redact(str(r["module"]), terms), "credit points": float(r["ects"]), "level of the programme": r["level"],
                       "description": redact(str(r["content"])[:MODULE_TEXT], terms) if isinstance(r["content"], str) else "",
                       "EMI modules": [{"number": k + 1, "title": emi.at[j, "title"], "level": {"BA": "bachelor", "MA": "master"}.get(emi.at[j, "level"], emi.at[j, "level"]),
-                                       "description": str(emi.at[j, "text"])[:EMI_TEXT]} for k, j in enumerate(near)],
+                                       "description": emi_text(emi.at[j, "text"], emi.at[j, "title"])} for k, j in enumerate(near)],
                       "timetable subjects": [tt[j] for j in np.random.default_rng(SEED + n).permutation(np.argsort(-tsim[i], kind="mergesort")[:NEAREST])]})
         key.append({"row": f"R{n:04d}", "ref": r["ref"], "type": r["type"], "level": r["level"], "order": r["order"], "module": r["module"], "ects": r["ects"], "kind": r["kind"],
                     **{f"emi {k + 1}": emi.at[j, "module_id"] for k, j in enumerate(near)}, **{f"emi {k + 1} programme": emi.at[j, "programme_id"] for k, j in enumerate(near)},
