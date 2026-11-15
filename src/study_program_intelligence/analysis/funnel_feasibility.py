@@ -26,13 +26,14 @@ import pandas as pd
 import yaml
 
 from .funnel_common import INTERIM, REPO_ROOT, REPORTS, config, md_table, run_stamp
-from .funnel_modules import EMI_MODULES, cleaned, norm_title, vectors
+from .funnel_modules import EMI_MODULES, cleaned, content_words, norm_title, vectors
 from .funnel_refs import LEFT_OUT, TABLES
 from .funnel_shortlist import ORDER
 from .funnel_types import sha
 from .module_gaps import embed
 
 ROWS, KEY, SAMPLE = INTERIM / "funnel2_rows.json", INTERIM / "funnel2_rows_key.csv", INTERIM / "funnel2_rows_sample.json"
+THIRD = INTERIM / "funnel2_rows_third.json"
 GATE, GATE_REFS, STEP7 = INTERIM / "funnel2_gate.csv", INTERIM / "funnel2_gate_references.csv", INTERIM / "funnel2_step7.json"
 MARKS = {k: REPO_ROOT / "docs" / f"funnel_module_marks_{k}.csv" for k in (1, 2, 3)}
 TIMETABLE = INTERIM / "timetable_subjects.csv"
@@ -44,10 +45,10 @@ TAUGHT = {"bachelor": 165.0, "master": 60.0}                      # references.s
 T_CAP = {"bachelor": 10.0, "master": 5.0}                         # hand_check.computed_T_and_X
 FAMILY = {"oth26_ba_iki": "KI family", "oth26_ba_ki": "KI family", "oth26_ma_mki": "KI family"}       # one_programme.share
 COVERED, VERDICTS = ("E1", "E2"), ("E1", "E2", "N", "new", "lab")
-SEED, NEAREST, DRAWN, MAY_DIFFER = 42, 3, 10, 1                   # hand_check: rows, sample_check, sample_pass
+SEED, NEAREST, TITLE_EXTRA, SUBJECTS, DRAWN, MAY_DIFFER = 42, 5, 5, 3, 10, 1     # hand_check: rows, sample_check, sample_pass
 SWS_PER_ECTS, SWS_A_YEAR = 0.8, 36.0                              # professor_equivalents
 SINGLE_WIDEN = 0.10                                               # references.one_only
-EMI_TEXT, MODULE_TEXT = 1500, 1500                                # characters of text shown to a marker
+EMI_TEXT, MODULE_TEXT = 3000, 1500                                # characters of text shown to a marker (the module's own text is cut by the collectors at 1,500)
 PERSON = re.compile(r"(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?)(?:\s*(?:Prof\.|Dr\.|Dipl\.-[A-Za-zäöü]+\.?|-?[A-ZÄÖÜ][a-zäöüß]+|[A-Z]\.)){0,4}")
 
 
@@ -124,10 +125,23 @@ def emi_allowed(emi: pd.DataFrame, level: str) -> np.ndarray:
 
 
 def nearest(sim: np.ndarray, titles: np.ndarray, allowed: np.ndarray, n: int = NEAREST) -> list[int]:
-    """The n most similar allowed EMI modules with different normalised titles (a module listed in several handbooks is shown once)."""
+    """The n most similar allowed EMI modules with different titles (copies of one module in several handbooks are shown once)."""
     out, seen = [], set()
     for j in np.argsort(-sim, kind="mergesort"):
         if allowed[j] and titles[j] not in seen:
+            out.append(int(j))
+            seen.add(titles[j])
+            if len(out) == n:
+                break
+    return out
+
+
+def title_matches(module: str, sim: np.ndarray, titles: np.ndarray, words: list[frozenset], allowed: np.ndarray, shown: list[int], n: int = TITLE_EXTRA) -> list[int]:
+    """hand_check.rows: up to n more allowed EMI modules whose title shares a content word with the module's title, the most similar first."""
+    mine = content_words(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(module)))
+    seen, out = {titles[j] for j in shown}, []
+    for j in np.argsort(-sim, kind="mergesort"):
+        if allowed[j] and titles[j] not in seen and mine & words[j]:
             out.append(int(j))
             seen.add(titles[j])
             if len(out) == n:
@@ -158,7 +172,8 @@ def rows() -> None:
     ev = vectors(emi)
     rv = vectors(ref.rename(columns={"module": "title", "content": "text"}), handbook="ref")
     sim = rv @ ev.T
-    titles = emi["title"].map(norm_title).to_numpy()
+    titles = emi["title"].map(same_module).to_numpy()
+    words = [content_words(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(t))) for t in emi["title"]]
     tt = sorted({subject_name(s) for s in pd.read_csv(TIMETABLE)["subject"].dropna()} - {""})
     tv, mv = embed(tt), embed(ref["module"].astype(str).tolist())
     mean = tv.mean(axis=0)
@@ -171,6 +186,7 @@ def rows() -> None:
     for n, i in enumerate(order, 1):
         r = ref.iloc[i]
         near = nearest(sim[i], titles, emi_allowed(emi, r["level"]))
+        near = near + title_matches(r["module"], sim[i], titles, words, emi_allowed(emi, r["level"]), near)
         show = np.random.default_rng(SEED + n).permutation(len(near))                 # shuffled order of the 3 EMI modules
         near = [near[k] for k in show]
         best = max(sim[i][emi_allowed(emi, r["level"])])
@@ -178,7 +194,7 @@ def rows() -> None:
                       "description": redact(str(r["content"])[:MODULE_TEXT], terms) if isinstance(r["content"], str) else "",
                       "EMI modules": [{"number": k + 1, "title": emi.at[j, "title"], "level": {"BA": "bachelor", "MA": "master"}.get(emi.at[j, "level"], emi.at[j, "level"]),
                                        "description": emi_text(emi.at[j, "text"], emi.at[j, "title"])} for k, j in enumerate(near)],
-                      "timetable subjects": [tt[j] for j in np.random.default_rng(SEED + n).permutation(np.argsort(-tsim[i], kind="mergesort")[:NEAREST])]})
+                      "timetable subjects": [tt[j] for j in np.random.default_rng(SEED + n).permutation(np.argsort(-tsim[i], kind="mergesort")[:SUBJECTS])]})
         key.append({"row": f"R{n:04d}", "ref": r["ref"], "type": r["type"], "level": r["level"], "order": r["order"], "module": r["module"], "ects": r["ects"], "kind": r["kind"],
                     **{f"emi {k + 1}": emi.at[j, "module_id"] for k, j in enumerate(near)}, **{f"emi {k + 1} programme": emi.at[j, "programme_id"] for k, j in enumerate(near)},
                     **{f"similarity {k + 1}": float(sim[i, j]) for k, j in enumerate(near)}, "best similarity": float(best), "automatic: covered": bool(best >= threshold)})
@@ -215,6 +231,17 @@ def sample() -> None:
     print(json.dumps({"drawn": {f"{t} {lv}": v for (t, lv), v in drawn.items()}, "unsure rows": int(first["unsure"].sum()), "rows for the second reviewer": len(want)}, indent=1))
 
 
+def third() -> None:
+    """hand_check.third_reader: the sheet of every row on which the first two reviewers differ between covered and not covered."""
+    first, second = read_marks(1), read_marks(2)
+    both = second.index.intersection(first.index)
+    differ = sorted(r for r in both if (first.at[r, "verdict"] in COVERED) != (second.at[r, "verdict"] in COVERED))
+    sheet = json.loads(ROWS.read_text(encoding="utf-8"))
+    sheet["rows"] = [r for r in sheet["rows"] if r["row"] in set(differ)]
+    THIRD.write_text(json.dumps(sheet, indent=1, ensure_ascii=False), encoding="utf-8")
+    print(json.dumps({"rows marked by both": len(both), "rows that differ": len(differ), "rows": differ}, indent=1))
+
+
 def final_marks(key: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
     """hand_check.final_verdict, sample_pass. Returns the key with the final verdict of every row and, per candidate, the result of the sample."""
     first, second = read_marks(1), read_marks(2)
@@ -240,7 +267,7 @@ def final_marks(key: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
         elif isinstance(r.third, str):
             final.append(r.third), basis.append("third reader")
         else:
-            final.append(r.second if cov(r.first) else r.first), basis.append("reviewers differ: not covered")
+            raise SystemExit(f"row {r.Index}: the reviewers differ and no third reader has marked it")
     k["final"], k["basis"] = final, basis
     k["which final"] = third["which"].reindex(k.index).where(k["basis"] == "third reader", k["which"]) if len(third) else k["which"]
     return k.reset_index(), info
@@ -336,7 +363,7 @@ def verdict() -> None:
     k, info = final_marks(key)
     emi = pd.read_csv(EMI_MODULES, low_memory=False).set_index("module_id", drop=False)
     which = pd.to_numeric(k["which final"], errors="coerce")
-    conf = [k.at[i, f"emi {int(w)}"] if np.isfinite(w) and 1 <= w <= NEAREST else None for i, w in zip(k.index, which)]
+    conf = [k.at[i, f"emi {int(w)}"] if np.isfinite(w) and f"emi {int(w)}" in k.columns and isinstance(k.at[i, f"emi {int(w)}"], str) else None for i, w in zip(k.index, which)]
     k["confirmed module"] = conf
     k["confirmed programme"] = [emi.at[c, "programme_id"] if c in emi.index else "" for c in conf]
     k["confirmed title"] = [same_module(emi.at[c, "title"]) if c in emi.index else "" for c in conf]
@@ -408,4 +435,4 @@ def verdict() -> None:
 
 
 if __name__ == "__main__":
-    {"rows": rows, "sample": sample, "verdict": verdict}[sys.argv[1] if len(sys.argv) > 1 else ""]()
+    {"rows": rows, "sample": sample, "third": third, "verdict": verdict}[sys.argv[1] if len(sys.argv) > 1 else ""]()

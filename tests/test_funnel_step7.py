@@ -21,6 +21,8 @@ def test_constants_follow_the_rule():
     assert "10 (bachelor) or 5 (master)" in g["hand_check"]["computed_T_and_X"] and F.T_CAP == {"bachelor": 10.0, "master": 5.0}
     assert "0.10" in g["references"]["one_only"] and F.SINGLE_WIDEN == 0.10
     assert "10 rows per eligible candidate" in g["hand_check"]["sample_check"] and F.DRAWN == 10 and F.MAY_DIFFER == 1
+    assert "with the 5 EMI modules most similar" in g["hand_check"]["rows"] and "up to 5 more" in g["hand_check"]["rows"] and "3,000 characters" in g["hand_check"]["rows"]
+    assert (F.NEAREST, F.TITLE_EXTRA, F.SUBJECTS, F.EMI_TEXT) == (5, 5, 3, 3000) and "third reader" in g["hand_check"]["final_verdict"]
     assert "6 are eligible" in F.config()["shortlist"]["gate_list"] and F.GATE_RULE == (6, 3, 20)
 
 
@@ -44,8 +46,10 @@ def test_elective_fill_and_its_bounds():
 def test_nearest_shows_each_title_once_and_only_allowed_modules():
     sim = np.array([0.9, 0.85, 0.8, 0.7, 0.6])
     titles = np.array(["a", "a", "b", "c", "d"])
-    assert F.nearest(sim, titles, np.ones(5, bool)) == [0, 2, 3]
-    assert F.nearest(sim, titles, np.array([False, True, False, True, True])) == [1, 3, 4]
+    assert F.nearest(sim, titles, np.ones(5, bool), 3) == [0, 2, 3]
+    assert F.nearest(sim, titles, np.array([False, True, False, True, True]), 3) == [1, 3, 4]
+    words = [frozenset({"software"}), frozenset({"software"}), frozenset({"netze"}), frozenset(), frozenset({"software", "engineering"})]
+    assert F.title_matches("Software Engineering", sim, titles, words, np.ones(5, bool), [0]) == [4]          # copy of module 0 (same title) not repeated
 
 
 def test_copies_of_one_module_are_one_title():
@@ -96,7 +100,7 @@ def test_rows_are_blind():
     assert F.redact("an der HTWK Leipzig und der OTH Regensburg; other Tübbingen", ["Leipzig", "Regensburg"]) == "an der [university] [university] und der [university] [university]; other Tübbingen"
     for r in sheet["rows"]:
         assert set(r) == {"row", "module", "credit points", "level of the programme", "description", "EMI modules", "timetable subjects"}
-        assert len(r["EMI modules"]) == 3 and len(r["timetable subjects"]) == 3 and not any("similar" in k for e in r["EMI modules"] for k in e)
+        assert 5 <= len(r["EMI modules"]) <= 10 and len(r["timetable subjects"]) == 3 and len({F.same_module(e["title"]) for e in r["EMI modules"]}) == len(r["EMI modules"]) and not any("similar" in k for e in r["EMI modules"] for k in e)
     tt = pd.read_csv(INTERIM / "timetable_subjects.csv")
     assert tt["lecturer"].dropna().astype(str).str.fullmatch(r"L\d{3}|.{0,3}").all()          # the timetable holds labels only, and no label is shown
     assert not re.search(r"\bL\d{3}\b", json.dumps(sheet, ensure_ascii=False))
@@ -120,14 +124,13 @@ def test_overlap_and_verdicts_recomputed_from_the_marks():
     gate = pd.read_csv(INTERIM / "funnel2_gate.csv")
     m1, m2 = pd.read_csv(REPO / "docs" / "funnel_module_marks_1.csv", keep_default_na=False).set_index("row"), pd.read_csv(REPO / "docs" / "funnel_module_marks_2.csv", keep_default_na=False).set_index("row")
     cov = lambda v: v in ("E1", "E2")
+    m3 = pd.read_csv(REPO / "docs" / "funnel_module_marks_3.csv", keep_default_na=False).set_index("row") if (REPO / "docs" / "funnel_module_marks_3.csv").exists() else pd.DataFrame()
     for r in k.itertuples():                                                    # the final verdict of every row, written out
         first = m1.at[r.row, "verdict"]
-        if r.row not in m2.index:
-            assert r.final == first
-        elif cov(first) == cov(m2.at[r.row, "verdict"]):
+        if r.row not in m2.index or cov(first) == cov(m2.at[r.row, "verdict"]):
             assert r.final == first
         else:
-            assert not cov(r.final)
+            assert r.final == m3.at[r.row, "verdict"]
     for ref in refs.itertuples():
         g = k[k["ref"] == ref.ref]
         taught = 165.0 if ref.level == "bachelor" else 60.0
