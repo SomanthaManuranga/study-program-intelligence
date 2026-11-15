@@ -411,7 +411,7 @@ S21 above.
 foreign students?
 
 **Rule.** `configs/funnel.yaml`, block `demand` (with `pool_mapping`); criteria in `docs/criteria_funnel_step4.md`.
-Code: `analysis/funnel_demand.py`. Result files carry code commit 5300f91. No unit is removed in this step.
+Code: `analysis/funnel_demand.py`. Result files carry the code commit of the final run (see data/interim/funnel2_step4.json). No unit is removed in this step.
 
 **What the numbers are.** Destatis counts students by subject, not by programme. Every unit therefore gets a *pool*:
 the Destatis subjects of its offers, weighted by how often they occur. The trend is that of the pool, not of the
