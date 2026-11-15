@@ -6,6 +6,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 12,10,8,pass,,False,A,Physik with Experimentalphysik and Advanced Quantum Physics as specialisations; Engineering Physics and Quantum Science & Technology left out
 13,10,10,pass,,False,A,
 22,10,9,pass,,False,A,
+23,10,7,fail,,True,D,music theory and ear training (7) mixed with audiology and hearing acoustics (3); different subjects sharing the word Hoeren
 24,10,10,pass,,False,A,
 47,10,7,fail,J,True,A,event management core of 7; health management; theatre and orchestra management; sport tourism are other subjects
 55,10,10,pass,,False,A,
@@ -48,10 +49,12 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 202,10,7,fail,J,True,A,molecular biology / biochemistry 7; molecular ecology; Molecular Science; Molecular Bioengineering are other subjects
 203,10,10,pass,,False,A,
 204,10,7,fail,J,True,A,Digital Business core of 5 to 7; MBA; digital project management; Digital Economics; digital transformation in society differ
+205,10,10,pass,,False,D,
 206,10,9,pass,,False,A,
 207,10,8,pass,J,False,A,5 Fahrzeugtechnik/Automotive plus Motorsport; Autonomous Vehicle; Smart Vehicle as specialisations; mobility systems management and Automobilinformatik left out
 208,10,8,pass,,False,A,Mobilität und Verkehr and Smart Mobility Management left out
 209,10,7,fail,J,True,A,journalism 7; Publizistik- und Kommunikationswissenschaft; Management und Medien; Media Technology and Society are other subjects
+210,10,8,pass,J,False,D,Medieninformatik 6 plus Informatik with Medieninformatik track and Human-Centered Computing; Mobile Medien and AR/VR Engineering counted as different
 211,10,6,fail,,True,A,energy economics / energy business 6; resource management and environmental and resource economics are other subjects
 216,10,8,pass,J,False,A,7 Maschinenbau plus one manufacturing specialisation; Simulation und Test and one more left out
 217,10,7,fail,,True,A,production engineering 7; mechanical engineering and management; vehicle systems; technical management differ
@@ -85,6 +88,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 283,10,9,pass,,False,A,Computer Science left out
 284,10,6,fail,,True,A,Medienwissenschaft / Medienkultur 6; media design; media law; information management; Digitale Systeme are other subjects
 285,10,6,fail,J,True,B,photonics and laser titles are 6; Physikalische Technik and plain physics are other subjects unless read as one applied-physics family
+287,10,10,pass,,False,D,
 290,10,9,pass,,False,B,
 294,10,9,pass,,False,B,
 296,10,6,fail,,True,B,marketing is 6; the rest is general or international management; sales MBA and production management
@@ -103,6 +107,8 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 339,10,9,pass,,False,B,
 342,10,10,pass,,False,B,
 343,10,9,pass,,False,B,borderline: 6 Technomathematik plus 3 computational or applied mathematics counted as the same
+352,10,9,pass,,False,D,Sustainable Engineering and Project Management is the one outsider
+363,3,2,fail,J,True,D,Sensor Systems Technology is a neighbouring but different subject from Mikrosystemtechnik; 3 of 3 needed
 364,5,5,pass,J,False,B,global change is the shared subject but the titles split into ecology and geography
 366,3,3,pass,J,False,B,human factors and Mensch-Technik-Interaktion treated as one field; one is psychology and one may be informatics
 368,3,2,fail,,True,B,one title is half Medizintechnik
@@ -114,6 +120,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 381,8,6,fail,,True,B,information or interaction or communication design 6; two titles are informatics plus design
 382,3,2,fail,J,True,B,two social work masters and one social innovation management bachelor; share the word Innovation
 385,7,7,pass,,False,B,
+386,5,3,fail,J,True,D,interactive media design 3; Digitales Storytelling and Interactive Media and Games BSc are different subjects; 4 of 5 needed
 388,7,5,fail,J,True,B,textile design 5; Materielle Kultur Textil is cultural studies; Design-Ingenieur not recognisably textile from the title
 391,4,4,pass,,False,B,
 402,2,2,pass,,False,B,
@@ -135,12 +142,15 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 443,5,4,pass,,False,B,borderline: exactly 4 media production; Medieningenieur is engineering
 444,3,2,fail,,True,B,third title is a general technical orientation semester; no defined subject
 446,3,2,fail,,True,B,Wirtschaftsforensik is business fraud; not digital forensics
+449,5,5,pass,J,False,D,Wirtschaftsgeographie counted as recognised specialisation of Geographie; general subject is only 2 of 5
+453,4,2,fail,,True,D,Wirtschaftsingenieurwesen Maschinenbau 2; automotive development master and Mobilitaet und Logistik are different subjects
 457,6,4,fail,,True,B,management and technology 4 against process management 2
 459,2,2,pass,,False,B,
 460,8,8,pass,,False,B,
 462,5,5,pass,,False,B,
 463,9,8,pass,,False,B,borderline: exactly 8 building services engineering; the management master is doubtful
 464,5,5,pass,J,False,B,Digitale Systeme and Digitale Technologien are vague titles; same kind only if both read as informatics-near engineering
+465,2,2,pass,J,False,D,same subject; one is a consecutive master and one an MBA
 467,6,6,pass,J,False,B,general or international engineering 3 plus Mechanical Engineering 3 as specialisation; fails at 3 if kept apart
 469,2,2,pass,,False,B,
 474,3,2,fail,,True,B,two neuroscience titles and one computing title
@@ -149,6 +159,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 487,2,2,pass,J,False,B,both leadership masters; one is sector-specific for service companies
 488,4,4,pass,,False,B,
 501,3,2,fail,J,True,B,digital biomedicine against biomedical engineering; first title covers both
+502,3,3,pass,,False,D,
 505,5,3,fail,J,True,B,Informatik 3; two data analytics masters; one of them could count as an Informatik specialisation
 507,5,5,pass,,False,B,
 510,7,6,pass,,False,B,borderline: sustainable and plain general engineering counted together; the Wirtschaftsingenieur title outside
@@ -160,6 +171,8 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 519,6,3,fail,J,True,B,information science 3; Informationsverarbeitung unclear; Information Systems is business informatics
 522,6,6,pass,,False,B,
 523,6,5,pass,,False,B,borderline: Environmental Physics not clearly meteorology
+524,4,2,fail,,True,D,mixed art; film; theatre; literature and media studies combinations; no common subject
+526,3,3,pass,J,False,D,Gesundheitselektronik counted as specialisation of Medizintechnik
 527,4,4,pass,J,False,B,three Quantum Engineering and one Quantencomputing; same quantum technology field but engineering against computing
 529,5,3,fail,,True,B,Technische Kybernetik 3 against robotics 2
 540,3,3,pass,,False,B,
@@ -172,6 +185,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 567,6,4,fail,J,True,C,applied physics and applied chemistry beside applied natural science; only 4 of 6 share the subject
 573,2,1,fail,J,True,C,information systems management versus AI and data science for business
 578,2,1,fail,,True,C,energy science versus quantum science
+585,3,2,fail,,True,D,marketing 2 versus strategic communication and leadership; 3 of 3 needed
 586,3,3,pass,,False,C,
 587,3,2,fail,J,True,C,environmental technology; environment and energy; resource management are different qualifications
 591,9,8,pass,J,False,C,Management betrieblicher Systeme is the odd one; rest general business management
@@ -180,6 +194,7 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 603,3,3,pass,,False,C,
 605,4,2,fail,,True,C,computer science; mathematics and data science mixed
 613,7,6,pass,,False,C,Energie- und Wasserwirtschaft only half water
+614,4,4,pass,,False,D,
 615,4,3,fail,,True,C,power engineering differs; shared word sustainable only
 616,2,2,pass,J,False,C,both applied AI engineering masters but different application fields
 623,7,7,pass,,False,C,
@@ -204,12 +219,14 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 685,2,1,fail,,True,C,East Asia versus Eastern Europe
 686,3,3,pass,J,False,C,photonics with bio and medical specialisations
 689,2,1,fail,J,True,C,engineering programme versus physics programme
+691,7,7,pass,,False,D,
 693,3,3,pass,,False,C,
 703,4,3,fail,,True,C,Medientechnik differs from Elektrotechnik; shared word kooperativ
 704,3,2,fail,J,True,C,geovisualisation versus surveying
 710,2,1,fail,J,True,C,product and innovation development MA versus management MBA
 712,2,2,pass,J,False,C,general management master and innovation management as specialisation
 715,5,4,pass,J,False,C,smart materials differs; shared word smart carries the group
+724,2,2,pass,J,False,D,both titled Betriebswirtschaftslehre with different specialisations (international versus industrial management)
 726,4,3,fail,,True,C,engineering physics and data science differs; electronics mixed in
 727,2,1,fail,J,True,C,AR and VR design versus UX design and content creation
 729,9,9,pass,,False,C,
@@ -220,11 +237,13 @@ type,shown,largest,verdict,doubt,mixed,reader,reason
 738,3,3,pass,,False,C,
 739,2,1,fail,,True,C,industrial engineering versus electrical engineering
 740,4,4,pass,J,False,C,product management track beside technical design
+744,6,4,fail,J,True,D,international management or business 4; general MBA and service management are different; 5 of 6 needed; passes only if all read as business administration
 745,9,9,pass,,False,C,
 747,2,1,fail,J,True,C,product design versus spatial and interior design
 749,4,4,pass,,False,C,
 750,3,3,pass,,False,C,
 753,6,3,fail,,True,C,engineering science; technical physics and a teacher-training Technik degree mixed
+755,3,3,pass,,False,D,
 757,2,2,pass,,False,C,
 759,2,1,fail,,True,C,medical engineering versus medical informatics; shared remark Praxissemester
 761,4,4,pass,,False,C,
