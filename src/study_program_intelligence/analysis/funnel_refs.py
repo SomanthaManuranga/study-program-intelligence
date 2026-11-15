@@ -117,12 +117,14 @@ def table_check(m: pd.DataFrame, total_ects: float) -> dict:
 
 
 def check() -> None:
-    src = json.loads((TABLES / "sources.json").read_text(encoding="utf-8"))
+    """The completeness of every collected table, as Step 7c reads it (funnel_feasibility.complete), with the table's sums."""
+    from .funnel_feasibility import complete
     rows = []
-    for ref, s in sorted(src.items()):
-        f = TABLES / f"{ref}.csv"
-        if f.exists():
-            rows.append({"reference": ref, **table_check(pd.read_csv(f), float(s["programme_ects"]))})
+    for f in sorted(TABLES.glob("*_[ab].json")):
+        meta = json.loads(f.read_text(encoding="utf-8"))
+        m = pd.read_csv(f.with_suffix(".csv"))
+        ok, share = complete(m, meta, COMPLETE)
+        rows.append({"reference": f.stem, "complete": ok, "share of the programme ECTS": round(share, 3), **{k: v for k, v in table_check(m, float(meta["programme_ects"])).items() if k not in ("complete", "share listed")}})
     print(pd.DataFrame(rows).to_string())
 
 
