@@ -22,7 +22,8 @@ definitions:
     pool_mapping_teacher_share_emi_score_anchor_weights: assigned offers of the unit
     competition_regional_gap_capture_competitors: similar offers of the unit (similarity.similar_offer)
     reference_curricula: assigned offers of the unit
-  merged_candidates: units of the same level whose centroids each lie inside the other's radius_90 form one candidate (connected groups), formed on all units before the screens; a group with any unit dropped by at_oth is dropped as a whole; the other screens drop single units; the similar offers of a group are the union over its units; the group is represented by its surviving unit with the highest pre-gate score, the others are listed as its variants and take no gate slot; the largest group size is reported
+  merged_candidates: units of the same level form one candidate if every pair of them has centroids inside each other's radius_90 (complete-linkage grouping on the centroid distance divided by the smaller of the two radii, cut at 1), formed on all units before the screens; a group with any unit dropped by at_oth is dropped as a whole; the other screens drop single units; the similar offers of a group are the union over its units; the group is represented by its surviving unit with the highest pre-gate score, the others are listed as its variants and take no gate slot; the largest group size is reported
+  merged_candidates_changed: 15 Nov 2026 [K], proposed by Claude and to be confirmed by Soma; as first written (connected groups) the rule chained 411 of 613 bachelor units and 448 of 672 master units into one group each, and with it 840 units were dropped as "at OTH"; connected groups are a stress spec (merging)
   ties: any tie between units in a ranking or a top-n rule is broken by the lower type number, then bachelor before master
 
 universe:
@@ -88,7 +89,7 @@ screen:                        # Step 3, applied to every unit
     otherwise: the OTH offers assigned to the type are OTH sites in the capture model
     disclosed: a type that holds an OTH offer beyond the median survives this screen; the capture model and the one-programme limit of the gate then apply
   teacher_training:            # [K] run-1 deviation, now a rule
-    share: share of the unit's assigned offers whose normalised title, degree or subject labels match the pattern
+    share: share of the unit's assigned offers whose normalised title, degree or subject labels (without the level marker) match the pattern
     pattern: 'lehramt|staatsexamen|\b(grund|mittel|real|haupt|berufs|foerder|sonder)schul|\bschulen\b|sekundarstufe|gymnasien|sonderpaed'
     drop_if_at_least: 0.5      # [J] stress 0.3 and 0.7; a faculty cannot open a state teaching qualification alone
   trend:
@@ -96,12 +97,15 @@ screen:                        # Step 3, applied to every unit
     master: German graduates of the pool in Bavaria, 2019-2025
     drop_if_below: -3.0        # [C] a judgement number first set in the earlier screening; stress -5 and off
     only_if: the trend is validated (demand.validated)
+    series: positive yearly values only; the backtest of first-years ends in 2024, the last year of the window, because 2025 is the year of the Bavarian G9 gap; graduates end in 2025
   emi_domain:
-    offer_score: mean over focus items and title of the highest raw encoder cosine to any EMI module, leaving out the programme's own modules
-    type_score: mean over the unit's assigned offers with focus items; title only if no offer has any
-    calibration: positives are the EMI offers in the catalogue (configs/oth_portfolio.yaml); negatives are the other OTH full-time offers
-    bar: Youden cut on the calibration set
+    offer_score: mean over focus items and title of the highest cosine to the title of any EMI module; all vectors are centred on the mean vector of all titles and focus items before the cosine
+    type_score: mean over the unit's assigned offers with focus items, OTH's own offers left out; title only if no offer has any
+    calibration: 300 units drawn by numpy default_rng(42).choice from all units in type order, marked by a fresh-context reader from titles only as inside (yes), partly inside or outside EMI's field (docs/funnel_emi_labels.csv); "yes" and "partly" count as EMI's field   # 300 [N]
+    bar: the highest score that keeps at least 95 % of the marked units of EMI's field   # 95 % [J] stress is the Youden cut; a generous bar, because Step 7 measures the fit on real curricula and a unit dropped here is lost
     if_auc_below: {auc: 0.8, action: flag instead of drop}   # [C]
+    also_reported: the AUC of the same score on OTH's own offers (EMI offers in the catalogue against the other OTH offers), and of the score as first written on the marked units
+    changed: 15 Nov 2026 [K], proposed by Claude and to be confirmed by Soma; the score as first written (raw cosine to the full handbook text, bar from 11 EMI and 30 other OTH offers) reached AUC 0.71 on the marked units and put Informatik and Elektrotechnik outside and Philosophie and Kunstgeschichte inside EMI's field; the changed score was chosen among eight measures by its AUC on the marked units (0.95), blind to any candidate
   type_coherence:              # Soma 14 Nov 2026, after Step 2's reader's check failed for all types together (17 of 30; bar 24)
     read: every type with a unit on the primary list; 10 fitted-member titles drawn by numpy default_rng(42).choice from the members in file order, all members if fewer; a fresh-context reader who sees titles only   # 10 [N]
     question: are at least 80 % of the titles shown the same kind of programme (same subject, same kind of qualification)   # 80 % [N] the bar of criterion G9
@@ -109,11 +113,12 @@ screen:                        # Step 3, applied to every unit
     mixed: a type that fails is flagged "mixed"; it stays on the list with the flag, and its competition counts and keywords are flagged with it
     before_the_gate: a mixed type that would take a gate slot is read in full (every fitted-member title marked as the type's main kind or not); with at least 80 % in the main kind the flag is lifted, otherwise the type is named "mixed, not a candidate" and takes no slot
   competition:                 # measured for every unit; NOT a cut in the primary list [S]
-    unit_counted: similar offers, each institution and title once
+    unit_counted: similar offers, each institution and cleaned title once; similar distance-learning offers are counted apart
     distance: straight line from Amberg (EMI's site)
     report: similar offers within 50, 100 and 150 km, in Bavaria, in the south, in Germany   # [C] distances of the earlier evidence
     validity_check:
       sample: 10 units drawn without replacement by numpy default_rng(42).choice from the units of the primary list sorted by type number, then bachelor before master; for each, the 5 farthest similar offers inside the radius and the 5 nearest offers of that level outside it   # 10, 5 [N]
+      sample_details: only units with at least 5 similar offers inside the radius can be drawn (otherwise there would not be 100 offers); the unit is described by the 5 titles nearest its centroid, and an offer with one of these titles is not shown; "outside" is every offer counted as supply beyond the radius
       labels: Soma marks each of the 100 offers "same kind of programme" yes or no, in shuffled order, without seeing which side it is on
       pass: at least 70 % yes inside and at most 30 % yes outside   # [N] pass rule; the spec "one common radius" shows the result under the fallback
       fallback: one common radius for all types (the median radius_90 of the stable types; its 75 and 95 variants are the median radius_75 and radius_95 of the stable types) and the check repeated once on a new sample drawn the same way with seed 43
@@ -309,7 +314,7 @@ stress_tests:
     teacher_training_share: [0.3, 0.7]
     labour_keywords: [top 5, generic line 2 %, generic line 10 %, phrases in one title allowed]
     quotient_pseudo_offers: [2, 10]
-    merging: none (every unit its own candidate)
+    merging: none (every unit its own candidate); connected groups (as first written)
     clustering: the former rule's setting (highest share of offers in stable clusters); types matched at Jaccard >= 0.5
     feasibility: former strict rule
   list_changing_scope: these specs are run up to the pre-gate ranking; reported is how many of the primary gate candidates stay in the first 20

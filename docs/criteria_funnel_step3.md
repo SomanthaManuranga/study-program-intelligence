@@ -28,3 +28,16 @@ The notes of the step say for every unit why it stays or goes (the full table is
 the counts per reason and the surviving units).
 
 If a criterion still fails after 3 rounds, the step stops and Soma is told. No criterion is loosened.
+
+## After the first run (15 Nov 2026)
+
+Written and committed before the changed code runs. The first run followed the rules as written and is void: the
+merged groups chained most units together and the EMI-field score could not tell EMI's field from others
+(docs/decision_log.md). Two rules are changed as a proposal for Soma; the criteria above stay, with these additions.
+
+| # | Criterion | Target | How it is checked |
+|---|---|---|---|
+| S17 | Merged groups do not chain | every pair of units in a group has centroids inside each other's radius; the largest group is reported | test: all pairs recomputed from the centroids |
+| S18 | The EMI-field score works on units it has not been tuned on by hand | AUC of at least 0.8 on the 300 marked units ("yes" or "partly" against "no"); the bar keeps at least 95 % of the marked field units; the share of marked outside units it keeps is reported | test on docs/funnel_emi_labels.csv |
+| S19 | Soma confirms or rejects the two changed rules | asked at the end of the step, with the first run's result next to the new one | Soma's answer |
+
