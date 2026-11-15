@@ -92,6 +92,7 @@ def redact(text: str, terms: list[str]) -> str:
     """Replaces the terms (whole words, any case) and the acronyms (whole upper-case words) by "[university]"."""
     for t in terms:
         text = re.sub(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", "[university]", text, flags=re.I)
+    text = re.sub(r"\b[BM]-[A-Z]{2,4}-\d{1,3}\b\s*", "", text)                  # a handbook's own module codes ("B-CY-19") name its programme
     return re.sub(rf"\b({'|'.join(ACRONYMS)})\b(?=[\s.,;:)-]|$)", "[university]", text)
 
 

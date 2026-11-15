@@ -97,6 +97,7 @@ def test_rows_are_blind():
     for t in F.blind_terms(metas):
         assert not re.search(rf"(?<![\wäöüß]){re.escape(t)}(?![\wäöüß])", text, flags=re.I), t
     assert not re.search(rf"\b({'|'.join(F.ACRONYMS)})\b(?=[\s.,;:)-]|$)", text)
+    assert not re.search(r"\b[BM]-[A-Z]{2,4}-\d{1,3}\b", text) and F.redact("B-CY-19 Software Engineering", []) == "Software Engineering"
     assert F.redact("an der HTWK Leipzig und der OTH Regensburg; other Tübbingen", ["Leipzig", "Regensburg"]) == "an der [university] [university] und der [university] [university]; other Tübbingen"
     for r in sheet["rows"]:
         assert set(r) == {"row", "module", "credit points", "level of the programme", "description", "EMI modules", "timetable subjects"}
