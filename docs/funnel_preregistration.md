@@ -135,6 +135,9 @@ be traced back. The full documentation is written after Step 8.
   decides a module match. A fresh-context reviewer (an AI agent) marks every row from the module texts by marking
   rules written first; Soma checks 10 rows per candidate and every row the reviewer is unsure about, and marks all
   rows of a candidate whose sample fails. The second team member's blind repetition stays.
+  Changed before Step 7 (Soma, 15 Nov 2026): Soma does no hand work, so the sample check is done by a second AI
+  reviewer who does not see the first verdicts; a third reader settles a candidate whose sample fails. No person
+  has then checked a module verdict.
 - **Changed after Step 2's first result (Soma, 14 Nov 2026).** The types of the pre-registered selection rule were
   too broad: 17 of 30 held one kind of programme in the reader's check, the bar was 24. No type had been screened or
   scored at that point. Three rules changed (the first two are marked [K] in the yaml, the third carries Soma's dated
@@ -155,8 +158,8 @@ be traced back. The full documentation is written after Step 8.
   hand-labelled sample as the checks.
 - **Limit:** a programme offered nowhere in Germany cannot be found from a catalogue of German offers.
 - **Agents:** fresh-context agents review rules, code and claims, and one makes the first marking of the module
-  rows in Step 7. An agent is not a human rater: its marks count only together with Soma's sample check, and it
-  never replaces the second team member's check.
+  rows in Step 7. An agent is not a human rater: its marks are checked by a second, blind agent (changed on 15 Nov
+  2026, see above), and it never replaces the second team member's check.
 
 ## Review record of this step
 
