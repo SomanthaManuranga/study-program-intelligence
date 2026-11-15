@@ -80,7 +80,9 @@ def test_the_table_has_every_unit_and_the_arithmetic_of_the_rule():
     assert np.allclose(o["net-new central"], o["gross central"] * (1 - o["share from OTH (central)"]))
     assert np.allclose(o["net-new low"], o["gross low"] * (1 - o["share from OTH (pessimistic)"])) and np.allclose(o["net-new high"], o["gross high"] * (1 - o["share from OTH (optimistic)"]))
     assert (o["net-new low"] <= o["net-new central"] + 1e-9).all() and (o["net-new central"] <= o["net-new high"] + 1e-9).all()
-    assert (o["share from OTH (pessimistic)"] >= o["share from OTH (central)"] - 1e-12).all() and (o["share from OTH (central)"] >= o["share from OTH (optimistic)"] - 1e-12).all()
+    # a larger w takes more from OTH; between 1.0 and 0.5 the share can turn where OTH's site is the new site (the new programme's origins shift)
+    assert (o["share from OTH (pessimistic)"] >= o["share from OTH (optimistic)"] - 1e-12).all() and (o["share from OTH (central)"] >= o["share from OTH (optimistic)"] - 1e-12).all()
+    assert (o.loc[o["primary"], "share from OTH (pessimistic)"] >= o.loc[o["primary"], "share from OTH (central)"]).all()
     assert o["share from OTH (optimistic)"].between(0, 1).all() and (o["OTH sites"] >= 1).all() and (o["anchor"] >= 0).all()
     flagged = o["scale flag"].fillna("") == "no Bavarian comparator"
     assert (flagged == (o["Bavarian competitor sites"] == 0)).all() and (o.loc[flagged, "scale"] == 1.0).all()
