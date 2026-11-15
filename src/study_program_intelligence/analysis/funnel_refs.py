@@ -42,7 +42,7 @@ KINDS = ("compulsory", "elective") + LEFT_OUT
 
 def tries() -> None:
     d, t, emb, cent = load_step2()
-    g = pd.read_csv(ORDER, float_precision="round_trip").head(TRIED_MAX)
+    g = pd.read_csv(ORDER, float_precision="round_trip").head(3 * TRIED_MAX)    # skipped candidates do not count as tried, so the list reaches beyond position 20
     rows = []
     for _, r in g.iterrows():
         a = d[(d["assigned_type"] == r["type"]) & (d["level"] == r["level"]) & d["full_time"].astype(bool) & ~d["is_oth"].astype(bool)].copy()
