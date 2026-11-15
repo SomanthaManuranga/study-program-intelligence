@@ -354,7 +354,7 @@ reading (`docs/funnel_type_coherence.csv`).
 
 - A type that only resembles an OTH programme, without holding an OTH offer, stays on the list (for example a second
   Medieninformatik type). The capture model and the one-programme limit of the gate deal with it later.
-- The trend screen is almost inert: 521 units have a slope below -3 % a year in the second run's table, but only
+- The trend screen is almost inert: 521 units have a slope below -3 % a year, but only
   validated trends drop a unit, and few trends are validated.
 - The bar and the choice of the score were set on the same 300 marked units; nothing was held out. The labels were
   made by one AI reader from titles only; a second reader agreed on 27 of 30 units.
