@@ -255,3 +255,4 @@ reports/final/*
 !docs/funnel_emi_labels.csv
 !docs/funnel_similarity_check.csv
 !docs/funnel_type_coherence.csv
+!docs/funnel_similarity_marks.csv

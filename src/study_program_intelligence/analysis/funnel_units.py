@@ -6,7 +6,8 @@ Run from the repository root, each command from committed code on a clean tree, 
     python -m study_program_intelligence.analysis.funnel_units items    # vectors of every title, focus item and EMI module title
     python -m study_program_intelligence.analysis.funnel_units labels   # the 300 units a reader marks for the EMI-field bar
     python -m study_program_intelligence.analysis.funnel_units run      # screens, competition, regional gap, frozen lists
-    python -m study_program_intelligence.analysis.funnel_units sheet    # the 100 offers of the validity check, for Soma
+    python -m study_program_intelligence.analysis.funnel_units sheet    # the 100 offers of the validity check
+    python -m study_program_intelligence.analysis.funnel_units verdict  # the pass rule on the readers' marks
 
 A unit is a type x level with assigned offers at 2 or more institutions. Every unit gets the same four screens (already
 at OTH, teacher training, falling validated trend, outside EMI's field); competition and the regional gap are measured
@@ -42,6 +43,7 @@ ITEMS_META = INTERIM / "funnel2_items.json"
 SCREEN, PRIMARY, STRESS = INTERIM / "funnel2_screen.csv", INTERIM / "funnel2_candidates.csv", INTERIM / "funnel2_candidates_stress.csv"
 CALIBRATION, STEP3 = INTERIM / "funnel2_emi_calibration.csv", INTERIM / "funnel2_step3.json"
 KEY, SHEET = INTERIM / "funnel2_similarity_key.csv", REPO_ROOT / "docs" / "funnel_similarity_check.csv"
+MARKS = REPO_ROOT / "docs" / "funnel_similarity_marks.csv"
 MODEL = "intfloat/multilingual-e5-base"
 LEVELS = ("bachelor", "master")
 SERIES = {"bachelor": ("first-years", 2019, 2024, 2024), "master": ("graduates", 2019, 2025, 2025)}   # screen.trend: kind, window, last backtest year
@@ -549,5 +551,36 @@ def sheet() -> None:
     print(f"{len(out)} offers of {len(pick)} units ({len(usable)} of {len(prim)} units can be drawn) written to {SHEET.relative_to(REPO_ROOT)} (commit {stamp['commit']}, list {res['hashes']['primary']})")
 
 
+def verdict() -> None:
+    """Rule screen.competition.validity_check.pass on the readers' marks (docs/funnel_similarity_marks.csv: row and one
+    column per reader, yes or no). An offer counts as yes if at least two of the three readers say yes."""
+    stamp = run_stamp()
+    marks = pd.read_csv(MARKS, keep_default_na=False)
+    key = pd.read_csv(KEY)
+    readers = [c for c in marks.columns if c != "row"]
+    m = key.merge(marks, on="row", how="left")
+    if len(readers) != 3 or len(marks) != len(key) or not m[readers].isin(["yes", "no"]).all().all():
+        raise SystemExit("the marks must hold one yes or no per reader for each of the rows of the key")
+    yes = m[readers] == "yes"
+    m["majority"] = yes.sum(axis=1) >= 2
+    share = lambda col, side: float(col[m["side"] == side].mean())
+    pairs = [(a, c) for i, a in enumerate(readers) for c in readers[i + 1:]]
+
+    def kappa(a: str, c: str) -> float:
+        po = float((yes[a] == yes[c]).mean())
+        pe = float(yes[a].mean() * yes[c].mean() + (1 - yes[a].mean()) * (1 - yes[c].mean()))
+        return (po - pe) / (1 - pe) if pe < 1 else 1.0
+    res = {"stamp": stamp, "list": json.loads(STEP3.read_text(encoding="utf-8"))["hashes"]["primary"], "offers": len(m), "units": int(m.groupby(["type", "level"]).ngroups),
+           "yes_inside": round(share(m["majority"], "inside"), 3), "yes_outside": round(share(m["majority"], "outside"), 3),
+           "pass": bool(share(m["majority"], "inside") >= 0.70 and share(m["majority"], "outside") <= 0.30),
+           "by_reader": {r: {"yes_inside": round(share(yes[r], "inside"), 3), "yes_outside": round(share(yes[r], "outside"), 3)} for r in readers},
+           "all_three_agree": round(float((yes.sum(axis=1).isin([0, 3])).mean()), 3), "kappa_pairs": {f"{a} / {c}": round(kappa(a, c), 2) for a, c in pairs},
+           "by_unit": {f"{t} {lv}": {"yes_inside": int(g.loc[g["side"] == "inside", "majority"].sum()), "yes_outside": int(g.loc[g["side"] == "outside", "majority"].sum())}
+                       for (t, lv), g in m.groupby(["type", "level"])},
+           "marked_by": "three fresh-context AI readers, majority of three", "files": {MARKS.name: sha(MARKS), KEY.name: sha(KEY)}}
+    (INTERIM / "funnel2_similarity_result.json").write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(json.dumps(res, indent=2, ensure_ascii=False))
+
+
 if __name__ == "__main__":
-    {"items": items, "labels": labels, "run": run, "sheet": sheet}[sys.argv[1]]()
+    {"items": items, "labels": labels, "run": run, "sheet": sheet, "verdict": verdict}[sys.argv[1]]()
