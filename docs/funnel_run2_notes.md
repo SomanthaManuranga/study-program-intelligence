@@ -477,43 +477,59 @@ request per keyword and region, 2 s apart, all counts of the primary list on 15 
 **How the keywords are made.** For every type the titles of its programmes are split into phrases; the up to 3
 phrases shared by most titles (at least 2) are the keywords; if no phrase occurs twice, the parts of the most
 central title are used. Degree and catalogue words are dropped by a list written before Step 2. Nothing was added or
-struck by hand. The keyword file (`docs/funnel_keywords.csv`: 1,165 distinct keywords for 824 types) was committed
-before the first request.
+struck by hand. The keyword file (`docs/funnel_keywords.csv`: 1,172 distinct keywords for 824 types) was committed
+before the first request (commit 87811c7).
+
+**A first set of counts was void: the wrong Amberg.** The job board read the place "Amberg" as Amberg bei Buchloe
+in Swabia, 177 km from Amberg in der Oberpfalz, so every "within 100 km" count covered Munich, Augsburg and Ulm
+instead of our region. A reviewer found it in the stored replies. The place is now sent as "Amberg, Oberpfalz", and
+the code checks the coordinates of every reply. **The same error is in the baseline's job snapshots** (regions
+within 50 and 100 km of 15 and 17 Oct 2026; mixed on 7 Nov), so the baseline figure "191 ads within 100 km" is not
+valid; that is a follow-up for the baseline report.
 
 **Result for the primary list.**
 
 | | |
 |---|---|
-| Units with all counts | 365 of 365; 353 distinct keywords, 1,062 counts, 0 errors, one day |
-| All job ads on that day | 780,387 in Germany; 131,440 in Bavaria (16.8 %); 71,985 within 100 km of Amberg (9.2 %) |
-| Measure: ads within 100 km for the unit's median keyword | median 50; a quarter of the units below 6, a quarter above 242 |
-| Units with no ad within 100 km | 38 |
-| Units below 10 ads (the lowest value of the ranking scale) | 107 |
-| Units with 150 ads or more (the highest value of the scale) | 121 |
-| Bavaria's share of a unit's German ads | median 20 % (all ads: 16.8 %); above the share of all ads for 275 units |
+| Units with all counts | 365 of 365; 355 distinct keywords, 1,068 counts, 0 errors, one day |
+| All job ads on that day | 780,392 in Germany; 131,440 in Bavaria (16.8 %); 49,476 within 100 km of Amberg (6.3 %) |
+| Measure: ads within 100 km for the unit's median keyword | median 22; a quarter of the units at 2 or fewer, a quarter above 116 |
+| Units with no ad within 100 km | 63 |
+| Units below 10 ads (the lowest value of the ranking scale is 10) | 152 |
+| Units with 150 ads or more (the highest value of the scale) | 82 |
+| Bavaria's share of a unit's German ads | median 20 % (all ads: 16.8 %); above the share of all ads for 271 of the 357 units with any German ad |
 
 **What the measure can and cannot say.**
 
-- **It counts how often a word appears in job ads, not how many jobs wait for graduates of a programme.** The top of
-  the list is led by general words: "führung" and "organisation" (3,390 ads within 100 km), "mechatronik" (3,370),
-  "elektrotechnik" (3,107), "maschinenbau" (2,679), "management" and "technology" (2,599), "informatik" (1,693).
-- **Specific programmes get specific, small counts.** Embedded Systems 83 ads within 100 km, mechatronic systems
-  105, robotics 185, data science and AI 172, "Künstliche Intelligenz in der Medizin" 2. These are closer to what the
-  step should measure, but long phrases are rarely written in an ad.
-- **One keyword decides for many units.** 146 of the 365 units have a single keyword, and 283 of the 476 keyword
-  rows are single words. The 65 units whose keywords come from the most central title have a median of 17 ads, the
-  300 others 55.
-- **The scale of the ranking saturates.** A third of the list (121 units) reaches the top value of 150 ads, and
-  another 107 units sit at the bottom, so the measure separates only the middle.
-- **Some keywords are fragments or off-topic** ("elektro", "produkt", "it", "kommunikation"; for teacher-training
-  types on the stress list "real" and "sekundar"). The rule allows striking such keywords by hand before the counts;
-  no hand work was done, so they stay and are named here.
-- **The 5 % rule dropped nothing.** No phrase is among the top three of more than 5 % of the 824 types.
+- **It counts how often a word appears in job ads of every level, not how many jobs wait for graduates of a
+  programme.** The top of the list is led by general words: "mechatronik" 2,254 ads within 100 km, "organisation"
+  2,538 and "führung" 1,843 (their unit: 2,191, the mean of the two), "management" 2,074, "elektrotechnik" 2,009,
+  "maschinenbau" 1,256, "informatik" 685.
+- **Specific programmes get specific, small counts.** "data science" 109, "robotik" 85 ("robotics" 24),
+  "mechatronische systeme" 73, "künstliche intelligenz" 67, "embedded systems engineering" 22, "künstliche
+  intelligenz in der medizin" 1. These are closer to what the step should measure, but long phrases are rarely
+  written in an ad.
+- **One keyword decides for many units.** 144 of the 365 units have a single keyword, and 285 of the 478 keyword
+  rows are single words. The 67 units whose keywords come from the most central title have a median of 11 ads, the
+  298 others 28. With two keywords the median is their mean, so the larger word dominates.
+- **The scale of the ranking saturates.** 82 units reach the top value of 150 ads and 152 are below the bottom
+  value of 10, so the measure separates only the middle third.
+- **Some keywords are word stems or general words.** By the rule hyphens stay, so "Elektro- und
+  Informationstechnik" gives "elektro-" (1,587 ads) and "Produkt- und Objektdesign" gives "produkt-" (389). The rule
+  allows striking such keywords by hand before the counts; no hand work was done, so they stay and are named here.
+- **The 5 % rule dropped nothing.** The most frequent phrase among the types' top three, "management", is in 40 of
+  824 types (ties counted); the line is 41.
 - **No English pairing.** The catalogue has no language field.
+- **Counts of one day.** New keywords have no history, so nothing is known about their trend.
 
-**Scorecard.** L1 pass (keywords recomputed by a test for 40 types). L2 pass (keyword file committed in c09d431 before
-the first request; its hash is stored with every count). L3 pass for the primary list. L4 pass. L5 pass (test
-recomputes the measure for 60 units). L6 see the stress list below. L7 one review round. L8 pass.
+**Reviews.** One review round: keywords and the arithmetic of the measure recomputed for all units without mismatch;
+1 blocker (the wrong Amberg) and 3 majors (hyphens were stripped against the rule; the tie reading of the 5 % rule;
+the day of a list was not enforced), all fixed; keywords and counts were then made again.
+
+**Scorecard.** L1 pass (keywords recomputed by the reviewer for all 824 types and by a test for 40). L2 pass (keyword
+file committed before the first request; its hash is stored with every count). L3 pass for the primary list. L4
+pass. L5 pass (test recomputes the measure for 60 units and checks the place of the stored replies). L6: stress
+list below. L7 one review round, fixed. L8 pass.
 
 **No programme stays or goes in this step.** Full table: `data/interim/funnel2_labour.csv`,
 `reports/funnel2/step5_labour.md`.

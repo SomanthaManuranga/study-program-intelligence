@@ -136,9 +136,13 @@ students grow (+9.3 %). Trends are weak evidence: naive is the best model on ave
 projection is the last value; only 51 units (23 primary) have a validated trend.
 Step 5 (analysis/funnel_labour.py: keywords, fetch, measure): keywords by rule from programme titles
 (docs/funnel_keywords.csv, committed before the first request), job-ad counts of 15 Nov 2026
-(data/interim/funnel2_job_counts.csv, funnel2_labour.csv). Primary list: all 365 units counted; median 50 ads within
+(data/interim/funnel2_job_counts.csv, funnel2_labour.csv). Primary list: all 365 units counted; median 22 ads within
 100 km for the median keyword. The measure counts words in ads, not jobs for graduates: general words lead
-(elektrotechnik, management), 121 units reach the scale's top of 150 and 107 its bottom of 10.
+(mechatronik, management), 82 units reach the scale's top of 150 and 152 are below its bottom of 10. The job board
+reads a bare "Amberg" as Amberg bei Buchloe: the place is sent as "Amberg, Oberpfalz" and checked in every reply.
+OPEN for the baseline: its job snapshots (docs/jobsuche_snapshots.json, regions amberg_50km and amberg_100km) have
+this error, so "191 ads within 100 km" in the Findings is not valid until configs/jobsuche.yaml is fixed and the
+snapshot is taken again.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
