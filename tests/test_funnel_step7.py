@@ -1,0 +1,93 @@
+"""Funnel step 7: references, blind rows, marks and the gate (configs/funnel.yaml: feasibility_gate; docs/criteria_funnel_step7.md)."""
+
+import json
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
+import pytest
+
+from study_program_intelligence.analysis import funnel_feasibility as F
+
+REPO = Path(__file__).resolve().parents[1]
+INTERIM = REPO / "data" / "interim"
+needs = lambda *files: pytest.mark.skipif(not all((REPO / f).exists() for f in files), reason="no generated data")
+
+
+def test_constants_follow_the_rule():
+    g = F.config()["feasibility_gate"]
+    assert g["band"] == {"min": 0.40, "max": 0.80} and g["one_programme"]["max"] == 0.80
+    assert "165 (bachelor) / 60 (master)" in g["references"]["scaling"] and F.TAUGHT == {"bachelor": 165.0, "master": 60.0}
+    assert "10 (bachelor) or 5 (master)" in g["hand_check"]["computed_T_and_X"] and F.T_CAP == {"bachelor": 10.0, "master": 5.0}
+    assert "0.10" in g["references"]["one_only"] and F.SINGLE_WIDEN == 0.10
+    assert "10 rows per eligible candidate" in g["hand_check"]["sample_check"] and F.DRAWN == 10 and F.MAY_DIFFER == 1
+    assert "6 are eligible" in F.config()["shortlist"]["gate_list"] and F.GATE_RULE == (6, 3, 20)
+
+
+def test_completeness_counts_only_the_required_electives():
+    m = pd.DataFrame({"ects": [100, 15, 30, 40], "kind": ["compulsory", "thesis", "elective", "elective"]})
+    assert F.complete(m, {"programme_ects": 180, "elective_ects_required": 30}, 0.8) == (True, pytest.approx(145 / 180))
+    assert F.complete(m, {"programme_ects": 210, "elective_ects_required": 30}, 0.8)[0] is False                  # 145 / 210 = 0.69
+    assert F.complete(m.assign(ects=[100, 15, np.nan, 40]), {"programme_ects": 180, "elective_ects_required": 30}, 0.8)[0] is False
+
+
+def test_elective_fill_and_its_bounds():
+    g = pd.DataFrame({"kind": ["compulsory"] * 3 + ["elective"] * 4, "ects": [50.0, 50.0, 40.0, 10.0, 10.0, 10.0, 10.0]})
+    flag = pd.Series([True, False, True, True, False, False, False])
+    f = F.fill_figures(g, flag, 165.0)                         # 140 compulsory; 25 of 40 elective ECTS fill the gap
+    assert f["counted"] == 165 and f["fill"] == 25
+    assert f["share"] == pytest.approx((90 + 25 * 10 / 40) / 165)
+    assert f["best"] == pytest.approx((90 + 10) / 165) and f["worst"] == pytest.approx((90 + 0) / 165)
+    assert F.fill_figures(g.assign(kind="compulsory"), flag, 60.0)["counted"] == 180                               # no fill if compulsory ECTS exceed the target
+
+
+def test_nearest_shows_each_title_once_and_only_allowed_modules():
+    sim = np.array([0.9, 0.85, 0.8, 0.7, 0.6])
+    titles = np.array(["a", "a", "b", "c", "d"])
+    assert F.nearest(sim, titles, np.ones(5, bool)) == [0, 2, 3]
+    assert F.nearest(sim, titles, np.array([False, True, False, True, True])) == [1, 3, 4]
+
+
+def test_timetable_subject_without_its_form():
+    assert F.subject_name("Informatik 1 (Vorlesung)") == "Informatik 1"
+    assert F.subject_name("Elektrotechnik 2 (Praktikum)") == "Elektrotechnik 2"
+    assert F.subject_name("Datenbanken") == "Datenbanken"
+
+
+def test_drawn_rows_are_reproducible_and_per_candidate():
+    key = pd.DataFrame({"row": [f"R{i:04d}" for i in range(30)], "ref": ["1_bachelor_a"] * 15 + ["1_bachelor_b"] * 10 + ["2_master_a"] * 5,
+                        "order": list(range(15)) + list(range(10)) + list(range(5)), "type": [1] * 25 + [2] * 5, "level": ["bachelor"] * 25 + ["master"] * 5})
+    d = F.drawn_rows(key)
+    assert len(d[(1, "bachelor")]) == 10 and len(set(d[(1, "bachelor")])) == 10 and sorted(d[(2, "master")]) == [f"R{i:04d}" for i in range(25, 30)]
+    assert d == F.drawn_rows(key.sample(frac=1, random_state=3))                                                    # the file order does not matter
+
+
+def test_the_walk_stops_and_skips_as_the_rule_says(tmp_path, monkeypatch):
+    monkeypatch.setattr(F, "TABLES", tmp_path)
+    order = pd.DataFrame({"gate order": range(1, 9), "type": [10, 11, 12, 13, 14, 15, 16, 17], "level": ["bachelor"] * 5 + ["master"] * 3})
+    for i in range(1, 8):
+        (tmp_path / f"tries_{i}.json").write_text("[]", encoding="utf-8")
+    metas = {f"{t}_{lv}_a": {"type": t, "level": lv, "complete": t != 11} for t, lv in zip(order["type"], order["level"])}
+    w = F.walk(order, metas, {(13, "bachelor"): "mixed type, all 2 titles read"}, (6, 3, 20))
+    assert list(w["status"]) == ["eligible", "tried, not eligible", "eligible", "not a candidate", "eligible", "eligible", "eligible", "not yet tried"]
+    w = F.walk(order, metas, {}, (6, 3, 2))                                                                         # stop at 2 tried
+    assert list(w["status"]) == ["eligible", "tried, not eligible"]
+    order2 = pd.DataFrame({"gate order": range(1, 6), "type": [10, 12, 14, 15, 16], "level": ["bachelor"] * 5})
+    w = F.walk(order2, metas, {}, (6, 3, 20))
+    assert list(w["status"])[:5] == ["eligible", "eligible", "eligible", "skipped", "skipped"]                    # a 4th eligible bachelor is not looked for
+
+
+@needs("data/interim/funnel2_rows.json", "data/interim/funnel2_rows_key.csv")
+def test_rows_are_blind():
+    sheet = json.loads((INTERIM / "funnel2_rows.json").read_text(encoding="utf-8"))
+    key = pd.read_csv(INTERIM / "funnel2_rows_key.csv")
+    assert len(sheet["rows"]) == len(key) and [r["row"] for r in sheet["rows"]] == list(key["row"])
+    text = json.dumps(sheet, ensure_ascii=False).lower()
+    for meta in (INTERIM / "funnel2_refs").glob("*_[ab].json"):
+        m = json.loads(meta.read_text(encoding="utf-8"))
+        assert m["institution"].lower() not in text, m["institution"]
+    for r in sheet["rows"]:
+        assert set(r) == {"row", "module", "credit points", "level of the programme", "description", "EMI modules", "timetable subjects"}
+        assert len(r["EMI modules"]) == 3 and len(r["timetable subjects"]) == 3 and not any("similar" in k for e in r["EMI modules"] for k in e)
+    tt = pd.read_csv(INTERIM / "timetable_subjects.csv")
+    assert not any(str(x).lower() in text for x in tt["lecturer"].dropna().unique() if len(str(x)) > 4 and not str(x).startswith("L"))
