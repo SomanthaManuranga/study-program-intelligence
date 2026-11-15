@@ -535,3 +535,87 @@ all, 0 errors, the same day). Their median is 5 ads within 100 km.
 
 **No programme stays or goes in this step.** Full table: `data/interim/funnel2_labour.csv`,
 `reports/funnel2/step5_labour.md`.
+
+## Step 6: how many first-years, and how many new to OTH?
+
+**Question.** For every unit: how many first-years could a new programme in Amberg or Weiden expect, and how many of
+them would not come from OTH's existing programmes?
+
+**Rule.** `configs/funnel.yaml`, block `capture`; criteria in `docs/criteria_funnel_step6.md`. Code:
+`analysis/funnel_capture.py`. All 1,285 units (both lists and the 44 units on neither), the same model. No unit is removed: the minimum cohort of
+20 is a flag for Step 7.
+
+**How the number is made.**
+
+- **Anchor.** German first-years of the unit's subject pool in Bavaria (2024) divided by the Bavarian bachelor offers
+  of that pool; for a master the graduates (2025) times 0.5. This is "students per programme" of the subject.
+- **Scale.** A distance model (Huff, as in the baseline, distance decay 1.6): school leavers of 96 Bavarian counties
+  (master: students at 17 campuses) choose between the new programme in Amberg and Weiden (master: Amberg), the sites
+  of the unit's similar offers, and OTH's own offer. The scale is the new programme's demand over the mean demand of
+  the unit's Bavarian comparator sites; 1.0 without one.
+- **Gross** = anchor x scale, with a band from x0.33 to x3.0. **Net-new** = gross minus the share the model takes
+  from OTH's own offer (weight 0.5; band 1.0 and 0.25).
+
+**Result for the primary list (365 units).**
+
+| | |
+|---|---|
+| Anchor | median 28.9 (quartiles 23.2 and 38.9) |
+| Scale | median 0.8 (0.6 and 1.0) |
+| Gross first-years, central | median 24.2 (15.4 and 34.0); bachelor 29.1, master 19.0 |
+| Net-new first-years, central | median 16.5 (11.3 and 23.9); 294 units at 10 or more, 20 units at 40 or more |
+| Share taken from OTH, central | median 24 % (range 4 % to 78 %) |
+| Below the minimum cohort of 20 (central gross) | 140 units (41 bachelor, 99 master); 225 at or above |
+| Foreign students on top (never inside the central number) | up to 9.0 for the median unit; no value for 4 units |
+| Stress list | 630 of 1,241 units below the minimum cohort |
+
+**What the numbers can say.** An order of magnitude: a new programme in a mid-sized subject lands at roughly 15 to 34
+first-years, about 11 to 24 of them new to OTH, with a band of x0.33 to x3.
+
+**What they cannot say.**
+
+- **They are not a demand ranking.** The top of the list is made by thin data: of the 25 units with the highest
+  net-new value, 14 carry a flag (5 with fewer than 2 Bavarian offers in the pool, 12 with at most one Bavarian
+  comparator site). Example: the first unit (408 master, media art) has an anchor of 133 because its pool has under
+  2 Bavarian offers.
+- **The anchor is the subject's size, not the programme's.** Units of one pool share one anchor. First-years by
+  subject include state-exam and teacher-training students, the offers do not, so subjects such as law, physics and
+  biology are too high. 19 primary units have fewer than 2 Bavarian offers in the pool, 29 have a tenth or more of
+  the pool on subjects for which the statistics show no German student although the catalogue has offers, 4 have an
+  anchor of 0, 2 take the Germany-wide value.
+- **The scale rests on few sites and rewards having none.** 83 units have no Bavarian comparator (scale 1.0), 71 have
+  exactly one. The median scale is 1.00 without a comparator, 0.81 with one, 0.70 with two, 0.73 with three, 0.65 with four or more.
+  All 16 units with a scale above 1.5 have exactly one Bavarian site (highest: 2.31).
+- **"New to OTH" is geometry, not content, on the primary list.** Units with an OTH offer were dropped in Step 3, so
+  all 365 units use the nearest OTH offer of the level as OTH's site. It lies within the type's radius for 33 units
+  only. The share from OTH follows the number of competitor sites (correlation -0.74 with its logarithm): the fewer
+  competitors, the larger the share. Incrementality is therefore not measured for these units; the gross value is
+  the firmer number.
+- **The minimum cohort is not a sharp line.** For 325 of 365 units the gross band includes 20. 76 units are below 20
+  only because their scale is below 1.
+- **The level check is one subject.** Four published numbers, all for the cybersecurity bachelor unit (anchor 30.4):
+  capacity 25 at one university of applied sciences, about 60 from one student review at another, 156 and 3 at two
+  research universities. Absolute log errors 0.20, 0.68, 1.64, 2.32 (median 1.16). It validates nothing for the
+  other anchors. No correction is applied.
+- **Known limits of the model:** straight-line distance, Bavarian origins only, no attractiveness of a location,
+  competition counts not validated (Step 3).
+
+**Without any flag** (2 or more Bavarian offers in the pool, under a tenth on subjects without students, 2 or more
+Bavarian comparator sites): 198 units, 105 at or above the minimum cohort, net-new median 17.4 (11.2 and 23.9).
+
+**Reviews.** Round 1: the reviewer recomputed all 1,285 units and every summary number with own code, 0 mismatches.
+2 blockers: (B1) the code took the mean of per-subject ratios as the anchor, the rule says pool students over pool
+offers; fixed, table made again (the first table is void; the cohort flag differs for 17 primary units, 85 of all 1,285, between the two
+readings, the per-subject value stays as a column). (B2) thin anchors lead the top of the list; flags added, no
+rule changed. Majors: the placeholder OTH site, the scale on single comparators, the level check's wording, the
+cohort as a soft line; all stated above and flagged in the table. Capture is per unit, not per merged group
+(`similarity.which_set`); logged. Choices the rule does not state are in the decision log.
+
+**Scorecard.** C1 pass (commit f9d8ef0, clean tree, input hashes). C2 pass. C3 pass. C4 pass after the fix. C5 pass.
+C6 pass. C7 pass. C8 pass. C9 pass (two runs, identical file). C10 pass after one round of fixes and a fact check of these notes (5 wordings corrected). C11 pass (196 tests).
+
+**Proposals for Soma before Step 8** (rule changes, not made): a floor for the anchor's denominator; the scale
+shrunk towards 1 with fewer than 3 comparator sites; net-new not scored for units whose OTH offer is a placeholder.
+
+**No programme stays or goes in this step.** Full table: `data/interim/funnel2_capture.csv`,
+`reports/funnel2/step6_capture.md`.

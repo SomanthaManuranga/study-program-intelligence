@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 5 are done. Next: Step 6 (first-years new to OTH), after Soma's OK. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 6 are done. Next: Step 7 (feasibility), after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -143,6 +143,14 @@ reads a bare "Amberg" as Amberg bei Buchloe: the place is sent as "Amberg, Oberp
 OPEN for the baseline: its job snapshots (docs/jobsuche_snapshots.json, regions amberg_50km and amberg_100km) have
 this error, so "191 ads within 100 km" in the Findings is not valid until configs/jobsuche.yaml is fixed and the
 snapshot is taken again.
+Step 6 (analysis/funnel_capture.py -> data/interim/funnel2_capture.csv): gross first-years = anchor (German students
+of the pool in Bavaria per Bavarian offer of the pool) x scale (Huff model against the unit's Bavarian comparator
+sites); net-new = gross minus the share from OTH's offer. Primary list: gross median 24.2, net-new median 16.5; 140
+of 365 units below the minimum cohort of 20 (a flag, nobody removed). Rough sizes only, not a ranking: thin anchors
+and single comparators lead the top (flag columns in the table), and "new to OTH" rests on the nearest OTH offer,
+which lies within the type's radius for 33 units only. OPEN for Soma before Step 8: a floor for the anchor's
+denominator, a scale shrunk towards 1 with few comparators, net-new where the OTH site is a placeholder; and for
+Step 7: who checks the AI reviewer's rows, since Soma does no hand work.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
