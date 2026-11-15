@@ -243,10 +243,8 @@ def run() -> None:
     assigned, level = d["assigned_type"].to_numpy(), d["level"].to_numpy()
     oth = d["is_oth"].to_numpy(bool)
     supply = ~oth & ~d["distance_only"].to_numpy(bool)                         # universe.counted_as_supply
-    land = d["state"].map(LAND).to_numpy()
-    if pd.isna(land).any():
-        raise SystemExit("an offer has no Land")
-    km = d["km_amberg"].to_numpy()
+    land = d["state"].map(LAND).fillna("").to_numpy()       # an offer without a Land or coordinates counts for Germany only
+    km = d["km_amberg"].to_numpy()                          # a missing distance is within no distance
     south = np.isin(land, [LAND[x] for x in ("Bayern", "Baden-Württemberg")])
     bavaria = land == "BY"
 
@@ -294,7 +292,7 @@ def run() -> None:
         similar_of[(c, lv)] = sim
         n = {"de": int(sim.sum()), "by": int((sim & bavaria).sum()), "south": int((sim & south).sum()),
              "50": int((sim & (km <= 50)).sum()), "100": int((sim & (km <= 100)).sum()), "150": int((sim & (km <= 150)).sum())}
-        other_laender = sorted(set(land[sim & ~south]))
+        other_laender = sorted(set(land[sim & ~south]) - {""})
         y_else = pool_series(laender.loc[other_laender].groupby("year").sum(), w) if other_laender else pd.Series(dtype=float)
         slope_else = slope_pct(y_else, 2019, 2024) if other_laender else float("nan")
         elsewhere = n["de"] - n["south"] >= 1
@@ -363,6 +361,7 @@ def run() -> None:
            "primary_by_kind": tally(prim["kind"]), "stress": len(lists["stress"]), "hashes": hashes,
            "primary_flags": {"absent in Bavaria": count("absent flag", prim), "gap (none within 150 km and none in the south)": count("gap flag", prim),
                              "no similar offer within 150 km": int((prim["similar within 150 km"] == 0).sum()), "popularity tier 2": int((prim["popularity tier"] == 2).sum())},
+           "offers_without_a_land": int((land == "").sum()), "offers_without_a_distance": int(np.isnan(km).sum()),
            "bavaria_share_of_offers": {k: round(v, 4) for k, v in p_by.items()}, "competition": "not validated yet (screen.competition.validity_check)",
            "files": {p.name: sha(p) for p in (OFFER_TYPES, TYPES, EMB, CENTROIDS, ITEM_VEC, SCREEN, PRIMARY, STRESS, CALIBRATION)}}
     STEP3.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
