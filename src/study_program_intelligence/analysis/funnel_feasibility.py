@@ -59,6 +59,11 @@ def emi_text(text: str, title: str) -> str:
     return re.sub(r"\s+", " ", PERSON.sub("", t)).strip()[:EMI_TEXT]
 
 
+def same_module(title: str) -> str:
+    """The normalised title by which copies of one module in several EMI handbooks are found ("[ CNW ]    Computernetzwerke" = "Computernetzwerke")."""
+    return norm_title(re.sub(r"^\s*\[[^\]]*\]\s*", "", str(title)))
+
+
 def subject_name(s: str) -> str:
     """A timetable subject without its form in brackets ("Informatik 1 (Vorlesung)" -> "Informatik 1")."""
     return re.sub(r"\s*\((vorlesung|praktikum|übung|uebung|seminar|seminaristischer unterricht|su|vl|pr|ü|labor)[^)]*\)\s*$", "", str(s), flags=re.I).strip()
@@ -259,7 +264,7 @@ def fill_figures(g: pd.DataFrame, flag: pd.Series, taught: float) -> dict:
 def one_programme(g: pd.DataFrame, emi: pd.DataFrame, level: str, taught: float) -> tuple[float, str]:
     """one_programme.share: the largest share of counted ECTS covered by the modules of one OTH programme of the level."""
     lv = "BA" if level == "bachelor" else "MA"
-    prog_of = emi[emi["level"] == lv].assign(t=lambda x: x["title"].map(norm_title)).groupby("t")["programme_id"].agg(set).to_dict()
+    prog_of = emi[emi["level"] == lv].assign(t=lambda x: x["title"].map(same_module)).groupby("t")["programme_id"].agg(set).to_dict()
     level_of = emi.drop_duplicates("programme_id").set_index("programme_id")["level"].to_dict()
     best, name = 0.0, ""
     progs = sorted({FAMILY.get(p, p) for p in emi.loc[emi["level"] == lv, "programme_id"]})
@@ -334,7 +339,7 @@ def verdict() -> None:
     conf = [k.at[i, f"emi {int(w)}"] if np.isfinite(w) and 1 <= w <= NEAREST else None for i, w in zip(k.index, which)]
     k["confirmed module"] = conf
     k["confirmed programme"] = [emi.at[c, "programme_id"] if c in emi.index else "" for c in conf]
-    k["confirmed title"] = [norm_title(emi.at[c, "title"]) if c in emi.index else "" for c in conf]
+    k["confirmed title"] = [same_module(emi.at[c, "title"]) if c in emi.index else "" for c in conf]
     tt = {norm_title(s) for s in pd.read_csv(TIMETABLE)["subject"].dropna().map(lambda x: re.sub(r"\(.*?\)", "", str(x)))}
     k["in the timetable"] = [t != "" and t in tt for t in k["confirmed title"]]
     _, metas = references(0.8)

@@ -48,6 +48,11 @@ def test_nearest_shows_each_title_once_and_only_allowed_modules():
     assert F.nearest(sim, titles, np.array([False, True, False, True, True])) == [1, 3, 4]
 
 
+def test_copies_of_one_module_are_one_title():
+    assert F.same_module("[ CNW ]    Computernetzwerke") == F.same_module("Computernetzwerke") == "computernetzwerke"
+    assert F.same_module("[ MA2 ]    Mathematik 2 (Diskrete Mathematik)") == "mathematik 2"
+
+
 def test_timetable_subject_without_its_form():
     assert F.subject_name("Informatik 1 (Vorlesung)") == "Informatik 1"
     assert F.subject_name("Elektrotechnik 2 (Praktikum)") == "Elektrotechnik 2"
