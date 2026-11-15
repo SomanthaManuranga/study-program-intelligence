@@ -45,8 +45,8 @@ type,rank,keyword,member titles with it,members,share,from
 16,1,sinologie,13,37,0.351,phrases in 2 or more titles
 16,2,chinesisch,6,37,0.162,phrases in 2 or more titles
 16,3,chinastudien,3,37,0.081,phrases in 2 or more titles
-17,1,real,4,14,0.286,phrases in 2 or more titles
-17,2,sekundar,4,14,0.286,phrases in 2 or more titles
+17,1,real-,4,14,0.286,phrases in 2 or more titles
+17,2,sekundar-,4,14,0.286,phrases in 2 or more titles
 17,3,textiles gestalten,3,14,0.214,phrases in 2 or more titles
 18,1,musik,9,29,0.31,phrases in 2 or more titles
 18,2,doppelfach-studium musik,2,29,0.069,phrases in 2 or more titles
@@ -93,7 +93,7 @@ type,rank,keyword,member titles with it,members,share,from
 34,1,erziehungswissenschaft,34,186,0.183,phrases in 2 or more titles
 34,2,kindheitspädagogik,26,186,0.14,phrases in 2 or more titles
 34,3,pädagogik,10,186,0.054,phrases in 2 or more titles
-35,1,mittelalter,10,16,0.625,phrases in 2 or more titles
+35,1,mittelalter-,10,16,0.625,phrases in 2 or more titles
 35,2,mittelalterstudien,4,16,0.25,phrases in 2 or more titles
 36,1,lehramt an gymnasien - naturwissenschaftliche bildung mathematik,8,14,0.571,phrases in 2 or more titles
 36,2,chemie,5,14,0.357,phrases in 2 or more titles
@@ -120,13 +120,13 @@ type,rank,keyword,member titles with it,members,share,from
 44,2,lateinische philologie,8,61,0.131,phrases in 2 or more titles
 44,3,griechische philologie,7,61,0.115,phrases in 2 or more titles
 45,1,technik lehramt sekundarstufe i,7,26,0.269,phrases in 2 or more titles
-45,2,real,6,26,0.231,phrases in 2 or more titles
-45,3,sekundar,6,26,0.231,phrases in 2 or more titles
+45,2,real-,6,26,0.231,phrases in 2 or more titles
+45,3,sekundar-,4,26,0.154,phrases in 2 or more titles
 46,1,sport,16,22,0.727,phrases in 2 or more titles
 46,2,sportwissenschaft,4,22,0.182,phrases in 2 or more titles
 47,1,eventmanagement,5,17,0.294,phrases in 2 or more titles
-47,2,sportmanagement,3,17,0.176,phrases in 2 or more titles
-47,3,technik,3,17,0.176,phrases in 2 or more titles
+47,2,-technik,3,17,0.176,phrases in 2 or more titles
+47,3,sportmanagement,3,17,0.176,phrases in 2 or more titles
 48,1,sportmanagement,9,24,0.375,phrases in 2 or more titles
 48,2,sportökonomie,3,24,0.125,phrases in 2 or more titles
 48,3,sports management,2,24,0.083,phrases in 2 or more titles
@@ -154,7 +154,7 @@ type,rank,keyword,member titles with it,members,share,from
 57,2,restaurierung,3,16,0.188,phrases in 2 or more titles
 57,3,architekturoberfläche,2,16,0.125,phrases in 2 or more titles
 58,1,biologie,20,39,0.513,phrases in 2 or more titles
-58,2,real,6,39,0.154,phrases in 2 or more titles
+58,2,real-,6,39,0.154,phrases in 2 or more titles
 58,3,biologie lehramt an gymnasien,3,39,0.077,phrases in 2 or more titles
 59,1,biologie,13,28,0.464,phrases in 2 or more titles
 59,2,biologie lehramt,2,28,0.071,phrases in 2 or more titles
@@ -166,15 +166,15 @@ type,rank,keyword,member titles with it,members,share,from
 61,2,ethik,16,35,0.457,phrases in 2 or more titles
 61,3,praktische lehramt an berufskollegs,2,35,0.057,phrases in 2 or more titles
 62,1,philosophie,17,28,0.607,phrases in 2 or more titles
-62,2,real,9,28,0.321,phrases in 2 or more titles
-62,3,sekundar,6,28,0.214,phrases in 2 or more titles
+62,2,real-,9,28,0.321,phrases in 2 or more titles
+62,3,praktische philosophie,5,28,0.179,phrases in 2 or more titles
 63,1,soziologie,19,20,0.95,phrases in 2 or more titles
-64,1,luft,12,35,0.343,phrases in 2 or more titles
+64,1,luft-,12,35,0.343,phrases in 2 or more titles
 64,2,raumfahrttechnik,8,35,0.229,phrases in 2 or more titles
 64,3,luftfahrttechnik,4,35,0.114,phrases in 2 or more titles
 65,1,geschichte,17,34,0.5,phrases in 2 or more titles
 65,2,frühgeschichte,7,34,0.206,phrases in 2 or more titles
-65,3,ur,5,34,0.147,phrases in 2 or more titles
+65,3,ur-,5,34,0.147,phrases in 2 or more titles
 66,1,jazz,21,51,0.412,phrases in 2 or more titles
 66,2,pop,6,51,0.118,phrases in 2 or more titles
 66,3,popularmusik,4,51,0.078,phrases in 2 or more titles
@@ -185,7 +185,7 @@ type,rank,keyword,member titles with it,members,share,from
 68,2,oper,2,16,0.125,phrases in 2 or more titles
 69,1,geographie,11,30,0.367,phrases in 2 or more titles
 69,2,geographie lehramt sekundarstufe i,7,30,0.233,phrases in 2 or more titles
-69,3,real,3,30,0.1,phrases in 2 or more titles
+69,3,real-,3,30,0.1,phrases in 2 or more titles
 70,1,geographie,17,29,0.586,phrases in 2 or more titles
 70,2,erdkunde,5,29,0.172,phrases in 2 or more titles
 70,3,geografie lehramt,4,29,0.138,phrases in 2 or more titles
@@ -193,12 +193,12 @@ type,rank,keyword,member titles with it,members,share,from
 71,2,geschichte lehramt an gymnasien,6,23,0.261,phrases in 2 or more titles
 72,1,geschichte,9,26,0.346,phrases in 2 or more titles
 72,2,geschichte lehramt sekundarstufe i,7,26,0.269,phrases in 2 or more titles
-72,3,real,7,26,0.269,phrases in 2 or more titles
+72,3,real-,7,26,0.269,phrases in 2 or more titles
 73,1,informatik,9,16,0.562,phrases in 2 or more titles
 73,2,informatik lehramt an gymnasien,3,16,0.188,phrases in 2 or more titles
 73,3,informatik - lehramt an gymnasien,2,16,0.125,phrases in 2 or more titles
 74,1,informatik,6,16,0.375,phrases in 2 or more titles
-74,2,informatik lehramt an haupt,2,16,0.125,phrases in 2 or more titles
+74,2,informatik lehramt an haupt-,2,16,0.125,phrases in 2 or more titles
 74,3,informatik lehramt sekundarstufe i,2,16,0.125,phrases in 2 or more titles
 75,1,north american studies,4,16,0.25,phrases in 2 or more titles
 75,2,nordamerikastudien,2,16,0.125,phrases in 2 or more titles
@@ -221,7 +221,7 @@ type,rank,keyword,member titles with it,members,share,from
 81,2,physik lehramt an gymnasien,5,23,0.217,phrases in 2 or more titles
 81,3,physik - lehramt an gymnasien,2,23,0.087,phrases in 2 or more titles
 82,1,physik lehramt sekundarstufe i,7,23,0.304,phrases in 2 or more titles
-82,2,real,7,23,0.304,phrases in 2 or more titles
+82,2,real-,7,23,0.304,phrases in 2 or more titles
 82,3,physik,6,23,0.261,phrases in 2 or more titles
 83,1,pflegepädagogik,12,67,0.179,phrases in 2 or more titles
 83,2,gesundheitsberufe,6,67,0.09,phrases in 2 or more titles
@@ -248,9 +248,9 @@ type,rank,keyword,member titles with it,members,share,from
 91,1,personalmanagement,9,30,0.3,phrases in 2 or more titles
 91,2,human resource management,8,30,0.267,phrases in 2 or more titles
 91,3,human resources management,5,30,0.167,phrases in 2 or more titles
-92,1,real,16,34,0.471,phrases in 2 or more titles
+92,1,real-,16,34,0.471,phrases in 2 or more titles
 92,2,religionslehre,13,34,0.382,phrases in 2 or more titles
-92,3,sekundar,12,34,0.353,phrases in 2 or more titles
+92,3,sekundar-,10,34,0.294,phrases in 2 or more titles
 93,1,religionslehre,15,21,0.714,phrases in 2 or more titles
 93,2,katholische lehramt an gymnasien,5,21,0.238,phrases in 2 or more titles
 93,3,evangelische lehramt an gymnasien,4,21,0.19,phrases in 2 or more titles
@@ -258,8 +258,8 @@ type,rank,keyword,member titles with it,members,share,from
 94,2,europalehramt,4,19,0.211,phrases in 2 or more titles
 94,3,europalehramt primarstufe,2,19,0.105,phrases in 2 or more titles
 95,1,französisch,5,21,0.238,phrases in 2 or more titles
-95,2,real,5,21,0.238,phrases in 2 or more titles
-95,3,französisch lehramt an haupt,4,21,0.19,phrases in 2 or more titles
+95,2,real-,5,21,0.238,phrases in 2 or more titles
+95,3,französisch lehramt an haupt-,4,21,0.19,phrases in 2 or more titles
 96,1,maschinenbau,42,55,0.764,phrases in 2 or more titles
 97,1,nanoscience,5,13,0.385,phrases in 2 or more titles
 97,2,nano-science,2,13,0.154,phrases in 2 or more titles
@@ -271,7 +271,7 @@ type,rank,keyword,member titles with it,members,share,from
 99,2,soziale arbeit dual,3,80,0.037,phrases in 2 or more titles
 100,1,ernährungswissenschaften,7,59,0.119,phrases in 2 or more titles
 100,2,ökotrophologie,6,59,0.102,phrases in 2 or more titles
-100,3,ernährungs,5,59,0.085,phrases in 2 or more titles
+100,3,ernährungs-,5,59,0.085,phrases in 2 or more titles
 101,1,digital health,6,15,0.4,phrases in 2 or more titles
 101,2,digital public health,2,15,0.133,phrases in 2 or more titles
 101,3,digitales gesundheitsmanagement,2,15,0.133,phrases in 2 or more titles
@@ -286,7 +286,7 @@ type,rank,keyword,member titles with it,members,share,from
 105,1,sustainability management,4,30,0.133,phrases in 2 or more titles
 105,2,nachhaltigkeit,3,30,0.1,phrases in 2 or more titles
 105,3,nachhaltigkeitsmanagement,3,30,0.1,phrases in 2 or more titles
-106,1,ernährungs,4,24,0.167,phrases in 2 or more titles
+106,1,ernährungs-,4,24,0.167,phrases in 2 or more titles
 106,2,hauswirtschaftswissenschaft,4,24,0.167,phrases in 2 or more titles
 106,3,hauswirtschaftswissenschaft lehramt an berufskollegs,4,24,0.167,phrases in 2 or more titles
 107,1,höheres lehramt an beruflichen schulen - ingenieurpädagogik,9,16,0.562,phrases in 2 or more titles
@@ -355,8 +355,8 @@ type,rank,keyword,member titles with it,members,share,from
 131,1,sprachliche grundbildung,4,14,0.286,phrases in 2 or more titles
 131,2,lernbereich i,2,14,0.143,phrases in 2 or more titles
 131,3,lernbereich i - sprachliche grundbildung mit lehramtsoption grundschule,2,14,0.143,phrases in 2 or more titles
-132,1,marketing,7,28,0.25,phrases in 2 or more titles
-132,2,e-commerce,6,28,0.214,phrases in 2 or more titles
+132,1,e-commerce,6,28,0.214,phrases in 2 or more titles
+132,2,marketing,6,28,0.214,phrases in 2 or more titles
 132,3,digital marketing,4,28,0.143,phrases in 2 or more titles
 133,1,polizeivollzugsdienst,5,13,0.385,phrases in 2 or more titles
 134,1,griechisch,11,17,0.647,phrases in 2 or more titles
@@ -368,9 +368,9 @@ type,rank,keyword,member titles with it,members,share,from
 136,1,biochemie,14,19,0.737,phrases in 2 or more titles
 136,2,toxikologie,2,19,0.105,phrases in 2 or more titles
 137,1,deutsch als fremdsprache,8,29,0.276,phrases in 2 or more titles
-137,2,deutsch als zweit,5,29,0.172,phrases in 2 or more titles
-137,3,deutsch als fremd,4,29,0.138,phrases in 2 or more titles
-138,1,pflege,28,82,0.341,phrases in 2 or more titles
+137,2,deutsch als zweit-,5,29,0.172,phrases in 2 or more titles
+137,3,deutsch als fremd-,4,29,0.138,phrases in 2 or more titles
+138,1,pflege,27,82,0.329,phrases in 2 or more titles
 138,2,pflegewissenschaft,9,82,0.11,phrases in 2 or more titles
 138,3,angewandte pflegewissenschaft,5,82,0.061,phrases in 2 or more titles
 139,1,gitarre,11,15,0.733,phrases in 2 or more titles
@@ -392,13 +392,13 @@ type,rank,keyword,member titles with it,members,share,from
 145,2,deutsch lehramt an gymnasien,5,26,0.192,phrases in 2 or more titles
 145,3,germanistik,4,26,0.154,phrases in 2 or more titles
 146,1,englisch,9,19,0.474,phrases in 2 or more titles
-146,2,real,7,19,0.368,phrases in 2 or more titles
-146,3,sekundar,5,19,0.263,phrases in 2 or more titles
+146,2,real-,7,19,0.368,phrases in 2 or more titles
+146,3,englisch lehramt an haupt-,4,19,0.211,phrases in 2 or more titles
 147,1,englisch lehramt für sonderpädagogische förderung,4,18,0.222,phrases in 2 or more titles
 147,2,deutsch - lehramt für sonderpädagogische förderung,2,18,0.111,phrases in 2 or more titles
 147,3,englisch,2,18,0.111,phrases in 2 or more titles
 148,1,bildungswissenschaften,6,22,0.273,phrases in 2 or more titles
-148,2,real,4,22,0.182,phrases in 2 or more titles
+148,2,real-,4,22,0.182,phrases in 2 or more titles
 148,3,bildungswissenschaften mit integrierter förderpädagogik,3,22,0.136,phrases in 2 or more titles
 149,1,angewandte informatik,12,15,0.8,phrases in 2 or more titles
 149,2,angewandte bioinformatik,2,15,0.133,phrases in 2 or more titles
@@ -420,8 +420,8 @@ type,rank,keyword,member titles with it,members,share,from
 155,1,germanistik,15,54,0.278,phrases in 2 or more titles
 155,2,literatur,7,54,0.13,phrases in 2 or more titles
 155,3,deutsche sprache,5,54,0.093,phrases in 2 or more titles
-156,1,kultur,5,40,0.125,phrases in 2 or more titles
-156,2,kulturmanagement,4,40,0.1,phrases in 2 or more titles
+156,1,kulturmanagement,4,40,0.1,phrases in 2 or more titles
+156,2,kultur,3,40,0.075,phrases in 2 or more titles
 156,3,kulturvermittlung,3,40,0.075,phrases in 2 or more titles
 157,1,deutsch,19,41,0.463,phrases in 2 or more titles
 157,2,latein,9,41,0.22,phrases in 2 or more titles
@@ -459,26 +459,26 @@ type,rank,keyword,member titles with it,members,share,from
 168,3,indonesien,3,27,0.111,phrases in 2 or more titles
 169,1,immobilienwirtschaft,12,67,0.179,phrases in 2 or more titles
 169,2,facility management,8,67,0.119,phrases in 2 or more titles
-169,3,immobilien,8,67,0.119,phrases in 2 or more titles
-170,1,film,11,18,0.611,phrases in 2 or more titles
+169,3,real estate,8,67,0.119,phrases in 2 or more titles
+170,1,film,10,18,0.556,phrases in 2 or more titles
 170,2,animation,2,18,0.111,phrases in 2 or more titles
 171,1,wirtschaftsmathematik,10,14,0.714,phrases in 2 or more titles
 172,1,wirtschaftsmathematik,20,27,0.741,phrases in 2 or more titles
-172,2,finanz,2,27,0.074,phrases in 2 or more titles
+172,2,finanz-,2,27,0.074,phrases in 2 or more titles
 172,3,versicherungsmathematik,2,27,0.074,phrases in 2 or more titles
 173,1,geowissenschaften,10,22,0.455,phrases in 2 or more titles
 174,1,wirtschaftsingenieurwesen,41,69,0.594,phrases in 2 or more titles
-174,2,management,3,69,0.043,phrases in 2 or more titles
+174,2,management,2,69,0.029,phrases in 2 or more titles
 174,3,wirtschaftsingenieurwesen bau,2,69,0.029,phrases in 2 or more titles
 175,1,computerlinguistik,10,20,0.5,phrases in 2 or more titles
 175,2,digital humanities,6,20,0.3,phrases in 2 or more titles
 175,3,computational linguistics,3,20,0.15,phrases in 2 or more titles
 176,1,kommunikationswissenschaft,8,30,0.267,phrases in 2 or more titles
-176,2,medien,6,30,0.2,phrases in 2 or more titles
-176,3,kommunikations,5,30,0.167,phrases in 2 or more titles
+176,2,kommunikations-,5,30,0.167,phrases in 2 or more titles
+176,3,medien,3,30,0.1,phrases in 2 or more titles
 177,1,holzingenieurwesen,4,19,0.211,phrases in 2 or more titles
 177,2,holztechnik,3,19,0.158,phrases in 2 or more titles
-177,3,holz,2,19,0.105,phrases in 2 or more titles
+177,3,holz-,2,19,0.105,phrases in 2 or more titles
 178,1,mobilität,4,15,0.267,phrases in 2 or more titles
 178,2,verkehrsingenieurwesen,4,15,0.267,phrases in 2 or more titles
 178,3,mobilitätsmanagement,2,15,0.133,phrases in 2 or more titles
@@ -490,7 +490,7 @@ type,rank,keyword,member titles with it,members,share,from
 180,3,medienwissenschaften,4,42,0.095,phrases in 2 or more titles
 181,1,geowissenschaften,13,35,0.371,phrases in 2 or more titles
 181,2,angewandte geowissenschaften,6,35,0.171,phrases in 2 or more titles
-181,3,klima,3,35,0.086,phrases in 2 or more titles
+181,3,geosciences,2,35,0.057,phrases in 2 or more titles
 182,1,mathematik,27,30,0.9,phrases in 2 or more titles
 182,2,mathematics,2,30,0.067,phrases in 2 or more titles
 183,1,künstlerisch-pädagogische studienrichtung,22,50,0.44,phrases in 2 or more titles
@@ -504,12 +504,12 @@ type,rank,keyword,member titles with it,members,share,from
 185,3,engineering,9,166,0.054,phrases in 2 or more titles
 186,1,technical management,4,22,0.182,phrases in 2 or more titles
 186,2,technologiemanagement,3,22,0.136,phrases in 2 or more titles
-186,3,engineering,2,22,0.091,phrases in 2 or more titles
+186,3,technology,2,22,0.091,phrases in 2 or more titles
 187,1,wirtschaftsingenieurwesen elektrotechnik,9,24,0.375,phrases in 2 or more titles
 187,2,informationstechnik,6,24,0.25,phrases in 2 or more titles
 187,3,wirtschaftsingenieurwesen,5,24,0.208,phrases in 2 or more titles
-188,1,marketing,9,37,0.243,phrases in 2 or more titles
-188,2,international marketing,8,37,0.216,phrases in 2 or more titles
+188,1,international marketing,8,37,0.216,phrases in 2 or more titles
+188,2,marketing,7,37,0.189,phrases in 2 or more titles
 188,3,internationales marketing,3,37,0.081,phrases in 2 or more titles
 189,1,digital engineering,6,18,0.333,phrases in 2 or more titles
 189,2,digital engineering maschinenbau,3,18,0.167,phrases in 2 or more titles
@@ -536,7 +536,7 @@ type,rank,keyword,member titles with it,members,share,from
 196,2,verfahrenstechnik,7,21,0.333,phrases in 2 or more titles
 196,3,chemical engineering,2,21,0.095,phrases in 2 or more titles
 197,1,chemietechnik,2,14,0.143,phrases in 2 or more titles
-197,2,pharma,2,14,0.143,phrases in 2 or more titles
+197,2,pharma-,2,14,0.143,phrases in 2 or more titles
 197,3,pharmaceutical sciences,2,14,0.143,phrases in 2 or more titles
 198,1,biotechnologie,13,37,0.351,phrases in 2 or more titles
 198,2,medizinische biotechnologie,4,37,0.108,phrases in 2 or more titles
@@ -572,7 +572,7 @@ type,rank,keyword,member titles with it,members,share,from
 208,3,fahrzeugentwicklung,3,29,0.103,phrases in 2 or more titles
 209,1,journalismus,9,33,0.273,phrases in 2 or more titles
 209,2,journalistik,4,33,0.121,phrases in 2 or more titles
-209,3,publizistik,3,33,0.091,phrases in 2 or more titles
+209,3,kommunikationswissenschaft,2,33,0.061,phrases in 2 or more titles
 210,1,medieninformatik,19,36,0.528,phrases in 2 or more titles
 210,2,interaktives entertainment,2,36,0.056,phrases in 2 or more titles
 210,3,internationaler studiengang medieninformatik,2,36,0.056,phrases in 2 or more titles
@@ -586,7 +586,7 @@ type,rank,keyword,member titles with it,members,share,from
 213,3,international management,4,38,0.105,phrases in 2 or more titles
 214,1,chemieingenieurwesen,10,35,0.286,phrases in 2 or more titles
 214,2,angewandte chemie,8,35,0.229,phrases in 2 or more titles
-214,3,chemie,5,35,0.143,phrases in 2 or more titles
+214,3,bio-,4,35,0.114,phrases in 2 or more titles
 215,1,nachhaltige chemie,5,13,0.385,phrases in 2 or more titles
 215,2,sustainable chemistry,4,13,0.308,phrases in 2 or more titles
 216,1,maschinenbau,101,163,0.62,phrases in 2 or more titles
@@ -608,7 +608,7 @@ type,rank,keyword,member titles with it,members,share,from
 221,2,robotics,6,22,0.273,phrases in 2 or more titles
 221,3,automation,2,22,0.091,phrases in 2 or more titles
 222,1,medienkulturwissenschaft,3,23,0.13,phrases in 2 or more titles
-222,2,angewandte kognitions,2,23,0.087,phrases in 2 or more titles
+222,2,angewandte kognitions-,2,23,0.087,phrases in 2 or more titles
 222,3,digital media,2,23,0.087,phrases in 2 or more titles
 223,1,cyber security,10,35,0.286,phrases in 2 or more titles
 223,2,it-sicherheit,8,35,0.229,phrases in 2 or more titles
@@ -621,7 +621,7 @@ type,rank,keyword,member titles with it,members,share,from
 225,3,economics,3,36,0.083,phrases in 2 or more titles
 226,1,informationstechnik,19,26,0.731,phrases in 2 or more titles
 226,2,elektrotechnik,15,26,0.577,phrases in 2 or more titles
-226,3,elektro,9,26,0.346,phrases in 2 or more titles
+226,3,elektro-,9,26,0.346,phrases in 2 or more titles
 227,1,engineering,4,27,0.148,phrases in 2 or more titles
 227,2,computational engineering,3,27,0.111,phrases in 2 or more titles
 227,3,computational science,3,27,0.111,phrases in 2 or more titles
@@ -639,8 +639,8 @@ type,rank,keyword,member titles with it,members,share,from
 231,3,computational engineering,2,36,0.056,phrases in 2 or more titles
 232,1,software engineering,10,14,0.714,phrases in 2 or more titles
 233,1,mathematik,18,64,0.281,phrases in 2 or more titles
-233,2,real,11,64,0.172,phrases in 2 or more titles
-233,3,sekundar,8,64,0.125,phrases in 2 or more titles
+233,2,real-,11,64,0.172,phrases in 2 or more titles
+233,3,mathematik lehramt an gymnasien,6,64,0.094,phrases in 2 or more titles
 234,1,angewandte mathematik,6,12,0.5,phrases in 2 or more titles
 234,2,mathematik,3,12,0.25,phrases in 2 or more titles
 234,3,informatik,2,12,0.167,phrases in 2 or more titles
@@ -648,17 +648,17 @@ type,rank,keyword,member titles with it,members,share,from
 236,1,geographie,20,28,0.714,phrases in 2 or more titles
 236,2,physische geographie,2,28,0.071,phrases in 2 or more titles
 237,1,energietechnik,14,33,0.424,phrases in 2 or more titles
-237,2,energie,13,33,0.394,phrases in 2 or more titles
+237,2,energie-,13,33,0.394,phrases in 2 or more titles
 237,3,gebäudetechnik,6,33,0.182,phrases in 2 or more titles
 238,1,sport,10,30,0.333,phrases in 2 or more titles
-238,2,real,2,30,0.067,phrases in 2 or more titles
-238,3,sekundar,2,30,0.067,phrases in 2 or more titles
+238,2,real-,2,30,0.067,phrases in 2 or more titles
+238,3,sekundar-,2,30,0.067,phrases in 2 or more titles
 239,1,chemie,5,27,0.185,phrases in 2 or more titles
 239,2,biochemie,3,27,0.111,phrases in 2 or more titles
 239,3,biochemistry,3,27,0.111,phrases in 2 or more titles
 240,1,wirtschaftswissenschaften,9,21,0.429,phrases in 2 or more titles
 240,2,organisationswissenschaften,2,21,0.095,phrases in 2 or more titles
-240,3,wirtschafts,2,21,0.095,phrases in 2 or more titles
+240,3,wirtschafts-,2,21,0.095,phrases in 2 or more titles
 241,1,ethnologie,9,25,0.36,phrases in 2 or more titles
 241,2,kulturanthropologie,9,25,0.36,phrases in 2 or more titles
 241,3,cultural anthropology,4,25,0.16,phrases in 2 or more titles
@@ -677,11 +677,10 @@ type,rank,keyword,member titles with it,members,share,from
 246,3,materials science,5,26,0.192,phrases in 2 or more titles
 247,1,wirtschaftspsychologie,30,56,0.536,phrases in 2 or more titles
 247,2,psychology,7,56,0.125,phrases in 2 or more titles
-247,3,arbeits,5,56,0.089,phrases in 2 or more titles
+247,3,arbeits-,5,56,0.089,phrases in 2 or more titles
 248,1,sportwissenschaft,4,16,0.25,phrases in 2 or more titles
 248,2,sport,2,16,0.125,phrases in 2 or more titles
 249,1,jugendhilfe,2,13,0.154,phrases in 2 or more titles
-249,2,soziale arbeit - kinder,2,13,0.154,phrases in 2 or more titles
 250,1,agrarwirtschaft,7,30,0.233,phrases in 2 or more titles
 250,2,agrarwissenschaften,6,30,0.2,phrases in 2 or more titles
 250,3,landwirtschaft,5,30,0.167,phrases in 2 or more titles
@@ -701,17 +700,17 @@ type,rank,keyword,member titles with it,members,share,from
 255,2,advanced materials,3,20,0.15,phrases in 2 or more titles
 255,3,engineering,2,20,0.1,phrases in 2 or more titles
 256,1,stadtplanung,7,17,0.412,phrases in 2 or more titles
-256,2,stadt,3,17,0.176,phrases in 2 or more titles
+256,2,stadt-,3,17,0.176,phrases in 2 or more titles
 256,3,architektur,2,17,0.118,phrases in 2 or more titles
 257,1,agrarwissenschaften,2,14,0.143,phrases in 2 or more titles
 257,2,landwirtschaft,2,14,0.143,phrases in 2 or more titles
 257,3,umwelt,2,14,0.143,phrases in 2 or more titles
 258,1,wirtschaftswissenschaft lehramt sekundarstufe i,5,14,0.357,phrases in 2 or more titles
-258,2,hauswirtschaft lehramt an haupt,2,14,0.143,phrases in 2 or more titles
-258,3,real,2,14,0.143,phrases in 2 or more titles
+258,2,hauswirtschaft lehramt an haupt-,2,14,0.143,phrases in 2 or more titles
+258,3,real-,2,14,0.143,phrases in 2 or more titles
 259,1,pflege,4,13,0.308,phrases in 2 or more titles
 259,2,pflegewissenschaft,3,13,0.231,phrases in 2 or more titles
-259,3,lehramt an beruflichen schulen - gesundheits,2,13,0.154,phrases in 2 or more titles
+259,3,lehramt an beruflichen schulen - gesundheits-,2,13,0.154,phrases in 2 or more titles
 260,1,heilpädagogik,11,12,0.917,phrases in 2 or more titles
 260,2,inklusive pädagogik,4,12,0.333,phrases in 2 or more titles
 260,3,inclusive education,3,12,0.25,phrases in 2 or more titles
@@ -724,9 +723,9 @@ type,rank,keyword,member titles with it,members,share,from
 263,1,gesundheitsökonomie,12,60,0.2,phrases in 2 or more titles
 263,2,gesundheitsmanagement,11,60,0.183,phrases in 2 or more titles
 263,3,management im gesundheitswesen,7,60,0.117,phrases in 2 or more titles
-264,1,real,6,10,0.6,phrases in 2 or more titles
-264,2,sekundar,5,10,0.5,phrases in 2 or more titles
-264,3,religionslehre,3,10,0.3,phrases in 2 or more titles
+264,1,real-,6,10,0.6,phrases in 2 or more titles
+264,2,religionslehre,3,10,0.3,phrases in 2 or more titles
+264,3,sekundar-,3,10,0.3,phrases in 2 or more titles
 265,1,evangelische theologie,8,25,0.32,phrases in 2 or more titles
 265,2,katholische theologie,6,25,0.24,phrases in 2 or more titles
 265,3,theologie,3,25,0.12,phrases in 2 or more titles
@@ -734,11 +733,11 @@ type,rank,keyword,member titles with it,members,share,from
 266,2,maschinenbautechnik,4,50,0.08,phrases in 2 or more titles
 266,3,maschinenbautechnik lehramt an berufskollegs,3,50,0.06,phrases in 2 or more titles
 267,1,kunst,15,49,0.306,phrases in 2 or more titles
-267,2,real,7,49,0.143,phrases in 2 or more titles
+267,2,real-,7,49,0.143,phrases in 2 or more titles
 267,3,kunst lehramt an gymnasien,6,49,0.122,phrases in 2 or more titles
 268,1,informatik,4,12,0.333,phrases in 2 or more titles
 269,1,musik,14,58,0.241,phrases in 2 or more titles
-269,2,real,10,58,0.172,phrases in 2 or more titles
+269,2,real-,10,58,0.172,phrases in 2 or more titles
 269,3,musik lehramt sekundarstufe i,7,58,0.121,phrases in 2 or more titles
 270,1,musiktheorie,8,16,0.5,phrases in 2 or more titles
 270,2,komposition,3,16,0.188,phrases in 2 or more titles
@@ -781,11 +780,11 @@ type,rank,keyword,member titles with it,members,share,from
 284,2,medienwissenschaft,3,18,0.167,phrases in 2 or more titles
 284,3,digital media,2,18,0.111,phrases in 2 or more titles
 285,1,physikalische technik,5,30,0.167,phrases in 2 or more titles
-285,2,laser,4,30,0.133,phrases in 2 or more titles
+285,2,laser-,4,30,0.133,phrases in 2 or more titles
 285,3,photonics,3,30,0.1,phrases in 2 or more titles
 286,1,allgemeine,9,43,0.209,phrases in 2 or more titles
-286,2,literatur,8,43,0.186,phrases in 2 or more titles
-286,3,vergleichende literaturwissenschaft,7,43,0.163,phrases in 2 or more titles
+286,2,vergleichende literaturwissenschaft,7,43,0.163,phrases in 2 or more titles
+286,3,literatur,6,43,0.14,phrases in 2 or more titles
 287,1,psychologie,40,48,0.833,phrases in 2 or more titles
 287,2,psychology,2,48,0.042,phrases in 2 or more titles
 287,3,psychotherapie,2,48,0.042,phrases in 2 or more titles
@@ -797,21 +796,21 @@ type,rank,keyword,member titles with it,members,share,from
 290,1,medizinische informatik,11,28,0.393,phrases in 2 or more titles
 290,2,medizininformatik,6,28,0.214,phrases in 2 or more titles
 290,3,digitale medizin,2,28,0.071,phrases in 2 or more titles
-291,1,real,7,33,0.212,phrases in 2 or more titles
+291,1,real-,7,33,0.212,phrases in 2 or more titles
 291,2,sozialwissenschaften,6,33,0.182,phrases in 2 or more titles
 291,3,wirtschaft-politik,5,33,0.152,phrases in 2 or more titles
 292,1,portugiesisch,5,10,0.5,phrases in 2 or more titles
 292,2,lusitanistik,2,10,0.2,phrases in 2 or more titles
-293,1,real,16,49,0.327,phrases in 2 or more titles
-293,2,sekundar,8,49,0.163,phrases in 2 or more titles
-293,3,deutsch,6,49,0.122,phrases in 2 or more titles
+293,1,real-,16,49,0.327,phrases in 2 or more titles
+293,2,deutsch,6,49,0.122,phrases in 2 or more titles
+293,3,sekundar-,6,49,0.122,phrases in 2 or more titles
 294,1,technische informatik,5,10,0.5,phrases in 2 or more titles
 294,2,informatik,2,10,0.2,phrases in 2 or more titles
 294,3,systems-engineering,2,10,0.2,phrases in 2 or more titles
 295,1,chemie,19,55,0.345,phrases in 2 or more titles
-295,2,real,10,55,0.182,phrases in 2 or more titles
+295,2,real-,10,55,0.182,phrases in 2 or more titles
 295,3,chemie lehramt sekundarstufe i,7,55,0.127,phrases in 2 or more titles
-296,1,marketing,6,20,0.3,phrases in 2 or more titles
+296,1,marketing,5,20,0.25,phrases in 2 or more titles
 296,2,management,4,20,0.2,phrases in 2 or more titles
 296,3,betriebswirtschaft,2,20,0.1,phrases in 2 or more titles
 297,1,ingenieurwissenschaften,3,15,0.2,phrases in 2 or more titles
@@ -824,7 +823,7 @@ type,rank,keyword,member titles with it,members,share,from
 299,3,sonderpädagogische fachrichtung: förderschwerpunkt körperliche,3,12,0.25,phrases in 2 or more titles
 300,1,bauingenieurwesen,26,35,0.743,phrases in 2 or more titles
 300,2,gebäudephysik,2,35,0.057,phrases in 2 or more titles
-301,1,bio,2,11,0.182,phrases in 2 or more titles
+301,1,bio-,2,11,0.182,phrases in 2 or more titles
 301,2,bioverfahrenstechnik,2,11,0.182,phrases in 2 or more titles
 301,3,pharmazeutische bioprozesstechnik,2,11,0.182,phrases in 2 or more titles
 302,1,spanisch,15,43,0.349,phrases in 2 or more titles
@@ -833,12 +832,12 @@ type,rank,keyword,member titles with it,members,share,from
 303,1,controlling,10,26,0.385,phrases in 2 or more titles
 303,2,finance,10,26,0.385,phrases in 2 or more titles
 303,3,accounting,6,26,0.231,phrases in 2 or more titles
-304,1,real,2,11,0.182,phrases in 2 or more titles
-304,2,sekundar,2,11,0.182,phrases in 2 or more titles
+304,1,real-,2,11,0.182,phrases in 2 or more titles
+304,2,sekundar-,2,11,0.182,phrases in 2 or more titles
 304,3,sport lehramt an berufskollegs,2,11,0.182,phrases in 2 or more titles
 305,1,umwelttechnik,5,21,0.238,phrases in 2 or more titles
 305,2,environmental engineering,2,21,0.095,phrases in 2 or more titles
-305,3,umwelt,2,21,0.095,phrases in 2 or more titles
+305,3,umwelt-,2,21,0.095,phrases in 2 or more titles
 306,1,orgel,11,25,0.44,phrases in 2 or more titles
 306,2,orgelimprovisation,5,25,0.2,phrases in 2 or more titles
 306,3,orchesterinstrumente,3,25,0.12,phrases in 2 or more titles
@@ -846,7 +845,7 @@ type,rank,keyword,member titles with it,members,share,from
 307,2,linguistik,6,32,0.188,phrases in 2 or more titles
 307,3,allgemeine,3,32,0.094,phrases in 2 or more titles
 308,1,kommunikation,6,25,0.24,phrases in 2 or more titles
-308,2,medien,5,25,0.2,phrases in 2 or more titles
+308,2,medien,4,25,0.16,phrases in 2 or more titles
 308,3,medienmanagement,3,25,0.12,phrases in 2 or more titles
 309,1,wirtschaftsrecht,14,35,0.4,phrases in 2 or more titles
 309,2,deutsches,3,35,0.086,phrases in 2 or more titles
@@ -883,14 +882,14 @@ type,rank,keyword,member titles with it,members,share,from
 320,3,englisch lehramt an berufskollegs i,2,19,0.105,phrases in 2 or more titles
 321,1,kunst - lehramt an berufskollegs,2,11,0.182,phrases in 2 or more titles
 321,2,kunst - lehramt an gymnasien,2,11,0.182,phrases in 2 or more titles
-321,3,kunst - lehramt an haupt,2,11,0.182,phrases in 2 or more titles
+321,3,kunst - lehramt an haupt-,2,11,0.182,phrases in 2 or more titles
 322,1,empirische kulturwissenschaft,6,11,0.545,phrases in 2 or more titles
 322,2,europäische ethnologie,2,11,0.182,phrases in 2 or more titles
 322,3,kulturwissenschaften,2,11,0.182,phrases in 2 or more titles
 323,1,englisch,16,33,0.485,phrases in 2 or more titles
 323,2,anglistik,4,33,0.121,phrases in 2 or more titles
 323,3,amerikanistik,2,33,0.061,phrases in 2 or more titles
-324,1,design,6,16,0.375,phrases in 2 or more titles
+324,1,design,5,16,0.312,phrases in 2 or more titles
 324,2,produktdesign,4,16,0.25,phrases in 2 or more titles
 324,3,gestaltung,3,16,0.188,phrases in 2 or more titles
 325,1,taxation,11,22,0.5,phrases in 2 or more titles
@@ -912,7 +911,7 @@ type,rank,keyword,member titles with it,members,share,from
 330,3,angewandte informatik,2,11,0.182,phrases in 2 or more titles
 331,1,elektrotechnik,88,125,0.704,phrases in 2 or more titles
 331,2,informationstechnik,58,125,0.464,phrases in 2 or more titles
-331,3,elektro,19,125,0.152,phrases in 2 or more titles
+331,3,elektro-,19,125,0.152,phrases in 2 or more titles
 332,1,elektromobilität,10,14,0.714,phrases in 2 or more titles
 332,2,elektrotechnik,4,14,0.286,phrases in 2 or more titles
 333,1,gesundheitsförderung,5,20,0.25,phrases in 2 or more titles
@@ -933,9 +932,9 @@ type,rank,keyword,member titles with it,members,share,from
 339,1,innenarchitektur,19,24,0.792,phrases in 2 or more titles
 340,1,skandinavistik,9,11,0.818,phrases in 2 or more titles
 340,2,nordeuropastudien,2,11,0.182,phrases in 2 or more titles
-341,1,sport,10,39,0.256,phrases in 2 or more titles
+341,1,sport,9,39,0.231,phrases in 2 or more titles
 341,2,sport lehramt sekundarstufe i,7,39,0.179,phrases in 2 or more titles
-341,3,real,6,39,0.154,phrases in 2 or more titles
+341,3,real-,6,39,0.154,phrases in 2 or more titles
 342,1,business analytics,7,13,0.538,phrases in 2 or more titles
 342,2,data science,5,13,0.385,phrases in 2 or more titles
 342,3,management,2,13,0.154,phrases in 2 or more titles
@@ -961,8 +960,8 @@ type,rank,keyword,member titles with it,members,share,from
 351,2,romanistik,6,24,0.25,phrases in 2 or more titles
 351,3,kultur,3,24,0.125,phrases in 2 or more titles
 352,1,umweltingenieurwesen,17,44,0.386,phrases in 2 or more titles
-352,2,umwelt,6,44,0.136,phrases in 2 or more titles
-352,3,umweltingenieurwissenschaften,6,44,0.136,phrases in 2 or more titles
+352,2,umweltingenieurwissenschaften,6,44,0.136,phrases in 2 or more titles
+352,3,umwelt-,5,44,0.114,phrases in 2 or more titles
 353,1,sachunterricht,7,12,0.583,phrases in 2 or more titles
 353,2,sachunterricht lehramtsbezogen,2,12,0.167,phrases in 2 or more titles
 354,1,kunst,3,10,0.3,phrases in 2 or more titles
@@ -987,14 +986,14 @@ type,rank,keyword,member titles with it,members,share,from
 360,3,evangelische kirchenmusik,3,15,0.2,phrases in 2 or more titles
 361,1,alltagskultur,13,13,1.0,phrases in 2 or more titles
 361,2,gesundheit lehramt sekundarstufe i,6,13,0.462,phrases in 2 or more titles
-362,1,natur,7,12,0.583,phrases in 2 or more titles
+362,1,natur-,7,12,0.583,phrases in 2 or more titles
 362,2,gesellschaftswissenschaften,4,12,0.333,phrases in 2 or more titles
-362,3,lernbereich iii - natur,3,12,0.25,phrases in 2 or more titles
+362,3,lernbereich iii - natur-,3,12,0.25,phrases in 2 or more titles
 363,1,mikrosystemtechnik,2,3,0.667,phrases in 2 or more titles
 364,1,umweltgeographie im globalen wandel,1,5,0.2,parts of the member nearest the centroid
-365,1,real,4,5,0.8,phrases in 2 or more titles
-365,2,sekundar,4,5,0.8,phrases in 2 or more titles
-365,3,deutsch - lehramt an haupt,2,5,0.4,phrases in 2 or more titles
+365,1,real-,4,5,0.8,phrases in 2 or more titles
+365,2,sekundar-,4,5,0.8,phrases in 2 or more titles
+365,3,deutsch - lehramt an haupt-,2,5,0.4,phrases in 2 or more titles
 366,1,human factors,1,3,0.333,parts of the member nearest the centroid
 367,1,gesang,1,2,0.5,parts of the member nearest the centroid
 368,1,informationssystemtechnik,1,3,0.333,parts of the member nearest the centroid
@@ -1032,10 +1031,10 @@ type,rank,keyword,member titles with it,members,share,from
 387,1,banking,3,8,0.375,phrases in 2 or more titles
 387,2,insurance,2,8,0.25,phrases in 2 or more titles
 388,1,material-design,2,7,0.286,phrases in 2 or more titles
-388,2,textil,2,7,0.286,phrases in 2 or more titles
+388,2,textil-,2,7,0.286,phrases in 2 or more titles
 388,3,textile design,2,7,0.286,phrases in 2 or more titles
-389,1,management,2,3,0.667,phrases in 2 or more titles
-390,1,finanz,1,2,0.5,parts of the member nearest the centroid
+389,1,management sciences,1,3,0.333,parts of the member nearest the centroid
+390,1,finanz-,1,2,0.5,parts of the member nearest the centroid
 390,2,versicherungsmathematik,1,2,0.5,parts of the member nearest the centroid
 391,1,baumanagement,1,4,0.25,parts of the member nearest the centroid
 392,1,maschinenbau,3,5,0.6,phrases in 2 or more titles
@@ -1055,7 +1054,7 @@ type,rank,keyword,member titles with it,members,share,from
 401,2,landschaftsökologie,2,9,0.222,phrases in 2 or more titles
 402,1,information technology,2,2,1.0,phrases in 2 or more titles
 403,1,gerontologie,2,3,0.667,phrases in 2 or more titles
-404,1,bio,1,3,0.333,parts of the member nearest the centroid
+404,1,bio-,1,3,0.333,parts of the member nearest the centroid
 404,2,medizininformatik,1,3,0.333,parts of the member nearest the centroid
 405,1,physik lehramt grundschule,1,8,0.125,parts of the member nearest the centroid
 406,1,sprachwissenschaft,2,5,0.4,phrases in 2 or more titles
@@ -1068,7 +1067,7 @@ type,rank,keyword,member titles with it,members,share,from
 409,2,katholische theologie,2,9,0.222,phrases in 2 or more titles
 409,3,theologie,2,9,0.222,phrases in 2 or more titles
 410,1,kommunikationsmanagement,2,5,0.4,phrases in 2 or more titles
-411,1,informations,3,7,0.429,phrases in 2 or more titles
+411,1,informations-,3,7,0.429,phrases in 2 or more titles
 411,2,kommunikationstechnik,3,7,0.429,phrases in 2 or more titles
 412,1,geographien der nachhaltigkeit,1,2,0.5,parts of the member nearest the centroid
 413,1,elektrotechnik,2,6,0.333,phrases in 2 or more titles
@@ -1084,7 +1083,7 @@ type,rank,keyword,member titles with it,members,share,from
 418,2,rechtsvergleich,1,3,0.333,parts of the member nearest the centroid
 419,1,islamische studien,2,3,0.667,phrases in 2 or more titles
 420,1,kulturgeschichte,2,3,0.667,phrases in 2 or more titles
-420,2,kunst,2,3,0.667,phrases in 2 or more titles
+420,2,kunst-,2,3,0.667,phrases in 2 or more titles
 421,1,informatik dual,2,2,1.0,phrases in 2 or more titles
 422,1,volkswirtschaftlehre,1,3,0.333,parts of the member nearest the centroid
 423,1,sustainable energy - vertiefungsrichtung transition,1,4,0.25,parts of the member nearest the centroid
@@ -1115,7 +1114,7 @@ type,rank,keyword,member titles with it,members,share,from
 439,1,psychologie,2,3,0.667,phrases in 2 or more titles
 440,1,rettungswesen,2,4,0.5,phrases in 2 or more titles
 441,1,versicherungsrecht,1,2,0.5,parts of the member nearest the centroid
-442,1,bibliotheks,4,6,0.667,phrases in 2 or more titles
+442,1,bibliotheks-,4,6,0.667,phrases in 2 or more titles
 442,2,informationsmanagement,3,6,0.5,phrases in 2 or more titles
 442,3,informationswissenschaft,2,6,0.333,phrases in 2 or more titles
 443,1,medienproduktion,3,5,0.6,phrases in 2 or more titles
@@ -1149,12 +1148,12 @@ type,rank,keyword,member titles with it,members,share,from
 461,1,bioanalytik,2,8,0.25,phrases in 2 or more titles
 461,2,biotechnologie,2,8,0.25,phrases in 2 or more titles
 461,3,chemie,2,8,0.25,phrases in 2 or more titles
-462,1,medien,3,5,0.6,phrases in 2 or more titles
+462,1,medien-,3,5,0.6,phrases in 2 or more titles
 462,2,medienpsychologie,2,5,0.4,phrases in 2 or more titles
 462,3,wirtschaftspsychologie,2,5,0.4,phrases in 2 or more titles
-463,1,energie,2,9,0.222,phrases in 2 or more titles
-463,2,gebäude,2,9,0.222,phrases in 2 or more titles
-463,3,gebäudeenergie,2,9,0.222,phrases in 2 or more titles
+463,1,-informationstechnik,2,9,0.222,phrases in 2 or more titles
+463,2,energie-,2,9,0.222,phrases in 2 or more titles
+463,3,gebäude-,2,9,0.222,phrases in 2 or more titles
 464,1,digitale systeme,2,5,0.4,phrases in 2 or more titles
 465,1,innovation management,1,2,0.5,parts of the member nearest the centroid
 466,1,psychologie,2,4,0.5,phrases in 2 or more titles
@@ -1171,7 +1170,7 @@ type,rank,keyword,member titles with it,members,share,from
 473,3,sachunterricht - lehramt an grundschulen,2,9,0.222,phrases in 2 or more titles
 474,1,computational neuroscience,1,3,0.333,parts of the member nearest the centroid
 475,1,nanotechnologie,3,6,0.5,phrases in 2 or more titles
-475,2,micro,2,6,0.333,phrases in 2 or more titles
+475,2,micro-,2,6,0.333,phrases in 2 or more titles
 476,1,arzneimittelforschung,2,2,1.0,phrases in 2 or more titles
 477,1,business administration,2,2,1.0,phrases in 2 or more titles
 478,1,logistik,5,8,0.625,phrases in 2 or more titles
@@ -1238,7 +1237,9 @@ type,rank,keyword,member titles with it,members,share,from
 521,2,brauwesen,2,6,0.333,phrases in 2 or more titles
 522,1,artificial intelligence,5,6,0.833,phrases in 2 or more titles
 523,1,meteorologie,4,6,0.667,phrases in 2 or more titles
-524,1,theater,2,4,0.5,phrases in 2 or more titles
+524,1,kunst,1,4,0.25,parts of the member nearest the centroid
+524,2,musik,1,4,0.25,parts of the member nearest the centroid
+524,3,theater,1,4,0.25,parts of the member nearest the centroid
 525,1,management von finanzinstitutionen,1,2,0.5,parts of the member nearest the centroid
 526,1,medizintechnik,2,3,0.667,phrases in 2 or more titles
 527,1,quantum engineering,3,4,0.75,phrases in 2 or more titles
@@ -1254,7 +1255,7 @@ type,rank,keyword,member titles with it,members,share,from
 532,1,dualer studiengang management im handel,1,3,0.333,parts of the member nearest the centroid
 533,1,sozialrecht,2,6,0.333,phrases in 2 or more titles
 534,1,soziale arbeit - sozialpädagogik,1,6,0.167,parts of the member nearest the centroid
-535,1,digitale medien,1,3,0.333,parts of the member nearest the centroid
+535,1,digitale medien-,1,3,0.333,parts of the member nearest the centroid
 535,2,kommunikationskulturen,1,3,0.333,parts of the member nearest the centroid
 536,1,international law,1,2,0.5,parts of the member nearest the centroid
 536,2,sustainability,1,2,0.5,parts of the member nearest the centroid
@@ -1269,7 +1270,7 @@ type,rank,keyword,member titles with it,members,share,from
 540,2,media publishing,1,3,0.333,parts of the member nearest the centroid
 541,1,analytische chemie,1,2,0.5,parts of the member nearest the centroid
 541,2,qualitätssicherung,1,2,0.5,parts of the member nearest the centroid
-542,1,nachhaltige rohstoff,1,3,0.333,parts of the member nearest the centroid
+542,1,nachhaltige rohstoff-,1,3,0.333,parts of the member nearest the centroid
 542,2,energieversorgung,1,3,0.333,parts of the member nearest the centroid
 543,1,raumplanung,2,7,0.286,phrases in 2 or more titles
 543,2,stadtplanung,2,7,0.286,phrases in 2 or more titles
@@ -1280,7 +1281,7 @@ type,rank,keyword,member titles with it,members,share,from
 546,2,verfahrenstechnik,2,8,0.25,phrases in 2 or more titles
 547,1,geschichte 2 fächer,1,3,0.333,parts of the member nearest the centroid
 548,1,normen,2,2,1.0,phrases in 2 or more titles
-549,1,mode,2,4,0.5,phrases in 2 or more titles
+549,1,mode-,2,4,0.5,phrases in 2 or more titles
 549,2,textildesign,2,4,0.5,phrases in 2 or more titles
 550,1,quantitative finance,1,3,0.333,parts of the member nearest the centroid
 550,2,data science,1,3,0.333,parts of the member nearest the centroid
@@ -1298,7 +1299,7 @@ type,rank,keyword,member titles with it,members,share,from
 558,2,interkulturelle beziehungen,1,3,0.333,parts of the member nearest the centroid
 559,1,archäologische wissenschaften,3,9,0.333,phrases in 2 or more titles
 559,2,archäologie,2,9,0.222,phrases in 2 or more titles
-559,3,ur,2,9,0.222,phrases in 2 or more titles
+559,3,ur-,2,9,0.222,phrases in 2 or more titles
 560,1,bwl,2,4,0.5,phrases in 2 or more titles
 560,2,controlling,2,4,0.5,phrases in 2 or more titles
 561,1,statistik,4,4,1.0,phrases in 2 or more titles
@@ -1321,7 +1322,7 @@ type,rank,keyword,member titles with it,members,share,from
 569,3,modern east asian studies,2,9,0.222,phrases in 2 or more titles
 570,1,empirische mehrsprachigkeitsforschung,2,3,0.667,phrases in 2 or more titles
 571,1,deutsch-italienische studien,3,3,1.0,phrases in 2 or more titles
-572,1,psychologie mit schwerpunkt lern,1,2,0.5,parts of the member nearest the centroid
+572,1,psychologie mit schwerpunkt lern-,1,2,0.5,parts of the member nearest the centroid
 572,2,beratungspsychologie,1,2,0.5,parts of the member nearest the centroid
 573,1,information systems engineering,1,2,0.5,parts of the member nearest the centroid
 573,2,management,1,2,0.5,parts of the member nearest the centroid
@@ -1365,7 +1366,7 @@ type,rank,keyword,member titles with it,members,share,from
 598,3,southeast asia,1,2,0.5,parts of the member nearest the centroid
 599,1,europäische wirtschaftspolitik,1,2,0.5,parts of the member nearest the centroid
 600,1,produktentwicklung,3,4,0.75,phrases in 2 or more titles
-601,1,digitale methodik in den geistes,2,2,1.0,phrases in 2 or more titles
+601,1,digitale methodik in den geistes-,2,2,1.0,phrases in 2 or more titles
 601,2,kulturwissenschaften,2,2,1.0,phrases in 2 or more titles
 602,1,precision farming,1,2,0.5,parts of the member nearest the centroid
 603,1,bionik,2,3,0.667,phrases in 2 or more titles
@@ -1380,9 +1381,9 @@ type,rank,keyword,member titles with it,members,share,from
 609,1,blechblasinstrumente,2,4,0.5,phrases in 2 or more titles
 609,2,orchesterinstrumente profil blechblasinstrumente,2,4,0.5,phrases in 2 or more titles
 610,1,posaune musik,1,2,0.5,parts of the member nearest the centroid
-611,1,gesundheits,1,3,0.333,parts of the member nearest the centroid
+611,1,gesundheits-,1,3,0.333,parts of the member nearest the centroid
 611,2,versorgungswissenschaften,1,3,0.333,parts of the member nearest the centroid
-612,1,orthopädie,2,3,0.667,phrases in 2 or more titles
+612,1,orthopädie-,2,3,0.667,phrases in 2 or more titles
 612,2,rehabilitationstechnik,2,3,0.667,phrases in 2 or more titles
 613,1,wasserwirtschaft,3,7,0.429,phrases in 2 or more titles
 613,2,water engineering,2,7,0.286,phrases in 2 or more titles
@@ -1393,7 +1394,7 @@ type,rank,keyword,member titles with it,members,share,from
 617,1,interior design,1,2,0.5,parts of the member nearest the centroid
 618,1,informatik,1,2,0.5,parts of the member nearest the centroid
 619,1,information design,1,2,0.5,parts of the member nearest the centroid
-620,1,sozial,2,2,1.0,phrases in 2 or more titles
+620,1,sozial-,2,2,1.0,phrases in 2 or more titles
 621,1,sustainable engineering,1,2,0.5,parts of the member nearest the centroid
 621,2,future technologies,1,2,0.5,parts of the member nearest the centroid
 622,1,wirtschaft-politik - lehramt für sonderpädagogische förderung,1,2,0.5,parts of the member nearest the centroid
@@ -1411,14 +1412,14 @@ type,rank,keyword,member titles with it,members,share,from
 630,1,inklusive pädagogik,3,7,0.429,phrases in 2 or more titles
 630,2,inklusive pädagogik im primarbereich,2,7,0.286,phrases in 2 or more titles
 631,1,verfahrenstechnik,3,5,0.6,phrases in 2 or more titles
-631,2,energie,2,5,0.4,phrases in 2 or more titles
-631,3,umwelt,2,5,0.4,phrases in 2 or more titles
+631,2,energie-,2,5,0.4,phrases in 2 or more titles
+631,3,umwelt-,2,5,0.4,phrases in 2 or more titles
 632,1,humangeographie-raumkonflikte,1,2,0.5,parts of the member nearest the centroid
 632,2,raumplanung,1,2,0.5,parts of the member nearest the centroid
 632,3,raumentwicklung,1,2,0.5,parts of the member nearest the centroid
 633,1,tuba musik,1,2,0.5,parts of the member nearest the centroid
 634,1,georessourcenmanagement,4,7,0.571,phrases in 2 or more titles
-634,2,umwelt,2,7,0.286,phrases in 2 or more titles
+634,2,umwelt-,2,7,0.286,phrases in 2 or more titles
 635,1,interprofessionelle gesundheitsvorsorge,1,2,0.5,parts of the member nearest the centroid
 635,2,bewegungsförderung,1,2,0.5,parts of the member nearest the centroid
 636,1,interdisziplinäre mittelalterstudien,1,2,0.5,parts of the member nearest the centroid
@@ -1466,7 +1467,7 @@ type,rank,keyword,member titles with it,members,share,from
 666,1,advanced information technology,2,3,0.667,phrases in 2 or more titles
 667,1,biophysik,3,4,0.75,phrases in 2 or more titles
 668,1,lebensmittelchemie,8,8,1.0,phrases in 2 or more titles
-669,1,kunst,4,5,0.8,phrases in 2 or more titles
+669,1,kunst,3,5,0.6,phrases in 2 or more titles
 670,1,arboristik,2,2,1.0,phrases in 2 or more titles
 671,1,onlinemedien,1,3,0.333,parts of the member nearest the centroid
 672,1,technische informatik,3,3,1.0,phrases in 2 or more titles
@@ -1506,10 +1507,10 @@ type,rank,keyword,member titles with it,members,share,from
 697,1,klavier solist,1,2,0.5,parts of the member nearest the centroid
 698,1,management,2,3,0.667,phrases in 2 or more titles
 699,1,geschichte bildung im sekundarbereich,1,2,0.5,parts of the member nearest the centroid
-700,1,biomedizintechnik mit praxis,1,2,0.5,parts of the member nearest the centroid
+700,1,biomedizintechnik mit praxis-,1,2,0.5,parts of the member nearest the centroid
 700,2,auslandsstudiensemester,1,2,0.5,parts of the member nearest the centroid
-701,1,sport,3,6,0.5,phrases in 2 or more titles
-701,2,prävention,2,6,0.333,phrases in 2 or more titles
+701,1,prävention,2,6,0.333,phrases in 2 or more titles
+701,2,sport,2,6,0.333,phrases in 2 or more titles
 702,1,bildungswissenschaften,3,8,0.375,phrases in 2 or more titles
 702,2,bildungswissenschaften lehramt grundschule,2,8,0.25,phrases in 2 or more titles
 703,1,kooperatives ingenieurstudium elektrotechnik,1,4,0.25,parts of the member nearest the centroid
@@ -1521,14 +1522,14 @@ type,rank,keyword,member titles with it,members,share,from
 707,2,ingenieure,1,2,0.5,parts of the member nearest the centroid
 708,1,quantitative economics,1,2,0.5,parts of the member nearest the centroid
 709,1,mikrosystemtechnik,1,4,0.25,parts of the member nearest the centroid
-710,1,strategische produkt,1,2,0.5,parts of the member nearest the centroid
+710,1,strategische produkt-,1,2,0.5,parts of the member nearest the centroid
 710,2,innovationsentwicklung,1,2,0.5,parts of the member nearest the centroid
 711,1,osteopathie,3,3,1.0,phrases in 2 or more titles
 712,1,innovation management,1,2,0.5,parts of the member nearest the centroid
 713,1,philosophie,3,3,1.0,phrases in 2 or more titles
 714,1,kunst,3,3,1.0,phrases in 2 or more titles
 715,1,smart systems engineering,2,5,0.4,phrases in 2 or more titles
-716,1,finanz,5,5,1.0,phrases in 2 or more titles
+716,1,finanz-,5,5,1.0,phrases in 2 or more titles
 716,2,rechnungswesen,3,5,0.6,phrases in 2 or more titles
 716,3,steuern,3,5,0.6,phrases in 2 or more titles
 717,1,gender studies,2,2,1.0,phrases in 2 or more titles
@@ -1556,7 +1557,7 @@ type,rank,keyword,member titles with it,members,share,from
 733,1,afrikanische sprachen,3,4,0.75,phrases in 2 or more titles
 733,2,kommunikation,2,4,0.5,phrases in 2 or more titles
 733,3,medien,2,4,0.5,phrases in 2 or more titles
-734,1,medien,3,7,0.429,phrases in 2 or more titles
+734,1,medien-,3,7,0.429,phrases in 2 or more titles
 734,2,journalismus,2,7,0.286,phrases in 2 or more titles
 734,3,kommunikationsmanagement,2,7,0.286,phrases in 2 or more titles
 735,1,integrierter deutsch-französischer geschichte,1,2,0.5,parts of the member nearest the centroid
@@ -1577,7 +1578,7 @@ type,rank,keyword,member titles with it,members,share,from
 745,1,verfahrenstechnik,5,9,0.556,phrases in 2 or more titles
 745,2,prozesstechnik,2,9,0.222,phrases in 2 or more titles
 746,1,akkordeon,6,7,0.857,phrases in 2 or more titles
-747,1,produkt,1,2,0.5,parts of the member nearest the centroid
+747,1,produkt-,1,2,0.5,parts of the member nearest the centroid
 747,2,objektdesign,1,2,0.5,parts of the member nearest the centroid
 748,1,ethik lehramt sekundarstufe i,4,9,0.444,phrases in 2 or more titles
 748,2,ethik,2,9,0.222,phrases in 2 or more titles
@@ -1666,7 +1667,7 @@ type,rank,keyword,member titles with it,members,share,from
 802,1,aufbaustudiengang grundzüge des deutschen rechts,1,2,0.5,parts of the member nearest the centroid
 803,1,digitales verwaltungsmanagement,1,2,0.5,parts of the member nearest the centroid
 804,1,sport,1,3,0.333,parts of the member nearest the centroid
-804,2,medien,1,3,0.333,parts of the member nearest the centroid
+804,2,medien-,1,3,0.333,parts of the member nearest the centroid
 804,3,kommunikationsforschung,1,3,0.333,parts of the member nearest the centroid
 805,1,epidemiologie,2,2,1.0,phrases in 2 or more titles
 806,1,green building engineering,1,2,0.5,parts of the member nearest the centroid
