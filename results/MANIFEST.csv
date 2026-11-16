@@ -29,3 +29,5 @@ step8_decision/factorial.csv,stress grid: winners by factor level,160.0,27cebbd4
 step8_decision/step8.json,"decision, sentences and sensitivities",,388f673439ed1503,ef5af71
 step8_decision/listspecs.csv,list-changing specs (8b),17.0,56a02a75c6e4d669,
 step8_decision/step8b.json,8b summary,,25b2c92b1a1da53e,d02c71d
+step8_decision/gate_references_sens.csv,second-handbook check: a plain Informatik bachelor (TH Ingolstadt),1.0,4acd0992f0dd2d75,
+step8_decision/step7_sens.json,second-handbook check summary,,06443da58db28d50,97047bf

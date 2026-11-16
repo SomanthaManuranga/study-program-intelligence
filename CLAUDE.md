@@ -163,7 +163,8 @@ OTH, 52.5 ECTS new teaching (50.5 N, 2 T), about 1.2 professor-equivalents, no n
 rules and as Informatik types 13 / 242 (18-20 new first-years), but breaks with a cap on new modules, with at most
 50 % from one programme, without the two-module rule, and under the former strict rule; it holds in 22 % of the stress
 grid and has no passer in the other 78 %.
-Cybersecurity bachelor is second for information only (needs new expertise). The gate walk now applies the minimum
+A second, public handbook (TH Ingolstadt Informatik, check only) confirms it: 66.7 %, 55 ECTS new teaching, 1.22
+professor-equivalents. Cybersecurity bachelor is second for information only (needs new expertise). The gate walk now applies the minimum
 cohort (architecture master took the slot of communication master).
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).

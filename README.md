@@ -23,7 +23,10 @@ faculty can run with its existing staff and labs (the supervisor's binding condi
 | Ranking | first among the candidates in the band in 82 % of 10,000 Monte Carlo draws (cybersecurity second, for information only: it needs outside teaching) |
 | Robustness | holds under the agreed rules; breaks with a cap on new modules by current lecturers, with at most 50 % from one existing programme, without counting two EMI modules together, or under the project's former strict rule (it holds in 22 % of 17.9 million stress combinations; the rest has no passer at all) |
 
-**Main limitations:** the recommendation rests on one public handbook; every module judgement was made by AI readers
+**Second handbook:** a plain Informatik bachelor (TH Ingolstadt), marked the same way as a check, gives 66.7 % overlap,
+55 ECTS new teaching and 1.22 professor-equivalents, so the result does not hang on one programme.
+
+**Main limitations:** the gate result rests on one public handbook (confirmed by the check above); every module judgement was made by AI readers
 with blind second and third readers, no person checked them; the rule that two EMI modules may cover one module was
 set after an earlier result was known; competition counts could not be validated; "new to OTH" uses OTH's nearest
 programme as a stand-in. Details and every number: `docs/funnel_run2_notes.md`; final tables in `results/`.

@@ -767,7 +767,32 @@ third. 5 or 6 of the 6 gate candidates stay in the first 20 in every spec. Not r
 would have to run again: boilerplate scan from 10, the former clustering setting, the four keyword variants, and one
 common similarity radius. The radius specs change only the competition input.
 
-**Limits.** One handbook carries the recommendation. All module judgements are by AI readers. The two-module rule of
+**Second-handbook check (public data only).** The recommendation rests on one handbook, because the only other
+offer of its type at a university of applied sciences blocks scripts. As a check, one plain Informatik bachelor
+handbook (TH Ingolstadt, type 242, the largest Informatik type) was marked the same way in its own files (31 modules;
+second reader on 14 rows, sample 0 of 10 different; third reader on 1 row). It does not change the gate or the
+decision.
+
+| | TH Ingolstadt, Informatik (check) | OTH Regensburg, International Computer Science (gate) |
+|---|---|---|
+| Share EMI already teaches | 66.7 % | 68.2 % |
+| Least- / best-covered electives | 66.7 % / 66.7 % | 61.2 % / 75.2 % |
+| Unsure covered rows not covered | 63.6 % | 57.0 % |
+| Without the two-module rule | 31.5 % | 33.0 % |
+| Largest share from one programme | 52.7 % (Medieninformatik) | 56.7 % (Medieninformatik) |
+| New teaching (N / T / X ECTS) | 55.0 (50.0 / 5.0 / 0) | 52.5 (50.5 / 2.0 / 0) |
+| Professor-equivalents | 1.22 | 1.17 |
+| Verdict | would pass with existing resources | passes with existing resources |
+
+The result does not hang on Regensburg's international programme; it hangs, for both handbooks, on counting two EMI
+modules together.
+
+**Decisions on the open questions (Soma: existing resources only, public data only).** New modules by current
+lecturers count as existing resources (the supervisor's 40 % measure accepts up to 60 % new content); they are stated
+as the condition, not capped. One handbook is what the rule allows; the check above adds a second, public one. The 7
+stress values that need Steps 2, 3 or 5 again stay a stated limit.
+
+**Limits.** One handbook carries the gate result (a second, public one confirms it). All module judgements are by AI readers. The two-module rule of
 Step 7, without which no candidate passes, was set knowing the second-pass result. Competition, trend and overlap
 enter the score more than once (`ranking.disclosed`). Competition counts are not validated (Step 3). "New to OTH" rests on the nearest OTH programme as a stand-in (Step 6). The overlap measures
 content, not lectures students can share.
