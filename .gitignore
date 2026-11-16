@@ -265,6 +265,9 @@ reports/final/*
 !docs/funnel_module_marks_pass2_1.csv
 !docs/funnel_module_marks_pass2_2.csv
 !docs/funnel_module_marks_pass2_3.csv
+!docs/funnel_module_marks_sens_1.csv
+!docs/funnel_module_marks_sens_2.csv
+!docs/funnel_module_marks_sens_3.csv
 !docs/funnel_similarity_check_2.csv
 !docs/funnel_similarity_marks_2.csv
 

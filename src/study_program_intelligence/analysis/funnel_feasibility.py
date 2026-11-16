@@ -35,6 +35,10 @@ from .module_gaps import embed
 
 ROWS, KEY, SAMPLE = INTERIM / "funnel2_rows.json", INTERIM / "funnel2_rows_key.csv", INTERIM / "funnel2_rows_sample.json"
 THIRD = INTERIM / "funnel2_rows_third.json"
+ROWS_FINAL, GATE_REPORT, PREFIX, SENS_MODE = INTERIM / "funnel2_rows_final.csv", "step7_gate.md", "R", False
+# a second-handbook check of the recommendation (decision log 2026-11-16): one plain Informatik bachelor handbook,
+# marked the same way in its own files; it never changes the gate or the decision
+SENS_REFS = ("242_bachelor_a",)
 GATE, GATE_REFS, STEP7 = INTERIM / "funnel2_gate.csv", INTERIM / "funnel2_gate_references.csv", INTERIM / "funnel2_step7.json"
 MARKS = {k: REPO_ROOT / "docs" / f"funnel_module_marks_{k}.csv" for k in (1, 2, 3)}
 TIMETABLE = INTERIM / "timetable_subjects.csv"
@@ -188,9 +192,20 @@ def gate_order() -> pd.DataFrame:
     return order.assign(members=order["type"].map(pd.read_csv(TYPES).set_index("type")["members"]))
 
 
+def sensitivity_mode() -> None:
+    """Switch every file of this module to the second-handbook check: own sheet, key, marks and outputs (prefix S)."""
+    global ROWS, KEY, SAMPLE, THIRD, MARKS, GATE, GATE_REFS, STEP7, ROWS_FINAL, GATE_REPORT, PREFIX, SENS_MODE
+    ROWS, KEY, SAMPLE, THIRD = (INTERIM / f"funnel2_rows_sens{x}" for x in (".json", "_key.csv", "_sample.json", "_third.json"))
+    MARKS = {k: REPO_ROOT / "docs" / f"funnel_module_marks_sens_{k}.csv" for k in (1, 2, 3)}
+    GATE, GATE_REFS, STEP7, ROWS_FINAL = (INTERIM / f"funnel2_{x}_sens{e}" for x, e in (("gate", ".csv"), ("gate_references", ".csv"), ("step7", ".json"), ("rows_final", ".csv")))
+    GATE_REPORT, PREFIX, SENS_MODE = "step7_gate_sens.md", "S", True
+
+
 def eligible_key(key: pd.DataFrame) -> pd.DataFrame:
     """The rows of the candidates that are eligible in the current walk (rows of a candidate that left the walk stay in
-    the key and in the mark files but are not used)."""
+    the key and in the mark files but are not used). In the second-handbook check every row of its key is used."""
+    if SENS_MODE:
+        return key.reset_index(drop=True)
     w = pd.read_csv(WALK)
     keep = {(int(t), lv) for t, lv, st in zip(w["type"], w["level"], w["status"]) if st == "eligible"}
     return key[[(int(t), lv) in keep for t, lv in zip(key["type"], key["level"])]].reset_index(drop=True)
@@ -201,15 +216,21 @@ def rows(add: bool = False) -> None:
     yet in the key get new rows, numbered after the last one."""
     stamp, rules = run_stamp(), config()
     ref, metas = references(0.8)
-    order = gate_order()
-    w = walk(order, metas, not_candidates(order), GATE_RULE)
-    w.to_csv(WALK, index=False)
-    if not w.empty and w["status"].iloc[-1] in ("not yet tried", "waiting"):
+    if SENS_MODE:
+        missing = set(SENS_REFS) - set(ref["ref"])
+        if missing:
+            raise SystemExit(f"no complete table for {missing}")
+        ref = ref[ref["ref"].isin(SENS_REFS)].reset_index(drop=True)
+    else:
+        order = gate_order()
+        w = walk(order, metas, not_candidates(order), GATE_RULE)
+        w.to_csv(WALK, index=False)
+        if not w.empty and w["status"].iloc[-1] in ("not yet tried", "waiting"):
+            print(w.to_string())
+            raise SystemExit("the walk down the gate list is not finished")
+        keep = {(int(t), lv) for t, lv, st in zip(w["type"], w["level"], w["status"]) if st == "eligible"}
+        ref = ref[[(int(t), lv) in keep for t, lv in zip(ref["type"], ref["level"])]].reset_index(drop=True)
         print(w.to_string())
-        raise SystemExit("the walk down the gate list is not finished")
-    keep = {(int(t), lv) for t, lv, st in zip(w["type"], w["level"], w["status"]) if st == "eligible"}
-    ref = ref[[(int(t), lv) in keep for t, lv in zip(ref["type"], ref["level"])]].reset_index(drop=True)
-    print(w.to_string())
     old_key, old_sheet = (pd.read_csv(KEY), json.loads(ROWS.read_text(encoding="utf-8"))["rows"]) if add else (pd.DataFrame(columns=["ref"]), [])
     all_refs = set(ref["ref"]) | set(old_key["ref"])
     ref = ref[~ref["ref"].isin(set(old_key["ref"]))].reset_index(drop=True)
@@ -236,12 +257,12 @@ def rows(add: bool = False) -> None:
         show = np.random.default_rng(SEED + n).permutation(len(near))                 # shuffled order of the EMI modules shown
         near = [near[k] for k in show]
         best = max(sim[i][emi_allowed(emi, r["level"])])
-        sheet.append({"row": f"R{n:04d}", "module": redact(str(r["module"]), terms), "credit points": float(r["ects"]), "level of the programme": r["level"],
+        sheet.append({"row": f"{PREFIX}{n:04d}", "module": redact(str(r["module"]), terms), "credit points": float(r["ects"]), "level of the programme": r["level"],
                       "description": redact(str(r["content"])[:MODULE_TEXT], terms) if isinstance(r["content"], str) else "",
                       "EMI modules": [{"number": k + 1, "title": emi.at[j, "title"], "level": {"BA": "bachelor", "MA": "master"}.get(emi.at[j, "level"], emi.at[j, "level"]),
                                        "description": emi_text(emi.at[j, "text"], emi.at[j, "title"])} for k, j in enumerate(near)],
                       "timetable subjects": [tt[j] for j in np.random.default_rng(SEED + n).permutation(np.argsort(-tsim[i], kind="mergesort")[:SUBJECTS])]})
-        key.append({"row": f"R{n:04d}", "ref": r["ref"], "type": r["type"], "level": r["level"], "order": r["order"], "module": r["module"], "ects": r["ects"], "kind": r["kind"],
+        key.append({"row": f"{PREFIX}{n:04d}", "ref": r["ref"], "type": r["type"], "level": r["level"], "order": r["order"], "module": r["module"], "ects": r["ects"], "kind": r["kind"],
                     **{f"emi {k + 1}": emi.at[j, "module_id"] for k, j in enumerate(near)}, **{f"emi {k + 1} programme": emi.at[j, "programme_id"] for k, j in enumerate(near)},
                     **{f"similarity {k + 1}": float(sim[i, j]) for k, j in enumerate(near)}, "best similarity": float(best), "automatic: covered": bool(best >= threshold)})
     ROWS.write_text(json.dumps({"labs": [x["name"] for x in yaml.safe_load(LABS.read_text(encoding="utf-8"))["labs"]], "rows": sheet}, indent=1, ensure_ascii=False), encoding="utf-8")
@@ -491,7 +512,7 @@ def verdict() -> None:
     cands = pd.DataFrame(cands).sort_values("gate order").reset_index(drop=True)
     refs.to_csv(GATE_REFS, index=False)
     cands.to_csv(GATE, index=False)
-    k.to_csv(INTERIM / "funnel2_rows_final.csv", index=False)
+    k.to_csv(ROWS_FINAL, index=False)
     both = k[k["second"].notna()]
     agree = float(((both["first"].isin(COVERED)) == (both["second"].isin(COVERED))).mean()) if len(both) else None
     res = {"stamp": stamp, "rows": len(k), "references": len(refs), "candidates": len(cands), "verdicts": cands["verdict"].value_counts().to_dict(),
@@ -502,7 +523,7 @@ def verdict() -> None:
            "files": {f.name: sha(f) for f in (GATE, GATE_REFS)}}
     STEP7.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     REPORTS.mkdir(parents=True, exist_ok=True)
-    (REPORTS / "step7_gate.md").write_text("\n".join([
+    (REPORTS / GATE_REPORT).write_text("\n".join([
         "# Funnel step 7: the feasibility gate (generated)", "", f"Code commit {stamp['commit']}, run on {stamp['date']}, tracked files clean: {stamp['clean']}.", "",
         "All module verdicts are made by AI readers; no person has checked a row.", "", "## Candidates", "",
         md_table(cands.assign(**{"central titles": cands["central titles"].str.slice(0, 50)}).round(2)), "", "## References", "", md_table(refs.round(2))]) + "\n", encoding="utf-8")
@@ -510,4 +531,8 @@ def verdict() -> None:
 
 
 if __name__ == "__main__":
-    {"rows": lambda: rows(add=len(sys.argv) > 2 and sys.argv[2] == "--add"), "sample": sample, "third": third, "verdict": verdict}[sys.argv[1] if len(sys.argv) > 1 else ""]()
+    args = sys.argv[1:]
+    if args and args[0] == "sens":                     # the second-handbook check: python -m ... funnel_feasibility sens rows|sample|third|verdict
+        sensitivity_mode()
+        args = args[1:]
+    {"rows": lambda: rows(add=len(args) > 1 and args[1] == "--add"), "sample": sample, "third": third, "verdict": verdict}[args[0] if args else ""]()

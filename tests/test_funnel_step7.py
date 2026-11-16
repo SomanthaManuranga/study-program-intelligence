@@ -165,3 +165,13 @@ def test_overlap_and_verdicts_recomputed_from_the_marks():
         ok = (rr["overlap"] >= 0.40) & (rr["largest share from one programme"] <= 0.80) & (rr["share lab"] == 0)
         want = ("existing-resources passer" if (rr["X ECTS"] <= 1e-9).all() else "band passer") if ok.all() else ("reference-dependent" if ok.sum() == 1 else "fail")
         assert c.verdict == want and c.references == len(rr)
+
+
+def test_sensitivity_mode_uses_its_own_files():
+    import importlib
+    G = importlib.reload(F)
+    G.sensitivity_mode()
+    assert G.PREFIX == "S" and G.KEY.name == "funnel2_rows_sens_key.csv" and G.MARKS[1].name == "funnel_module_marks_sens_1.csv"
+    assert G.GATE.name == "funnel2_gate_sens.csv" and G.STEP7.name == "funnel2_step7_sens.json" and G.ROWS_FINAL.name == "funnel2_rows_final_sens.csv"
+    assert len(G.eligible_key(pd.DataFrame({"row": ["S0001"], "type": [242], "level": ["bachelor"]}))) == 1
+    importlib.reload(F)                                                                                           # the module's normal files again
