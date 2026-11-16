@@ -1,0 +1,32 @@
+row,verdict,which,unsure,reason
+S0001,N,2,False,"Rust and safe, resource-efficient programming not taught; EMI teaches modern C++ and testing, so a programming lecturer could write it."
+S0002,E2,5,False,"EMI Datenbanksysteme covers relational design, ER, normalisation, SQL, practical; relational algebra and NoSQL history would be added."
+S0003,E2,3+4,False,"Mathematik 2 (algebraic structures, modular arithmetic) plus Mathematik 3 (eigenvalues, power series, ODEs) cover most; integration techniques, numerics missing."
+S0004,E2,2,False,"Informationssicherheit covers threats, network security, mechanisms, pentesting; risk analysis/security management and OS hardening would be added."
+S0005,new,,False,"IT law (contracts, e-commerce, copyright, data protection law) is not taught in EMI as shown; only land-registry law appears."
+S0006,N,4,True,"Stochastik covers probability and descriptive/inferential statistics, but combinatorics (inclusion-exclusion, generating functions) and R are missing, about half."
+S0007,E2,2,False,Foreign Language 1 teaches B2/C1 technical English with technology texts; IT vocabulary topics and business correspondence would be added.
+S0008,N,4,True,"Functional programming, lambda calculus and Haskell are not taught; EMI teaches procedural, OO and Prolog programming and a language overview."
+S0009,E2,3,False,"Betriebswirtschaftliche Grundlagen covers legal forms, organisation, HR, innovation, production, marketing, accounting, finance; entrepreneurship and globalisation would be added."
+S0010,E2,5,False,"Computernetzwerke covers OSI/TCP-IP layers, Ethernet, IP, TCP, lab work; routing algorithms, sliding window detail and C++ simulation lab would be added."
+S0011,N,8,True,Visible content stresses graph theory and graph algorithms; Mathematik 2 has discrete maths but only elements of graph theory; description truncated.
+S0012,N,1,False,"Algorithmic computer graphics (rasterisation, curves, visibility, rendering pipeline in Java) not taught; Visual Computing covers CGI production with tools."
+S0013,N,4,True,MCI covers HCI basics and I/O devices as one part; detailed 2D/3D input-output device technology is not covered to two thirds.
+S0014,E2,5+1,False,"Programmierung 2 (OOP, inheritance, generics, exceptions) plus Java module with concurrency cover most; GUI and git practice would be added."
+S0015,E2,6,False,"Theoretische Informatik covers formal languages, automata, Chomsky hierarchy, Turing machines, computability; pumping lemma, CYK, halting problem/Rice partly added."
+S0016,E2,2+3,False,"Mathematik 1 (sequences, matrices, linear systems, differential calculus) plus Mathematik 2 (logic, sets, combinatorics, complex numbers) cover most; Taylor, ODE, Boolean algebra added."
+S0017,N,,True,"Orientation project with Scratch and VM setup; no shown module matches, but EMI runs project modules and basic programming any lecturer could teach."
+S0018,N,3,False,"Symbolische KI covers logic, Prolog, knowledge representation; CSP, search, expert systems, decision trees and pattern recognition are missing."
+S0019,E2,3+4,False,"Gesprächsführung und Vortragstechnik (presenting, feedback) plus Bachelorseminar (literature, scientific work) cover the seminar skills; topic-specific discussion added."
+S0020,E2,1+3,False,PMA has Scrum/Kanban with a practical Scrum project; SE2 adds TDD and CI; ticket tools and CI/CD practice in a semester project would be added.
+S0021,E2,7+6,False,"SE1 (requirements, UML, OOA/OOD, patterns, testing) plus SE2 (process models, quality, testing) cover most; component architecture and coding rules added."
+S0022,E2,6+4,False,"PMA covers classic PM, network plans, initiation, risks, planning/control, agile; PM module adds controlling and risk; trend and cost analysis added."
+S0023,E1,2,False,"EMI Algorithmen und Datenstrukturen covers complexity, lists, trees, graphs, sorting/searching with implementation lab; essentially the same module."
+S0024,N,4,False,"Betriebssysteme covers synchronisation and IPC only; distributed systems models, process calculi, RPC/RMI not covered; timetable lists distributed systems technologies."
+S0025,N,3,False,"EMI teaches concurrent programming (Java, OS synchronisation, deadlocks); OpenMP, GPU/OpenCL, parallel architectures and algorithms are missing."
+S0026,N,3,True,"Grundlagen digitaler Systeme covers number representation, von Neumann, ALU, memory, buses; ISA, IA32 assembler lab and performance concepts missing, about half."
+S0027,E2,1,False,"Elektrotechnik covers charge, DC networks, electric and magnetic fields, AC, RLC; diodes, transistors, flip-flops and basic mechanics would be added."
+S0028,E2,4+7,False,"Echtzeitbetriebssysteme (RTOS, scheduling, synchronisation) plus Embedded Systems (hardware, microcontrollers, interrupts) cover most; multicore scheduling, OSEK/AUTOSAR added."
+S0029,E2,9+2,False,"Programmierung 1 (procedural programming, language overview, IDE) plus C/C++ module (C types, pointers, structs, files) cover it; git and Linux VM added."
+S0030,E2,5+4,False,"Web-Client-Technologien (HTML, CSS, JS, DOM, HTTP) plus Web-Anwendungsentwicklung (server-side, async, MVC) cover most; PHP, Bootstrap, sessions would be added."
+S0031,E2,3,False,"EMI Betriebssysteme covers OS tasks, processes, threads, IPC, synchronisation, virtual memory, system calls; scheduling strategies and file systems would be added."
