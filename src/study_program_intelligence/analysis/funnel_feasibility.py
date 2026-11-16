@@ -319,6 +319,10 @@ def final_marks(key: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
         else:
             raise SystemExit(f"row {r.Index}: the reviewers differ and no third reader has marked it")
     k["final"], k["basis"] = final, basis
+    third_unsure = third["unsure"].reindex(k.index) if len(third) else pd.Series(False, index=k.index)
+    second_unsure = second["unsure"].reindex(k.index).fillna(False).astype(bool)
+    k["deciding reader unsure"] = [bool(third_unsure.get(i, False)) if b == "third reader" else bool(k.at[i, "first unsure"]) or (b == "both reviewers" and bool(second_unsure.get(i, False)))
+                                   for i, b in zip(k.index, k["basis"])]   # a sensitivity: the marking rule asks for the cautious verdict when unsure
     k["which final"] = third["which"].reindex(k.index).where(k["basis"] == "third reader", k["which"]) if len(third) else k["which"]
     return k.reset_index(), info
 
@@ -436,7 +440,9 @@ def verdict() -> None:
         why = [w for w, bad in (("too little overlap", ov["share"] < lo), ("too much from one programme", share1 > one_max), ("lab", lab > 0)) if bad]
         refs.append({"ref": ref, "type": int(g["type"].iloc[0]), "level": level, "institution": metas[ref]["institution"], "programme": metas[ref]["title"],
                      "modules": len(g), "counted ECTS": ov["counted"], "elective fill ECTS": ov["fill"], "overlap": ov["share"], "overlap (best-covered electives first)": ov["best"],
-                     "overlap (worst-covered electives first)": ov["worst"], "automatic overlap": auto["share"], "largest share from one programme": share1, "that programme": prog1,
+                     "overlap (worst-covered electives first)": ov["worst"], "automatic overlap": auto["share"],
+                     "overlap without two-module covers (sensitivity)": fill_figures(g, is_(*COVERED) & (g["which final"].map(lambda w: len(which_numbers(w))) <= 1), taught)["share"],
+                     "overlap with covered-but-unsure rows not covered (sensitivity)": fill_figures(g, is_(*COVERED) & ~g["deciding reader unsure"], taught)["share"], "largest share from one programme": share1, "that programme": prog1,
                      "share N": n, "share new, not N": new, "share lab": lab, "new teaching ECTS (scaled)": new_ects, "N ECTS": n * taught, "T ECTS": t_ects, "X ECTS": x_ects,
                      "professor-equivalents": new_ects * SWS_PER_ECTS / SWS_A_YEAR, "share of new ECTS in N": n * taught / new_ects if new_ects > 0 else np.nan,
                      "timetable confirmation": float(g.loc[is_(*COVERED) & g["in the timetable"], "ects"].sum()) / cov_ects if cov_ects else np.nan,
