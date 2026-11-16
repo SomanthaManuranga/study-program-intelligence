@@ -706,3 +706,75 @@ blocker). F12 pass (213 tests).
 
 **What goes to Step 8.** The ranking's first decision is taken among existing-resources passers: computer science
 bachelor only. The second decision (band passers, for information) adds cybersecurity bachelor.
+
+## Step 8: which programme, and how sure are we?
+
+**Question.** Of the candidates that pass the gate, which one should EMI start, and how stable is that answer?
+
+**Rule.** `configs/funnel.yaml`, blocks `ranking`, `stress_tests` and `decision`; criteria in
+`docs/criteria_funnel_step8.md`. Code: `analysis/funnel_rank.py` (8a: inputs, value functions, Monte Carlo,
+PROMETHEE, the stress grid, decision) and `analysis/funnel_listspecs.py` (8b: list-changing specs). Weights as in
+`configs/analysis.yaml` (demand .30, labour .20, fit .20, feasibility .15, differentiation .10, regional .05).
+
+**A gate error corrected first.** The minimum cohort of 20 first-years drops a candidate before it takes a gate
+slot; the Step 7 walk had not applied it. Communication and media master (intake 12) left the gate, and its slot
+went to architecture master, which was marked the same way (92 modules, second and third reader) and fails at 2 %.
+
+**Result.**
+
+| Decision | Set | Result |
+|---|---|---|
+| First (the recommendation) | existing-resources passers: computer science bachelor only | **recommend**: 26.5 first-years new to OTH a year (central; range 7 to 88), above the bar of 15 |
+| Second (for information, never a recommendation) | band passers: computer science bachelor, cybersecurity bachelor | computer science first (P(rank 1) 0.82, PROMETHEE agrees, wins 66 % of the stress grid); cybersecurity needs 10 ECTS by teaching assignments and 3 to 10 ECTS beyond what existing staff can take: outside the scope, needs new expertise |
+
+**The recommendation in one sentence.** Start a general computer science / Informatik bachelor (modelled on OTH
+Regensburg's International Computer Science); about 26 first-years a year would be new to OTH; EMI already teaches
+about two thirds of it; it needs 52.5 ECTS of new teaching, 50.5 ECTS as new modules by current lecturers and 2 ECTS
+by a teaching assignment, about 1.2 professor-equivalents, and no new lab.
+
+**How sure: what keeps it and what breaks it.**
+
+| Reading | Recommendation |
+|---|---|
+| Least-covered electives (61 %), unsure rows not covered (57 %), band 0.5-0.8 or 0.3-0.9, both band ends on all EMI modules, primary handbook only, minimum cohort 25 for this unit, one-passer bar 10 | stays |
+| Measured as the plain Informatik types (13 or 242) instead of the small "Computer Science" type | stays (18.1 and 20.2 new first-years) |
+| Same, with minimum cohort 25 | breaks (gross 20.9 and 23.2) |
+| A cap on new modules by current lecturers (20 or 10 ECTS; it needs 50.5) | breaks |
+| At most 50 % from one existing programme (it has 57 % from Medieninformatik) | breaks |
+| Without the two-module rule of Step 7 (overlap 33 %) | breaks: no candidate passes; closest cybersecurity at 35 % |
+| The project's former strict rule (80 % covered, at most 20 % new) | breaks: no candidate passes |
+
+In the full stress grid (17.9 million combinations of the 20 pre-registered factors) the recommendation holds in
+22 %; in the other 78 % no candidate passes at all, entirely because of the two caps above. Under the agreed rules
+(no cap on new modules, 80 % from one programme) it holds.
+
+**Why "computer science" and not "Informatik".** Step 2 split the field into a small type of mostly English-titled
+"Computer Science" offers (type 312: 3 similar offers in Germany, 2 within 150 km) and large "Informatik" types
+(13: 30 within 150 km; 242: 13). The small type looks rare and keeps almost no students in OTH's region (0.5 %),
+which are artefacts of the split. The programme is a general Informatik bachelor; measured as types 13 or 242 the
+recommendation stays, but its demand is lower (18 to 20 new first-years) and it is no longer clearly ahead of
+cybersecurity in the information-only comparison. Type 13's labour value rests on a keyword with no ads and is
+flagged.
+
+**The information-only comparison is close.** Computer science is first with P(rank 1) 0.82 under the rule's
+reading; it falls to 0.77 or 0.78 with more weight uncertainty (concentration 10) or with the competition half
+drawn uniformly over 1 to 5, below the bar of 0.8 (then "shortlist").
+
+**List-changing specs (8b).** 17 of the 21 pre-registered specs could be run from stored data. Computer science
+bachelor stays the first bachelor that can take a slot in 16 of them; under the widest similarity radius it is
+third. 5 or 6 of the 6 gate candidates stay in the first 20 in every spec. Not run, because Steps 2, 3 or 5 would
+have to run again: boilerplate scan from 10, the former clustering setting, the keyword variants, and one common
+similarity radius. The radius specs change only the competition input.
+
+**Limits.** One handbook carries the recommendation. All module judgements are by AI readers. Competition counts are
+not validated (Step 3). "New to OTH" rests on the nearest OTH programme as a stand-in (Step 6). The overlap measures
+content, not lectures students can share.
+
+**Reviews.** Two review rounds on 8a and one on 8b; every number recomputed independently. Fixed: the competition
+half drawn over 1 to 5 as the rule says; decision sentences with the split of new teaching; the cache of the stress
+grid ignored the reference reading (win shares corrected); the Informatik types shown next to the recommendation;
+8b supply cut, measure and notes.
+
+**Scorecard.** D1 pass. D2 pass. D3 pass (test recomputes every input). D4 pass. D5 pass. D6 pass. D7 pass (17.9
+million specs counted; test guards the cache). D8 pass after round 1. D9 partly: 17 of 21 specs run, 4 named as not
+run with the reason. D10 pass. D11 pass after the final fact check. D12 pass.

@@ -97,7 +97,7 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
 4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula (AI readers),
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 7 are done. Next: Step 8 (ranking, stress tests, decision), after Soma's OK. The supervisor's timetable PDFs are internal: they
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 8 are done (8b partly: four list specs not run, Soma to decide). The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -157,6 +157,13 @@ content counts, two EMI modules may cover one; no person checks, by Soma's decis
 passes with existing resources (68 %, one handbook, 52.5 new ECTS, about 1.2 professor-equivalents; 49-61 % under
 the reviewers' stricter readings, 33 % without the two-module rule). Cybersecurity bachelor is in the band (63 / 58 %)
 but needs outside teaching. Computer science master depends on the handbook (35 / 52 %); three others fail.
+Step 8 (analysis/funnel_rank.py 8a, funnel_listspecs.py 8b): recommendation = a general computer science /
+Informatik bachelor (type 312, modelled on OTH Regensburg's International Computer Science): 26.5 first-years new to
+OTH, 52.5 ECTS new teaching (50.5 N, 2 T), about 1.2 professor-equivalents, no new lab. It holds under the agreed
+rules and as Informatik types 13 / 242 (18-20 new first-years), but breaks with a cap on new modules, with at most
+50 % from one programme, without the two-module rule, and under the former strict rule (22 % of the stress grid).
+Cybersecurity bachelor is second for information only (needs new expertise). The gate walk now applies the minimum
+cohort (architecture master took the slot of communication master).
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
