@@ -147,3 +147,31 @@ def test_every_input_comes_from_its_file():
         assert (c["quotient used"] == (sc.at[key, "group: similar offers"] >= 5)) and (not c["quotient used"] or c["quotient"] == pytest.approx(sc.at[key, "group: bavarian quotient"]))
         assert c["regional central"] == pytest.approx(cp.at[key, "kept in the region (central)"]) and c["regional low"] == pytest.approx(cp.at[key, "kept in the region (pessimistic)"])
         assert c["gross central"] == pytest.approx(cp.at[key, "gross central"])
+
+
+def test_cache_keys_cover_every_factor_a_score_or_gate_reads():
+    c = cand(**{"trend central": 2.0, "trend validated": True, "net-new central": 20.0, "labour central": 100.0, "labour high": 300.0, "fit central": 0.525,
+                "feasibility central": 0.5, "feasibility shares": "0.9; 0.1", "regional central": 0.2, "offers 90": 3.0, "quotient": np.nan, "quotient used": False,
+                "projection factor": 1.0, "foreign share": 0.4})
+    base = dict(R.BASE, **{"net-new factor": R.net_new_factor(R.BASE)})
+    for f, levels in R.FACTORS.items():
+        if not levels[1]:
+            continue
+        for lv in levels[0]:
+            spec = dict(base, **{f: lv})
+            spec["net-new factor"] = R.net_new_factor(spec)
+            if R.values(c, VF, spec) != R.values(c, VF, base):
+                assert f in R.VALUE_KEYS, f
+            if R.passes(c, spec) != R.passes(c, base):
+                assert f in R.GATE_KEYS, f
+    assert R.values(c, VF, dict(base, references="primary only"))["feasibility"] != R.values(c, VF, base)["feasibility"]
+
+
+def test_listspecs_supply_cut_and_connected_groups():
+    from study_program_intelligence.analysis import funnel_listspecs as L
+    cent = np.array([[1.0, 0.0], [0.995, 0.0998749], [0.98, 0.198997]])
+    cent = cent / np.linalg.norm(cent, axis=1, keepdims=True)
+    units = pd.DataFrame({"type": [0, 1, 2], "level": ["bachelor"] * 3})
+    g = L.connected_groups(units, cent, np.array([0.006, 0.006, 0.006]))
+    assert list(g) == [0, 0, 0]                                                                                   # 0-1 and 1-2 within reach: one chain
+    assert "<= spec[\"supply_cut\"]" in open(L.__file__, encoding="utf-8").read()                                # version 2 kept at most k offers

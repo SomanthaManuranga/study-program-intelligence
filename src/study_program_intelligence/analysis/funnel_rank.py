@@ -98,7 +98,7 @@ def unit_inputs(key: tuple[int, str], rr: pd.DataFrame, src: dict) -> dict:
         "overlaps with covered-but-unsure rows not covered": "; ".join(f"{x:.3f}" for x in rr["overlap with covered-but-unsure rows not covered (sensitivity)"]),
         "feasibility shares": "; ".join(f"{x:.3f}" for x in rr["share of new ECTS in N"]),
         "one-programme shares": "; ".join(f"{x:.3f}" for x in rr["largest share from one programme"]),
-        "lab shares": "; ".join(f"{x:.3f}" for x in rr["share lab"]), "X ECTS": "; ".join(f"{x:.3f}" for x in rr["X ECTS"]), "N ECTS": "; ".join(f"{x:.3f}" for x in rr["N ECTS"]),
+        "lab shares": "; ".join(f"{x:.3f}" for x in rr["share lab"]), "X ECTS": "; ".join(f"{x:.3f}" for x in rr["X ECTS"]), "N ECTS": "; ".join(f"{x:.3f}" for x in rr["N ECTS"]), "T ECTS": "; ".join(f"{x:.3f}" for x in rr["T ECTS"]),
         "new teaching ECTS": float(rr["new teaching ECTS (scaled)"].mean()), "professor-equivalents": float(rr["professor-equivalents"].mean()),
     }
 
@@ -191,6 +191,11 @@ FACTORS = {  # stress_tests.downstream_factorial; the factors marked False canno
     "decision_bars": (["as written", "lowered by 0.1"], False), "one_passer_net_new": ([15, 10], False)}
 
 
+# the factors a cached value or gate result depends on (every factor values() or passes() reads)
+VALUE_KEYS = ("pool_trend", "master_transition", "fit_value", "differentiation", "labour_measure", "value_anchors", "widenings", "references")
+GATE_KEYS = ("min_cohort", "master_transition", "overlap_band", "overlap_reading", "one_programme_max", "N_cap", "references")
+
+
 def net_new_factor(spec: dict):
     def f(c: pd.Series) -> float:
         k = {"unprojected": 1.0, "projected": c["projection factor"], "foreign added flat": 1 / (1 - c["foreign share"])}[spec["pool_trend"]]
@@ -198,7 +203,8 @@ def net_new_factor(spec: dict):
     return f
 
 
-def montecarlo(cands: pd.DataFrame, vf: dict, weights: dict, concentration: float = CONCENTRATION, widen: bool = True, draws: int = DRAWS, seed: int = SEED) -> tuple[pd.DataFrame, np.ndarray]:
+def montecarlo(cands: pd.DataFrame, vf: dict, weights: dict, concentration: float = CONCENTRATION, widen: bool = True, draws: int = DRAWS, seed: int = SEED,
+               offers: str = "triangular", tier_slope: float = 0.0) -> tuple[pd.DataFrame, np.ndarray]:
     """ranking.sampling: P(rank 1) and the rank probabilities of every candidate in the set."""
     rng = np.random.default_rng(seed)
     keys = list(CRITERIA)
@@ -229,16 +235,22 @@ def montecarlo(cands: pd.DataFrame, vf: dict, weights: dict, concentration: floa
         reg = draw("regional")
         vv["regional"] = value(reg, vf["regional_share_of_net_new_kept_in_region"]) if reg is not None else np.ones(draws)
         mode = float(value([c["offers 90"]], vf["differentiation_similar_offers_within_150km"])[0])
-        offers = rng.triangular(1.0, mode, 5.0, draws) if OFFERS_FULL_RANGE else value(np.full(draws, c["offers 90"]), vf["differentiation_similar_offers_within_150km"])
+        if not OFFERS_FULL_RANGE:
+            offers_v = value(np.full(draws, c["offers 90"]), vf["differentiation_similar_offers_within_150km"])
+        else:
+            offers_v = rng.triangular(1.0, mode, 5.0, draws) if offers == "triangular" else rng.uniform(1.0, 5.0, draws)
         if c["quotient used"]:
             q = value(np.full(draws, c["quotient"]), vf["differentiation_bavarian_quotient"])
-            if not c["tier 2 shown"] and widen:
+            tier2 = np.isfinite(c.get("trend elsewhere", np.nan)) and c["trend elsewhere"] >= tier_slope
+            if not tier2 and widen:
                 q = np.clip(q + rng.uniform(-WIDEN, WIDEN, draws), 1, 5)
-            vv["differentiation"] = (offers + q) / 2
+            vv["differentiation"] = (offers_v + q) / 2
         else:
-            vv["differentiation"] = offers
+            vv["differentiation"] = offers_v
         S[:, j] = sum(np.clip(vv[k], 1, 5) * W[:, i] for i, k in enumerate(keys))
-    order = np.argsort(-S, axis=1, kind="stable")
+    tie_order = np.lexsort((np.array([c != "bachelor" for c in cands["level"]]), cands["type"].to_numpy()))      # definitions.ties
+    S_t = S[:, tie_order]
+    order = tie_order[np.argsort(-S_t, axis=1, kind="stable")]
     rank = np.empty_like(order)
     rank[np.arange(draws)[:, None], order] = np.arange(n)[None, :]
     out = pd.DataFrame({"type": cands["type"].to_numpy(), "level": cands["level"].to_numpy(), "P(rank 1)": (rank == 0).mean(axis=0)})
@@ -267,7 +279,7 @@ def decide(cands: pd.DataFrame, central: pd.Series, mc: pd.DataFrame | None, S: 
         c = cands.iloc[0]
         nn = float(c["net-new central"])
         out = {"outcome": "recommend" if nn >= one_bar else "shortlist", "candidate": [int(c["type"]), c["level"]], "net-new central": nn, "bar": one_bar}
-        for k in ("new teaching ECTS", "professor-equivalents", "X ECTS", "N ECTS", "references", "fit central"):
+        for k in ("new teaching ECTS", "professor-equivalents", "X ECTS", "N ECTS", "T ECTS", "references", "fit central"):
             if k in c.index:
                 out[k] = c[k] if isinstance(c[k], str) else float(c[k])
         return out
@@ -280,7 +292,7 @@ def decide(cands: pd.DataFrame, central: pd.Series, mc: pd.DataFrame | None, S: 
     prom_top = sorted(phi.index, key=lambda c: tie(c, phi[c]))[0]
     res = {"candidate": [int(top[0]), top[1]], "runner-up": [int(second[0]), second[1]], "P(rank 1)": p1, "P(beats the runner-up)": beats, "win share": win_share,
            "PROMETHEE rank 1": [int(prom_top[0]), prom_top[1]]}
-    for k in ("new teaching ECTS", "professor-equivalents", "X ECTS", "N ECTS", "references", "fit central"):
+    for k in ("new teaching ECTS", "professor-equivalents", "X ECTS", "N ECTS", "T ECTS", "references", "fit central"):
         if k in cands.columns:
             x = cands.loc[top, k]
             res[k] = x if isinstance(x, str) else float(x)
@@ -293,18 +305,22 @@ def decide(cands: pd.DataFrame, central: pd.Series, mc: pd.DataFrame | None, S: 
     return res
 
 
-INFORMATIK_TYPE = 13            # the largest plain "Informatik" type of Step 2, for the stated sensitivity of the recommendation
+INFORMATIK_TYPES = (13, 242)    # the two large plain "Informatik" types of Step 2 (242 the largest), for the stated sensitivity of the recommendation
 
 
 def sentences(res: dict, cands: pd.DataFrame) -> list[str]:
-    """The decision sentences of decision.first and decision.second, generated from the stored figures."""
+    """The decision sentences of decision.first and decision.second, generated from the stored figures. N = new modules by
+    current lecturers, T = teaching assignments within the rule's cap, X = teaching beyond what existing staff can take."""
     out = []
+    f = lambda x: "; ".join(f"{float(v):.1f}" for v in str(x).split("; "))
     d1 = res["sets"]["first"]["decision"]["as written"]
     if d1["outcome"] == "recommend":
-        out.append(f"- decision.first: recommend type {d1['candidate'][0]} {d1['candidate'][1]} ({cands.loc[tuple(d1['candidate']), 'central titles'][:60]}); "
-                   f"{d1['net-new central']:.1f} first-years new to OTH a year (central); new teaching {d1['new teaching ECTS']:.1f} ECTS by current lecturers, "
-                   f"about {d1['professor-equivalents']:.2f} professor-equivalents, no outside teaching, no new lab; "
-                   f"it is the only existing-resources passer and wins {res['sets']['first']['win share']:.0%} of the stress grid.")
+        out.append(f"- decision.first: recommend type {d1['candidate'][0]} {d1['candidate'][1]} (a general computer science / Informatik bachelor; "
+                   f"titles: {cands.loc[tuple(d1['candidate']), 'central titles'][:60]}); {d1['net-new central']:.1f} first-years new to OTH a year (central); "
+                   f"new teaching {d1['new teaching ECTS']:.1f} ECTS: {f(d1['N ECTS'])} ECTS new modules by current lecturers (N) and {f(d1['T ECTS'])} ECTS by a teaching "
+                   f"assignment (T), none beyond that (X {f(d1['X ECTS'])}); about {d1['professor-equivalents']:.2f} professor-equivalents; no new lab. "
+                   f"It is the only existing-resources passer; it rests on {int(d1['references'])} handbook(s) and wins {res['sets']['first']['win share']:.0%} of the stress grid "
+                   f"(the rest has no passer at all).")
     elif d1["outcome"] == "no candidate passes":
         out.append(f"- decision.first: no candidate passes with existing resources; closest: {d1.get('closest', '-')}.")
     else:
@@ -313,7 +329,8 @@ def sentences(res: dict, cands: pd.DataFrame) -> list[str]:
     if "candidate" in d2:
         out.append(f"- decision.second (for information, outside the scope): first among the band passers is type {d2['candidate'][0]} {d2['candidate'][1]} "
                    f"(P(rank 1) {d2.get('P(rank 1)', 1):.2f}, win share {res['sets']['second']['win share']:.0%}); "
-                   + "; ".join(f"type {c} needs outside teaching of {cands.loc[(int(c.split()[0]), c.split()[1]), 'X ECTS']} ECTS (X), "
+                   + "; ".join(f"type {c} needs {f(cands.loc[(int(c.split()[0]), c.split()[1]), 'T ECTS'])} ECTS by teaching assignments (T) and "
+                               f"{f(cands.loc[(int(c.split()[0]), c.split()[1]), 'X ECTS'])} ECTS beyond what existing staff can take (X), "
                                f"{cands.loc[(int(c.split()[0]), c.split()[1]), 'professor-equivalents']:.2f} professor-equivalents: outside the scope, needs new expertise"
                                for c in res["sets"]["second"]["members"] if any(float(x) > 1e-9 for x in str(cands.loc[(int(c.split()[0]), c.split()[1]), "X ECTS"]).split("; "))) + ".")
     return out
@@ -340,8 +357,6 @@ def main() -> None:
     total = int(np.prod([len(lv) for lv, _ in FACTORS.values()]))
     counts = {s: {} for s in ("first", "second")}
     regret = {s: {c: [0, 0.0] for c in idx} for s in ("first", "second")}
-    VALUE_KEYS = ("pool_trend", "master_transition", "fit_value", "differentiation", "labour_measure", "value_anchors", "widenings")
-    GATE_KEYS = ("min_cohort", "master_transition", "overlap_band", "overlap_reading", "one_programme_max", "N_cap", "references")
     hkey = lambda spec, keys: tuple(str(spec[k]) for k in keys)
     vcache, gcache, by_factor = {}, {}, {}
     for combo in itertools.product(*[FACTORS[k][0] for k in live]):
@@ -378,26 +393,31 @@ def main() -> None:
         members = members.reset_index(drop=True).set_index(pd.MultiIndex.from_frame(members[["type", "level"]])) if len(members) else members
         V = pd.DataFrame({c: values(members.loc[c], vf, base) for c in members.index}).T if len(members) else pd.DataFrame()
         central = pd.Series({c: score(V.loc[c].to_dict(), weights) for c in members.index}, dtype=float)
-        base_win = central.idxmax() if len(central) else None
+        base_win = sorted(central.index, key=lambda c: (-central[c], c[0], c[1] != "bachelor"))[0] if len(central) else None
         ws = counts[s].get(base_win, 0) / total if base_win is not None else None
-        mc, S, phi, variants = None, None, None, {}
+        mc, S, phi, variants, decisions_alt = None, None, None, {}, {}
         if len(members) >= 2:
             mc, S = montecarlo(members, vf, weights)
             phi = promethee(V[list(CRITERIA)], weights)
             for conc in (10, 200):
                 variants[f"P(rank 1), concentration {conc}"] = montecarlo(members, vf, weights, concentration=conc)[0].set_index(["type", "level"])["P(rank 1)"].to_dict()
             variants["P(rank 1), no widening"] = montecarlo(members, vf, weights, widen=False)[0].set_index(["type", "level"])["P(rank 1)"].to_dict()
-            mc10, S10 = montecarlo(members, vf, weights, concentration=10)
-            variants["decision at concentration 10"] = {(0, "outcome"): decide(members, central, mc10, S10, ws, phi, BARS, ONE_PASSER)["outcome"]}
+            for label, kw in (("concentration 10", {"concentration": 10}), ("offers half uniform on 1-5", {"offers": "uniform"}), ("tier-2 slope -1", {"tier_slope": -1.0})):
+                m_, S_ = montecarlo(members, vf, weights, **kw)
+                d_ = decide(members, central, m_, S_, ws, phi, BARS, ONE_PASSER)
+                decisions_alt[label] = {"P(rank 1) of the top": d_.get("P(rank 1)"), "P(beats the runner-up)": d_.get("P(beats the runner-up)"), "outcome": d_["outcome"]}
         near = cands.assign(o=cands["fit central"]).sort_values("o", ascending=False).iloc[0]
-        closest = {"candidate": f"{int(near['type'])} {near['level']}", "verdict": near["verdict"], "mean overlap": float(near["fit central"]), "X ECTS": near["X ECTS"], "N ECTS": near["N ECTS"]}
+        gate = pd.read_csv(GATE).set_index(["type", "level"])
+        closest = {"candidate": f"{int(near['type'])} {near['level']}", "verdict": near["verdict"], "mean overlap": float(near["fit central"]), "X ECTS": near["X ECTS"], "N ECTS": near["N ECTS"],
+                   "lacks": (str(gate.at[(int(near["type"]), near["level"]), "why"]) if isinstance(gate.at[(int(near["type"]), near["level"]), "why"], str) else "")
+                            + ("; teaching beyond what existing staff can take (X ECTS)" if any(float(x) > 1e-9 for x in str(near["X ECTS"]).split("; ")) else "")}
         res = {bars: decide(members, central, mc, S, ws, phi, b, one, closest)
                for bars, b, one in (("as written", BARS, ONE_PASSER), ("bars lowered by 0.1", {k: v - 0.1 for k, v in BARS.items()}, ONE_PASSER),
                                     ("one-passer bar 10", BARS, 10.0))}
         if s == "second":                                # decision.second is reported for information, never as a recommendation
             for r_ in res.values():
                 r_["outcome"] = {"recommend": "first among the band passers (for information, never a recommendation)"}.get(r_["outcome"], r_["outcome"] + " (for information)")
-        results[s] = {"members": [f"{c[0]} {c[1]}" for c in members.index], "win share": ws, "decision": res, "variants": {k: {f"{a[0]} {a[1]}": v for a, v in d.items()} for k, d in variants.items()},
+        results[s] = {"members": [f"{c[0]} {c[1]}" for c in members.index], "win share": ws, "decision": res, "decision under other readings": decisions_alt, "variants": {k: {f"{a[0]} {a[1]}": v for a, v in d.items()} for k, d in variants.items()},
                       "winners over the factorial": {("none" if w is None else f"{w[0]} {w[1]}"): n / total for w, n in counts[s].items()},
                       "regret": {f"{c[0]} {c[1]}": {"share of specs in the set": r[0] / total, "mean score gap to the winner": r[1] / r[0] if r[0] else None} for c, r in regret[s].items() if r[0]}}
         for c in members.index:
@@ -418,7 +438,7 @@ def main() -> None:
 
     # which missing number would change the winner of decision.second; what would empty decision.first
     gaps = {}
-    sec = rank[rank["set"] == "second"].sort_values("central score", ascending=False)
+    sec = rank[rank["set"] == "second"].assign(b=lambda x: x["level"] != "bachelor").sort_values(["central score", "type", "b"], ascending=[False, True, True])
     if len(sec) >= 2:
         top, run = sec.iloc[0], sec.iloc[1]
         diff = top["central score"] - run["central score"]
@@ -435,21 +455,29 @@ def main() -> None:
         t1 = int(t1)
         refs = pd.read_csv(GATE_REFS)
         rr = refs[(refs["type"] == t1) & (refs["level"] == lv1)].sort_values("ref")
-        alt_key = (INFORMATIK_TYPE, lv1)
-        alt = pd.Series({**unit_inputs(alt_key, rr, src), "verdict": "existing-resources passer"})
-        alt_in = passes(alt, base)
-        others = cands[[passes(cands.loc[c], base)[0] and c != (t1, lv1) for c in idx]]
-        sc_alt = score(values(alt, vf, base), weights)
-        sc_others = {f"{c[0]} {c[1]}": score(values(others.loc[c], vf, base), weights) for c in others.index}
-        informatik = {"unit": f"{INFORMATIK_TYPE} {lv1}", "net-new central": alt["net-new central"], "gross central": alt["gross central"],
-                      "similar offers within 150 km": alt["offers 90"], "kept in the region": alt["regional central"],
-                      "existing-resources passer at min cohort 20": bool(alt_in[1]), "at min cohort 25": bool(passes(alt, dict(base, min_cohort=25))[1]),
-                      "decision.first": decide(pd.DataFrame([alt]) if alt_in[1] else pd.DataFrame(), pd.Series([0.0]), None, None, None, None, BARS, ONE_PASSER)["outcome"],
-                      "central score": sc_alt, "central scores of the other band passers": sc_others}
+        for alt_type in INFORMATIK_TYPES:
+            alt = pd.Series({**unit_inputs((alt_type, lv1), rr, src), "verdict": "existing-resources passer"})
+            alt_in = passes(alt, base)
+            others = cands[[passes(cands.loc[c], base)[0] and c != (t1, lv1) for c in idx]]
+            group = pd.concat([pd.DataFrame([alt]), others.reset_index(drop=True)], ignore_index=True)
+            group.index = pd.MultiIndex.from_frame(group[["type", "level"]])
+            Vg = pd.DataFrame({c: values(group.loc[c], vf, base) for c in group.index}).T
+            cg = pd.Series({c: score(Vg.loc[c].to_dict(), weights) for c in group.index}, dtype=float)
+            mg, Sg = montecarlo(group, vf, weights)
+            dg = decide(group, cg, mg, Sg, None, promethee(Vg[list(CRITERIA)], weights), BARS, ONE_PASSER) if len(group) >= 2 else {}
+            informatik[f"{alt_type} {lv1}"] = {
+                "net-new central": alt["net-new central"], "gross central": alt["gross central"], "similar offers within 150 km": alt["offers 90"],
+                "kept in the region": alt["regional central"], "labour (median keyword)": alt["labour central"], "labour (largest keyword)": alt["labour high"],
+                "labour artefact": bool(alt["labour central"] < 10 <= alt["labour high"]),
+                "existing-resources passer at min cohort 20": bool(alt_in[1]), "at min cohort 25": bool(passes(alt, dict(base, min_cohort=25))[1]),
+                "decision.first": decide(pd.DataFrame([alt]) if alt_in[1] else pd.DataFrame(), pd.Series([0.0]), None, None, None, None, BARS, ONE_PASSER)["outcome"],
+                "central score": float(cg[(alt_type, lv1)]), "central scores of the other band passers": {f"{c[0]} {c[1]}": float(cg[c]) for c in group.index if c != (alt_type, lv1)},
+                "decision.second: first (for information)": dg.get("candidate"), "decision.second: P(rank 1) of the first": dg.get("P(rank 1)")}
     first_fac = fac[fac["set"] == "first"]
     empty_first = {f: {lv: float(g.loc[g["winner"] == "none", "count"].sum() / g["count"].sum()) for lv, g in ff.groupby("level")} for f, ff in first_fac.groupby("factor")}
     res = {"stamp": stamp, "step7_commit": step7["stamp"]["commit"], "candidates": len(cands), "factorial": {"specs": total, "evaluated": total // mult, "multiplicity": mult},
            "weights": weights, "sets": results, "decision.first under the Step 7 sensitivities": step7_sens, "recommended unit as plain Informatik": informatik, "runner-up gaps (decision.second)": gaps, "share of specs with no existing-resources passer, by factor level": empty_first,
+           "competition counts": "not validated (Step 3: the check of similar failed twice); the offers half of differentiation takes the range 1 to 5 in the Monte Carlo",
            "inputs": {f.name: sha(f) for f in (GATE, GATE_REFS, CAPTURE, DEMAND, LABOUR_FILE, SCREEN)}, "files": {f.name: sha(f) for f in (INPUTS, RANK, FACTORIAL)}}
     res["sentences"] = sentences(res, cands)
     STEP8.write_text(json.dumps(res, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")

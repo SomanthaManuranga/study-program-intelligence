@@ -79,7 +79,7 @@ def run_spec(s: pd.DataFrame, ctx: dict, spec: dict) -> pd.DataFrame:
     drop_trend = (s["trend %/yr"] < trend_line) & s["trend validated"] if trend_line != "none" else pd.Series(False, index=s.index)
     keep = ~drop_oth & ~(s["teacher share"] >= tt_line) & ~drop_trend & ~s["drop: outside EMI"]
     if "supply_cut" in spec:
-        keep &= s["similar within 100 km"] < spec["supply_cut"]
+        keep &= s["similar within 100 km"] <= spec["supply_cut"]                     # version 2: at most k similar offers within 100 km
     p = s[keep].copy()
     if spec.get("merging") == "none":
         p["group"] = p["type"]
@@ -116,6 +116,12 @@ def run_spec(s: pd.DataFrame, ctx: dict, spec: dict) -> pd.DataFrame:
     rep["members"] = [members[(g, lv)] for g, lv in zip(rep["group"], rep["level"])]
     cohort = spec.get("min_cohort", 20)
     rep["can take a slot"] = True if cohort == "none" else rep["gross central"] >= cohort
+    from .funnel_feasibility import not_candidates
+    from .funnel_types import TYPES
+    tm = pd.read_csv(TYPES).set_index("type")["members"]
+    o = rep.assign(**{"gate order": np.arange(1, len(rep) + 1), "members": rep["type"].map(tm)})
+    nc = not_candidates(o[["gate order", "type", "level", "members"]])
+    rep["mixed, not a candidate"] = [(int(t), lv) in nc and not nc[(int(t), lv)].startswith("mixed type: needs") for t, lv in zip(rep["type"], rep["level"])]
     return rep
 
 
@@ -160,22 +166,30 @@ def main() -> None:
              ("similarity_radius", "percentile 75"), ("similarity_radius", "percentile 95"), ("at_oth", "within radius_90"), ("at_oth", "any fitted member"),
              ("at_oth", "median distance only"), ("teacher_training_share", 0.3), ("teacher_training_share", 0.7), ("quotient_pseudo_offers", 2),
              ("quotient_pseudo_offers", 10), ("merging", "none"), ("merging", "connected")]
+    gate = pd.read_csv(INTERIM / "funnel2_gate.csv")
+    gate_c = list(zip(gate["type"], gate["level"]))
     rows = []
     for k, v in specs:
         o = run_spec(s, ctx, {k: v})
         top = o[o["can take a slot"]].head(TOP)
-        covered = set().union(*top["members"]) if len(top) else set()
-        stay = [(ty, lv) for ty, lv in zip(top_base["type"], top_base["level"]) if any(ty in m and lv == l for m, l in zip(top["members"], top["level"]))]
+        in_top = lambda ty, lv: any(ty in m and lv == l for m, l in zip(top["members"], top["level"]))
+        bach = o[o["can take a slot"] & ~o["mixed, not a candidate"] & (o["level"] == "bachelor")].reset_index(drop=True)
+        pos = [i + 1 for i, m in enumerate(bach["members"]) if 312 in m]
         firsts = {lv: (lambda x: f"{int(x.iloc[0]['type'])}" if len(x) else "-")(top[top["level"] == lv]) for lv in LEVELS}
-        rows.append({"spec": k, "value": str(v), "units on the list": int(len(o.explode("members"))), "candidates": len(o), "base top-20 candidates still in the top 20": len(stay),
+        rows.append({"spec": k, "value": str(v), "units on the list": int(len(o.explode("members"))), "candidates": len(o),
+                     "gate candidates (6) still in the top 20": sum(in_top(ty, lv) for ty, lv in gate_c),
+                     "base top-20 candidates still in the top 20": sum(in_top(ty, lv) for ty, lv in zip(top_base["type"], top_base["level"])),
+                     "position of 312 bachelor among bachelors that can take a slot": pos[0] if pos else None,
                      "first bachelor (type)": firsts["bachelor"], "first master (type)": firsts["master"],
-                     "computer science bachelor (312) in the top 20": any(312 in m and l == "bachelor" for m, l in zip(top["members"], top["level"])),
-                     "cybersecurity bachelor (223) in the top 20": any(223 in m and l == "bachelor" for m, l in zip(top["members"], top["level"]))})
+                     "note": {"similarity_radius": "changes the offers half of differentiation only (unit count at that radius against the group count at p90); "
+                                                  "similar-offer counts, quotient and capture competitors are not recomputed",
+                              "merging": "connected groups chain most units; the group count is the largest unit count" if v == "connected" else ""}.get(k, "")})
     out = pd.DataFrame(rows)
     out.to_csv(OUT, index=False)
     fr = former_rule(pd.read_csv(GATE_REFS))
     res = {"stamp": stamp, "specs run": len(out), "base top 20": [f"{a} {b}" for a, b in zip(top_base["type"], top_base["level"])],
            "not run (need Steps 2 or 5 again)": ["boilerplate_scan_from 10", "clustering: the former rule's setting", "labour_keywords: top 5, generic line 2 % and 10 %, phrases in one title"],
+           "not run (needs Step 3 again with one radius for all types)": ["similarity_radius: one common radius"],
            "former strict feasibility rule": fr.round(3).to_dict("records"),
            "inputs": {f.name: sha(f) for f in (SCREEN, DEMAND, CAPTURE, LABOUR, GATE_REFS, ORDER)}, "files": {OUT.name: sha(OUT)}}
     STEP8B.write_text(json.dumps(res, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
