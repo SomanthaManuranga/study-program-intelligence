@@ -1316,5 +1316,97 @@
   "bytes": 11236,
   "sha256": "21161893bef64535e826fc7d9f907a4812561c407a76bce28960c6cd9bf84c16",
   "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "25_master_a_handbook",
+  "url": "https://fh-muenster.de/fb5/downloads/sose2024/MA_BA_Modulhandbuch_DE_Stand_05_2024.pdf",
+  "asked_utc": "2026-11-16T10:51:11+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_a_handbook",
+  "url": "https://www.fh-muenster.de/fb5/downloads/sose2024/MA_BA_Modulhandbuch_DE_Stand_05_2024.pdf",
+  "asked_utc": "2026-11-16T10:51:44+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_a_page1",
+  "url": "https://www.fh-muenster.de/fb5/studierende/FAQ/faq.php",
+  "asked_utc": "2026-11-16T10:52:07+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_a_page1",
+  "url": "https://www.fh-muenster.de/studium/studiengaenge/index.php?studId=1",
+  "asked_utc": "2026-11-16T10:52:31+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_a_page2",
+  "url": "https://www.fh-muenster.de/fb5/studieninteressierte/master/index.php",
+  "asked_utc": "2026-11-16T10:52:57+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_a_page3",
+  "url": "https://www.fh-muenster.de/",
+  "asked_utc": "2026-11-16T10:53:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/25_master_a_page3.html",
+  "bytes": 98635,
+  "sha256": "6b9321285a4f758ecf2d2f66802ccba910d3d15d740837a672f2a603b9b0c1ae",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "25_master_a_handbook",
+  "url": "https://de.fh-muenster.de/fb5/downloads/sose2024/MA_BA_Modulhandbuch_DE_Stand_05_2024.pdf",
+  "asked_utc": "2026-11-16T10:53:39+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "25_master_t2_handbook",
+  "url": "https://fba.h-da.de/wp-content/uploads/downloads/modulhandbuecher/anlage-5_mhb_f0_bbpo_f1_a_ma_po2026.pdf",
+  "asked_utc": "2026-11-16T10:54:03+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/25_master_t2_handbook.pdf",
+  "bytes": 893798,
+  "sha256": "94701cc3ce15e5d1c8ef8b3d41b47f56020e10b256425f6056850a97bbfa1c6e",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "25_master_t2_bbpo",
+  "url": "https://h-da.de/fileadmin/h_da/Hochschule/Presse_Publikationen/Hochschulanzeiger/2026/FBA_BBPO_A_MA_2025-07-01.pdf",
+  "asked_utc": "2026-11-16T10:54:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/25_master_t2_bbpo.pdf",
+  "bytes": 694147,
+  "sha256": "a0d3f4865fbdf46cf060ba39b98d1ac69da18182341eb953043a47458a5f3067",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "25_master_t3_courses",
+  "url": "https://www.hochschule-trier.de/fileadmin/Campus_Gestaltung/Fachrichtung_Architektur/Downloads/International/Courses_Master_Architecture_20252026_en.pdf",
+  "asked_utc": "2026-11-16T10:56:38+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/25_master_t3_courses.pdf",
+  "bytes": 1134569,
+  "sha256": "effee34a652915611e9cd940575f74af37fbc6c8b760dd54de4039cfd77ff6bf",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "25_master_t3_electives",
+  "url": "https://www.hochschule-trier.de/fileadmin/Campus_Gestaltung/Fachrichtung_Architektur/Downloads/International/elective_courses_master_Architecture_20252026_en.pdf",
+  "asked_utc": "2026-11-16T10:57:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/25_master_t3_electives.pdf",
+  "bytes": 766623,
+  "sha256": "471e0b6876350a99a070fd63581ffdc1573c31422f8de6e99d3e7116031f49d7",
+  "content_type": "application/pdf"
  }
 ]
