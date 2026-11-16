@@ -91,3 +91,59 @@ def test_outputs_follow_the_rules():
     for x in rk.itertuples():
         vals = {k: rk.at[x.Index, f"value {k}"] for k in w}
         assert rk.at[x.Index, "central score"] == pytest.approx(sum(vals[k] * w[k] for k in w) / sum(w.values()))
+
+
+def mc_cands():
+    row = lambda t, nn: {"type": t, "level": "bachelor", "trend low": 1.0, "trend central": 2.0, "trend high": 3.0, "trend validated": True,
+                         "net-new low": nn / 3, "net-new central": nn, "net-new high": nn * 3, "labour low": 50.0, "labour central": 100.0, "labour high": 200.0,
+                         "fit low": 0.5, "fit central": 0.6, "fit high": 0.7, "feasibility low": 0.8, "feasibility central": 0.9, "feasibility high": 1.0,
+                         "offers 75": 2.0, "offers 90": 3.0, "offers 95": 4.0, "quotient": np.nan, "quotient used": False, "tier 2 shown": False,
+                         "regional low": 0.1, "regional central": 0.2, "regional high": 0.3}
+    return pd.DataFrame([row(1, 30.0), row(2, 15.0)])
+
+
+def test_montecarlo_is_reproducible_and_uses_the_full_offers_range():
+    w = {"demand": .3, "labour": .2, "fit": .2, "feasibility": .15, "differentiation": .1, "regional": .05}
+    a, Sa = R.montecarlo(mc_cands(), VF, w, draws=2000)
+    b, Sb = R.montecarlo(mc_cands(), VF, w, draws=2000)
+    assert np.array_equal(Sa, Sb) and a["P(rank 1)"].sum() == pytest.approx(1.0)
+    assert 0.6 < a.loc[0, "P(rank 1)"] < 1.0                                                                      # twice the new students, but wide ranges
+    assert R.OFFERS_FULL_RANGE                                                                                    # second_failure: the offers half on 1-5
+
+
+def test_two_candidates_decision_and_ties():
+    c = mc_cands().assign(**{"new teaching ECTS": 50.0, "professor-equivalents": 1.1, "X ECTS": "0.000", "N ECTS": "40.000", "references": 1, "fit central": 0.6})
+    c.index = pd.MultiIndex.from_frame(c[["type", "level"]])
+    central = pd.Series([3.0, 3.0], index=c.index)                                                               # a tie: the lower type number first
+    S = np.tile([1.0, 0.0], (10, 1))
+    mc = pd.DataFrame({"type": [1, 2], "level": ["bachelor"] * 2, "P(rank 1)": [1.0, 0.0]})
+    d = R.decide(c, central, mc, S, 0.6, pd.Series([0.1, -0.1], index=c.index), R.BARS, 15)
+    assert d["candidate"] == [1, "bachelor"] and d["outcome"] == "recommend" and d["professor-equivalents"] == 1.1
+    assert R.decide(c, central, mc, S, 0.4, pd.Series([0.1, -0.1], index=c.index), R.BARS, 15)["outcome"] == "shortlist"          # win share below 0.5
+    assert R.decide(c, central, mc, S, 0.6, pd.Series([-0.1, 0.1], index=c.index), R.BARS, 15)["outcome"].startswith("shortlist (PROMETHEE")
+
+
+def test_one_programme_reading():
+    b = dict(R.BASE)
+    assert R.passes(cand(**{"one-programme shares": "0.85; 0.3"}), dict(b, one_programme_max="none")) == (True, True)       # no limit means no limit
+    assert R.passes(cand(**{"one-programme shares": "0.85; 0.3"}), b) == (False, False)
+
+
+@needs("data/interim/funnel2_rank_inputs.csv", "data/interim/funnel2_gate_references.csv", "data/interim/funnel2_labour.csv", "data/interim/funnel2_capture.csv")
+def test_every_input_comes_from_its_file():
+    inp = pd.read_csv(INTERIM / "funnel2_rank_inputs.csv").set_index(["type", "level"])
+    refs = pd.read_csv(INTERIM / "funnel2_gate_references.csv")
+    lb = pd.read_csv(INTERIM / "funnel2_labour.csv").set_index(["type", "level"])
+    cp = pd.read_csv(INTERIM / "funnel2_capture.csv", float_precision="round_trip").set_index(["type", "level"])
+    sc = pd.read_csv(INTERIM / "funnel2_screen.csv", float_precision="round_trip").set_index(["type", "level"])
+    for key, c in inp.iterrows():
+        rr = refs[(refs["type"] == key[0]) & (refs["level"] == key[1])]
+        assert c["labour central"] == lb.at[key, "ads within 100 km (median keyword)"] and c["labour low"] == lb.at[key, "ads within 100 km (smallest keyword)"]
+        assert c["labour high"] == lb.at[key, "ads within 100 km (largest keyword)"]
+        w = 0.10 if len(rr) == 1 else 0.0
+        assert c["fit central"] == pytest.approx(rr["overlap"].mean()) and c["fit low"] == pytest.approx(rr["overlap"].min() - w) and c["fit high"] == pytest.approx(rr["overlap"].max() + w)
+        assert c["feasibility central"] == pytest.approx(rr["share of new ECTS in N"].mean())
+        assert c["offers 90"] == sc.at[key, "group: similar within 150 km"] and c["offers 75"] == sc.at[key, "similar within 150 km (radius 75)"]
+        assert (c["quotient used"] == (sc.at[key, "group: similar offers"] >= 5)) and (not c["quotient used"] or c["quotient"] == pytest.approx(sc.at[key, "group: bavarian quotient"]))
+        assert c["regional central"] == pytest.approx(cp.at[key, "kept in the region (central)"]) and c["regional low"] == pytest.approx(cp.at[key, "kept in the region (pessimistic)"])
+        assert c["gross central"] == pytest.approx(cp.at[key, "gross central"])
