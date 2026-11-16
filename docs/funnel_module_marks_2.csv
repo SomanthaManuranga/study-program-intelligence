@@ -188,3 +188,50 @@ R0350,N,4,True,"Digitaltechnik covers VHDL and FPGA design; hardware security mo
 R0351,new,,True,"Organising a field excursion; no EMI module on this, description thin and not tied to a taught subject."
 R0354,N,1,True,"Energieeffizienz in Gebaeuden covers insulation, retrofit, energy certificate; building planning, passive house, blower door, thermography missing; master level."
 R0355,E2,3+6,False,"App-Programmierung covers cross-platform apps, layouts, communication; Web-Anwendungsentwicklung covers frontend frameworks; Dart and Flutter specifics missing."
+R0359,new,,True,"Parametric construction tools for architecture; Konstruktion (4) is mechanical drawing, Visual Computing (1) CGI, not the same topic."
+R0360,N,1,False,"Energieeffizienz in Gebäuden (1) teaches building physics and envelope; sound, fire, circular construction and design project are missing."
+R0363,N,,True,"Lighting design for interiors; timetable subject on lighting technology exists, no shown module covers lighting planning."
+R0365,N,2,True,"Layout and graphic presentation are media design topics (2), but architectural plan representation is not taught."
+R0366,N,1,True,Media and game studies of virtual space; AR/VR (1) and media modules are related but cover far less than two thirds.
+R0369,new,,False,Atmospheric drawing of interior architecture; no shown EMI module or timetable subject teaches this.
+R0370,N,5,True,"Building energy and facade concepts; Integrierte Energiesysteme (5) covers energy system design, not building climate or facades."
+R0372,new,,True,Building in different climate zones and cultures; Energieeffizienz in Gebäuden (1) only touches building energy in one context.
+R0373,N,,True,"Advanced lighting planning for buildings; lighting timetable subject exists, optoelectronics (1) is light physics only."
+R0374,new,,False,Architectural history; nothing in EMI shown.
+R0375,new,,True,Documentation of student work as brochure or exhibition with layout software; no shown EMI module on layout.
+R0377,lab,,False,"Sculptural design with various materials needs a sculpture workshop, not in the EMI lab list."
+R0378,new,,True,Stage design and scenography of space; TV production (4) and film modules do not teach scenography.
+R0381,E2,4+2,True,"Scientific writing, research and presentation covered by 4 and 2; architecture-specific literature and discourse must be added."
+R0385,lab,,False,"Figure and portrait sculpture built with materials needs a sculpture studio, not in the EMI lab list."
+R0387,N,,True,"Urban theory seminar; timetable subject Raumordnung und Raumplanung is close, no shown module covers urbanism."
+R0390,N,5,False,"Generic project management in BWL und Projektmanagement (5); construction process, client roles and building law missing."
+R0391,new,,True,Colour in architectural space; DPDM (4) treats only technical colour models.
+R0393,N,7,True,"Digital fabrication for architecture; Physical Computing (7) introduces CAD, 3D printing, laser cutter; timetable has Fertigungstechnik."
+R0395,new,,True,"CAM with wood, Rhino/Grasshopper, G-code; no shown EMI module; may also need a CNC wood workshop."
+R0402,new,,False,"Planning in historic buildings (damage mapping, building law, heritage); nothing in EMI shown."
+R0403,new,,False,Structural design and building-material sustainability; nothing in EMI shown.
+R0405,new,,True,BIM for architecture; no shown module or timetable subject in this row teaches BIM.
+R0411,N,5,True,Colour in spatial context; Grundlagen Gestaltung (5) teaches colour theory and effect but not architectural colour.
+R0412,new,,False,"Architecture excursions; INT (3) excursions are intercultural, not architectural analysis."
+R0413,new,,True,"Smart materials and skins in architecture; AAL and CPS modules are about electronic systems, not this topic."
+R0414,new,,True,"Parametric design tools for architecture; Visual Computing (4) is CGI, Physical Computing (1) prototyping."
+R0415,N,1,True,"Figure and portrait drawing; Methoden der Visualisierung (1) teaches drawing techniques, but not anatomy or nude drawing."
+R0416,new,,False,Architectural design project in urban context; no EMI module on building design.
+R0417,N,3,True,Interior architecture representation with material and colour; Grundlagen Gestaltung (3) teaches colour and design basics only.
+R0418,new,,False,Colour theories in art and architecture; no shown EMI module or timetable subject on colour.
+R0419,N,4,True,Interior fit-out and building services; Energieeffizienz in Gebäuden (4) covers building physics and services in part.
+R0422,E2,1,False,Design Computation (1) teaches generative AI and parametric design tools; architectural application must be added.
+R0424,N,3,True,"Architectural design methodology; Human Centered Design (3) teaches design process methods, not spatial design strategies."
+R0425,new,,True,Elective from social and cultural sciences; no such EMI elective shown in the row.
+R0426,N,5,True,"Room climate and building energy supply; EEG (5) and IES (4) cover parts, interior integration missing."
+R0432,new,,True,Content set by external architecture workshops and symposia; no comparable EMI module shown.
+R0435,N,5,True,Urban planning special topics; Städtisches Bodenmanagement (5) and timetable Raumordnung are on urban planning.
+R0436,N,7,True,"Transformative design practice; Grundlagen Gestaltung (7) teaches design basics, not reuse-oriented architectural design."
+R0437,new,,True,"Digital-hybrid spatial installations; shown media modules cover production and strategy, not installations."
+R0440,N,5,True,"Practical light design project; Audio, Video, Licht (5) has no content text; lighting timetable subject exists."
+R0443,N,8,True,Architectural representation plus research methods; Grundlagen Gestaltung (8) and Forschungsmethoden (6) cover parts only.
+R0444,N,5,True,"Interior drawing plus computational design; Design Computation (5) covers parametric and AI design, not drawing or BIM."
+R0446,N,4,True,"Building survey; Ingenieurvermessung (4) teaches building surveying and laser scanning, not historic hand survey."
+R0447,new,,False,European city and urban planning models; no shown EMI module on urbanism.
+R0448,new,,True,"CADCAM timber construction with Rhino/Grasshopper; no shown EMI module, production done with companies."
+R0449,new,,False,Colour theories in art and architecture; no shown EMI module or timetable subject on colour.
