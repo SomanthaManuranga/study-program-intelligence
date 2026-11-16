@@ -35,7 +35,9 @@ FILES = {  # step folder: (file in data/interim, what it holds)
                           ("pass1_funnel2_gate_references.csv", "first marking pass (sensitivity)"), ("pass2_funnel2_gate_references.csv", "second marking pass (sensitivity)")],
     "step8_decision": [("funnel2_rank_inputs.csv", "low / central / high of every input"), ("funnel2_rank.csv", "values, scores and probabilities in each decision set"),
                        ("funnel2_factorial.csv", "stress grid: winners by factor level"), ("funnel2_step8.json", "decision, sentences and sensitivities"),
-                       ("funnel2_listspecs.csv", "list-changing specs (8b)"), ("funnel2_step8b.json", "8b summary")],
+                       ("funnel2_listspecs.csv", "list-changing specs (8b)"), ("funnel2_step8b.json", "8b summary"),
+                       ("funnel2_gate_references_sens.csv", "second-handbook check: a plain Informatik bachelor (TH Ingolstadt)"),
+                       ("funnel2_step7_sens.json", "second-handbook check summary")],
 }
 
 
