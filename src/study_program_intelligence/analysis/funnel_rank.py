@@ -312,7 +312,7 @@ def sentences(res: dict, cands: pd.DataFrame) -> list[str]:
     """The decision sentences of decision.first and decision.second, generated from the stored figures. N = new modules by
     current lecturers, T = teaching assignments within the rule's cap, X = teaching beyond what existing staff can take."""
     out = []
-    f = lambda x: "; ".join(f"{float(v):.1f}" for v in str(x).split("; "))
+    f = lambda x: " and ".join(f"{float(v):.1f}" for v in str(x).split("; "))
     d1 = res["sets"]["first"]["decision"]["as written"]
     if d1["outcome"] == "recommend":
         out.append(f"- decision.first: recommend type {d1['candidate'][0]} {d1['candidate'][1]} (a general computer science / Informatik bachelor; "

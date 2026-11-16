@@ -661,7 +661,7 @@ The third rule was set knowing the second result; it is logged as such, and the 
 | 1 | Computer science, bachelor | 1 | 68 % | **passes with existing resources**: no new lab, 2 ECTS taught from outside; 52.5 ECTS of new modules by current lecturers, about 1.2 professor-equivalents |
 | 3 | Cybersecurity, bachelor | 2 | 63 % and 58 % | in the band, but needs 3 and 10 ECTS taught from outside (forensics, IT law); not an existing-resources candidate |
 | 10 | Computer science, master | 2 | 35 % and 52 % | depends on the handbook; most covered rows rest on EMI bachelor modules |
-| 22 | Communication and media, master | 2 | 8 % and 27 % | fails |
+| 25 | Architecture, master (took the slot of communication and media master, below the minimum cohort; see Step 8) | 2 | 0 % and 4 % | fails |
 | 2 | Urban planning, bachelor | 1 | 14 % | fails |
 | 6 | Civil engineering, master | 2 | 5 % and 1 %, needs labs | fails |
 
@@ -717,7 +717,7 @@ PROMETHEE, the stress grid, decision) and `analysis/funnel_listspecs.py` (8b: li
 `configs/analysis.yaml` (demand .30, labour .20, fit .20, feasibility .15, differentiation .10, regional .05).
 
 **A gate error corrected first.** The minimum cohort of 20 first-years drops a candidate before it takes a gate
-slot; the Step 7 walk had not applied it. Communication and media master (intake 12) left the gate, and its slot
+slot; the Step 7 walk had not applied it. Communication and media master (modelled gross first-years 12) left the gate (mechatronic systems master, 13.5, would not take a slot either), and its slot
 went to architecture master, which was marked the same way (92 modules, second and third reader) and fails at 2 %.
 
 **Result.**
@@ -752,22 +752,24 @@ In the full stress grid (17.9 million combinations of the 20 pre-registered fact
 "Computer Science" offers (type 312: 3 similar offers in Germany, 2 within 150 km) and large "Informatik" types
 (13: 30 within 150 km; 242: 13). The small type looks rare and keeps almost no students in OTH's region (0.5 %),
 which are artefacts of the split. The programme is a general Informatik bachelor; measured as types 13 or 242 the
-recommendation stays, but its demand is lower (18 to 20 new first-years) and it is no longer clearly ahead of
-cybersecurity in the information-only comparison. Type 13's labour value rests on a keyword with no ads and is
+recommendation stays, but its demand is lower (18 to 20 new first-years). In the information-only comparison,
+as type 13 cybersecurity comes first; as type 242 Informatik is first with P(rank 1) 0.72, below the bar (shortlist). Type 13's labour value rests on a keyword with no ads and is
 flagged.
 
 **The information-only comparison is close.** Computer science is first with P(rank 1) 0.82 under the rule's
 reading; it falls to 0.77 or 0.78 with more weight uncertainty (concentration 10) or with the competition half
 drawn uniformly over 1 to 5, below the bar of 0.8 (then "shortlist").
 
-**List-changing specs (8b).** 17 of the 21 pre-registered specs could be run from stored data. Computer science
+**List-changing specs (8b).** 18 of the 25 pre-registered spec values were run from stored data (17 list specs and
+the former strict feasibility rule). Computer science
 bachelor stays the first bachelor that can take a slot in 16 of them; under the widest similarity radius it is
-third. 5 or 6 of the 6 gate candidates stay in the first 20 in every spec. Not run, because Steps 2, 3 or 5 would
-have to run again: boilerplate scan from 10, the former clustering setting, the keyword variants, and one common
-similarity radius. The radius specs change only the competition input.
+third. 5 or 6 of the 6 gate candidates stay in the first 20 in every spec. Not run (7 values), because Steps 2, 3 or 5
+would have to run again: boilerplate scan from 10, the former clustering setting, the four keyword variants, and one
+common similarity radius. The radius specs change only the competition input.
 
-**Limits.** One handbook carries the recommendation. All module judgements are by AI readers. Competition counts are
-not validated (Step 3). "New to OTH" rests on the nearest OTH programme as a stand-in (Step 6). The overlap measures
+**Limits.** One handbook carries the recommendation. All module judgements are by AI readers. The two-module rule of
+Step 7, without which no candidate passes, was set knowing the second-pass result. Competition, trend and overlap
+enter the score more than once (`ranking.disclosed`). Competition counts are not validated (Step 3). "New to OTH" rests on the nearest OTH programme as a stand-in (Step 6). The overlap measures
 content, not lectures students can share.
 
 **Reviews.** Two review rounds on 8a and one on 8b; every number recomputed independently. Fixed: the competition
@@ -776,5 +778,5 @@ grid ignored the reference reading (win shares corrected); the Informatik types 
 8b supply cut, measure and notes.
 
 **Scorecard.** D1 pass. D2 pass. D3 pass (test recomputes every input). D4 pass. D5 pass. D6 pass. D7 pass (17.9
-million specs counted; test guards the cache). D8 pass after round 1. D9 partly: 17 of 21 specs run, 4 named as not
-run with the reason. D10 pass. D11 pass after the final fact check. D12 pass.
+million specs counted; test guards the cache). D8 pass after round 1. D9 partly: 18 of 25 spec values run, 7 named as
+not run with the reason. D10 pass. D11 pass after the final fact check and its wording corrections. D12 pass.
