@@ -286,21 +286,33 @@ def main() -> None:
     total = int(np.prod([len(lv) for lv, _ in FACTORS.values()]))
     counts = {s: {} for s in ("first", "second")}
     regret = {s: {c: [0, 0.0] for c in idx} for s in ("first", "second")}
-    by_factor = []
+    VALUE_KEYS = ("pool_trend", "master_transition", "fit_value", "differentiation", "labour_measure", "value_anchors", "widenings")
+    GATE_KEYS = ("min_cohort", "master_transition", "overlap_band", "overlap_reading", "one_programme_max", "N_cap", "references")
+    hkey = lambda spec, keys: tuple(str(spec[k]) for k in keys)
+    vcache, gcache, by_factor = {}, {}, {}
     for combo in itertools.product(*[FACTORS[k][0] for k in live]):
         spec = dict(zip(live, combo))
-        spec["net-new factor"] = net_new_factor(spec)
-        flags = {c: passes(cands.loc[c], spec) for c in idx}
-        sc_ = {c: score(values(cands.loc[c], vf, spec), weights, spec["feasibility_value"] == "included") for c in idx}
+        vk, gk = hkey(spec, VALUE_KEYS), hkey(spec, GATE_KEYS)
+        if vk not in vcache:
+            spec["net-new factor"] = net_new_factor(spec)
+            vcache[vk] = {c: values(cands.loc[c], vf, spec) for c in idx}
+        if gk not in gcache:
+            gcache[gk] = {c: passes(cands.loc[c], spec) for c in idx}
+        flags, vals = gcache[gk], vcache[vk]
+        feas = spec["feasibility_value"] == "included"
+        sc_ = {c: score(vals[c], weights, feas) for c in idx}
         for s, k in (("first", 1), ("second", 0)):
             members = [c for c in idx if flags[c][k]]
-            win = max(members, key=lambda c: (sc_[c], -c[0], c[1] == "bachelor")) if members else None
+            win = max(members, key=lambda c: (sc_[c], -c[0], c[1] == "bachelor")) if members else None   # definitions.ties
             counts[s][win] = counts[s].get(win, 0) + mult
             for c in members:
                 regret[s][c][0] += mult
                 regret[s][c][1] += mult * (sc_[win] - sc_[c])
-            by_factor.append({"set": s, **{k: str(v) for k, v in spec.items() if k != "net-new factor"}, "winner": "none" if win is None else f"{win[0]} {win[1]}", "count": mult})
-    fac = pd.DataFrame(by_factor)
+            w_name = "none" if win is None else f"{win[0]} {win[1]}"
+            for f in live:
+                kk = (s, f, str(spec[f]), w_name)
+                by_factor[kk] = by_factor.get(kk, 0) + mult
+    fac = pd.DataFrame([{"set": s, "factor": f, "level": lv, "winner": w, "count": n} for (s, f, lv, w), n in by_factor.items()])
     fac.to_csv(FACTORIAL, index=False)
     assert all(sum(v.values()) == total for v in counts.values())
 
@@ -342,7 +354,7 @@ def main() -> None:
         diff = top["central score"] - run["central score"]
         gaps = {k: {"value points the runner-up needs on this criterion alone": diff / (weights[k] / sum(weights.values()))} for k in CRITERIA}
     first_fac = fac[fac["set"] == "first"]
-    empty_first = {k: first_fac.groupby(k).apply(lambda x: float(x.loc[x["winner"] == "none", "count"].sum() / x["count"].sum())).to_dict() for k in live}
+    empty_first = {f: {lv: float(g.loc[g["winner"] == "none", "count"].sum() / g["count"].sum()) for lv, g in ff.groupby("level")} for f, ff in first_fac.groupby("factor")}
     res = {"stamp": stamp, "step7_commit": step7["stamp"]["commit"], "candidates": len(cands), "factorial": {"specs": total, "evaluated": total // mult, "multiplicity": mult},
            "weights": weights, "sets": results, "runner-up gaps (decision.second)": gaps, "share of specs with no existing-resources passer, by factor level": empty_first,
            "inputs": {f.name: sha(f) for f in (GATE, GATE_REFS, CAPTURE, DEMAND, LABOUR_FILE, SCREEN)}, "files": {f.name: sha(f) for f in (INPUTS, RANK, FACTORIAL)}}
