@@ -14,3 +14,4 @@ R0293,N,4,True,"Network, wireless security and pentesting in 4; identity federat
 R0317,E2,2,True,"Modern symmetric and public-key crypto in 2; history, classical ciphers and Enigma would be added; timetable has Kryptographie."
 R0350,N,4,True,"VHDL/FPGA design taught in Digitaltechnik; HSM, TEE and cryptographic arithmetic units are not in any shown module."
 R0355,E2,3,True,App module covers mobile and cross-platform app development (react native); Dart and Flutter specifics would be added.
+R0381,N,4,True,"Generic academic writing and presentation taught (4, 2), but master level with architecture-specific research, databases and history; E2 with 4+2 also defensible."
