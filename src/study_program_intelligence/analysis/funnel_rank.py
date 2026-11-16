@@ -102,7 +102,9 @@ def inputs(rules: dict) -> pd.DataFrame:
             "tier 2 shown": bool(sc.at[key, "popularity tier"] <= 2), "trend elsewhere": float(sc.at[key, "trend elsewhere %/yr"]) if "trend elsewhere %/yr" in sc.columns else np.nan,
             "regional low": float(cp.at[key, "kept in the region (pessimistic)"]), "regional central": float(cp.at[key, "kept in the region (central)"]), "regional high": float(cp.at[key, "kept in the region (optimistic)"]),
             "references": len(rr), "ref names": "; ".join(rr["ref"]),
-            "overlaps": "; ".join(f"{x:.3f}" for x in rr["overlap"]), "one-programme shares": "; ".join(f"{x:.3f}" for x in rr["largest share from one programme"]),
+            "overlaps": "; ".join(f"{x:.3f}" for x in rr["overlap"]),
+            "overlaps without two-module covers": "; ".join(f"{x:.3f}" for x in rr["overlap without two-module covers (sensitivity)"]),
+            "overlaps with covered-but-unsure rows not covered": "; ".join(f"{x:.3f}" for x in rr["overlap with covered-but-unsure rows not covered (sensitivity)"]), "one-programme shares": "; ".join(f"{x:.3f}" for x in rr["largest share from one programme"]),
             "lab shares": "; ".join(f"{x:.3f}" for x in rr["share lab"]), "X ECTS": "; ".join(f"{x:.3f}" for x in rr["X ECTS"]), "N ECTS": "; ".join(f"{x:.3f}" for x in rr["N ECTS"]),
             "new teaching ECTS": float(g.at[r.Index, "new teaching ECTS (mean)"]),
             "professor-equivalents": float(g.at[r.Index, "professor-equivalents (mean)"]),
@@ -142,7 +144,7 @@ def passes(c: pd.Series, spec: dict) -> tuple[bool, bool]:
     """(band passer, existing-resources passer) of one candidate under a spec (feasibility_gate.verdict and the stress
     factors overlap_band, overlap_reading, one_programme_max, references, existing_resources_N_cap, min_cohort)."""
     split = lambda col: [float(x) for x in str(c[col]).split("; ")]
-    ov, one, lab, x, n = split("overlaps"), split("one-programme shares"), split("lab shares"), split("X ECTS"), split("N ECTS")
+    ov, one, lab, x, n = split(spec.get("overlap column", "overlaps")), split("one-programme shares"), split("lab shares"), split("X ECTS"), split("N ECTS")
     idx = [0] if spec["references"] == "primary only" else list(range(len(ov)))
     lo, hi = spec["overlap_band"]
     one_max = np.inf if spec["one_programme_max"] == "none" else float(spec["one_programme_max"])
@@ -248,7 +250,11 @@ def decide(cands: pd.DataFrame, central: pd.Series, mc: pd.DataFrame | None, S: 
     if len(cands) == 1:
         c = cands.iloc[0]
         nn = float(c["net-new central"])
-        return {"outcome": "recommend" if nn >= one_bar else "shortlist", "candidate": [int(c["type"]), c["level"]], "net-new central": nn, "bar": one_bar}
+        out = {"outcome": "recommend" if nn >= one_bar else "shortlist", "candidate": [int(c["type"]), c["level"]], "net-new central": nn, "bar": one_bar}
+        for k in ("new teaching ECTS", "professor-equivalents", "X ECTS", "N ECTS", "references", "fit central"):
+            if k in c.index:
+                out[k] = c[k] if isinstance(c[k], str) else float(c[k])
+        return out
     order = central.sort_values(ascending=False, kind="stable").index
     top, second = order[0], order[1]
     p1 = float(mc.set_index(["type", "level"]).loc[top, "P(rank 1)"])
@@ -321,6 +327,7 @@ def main() -> None:
     rows, results = [], {}
     for s, k in (("first", 1), ("second", 0)):
         members = cands[[passes(cands.loc[c], base)[k] for c in idx]]
+        members = members.reset_index(drop=True).set_index(pd.MultiIndex.from_frame(members[["type", "level"]])) if len(members) else members
         V = pd.DataFrame({c: values(members.loc[c], vf, base) for c in members.index}).T if len(members) else pd.DataFrame()
         central = pd.Series({c: score(V.loc[c].to_dict(), weights) for c in members.index}, dtype=float)
         base_win = central.idxmax() if len(central) else None
@@ -335,6 +342,9 @@ def main() -> None:
         res = {bars: decide(members, central, mc, S, ws, phi, b, one)
                for bars, b, one in (("as written", BARS, ONE_PASSER), ("bars lowered by 0.1", {k: v - 0.1 for k, v in BARS.items()}, ONE_PASSER),
                                     ("one-passer bar 10", BARS, 10.0))}
+        if s == "second":                                # decision.second is reported for information, never as a recommendation
+            for r_ in res.values():
+                r_["outcome"] = {"recommend": "first among the band passers (for information, never a recommendation)"}.get(r_["outcome"], r_["outcome"] + " (for information)")
         results[s] = {"members": [f"{c[0]} {c[1]}" for c in members.index], "win share": ws, "decision": res, "variants": {k: {f"{a[0]} {a[1]}": v for a, v in d.items()} for k, d in variants.items()},
                       "winners over the factorial": {("none" if w is None else f"{w[0]} {w[1]}"): n / total for w, n in counts[s].items()},
                       "regret": {f"{c[0]} {c[1]}": {"share of specs in the set": r[0] / total, "mean score gap to the winner": r[1] / r[0] if r[0] else None} for c, r in regret[s].items() if r[0]}}
@@ -345,6 +355,14 @@ def main() -> None:
                          "specs won (share of the factorial)": counts[s].get(c, 0) / total})
     rank = pd.DataFrame(rows)
     rank.to_csv(RANK, index=False)
+    step7_sens = {}
+    for name, col in (("without two-module covers", "overlaps without two-module covers"), ("covered-but-unsure rows not covered", "overlaps with covered-but-unsure rows not covered")):
+        spec = dict(base, **{"overlap column": col})
+        m = cands[[passes(cands.loc[c], spec)[1] for c in idx]]
+        closest = cands.assign(o=[float(np.mean([float(x) for x in str(v).split("; ")])) for v in cands[col]]).sort_values("o", ascending=False).iloc[0]
+        step7_sens[name] = {"existing-resources passers": [f"{c[0]} {c[1]}" for c in m.index],
+                            "decision.first": decide(m, pd.Series(0.0, index=m.index), None, None, None, None, BARS, ONE_PASSER)["outcome"],
+                            "closest (mean overlap)": f"{int(closest['type'])} {closest['level']}: {closest['o']:.3f}"}
 
     # which missing number would change the winner of decision.second; what would empty decision.first
     gaps = {}
@@ -356,7 +374,7 @@ def main() -> None:
     first_fac = fac[fac["set"] == "first"]
     empty_first = {f: {lv: float(g.loc[g["winner"] == "none", "count"].sum() / g["count"].sum()) for lv, g in ff.groupby("level")} for f, ff in first_fac.groupby("factor")}
     res = {"stamp": stamp, "step7_commit": step7["stamp"]["commit"], "candidates": len(cands), "factorial": {"specs": total, "evaluated": total // mult, "multiplicity": mult},
-           "weights": weights, "sets": results, "runner-up gaps (decision.second)": gaps, "share of specs with no existing-resources passer, by factor level": empty_first,
+           "weights": weights, "sets": results, "decision.first under the Step 7 sensitivities": step7_sens, "runner-up gaps (decision.second)": gaps, "share of specs with no existing-resources passer, by factor level": empty_first,
            "inputs": {f.name: sha(f) for f in (GATE, GATE_REFS, CAPTURE, DEMAND, LABOUR_FILE, SCREEN)}, "files": {f.name: sha(f) for f in (INPUTS, RANK, FACTORIAL)}}
     STEP8.write_text(json.dumps(res, indent=2, ensure_ascii=False, default=str) + "\n", encoding="utf-8")
     REPORTS.mkdir(parents=True, exist_ok=True)
