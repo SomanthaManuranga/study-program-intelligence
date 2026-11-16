@@ -1,0 +1,358 @@
+row,verdict,which,unsure,reason
+R0001,new,,True,"Structural FEM (nonlinear elastomechanics of beams); only basic linear algebra and a mechanics timetable subject in EMI, FEM itself not taught."
+R0002,N,4,False,"Leadership and HR management in digital firms; EMI's BWL modules touch leadership only at introductory bachelor level, far below two thirds."
+R0003,N,8,True,"German A2 language course; Foreign Language 2 assigns individual language courses incl. German, but no A2 grammar content stated; FL1 is B2/C1."
+R0004,N,2,True,"Graph theory; Algorithmen und Datenstrukturen covers graphs only as data structures, not matching, colouring, flows or planarity."
+R0005,N,4,False,"Logic in CS; Symbolische KI 1 covers propositional logic and Prolog, but modal logic, FOL, SAT solving and model checking are missing."
+R0006,new,,False,"Urban planning field trip; spatial and urban development content is not taught in EMI, company visits in Praxisseminar are a different topic."
+R0007,N,8,True,"Master HMI (cognition, task analysis, UI languages, speech); bachelor MCI and Screen-Design cover much, but master level not clearly matched."
+R0008,E2,5+6,False,"Symbolic AI 2 gives AI methods and planning, Machine Learning 2 neural nets for vision and language; only evolutionary algorithms must be added."
+R0009,lab,,True,Road design with tachymetric/GPS surveying and CARD/1; surveying equipment is not in EMI's lab list and road design is not taught.
+R0010,E2,6+4,False,"Autonomous Robots (master) and Autonome Mobile Systeme cover sensors, kinematics, mapping, localisation, path planning, robot learning; paradigms, multi-robot, HRI to add."
+R0011,N,2,False,"IoT and Industrie 4.0 concepts and business models; EMI has Industrie-4.0 project, business model and internet modules, none covers two thirds."
+R0012,new,,True,"Complex-systems analysis (cellular automata, chaos, swarm, game theory, queues); EMI's simulation modules model technical systems, not this topic."
+R0013,E2,6,False,"Projektmanagement & Agile covers classic planning, control, organisation and team project; programme/portfolio and project organisation forms would need adding."
+R0014,new,,False,"Advanced reinforced-concrete design (fibre, lightweight, waterproof concrete, strengthening); civil engineering is not taught in EMI."
+R0015,new,,False,"Construction cost estimation per VOB (bills of quantities, tender calculation); not an EMI topic, BWL modules shown do not cover it."
+R0016,N,1,True,"Broad intro: EE basics, measurement, control, automation, PLC, fieldbus; Automatisierungstechnik Grundlagen plus SPS cover only part, PLC text in row is a page pointer."
+R0017,N,1,False,"AI-assisted software development (LLMs, coding harness, deployment); EMI teaches software engineering, but not the AI-assisted workflow as main content."
+R0018,N,3,True,"Numerical methods (quadrature, ODE solvers, optimisation, eigenvalues in Matlab); EMI maths modules treat these topics analytically only, no numerics module shown."
+R0019,E2,3,False,"Informationssicherheit covers threats, attacks, network security, pentesting and ethical hacking; crypto maths, OWASP/CVE details and forensics basics would be added."
+R0020,N,3,True,"Optimisation, genetic algorithms/programming, RL, neural nets; Reinforcement Learning and ML2 cover RL and nets, evolutionary methods (half the module) missing."
+R0021,N,2,False,"Master interactive storytelling with media-effects research; Cross Media teaches storytelling basics at bachelor level, far below two thirds."
+R0022,new,,False,"Reverse engineering and binary exploitation (assembler, Ghidra, ROP, malware); no EMI module or timetable subject shown is on this topic."
+R0023,new,,False,"Introductory urban planning module (spatial perception, teamwork); no EMI module shown is on urban planning."
+R0024,E2,2,False,"Raumordnung und Raumplanung covers legal bases, Städtebaurecht and Bauleitplanung under BauGB; building-code law (Bauordnungsrecht) would be added."
+R0025,lab,,True,"Geodetic part matches Ingenieurvermessung und Sensorik, but pile load tests, cone penetration and borehole geophysics need geotechnical equipment not in EMI's lab list."
+R0026,E2,7+9,False,"Algorithmen & Datenstrukturen modules cover complexity, divide-and-conquer, DP, trees, hashing, sorting, graphs; greedy, backtracking and rigorous proofs to add."
+R0027,N,8,False,"Master media engineering (e-learning didactics, game engines, CAD media, web); Web Engineering and motion design cover parts only, well below two thirds."
+R0028,E2,2,False,"Geoinformationssysteme covers GIS data types, analysis, queries and data formats; Kartographie gives map output; the urban-planning case study would be added."
+R0029,new,,False,"Flood protection engineering (dykes, retention, hydraulic design, dam failure); Umwelt und Natur covers natural risks only in general, not this topic."
+R0030,N,2,True,"Spanish A1/A2 course; Foreign Language 2 can assign other languages only in exceptions, no Spanish content shown; language teaching is on timetable."
+R0031,E2,6+7,False,"Software Engineering 1 covers OOA/OOD, UML, patterns incl. Observer, config management and testing; Software-Projekt adds team work; GUI and Java details to add."
+R0032,new,,False,"Digital forensics (traces, legal standards, computer/mobile/internet forensics); no EMI module or timetable subject shown is on forensics."
+R0033,N,2,False,"Business models and IT strategy; Geschäftsmodellinnovation covers business models, but IT strategy, business-IT alignment and IT governance (COBIT) are missing."
+R0034,new,,True,"Business process management with BPMN, process mining and RPA; EMI's BWL modules shown do not teach process modelling or mining."
+R0035,N,,False,"IT and society, literature work, scientific writing and peer review; timetable subject Informationsethik und Technikphilosophie is on the same topic, no module shown."
+R0036,new,,False,"Life-cycle assessment, life-cycle costing and ESG for buildings; no EMI module or timetable subject shown covers construction or real estate."
+R0037,N,7,False,"Statistical learning theory, LDA/QDA, kernels, Gaussian processes, adaptive filters; master ML and Deep Learning cover regression, classification, deep nets only, under two thirds."
+R0038,new,,True,"Urban traffic planning and street-space design; Ingenieurbau covers road alignment engineering, not mobility planning; no shown module on this topic."
+R0039,N,4,False,"Model-based software engineering (goal, scenario, architecture, variability models, model-based testing); Software Engineering 1 teaches UML modelling only at bachelor level."
+R0040,new,,True,"Advanced structural mechanics (second-order theory, plasticity, structural dynamics); only a basic mechanics timetable subject exists, civil structural analysis is not taught."
+R0041,N,3,True,"Digital economy, IS-based business models and platforms; Business Model Innovation covers digital platform business models, but IS innovation and digital economics are missing."
+R0042,N,5,True,"Docker, virtualisation, microservices, Kubernetes; Big Data, Cloud & NoSQL covers cloud infrastructure but not containers; no shown module teaches Docker."
+R0043,E1,5,False,"Bachelorseminar teaches scientific working, paper structure, citation, research and writing, essentially the same content at the same level."
+R0044,E1,4+2,False,"Software Engineering 2 (XP, Scrum, TDD, continuous integration) plus Projektmanagement & Agile (Scrum, Kanban, Scrum project) cover the agile module essentially fully."
+R0045,new,,False,FEM application in ANSYS and reinforced-concrete structural design; no EMI module or timetable subject shown covers structural FEM.
+R0046,N,5,False,"Distributed systems (virtualisation, SOA, microservices, middleware, RPC, MOM); Big Data, Cloud & NoSQL and Betriebssysteme cover parts; timetable has Technologien verteilter Systeme."
+R0047,N,4,False,"Corporate culture, HR development, intercultural conflict management; Interdisciplinary topic covers leadership and organisational change only, mediation and culture missing."
+R0048,new,,False,"Waterway and coastal engineering (ship dynamics, dykes, breakwaters, wave loads); not an EMI topic, no shown module covers hydraulic engineering."
+R0049,new,,False,Planning analysis of large civil-engineering projects (e.g. composite bridges) with construction and cost variants; EMI's generic project modules are on other topics.
+R0050,E2,7+5,False,"Software Engineering 1 (requirements, OOA/OOD, UML, testing) and 2 (agile, CI/CD, QA, reviews) cover most; project management basics and coding rules to add."
+R0051,lab,,False,"Building condition survey with material sampling and laboratory testing of masonry, timber and concrete; needs a construction-materials lab not in EMI's list."
+R0052,N,5,False,"IT and media management (IT operating models, process/change management, media economics, media law); EMI shows project management and agile only, far below two thirds."
+R0053,new,,False,History of architecture and urban development; no EMI module or timetable subject shown covers architectural history.
+R0054,E2,3+4,False,"Mediengestaltung teaches design thinking, user research, prototyping and testing; Medienprojekte gives client team projects; makerspace fabrication would be added."
+R0055,N,1,True,"Team development workshop (team phases, roles, feedback, conflicts); BWL und Projektmanagement touches project communication only; no shown module covers team development."
+R0056,E2,1,True,"Master team project applying software development to smart systems; Projektarbeit Industrie 4.0 is the same kind of master team project, topic area differs."
+R0057,N,2,True,"Databases with relational algebra, recovery, concurrency control, indexing and query optimisation; Datenbanksysteme covers ER, normalisation, SQL, transactions only, about half."
+R0058,new,,False,"Structural-engineering design project for buildings (load-bearing design, building law, cost, tender); EMI's project modules are on other subjects."
+R0059,new,,False,"Construction production techniques (formwork, special foundation works, precast concrete, finishing); civil construction is not taught in EMI."
+R0060,N,8,True,"Current software-engineering topics chosen by the instructor, master level; description thin, EMI's bachelor SE modules share the field but not the level."
+R0061,N,,False,"Spatial planning theory and participatory planning methods; timetable subject Raumordnung und Raumplanung is on the same main topic, no EMI module shown covers it."
+R0062,E2,2+7,True,"Digital business models in media firms; Geschäftsmodellinnovation (digital-economy business models, patterns, strategic analysis) plus Business Model Innovation cover most; media focus to add."
+R0063,N,,True,"Master slot for current topics with no content given; EMI electives shown are bachelor level only, so coverage cannot be judged."
+R0064,new,,False,"Contaminated sites, landfill construction and geosynthetics; environmental geotechnics is not taught in EMI as far as the row shows."
+R0065,E1,8,False,"Mathematik 2 (Diskrete Mathematik) teaches logic, sets, relations, functions, proofs incl. induction and graph theory basics, the same content and level."
+R0066,E1,3,False,"Bachelor elective slot without content; EMI offers bachelor elective modules of this kind (Allgemeines Wahlpflichtmodul 2, course-specific electives)."
+R0067,N,5,False,"Cloud basics plus SAP BTP development (UI5, CAP, OData, low code); Cloud-Computing Technologie covers the cloud half, the SAP-specific half is missing."
+R0068,E2,1,False,"Computernetzwerke covers OSI/TCP-IP layers, Ethernet, IP, TCP/UDP, HTTP and lab tools; routing algorithms and link-layer protocol details would need adding."
+R0069,E1,2+4,False,"Screen-Design (wireframes, personas, prototyping, usability, accessibility, responsive) plus Human Centered Design (design thinking, user research, testing) match the content."
+R0070,E2,3,False,Business plans and start-up founding; Geschäftsmodellinnovation und Entrepreneurship covers entrepreneurship and financial planning; funding programmes and tax aspects to add.
+R0071,N,3,False,"Advanced databases (storage, indexes, recovery, distributed transactions, DWH/OLAP); Big Data Technologie and Modern Databases cover analytics and basics only, under two thirds."
+R0072,E2,3+4,True,"Cloud architecture and cloud security; Big Data, Cloud & NoSQL covers cloud infrastructure, Informationssicherheit covers threats and cloud security; monitoring and posture management to add."
+R0073,N,4,False,"Hands-on hacking (web attacks, fuzzing, padding oracles, reverse engineering, forensics, hardware attacks); Informationssicherheit covers attacks and pentesting basics only."
+R0074,E2,4,False,"General business administration; Betriebswirtschaftliche Grundlagen covers business functions, production, accounting and finance; strategic management instruments would be added."
+R0075,new,,False,"Steel-concrete composite structures design per codes; Ingenieurbau covers road and earthworks, not structural composite design."
+R0076,new,,False,"Transport planning (trip generation, distribution, mode choice, assignment, network design); no EMI module shown is on transport planning."
+R0077,E2,1+4,True,"Mobile & Ubiquitous Computing covers location services, BLE/NFC, sensors; Eingebettete Intelligenz adds context and situation recognition; mobile social network mining to add."
+R0078,E2,4,True,"Web-Anwendungsentwicklung teaches TypeScript, client frameworks (react, vue), MVC and client-server apps; Angular-specific routing, guards and forms would be added."
+R0079,E2,1+7,False,"Master NLP (IR, semantic search, text analysis) plus Information Retrieval & NLP (search engines, PageRank) cover most; Lucene-based search-engine project to add."
+R0080,N,5,False,"Semantic information management (ontologies, metadata, XML/XSL, cross-media delivery); Symbolische KI 1 covers ontologies and semantic web only, below two thirds."
+R0081,N,2,False,"Master QoS and congestion control (IntServ, DiffServ, MPLS, RTP); Computernetzwerke teaches bachelor networking basics only, no QoS content shown."
+R0082,new,,False,Construction scheduling software and 3D numerical hydrodynamic flow modelling; no EMI module or timetable subject shown covers these topics.
+R0083,new,,False,"Public-private partnership models (concession, BOT, risks, PPP law); no EMI module or timetable subject shown covers public procurement cooperation."
+R0084,N,3,True,"Neuron models, learning rules, recurrent nets as dynamical systems; Machine Learning 2 covers feedforward and recurrent nets, not classical learning rules or dynamics."
+R0085,new,,False,"International construction business (tendering, contracts, site specifics abroad); intercultural modules shown cover only the small intercultural-communication part."
+R0086,new,,True,"Guided literature self-study in economics and communication sciences; thin description, no EMI module or timetable subject shown covers these sciences."
+R0087,new,,False,"Prestressed concrete design (tendons, creep, limit states); civil structural engineering is not taught in EMI as far as the row shows."
+R0088,N,1,False,"Knowledge discovery (frequent patterns, clustering, stream, graph, text mining); Data Engineering & Data Analytics and Big Data Technologie cover data prep and basics only."
+R0089,E2,4+5,False,"Informationssicherheit (network insecurity, wireless security, mechanisms) plus Computernetzwerke (protocols, TLS, network security basics) cover most; network separation detail to add."
+R0090,new,,False,"Road traffic engineering (capacity, signalised junctions) and pavement maintenance; no EMI module or timetable subject shown covers road engineering."
+R0091,N,4,False,"Information security basics (threats, attacks) taught; awareness campaigns, security culture and didactic concepts are not covered."
+R0092,N,4,True,"Spanish B1 course; EMI's language modules teach German/English, other languages only by exception via the language centre."
+R0093,N,4,False,"Property valuation methods are taught in Städtisches Bodenmanagement; real-estate management, financing and facility management are not."
+R0094,E2,3,False,"Mathematik 1 covers sets, proofs, analysis and linear algebra; numerics and some logic/relations content would have to be added."
+R0095,E2,5,True,"Informatik 2 covers OO modelling, tools, version control, design patterns, TDD; Python and profiling tools would be added; text truncated."
+R0096,new,,False,Architectural building design in timber and solid construction; no EMI module or timetable subject on building design.
+R0097,N,1,True,"No description; EMI teaches German/English language modules, so the topic exists, but coverage cannot be judged."
+R0098,N,5,False,"Informationssicherheit covers authentication and vulnerabilities generally; OWASP, OAuth/OIDC, JWT, API security and web pentesting not covered."
+R0099,N,3,False,"EMI algorithm modules are introductory; NP-completeness proofs, number-theoretic crypto algorithms and game-tree search are advanced and missing."
+R0100,N,4,False,"General security (Informationssicherheit) and vehicle E/E architecture exist separately; automotive attacks, regulation, supply chain security missing."
+R0101,E2,6,False,"Cybersicherheit (master) covers crypto, authentication, network security; key management and biometrics would have to be added."
+R0102,new,,True,"Reinforced/prestressed concrete in existing structures; only the timetable title 'Ingenieurbau' hints at civil engineering, no content shown."
+R0103,E2,2,False,"Datenbanksysteme covers ER modelling, SQL, transactions, DB access from programs; relational algebra and NoSQL would be added."
+R0104,E1,2,False,"Betriebswirtschaftliche Grundlagen covers constitutive decisions incl. location, management, production, marketing, accounting, investment and financing."
+R0105,E2,7,False,"Informatik Grundlagen covers number systems, circuits, architecture, automata, computability, complexity; logic, graph theory and formal proofs would be added."
+R0106,new,,False,"Construction-business project (site planning, construction controlling); no EMI module or timetable subject on construction management."
+R0107,E2,2,True,"Individual project in IT security; EMI's programme project module has the same project format, topic content not specified."
+R0108,E2,3,True,"Informationssicherheit covers network security, protocols and protection mechanisms; the row's description is very thin."
+R0109,E2,3+10,False,"Programmierung 2 and Java module cover OOP, generics, exceptions, concurrency; functional streams, reflection, GUI and file I/O partly missing."
+R0110,E1,3,False,Free elective from outside the home field at master level; EMI offers an interdisciplinary master elective (Interdisziplinäres Modul).
+R0111,E2,8,False,"Big Data, Cloud & NoSQL covers MapReduce, distributed frameworks, NoSQL; CAP/BASE, Lambda architecture, streaming and sketch algorithms would be added."
+R0112,new,,False,Construction-business group project; no EMI module or timetable subject on construction management.
+R0113,N,,True,"Urban/rural development concept project; timetable subject 'Ländliche Entwicklung' is on spatial development, but urban design content is not shown."
+R0114,N,,True,Individual non-technical interdisciplinary task at master level; no EMI master elective of that kind is shown in the row.
+R0115,N,2,False,"Visualisierungen & Erklärungen teaches data visualisation and perception basics; information design, infographics and target-group communication at master level missing."
+R0116,E1,5,False,"Theoretische Informatik covers automata, regular languages, Chomsky grammars, computability and Turing machines."
+R0117,E2,2+4,False,"Technologien verteilter Systeme (RPC, REST, client-server) plus Betriebssysteme (threads, synchronisation) cover most; Java RMI/JMS/executors differ."
+R0118,new,,True,"Concrete repair, bridge inspection, building rehabilitation; only the timetable title 'Ingenieurbau' hints at civil engineering, no content shown."
+R0119,N,4,False,"Visual Computing teaches 3D modelling, lighting, shading, rendering as CGI practice; the mathematical graphics pipeline and real-time rendering APIs are missing."
+R0120,N,1,False,"Ausgewählte Methoden der KI gives an overview of knowledge, reasoning and planning; STRIPS, POP, SAT, HTN planning and scheduling in depth missing."
+R0121,N,9,True,"Operations research (LP, simplex, integer, network, multiobjective optimisation); EMI maths modules do not teach optimisation, only graph theory basics."
+R0122,N,,True,"Strategic management, corporate/project finance and BIM for construction; EMI teaches business administration basics (timetable) but not this content."
+R0123,new,,True,Turnkey construction and construction controlling/scheduling; EMI's project management module covers only generic project phases and controlling basics.
+R0124,new,,True,"Hydrodynamic and runoff models for heavy-rain hazard maps; no EMI module on hydrodynamic modelling, only general programming shown."
+R0125,new,,False,"Public administration, municipal self-government, budgets and procurement; EMI project management modules shown are generic, not about administration."
+R0126,new,,True,SAP S/4HANA and ABAP; no EMI module or timetable subject in this row on ERP systems.
+R0127,new,,False,"Sustainability of computing (energy, e-waste, assessment tools); no EMI module or timetable subject on this topic in the row."
+R0128,new,,False,"Welding, steel construction fabrication and bridge building; nothing related in EMI modules or timetable subjects."
+R0129,E1,5,False,"Forschungsseminar (master) covers working into current research topics, scientific methods and presentation; same seminar format."
+R0130,E2,1,False,Foreign Language 1 offers English at B2/C1 with technical texts; business English and construction-industry texts would be added.
+R0131,new,,True,"Penetration testing phases and exploit frameworks; no security module shown, only timetable 'AI Security and Privacy' (different main topic)."
+R0132,N,3,True,"Student tutoring (designing exercises, teaching units); EMI modules shown cover presentation and seminar skills, not tutoring itself."
+R0133,new,,False,"Building product law and quality control of steel, timber and concrete; nothing related in the EMI modules or timetable subjects."
+R0134,new,,True,"Transport and mobility behaviour analysis and sustainable traffic concepts; EMI has e-mobility/vehicle technology, not transport planning. Thin text."
+R0135,new,,True,"Spatial planning simulation game (actor analysis, negotiation, planning concept); no EMI module in the row on spatial planning."
+R0136,E2,5+6,False,"Mathematik 1 (linear systems, matrices, determinants) plus Mathematik 2 (logic, sets, algebraic structures); linear maps and principal axis theorem missing."
+R0137,new,,False,Urban and open-space design project; no EMI module or timetable subject on urban design.
+R0138,N,7,True,"Geo-Mathematik covers linear systems, condition, interpolation; iterative and nonlinear solvers and Matlab programming would be added; master level."
+R0139,N,2,False,"Informationssicherheit and Embedded Systems are taught separately; chip-architecture security, trust anchors, TPM and trusted execution are not covered."
+R0140,E2,4,False,"EMI Quantum Computing covers qubits, circuits, Deutsch-Jozsa, Grover, Simon/Shor, Qiskit; reversible/adiabatic computing, decision diagrams, QAOA would be added."
+R0141,E2,4+5,False,"Coding theory and information theory modules cover linear/cyclic codes, channel coding and decoding; Goppa, Reed-Muller codes and rate bounds would be added."
+R0142,N,1,False,"Energieeffizienz in Gebäuden covers thermal protection, thermal bridges, moisture basics; building acoustics, damage analysis and master depth are missing."
+R0143,N,3,False,"Informationssicherheit covers attack vectors and security tools in general; hands-on exploitation, Kali toolchain and pentest reports are not covered."
+R0144,new,,True,"Technical documentation and tekom standardisation methods; EMI timetable has scientific writing only, a different main topic."
+R0145,new,,False,Foundation and special geotechnical engineering; no EMI module or timetable subject on geotechnics.
+R0146,N,2,False,"TV-Produktion und Redaktion covers journalistic practice, press code and ethics basics; media-ethics theory and quality management at master level missing."
+R0147,new,,True,"Reinforced concrete structures design and detailing; only the timetable title 'Ingenieurbau' hints at civil engineering, no content shown."
+R0148,new,,True,"Learning management systems, roles, SCORM standards and e-learning course creation; no module in this row on e-learning."
+R0149,N,1,True,"Data Engineering & Data Analytics and Informationsvisualisierung cover data analysis and JS visualisation; R, PCA, text mining at master level missing."
+R0150,E2,5+4,False,"Software Engineering 1 and 2 cover processes, requirements, OOA/OOD, patterns, testing, CI, agile; global/intercultural development and architecture views missing."
+R0151,N,1,True,"Advanced software engineering (DevOps, design by contract, mutation testing, operations); only Web Engineering's MVC architecture is related."
+R0152,E1,2,False,"EMI Stochastik covers probability, random variables, descriptive and inductive statistics, estimation and hypothesis tests."
+R0153,N,2,False,"EMI programming modules touch functional programming only briefly; Scala, functors, monads and property-based testing at master level are missing."
+R0154,N,2,False,"Codierungstheorie und Kryptologie covers symmetric, hash/MAC and public-key basics in half a module; classical cryptanalysis, primality tests, attacks missing."
+R0155,E2,3,False,"Scientific Research and Methods (master) covers research logic, quantitative/qualitative methods, data collection and analysis; media-science theory would be added."
+R0156,new,,True,Sustainable building assessment and building life-cycle balance; EMI shows only general environment basics (Umwelt und Natur).
+R0157,E2,9+8,False,"Programmierung 2 (OO, generics, exceptions, libraries) plus Algorithmen und Datenstrukturen (lists, trees, graphs, sorting); lambdas, I/O, threads partly missing."
+R0158,E2,3,False,"Projektmanagement & Agile Entwicklungsmethoden covers process models, planning, risks, Scrum; effort estimation, feasibility studies and RUP/XP would be added."
+R0159,N,2,False,"Big Data, Cloud & NoSQL covers MapReduce and distributed frameworks; OLAP, graph query processing, worst-case optimal joins, incremental views missing."
+R0160,new,,False,"Geothermal energy piles in foundation engineering; EMI shows energy systems and GIS, not geotechnical engineering."
+R0161,N,2,False,"Computernetzwerke covers protocols, network security basics and tools; network security monitoring, forensic traffic analysis and expert reports missing."
+R0162,new,,False,"Urban drainage, water balance and water reuse under climate change; EMI shows only general environment basics."
+R0163,E2,6,True,"Mathematik 2 covers complex numbers, number theory, modular arithmetic and cryptography; trigonometric/complex power series content would be added; text truncated."
+R0164,N,1,False,TV-Produktion und -Redaktion teaches journalistic practice; comparative international journalism research and media systems at master level missing.
+R0165,N,2,True,"Overview of animation, game design, app development, motion capture and VR; Visual Computing and AR/VR cover only parts."
+R0166,N,3,True,"Innovation management and research seminar exist; applied to a construction research question, optionally with construction test labs."
+R0167,E1,2,False,Content-free bachelor elective slot; EMI offers subject-specific bachelor electives from its own catalogue (Studiengangsspezifische Wahlpflichtmodule).
+R0168,N,4,False,"Informationssicherheit and Automatisierungstechnik Grundlagen are separate; OT/process-plant threats, IEC standards and safety-system security not covered."
+R0169,N,,True,Content-free elective from another master specialisation; only bachelor electives and unrelated master modules are shown in the row.
+R0170,N,4,False,"Führung und Entscheidungsfindung covers leadership and team communication; personnel management, assessment centres, conflict and diversity management missing."
+R0171,N,3,True,"Grundlagen digitaler Systeme covers data representation, arithmetic, processor structure; instruction set architecture and assembler programming would be added."
+R0172,N,2,True,"'Projektmanagement und Medienrecht' shows no content; TV-Produktion touches copyright and image rights only, so coverage cannot be shown."
+R0173,E2,3,False,"Geschäftsmodellinnovation und Entrepreneurship (master) covers business models, SWOT, financial planning, break-even; pricing strategy and legal founding aspects missing."
+R0174,E2,6+3,False,"Betriebssysteme and Computernetzwerke cover OS architecture, protocols, network security basics; roles/permissions and WLAN/Bluetooth security would be added."
+R0175,new,,False,Finite element method for structures and heat transport; no EMI module or timetable subject on FEM or structural mechanics.
+R0176,N,2,True,"Overview of animation, game design, app development, motion capture, VR and streaming; Animation und Postproduktion and AR/VR cover only parts."
+R0177,E2,6+4,False,"Gesprächsführung und Vortragstechnik (communication, presentation, moderation) plus Interdisciplinary topic (leadership, teams); negotiation, conflict management partly missing."
+R0178,new,,False,"Conceptual modelling, metamodeling and the ADOxx platform; 'Modellbasierte Entwicklung' is Simulink simulation, a different topic."
+R0179,N,3,False,"Simulation dynamischer Systeme and timetable 'Maschinendynamik' relate; structural vibration, modal analysis and earthquake design are not covered."
+R0180,new,,False,"Urban hydrology, sewer network and pollution load modelling; nothing related in the EMI modules or timetable subjects."
+R0181,N,5,True,Data Analytics covers ML basics; AI-for-security and attacks on AI systems not taught in shown modules.
+R0182,E2,4,True,"Foreign Language 1 gives B2/C1 English on technical texts; meeting, business English and small talk only partly."
+R0183,N,2,False,Business administration taught in BWL modules; no business simulation game exists.
+R0184,lab,,False,Hydraulic engineering model tests need a hydraulics lab not in the EMI lab list.
+R0185,E1,2,False,"Stochastik covers probability, random variables, limit theorems, descriptive and inferential statistics."
+R0186,new,,False,"Structural steel design, welding and corrosion protection not taught in EMI."
+R0187,E2,1+2,True,AR/VR module plus game project cover VR prototyping; Godot and theatre techniques would be added.
+R0188,N,4,False,"Compositing module and 3D modelling subject on same topic; 3D modelling, rendering, PBR at master level not covered."
+R0189,E2,3+2,False,"Robotik covers kinematics, structure, sensors, programming; Robotics Starter adds small robots; dynamics missing."
+R0190,new,,True,"IT security law, data protection law and security psychology not taught; infosec module only touches data protection."
+R0191,N,6,False,"Computer Vision touches image compression; DCT/wavelet transforms, entropy coding and video coding standards missing."
+R0192,E2,3+2,True,"Interdisciplinary module (leadership, management techniques) plus BWL cover most; law and intercultural parts partial."
+R0193,E2,4,False,"Web application development covers Node.js, TypeScript frameworks, NoSQL; Express, Nest, Mongo specifics added."
+R0194,N,3,True,"General project management taught; construction contracts, procurement and building-project cost control not."
+R0195,E2,4+3,True,PM and agile module plus SE2 cover Scrum and agile; PM knowledge areas deepening at master level partly missing.
+R0196,N,4,True,Philosophy of technology taught; epistemology and philosophy of science are a different focus.
+R0197,E1,10+4,False,"Programmierung 1 (procedural) and 2 (OOP, inheritance, polymorphism) together cover the content."
+R0198,new,,False,Finite element method and plate/shell structural theory not taught in EMI.
+R0199,new,,False,"Sustainability, LCA, green coding and green cloud not taught in shown modules."
+R0200,N,1,True,"Industrial communication and infosec modules cover parts; industrial security, OPC-UA/DDS, reference architectures missing."
+R0201,E2,5,True,Foreign Language 2 gives technical language courses; cyber-security-specific English not explicit.
+R0202,E1,5,False,"Datenbanksysteme covers ER modelling, normalisation, SQL and relational databases."
+R0203,new,,False,"Steel fatigue, crane runways, steel and composite bridges not taught in EMI."
+R0204,N,1,False,Empirical research methods taught (empirical-pedagogical research); media science theories differ.
+R0205,new,,False,Building typologies and architectural history for urban planners not taught.
+R0206,new,,True,Security operations centre setup and processes not covered; infosec module only general basics.
+R0207,new,,True,Public services infrastructure planning not taught; empirical methods only as timetable subject.
+R0208,N,6,True,"Media production modules cover camera, studio and post-production basics; calibration, tracking, 360/stereo algorithms missing."
+R0209,new,,False,Infrastructure planning project with legal/economic preparation not taught in EMI.
+R0210,E2,4,False,"Physical Computing covers sensors, actuators, Arduino, 3D printing, laser cutting and projects; design thinking added."
+R0211,new,,False,Glass construction and facade engineering not taught.
+R0212,N,1,True,Business administration taught; international management and born-global strategies not covered.
+R0213,N,2,True,"Spatial planning and cadastre/law modules cover planning law and land registry; building contract, liability, procedural law missing."
+R0214,new,,False,Architectural history and heritage conservation not taught.
+R0215,N,3,True,Ingenieurbau introduces earthworks and volume calculation; earthwork processes and soil quality testing at master level missing.
+R0216,new,,True,Discrete optimisation research seminar; no optimisation module shown.
+R0217,new,,True,"Applied linguistics, terminology and translation studies not taught; NLP covers only computational linguistics."
+R0218,new,,True,No description; no project or analysis module among the shown modules.
+R0219,E2,5+6,True,"HCI and Screen-Design cover perception, GUI design, user testing; master-level evaluation methods partly added."
+R0220,N,5,True,Planning law and spatial planning taught; binding land-use plans and real-estate economics not covered.
+R0221,N,1,False,"Infosec covers IoT/cloud security basics; CPS/IIoT security architectures, standards and audits missing."
+R0222,E2,4+2,True,"Model-based development (simulation tools) and discrete modelling (cellular automata, agents) cover most; Petri nets, scheduling missing."
+R0223,N,,False,BIM is an EMI timetable subject; no shown module covers BIM methodology.
+R0224,E1,3,False,"Wissenschaftliches Arbeiten covers literature research, structure, citation, plagiarism and writing."
+R0225,new,,False,FEM and elasticity theory for structures not taught; only basic linear algebra exists.
+R0226,N,2,True,"BWL covers leadership basics; strategic leadership, negotiation and BIM-based costing not covered."
+R0227,lab,,False,Soil-mechanical and chemical tests need a geotechnical lab not in the EMI list.
+R0228,N,6,True,Corporate communication covers integrated campaigns and PR at bachelor level; strategic master-level marketing missing.
+R0229,N,4,False,"Symbolic AI 1 covers RDF, OWL, Linked Open Data; SPARQL, graph DBs, embeddings, GraphRAG missing."
+R0230,new,,True,"Description is technology didactics, not law; neither taught in shown modules."
+R0231,E2,2+5,True,"Selected AR/VR topics plus VR/AR cover tracking, devices, interaction; rendering methods and human factors partly added."
+R0232,E2,1+5,True,"Business model innovation and BWL/innovation module cover models and finance; lean startup, pitch, go-to-market added."
+R0233,E1,7,True,Language elective slot without description; Foreign Language 2 offers assigned language courses.
+R0234,E1,3+2,False,"Informationssicherheit plus coding theory/cryptology cover protection goals, risks, crypto, OS and network security."
+R0235,E2,1+3,True,Information visualisation plus programme project cover techniques and project process; visual analytics partly added.
+R0236,new,,False,Digital forensics not taught in shown modules.
+R0237,new,,False,Nonlinear structural analysis solvers not taught.
+R0238,new,,True,Security auditing per standards not covered by any shown module.
+R0239,N,6,False,"HCI and accessibility taught; internationalisation, culturalisation and software product lines missing."
+R0240,N,5,True,Environment module covers climate change; energy systems cover CO2 balance; building life-cycle sustainability missing.
+R0241,E2,1,True,Internship seminar covers reporting and reflecting on practice; knowledge transfer to teaching added.
+R0242,E2,4+3,True,"Computer Vision covers acquisition, enhancement, segmentation, classification; photogrammetry adds 3D measurement; descriptors partly missing."
+R0243,E1,6,False,"PM and agile module covers classic planning, control, Scrum and Kanban."
+R0244,new,,False,Precast concrete and special structures not taught.
+R0245,new,,False,Housing and urban sociology not taught.
+R0246,E2,2,False,"Research seminar covers presenting current research; science organisation, funding and posters added."
+R0247,E2,3,False,"Betriebssysteme covers processes, threads, synchronisation, deadlocks, memory; file systems missing."
+R0248,E2,2+3,False,Web systems plus web application development cover HTML/CSS/JS and Node.js; socket server project partly added.
+R0249,new,,True,Science communication not taught; only corporate communication and scientific writing exist.
+R0250,N,3,False,C++ programming taught incl. smart pointers; Rust and safety-critical programming not covered.
+R0251,new,,False,Rock mechanics and tunnelling not taught.
+R0252,new,,False,Fire safety engineering not taught.
+R0253,E2,1+3,True,Innovation management modules cover concepts and processes; change management and innovation controlling added.
+R0254,N,2,True,Security taught in infosec; consulting methods and client projects not covered.
+R0255,E1,9,False,"Programmieren 2 (C/C++) covers C++ syntax, control structures, arrays, classes and OOP."
+R0256,new,,False,Architectural design and CAD construction project not taught.
+R0257,N,4,True,"Building energy efficiency touches heating and building envelope; drywall, plumbing and HVAC design missing."
+R0258,E2,3,False,"Stochastik covers probability, distributions, CLT, estimation, tests; regression, MLE, ROC missing."
+R0259,lab,,False,"Lab exercises on concrete repair, salts and radioactivity testing need a building materials lab."
+R0260,E2,3,True,Foreign Language 2 assigns individual language courses incl. German; beginner level not explicit.
+R0261,new,,True,Assessment of existing structures not taught; only the English part is covered by language modules.
+R0262,E2,4+1,True,"CPS1 (microcontroller programming) and digital systems (arithmetic, processors) cover most; RISC detail added."
+R0263,E2,5+1,False,Betriebssysteme and Computernetzwerke cover both parts; server administration and virtualisation partly added.
+R0264,E1,5+9,False,"Mathematik 1 and 3 cover sequences, series, differentiation, integration and multivariable analysis."
+R0265,E2,5+3,True,UX/UI project module plus Screen-Design cover interaction design project; thin description.
+R0266,E1,2,False,Content-free elective slot; EMI offers programme-specific bachelor electives.
+R0267,N,5,True,Research seminar exists; active participation in faculty research projects not a defined module.
+R0268,N,,True,Spatial planning is an EMI timetable subject; urban design history and open-space planning not covered.
+R0269,N,2,False,Infosec includes ISO 27001 management briefly; full ISMS and IT/OT standards missing.
+R0270,E1,1,False,"Algorithmen & Datenstrukturen covers complexity, data structures, sorting, searching, design techniques."
+R0271,new,,True,"Environmental chemistry of building materials; EMI shows only general environment/earth basics (2), not building materials."
+R0272,E2,8,False,"EMI Theoretische Informatik covers automata, formal languages, Turing machines, computability; rigorous proofs, Rice, minimization partly added."
+R0273,new,,False,"Bridge design and structural analysis; EMI Ingenieurbau covers only road, earth and tunnel works basics."
+R0274,N,1,True,"Business part covered by EMI BWL modules; media competence and self-organisation half not shown, so under two thirds."
+R0275,N,3,True,Mix of energy transition and English business communication; EMI language module covers only the English half.
+R0276,N,5,True,"Urban heritage and renewal; EMI teaches spatial and urban planning and land management, but not this content."
+R0277,N,4,False,"Intercultural part matches EMI International Affairs; entrepreneurship half not shown, so under two thirds."
+R0278,N,9,True,Master-level advanced SE and leadership; EMI SE1/SE2 cover the topics only at bachelor level.
+R0279,lab,,False,"Practical tests on mortar, concrete, coatings and corrosion of building parts need a building-materials lab not in EMI's list."
+R0280,N,2,False,"EMI Informationssicherheit covers threat modelling and ISO 27001, but risk frameworks and quantitative risk methods are the core here."
+R0281,E2,9+5,True,"Fourier, sampling, DFT, z-transform, filters in EMI DSP basics; spectral estimation, wavelets in advanced DSP; stochastic process modelling partly missing."
+R0282,N,3,False,Ethics part matches EMI ethics module; sustainability/SDGs and scientific writing half not covered by the modules shown.
+R0283,N,5,False,"Secure coding is in EMI Informationssicherheit, but Java-specific attacks (XXE, deserialization, JNDI) are not shown."
+R0284,E2,4,False,"EMI master NLP covers tokenization, embeddings, RNN, transformers; sentiment, translation, speech recognition/synthesis need adding."
+R0285,N,4,False,"Marketing via media channels taught in Medienmarketing; SEO, link building and social media channel building not shown."
+R0286,N,3,True,"Contentless individual master project in core CS; EMI shows no master CS elective, only thesis-type supervised work."
+R0287,new,,False,"Water supply, wastewater and waste management in settlements; EMI shows only electrical energy grids, nothing on this topic."
+R0288,new,,False,Geotechnical excavation design with FEM (Plaxis); no EMI module or timetable subject on geotechnics.
+R0289,new,,True,Technical-economic planning of construction projects; EMI has generic projects and BWL but no construction design content.
+R0290,E2,2+3,True,"Research seminar on current IT security; seminar format as in EMI AI conference, security content from EMI Cybersicherheit."
+R0291,N,5,False,"Urban planning history, theories and actors; EMI Raumordnung covers planning instruments only, a minor part."
+R0292,E2,5,True,"Independent project with research, realisation, documentation, presentation; EMI study project matches format but is EE-focused."
+R0293,E2,4,True,"EMI Informationssicherheit covers network, wireless, pentest and mechanisms; identity federation, SIEM, OS hardware security need adding."
+R0294,N,,True,"CAD for urban planning; EMI teaches 3D modelling and visualisation in timetables, but no CAD module shown."
+R0295,N,1,False,"Linear optimisation and financial mathematics; EMI shows maths and BWL with investment/finance, but neither topic in depth."
+R0296,E1,1+4,False,"Physical Computing covers CAD, 3D printing, laser cutting, prototypes; Human Centered Design covers design thinking, user research, testing."
+R0297,new,,True,"Infrastructure construction planning project per HOAI phases; EMI shows only generic projects and BWL, no construction planning."
+R0298,E2,9+10,False,"History, number systems, gates, computer architecture in Informatik Grundlagen; OS and networks in intro module; security intro missing."
+R0299,N,8,False,"Game development taught in EMI KI Projekt Gaming, but this is textbook study and creating teaching materials."
+R0300,E1,3+1,False,"EMI GIS module covers GIS basics, analysis, formats; Geodatenmanagement adds WebGIS, data sources and formats."
+R0301,N,7,False,"Security taught in EMI Informationssicherheit, but a team security product project with an external client is not shown."
+R0302,new,,False,"Construction contract models, PPP and claims management; EMI shows no construction law or contracting content."
+R0303,N,4,False,"Simulation is taught (Simulink, CPS modelling), but discrete-event and crowd simulation with validation methods are not shown."
+R0304,E1,1+8,False,"Physical Computing covers Arduino, sensors and team prototype; Human Centered Design covers UCD methods, interviews, user testing."
+R0305,E2,2+4,False,"Web-Technologies covers HTTP, HTML, CSS, JS; Web-Anwendungsentwicklung covers backend, frameworks, databases; REST design and containers need adding."
+R0306,N,6,True,"Numerical linear algebra, SVD, ODE/boundary value solvers in MATLAB; EMI shows maths and Simulink, but no numerical methods module."
+R0307,E2,6+5,False,"Computer Vision covers image basics, colour spaces, filtering, segmentation; Deep Computer Vision covers DL; registration, medical applications missing."
+R0308,N,3,True,Spatial planning law and regional development in EMI Raumordnung and Regionalmanagement; urban renewal law and funding programmes not shown.
+R0309,E2,8+7,True,"EMI Deep Learning covers NN, CNN, RNN; generative AI module covers GANs; adversarial examples and reinforcement learning missing."
+R0310,new,,True,"Compliance, data protection and IT law; EMI shows only media-law aspects in TV production and security timetable subjects."
+R0311,N,7,False,"Spanish B1 course; EMI foreign-language modules teach mainly German/English, other languages only by exception via language centre."
+R0312,N,5,True,Interactive multilinear storytelling and educational interactive films; EMI teaches film formats (Nonfiktionaler Film) but not this content.
+R0313,new,,False,Energy methods and shell theory of structural mechanics; EMI shows only basic technical mechanics in mechatronics.
+R0314,E2,5,False,"EMI Informationsvisualisierung covers data formats, visual mapping, perception, techniques, interaction; history, semiotics, taxonomies need adding."
+R0315,E2,1,True,Information ethics and AI ethics module covers ethics basics and AI dilemmas; master-level case work and AI fundamentals partly added.
+R0316,E1,3+2,False,"EMI GIS covers architecture, data, analysis, formats; Kartographie covers official geodata (ALKIS/ATKIS) and map production."
+R0317,N,2,True,"EMI coding/cryptology module covers symmetric and public-key crypto but half is coding theory; classical ciphers, RSA/ElGamal detail missing."
+R0318,E2,7+10,False,"Programmierung 1 covers procedural basics; Programmieren für KI 2 covers C pointers, arrays, structs; dynamic memory, linked lists not explicit."
+R0319,N,4,False,"Game development taught in KI Projekt Gaming and 3D modelling in timetable, but no shown module covers Blender modelling, shading, rendering."
+R0320,N,5,True,"Interdisciplinary elective with no description; EMI shows only subject-specific bachelor electives, not interdisciplinary ones."
+R0321,E1,1+3,False,"Websysteme covers HTTP, HTML, CSS, JS, responsive design, accessibility; Web-Anwendungsentwicklung covers server-side node.js, frameworks, databases."
+R0322,E2,6+1,False,"Computer Vision covers cameras, lighting, classical image processing; CV and AI covers deep learning; calibration, 3D reconstruction, OCR, HALCON missing."
+R0323,E1,1,False,"Contentless bachelor elective from a CS/security/AI catalogue; EMI offers bachelor electives of this kind (KI Vertiefungsmodul, AW1/AW2)."
+R0324,N,5,False,"Environmental planning in land-use planning; EMI teaches environment basics and planning (timetable Raumordnung), not this content in depth."
+R0325,lab,,False,"Load tests on reinforced concrete beams, photoelastic model tests and NDT of structures need a structural testing lab not in EMI's list."
+R0326,E2,3,True,"German as a foreign language at B1; EMI Foreign Language modules provide individually assigned German courses, level differs from B2/C1."
+R0327,N,2,True,"Cyber security topics set per project, description too thin; security taught in EMI Informationssicherheit."
+R0328,E1,2,False,"Protection goals, vulnerabilities, protective mechanisms, practical exercises match EMI Informationssicherheit at bachelor level."
+R0329,new,,False,"International construction contracts (FIDIC, design-and-build) and site operations abroad; EMI shows no construction management content."
+R0330,E1,2,False,"Contentless bachelor elective from a CS/security/AI catalogue; EMI offers bachelor electives of this kind (KI Vertiefungsmodul, AW1/AW2)."
+R0331,lab,,True,"Building survey with tachymetry, laser scanning, photogrammetry; surveying equipment is not in EMI's lab list, though photogrammetry is taught."
+R0332,new,,True,"Digital forensics in the cloud; EMI covers cloud basics (Big Data, Cloud & NoSQL) but no forensics content."
+R0333,E2,1,True,German as a foreign language around B1/B2; EMI Foreign Language 2 provides individually assigned German courses.
+R0334,N,5,True,"Game development taught in KI Projekt Gaming, web frameworks in Web Engineering; game and educational game design not covered."
+R0335,N,4,False,"Cloud services taught in Big Data, Cloud & NoSQL and timetable cloud module; Go, microservices and container deployment not shown."
+R0336,E2,2+1,False,"Stochastik covers probability, descriptive and inferential statistics, tests; Data Analytics covers Python EDA; regression and ANOVA missing."
+R0337,new,,False,Drinking water treatment and wastewater plant design; EMI shows nothing on water engineering.
+R0338,N,2,False,"Mobile app development taught in App-Programmierung (Android, cross-platform), but iOS, Swift and SwiftUI are not covered."
+R0339,E1,1+2,False,"Discrete maths covers number theory, modular arithmetic and crypto basics; Mathematik 1 covers linear systems, Gauss, R^n."
+R0340,N,5,False,"Advanced cryptology (elliptic curves, pairings, post-quantum, lightweight); EMI coding/cryptology module is introductory only."
+R0341,new,,False,2D/3D hydraulic flood and sewer simulation with GIS tools; EMI simulation modules cover electrical/control systems only.
+R0342,N,5,True,"Urban development lecture series with a written research paper; EMI Bachelorseminar covers scientific writing, not the urban topic."
+R0343,E2,1+3,True,"Web Engineering and Web-Anwendungsentwicklung cover web app structure, MVC, frameworks, routing; Java frameworks Spring MVC and Vaadin would be new."
+R0344,new,,True,"Personal finance, investments, pensions, crypto with Python; EMI covers Python data analysis and business finance, not personal finance."
+R0345,E2,6+2,False,"EMI IR & NLP covers NLP basics, transformers, LLMs, fine-tuning; ML2 covers DL basics; RAG, agents, alignment need adding."
+R0346,N,6,False,"Spanish A1 course; EMI foreign-language modules teach mainly German/English, other languages only by exception via language centre."
+R0347,new,,False,"Public infrastructure (road, rail, water) planning, BIM lifecycle and contract models; EMI shows only BWL and project management."
+R0348,E2,2+1,False,"EMI Cybersicherheit and Informationssicherheit cover network and WiFi security, crypto, attacks, pentest; IDS placement and layer protocols partly added."
+R0349,N,7,False,Stochastic optimisation and MCMC methods; EMI teaches probability and Markov processes (RL) but no stochastic algorithms module.
+R0350,E2,4+6,True,"Digitaltechnik covers VHDL and FPGA circuit design; Informationssicherheit covers security basics; HSM, TEE and crypto arithmetic units need adding."
+R0351,new,,True,Organising a subject excursion; description very thin and no EMI module shown covers excursion organisation.
+R0352,E2,6+1,False,"SE1 covers requirements, design, patterns, testing; SE2 covers Scrum, user stories, QA; computing ethics, usability, security basics need adding."
+R0353,N,5,False,Regional economic development and business promotion; EMI Regionalmanagement covers regional development steering but not economic promotion or clusters.
+R0354,N,1,True,"EMI Energieeffizienz in Gebäuden covers energy-efficient building, envelope, energy pass; building planning, passive house, blower door, thermography missing."
+R0355,N,3,True,"Cross-platform app development taught in App-Programmierung (e.g. react native), but Dart and Flutter are not covered."
+R0356,N,8,False,"Secure software development is part of EMI Informationssicherheit, but coding guidelines, input validation and code-analysis tools are not shown."
+R0357,E2,3+1,False,Raumordnung covers BauGB and Bauleitplanung; Städtisches Bodenmanagement covers Umlegung and Wertermittlung; plan securing and expropriation partly missing.
