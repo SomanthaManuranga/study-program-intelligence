@@ -356,3 +356,95 @@ R0354,N,1,True,"EMI Energieeffizienz in Gebäuden covers energy-efficient buildi
 R0355,N,3,True,"Cross-platform app development taught in App-Programmierung (e.g. react native), but Dart and Flutter are not covered."
 R0356,N,8,False,"Secure software development is part of EMI Informationssicherheit, but coding guidelines, input validation and code-analysis tools are not shown."
 R0357,E2,3+1,False,Raumordnung covers BauGB and Bauleitplanung; Städtisches Bodenmanagement covers Umlegung and Wertermittlung; plan securing and expropriation partly missing.
+R0358,new,,False,"Sustainable building construction, construction management and facade energy design; EMI 'Konstruktion' is machine design, no building construction shown."
+R0359,new,,True,"Parametric/visual-programming construction tools for architecture; Visual Computing (CGI) and Physical Computing touch tools only, not architectural design."
+R0360,N,1,True,"Building physics (heat, moisture) partly in Energieeffizienz in Gebäuden; architectural construction design and circular construction not taught."
+R0361,new,,False,Architectural and urban design studio; no EMI module or timetable subject on architectural design.
+R0362,new,,False,Architectural design integrating structures and building envelopes; EMI design modules are media/UI design.
+R0363,N,1,True,"Lighting design topic matches timetable 'Kreativität in der Beleuchtungstechnik' and 'Audio, Video, Licht' (empty text); building-integrated lighting planning not covered."
+R0364,new,,False,Historical building research and restoration assessment; nothing comparable among EMI modules or timetable subjects.
+R0365,N,2,True,Layout and graphic presentation partly in media design modules and timetable 'Methoden der Visualisierung'; architectural plan presentation not covered.
+R0366,N,1,True,Visual/virtual media and spatial experience touched in AR/VR and media modules; architectural media theory focus not covered.
+R0367,new,,False,"Architectural typology, history and theory; no EMI module on this topic."
+R0368,N,1,False,"Building surveying techniques (laser scanning, deformation) in Ingenieurvermessung und Sensorik; historical building research and documentation not covered."
+R0369,new,,True,"Atmospheric interior representation (drawing, light, material); EMI media design modules are general, no interior representation shown."
+R0370,N,5,True,Energy concepts touched in Integrierte Energiesysteme; building and facade energy design for architects not covered.
+R0371,new,,False,Architectural in-depth design/research project; EMI project and thesis modules are in EE/CS fields.
+R0372,N,1,True,Building energy and sustainability partly in Energieeffizienz in Gebäuden; building in climate zones and cultural factors not covered.
+R0373,N,,True,"Lighting planning matches timetable 'Kreativität in der Beleuchtungstechnik'; shown EMI modules are optoelectronics, not lighting design."
+R0374,new,,False,Architectural history special topics; nothing comparable in EMI.
+R0375,new,,True,"Documentation of student work as brochure or exhibition with layout software; thin description, no layout module shown."
+R0376,new,,False,Structural and building construction systems in architecture; EMI 'Konstruktion' is machine elements and drawings.
+R0377,new,,True,Sculptural design and art history; EMI design modules are 2D/media; would also need a sculpture workshop.
+R0378,new,,True,"Stage design and scenography of space; EMI media production modules address film/TV, not spatial staging."
+R0379,new,,False,Trade-fair and temporary installation planning and construction; nothing comparable in EMI.
+R0380,new,,False,Building fire protection and building law; EMI safety modules are information/functional safety.
+R0381,N,4,True,Academic writing and presentation in Wissenschaftliches Arbeiten and Gesprächsführung (bachelor); architecture-specific research at master level not covered.
+R0382,new,,False,Architectural and urban design studio; no EMI module on architectural design.
+R0383,new,,False,Special topics in architecture and urban planning; no EMI coverage.
+R0384,new,,False,Short architectural design exercises; no EMI module on architectural design.
+R0385,new,,True,Figure sculpture with anatomy and modelling materials; not taught in EMI; would also need a sculpture workshop.
+R0386,N,4,False,"Parametric/generative design taught in Design Computation; Grasshopper, multi-agent form generation and architectural scales not covered."
+R0387,N,,True,Urban planning seminar; timetable 'Raumordnung und Raumplanung' is on spatial planning; urban theory content itself not covered.
+R0388,new,,False,Project planning for historical buildings; nothing comparable in EMI.
+R0389,new,,False,Space phenomenology and architectural representation; no EMI module on this topic.
+R0390,N,5,True,Project management basics in BWL und Projektmanagement and timetable PM subjects; construction-project organisation and building law not covered.
+R0391,N,4,True,Colour theory is part of Design und Produktion Digitaler Medien; colour application in architectural space not covered.
+R0392,new,,False,Exhibition architecture and scenography; EMI film/TV modules are not on this topic.
+R0393,N,7,True,"3D printing, laser cutting and CAD in Physical Computing; architectural digital fabrication and CNC not covered."
+R0394,new,,False,Architecture design competitions; nothing comparable in EMI.
+R0395,lab,,True,"CAM with wood (CNC, G-code) in theory and practice needs a wood workshop/CNC not in the EMI lab list."
+R0396,new,,False,Architectural/urban history and monument preservation; not taught in EMI.
+R0397,new,,False,Architectural theory; EMI ethics and media theory modules are different topics.
+R0398,new,,False,Architectural and urban design studio; no EMI module on architectural design.
+R0399,new,,False,Qualitative building and typology analysis; no EMI module on this topic.
+R0400,new,,False,Landscape architecture in architectural design; no EMI coverage.
+R0401,N,1,False,Drawing taught in Methoden der Visualisierung and timetable 'Visuelle Konzeption und Skizze'; large-format architectural drawing not covered.
+R0402,new,,False,"Planning in historic buildings (damage mapping, repair concepts); not taught in EMI."
+R0403,new,,False,Structural design and building-material sustainability; no EMI module on this topic.
+R0404,new,,False,Multi-storey timber and hybrid construction; not taught in EMI.
+R0405,new,,True,BIM collaborative design methods; no BIM module or timetable subject shown in this row.
+R0406,new,,False,Special topics in architecture and urban planning; no EMI coverage.
+R0407,N,2,False,"Photography basics, camera and image editing in Digitale Bildbearbeitung and timetable 'Fotodesign'; architectural photography techniques not covered."
+R0408,new,,False,International real-estate project marketing and development; EMI communication modules are not on this topic.
+R0409,new,,False,Theory of surface-active structural systems; EMI 'Konstruktion' is machine design.
+R0410,new,,False,Architectural theory of modernism; not taught in EMI.
+R0411,N,5,True,Colour theory basics in Grundlagen Gestaltung; colour in architectural space and light context not covered.
+R0412,new,,False,Architecture excursions; no EMI module on this topic.
+R0413,new,,True,"Smart materials and skins in architecture; EMI cyber-physical modules cover embedded systems, not architectural smart systems."
+R0414,new,,True,"Parametric design and simulation tools for architecture; shown EMI modules (Visual Computing, Physical Computing) do not cover this."
+R0415,N,1,True,Drawing is part of Methoden der Visualisierung; anatomical figure and portrait drawing not covered.
+R0416,new,,False,Large architectural/urban design project; no EMI module on architectural design.
+R0417,new,,True,"Atmospheric interior representation (material, colour); general design modules shown, no interior representation."
+R0418,new,,True,Colour theory and colour concepts in architecture; no colour module among the EMI modules shown.
+R0419,N,4,True,Building services and energy partly in Energieeffizienz in Gebäuden; interior fit-out construction and lighting not covered.
+R0420,new,,False,Architectural typology and theory accompanying the design project; not taught in EMI.
+R0421,new,,False,Historical building research with archival sources; not taught in EMI.
+R0422,E2,1,True,Generative AI design tools and parameter control in Design Computation; architecture-specific application must be added.
+R0423,new,,False,Historical interior space concepts; not taught in EMI.
+R0424,N,3,True,Design process methods in Human Centered Design; architectural design strategies and material experiments not covered.
+R0425,new,,True,Open social and cultural sciences catalogue; no such electives among the EMI modules shown.
+R0426,N,5,True,Building energy and HVAC/renewables in Energieeffizienz in Gebäuden (bachelor); interior room-climate concepts at master level not covered.
+R0427,N,5,False,"Graphics programming and OOP in Creative Coding; agent systems, cellular automata and architectural scripting not covered."
+R0428,new,,False,Solid building materials and architectural detailing; not taught in EMI.
+R0429,new,,False,Urban design project in a European city; no EMI module on urban design.
+R0430,new,,False,Watercolour painting of architecture; no EMI module on painting.
+R0431,new,,False,Transformation of existing buildings and phase-0 project development; not taught in EMI.
+R0432,new,,True,Architecture workshops and symposia without fixed content; no comparable EMI module.
+R0433,new,,False,Building typology and spatial organisation; not taught in EMI.
+R0434,new,,False,Architectural sociology and participatory planning; EMI cartography modules are not on this topic.
+R0435,N,5,True,Urban planning topics; Städtisches Bodenmanagement and timetable 'Raumordnung und Raumplanung' share the field; thin description.
+R0436,N,7,True,Experimental design practice in Grundlagen Gestaltung; transformative design with existing buildings and art history not covered.
+R0437,N,4,True,Media conception in Cross Media; digital-hybrid spatial installations in architecture not covered.
+R0438,E1,4,False,"Foreign Language 2 assigns individual language courses plus an intercultural meeting, matching the choice of two language/intercultural courses."
+R0439,E1,1,False,Masterseminar covers scientific classification of the thesis topic and presentation to a group.
+R0440,N,5,True,"Lighting design matches timetable 'Kreativität in der Beleuchtungstechnik' and 'Audio, Video, Licht' (empty text); thin description."
+R0441,new,,False,Housing typologies in architecture; not taught in EMI.
+R0442,new,,False,Drywall interior construction; not taught in EMI.
+R0443,N,,True,Research methods and drawing (timetable 'Visuelle Konzeption und Skizze') exist; architectural representation and digital architecture research not covered.
+R0444,N,5,True,"Parametric and AI-assisted design in Design Computation; interior drawing, BIM and architectural visualisation not covered."
+R0445,new,,False,International building construction methods and systems; not taught in EMI.
+R0446,N,4,True,Surveying and laser scanning in Ingenieurvermessung und Vermessungskunde; historical building survey drawing not covered.
+R0447,new,,False,"European city urban development models; EMI GIS module is a tool, not the topic."
+R0448,new,,True,CAD-CAM manufacturing of wood elements and joinery; not taught in EMI; production done with partner companies.
+R0449,new,,True,Colour theories in art and architecture; no colour module among the EMI modules shown.
