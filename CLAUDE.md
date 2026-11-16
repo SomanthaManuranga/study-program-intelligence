@@ -96,8 +96,8 @@ not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml,
 (supervisor's input, run-1 fixes, what was known beforehand). One step at a time, each with Soma's OK and a short
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
-4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula with Soma's hand check,
-8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 6 are done; Step 7 has run twice (below) and waits for Soma's decision on module size. The supervisor's timetable PDFs are internal: they
+4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula (AI readers),
+8 ranking, stress tests, decision. Steps 2 and 3 have run (below). Steps 2 to 7 are done. Next: Step 8 (ranking, stress tests, decision), after Soma's OK. The supervisor's timetable PDFs are internal: they
 stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
 count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
 with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
@@ -151,12 +151,12 @@ and single comparators lead the top (flag columns in the table), and "new to OTH
 which lies within the type's radius for 33 units only. OPEN for Soma before Step 8: a floor for the anchor's
 denominator, a scale shrunk towards 1 with few comparators, net-new where the OTH site is a placeholder; and for
 Step 7: who checks the AI reviewer's rows, since Soma does no hand work.
-Step 7 second pass (analysis/funnel_shortlist.py, funnel_refs.py, funnel_feasibility.py; notes in
-docs/funnel_run2_notes.md): 10 candidates tried, 6 eligible, 357 modules of 10 handbooks marked again on a fuller
-sheet by AI readers (second reader, third reader on 23 disagreements; 90 % agreement). Same verdicts as the first
-pass: computer science bachelor passes (46 %, one handbook, 89 new ECTS), cybersecurity bachelor fails (35 % / 39 %).
-NOT FINAL: module size is not in the marking rules and decides both (if size counts, no bachelor passes); the
-proposed size rule needs Soma's OK.
+Step 7 (analysis/funnel_shortlist.py, funnel_refs.py, funnel_feasibility.py; notes in docs/funnel_run2_notes.md):
+10 candidates tried, 6 eligible, 357 modules of 10 handbooks marked by AI readers in three passes (rules version 3:
+content counts, two EMI modules may cover one; no person checks, by Soma's decision). Computer science bachelor
+passes with existing resources (68 %, one handbook, 52.5 new ECTS, about 1.2 professor-equivalents; 49-61 % under
+the reviewers' stricter readings, 33 % without the two-module rule). Cybersecurity bachelor is in the band (63 / 58 %)
+but needs outside teaching. Computer science master depends on the handbook (35 / 52 %); three others fail.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 
