@@ -1,0 +1,108 @@
+{
+  "stamp": {
+    "commit": "f9d8ef0",
+    "date": "2026-11-15",
+    "clean": true
+  },
+  "step3_commit": "7f24b79",
+  "units": 1285,
+  "primary": 365,
+  "stress": 1241,
+  "beta": 1.6,
+  "w_substitute": {
+    "pessimistic": 1.0,
+    "central": 0.5,
+    "optimistic": 0.25
+  },
+  "gross_band": [
+    0.33,
+    3.0
+  ],
+  "master_transition": 0.5,
+  "minimum_cohort": 20,
+  "origins": {
+    "bachelor": {
+      "origins": 96,
+      "mass": 54698.0
+    },
+    "master": {
+      "origins": 17,
+      "mass": 83481.0
+    }
+  },
+  "primary_quartiles": {
+    "anchor": [
+      23.2,
+      28.9,
+      38.9
+    ],
+    "scale": [
+      0.6,
+      0.8,
+      1.0
+    ],
+    "gross central": [
+      15.4,
+      24.2,
+      34.0
+    ],
+    "net-new central": [
+      11.3,
+      16.5,
+      23.9
+    ],
+    "share from OTH (central)": [
+      0.158,
+      0.241,
+      0.333
+    ]
+  },
+  "primary_below_the_minimum_cohort": 140,
+  "primary_at_or_above": 225,
+  "primary_without_a_bavarian_comparator": 83,
+  "primary_without_any_competitor_site": 0,
+  "primary_with_a_germany_wide_anchor": 2,
+  "primary_with_fewer_than_2_bavarian_offers_in_the_pool": 19,
+  "primary_with_a_tenth_or_more_of_the_pool_on_subjects_without_german_students": 29,
+  "primary_with_anchor_0": 4,
+  "primary_with_one_bavarian_comparator": 71,
+  "primary_oth_offer_within_the_types_radius": 33,
+  "primary_gross_band_includes_the_minimum_cohort": 325,
+  "primary_cohort_flag_differs_with_the_per_subject_anchor": 17,
+  "primary_without_a_flag": {
+    "units": 198,
+    "at_or_above_the_minimum_cohort": 105,
+    "net-new central quartiles": [
+      11.2,
+      17.4,
+      23.9
+    ]
+  },
+  "primary_oth_offers_from": {
+    "nearest OTH offer of the level": 365
+  },
+  "primary_net_new_central_10_or_more": 294,
+  "primary_net_new_central_40_or_more": 20,
+  "level_check": {
+    "rows": 5,
+    "rows_with_a_unit": 4,
+    "units_checked": 1,
+    "median_absolute_log_error": 1.157,
+    "absolute_log_errors": [
+      0.196,
+      0.679,
+      1.635,
+      2.316
+    ],
+    "reading": "one subject, not a validation of the other anchors"
+  },
+  "inputs": {
+    "funnel2_screen.csv": "b12cdfe015f8620d",
+    "funnel2_offer_types.csv": "509fbdbe7fc60ac1",
+    "funnel2_demand.csv": "d6e9cbccd315df94",
+    "funnel_subject_map.csv": "636223e331f56a89"
+  },
+  "files": {
+    "funnel2_capture.csv": "941fcafaf4048139"
+  }
+}

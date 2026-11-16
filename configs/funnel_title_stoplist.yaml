@@ -1,0 +1,104 @@
+# Title phrases that are never job-ad keywords (configs/funnel.yaml, labour.drop_generic).
+# Written and committed before any Step 2 code ran, from the catalogue's title conventions only; no type was seen.
+# Only degree words and catalogue words (how a programme is organised); a word that names subject matter is never
+# listed. Phrases are compared after text.normalise (lower case, ae/oe/ue/ss).
+
+degree_words:
+  - bachelor
+  - master
+  - bachelor of science
+  - bachelor of arts
+  - bachelor of engineering
+  - bachelor of education
+  - bachelor of laws
+  - master of science
+  - master of arts
+  - master of engineering
+  - master of education
+  - master of laws
+  - master of business administration
+  - mba
+  - emba
+  - staatsexamen
+  - diplom
+  - lehramt
+  - lehramtsbezogen
+  - kombibachelor
+  - monobachelor
+  - fachbachelor
+  - zwei-fach-bachelor
+  - zwei-faecher-bachelor
+  - ein-fach-bachelor
+  - 2-fach-bachelor
+  - 2-faecher-bachelor
+  - 1-fach-bachelor
+  - zwei-fach-master
+  - 2-faecher-master
+  - 1-fach-master
+  - ein-fach-master
+
+catalogue_words:
+  - studiengang
+  - studium
+  - teilstudiengang
+  - hauptfach
+  - nebenfach
+  - kernfach
+  - erstfach
+  - zweitfach
+  - beifach
+  - begleitfach
+  - ergaenzungsfach
+  - unterrichtsfach
+  - fachwissenschaft
+  - zwei-fach
+  - ein-fach
+  - 2-faecher
+  - 2 faecher
+  - dual
+  - duales studium
+  - dualer studiengang
+  - berufsbegleitend
+  - berufsintegrierend
+  - praxisintegriert
+  - ausbildungsintegriert
+  - kooperativ
+  - teilzeit
+  - vollzeit
+  - fernstudium
+  - online
+  - online-abendstudium
+  - abendstudium
+  - verbundstudium
+  - weiterbildung
+  - weiterbildend
+  - konsekutiv
+  - international
+  - internationaler studiengang
+  - double degree
+  - joint degree
+  - doppelabschluss
+  - binational
+  - trinational
+  - deutsch-franzoesischer studiengang
+  - dt.-frz. studiengang
+  - schwerpunkt
+  - vertiefung
+  - profil
+  - grundschule
+  - grundschulen
+  - mittelschule
+  - mittelschulen
+  - hauptschule
+  - realschule
+  - realschulen
+  - gymnasium
+  - gymnasien
+  - gesamtschule
+  - gesamtschulen
+  - berufskolleg
+  - berufskollegs
+  - berufsbildende schulen
+  - berufliche schulen
+  - sekundarstufe i
+  - sekundarstufe ii

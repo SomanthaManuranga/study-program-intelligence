@@ -1,0 +1,179 @@
+corrections:
+  - {label: "Lehramt an Gymnasien", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Lehramt für Schularten der Sekundarstufe I", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Lehramt an Gymnasien (grundständig außer Staatsexamen)", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Lehramt für Schularten der Sekundarstufe I (grundständig außer Staatsexamen)", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs", code: "SF270", reason: "vocational teacher training"}
+  - {label: "Elektrotechnik", code: "SF048", reason: "same subject"}
+  - {label: "Wirtschaftsingenieurwesen", code: "SF370", reason: "industrial engineering, engineering-focus series"}
+  - {label: "Lehramt für Schularten der Sekundarstufe I (Staatsexamen)", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs (grundständig außer Staatsexamen)", code: "SF270", reason: "vocational teacher training"}
+  - {label: "Lehramt an Grundschulen (grundständig außer Staatsexamen)", code: "SF115", reason: "primary teacher training"}
+  - {label: "Lehramt an Gymnasien (Staatsexamen)", code: "SF361", reason: "teacher training, school pedagogy closest"}
+  - {label: "Anglistik, Amerikanistik", code: "SF008", reason: "English studies main series"}
+  - {label: "Marketing, Vertrieb", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Datenwissenschaft, Data Science", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Unternehmensführung, Management", code: "SF021", reason: "general management, parent BWL"}
+  - {label: "Ingenieurwissenschaft", code: "SF072", reason: "general engineering series"}
+  - {label: "Geografie", code: "SF050", reason: "same subject"}
+  - {label: "Nachhaltigkeitsmanagement", code: "SF458", reason: "environmental protection is closest"}
+  - {label: "Wirtschaftspsychologie", code: "SF132", reason: "counted under psychology"}
+  - {label: "Finanz- und Rechnungswesen, Controlling", code: "SF021", reason: "business function, not public finance"}
+  - {label: "Design", code: "SF007", reason: "general design, parent applied art"}
+  - {label: "Logistik, Supply-Chain-Management", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Mediendesign, -kunst", code: "SF287", reason: "design and art with new media"}
+  - {label: "Humanmedizin", code: "SF107", reason: "same subject"}
+  - {label: "Personalmanagement, -dienstleistung", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Romanistik - Französisch", code: "SF059", reason: "same subject"}
+  - {label: "Romanistik - Spanisch", code: "SF150", reason: "same subject"}
+  - {label: "Sozial-, Kulturanthropologie", code: "SF173", reason: "same subject, ethnology"}
+  - {label: "Technologiemanagement", code: "SF370", reason: "engineering and business hybrid"}
+  - {label: "Künstliche Intelligenz", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Automatisierungstechnik", code: "SF048", reason: "automation, parent electrical engineering"}
+  - {label: "Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs (Staatsexamen)", code: "SF270", reason: "vocational teacher training"}
+  - {label: "Softwaretechnik", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Journalistik", code: "SF303", reason: "journalism series merged into this code"}
+  - {label: "Heilpädagogik", code: "SF190", reason: "special needs education"}
+  - {label: "Steuern, Prüfungswesen", code: "SF021", reason: "business function, not public finance"}
+  - {label: "Stadt-, Regionalplanung", code: "SF134", reason: "same subject, spatial planning"}
+  - {label: "Romanistik - Italienisch", code: "SF084", reason: "same subject"}
+  - {label: "Klassische Philologie - Latinistik", code: "SF095", reason: "same subject"}
+  - {label: "Bank, Finanzdienstleistungen", code: "SF021", reason: "business function, not public finance"}
+  - {label: "Interkulturelle Studien", code: "SF024", reason: "cultural studies parent"}
+  - {label: "Slawistik", code: "SF146", reason: "same subject"}
+  - {label: "Klassische Philologie - Gräzistik", code: "SF070", reason: "same subject"}
+  - {label: "Molekularwissenschaft", code: "SF032", reason: "molecular science, parent chemistry"}
+  - {label: "Immobilienwirtschaft", code: "SF021", reason: "sector business, parent BWL"}
+  - {label: "Psychotherapie", code: "SF132", reason: "counted under psychology"}
+  - {label: "Energie-, Ressourcenmanagement", code: "SF370", reason: "engineering and business hybrid"}
+  - {label: "Robotik, Autonome Systeme", code: "SF380", reason: "robotics, closest mechatronics"}
+  - {label: "Öffentliches Recht", code: "SF135", reason: "law, not business law"}
+  - {label: "Regionalwissenschaft - Asien", code: "SF187", reason: "same region, Asian studies"}
+  - {label: "Sinologie", code: "SF145", reason: "same subject"}
+  - {label: "Kulturmanagement", code: "SF024", reason: "cultural studies parent"}
+  - {label: "IT-Sicherheit", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Coaching, Beratung, Supervision", code: "SF208", reason: "counselling, feeder social work"}
+  - {label: "Biowissenschaften, Life Sciences", code: "SF026", reason: "parent biology"}
+  - {label: "Nah- und Mitteloststudien", code: "SF122", reason: "Middle East, parent oriental studies"}
+  - {label: "Event-Management", code: "SF021", reason: "sector business, parent BWL"}
+  - {label: "Landschaftsökologie, Naturschutz", code: "SF064", reason: "same subject, nature conservation"}
+  - {label: "Konstruktionstechnik", code: "SF104", reason: "mechanical design, not civil engineering"}
+  - {label: "Neurowissenschaft", code: "SF026", reason: "feeder biology"}
+  - {label: "Gebäudetechnik, Gebäudeenergietechnik", code: "SF213", reason: "building services, same subject"}
+  - {label: "IT-Management", code: "SF277", reason: "business informatics closest"}
+  - {label: "Therapiewissenschaft", code: "SF233", reason: "non-medical therapies series"}
+  - {label: "Slawistik - Ostslawistik", code: "SF146", reason: "parent Slavic studies"}
+  - {label: "Holztechnik", code: "SF082", reason: "same subject, wood technology"}
+  - {label: "Arabistik", code: "SF010", reason: "same subject"}
+  - {label: "Angewandte Naturwissenschaft", code: "SF049", reason: "general natural sciences series"}
+  - {label: "Photonik, Optische Technologien", code: "SF088", reason: "optical technology, optoelectronics"}
+  - {label: "Bibliotheks-, Informationswissenschaft", code: "SF022", reason: "same subject"}
+  - {label: "Skandinavistik", code: "SF120", reason: "same subject"}
+  - {label: "Wasser- und Bodenmanagement, Wassertechnologie", code: "SF077", reason: "water management, same subject"}
+  - {label: "Bildungsmanagement", code: "SF052", reason: "education, parent pedagogy"}
+  - {label: "Korrepetition, Liedgestaltung", code: "SF080", reason: "piano performers, instrumental music"}
+  - {label: "Regie", code: "SF035", reason: "same subject, stage direction"}
+  - {label: "Physikingenieurwesen", code: "SF224", reason: "engineering physics, physical technology"}
+  - {label: "Innovationsmanagement", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Modedesign", code: "SF116", reason: "textile and fashion design"}
+  - {label: "Sensortechnik", code: "SF048", reason: "parent electrical engineering"}
+  - {label: "Szenografie", code: "SF035", reason: "stage design, performing arts"}
+  - {label: "Medizinische Assistenz", code: "SF233", reason: "non-physician health profession"}
+  - {label: "Sicherheitsmanagement", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Theaterpädagogik", code: "SF035", reason: "theatre practice, performing arts"}
+  - {label: "Unternehmensberatung", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Gamedesign, Interactiondesign", code: "SF287", reason: "digital design, new media"}
+  - {label: "Dolmetschen", code: "SF018", reason: "professional language training"}
+  - {label: "Produktentwicklung", code: "SF104", reason: "engineering, parent mechanical engineering"}
+  - {label: "Übersetzen", code: "SF018", reason: "professional language training"}
+  - {label: "Alte Musik", code: "SF080", reason: "music performers, instrumental music"}
+  - {label: "Pharmatechnik", code: "SF226", reason: "pharma process engineering"}
+  - {label: "Informationsmanagement", code: "SF277", reason: "business informatics closest"}
+  - {label: "Neogräzistik", code: "SF043", reason: "same subject"}
+  - {label: "Audio-, Sounddesign", code: "SF305", reason: "media technology closest"}
+  - {label: "Gesundheits-, Rehabilitationspsychologie", code: "SF132", reason: "counted under psychology"}
+  - {label: "Gesundheitssport", code: "SF029", reason: "parent sport science"}
+  - {label: "Biophysik", code: "SF128", reason: "parent physics"}
+  - {label: "Kunsttherapie", code: "SF233", reason: "non-medical therapies series"}
+  - {label: "Regionalwissenschaft - Nordamerika", code: "SF006", reason: "same region, American studies"}
+  - {label: "Projektmanagement, -ingenieurwesen", code: "SF370", reason: "engineering and business hybrid"}
+  - {label: "Sicherheitstechnik", code: "SF072", reason: "safety engineering, general engineering"}
+  - {label: "Pädagogische Psychologie", code: "SF132", reason: "counted under psychology"}
+  - {label: "Romanistik - Portugiesisch", code: "SF131", reason: "same subject"}
+  - {label: "Fotografie", code: "SF023", reason: "visual arts, not painting"}
+  - {label: "Qualitätsmanagement", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Verpackungstechnik", code: "SF104", reason: "packaging engineering, parent mechanical"}
+  - {label: "Wirtschaftschemie", code: "SF032", reason: "chemistry with business, parent chemistry"}
+  - {label: "Neue und zeitgenössische Musik", code: "SF080", reason: "music performers, instrumental music"}
+  - {label: "Geotechnologie", code: "SF039", reason: "parent geosciences"}
+  - {label: "Systems Engineering", code: "SF072", reason: "general engineering series"}
+  - {label: "Ingenieurpädagogik", code: "SF270", reason: "vocational teacher training"}
+  - {label: "Automobilwirtschaft, Automotive Management", code: "SF021", reason: "sector business, parent BWL"}
+  - {label: "Industriebetriebswirtschaft", code: "SF021", reason: "sector business, parent BWL"}
+  - {label: "Digitale Geisteswissenschaften/Computerphilologie", code: "SF004", reason: "interdisciplinary humanities"}
+  - {label: "Kommunikationspsychologie", code: "SF132", reason: "counted under psychology"}
+  - {label: "Gebärdensprachdolmetschen", code: "SF018", reason: "professional language training"}
+  - {label: "Biomechanik", code: "SF215", reason: "medical engineering closest"}
+  - {label: "Umweltinformatik", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Kulturpädagogik", code: "SF052", reason: "parent pedagogy"}
+  - {label: "Gerontologie", code: "SF232", reason: "health sciences closest"}
+  - {label: "Psychosoziale Beratung und Therapie", code: "SF208", reason: "counselling, feeder social work"}
+  - {label: "Mediävistik", code: "SF273", reason: "medieval studies, medieval history"}
+  - {label: "Museologie", code: "SF037", reason: "archive and documentation closest"}
+  - {label: "Weinbau, Önologie", code: "SF227", reason: "same subject"}
+  - {label: "Schiffsbetriebstechnik", code: "SF223", reason: "seafaring, ship operation"}
+  - {label: "Bionik", code: "SF072", reason: "general engineering series"}
+  - {label: "Klinische Forschung, Arzneimittelerprobung, -zulassung", code: "SF126", reason: "drug development, feeder pharmacy"}
+  - {label: "Computervisualistik", code: "SF121", reason: "visual computing, media informatics"}
+  - {label: "Musiktherapie", code: "SF233", reason: "non-medical therapies series"}
+  - {label: "Denkmalpflege", code: "SF092", reason: "built heritage, art history"}
+  - {label: "Rhetorik, Sprechwissenschaft", code: "SF284", reason: "applied linguistics closest"}
+  - {label: "Mechanik", code: "SF104", reason: "parent mechanical engineering"}
+  - {label: "Kognitionswissenschaft", code: "SF132", reason: "feeder psychology"}
+  - {label: "Epidemiologie", code: "SF232", reason: "public health series"}
+  - {label: "Regionalwissenschaft - Afrika", code: "SF002", reason: "same region, African studies"}
+  - {label: "Semitistik", code: "SF122", reason: "parent oriental studies"}
+  - {label: "Bioökonomie", code: "SF125", reason: "bio-based economics, agricultural economics"}
+  - {label: "Regionalmanagement", code: "SF134", reason: "regional development, spatial planning"}
+  - {label: "Religionspädagogik, Gemeindearbeit - Katholische Gemeinden", code: "SF545", reason: "same subject, Catholic series"}
+  - {label: "Mensch-Maschine-Interaktion, Interfacedesign", code: "SF121", reason: "human-computer interaction, media informatics"}
+  - {label: "Risikomanagement", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Ton-, Bildtechnik", code: "SF305", reason: "media technology closest"}
+  - {label: "Hörtechnik, Audiologie", code: "SF215", reason: "medical engineering closest"}
+  - {label: "Patentingenieurwesen", code: "SF072", reason: "general engineering series"}
+  - {label: "Luftverkehrsmanagement", code: "SF210", reason: "transport economics"}
+  - {label: "Liberal Arts", code: "SF004", reason: "interdisciplinary humanities"}
+  - {label: "Choreografie", code: "SF106", reason: "dance series"}
+  - {label: "Bauphysik", code: "SF017", reason: "parent civil engineering"}
+  - {label: "Papiertechnik", code: "SF082", reason: "fibre technology"}
+  - {label: "Geoinformatik", code: "SF079", reason: "specialised computing, parent Informatik"}
+  - {label: "Orthopädie-, Rehatechnik", code: "SF215", reason: "medical engineering closest"}
+  - {label: "Wirtschaftsphysik", code: "SF128", reason: "physics with business, parent physics"}
+  - {label: "Rohstoffingenieurwesen", code: "SF020", reason: "mining and raw materials"}
+  - {label: "Rettungsingenieurwesen", code: "SF072", reason: "general engineering series"}
+  - {label: "Biomathematik", code: "SF105", reason: "parent mathematics"}
+  - {label: "Toxikologie", code: "SF300", reason: "biomedical closest"}
+  - {label: "Sanitäts-, Rettungswesen", code: "SF233", reason: "non-physician health profession"}
+  - {label: "Dienstleistungs-, Servicemanagement", code: "SF021", reason: "business function, parent BWL"}
+  - {label: "Theologie - Jüdische Theologie", code: "SF073", reason: "Jewish studies, not Catholic"}
+  - {label: "Kriminologie", code: "SF135", reason: "parent law"}
+  - {label: "Theologie - Freikirchen", code: "SF053", reason: "Protestant tradition"}
+  - {label: "Fischereiwesen, Aquakultur", code: "SF371", reason: "animal production"}
+  - {label: "Arbeitsmarktmanagement", code: "SF264", reason: "labour administration"}
+  - {label: "Bühnenbild", code: "SF035", reason: "stage design, performing arts"}
+  - {label: "Keltologie", code: "SF152", reason: "comparative linguistics closest"}
+  - {label: "Technische Redaktion", code: "SF303", reason: "technical communication"}
+  - {label: "Eurythmie", code: "SF035", reason: "movement art, performing arts"}
+  - {label: "Maskenbild", code: "SF035", reason: "stage craft, performing arts"}
+  - {label: "Pferdewirtschaft", code: "SF371", reason: "animal production"}
+  - {label: "Schiffs-, Reedereimanagement, Hafenwirtschaft", code: "SF210", reason: "transport economics"}
+  - {label: "Technischer Vertrieb", code: "SF370", reason: "engineering and business hybrid"}
+  - {label: "Natur- und Wirkstoffchemie", code: "SF032", reason: "parent chemistry"}
+  - {label: "Biometrie, Biostatistik", code: "SF312", reason: "same subject, statistics"}
+  - {label: "Medienpädagogik", code: "SF052", reason: "parent pedagogy"}
+  - {label: "Dentalhygiene", code: "SF233", reason: "non-physician health profession"}
+  - {label: "Tanz- und Bewegungstherapie", code: "SF233", reason: "non-medical therapies series"}
+  - {label: "Motologie", code: "SF029", reason: "movement science, sport science"}
+  - {label: "Sozialversicherung", code: "SF264", reason: "social administration"}
+  - {label: "Editionswissenschaft", code: "SF067", reason: "textual editing, feeder German studies"}
+  - {label: "Musikinstrumentenbau", code: "SF007", reason: "instrument craft, applied art"}

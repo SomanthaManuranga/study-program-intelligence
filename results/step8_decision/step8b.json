@@ -1,0 +1,171 @@
+{
+  "stamp": {
+    "commit": "d02c71d",
+    "date": "2026-11-16",
+    "clean": true
+  },
+  "specs run": 17,
+  "base top 20": [
+    "312 bachelor",
+    "256 bachelor",
+    "223 bachelor",
+    "242 bachelor",
+    "206 bachelor",
+    "300 master",
+    "300 bachelor",
+    "342 bachelor",
+    "232 bachelor",
+    "312 master",
+    "193 bachelor",
+    "573 master",
+    "12 bachelor",
+    "726 bachelor",
+    "425 master",
+    "22 bachelor",
+    "736 master",
+    "108 bachelor",
+    "662 master",
+    "279 bachelor"
+  ],
+  "not run (need Steps 2 or 5 again)": [
+    "boilerplate_scan_from 10",
+    "clustering: the former rule's setting",
+    "labour_keywords: top 5, generic line 2 % and 10 %, phrases in one title"
+  ],
+  "not run (needs Step 3 again with one radius for all types)": [
+    "similarity_radius: one common radius"
+  ],
+  "former strict feasibility rule": [
+    {
+      "ref": "223_bachelor_a",
+      "type": 223,
+      "level": "bachelor",
+      "overlap": 0.632,
+      "new share": 0.368,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "223_bachelor_b",
+      "type": 223,
+      "level": "bachelor",
+      "overlap": 0.576,
+      "new share": 0.424,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "22_master_a",
+      "type": 22,
+      "level": "master",
+      "overlap": 0.0,
+      "new share": 1.0,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "22_master_b",
+      "type": 22,
+      "level": "master",
+      "overlap": 0.037,
+      "new share": 0.963,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "256_bachelor_a",
+      "type": 256,
+      "level": "bachelor",
+      "overlap": 0.138,
+      "new share": 0.862,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "300_master_a",
+      "type": 300,
+      "level": "master",
+      "overlap": 0.051,
+      "new share": 0.949,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": false,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "300_master_b",
+      "type": 300,
+      "level": "master",
+      "overlap": 0.007,
+      "new share": 0.993,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": false,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "312_bachelor_a",
+      "type": 312,
+      "level": "bachelor",
+      "overlap": 0.682,
+      "new share": 0.318,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": false,
+      "passes": false
+    },
+    {
+      "ref": "312_master_a",
+      "type": 312,
+      "level": "master",
+      "overlap": 0.345,
+      "new share": 0.655,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    },
+    {
+      "ref": "312_master_b",
+      "type": 312,
+      "level": "master",
+      "overlap": 0.524,
+      "new share": 0.476,
+      "F1 covered >= 0.80": false,
+      "F2 new <= 0.20 and caps": false,
+      "F3 labs": true,
+      "F4 one programme <= 0.50": true,
+      "passes": false
+    }
+  ],
+  "inputs": {
+    "funnel2_screen.csv": "b12cdfe015f8620d",
+    "funnel2_demand.csv": "d6e9cbccd315df94",
+    "funnel2_capture.csv": "941fcafaf4048139",
+    "funnel2_labour.csv": "4cc4fe60c3364fee",
+    "funnel2_gate_references.csv": "c4e6b98552fba2f0",
+    "funnel2_gate_order.csv": "5199119a976d8ea8"
+  },
+  "files": {
+    "funnel2_listspecs.csv": "56a02a75c6e4d669"
+  }
+}

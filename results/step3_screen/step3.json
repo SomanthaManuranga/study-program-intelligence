@@ -1,0 +1,107 @@
+{
+  "stamp": {
+    "commit": "7f24b79",
+    "date": "2026-11-15",
+    "clean": true
+  },
+  "step2_commit": "92da989",
+  "units": 1285,
+  "types_with_a_unit": 780,
+  "units_by_level": {
+    "master": 672,
+    "bachelor": 613
+  },
+  "merged_groups_with_more_than_one_unit": 300,
+  "units_in_such_groups": 734,
+  "largest_merged_group": 6,
+  "calibration": {
+    "marked_units": 300,
+    "field_units": 49,
+    "outside_units": 251,
+    "auc": 0.965,
+    "bar": 0.42809775287949137,
+    "screen_drops": true,
+    "field_units_kept": 47,
+    "outside_units_kept": 49,
+    "youden_cut": 0.46334861936641486,
+    "auc_of_the_score_as_first_written": 0.713,
+    "module_titles": 293,
+    "module_titles_naming_a_subject": 278,
+    "units_within_0.02_of_the_bar": {
+      "just above (kept)": 68,
+      "just below (dropped)": 75
+    },
+    "auc_on_oth_offers": 0.985,
+    "oth_emi_offers": 12,
+    "other_oth_offers": 34,
+    "p90_of_emi_offers": 0.8941287859101134
+  },
+  "dropped": {
+    "already at OTH": 44,
+    "teacher training": 244,
+    "falling validated trend": 17,
+    "outside EMI's field": 859
+  },
+  "dropped_for_one_reason_only": {
+    "already at OTH": 29,
+    "teacher training": 32,
+    "falling validated trend": 0,
+    "outside EMI's field": 620
+  },
+  "units_with_a_validated_trend": 51,
+  "units_without_a_trend_value": 29,
+  "units_not_backtested": 35,
+  "primary": 365,
+  "primary_types": 247,
+  "primary_candidates": 268,
+  "primary_by_level": {
+    "bachelor": 183,
+    "master": 182
+  },
+  "primary_by_kind": {
+    "rare": 201,
+    "stable": 100,
+    "mid-sized": 64
+  },
+  "stress": 1241,
+  "hashes": {
+    "primary": "b9ce3a0cdef556e3",
+    "stress": "9be21b3372c3b1b7"
+  },
+  "primary_flags": {
+    "absent in Bavaria": 80,
+    "gap (none within 150 km and none in the south)": 33,
+    "no similar offer within 150 km": 90,
+    "popularity tier 2": 30,
+    "method-dependent stable type": 51,
+    "not stability-tested": 265
+  },
+  "offers_without_a_land": 1,
+  "offers_without_a_distance": 1,
+  "oth_offers": 46,
+  "oth_offers_that_drop_a_unit": 45,
+  "bavaria_share_of_offers": {
+    "bachelor": 0.1232,
+    "master": 0.1254
+  },
+  "competition": "not validated yet (screen.competition.validity_check)",
+  "inputs": {
+    "modules_emi_2026.csv": "3c1722376695c4cd",
+    "funnel_emi_labels.csv": "4b552460b5ff54dd",
+    "funnel_subject_map.csv": "636223e331f56a89",
+    "destatis tables": "5898abb1f65496d0",
+    "funnel2_item_index.csv": "409b844e918fb2ea",
+    "funnel2_module_title_vectors.npy": "e24d4ee0384c67a0"
+  },
+  "files": {
+    "funnel2_offer_types.csv": "509fbdbe7fc60ac1",
+    "funnel2_types.csv": "efc5b106c3ccdb61",
+    "funnel2_embeddings.npy": "398d5f70049c86da",
+    "funnel2_centroids.npy": "52aa325c89b4b840",
+    "funnel2_item_vectors.npy": "4c48930bfa6f53c6",
+    "funnel2_screen.csv": "b12cdfe015f8620d",
+    "funnel2_candidates.csv": "d348d076e4716b5c",
+    "funnel2_candidates_stress.csv": "f2efd21940c743c7",
+    "funnel2_emi_calibration.csv": "3b5cbecdebf645d6"
+  }
+}

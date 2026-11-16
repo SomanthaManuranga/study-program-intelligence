@@ -340,5 +340,395 @@
     ],
     "sha256": "e70edca7b55ede5dc1eef709e9f1f4bc3db20d9c1fb30c0256264295bd16c409",
     "title": "Pruefungen: Deutschland, Jahre, Nationalitaet, Geschlecht, Pruefungsergebnis, Abgelegte Abschlusspruefung"
+  },
+  {
+    "id": "21311-0015_SH",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_SH.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "01"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:03:11+00:00",
+    "bytes": 5263007,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "364d974b03392e128cf98293eaf9c8888cd491aaa96ed18c2baf2e86fac04082",
+    "title": "Studienanfaenger: Bundeslaender (Schleswig-Holstein), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_HH",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_HH.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "02"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:03:21+00:00",
+    "bytes": 5029438,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "90507b6af213bb171f120277e87f5ab5d7b175050ca5de959697edaee4fd3c1f",
+    "title": "Studienanfaenger: Bundeslaender (Hamburg), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_NI",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_NI.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "03"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:03:31+00:00",
+    "bytes": 5160548,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "84e922616c2dc6156951c14beb951b865b6fef6f51f7d70e13276f5b7b3e1d04",
+    "title": "Studienanfaenger: Bundeslaender (Niedersachsen), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_HB",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_HB.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "04"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:03:40+00:00",
+    "bytes": 5005236,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "0f35dc0f2f857b3aede940ff3ad587d0fc7fffa5816ae45a85b1171dd57c4a8d",
+    "title": "Studienanfaenger: Bundeslaender (Bremen), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_NW",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_NW.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "05"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:03:50+00:00",
+    "bytes": 5294535,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "72d618544cd1934423e988f516b106f659b863bb38fee4d27af7b2ea7b968694",
+    "title": "Studienanfaenger: Bundeslaender (Nordrhein-Westfalen), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_HE",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_HE.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "06"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:00+00:00",
+    "bytes": 5011492,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "cf5ae93f2b67183a30b9b85e38b9514dfe084671c0e0f5f5b8ccfde036c88715",
+    "title": "Studienanfaenger: Bundeslaender (Hessen), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_RP",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_RP.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "07"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:10+00:00",
+    "bytes": 5200391,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "cd8782cbf555a3a34761ed1250fe564f8887c47a9e044ee310d7fc88d1a98185",
+    "title": "Studienanfaenger: Bundeslaender (Rheinland-Pfalz), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_BW",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_BW.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "08"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:20+00:00",
+    "bytes": 5271197,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "521f159b457a9ef9d0fe9d2d149f46479bbeaf05370a373d4c761ab654900a59",
+    "title": "Studienanfaenger: Bundeslaender (Baden-Wuerttemberg), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_SL",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_SL.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "10"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:30+00:00",
+    "bytes": 5047286,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "94f3e30d9e10ed97560528b7188320fdb0fa2a14ab12e9724b214f856c275dac",
+    "title": "Studienanfaenger: Bundeslaender (Saarland), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_BE",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_BE.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "11"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:40+00:00",
+    "bytes": 5012256,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "a5024514577f5f97991842ee610d7cc731a1aec0160ecf7f23a003ebd0a0c0b6",
+    "title": "Studienanfaenger: Bundeslaender (Berlin), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_BB",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_BB.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "12"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:04:49+00:00",
+    "bytes": 5112917,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "44840ca58694de3ff12c5739dec26c16644c428f5536ff7ade97e64e31c8c4f2",
+    "title": "Studienanfaenger: Bundeslaender (Brandenburg), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_MV",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_MV.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "13"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:05:00+00:00",
+    "bytes": 5347382,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "9c337cb1763a92e3b66760c4b811060792a946aa9bf3f51d3a9d588cfe878787",
+    "title": "Studienanfaenger: Bundeslaender (Mecklenburg-Vorpommern), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_SN",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_SN.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "14"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:05:09+00:00",
+    "bytes": 5031065,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "5ea4fc5f4e49178b354b13e9e344615c39ca68bf4d3efe5cd647e9ef59c8a6f9",
+    "title": "Studienanfaenger: Bundeslaender (Sachsen), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_ST",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_ST.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "15"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:05:20+00:00",
+    "bytes": 5177224,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "02a3cfb92c8eeef828c8057d12b23bc276c509de270818323dc382cadaebf662",
+    "title": "Studienanfaenger: Bundeslaender (Sachsen-Anhalt), Semester, Nationalitaet, Geschlecht, Studienfach"
+  },
+  {
+    "id": "21311-0015_TH",
+    "name": "21311-0015",
+    "file": "data/raw/destatis/21311-0015_TH.csv",
+    "format": "ffcsv",
+    "params": {
+      "regionalvariable": "DLAND",
+      "regionalkey": "16"
+    },
+    "years_requested": "2018-2025",
+    "status": "downloaded",
+    "retrieved_utc": "2026-11-14T16:05:30+00:00",
+    "bytes": 5092865,
+    "rows": 21384,
+    "periods": 8,
+    "first_period": "2018-10P6M",
+    "last_period": "2025-10P6M",
+    "requests": [
+      {
+        "years": "2018-2025",
+        "status": "ok"
+      }
+    ],
+    "sha256": "261fd9e6f350410ba1d2ebdc2dd22bde6d4e826ebdd673b0296afee158d07bec",
+    "title": "Studienanfaenger: Bundeslaender (Thueringen), Semester, Nationalitaet, Geschlecht, Studienfach"
   }
 ]

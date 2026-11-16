@@ -8,7 +8,9 @@ Deadlines: analysis freeze 4 Dec 2026; submission 10 Jan 2027 23:59; presentatio
 
 ## Scope (binding; confirmed by the supervisor)
 1. **Existing resources only:** the new programme must be feasible with EMI's existing staff and labs (no new
-   professorships, no new labs). The pre-registered test is in docs/rescope_plan.md (once approved).
+   professorships, no new labs). The supervisor's own measure: 40-80 % of the new programme should overlap with
+   existing lectures (more = relabelled programme, less = too many resources); a whole new degree, not extra modules.
+   He gave no minimum cohort. Earlier test: docs/rescope_plan.md; funnel test: configs/funnel.yaml.
 2. Competition and trends: Germany-wide. Student numbers: Bavaria and the OTH catchment.
 3. Bachelor and master both allowed.
 4. Target group: German AND international students.
@@ -57,7 +59,7 @@ Remaining work, in this order:
    day replaces that day's rows only when it is at least as complete). Done when: 92 counts without ERROR and no null
    totals for the date, docs/jobsuche_snapshots.json committed and pushed. No pipeline rerun: the report stays on the
    15 Oct snapshot until the freeze.
-2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py to
+2. Analysis freeze 4 Dec 2026: full pipeline rerun from the frozen data; move JOB_SNAPSHOT in report/key_numbers.py and SNAPSHOT_UNTIL in analysis/tie_break.py to
    the frozen snapshot; add the snapshot series (15 Oct to 1 Dec) to docs/evidence_outlet_jobs.md; regenerate key numbers, figures, report,
    defence Q&A, dashboard screenshots.
 3. Step 57 Plain-English project summary: a short PDF (about 10-15 pages) for readers with no data-analytics
@@ -89,12 +91,92 @@ changes go through a pull request with one approval and the tests check.
 Open for the team: the research protocol requires that AI-related scores are checked by the second team member; this
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
+Funnel redo (branch soma/funnel): the programme must come out of the data, not from hand-picked candidates. Run 1 is
+not a result (docs/funnel_run1_review.md); its code and write-up were removed (git history only). Rules version 3: configs/funnel.yaml, docs/funnel_preregistration.md
+(supervisor's input, run-1 fixes, what was known beforehand). One step at a time, each with Soma's OK and a short
+plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
+the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
+4 student trend, 5 job ads, 6 first-years new to OTH, 7 feasibility on two curricula (AI readers),
+8 ranking, stress tests, decision. Steps 2 to 8 are done (8b partly: 7 of 25 spec values not run, Soma to decide). The supervisor's timetable PDFs are internal: they
+stay outside the repository and lecturers appear only as neutral labels. Settled by Soma: only existing facilities
+count (the recommendation comes only from candidates existing staff and labs can carry); the 40 % end is overlap
+with all EMI modules, the 80 % end is the share from one existing programme. Progress notebook for the meetings with
+the supervisor: notebooks/funnel_progress.ipynb, one section added and executed after every finished step.
+Step 1 added: first-years by subject for all 16 Laender (data/raw/destatis/21311-0015_<Land>.csv), the timetable table
+(transform/timetables.py -> data/interim/timetable_subjects.csv, labels only), analysis/funnel_inventory.py and
+funnel_common.py (universe(): the one offer list for all steps; run_stamp(): code is committed before a step runs).
+Step 1b: the matching threshold for Step 7 is 0.463, calibrated on EMI's own handbooks only (analysis/funnel_modules.py;
+vectors() is the one text preparation for module matching). It is flagged weak and does not carry over to other
+universities; the matcher ranks well (true partner in the top 3 for 74 %) but no cut-off is reliable. Settled by Soma:
+no threshold decides in Step 7. A fresh-context reviewer marks every row from the three closest EMI modules by marking
+rules written first; Soma checks 10 rows per candidate and marks all rows of a candidate whose sample fails.
+Step 2 (analysis/funnel_types.py: scan, embed, run; rule file configs/funnel_boilerplate.yaml; the Step 5 list
+configs/funnel_title_stoplist.yaml was committed with the Step 2 code): the pre-registered rule gave 63 stable and 229
+rare types that failed the reader's check (17 of 30 types hold one kind of programme, stable types alone 14 of 30;
+bar 24). Soma changed three rules: the finest
+setting of the grid is used, left-over groups too large for the rare path are kept as mid-sized types, and Step 3
+reads every type that survives the screen (`screen.type_coherence`; a mixed type is flagged and takes no gate slot
+without a full reading). Redo: 824 types (233 stable, 130 mid-sized, 461 rare; mid-sized and rare are flagged as not
+stability-tested), reproducible; reader's check 22 of 30, still below the bar, so G9 stays recorded as not passed.
+Outputs for the next steps: data/interim/funnel2_offer_types.csv, funnel2_types.csv, funnel2_centroids.npy,
+funnel2_embeddings.npy. Details in docs/funnel_run2_notes.md. `run <size> <method>` is a diagnostic mode, never a result.
+Step 3 (analysis/funnel_units.py: items, labels, run, sheet): three rules did not work with the finer types and were
+changed, confirmed by Soma (merged groups without chaining; EMI-field score against module titles with a bar from
+300 units marked by an AI reader, docs/funnel_emi_labels.csv; "at OTH" when an OTH offer belongs to the type or lies
+within its median distance). Result: 1,285 units,
+365 on the primary list (268 candidates), 1,241 on the stress list; the EMI screen is a generous filter (about half
+of the list is outside EMI's field by the marks); 75 of the 247 types on the list are flagged "mixed"
+(docs/funnel_type_coherence.csv). The check of "similar" (100 offers, marked by three AI readers by Soma's decision) failed in both rounds (46 % / 40 %
+and, with a common radius, 64 % / 46 % yes inside / outside; needed 70 % / 30 %): all competition counts are flagged
+"not validated" and the offers half of the differentiation value takes the range 1 to 5 in the ranking
+(data/interim/funnel2_similarity_result.json, _2.json; docs/funnel_similarity_marks.csv, _2.csv).
+Step 4 (analysis/funnel_demand.py): student numbers of every unit's subject pool (data/interim/funnel2_demand.csv).
+On the primary list 128 units have a growing and 229 a falling German pool in Bavaria (median -2.0 % a year); foreign
+students grow (+9.3 %). Trends are weak evidence: naive is the best model on average (MASE 2.01), so the 2030
+projection is the last value; only 51 units (23 primary) have a validated trend.
+Step 5 (analysis/funnel_labour.py: keywords, fetch, measure): keywords by rule from programme titles
+(docs/funnel_keywords.csv, committed before the first request), job-ad counts of 15 Nov 2026
+(data/interim/funnel2_job_counts.csv, funnel2_labour.csv). Primary list: all 365 units counted; median 22 ads within
+100 km for the median keyword. The measure counts words in ads, not jobs for graduates: general words lead
+(mechatronik, management), 82 units reach the scale's top of 150 and 152 are below its bottom of 10. The job board
+reads a bare "Amberg" as Amberg bei Buchloe: the place is sent as "Amberg, Oberpfalz" and checked in every reply.
+OPEN for the baseline: its job snapshots (docs/jobsuche_snapshots.json, regions amberg_50km and amberg_100km) have
+this error, so "191 ads within 100 km" in the Findings is not valid until configs/jobsuche.yaml is fixed and the
+snapshot is taken again.
+Step 6 (analysis/funnel_capture.py -> data/interim/funnel2_capture.csv): gross first-years = anchor (German students
+of the pool in Bavaria per Bavarian offer of the pool) x scale (Huff model against the unit's Bavarian comparator
+sites); net-new = gross minus the share from OTH's offer. Primary list: gross median 24.2, net-new median 16.5; 140
+of 365 units below the minimum cohort of 20 (a flag, nobody removed). Rough sizes only, not a ranking: thin anchors
+and single comparators lead the top (flag columns in the table), and "new to OTH" rests on the nearest OTH offer,
+which lies within the type's radius for 33 units only. OPEN for Soma before Step 8: a floor for the anchor's
+denominator, a scale shrunk towards 1 with few comparators, net-new where the OTH site is a placeholder; and for
+Step 7: who checks the AI reviewer's rows, since Soma does no hand work.
+Step 7 (analysis/funnel_shortlist.py, funnel_refs.py, funnel_feasibility.py; notes in docs/funnel_run2_notes.md):
+10 candidates tried, 6 eligible, 421 modules of 10 handbooks marked by AI readers in three passes (rules version 3:
+content counts, two EMI modules may cover one; no person checks, by Soma's decision). Computer science bachelor
+passes with existing resources (68 %, one handbook, 52.5 new ECTS, about 1.2 professor-equivalents; 49-61 % under
+the reviewers' stricter readings, 33 % without the two-module rule). Cybersecurity bachelor is in the band (63 / 58 %)
+but needs outside teaching. Computer science master depends on the handbook (35 / 52 %); urban planning, civil engineering and architecture master fail.
+Step 8 (analysis/funnel_rank.py 8a, funnel_listspecs.py 8b): recommendation = a general computer science /
+Informatik bachelor (type 312, modelled on OTH Regensburg's International Computer Science): 26.5 first-years new to
+OTH, 52.5 ECTS new teaching (50.5 N, 2 T), about 1.2 professor-equivalents, no new lab. It holds under the agreed
+rules and as Informatik types 13 / 242 (18-20 new first-years), but breaks with a cap on new modules, with at most
+50 % from one programme, without the two-module rule, and under the former strict rule; it holds in 22 % of the stress
+grid and has no passer in the other 78 %.
+A second, public handbook (TH Ingolstadt Informatik, check only) confirms it: 66.7 %, 55 ECTS new teaching, 1.22
+professor-equivalents. Cybersecurity bachelor is second for information only (needs new expertise). The gate walk now applies the minimum
+cohort (architecture master took the slot of communication master).
+Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
+(exceptions in .gitignore).
+
 ## Rules
 - Never print or commit secrets. .env holds GENESIS_TOKEN, CONTACT_EMAIL and the GENESIS-Bayern credentials; load via
   ingest/documents.py load_env().
 - Public data only; no intake or admission figures from universities.
 - data/ and generated reports (reports/) are git-ignored on purpose; regenerate them with the pipeline. Commit code,
-  configs and docs only (exception: docs/theme_labels.csv, the reviewed theme labels).
+  configs and docs only (exception: docs/theme_labels.csv, the reviewed theme labels), and results/: the funnel's
+  final tables, copied by `python -m study_program_intelligence.analysis.funnel_results` (derived data only; never raw
+  downloads, module text of other universities or internal files).
 - Scraping: respect robots.txt (allowed_by_robots in ingest/documents.py), User-Agent with CONTACT_EMAIL, delay 2 s for
   the APIs and at least 3 s (or the site's Crawl-delay) for documents, cache raw replies, record every source in
   configs/sources.yaml and a manifest in docs/. Hochschulkompass search pages and OTH /fileadmin/ are disallowed ->

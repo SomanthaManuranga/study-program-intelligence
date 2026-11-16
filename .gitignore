@@ -252,3 +252,26 @@ reports/final/*
 
 # Hand-checked theme labels (Step 38): the team's reviewed labels, committed so the pipeline is reproducible from git
 !docs/theme_labels.csv
+!docs/funnel_emi_labels.csv
+!docs/funnel_similarity_check.csv
+!docs/funnel_type_coherence.csv
+!docs/funnel_similarity_marks.csv
+!docs/funnel_keywords.csv
+!docs/funnel_module_marks_1.csv
+!docs/funnel_module_marks_2.csv
+!docs/funnel_module_marks_3.csv
+!docs/funnel_module_marks_pass1_1.csv
+!docs/funnel_module_marks_pass1_2.csv
+!docs/funnel_module_marks_pass2_1.csv
+!docs/funnel_module_marks_pass2_2.csv
+!docs/funnel_module_marks_pass2_3.csv
+!docs/funnel_module_marks_sens_1.csv
+!docs/funnel_module_marks_sens_2.csv
+!docs/funnel_module_marks_sens_3.csv
+!docs/funnel_similarity_check_2.csv
+!docs/funnel_similarity_marks_2.csv
+
+# results/: the committed final tables of the funnel (analysis/funnel_results.py); derived data only
+!results/
+!results/**
+!results/**/*.csv

@@ -32,6 +32,8 @@ SCEN = REPO_ROOT / "data" / "interim" / "candidate_scenarios.csv"
 OUT = REPO_ROOT / "data" / "interim" / "tie_break.csv"
 REPORT = REPO_ROOT / "reports" / "tie_break.md"
 CANDIDATES = ("arvr", "robotics_b")
+SNAPSHOT_UNTIL = "2026-10-17"   # the job-ad snapshot docs/evidence_tie_break.md describes; move it at the freeze together
+                                # with JOB_SNAPSHOT in report/key_numbers.py (CLAUDE.md: no rerun on newer snapshots before)
 SERIES = {  # candidate: [(label, subject codes)]; the first is the series behind the trend score
     "arvr": [("Medieninformatik", ["SF121"]), ("Informatik (broad pool)", ["SF079"])],
     "robotics_b": [("Mechatronik + Technische Informatik", ["SF380", "SF123"]), ("Mechatronik", ["SF380"]),
@@ -84,6 +86,7 @@ def competition_rows() -> list[dict]:
 
 def job_rows() -> list[dict]:
     s = pd.DataFrame(json.loads(SNAPSHOTS.read_text(encoding="utf-8")))
+    s = s[s["date"] <= SNAPSHOT_UNTIL]
     rows = []
     for cand, keys in JOB_KEYWORDS.items():
         for k in keys:

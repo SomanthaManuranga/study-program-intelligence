@@ -1,0 +1,33 @@
+file,what,rows,sha256 (16),commit of the run
+step2_types/types.csv,programme types found in all offers (one row per type),824.0,efc5b106c3ccdb61,
+step2_types/step2.json,Step 2 summary,,86603996e4c94998,92da989
+step3_screen/screen.csv,"every unit (type x level) with the four screens, EMI score, competition and regional gap",1285.0,b12cdfe015f8620d,
+step3_screen/candidates.csv,the primary list,365.0,d348d076e4716b5c,
+step3_screen/step3.json,Step 3 summary,,f7bcede65a160095,7f24b79
+step4_demand/demand.csv,student trend of every unit's subject pool,1285.0,d6e9cbccd315df94,
+step4_demand/pools.csv,the subject pools,1141.0,23581b8ff311f7c3,
+step4_demand/step4.json,Step 4 summary,,bdae7eb8d6806f1e,bfa42bc
+step5_jobs/labour.csv,job-ad measure of every unit,1285.0,4cc4fe60c3364fee,
+step5_jobs/job_counts.csv,"every job-ad count (keyword x region, 15 Nov 2026)",3348.0,cebfef0b6756421e,
+step5_jobs/step5.json,Step 5 summary,,17fb07a1547dd08e,c9d4220
+step6_new_students/capture.csv,first-years and students new to OTH of every unit (Huff model),1285.0,941fcafaf4048139,
+step6_new_students/step6.json,Step 6 summary,,d2445e4bf4dda5dc,f9d8ef0
+step7_feasibility/shortlist.csv,pre-gate score of every primary unit,365.0,a27b4b97d7a55d37,
+step7_feasibility/gate_order.csv,the order in which candidates were tried,268.0,5199119a976d8ea8,
+step7_feasibility/step7a.json,pre-gate summary,,177b2d00a609f208,a24d911
+step7_feasibility/reference_tries.csv,the offers tried as reference curricula,421.0,494d1fd021dfeef9,
+step7_feasibility/gate_walk.csv,the walk down the gate list,25.0,7e06f93388a453cd,
+step7_feasibility/rows_final.csv,every marked module with its final verdict (no module text),421.0,27f055cd29145876,
+step7_feasibility/gate_references.csv,overlap and new teaching per reference handbook,10.0,c4e6b98552fba2f0,
+step7_feasibility/gate.csv,gate verdict per candidate,6.0,34bcffd308248ffa,
+step7_feasibility/step7.json,Step 7 summary,,5ad5e137e9d3a9c3,c31b38d
+step7_feasibility/pass1_gate_references.csv,first marking pass (sensitivity),10.0,56e86072c05428d3,
+step7_feasibility/pass2_gate_references.csv,second marking pass (sensitivity),10.0,1edb339b5530b7f3,
+step8_decision/rank_inputs.csv,low / central / high of every input,6.0,32d3e21b48c7827c,
+step8_decision/rank.csv,"values, scores and probabilities in each decision set",3.0,17523923bd5ecaf5,
+step8_decision/factorial.csv,stress grid: winners by factor level,160.0,27cebbd4e15cea01,
+step8_decision/step8.json,"decision, sentences and sensitivities",,388f673439ed1503,ef5af71
+step8_decision/listspecs.csv,list-changing specs (8b),17.0,56a02a75c6e4d669,
+step8_decision/step8b.json,8b summary,,25b2c92b1a1da53e,d02c71d
+step8_decision/gate_references_sens.csv,second-handbook check: a plain Informatik bachelor (TH Ingolstadt),1.0,4acd0992f0dd2d75,
+step8_decision/step7_sens.json,second-handbook check summary,,06443da58db28d50,97047bf

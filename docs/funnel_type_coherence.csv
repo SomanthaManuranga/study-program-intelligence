@@ -1,0 +1,274 @@
+type,shown,largest,verdict,doubt,mixed,reader,reason
+5,10,10,pass,,False,A,
+6,10,8,pass,,False,A,one Physik; one Mathematik Bachelor of Education (teacher training); exactly at the bar
+7,10,9,pass,,False,A,
+8,10,10,pass,,False,A,
+12,10,8,pass,,False,A,Physik with Experimentalphysik and Advanced Quantum Physics as specialisations; Engineering Physics and Quantum Science & Technology left out
+13,10,10,pass,,False,A,
+22,10,9,pass,,False,A,
+23,10,7,fail,,True,D,music theory and ear training (7) mixed with audiology and hearing acoustics (3); different subjects sharing the word Hoeren
+24,10,10,pass,,False,A,
+47,10,7,fail,J,True,A,event management core of 7; health management; theatre and orchestra management; sport tourism are other subjects
+55,10,10,pass,,False,A,
+56,10,7,fail,J,True,A,7 Architektur; 3 heritage conservation / building research titles are a different subject
+64,10,8,pass,,False,A,Luftfahrttechnik counted with Luft- und Raumfahrttechnik; pilot training and aerospace informatics left out
+80,10,10,pass,,False,A,
+84,10,8,pass,J,False,A,Information Systems and Umwelt- und Wirtschaftsinformatik counted as Wirtschaftsinformatik; 2 Verwaltungsinformatik left out
+96,10,9,pass,,False,A,
+101,10,6,fail,J,True,A,digital health / health informatics core of 6; digital public health and digital health management are other disciplines sharing the word digital
+108,10,8,pass,,False,A,2 Wirtschaftsphysik titles left out; exactly at the bar
+109,10,7,fail,,True,A,Landschaftsarchitektur with Landschaftsbau 7; urban planning and spatial sustainability management are other subjects
+120,10,10,pass,,False,A,
+121,10,7,fail,,True,A,Angewandte Physik 7; Angewandte Mathematik and Angewandte Naturwissenschaften share only the word applied
+126,10,8,pass,J,False,A,Medical Radiation Sciences counted as medical physics; Physik Technik und Medizin left out
+132,10,6,fail,,True,A,marketing and sales 6; E-Commerce and digital business are other subjects
+149,10,8,pass,,False,A,2 Angewandte Bioinformatik left out; exactly at the bar
+150,10,9,pass,,False,A,
+162,10,10,pass,J,False,A,all carry BWL but nine different specialisations and only one general title
+164,10,8,pass,J,False,A,7 Freie/Bildende Kunst plus one borderline (Public Art or Ästhetische Erziehung); Bachelor of Education is teacher training
+167,10,7,fail,J,True,A,3 Mathematics plus 4 applied specialisations; 2 mathematical physics and International Business left out
+170,10,9,pass,J,False,A,practical film programmes with different crafts (camera; script; production; VFX); cinema studies is theory
+171,10,9,pass,,False,A,
+172,10,8,pass,,False,A,Finanz- und Versicherungsmathematik counted as Wirtschaftsmathematik; general Mathematik and Finance and Management left out
+173,10,8,pass,J,False,A,7 Geowissenschaften plus Engineering Geohazards as specialisation; groundwater management and water sciences left out
+174,10,10,pass,,False,A,
+175,10,7,fail,,True,A,Computerlinguistik 7; 3 Digital/Computational Humanities are a different subject
+176,10,7,fail,,True,A,Kommunikationswissenschaft 6 plus International Media Studies; market research; multimedia documentation; knowledge and communication differ
+177,10,8,pass,J,False,A,7 Holztechnik/Holzingenieurwesen plus one Holzbau title; Holzbau is closer to civil engineering
+180,10,4,fail,,True,A,Medienwissenschaft 4; film studies; media dramaturgy; media conception; visual anthropology; literature-art-media are other subjects
+182,10,10,pass,,False,A,
+185,10,10,pass,,False,A,
+186,10,7,fail,J,True,A,technology/technical management 6 plus technology transfer; production management; microelectronics industrial management; innovation management differ
+187,10,10,pass,,False,A,
+188,10,8,pass,,False,A,all 8 carry Marketing; retail and sales management left out
+189,10,10,pass,,False,A,
+191,10,8,pass,,False,A,5 Biologie plus Plant Sciences and Zoologie as specialisations; Biomedical Sciences and Ecosystem Sciences left out
+193,10,8,pass,,False,A,2 sustainable/climate building masters left out
+195,10,7,fail,,True,A,Kommunikationsdesign / Visuelle Kommunikation 7; design research; social design; sustainable transition design are other subjects
+196,10,8,pass,,False,A,Verfahrenstechnik and Chemieingenieurwesen treated as one subject; biobased technologies and clean energy processes left out
+202,10,7,fail,J,True,A,molecular biology / biochemistry 7; molecular ecology; Molecular Science; Molecular Bioengineering are other subjects
+203,10,10,pass,,False,A,
+204,10,7,fail,J,True,A,Digital Business core of 5 to 7; MBA; digital project management; Digital Economics; digital transformation in society differ
+205,10,10,pass,,False,D,
+206,10,9,pass,,False,A,
+207,10,8,pass,J,False,A,5 Fahrzeugtechnik/Automotive plus Motorsport; Autonomous Vehicle; Smart Vehicle as specialisations; mobility systems management and Automobilinformatik left out
+208,10,8,pass,,False,A,Mobilität und Verkehr and Smart Mobility Management left out
+209,10,7,fail,J,True,A,journalism 7; Publizistik- und Kommunikationswissenschaft; Management und Medien; Media Technology and Society are other subjects
+210,10,8,pass,J,False,D,Medieninformatik 6 plus Informatik with Medieninformatik track and Human-Centered Computing; Mobile Medien and AR/VR Engineering counted as different
+211,10,6,fail,,True,A,energy economics / energy business 6; resource management and environmental and resource economics are other subjects
+216,10,8,pass,J,False,A,7 Maschinenbau plus one manufacturing specialisation; Simulation und Test and one more left out
+217,10,7,fail,,True,A,production engineering 7; mechanical engineering and management; vehicle systems; technical management differ
+220,10,6,fail,,True,A,Informationstechnik 6; software systems; Ingenieurinformatik; information systems; vocational-teaching variant differ
+221,10,8,pass,J,False,A,6 Robotik plus Autonome Systeme and Autonomy Technologies; commercial vehicles and intelligent manufacturing left out
+223,10,10,pass,,False,A,
+224,10,8,pass,,False,A,all 8 carry Mechatronik/Mechatronics; Technische Kybernetik and Sensorsystemtechnik left out
+225,10,7,fail,,True,A,International Business 7; material flow management; humanitarian action; development economics share only the word international
+226,10,9,pass,,False,A,
+227,10,9,pass,J,False,A,Computational Engineering with Computational Mechanics counted as its specialisation; Computer Science left out
+230,10,8,pass,J,False,A,energy / renewable energy engineering under varied titles; electrical engineering for renewables and geothermal left out
+231,10,5,fail,,True,A,Computer Engineering / Technische Informatik / Ingenieurinformatik 5; computational engineering; electronic engineering; materials engineering; IT systems differ
+232,10,8,pass,,False,A,Softwarelokalisierung and Web Engineering left out
+234,10,10,pass,,False,A,Mathematik and Angewandte Mathematik with combinations; mathematics anchors every title
+235,10,10,pass,,False,A,
+236,10,10,pass,,False,A,
+237,10,8,pass,,False,A,Energietechnik incl. Energie- und Umwelttechnik; Energy Management and Gebäudetechnik und Energiemanagement left out
+242,10,10,pass,,False,A,
+244,10,10,pass,,False,A,
+245,10,6,fail,,True,A,Mediendesign / media production 6; media culture; Medienwissenschaft; Editorial Design are other subjects
+246,10,10,pass,,False,A,
+251,10,9,pass,,False,A,
+252,10,9,pass,,False,A,
+255,10,9,pass,,False,A,Materialchemie left out
+256,10,9,pass,J,False,A,urban planning and urban design counted together incl. Architektur und Stadtplanung; Urban Management left out
+262,10,9,pass,,False,A,Management masters counted as BWL; Business Development Management left out
+268,10,9,pass,,False,A,Informatik anchors 6 titles; software engineering titles counted as specialisations; embedded software left out
+272,10,10,pass,,False,A,
+274,10,9,pass,,False,A,Rettungswissenschaften left out
+279,10,10,pass,,False,A,
+283,10,9,pass,,False,A,Computer Science left out
+284,10,6,fail,,True,A,Medienwissenschaft / Medienkultur 6; media design; media law; information management; Digitale Systeme are other subjects
+285,10,6,fail,J,True,B,photonics and laser titles are 6; Physikalische Technik and plain physics are other subjects unless read as one applied-physics family
+287,10,10,pass,,False,D,
+290,10,9,pass,,False,B,
+294,10,9,pass,,False,B,
+296,10,6,fail,,True,B,marketing is 6; the rest is general or international management; sales MBA and production management
+297,10,9,pass,J,False,B,general engineering 5 plus Maschinenbau 4 counted as its specialisation; fails at 5 if Maschinenbau is a subject of its own
+300,10,8,pass,,False,B,borderline: exactly 8 Bauingenieurwesen; industrial engineering and building physics are outside
+308,10,9,pass,J,False,B,non-technical media and communication umbrella; mixes management; advertising and research; a narrower reading gives about 5
+312,10,10,pass,,False,B,
+317,10,6,fail,,True,B,electrical or information engineering 6 against computer science and software engineering
+318,10,5,fail,,True,B,mathematics and Informatik are two subjects in one group
+324,10,9,pass,J,False,B,general Design or Gestaltung 4 plus Produktdesign 4 as specialisation; design and project management outside
+329,10,10,pass,,False,B,
+330,10,10,pass,,False,B,
+331,10,10,pass,,False,B,
+332,10,10,pass,,False,B,
+334,10,8,pass,,False,B,borderline: exactly 8 industrial or product design; two Produktentwicklung und Technisches Design are engineering
+339,10,9,pass,,False,B,
+342,10,10,pass,,False,B,
+343,10,9,pass,,False,B,borderline: 6 Technomathematik plus 3 computational or applied mathematics counted as the same
+352,10,9,pass,,False,D,Sustainable Engineering and Project Management is the one outsider
+363,3,2,fail,J,True,D,Sensor Systems Technology is a neighbouring but different subject from Mikrosystemtechnik; 3 of 3 needed
+364,5,5,pass,J,False,B,global change is the shared subject but the titles split into ecology and geography
+366,3,3,pass,J,False,B,human factors and Mensch-Technik-Interaktion treated as one field; one is psychology and one may be informatics
+368,3,2,fail,,True,B,one title is half Medizintechnik
+369,5,4,pass,,False,B,borderline: 4 electrical energy systems and e-mobility; renewable energy management outside
+371,2,1,fail,J,True,B,from the titles one is English studies and the other is not clearly the same subject
+376,8,7,pass,J,False,B,exactly 7 games titles but they mix design; technology and production management; Medienkonzeption outside
+379,2,1,fail,J,True,B,general design and photography; photography not clearly a design specialisation
+380,7,7,pass,,False,B,
+381,8,6,fail,,True,B,information or interaction or communication design 6; two titles are informatics plus design
+382,3,2,fail,J,True,B,two social work masters and one social innovation management bachelor; share the word Innovation
+385,7,7,pass,,False,B,
+386,5,3,fail,J,True,D,interactive media design 3; Digitales Storytelling and Interactive Media and Games BSc are different subjects; 4 of 5 needed
+388,7,5,fail,J,True,B,textile design 5; Materielle Kultur Textil is cultural studies; Design-Ingenieur not recognisably textile from the title
+391,4,4,pass,,False,B,
+402,2,2,pass,,False,B,
+407,5,2,fail,,True,B,robotics; computational engineering; electronics for AI and industrial digitalisation are different subjects
+408,7,6,pass,,False,B,borderline: media art and media design counted together; Media Engineering outside
+410,5,5,pass,,False,B,
+411,7,7,pass,,False,B,
+413,6,4,fail,J,True,B,energy systems 4; Intelligente Systeme differs and Elektrische Systeme is general electrical engineering
+414,8,7,pass,,False,B,borderline: exactly 7 automation titles; Technische Informatik und Robotik outside
+421,2,2,pass,,False,B,
+425,5,5,pass,,False,B,
+427,2,1,fail,,True,B,engineering management and systems design; share only the word Advanced
+430,7,7,pass,,False,B,
+432,3,1,fail,,True,B,three different subjects sharing the word digital
+434,7,7,pass,,False,B,
+436,8,5,fail,,True,B,biomechanics family 5 against Bioingenieurwesen 3 which is bioprocess engineering
+438,7,6,pass,,False,B,borderline: exactly 6; the Wirtschaftsingenieurwesen title is a different kind
+442,6,5,pass,,False,B,borderline: plain Informationsmanagement not clearly library science
+443,5,4,pass,,False,B,borderline: exactly 4 media production; Medieningenieur is engineering
+444,3,2,fail,,True,B,third title is a general technical orientation semester; no defined subject
+446,3,2,fail,,True,B,Wirtschaftsforensik is business fraud; not digital forensics
+449,5,5,pass,J,False,D,Wirtschaftsgeographie counted as recognised specialisation of Geographie; general subject is only 2 of 5
+453,4,2,fail,,True,D,Wirtschaftsingenieurwesen Maschinenbau 2; automotive development master and Mobilitaet und Logistik are different subjects
+457,6,4,fail,,True,B,management and technology 4 against process management 2
+459,2,2,pass,,False,B,
+460,8,8,pass,,False,B,
+462,5,5,pass,,False,B,
+463,9,8,pass,,False,B,borderline: exactly 8 building services engineering; the management master is doubtful
+464,5,5,pass,J,False,B,Digitale Systeme and Digitale Technologien are vague titles; same kind only if both read as informatics-near engineering
+465,2,2,pass,J,False,D,same subject; one is a consecutive master and one an MBA
+467,6,6,pass,J,False,B,general or international engineering 3 plus Mechanical Engineering 3 as specialisation; fails at 3 if kept apart
+469,2,2,pass,,False,B,
+474,3,2,fail,,True,B,two neuroscience titles and one computing title
+475,6,6,pass,,False,B,
+484,2,1,fail,,True,B,geoenvironmental engineering and geodesy are different subjects
+487,2,2,pass,J,False,B,both leadership masters; one is sector-specific for service companies
+488,4,4,pass,,False,B,
+501,3,2,fail,J,True,B,digital biomedicine against biomedical engineering; first title covers both
+502,3,3,pass,,False,D,
+505,5,3,fail,J,True,B,Informatik 3; two data analytics masters; one of them could count as an Informatik specialisation
+507,5,5,pass,,False,B,
+510,7,6,pass,,False,B,borderline: sustainable and plain general engineering counted together; the Wirtschaftsingenieur title outside
+512,3,3,pass,J,False,B,UX design and usability engineering treated as one field; one is design and one is engineering
+513,4,4,pass,,False,B,
+514,3,3,pass,,False,B,
+516,2,1,fail,,True,B,green technology and building services engineering are different subjects
+517,2,2,pass,,False,B,
+519,6,3,fail,J,True,B,information science 3; Informationsverarbeitung unclear; Information Systems is business informatics
+522,6,6,pass,,False,B,
+523,6,5,pass,,False,B,borderline: Environmental Physics not clearly meteorology
+524,4,2,fail,,True,D,mixed art; film; theatre; literature and media studies combinations; no common subject
+526,3,3,pass,J,False,D,Gesundheitselektronik counted as specialisation of Medizintechnik
+527,4,4,pass,J,False,B,three Quantum Engineering and one Quantencomputing; same quantum technology field but engineering against computing
+529,5,3,fail,,True,B,Technische Kybernetik 3 against robotics 2
+540,3,3,pass,,False,B,
+543,7,7,pass,,False,B,
+546,8,8,pass,,False,B,
+550,3,3,pass,J,False,B,actuarial science and quantitative finance treated as one financial mathematics field
+561,4,4,pass,,False,B,
+563,2,1,fail,,True,B,building energy technology and Elektrotechnik; share only the practice format
+566,9,8,pass,J,False,B,integrated design and integrated product design 7 plus Engineering Design MA; Integrierte Produktentwicklung is engineering
+567,6,4,fail,J,True,C,applied physics and applied chemistry beside applied natural science; only 4 of 6 share the subject
+573,2,1,fail,J,True,C,information systems management versus AI and data science for business
+578,2,1,fail,,True,C,energy science versus quantum science
+585,3,2,fail,,True,D,marketing 2 versus strategic communication and leadership; 3 of 3 needed
+586,3,3,pass,,False,C,
+587,3,2,fail,J,True,C,environmental technology; environment and energy; resource management are different qualifications
+591,9,8,pass,J,False,C,Management betrieblicher Systeme is the odd one; rest general business management
+592,3,2,fail,,True,C,materials science is a different subject from physics and photonics
+597,4,4,pass,,False,C,
+603,3,3,pass,,False,C,
+605,4,2,fail,,True,C,computer science; mathematics and data science mixed
+613,7,6,pass,,False,C,Energie- und Wasserwirtschaft only half water
+614,4,4,pass,,False,D,
+615,4,3,fail,,True,C,power engineering differs; shared word sustainable only
+616,2,2,pass,J,False,C,both applied AI engineering masters but different application fields
+623,7,7,pass,,False,C,
+634,7,6,pass,J,False,C,climate change management differs; georesources and environmental management only loosely one subject
+637,3,2,fail,,True,C,management analytics is not an MBA
+640,3,2,fail,,True,C,organisation design is not a design subject; shared word design
+648,6,4,fail,J,True,C,AI in medicine (4) mixed with general intelligent systems (2)
+651,3,2,fail,J,True,C,geographic environmental research versus GIS and geoinformation
+653,6,4,fail,J,True,C,marketing (4) mixed with media management (2)
+659,2,2,pass,,False,C,
+660,3,2,fail,J,True,C,industrial engineering and management is broader than sales engineering
+662,2,2,pass,,False,C,
+666,3,3,pass,,False,C,
+667,4,4,pass,,False,C,
+669,5,2,fail,,True,C,art studies; fine art practice; art education and art communication mixed
+671,3,3,pass,J,False,C,online media with management; communication and technical emphasis
+672,3,3,pass,,False,C,
+678,3,3,pass,,False,C,
+681,3,3,pass,,False,C,
+683,3,2,fail,J,True,C,project management programme beside psychology and sustainability
+684,3,2,fail,J,True,C,Creative Engineering probably an engineering degree; shared word creative
+685,2,1,fail,,True,C,East Asia versus Eastern Europe
+686,3,3,pass,J,False,C,photonics with bio and medical specialisations
+689,2,1,fail,J,True,C,engineering programme versus physics programme
+691,7,7,pass,,False,D,
+693,3,3,pass,,False,C,
+703,4,3,fail,,True,C,Medientechnik differs from Elektrotechnik; shared word kooperativ
+704,3,2,fail,J,True,C,geovisualisation versus surveying
+710,2,1,fail,J,True,C,product and innovation development MA versus management MBA
+712,2,2,pass,J,False,C,general management master and innovation management as specialisation
+715,5,4,pass,J,False,C,smart materials differs; shared word smart carries the group
+724,2,2,pass,J,False,D,both titled Betriebswirtschaftslehre with different specialisations (international versus industrial management)
+726,4,3,fail,,True,C,engineering physics and data science differs; electronics mixed in
+727,2,1,fail,J,True,C,AR and VR design versus UX design and content creation
+729,9,9,pass,,False,C,
+730,2,2,pass,J,False,C,both energy systems masters with different focus
+731,2,2,pass,,False,C,
+734,7,5,fail,J,True,C,two journalism programmes beside five media management programmes
+736,4,4,pass,,False,C,
+738,3,3,pass,,False,C,
+739,2,1,fail,,True,C,industrial engineering versus electrical engineering
+740,4,4,pass,J,False,C,product management track beside technical design
+744,6,4,fail,J,True,D,international management or business 4; general MBA and service management are different; 5 of 6 needed; passes only if all read as business administration
+745,9,9,pass,,False,C,
+747,2,1,fail,J,True,C,product design versus spatial and interior design
+749,4,4,pass,,False,C,
+750,3,3,pass,,False,C,
+753,6,3,fail,,True,C,engineering science; technical physics and a teacher-training Technik degree mixed
+755,3,3,pass,,False,D,
+757,2,2,pass,,False,C,
+759,2,1,fail,,True,C,medical engineering versus medical informatics; shared remark Praxissemester
+761,4,4,pass,,False,C,
+765,6,5,pass,J,False,C,Climate Earth Water Sustainability only loosely the same
+768,7,7,pass,,False,C,
+770,6,6,pass,J,False,C,polymer science (chemistry) and plastics engineering in one group
+777,4,3,fail,J,True,C,brand communication differs from creative industries management
+780,2,2,pass,J,False,C,both computational mathematics masters under different names
+781,6,5,pass,J,False,C,medical microtechnology is the odd one; microelectronics and microsystems close
+782,2,2,pass,,False,C,
+783,2,2,pass,,False,C,
+784,2,1,fail,,True,C,geotechnics and geology versus geospatial technologies
+789,2,2,pass,J,False,C,construction project management as specialisation of general project management
+790,7,7,pass,,False,C,
+793,5,5,pass,,False,C,
+803,2,2,pass,,False,C,
+804,3,3,pass,J,False,C,sport media with journalism; communication and research emphasis
+807,5,5,pass,,False,C,
+808,2,2,pass,J,False,C,both drug research masters with different focus
+809,4,4,pass,,False,C,
+810,7,6,pass,,False,C,physical geography is the odd one
+811,3,3,pass,,False,C,
+812,6,4,fail,J,True,C,applied economics and applied mathematics beside data science
+813,3,1,fail,,True,C,landscape ecology; landscape planning and urban green management differ
+814,6,6,pass,,False,C,
+815,2,2,pass,,False,C,
+819,3,3,pass,,False,C,
+822,3,3,pass,,False,C,
