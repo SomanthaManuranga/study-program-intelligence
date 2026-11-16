@@ -1,5 +1,9 @@
 # Funnel run 1: review result
 
+> Run 1's code (`funnel_discovery.py`, `funnel_screen.py`, `funnel_market.py`, `funnel_gate.py`) and its write-up
+> (`docs/funnel_reasoning.md`) were removed from the repository; they remain in the git history. The run that replaced
+> it is described in `docs/funnel_run2_notes.md`.
+
 Run 1 is **not a result**. A fresh-context claim review of `docs/funnel_reasoning.md` found 6 wrong, 3 unsupported and
 13 overstated claims, and 8 rules that the code applied differently from `configs/funnel.yaml`. About 200 other claims
 checked out. A separate check found that the supply test itself is not valid.

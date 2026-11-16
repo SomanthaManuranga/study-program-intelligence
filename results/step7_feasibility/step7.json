@@ -1,0 +1,91 @@
+{
+  "stamp": {
+    "commit": "c31b38d",
+    "date": "2026-11-16",
+    "clean": true
+  },
+  "rows": 421,
+  "references": 10,
+  "candidates": 6,
+  "verdicts": {
+    "fail": 3,
+    "existing-resources passer": 1,
+    "band passer": 1,
+    "reference-dependent": 1
+  },
+  "first_marking": {
+    "new": 150,
+    "N": 143,
+    "E2": 85,
+    "E1": 33,
+    "lab": 10
+  },
+  "first_marking_unsure": 161,
+  "rows_marked_by_both": 215,
+  "agreement_on_covered_or_not": 0.9302325581395349,
+  "final_basis": {
+    "first reviewer alone": 206,
+    "both reviewers": 200,
+    "third reader": 15
+  },
+  "samples": {
+    "22 master": {
+      "drawn": 10,
+      "differ": 0,
+      "sample failed": false,
+      "rows": 92,
+      "rows the second reviewer marked": 47
+    },
+    "223 bachelor": {
+      "drawn": 10,
+      "differ": 1,
+      "sample failed": false,
+      "rows": 115,
+      "rows the second reviewer marked": 46
+    },
+    "256 bachelor": {
+      "drawn": 10,
+      "differ": 0,
+      "sample failed": false,
+      "rows": 30,
+      "rows the second reviewer marked": 19
+    },
+    "300 master": {
+      "drawn": 10,
+      "differ": 0,
+      "sample failed": false,
+      "rows": 96,
+      "rows the second reviewer marked": 36
+    },
+    "312 bachelor": {
+      "drawn": 10,
+      "differ": 1,
+      "sample failed": false,
+      "rows": 37,
+      "rows the second reviewer marked": 16
+    },
+    "312 master": {
+      "drawn": 10,
+      "differ": 1,
+      "sample failed": false,
+      "rows": 51,
+      "rows the second reviewer marked": 51
+    }
+  },
+  "band": [
+    0.4,
+    0.8
+  ],
+  "one_programme_max": 0.8,
+  "inputs": {
+    "funnel2_rows_key.csv": "89ac58a90ff69216",
+    "funnel2_rows.json": "0f7d1d76a0a48d1e",
+    "funnel_module_marks_1.csv": "b654f8976658db4f",
+    "funnel_module_marks_2.csv": "e76f741953384e17",
+    "funnel_module_marks_3.csv": "a56063e4c48279f5"
+  },
+  "files": {
+    "funnel2_gate.csv": "34bcffd308248ffa",
+    "funnel2_gate_references.csv": "c4e6b98552fba2f0"
+  }
+}

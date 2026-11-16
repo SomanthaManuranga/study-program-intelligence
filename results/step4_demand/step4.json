@@ -1,0 +1,54 @@
+{
+  "stamp": {
+    "commit": "bfa42bc",
+    "date": "2026-11-15",
+    "clean": true
+  },
+  "step3_commit": "7f24b79",
+  "units": 1285,
+  "primary": 365,
+  "stress": 1241,
+  "distinct_pools": 1141,
+  "pools_backtested": 1118,
+  "pools_not_backtested": 23,
+  "average_MASE": {
+    "naive": 2.008,
+    "drift": 2.409,
+    "ets": 2.53
+  },
+  "model_for_the_projection": "naive",
+  "horizon_year": 2030,
+  "pools_validated": 39,
+  "units_where_drift_beats_naive": 210,
+  "units_validated": 51,
+  "primary_validated": 23,
+  "primary_by_trend_in_bavaria": {
+    "growing (0 or more)": 128,
+    "falling slowly (0 to -3)": 93,
+    "falling fast (below -3)": 136,
+    "no slope (a year without students)": 8
+  },
+  "primary_by_trend_in_germany": {
+    "growing (0 or more)": 95,
+    "falling": 269,
+    "no slope": 1
+  },
+  "primary_median_trend": {
+    "German BY": -2.03,
+    "German DE": -1.92,
+    "foreign BY": 9.32,
+    "foreign DE": 6.26
+  },
+  "primary_units_alone_in_their_pool": 322,
+  "primary_median_foreign_share": 0.303,
+  "inputs": {
+    "funnel2_screen.csv": "b12cdfe015f8620d",
+    "funnel2_offer_types.csv": "509fbdbe7fc60ac1",
+    "funnel_subject_map.csv": "636223e331f56a89",
+    "destatis tables": "5898abb1f65496d0"
+  },
+  "files": {
+    "funnel2_demand.csv": "d6e9cbccd315df94",
+    "funnel2_pools.csv": "23581b8ff311f7c3"
+  }
+}

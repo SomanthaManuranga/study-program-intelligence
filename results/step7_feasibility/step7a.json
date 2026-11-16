@@ -1,0 +1,53 @@
+{
+  "stamp": {
+    "commit": "a24d911",
+    "date": "2026-11-15",
+    "clean": true
+  },
+  "units": 365,
+  "candidates": 268,
+  "weights": {
+    "demand": 0.3,
+    "labour": 0.2,
+    "fit": 0.2,
+    "differentiation": 0.1,
+    "regional": 0.05
+  },
+  "fit_proxy": {
+    "bar": 0.42809775287949137,
+    "value 5 at": 0.8941287859101134
+  },
+  "score_quartiles": [
+    1.936,
+    2.333,
+    2.655
+  ],
+  "highest": 3.686,
+  "first_20": {
+    "bachelor": 14,
+    "master": 6,
+    "mixed types": 2,
+    "below the minimum cohort": 0,
+    "thin anchor": 1,
+    "trend not validated": 16,
+    "score of the 20th": 2.983
+  },
+  "units_with_a_missing_input": {
+    "trend": 8,
+    "net_new": 0,
+    "ads": 0,
+    "kept": 0
+  },
+  "inputs": {
+    "funnel2_screen.csv": "b12cdfe015f8620d",
+    "funnel2_demand.csv": "d6e9cbccd315df94",
+    "funnel2_capture.csv": "941fcafaf4048139",
+    "funnel2_labour.csv": "4cc4fe60c3364fee",
+    "funnel2_emi_calibration.csv": "3b5cbecdebf645d6",
+    "funnel_type_coherence.csv": "de879b26dbc0d130"
+  },
+  "files": {
+    "funnel2_shortlist.csv": "a27b4b97d7a55d37",
+    "funnel2_gate_order.csv": "5199119a976d8ea8"
+  }
+}

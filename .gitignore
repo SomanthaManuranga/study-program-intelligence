@@ -267,3 +267,8 @@ reports/final/*
 !docs/funnel_module_marks_pass2_3.csv
 !docs/funnel_similarity_check_2.csv
 !docs/funnel_similarity_marks_2.csv
+
+# results/: the committed final tables of the funnel (analysis/funnel_results.py); derived data only
+!results/
+!results/**
+!results/**/*.csv

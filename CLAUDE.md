@@ -92,7 +92,7 @@ Open for the team: the research protocol requires that AI-related scores are che
 check is not recorded yet. Title page of the report: second author and supervisor still placeholders.
 
 Funnel redo (branch soma/funnel): the programme must come out of the data, not from hand-picked candidates. Run 1 is
-not a result (docs/funnel_run1_review.md). Rules version 3: configs/funnel.yaml, docs/funnel_preregistration.md
+not a result (docs/funnel_run1_review.md); its code and write-up were removed (git history only). Rules version 3: configs/funnel.yaml, docs/funnel_preregistration.md
 (supervisor's input, run-1 fixes, what was known beforehand). One step at a time, each with Soma's OK and a short
 plain-English paragraph on what was achieved; notes per step in docs/funnel_run2_notes.md; full documentation only at
 the end. Steps: 0 rules (done), 1 data inventory (done), 2 programme types, 3 screen and competition by content similarity,
@@ -173,7 +173,9 @@ Read data/interim/funnel2_screen.csv with float_precision="round_trip". The labe
   ingest/documents.py load_env().
 - Public data only; no intake or admission figures from universities.
 - data/ and generated reports (reports/) are git-ignored on purpose; regenerate them with the pipeline. Commit code,
-  configs and docs only (exception: docs/theme_labels.csv, the reviewed theme labels).
+  configs and docs only (exception: docs/theme_labels.csv, the reviewed theme labels), and results/: the funnel's
+  final tables, copied by `python -m study_program_intelligence.analysis.funnel_results` (derived data only; never raw
+  downloads, module text of other universities or internal files).
 - Scraping: respect robots.txt (allowed_by_robots in ingest/documents.py), User-Agent with CONTACT_EMAIL, delay 2 s for
   the APIs and at least 3 s (or the site's Crawl-delay) for documents, cache raw replies, record every source in
   configs/sources.yaml and a manifest in docs/. Hochschulkompass search pages and OTH /fileadmin/ are disallowed ->
