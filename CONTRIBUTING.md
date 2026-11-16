@@ -45,7 +45,8 @@ git push
 
 - Never force-push `main`, and never rewrite history that someone else may have pulled.
 - `data/` and `reports/` are not committed (only `reports/final/project_summary.pdf`); rebuild them with
-  `python -m study_program_intelligence.pipeline`.
+  `python -m study_program_intelligence.pipeline`. `results/` holds the funnel's final tables and is committed; refresh it
+  with `python -m study_program_intelligence.analysis.funnel_results`.
 - Never commit secrets: `.env` stays local.
 
 ## GitHub settings (owner, once)
