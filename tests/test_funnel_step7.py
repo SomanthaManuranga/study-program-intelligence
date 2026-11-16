@@ -98,6 +98,8 @@ def test_the_walk_stops_and_skips_as_the_rule_says(tmp_path, monkeypatch):
     assert list(w["status"]) == ["eligible", "tried, not eligible", "eligible", "not a candidate", "eligible", "eligible", "eligible", "not yet tried"]
     w = F.walk(order, metas, {}, (6, 3, 2))                                                                         # stop at 2 tried
     assert list(w["status"]) == ["eligible", "tried, not eligible"]
+    order3 = order.assign(**{"below the minimum cohort": [False, False, True, False, False, False, False, False]})
+    assert F.walk(order3, metas, {}, (6, 3, 20))["status"].iloc[2] == "below the minimum cohort"                     # takes no slot and is not tried
     order2 = pd.DataFrame({"gate order": range(1, 6), "type": [10, 12, 14, 15, 16], "level": ["bachelor"] * 5})
     w = F.walk(order2, metas, {}, (6, 3, 20))
     assert list(w["status"])[:5] == ["eligible", "eligible", "eligible", "skipped", "skipped"]                    # a 4th eligible bachelor is not looked for

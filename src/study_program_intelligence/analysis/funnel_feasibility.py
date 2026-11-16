@@ -188,7 +188,17 @@ def gate_order() -> pd.DataFrame:
     return order.assign(members=order["type"].map(pd.read_csv(TYPES).set_index("type")["members"]))
 
 
-def rows() -> None:
+def eligible_key(key: pd.DataFrame) -> pd.DataFrame:
+    """The rows of the candidates that are eligible in the current walk (rows of a candidate that left the walk stay in
+    the key and in the mark files but are not used)."""
+    w = pd.read_csv(WALK)
+    keep = {(int(t), lv) for t, lv, st in zip(w["type"], w["level"], w["status"]) if st == "eligible"}
+    return key[[(int(t), lv) in keep for t, lv in zip(key["type"], key["level"])]].reset_index(drop=True)
+
+
+def rows(add: bool = False) -> None:
+    """With add, the rows already in the key keep their numbers and texts; only references of eligible candidates not
+    yet in the key get new rows, numbered after the last one."""
     stamp, rules = run_stamp(), config()
     ref, metas = references(0.8)
     order = gate_order()
@@ -200,6 +210,10 @@ def rows() -> None:
     keep = {(int(t), lv) for t, lv, st in zip(w["type"], w["level"], w["status"]) if st == "eligible"}
     ref = ref[[(int(t), lv) in keep for t, lv in zip(ref["type"], ref["level"])]].reset_index(drop=True)
     print(w.to_string())
+    old_key, old_sheet = (pd.read_csv(KEY), json.loads(ROWS.read_text(encoding="utf-8"))["rows"]) if add else (pd.DataFrame(columns=["ref"]), [])
+    all_refs = set(ref["ref"]) | set(old_key["ref"])
+    ref = ref[~ref["ref"].isin(set(old_key["ref"]))].reset_index(drop=True)
+    start = len(old_key)
     emi = pd.read_csv(EMI_MODULES, low_memory=False)
     ev = vectors(emi)
     rv = vectors(ref.rename(columns={"module": "title", "content": "text"}), handbook="ref")
@@ -213,9 +227,9 @@ def rows() -> None:
     tsim = unit(mv) @ unit(tv).T
     threshold = float(rules["feasibility_gate"]["covered_threshold"])
     order = np.random.default_rng(SEED).permutation(len(ref))
-    terms = [t for t in blind_terms({k: v for k, v in metas.items() if k in set(ref["ref"])}) if t]
-    sheet, key = [], []
-    for n, i in enumerate(order, 1):
+    terms = [t for t in blind_terms({k: v for k, v in metas.items() if k in all_refs}) if t]
+    sheet, key = list(old_sheet), old_key.to_dict("records")
+    for n, i in enumerate(order, start + 1):
         r = ref.iloc[i]
         near = nearest(sim[i], titles, emi_allowed(emi, r["level"]))
         near = near + title_matches(r["module"], sim[i], titles, words, emi_allowed(emi, r["level"]), near)
@@ -268,9 +282,10 @@ def near_band(key: pd.DataFrame, first: pd.DataFrame, rule: dict | None = None) 
 
 
 def sample() -> None:
-    key, first = pd.read_csv(KEY), read_marks(1)
-    if set(key["row"]) != set(first.index):
-        raise SystemExit("the first marking does not cover exactly the rows of the key")
+    key, first = eligible_key(pd.read_csv(KEY)), read_marks(1)
+    if not set(key["row"]) <= set(first.index):
+        raise SystemExit("the first marking does not cover every row of the eligible candidates")
+    first = first.loc[sorted(set(key["row"]))]
     drawn = drawn_rows(key)
     near = near_band(key, first)
     want = sorted({r for v in drawn.values() for r in v} | set(first.index[first["unsure"]]) | set(key.loc[[(t, lv) in near for t, lv in zip(key["type"], key["level"])], "row"]))
@@ -284,7 +299,7 @@ def sample() -> None:
 def third() -> None:
     """hand_check.third_reader: the sheet of every row on which the first two reviewers differ between covered and not covered."""
     first, second = read_marks(1), read_marks(2)
-    both = second.index.intersection(first.index)
+    both = second.index.intersection(first.index).intersection(pd.Index(eligible_key(pd.read_csv(KEY))["row"]))
     differ = sorted(r for r in both if (first.at[r, "verdict"] in COVERED) != (second.at[r, "verdict"] in COVERED))
     sheet = json.loads(ROWS.read_text(encoding="utf-8"))
     sheet["rows"] = [r for r in sheet["rows"] if r["row"] in set(differ)]
@@ -378,13 +393,17 @@ def walk(order: pd.DataFrame, metas: dict, not_a_candidate: dict[tuple[int, str]
     """shortlist.gate_list: down the gate order; a candidate is tried when its references were looked for; it is eligible
     with at least one complete reference; stop when 6 are eligible or 20 were tried; once a level has 3 eligible, its
     later candidates are skipped without looking for references and are not counted. A mixed type read in full and
-    found mixed takes no slot (screen.type_coherence.before_the_gate)."""
+    found mixed takes no slot (screen.type_coherence.before_the_gate). A candidate whose central gross first-years lie
+    below the minimum cohort takes no slot (capture.min_cohort.gate)."""
     eligible_max, per_level, tried_max = rule
     out, n_tried, n_eligible, by_level = [], 0, 0, {"bachelor": 0, "master": 0}
     for r in order.itertuples():
         cand = (int(r.type), r.level)
         if n_eligible >= eligible_max or n_tried >= tried_max:
             break
+        if "below the minimum cohort" in order.columns and bool(order.at[r.Index, "below the minimum cohort"]):
+            out.append({"gate order": r._1, "type": cand[0], "level": cand[1], "status": "below the minimum cohort", "reason": "central gross first-years below capture.min_cohort; takes no slot"})
+            continue
         if cand in not_a_candidate:
             if not_a_candidate[cand].startswith("mixed type: needs"):
                 out.append({"gate order": r._1, "type": cand[0], "level": cand[1], "status": "waiting", "reason": not_a_candidate[cand]})
@@ -413,7 +432,7 @@ def verdict() -> None:
     stamp, rules = run_stamp(), config()
     gate = rules["feasibility_gate"]
     lo, hi, one_max = float(gate["band"]["min"]), float(gate["band"]["max"]), float(gate["one_programme"]["max"])
-    key = pd.read_csv(KEY)
+    key = eligible_key(pd.read_csv(KEY))
     k, info = final_marks(key)
     emi = pd.read_csv(EMI_MODULES, low_memory=False).set_index("module_id", drop=False)
     conf = [[k.at[i, f"emi {n}"] for n in which_numbers(w) if f"emi {n}" in k.columns and isinstance(k.at[i, f"emi {n}"], str) and k.at[i, f"emi {n}"] in emi.index]
@@ -491,4 +510,4 @@ def verdict() -> None:
 
 
 if __name__ == "__main__":
-    {"rows": rows, "sample": sample, "third": third, "verdict": verdict}[sys.argv[1] if len(sys.argv) > 1 else ""]()
+    {"rows": lambda: rows(add=len(sys.argv) > 2 and sys.argv[2] == "--add"), "sample": sample, "third": third, "verdict": verdict}[sys.argv[1] if len(sys.argv) > 1 else ""]()
