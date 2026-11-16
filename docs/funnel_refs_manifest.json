@@ -1408,5 +1408,22 @@
   "bytes": 766623,
   "sha256": "471e0b6876350a99a070fd63581ffdc1573c31422f8de6e99d3e7116031f49d7",
   "content_type": "application/pdf"
+ },
+ {
+  "id": "242_bachelor_a_handbook",
+  "url": "https://www.thi.de/fileadmin/daten/fakultaetI/Modulhandbuecher/MHBuch_INF-B.pdf",
+  "asked_utc": "2026-11-16T12:48:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/242_bachelor_a_handbook.pdf",
+  "bytes": 2656309,
+  "sha256": "def7aa1bad4fb6dfd2ac66c8275507b54ba4ca387135992a343a421d86a24da7",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "242_bachelor_a_page1",
+  "url": "https://www.thi.de/studium/bachelor/informatik/",
+  "asked_utc": "2026-11-16T12:48:57+00:00",
+  "status": "error",
+  "error": "HTTP 404"
  }
 ]
