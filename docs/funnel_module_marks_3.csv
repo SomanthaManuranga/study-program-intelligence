@@ -1,0 +1,16 @@
+row,verdict,which,unsure,reason
+R0003,E2,8,True,"German A2 grammar course; FL2 assigns individual German/English courses by need, but level and content are not specified."
+R0062,E2,2+7,True,Business model patterns and digital transformation of models covered; media-company focus and transformation steering would be added.
+R0072,E2,3+4,False,Cloud architecture and administration (3) plus threats and cloud security basics (4); cloud monitoring and posture management missing.
+R0078,N,4,True,"EMI teaches TypeScript and react/vue frameworks; Angular-specific components, routing, guards and auth would need a new module."
+R0149,N,7,True,"Data mining basics in Python at bachelor level; R, statistical depth and master level not clearly covered; JS visualisation in 9."
+R0158,E2,3,True,"PMA covers V-model, Scrum, risks, planning; RUP, XP, effort estimation and feasibility studies missing; bachelor vs master."
+R0171,E2,3+7,True,"Computer structure, data representation, arithmetic in 3; addressing, stack, C in 7; explicit ISA and assembler programming thin."
+R0241,E2,1,True,Internship seminar covers reflection and applying study knowledge; feedback into university teaching missing; target text thin.
+R0242,E2,4+3,True,"Acquisition, illumination, filtering, segmentation, classification in 4; 3D measurement in 3; master-level descriptors partly missing."
+R0281,N,9,True,"Fourier, sampling, DFT, z in 9 and LTI systems in 1; stochastic signals, spectral estimation, wavelets (master) not covered."
+R0290,N,2,True,"Security research seminar with own paper; IT security taught (2), AI conference seminar has paper format but no own contribution."
+R0293,N,4,True,"Network, wireless security and pentesting in 4; identity federation, OS security, SIEM/security management not covered."
+R0317,E2,2,True,"Modern symmetric and public-key crypto in 2; history, classical ciphers and Enigma would be added; timetable has Kryptographie."
+R0350,N,4,True,"VHDL/FPGA design taught in Digitaltechnik; HSM, TEE and cryptographic arithmetic units are not in any shown module."
+R0355,E2,3,True,App module covers mobile and cross-platform app development (react native); Dart and Flutter specifics would be added.
