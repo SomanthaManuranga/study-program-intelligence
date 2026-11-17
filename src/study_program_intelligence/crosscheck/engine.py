@@ -80,7 +80,7 @@ def prepare(force: bool = False) -> Prepared:
     if CACHE.exists() and not force:
         try:
             prep = pickle.loads(CACHE.read_bytes())
-            if prep.fingerprint == fp:
+            if prep.fingerprint == fp and getattr(prep, "tt", None):
                 return prep
         except Exception:   # cache from another Python/pandas version: rebuild
             pass

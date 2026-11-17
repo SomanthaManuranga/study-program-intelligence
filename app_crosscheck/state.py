@@ -15,13 +15,18 @@ from study_program_intelligence.crosscheck import engine as E  # noqa: E402
 CRITERIA = E.CRITERIA
 
 
-@st.cache_resource(show_spinner="Preparing data (once, about 20 s)...")
-def prepared():
+@st.cache_resource(show_spinner="Preparing data (once, about 20 s)...", max_entries=1)
+def _prepared(fingerprint: str):
     return E.prepare()
 
 
+def prepared():
+    """Cached in memory, but rebuilt automatically when the code or the input data change."""
+    return _prepared(E._fingerprint())
+
+
 @st.cache_data(show_spinner=False, max_entries=64)
-def _run(rules_json: str):
+def _run(rules_json: str, fingerprint: str):
     return E.run(prepared(), json.loads(rules_json))
 
 
@@ -130,7 +135,7 @@ def sidebar_rules() -> dict:
 
 
 def results(rules: dict) -> dict:
-    return _run(json.dumps(rules, sort_keys=True))
+    return _run(json.dumps(rules, sort_keys=True), E._fingerprint())
 
 
 def banner(res: dict):
