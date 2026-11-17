@@ -1,0 +1,23 @@
+# Overlap rule for the new-programme analysis (branch poovallal/dev).
+# Written BEFORE any candidate is scored with it. Sources: consultation with the supervisor (9 Nov 2026, transcript)
+# and his email of 16 Nov 2026. Decision record: docs/decision_log.md.
+#
+# "Overlap" = share of a candidate programme's taught ECTS that is covered by lectures OTH already runs.
+
+screening:                      # Step 1: is the candidate just an existing OTH programme with a new name?
+  max_overlap_with_one_oth_programme: 0.80   # above this -> dropped ("just a relabeled study program", supervisor)
+  compared_with: each existing OTH programme separately, at module level (not by title)
+
+final_programme:                # agreed by the team on 16 Nov, following the supervisor's email of 16 Nov
+  ideal_overlap_band: [0.40, 0.80]   # share of the candidate's taught ECTS covered by lectures EMI already runs
+  below_band: kept but flagged as costly ("will cost us a lot of resources"); needs a strong demand argument
+  above_band: dropped (see screening)
+  resources: existing EMI staff and labs only; the new modules must be teachable by existing professors
+             (capability map from the timetables)
+
+superseded:                     # recorded for the history, not used
+  target_shared_share: 0.20     # first reading from the meeting of 9 Nov (09:22-09:54), replaced by the email
+
+assumptions:
+  - Existing EMI labs in Amberg (incl. the DC campus) are available to a new programme.
+  - A professor can teach a new module in a topic area in which he or she already teaches (timetable evidence).

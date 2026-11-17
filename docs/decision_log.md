@@ -428,3 +428,28 @@ on main, 124 on soma/rescope); only the trailer lines are gone. A backup bundle 
 the repository. This is a one-time exception to "never rewrite or force-push main"; the rule stands. Collaborators
 must re-clone or reset their local branches to the new history.
 Decided by: Soma.
+
+## 2026-11-16: Overlap rule for the independent cross-check (branch poovallal/dev)
+Decision: (1) Step-1 screening: a candidate is dropped if more than 80 % of its taught ECTS overlap with one existing
+OTH programme, tested at module level instead of by title (supervisor, meeting 9 Nov and email 16 Nov: too much
+overlap "is just a relabeled study program"). (2) Final programme: 40-80 % of its taught ECTS covered by lectures EMI
+already runs (supervisor's email of 16 Nov: "40-80 % overlap is ideal"); below 40 % a candidate is kept but flagged as
+costly. The team agreed on this reading on 16 Nov; the first reading from the meeting (about 20 % shared modules) is
+superseded. (3) Limits are settings in configs/overlap_rule.yaml, fixed before any candidate is scored. (4) Staff
+capability comes from the EMI timetables provided by the supervisor; the PDFs and lecturer names stay in the
+git-ignored data folder, outputs use neutral labels. (5) Poovallal runs an independent cross-check on the shared data
+with the same rules; agreement or disagreement with the funnel result is reported.
+Decided by: Soma and Poovallal (rule); Poovallal (cross-check).
+
+## 2026-11-17: Independent cross-check v1 (branch poovallal/dev)
+Decision: (1) Method fixed in docs/crosscheck/method.md before the code ran; one amendment before any run (no drop by
+subject or title; the module test decides whether a kind is already at OTH). (2) After the first run, two data-cleaning
+fixes, made by name and not by result: 14 catalogue subjects without an exact Destatis name were mapped by hand (list
+in crosscheck/common.py), and the fuzzy name match was tightened (0.8 -> 0.92) after two false matches
+(Archivwissenschaft -> Rechtswissenschaft, Angewandte Naturwissenschaft -> Angewandte Sprachwissenschaft). (3) The
+Step-2 control failed: subjects OTH already offers range from 10 % to 93 % "from one EMI programme" on catalogue focus
+lists, so the 80 % copy test is not decided from catalogue topics. Instead kinds whose subject or name an OTH programme
+of the same level carries are flagged "relabel risk" and are tested first with real module handbooks (ECTS level) in
+the hand check. (4) Known before the method was written: only the funnel's headline from its plain-English PDF; its
+tables, candidate lists and AI marks were not read. Results: docs/crosscheck/results.md (provisional).
+Decided by: Poovallal (method); corrections as stated.
