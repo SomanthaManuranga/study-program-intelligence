@@ -1,0 +1,34 @@
+# Cross-check rule set: the AGREED rules (official result). The web app starts from this file; any change made in the
+# app is a what-if and is shown as such. Changing this file itself is a method decision -> docs/decision_log.md.
+
+step1_universe:
+  emi_fit_share: 0.25          # a subject fits EMI if it is EMI's own or >= this share of its offers co-list an EMI subject
+  min_topics: 5                # fewer catalogue focus items -> "no topic data", not ranked
+
+step2_relabel:
+  max_one_programme: 0.80      # topic share from ONE EMI programme above this -> dropped as relabelled
+  relabel_risk_action: flag    # flag | drop : kinds whose subject/name an OTH programme of the same level carries
+
+step3_fit:
+  tau: auto                    # matching threshold; auto = calibrated on controls (EMI subjects vs non-EMI subjects)
+  near_ratio: 0.70             # near = tau_low <= similarity < tau, tau_low = near_ratio * tau
+  band_low: 0.40               # below -> costly ("will cost us a lot of resources")
+  band_high: 0.80
+  below_band_action: flag      # flag (not eligible) | drop
+
+step4_demand:
+  alpha: 0.50                  # share of overlapping students who would otherwise study at OTH
+  min_cohort: 20               # new-to-OTH first-years per year needed to be eligible
+  demand_mix_size: 0.667       # demand score = mix * size score + (1 - mix) * trend score
+
+step5_region:
+  competition_radius_km: 150      # 100 | 150: offers of the same kind counted as competition (differentiation score)
+step6_jobs:
+  job_region: amberg_100km        # amberg_100km | bayern | germany: which job-ad count feeds the labour score
+  min_jobs: 0                     # 0 = off; otherwise a kind with fewer job ads is not eligible
+step7_ranking:
+  weights: {demand: 0.30, labour: 0.20, fit: 0.20, feasibility: 0.15, differentiation: 0.10, regional: 0.05}
+  shortlist_size: 15           # candidates per level that go to the in-depth (handbook / hand) check
+  mc_draws: 10000
+  dirichlet_concentration: 50
+  seed: 42

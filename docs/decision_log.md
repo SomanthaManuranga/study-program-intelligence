@@ -453,3 +453,16 @@ of the same level carries are flagged "relabel risk" and are tested first with r
 the hand check. (4) Known before the method was written: only the funnel's headline from its plain-English PDF; its
 tables, candidate lists and AI marks were not read. Results: docs/crosscheck/results.md (provisional).
 Decided by: Poovallal (method); corrections as stated.
+
+## 2026-11-17: Cross-check engine and a reproducibility fix
+
+- The cross-check is split into a slow part (`prepare`, cached) and a fast part (`run`, under 1 s) that applies the rules in `configs/crosscheck_rules.yaml`. The agreed rules in that file are the official ones; any other setting is a what-if.
+- Every programme kind that is removed or not eligible gets a logged reason (step, rule, value, threshold).
+- Fix: topic lists were built from a Python set, so when topics tied on frequency a different subset was kept on each run. Ties are now broken alphabetically. Effect: some coverage values moved by up to 7 points (for example Gamedesign BA 37% to 43%); the top three per level, tau (0.15) and the winners (BA Informatik, MA IT-Sicherheit) did not change. `docs/crosscheck/results.md` was regenerated.
+- Check: the engine with the agreed rules reproduces the v1 pipeline (largest score difference 0.0004).
+
+## 2026-11-17: Region and job rules made explicit (cross-check)
+
+- Added to `configs/crosscheck_rules.yaml`: `step5_region.competition_radius_km` (150), `step6_jobs.job_region` (100 km around Amberg) and `step6_jobs.min_jobs` (0 = off). The defaults equal what v1 already did, so the official result is unchanged; they only make the choices visible and testable.
+- Local app `app_crosscheck/` (Streamlit, runs only on our computers) shows the official result or a labelled what-if, the reason for every removal, and the robustness checks.
+- Robustness (one rule changed at a time, 11 changes): the winner is always Informatik or IT-Sicherheit at both levels, except tau 0.10, where matching is too loose. Which of the two wins depends on relabel handling, alpha, tau, competition radius and weights.

@@ -81,9 +81,10 @@ def kind_topics(u: pd.DataFrame, k: pd.DataFrame) -> dict[str, list[tuple[str, i
     for _, r in k.iterrows():
         ids = ex[(ex.subj == r.subject) & (ex.level == r.level)].programme_id
         c = Counter(t for content in u[u.programme_id.isin(ids)].content for t in set(topics_of(content)))
-        keep = [(t, n) for t, n in c.most_common() if n >= 2][:40]
+        ranked = sorted(c.items(), key=lambda x: (-x[1], x[0]))   # ties broken alphabetically: same result every run
+        keep = [(t, n) for t, n in ranked if n >= 2][:40]
         if len(keep) < MIN_TOPICS:
-            keep = c.most_common(30)
+            keep = ranked[:30]
         out[r.kind] = keep
     return out
 

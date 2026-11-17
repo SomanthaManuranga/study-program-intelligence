@@ -11,7 +11,7 @@ Method: `docs/crosscheck/method.md` (fixed before the code ran). Code: `python -
 
 ## Matching threshold (calibrated before scoring)
 
-tau = 0.15 (near from 0.105). Mean coverage of subjects EMI already teaches: 72%; of clearly non-EMI subjects: 15%.
+tau = 0.15 (near from 0.105). Mean coverage of subjects EMI already teaches: 72%; of clearly non-EMI subjects: 16%.
 
 ## Control: subjects OTH already offers (Step 2 check)
 
@@ -20,8 +20,8 @@ tau = 0.15 (near from 0.105). Mean coverage of subjects EMI already teaches: 72%
 | Kind | Coverage | Max from one EMI programme | Programme | Dropped as relabelled? |
 |---|---|---|---|---|
 | Vermessungstechnik | MA | 93% | 93% | Geoinformatik und Landmanagement (BA) | yes |
-| Informations-, Kommunikationstechnik | BA | 91% | 82% | Elektro- und Informationstechnik (BA) | yes |
-| Elektrotechnik | MA | 88% | 81% | Elektro- und Informationstechnik (BA) | yes |
+| Informations-, Kommunikationstechnik | BA | 92% | 84% | Elektro- und Informationstechnik (BA) | yes |
+| Elektrotechnik | MA | 90% | 81% | Elektro- und Informationstechnik (BA) | yes |
 | Elektrotechnik | BA | 89% | 81% | Elektro- und Informationstechnik (BA) | yes |
 | Ingenieurinformatik, Computational Engineering | MA | 90% | 76% | Elektro- und Informationstechnik (BA) | no |
 | Ingenieurinformatik, Computational Engineering | BA | 82% | 73% | Elektro- und Informationstechnik (BA) | no |
@@ -33,16 +33,16 @@ tau = 0.15 (near from 0.105). Mean coverage of subjects EMI already teaches: 72%
 | Druck-, Medientechnik | BA | 68% | 54% | Medienproduktion und Medientechnik (BA) | no |
 | Datenwissenschaft, Data Science | BA | 81% | 51% | Industrie-4.0-Informatik (BA) | no |
 | Medieninformatik | MA | 64% | 50% | IT und Automation (MA) | no |
-| Informatik | BA | 84% | 49% | Informatik-Studiengang II (BA) | no |
-| Informatik | MA | 83% | 47% | Industrie-4.0-Informatik (BA) | no |
-| Film-, Fernsehproduktion | BA | 66% | 47% | Digital Design (BA) | no |
-| Technische Informatik | MA | 73% | 45% | Elektro- und Informationstechnik (BA) | no |
+| Informatik | BA | 83% | 47% | Informatik-Studiengang II (BA) | no |
+| Informatik | MA | 84% | 46% | Kuenstliche Intelligenz (BA) | no |
 | Kommunikationsdesign, visuelle Kommunikation | MA | 71% | 43% | Digital Design (BA) | no |
 | Medieninformatik | BA | 74% | 42% | Medieninformatik (BA) | no |
-| Druck-, Medientechnik | MA | 77% | 39% | Medientechnik und Medienproduktion (MA) | no |
+| Technische Informatik | MA | 73% | 36% | Elektro- und Informationstechnik (BA) | no |
 | Kommunikationsdesign, visuelle Kommunikation | BA | 53% | 32% | Digital Design (BA) | no |
+| Mediendesign, -kunst | MA | 66% | 31% | Digital Design (BA) | no |
+| Film-, Fernsehproduktion | BA | 56% | 31% | Digital Design (BA) | no |
+| Druck-, Medientechnik | MA | 71% | 29% | Medientechnik und Medienproduktion (MA) | no |
 | Mediendesign, -kunst | BA | 46% | 25% | Digital Design (BA) | no |
-| Mediendesign, -kunst | MA | 53% | 22% | Medientechnik und Medienproduktion (MA) | no |
 | Film-, Fernsehproduktion | MA | 11% | 11% | Digital Design (BA) | no |
 | Medienproduktion | BA | 10% | 10% | Digital Design (BA) | no |
 
@@ -50,41 +50,41 @@ tau = 0.15 (near from 0.105). Mean coverage of subjects EMI already teaches: 72%
 
 | # | Kind | Score | P(first), eligible only | Topic fit (band) | Relabel risk: OTH programme in same subject | New to OTH / year | Trend German / foreign | Within 150 km | South gap | Jobs 100 km (keyword) |
 |---|---|---|---|---|---|---|---|---|---|---|
-| 1 | Informatik | 4.20 | 70% | 84% (above 80 %) | Geoinformatik und Landmanagement; Industrie-4.0-Informatik; Medieninformatik; Künstliche Intelligenz; Angewandte Wirtschaftsinformatik | 38 | 2% / 12% | 51 | 0.96 | 685 (informatik) |
+| 1 | Informatik | 4.20 | 70% | 83% (above 80 %) | Geoinformatik und Landmanagement; Industrie-4.0-Informatik; Medieninformatik; Künstliche Intelligenz; Angewandte Wirtschaftsinformatik | 38 | 2% / 12% | 51 | 0.96 | 685 (informatik) |
 | 2 | IT-Sicherheit | 4.15 | 27% | 91% (above 80 %) | - | 36 | 2% / 12% | 2 | 0.66 | 527 (it-sicherheit) |
 | 3 | Sensortechnik | 3.95 | 3% | 84% (above 80 %) | - | 57 | -18% / 7% | 1 | 0.71 |  () |
 | 4 | Mikrotechnik, Mikrosystemtechnik | 3.80 | 0% | 89% (above 80 %) | - | 58 | -18% / 7% | 1 | 1.06 | 5 (mikrosystemtechnik) |
-| 5 | Produktentwicklung | 3.65 | not eligible | 20% (below 40 % (costly)) | - | 55 | 3% / 32% | 0 | 1.49 | 125 (produktentwicklung) |
-| 6 | Medien-, Multimediatechnik | 3.60 | 0% | 68% (40-80 %) | - | 46 | -15% / 1% | 2 | 2.58 | 329 (medien) |
-| 7 | Automatisierungstechnik | 3.55 | 0% | 81% (above 80 %) | - | 31 | -5% / 3% | 7 | 0.70 | 724 (automatisierungstechnik) |
-| 8 | Technische Informatik | 3.55 | 0% | 84% (above 80 %) | - | 26 | -3% / 3% | 5 | 1.24 | 34 (technische informatik) |
-| 9 | Datenwissenschaft, Data Science | 3.55 | 0% | 81% (above 80 %) | Digital Technology and Management; Künstliche Intelligenz | 37 | 2% / 12% | 20 | 0.26 | 109 (data science) |
-| 10 | Softwaretechnik | 3.50 | 0% | 88% (above 80 %) | - | 34 | 2% / 12% | 3 | 0.78 |  () |
-| 11 | Film-, Fernsehproduktion | 3.35 | 0% | 66% (40-80 %) | Digital Design | 33 | 5% / -6% | 0 | none in south | 12 (film) |
-| 12 | Technomathematik | 3.25 | 0% | 71% (40-80 %) | - | 49 | -3% / 24% | 3 | 0.95 | 0 (technomathematik) |
-| 13 | Kybernetik | 3.25 | not eligible | 85% (above 80 %) | - | 0 |  /  | 2 | 15.00 |  () |
-| 14 | Computermathematik | 3.20 | 0% | 50% (40-80 %) | - | 42 | -4% / 5% | 0 | 0.49 |  () |
-| 15 | Künstliche Intelligenz | 3.15 | 0% | 65% (40-80 %) | Künstliche Intelligenz | 41 | 2% / 12% | 5 | 0.36 | 67 (künstliche intelligenz) |
+| 5 | Medien-, Multimediatechnik | 3.60 | 0% | 68% (40-80 %) | - | 49 | -15% / 1% | 2 | 2.58 | 329 (medien) |
+| 6 | Automatisierungstechnik | 3.55 | 0% | 81% (above 80 %) | - | 31 | -5% / 3% | 7 | 0.70 | 724 (automatisierungstechnik) |
+| 7 | Technische Informatik | 3.55 | 0% | 84% (above 80 %) | - | 26 | -3% / 3% | 5 | 1.24 | 34 (technische informatik) |
+| 8 | Datenwissenschaft, Data Science | 3.55 | 0% | 81% (above 80 %) | Digital Technology and Management; Künstliche Intelligenz | 37 | 2% / 12% | 20 | 0.26 | 109 (data science) |
+| 9 | Softwaretechnik | 3.50 | 0% | 88% (above 80 %) | - | 34 | 2% / 12% | 3 | 0.78 |  () |
+| 10 | Produktentwicklung | 3.50 | not eligible | 20% (below 40 % (costly)) | - | 55 | 3% / 32% | 0 | 1.49 | 125 (produktentwicklung) |
+| 11 | Film-, Fernsehproduktion | 3.35 | 0% | 56% (40-80 %) | Digital Design | 36 | 5% / -6% | 0 | none in south | 12 (film) |
+| 12 | Künstliche Intelligenz | 3.30 | 0% | 56% (40-80 %) | Künstliche Intelligenz | 41 | 2% / 12% | 5 | 0.36 | 67 (künstliche intelligenz) |
+| 13 | Technomathematik | 3.25 | 0% | 71% (40-80 %) | - | 49 | -3% / 24% | 3 | 0.95 | 0 (technomathematik) |
+| 14 | Kybernetik | 3.25 | not eligible | 85% (above 80 %) | - | 0 |  /  | 2 | 15.00 |  () |
+| 15 | Computermathematik | 3.20 | 0% | 50% (40-80 %) | - | 42 | -4% / 5% | 0 | 0.49 |  () |
 
 ## Ranking master (top 15)
 
 | # | Kind | Score | P(first), eligible only | Topic fit (band) | Relabel risk: OTH programme in same subject | New to OTH / year | Trend German / foreign | Within 150 km | South gap | Jobs 100 km (keyword) |
 |---|---|---|---|---|---|---|---|---|---|---|
 | 1 | IT-Sicherheit | 4.55 | 97% | 90% (above 80 %) | - | 54 | 7% / 19% | 3 | 0.66 | 527 (it-sicherheit) |
-| 2 | Informatik | 4.40 | 3% | 83% (above 80 %) | Applied Research in Engineering Sciences; Künstliche Intelligenz | 59 | 7% / 19% | 43 | 0.90 | 685 (informatik) |
+| 2 | Informatik | 4.40 | 3% | 84% (above 80 %) | Applied Research in Engineering Sciences; Künstliche Intelligenz | 60 | 7% / 19% | 43 | 0.90 | 685 (informatik) |
 | 3 | Datenwissenschaft, Data Science | 3.80 | 0% | 87% (above 80 %) | Künstliche Intelligenz | 51 | 7% / 19% | 14 | 0.64 | 109 (data science) |
-| 4 | Technische Informatik | 3.75 | 0% | 73% (40-80 %) | IT und Automation | 42 | -0% / 21% | 2 | 1.83 | 34 (technische informatik) |
+| 4 | Technische Informatik | 3.75 | 0% | 73% (40-80 %) | IT und Automation | 44 | -0% / 21% | 2 | 1.83 | 34 (technische informatik) |
 | 5 | Softwaretechnik | 3.55 | 0% | 89% (above 80 %) | - | 51 | 7% / 19% | 5 | 0.59 |  () |
-| 6 | Künstliche Intelligenz | 3.55 | 0% | 64% (40-80 %) | Künstliche Intelligenz | 56 | 7% / 19% | 9 | 0.43 | 67 (künstliche intelligenz) |
-| 7 | Medien-, Multimediatechnik | 3.50 | 0% | 70% (40-80 %) | International Energy Engineering | 37 | -6% / -6% | 3 | 0.88 | 329 (medien) |
-| 8 | Mediendesign, -kunst | 3.40 | 0% | 53% (40-80 %) | - | 35 | 3% / -0% | 3 | 0.76 | 1,175 (kunst) |
+| 6 | Künstliche Intelligenz | 3.55 | 0% | 61% (40-80 %) | Künstliche Intelligenz | 59 | 7% / 19% | 9 | 0.43 | 67 (künstliche intelligenz) |
+| 7 | Medien-, Multimediatechnik | 3.50 | 0% | 70% (40-80 %) | International Energy Engineering | 34 | -6% / -6% | 3 | 0.88 | 329 (medien) |
+| 8 | Druck-, Medientechnik | 3.30 | 0% | 71% (40-80 %) | Medientechnik und Medienproduktion | 35 | -6% / -6% | 2 | 0.14 |  () |
 | 9 | Informations-, Kommunikationstechnik | 3.25 | not eligible | 86% (above 80 %) | IT und Automation | 9 |  / 3% | 10 | 0.63 | 101 (kommunikationstechnik) |
 | 10 | Mensch-Maschine-Interaktion, Interfacedesign | 3.25 | not eligible | 37% (below 40 % (costly)) | - | 71 | 7% / 19% | 2 | 0.94 |  () |
 | 11 | Projektmanagement, -ingenieurwesen | 3.20 | not eligible | 60% (40-80 %) | - |  |  /  | 2 |  |  () |
-| 12 | Umweltinformatik | 3.15 | 0% | 50% (40-80 %) | - | 67 | 7% / 19% | 0 | 1.88 | 0 (umweltinformatik) |
-| 13 | Computermathematik | 3.05 | 0% | 64% (40-80 %) | - | 41 | -3% / 13% | 1 | 0.00 |  () |
-| 14 | Mikroelektronik | 2.95 | not eligible | 76% (40-80 %) | - | 0 |  /  | 5 |  |  () |
-| 15 | Druck-, Medientechnik | 2.95 | 0% | 77% (40-80 %) | Medientechnik und Medienproduktion | 33 | -6% / -6% | 2 | 0.14 |  () |
+| 12 | Mediendesign, -kunst | 3.20 | 0% | 66% (40-80 %) | - | 33 | 3% / -0% | 3 | 0.76 | 1,175 (kunst) |
+| 13 | Umweltinformatik | 3.15 | 0% | 57% (40-80 %) | - | 64 | 7% / 19% | 0 | 1.88 | 0 (umweltinformatik) |
+| 14 | Computermathematik | 3.05 | 0% | 64% (40-80 %) | - | 41 | -3% / 13% | 1 | 0.00 |  () |
+| 15 | Mikroelektronik | 2.95 | not eligible | 76% (40-80 %) | - | 0 |  /  | 5 |  |  () |
 
 ## Comparison with the funnel (soma/funnel)
 
