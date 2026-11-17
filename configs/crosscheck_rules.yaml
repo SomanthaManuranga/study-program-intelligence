@@ -10,6 +10,7 @@ step2_relabel:
   relabel_risk_action: flag    # flag | drop : kinds whose subject/name an OTH programme of the same level carries
 
 step3_fit:
+  module_basis: handbook        # handbook | timetable (stricter check: only modules scheduled WS 2026/27 or SS 2026)
   tau: auto                    # matching threshold; auto = calibrated on controls (EMI subjects vs non-EMI subjects)
   near_ratio: 0.70             # near = tau_low <= similarity < tau, tau_low = near_ratio * tau
   band_low: 0.40               # below -> costly ("will cost us a lot of resources")

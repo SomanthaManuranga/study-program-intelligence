@@ -63,6 +63,23 @@ else:
                       title="Share of its topics covered by each EMI programme alone")
     st.plotly_chart(fig, width="stretch")
 
+st.subheader("Who teaches it now (timetable)")
+if tp:
+    L = prep.tt["link"]
+    covered = [i for i in range(len(tp)) if prep.tt["best_all"][kind][i] >= tau]
+    idx = [prep.tt["best_idx"][kind][i] for i in covered]
+    rows = L.iloc[sorted(set(idx))] if idx else L.iloc[0:0]
+    lect = sorted({x.strip() for v in rows.lecturers for x in str(v).split(";") if x.strip()})
+    rooms = sorted({x.strip() for v in rows.rooms for x in str(v).split(";") if x.strip()})
+    labs = state.lab_rooms()
+    cc = st.columns(3)
+    cc[0].metric("Topics covered by scheduled modules", f"{len(covered)} / {len(tp)}")
+    cc[1].metric("Lecturers already teaching them", len(lect))
+    cc[2].metric("Lab rooms in use for them", len([r for r in rooms if r in labs]))
+    st.dataframe(rows[["title", "tt_module", "semesters", "lecturers", "rooms"]].rename(
+        columns={"title": "handbook module", "tt_module": "timetable module"}), hide_index=True, width="stretch")
+    st.caption("Lecturers appear only as codes. A programme resting on one or two lecturers is a staffing risk.")
+
 st.subheader("Stored checks (not recomputed)")
 hc = state.hand_check()
 done = hc is not None and hc[(hc.kind == kind) & hc.hand_verdict.notna()].shape[0] > 0

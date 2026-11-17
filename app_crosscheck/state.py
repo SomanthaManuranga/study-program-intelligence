@@ -75,6 +75,9 @@ def sidebar_rules() -> dict:
             key=_key("step2_relabel", "relabel_risk_action"))
 
     with sb.expander("Step 3 · Fit with EMI", expanded=False):
+        r["step3_fit"]["module_basis"] = st.radio(
+            "What EMI teaches", ["handbook", "timetable"], horizontal=True, key=_key("step3_fit", "module_basis"),
+            format_func={"handbook": "Handbooks (official)", "timetable": "Timetable (stricter)"}.get)
         auto = st.checkbox("Match threshold tau: calibrate on controls", key=_key("step3_fit", "tau_auto"))
         tv = st.slider("tau (used when not calibrated)", 0.05, 0.60, step=0.01, key=_key("step3_fit", "tau_value"),
                        disabled=auto)
@@ -169,3 +172,13 @@ def hand_check():
     import pandas as pd
     p = E.OUT / "hand_check_sheet.csv"
     return pd.read_csv(p) if p.exists() else None
+
+
+@st.cache_data(show_spinner=False)
+def lab_rooms() -> set:
+    import pandas as pd
+    p = E.REPO / "data" / "interim" / "timetable_rooms.csv"
+    if not p.exists():
+        return set()
+    r = pd.read_csv(p)
+    return set(r[r.lab_sessions > 0].room)

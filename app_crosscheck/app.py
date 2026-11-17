@@ -16,6 +16,7 @@ pages = [
     st.Page("views/funnel.py", title="Funnel and removals", icon="🔻"),
     st.Page("views/ranking.py", title="Ranking", icon="🏆"),
     st.Page("views/candidate.py", title="Candidate details", icon="🔍"),
+    st.Page("views/timetable.py", title="Handbook vs timetable", icon="📅"),
     st.Page("views/robustness.py", title="Robustness", icon="🧪"),
     st.Page("views/compare.py", title="Compare with Somantha", icon="🤝"),
 ]

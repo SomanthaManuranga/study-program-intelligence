@@ -466,3 +466,9 @@ Decided by: Poovallal (method); corrections as stated.
 - Added to `configs/crosscheck_rules.yaml`: `step5_region.competition_radius_km` (150), `step6_jobs.job_region` (100 km around Amberg) and `step6_jobs.min_jobs` (0 = off). The defaults equal what v1 already did, so the official result is unchanged; they only make the choices visible and testable.
 - Local app `app_crosscheck/` (Streamlit, runs only on our computers) shows the official result or a labelled what-if, the reason for every removal, and the robustness checks.
 - Robustness (one rule changed at a time, 11 changes): the winner is always Informatik or IT-Sicherheit at both levels, except tau 0.10, where matching is too loose. Which of the two wins depends on relabel handling, alpha, tau, competition radius and weights.
+
+## 2026-11-17: Module basis for the fit check (decided before any timetable run)
+
+- Official basis stays the EMI module handbooks (as in the agreed rules). The timetables (WS 2026/27, SS 2026) are shown next to it as a stated stricter check: only handbook modules that are actually scheduled count.
+- Reason: some electives run only every other year and can be missing from one year's timetable while still being an existing resource.
+- Decided by Poovallal on 2026-11-17 before the timetable variant was computed. Rule: `step3_fit.module_basis` (handbook | timetable).

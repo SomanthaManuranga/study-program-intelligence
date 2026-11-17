@@ -18,12 +18,14 @@ import pandas as pd
 import yaml
 
 from . import steps as S
+from . import timetable_link as TL
 from .common import EMI_PROGRAMME_NAMES, OUT, PROCESSED, RAW, REPO, load_universe
 
 RULES_FILE = REPO / "configs" / "crosscheck_rules.yaml"
 CACHE = OUT / "prepared.pkl"
 INPUTS = [PROCESSED / "programmes_full.csv", REPO / "data" / "interim" / "modules_emi_2026.csv",
-          RAW / "destatis" / "21311-0015_BY.csv", RAW / "destatis" / "21321-0006_BY.csv"]
+          RAW / "destatis" / "21311-0015_BY.csv", RAW / "destatis" / "21321-0006_BY.csv",
+          REPO / "data" / "interim" / "timetable_modules.csv"]
 CRITERIA = ["demand", "labour", "fit", "feasibility", "differentiation", "regional"]
 
 
@@ -59,6 +61,7 @@ class Prepared:
     sources: pd.DataFrame               # data source register for the app
     fingerprint: str = ""
     meta: dict = field(default_factory=dict)
+    tt: dict = field(default_factory=dict)   # same three arrays with only timetable-scheduled modules, + "link", "best_idx"
 
 
 def _fingerprint() -> str:
@@ -67,7 +70,7 @@ def _fingerprint() -> str:
         st = p.stat()
         h.update(f"{p.name}{st.st_size}{int(st.st_mtime)}".encode())
     for p in sorted((REPO / "src" / "study_program_intelligence" / "crosscheck").glob("*.py")):
-        if p.name in ("steps.py", "common.py", "engine.py"):
+        if p.name in ("steps.py", "common.py", "engine.py", "timetable_link.py"):
             h.update(p.read_bytes())
     return h.hexdigest()[:12]
 
@@ -89,17 +92,30 @@ def prepare(force: bool = False) -> Prepared:
     kt = S.kind_topics(u, k)
     match = S.build_matcher(modules)
     progs = sorted(modules.programme_id.unique())
+    tlink = TL.link(modules)
+    sched = tlink.scheduled.to_numpy()
     best_all, best_prog, best_module = {}, {}, {}
+    tt = {"best_all": {}, "best_prog": {}, "best_module": {}, "best_idx": {}, "best_idx_hb": {}, "link": tlink}
     for kind, tp in kt.items():
         if not tp:
-            best_all[kind], best_prog[kind], best_module[kind] = np.zeros(0), np.zeros((0, len(progs))), []
+            for d in (best_all, tt["best_all"]):
+                d[kind] = np.zeros(0)
+            for d in (best_prog, tt["best_prog"]):
+                d[kind] = np.zeros((0, len(progs)))
+            best_module[kind], tt["best_module"][kind], tt["best_idx"][kind], tt["best_idx_hb"][kind] = [], [], [], []
             continue
         sims = match([t for t, _ in tp])
-        best_all[kind] = sims.max(axis=1)
-        best_prog[kind] = np.column_stack([sims[:, (modules.programme_id == p).values].max(axis=1) for p in progs])
-        j = sims.argmax(axis=1)
-        best_module[kind] = [(modules.title.iloc[x], EMI_PROGRAMME_NAMES.get(modules.programme_id.iloc[x], ""))
-                             for x in j]
+        for target, S_ in ((None, sims), ("tt", np.where(sched[None, :], sims, -1.0))):
+            ba = S_.max(axis=1)
+            bp = np.column_stack([S_[:, (modules.programme_id == p).values].max(axis=1) for p in progs])
+            j = S_.argmax(axis=1)
+            bm = [(modules.title.iloc[x], EMI_PROGRAMME_NAMES.get(modules.programme_id.iloc[x], "")) for x in j]
+            if target is None:
+                best_all[kind], best_prog[kind], best_module[kind] = ba, bp, bm
+                tt["best_idx_hb"][kind] = j.tolist()
+            else:
+                tt["best_all"][kind], tt["best_prog"][kind], tt["best_module"][kind] = np.clip(ba, 0, None), np.clip(bp, 0, None), bm
+                tt["best_idx"][kind] = j.tolist()
     # demand / region / jobs do not depend on the rules except through max_one_programme (applied in run)
     dummy = pd.DataFrame({"kind": k.kind, "n_topics": [len(kt[x]) for x in k.kind], "coverage": np.nan,
                           "near": np.nan, "max_one_programme": np.nan, "max_programme": ""})
@@ -109,7 +125,7 @@ def prepare(force: bool = False) -> Prepared:
     drop_cols = [c for c in kk.columns if c.startswith("new_to_oth_")] + ["coverage", "near", "max_one_programme",
                                                                           "max_programme"]
     kk = kk.drop(columns=drop_cols)
-    prep = Prepared(kinds=kk, topics=kt, best_all=best_all, best_prog=best_prog, best_module=best_module,
+    prep = Prepared(kinds=kk, topics=kt, best_all=best_all, best_prog=best_prog, best_module=best_module, tt=tt,
                     programmes=progs, universe_size=len(u), sources=_sources(u, modules), fingerprint=fp,
                     meta={"emi_subjects": S.log["step1"]["emi_subjects"], "step6_places": S.log.get("step6_places")})
     OUT.mkdir(parents=True, exist_ok=True)
@@ -148,14 +164,22 @@ def _coverage(w, best, tau, near_ratio):
     return cov, near
 
 
-def calibrate(prep: Prepared, near_ratio: float, min_topics: int) -> dict:
+def basis(prep: Prepared, name: str):
+    """(best_all, best_prog, best_module) for the chosen module basis."""
+    if name == "timetable":
+        return prep.tt["best_all"], prep.tt["best_prog"], prep.tt["best_module"]
+    return prep.best_all, prep.best_prog, prep.best_module
+
+
+def calibrate(prep: Prepared, near_ratio: float, min_topics: int, basis_name: str = "handbook") -> dict:
+    best_all = basis(prep, basis_name)[0]
     k = prep.kinds
     ok = lambda x: len(prep.topics[x]) >= min_topics
     pos = [x for x in k[k.emi_subject].kind if ok(x)]
     neg = [x for x in k.kind if x.split(" | ")[0] in S.NEG_CONTROLS and ok(x)]
     best = None
     for tau in np.round(np.arange(0.05, 0.61, 0.01), 2):
-        f = lambda xs: np.mean([_coverage(np.array([n for _, n in prep.topics[x]], float), prep.best_all[x], tau,
+        f = lambda xs: np.mean([_coverage(np.array([n for _, n in prep.topics[x]], float), best_all[x], tau,
                                           near_ratio)[0] for x in xs])
         mp, mn = f(pos), f(neg)
         if best is None or mp - mn > best["gap"]:
@@ -169,7 +193,9 @@ def run(prep: Prepared, rules: dict) -> dict:
     r6 = rules.get("step6_jobs", {"job_region": "amberg_100km", "min_jobs": 0})
     comp_col = f"within_{int(r5['competition_radius_km'])}km"
     job_col = {"amberg_100km": "jobs_100km", "bayern": "jobs_bavaria", "germany": "jobs_germany"}[r6["job_region"]]
-    cal = calibrate(prep, r3["near_ratio"], r1["min_topics"])
+    bname = r3.get("module_basis", "handbook")
+    B_all, B_prog, _ = basis(prep, bname)
+    cal = calibrate(prep, r3["near_ratio"], r1["min_topics"], bname)
     tau = cal["tau"] if r3["tau"] == "auto" else float(r3["tau"])
     k = prep.kinds.copy()
     k["n_topics"] = [len(prep.topics[x]) for x in k.kind]
@@ -180,8 +206,8 @@ def run(prep: Prepared, rules: dict) -> dict:
             cov.append(np.nan); near.append(np.nan); mone.append(np.nan); mprog.append("")
             continue
         w = np.array([n for _, n in tp], float)
-        c, n = _coverage(w, prep.best_all[x], tau, r3["near_ratio"])
-        per = [(w * (prep.best_prog[x][:, j] >= tau)).sum() / w.sum() for j in range(len(prep.programmes))]
+        c, n = _coverage(w, B_all[x], tau, r3["near_ratio"])
+        per = [(w * (B_prog[x][:, j] >= tau)).sum() / w.sum() for j in range(len(prep.programmes))]
         j = int(np.argmax(per))
         cov.append(c); near.append(n); mone.append(per[j]); mprog.append(EMI_PROGRAMME_NAMES.get(prep.programmes[j], ""))
     k["coverage"], k["near"], k["max_one_programme"], k["max_programme"] = cov, near, mone, mprog
@@ -295,7 +321,7 @@ def run(prep: Prepared, rules: dict) -> dict:
             {"level": lvl, "stage": "3-6 Eligible (fit band, demand, cohort, jobs)", "remaining": int(kl.eligible.sum())},
         ]
     return {"kinds": k, "ranking": ranking, "drop_log": dl, "first_reason": first, "funnel": pd.DataFrame(funnel),
-            "calibration": cal | {"tau_used": tau}, "loo": pd.DataFrame(loo), "winners": winners,
+            "calibration": cal | {"tau_used": tau, "basis": bname}, "loo": pd.DataFrame(loo), "winners": winners,
             "changed": rules_differ(rules)}
 
 
