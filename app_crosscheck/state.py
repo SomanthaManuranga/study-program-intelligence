@@ -10,7 +10,29 @@ from pathlib import Path
 import streamlit as st
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+import importlib  # noqa: E402
+
 from study_program_intelligence.crosscheck import engine as E  # noqa: E402
+
+_PKG = "study_program_intelligence.crosscheck"
+_SRC = Path(E.__file__).parent
+
+
+def _fresh_engine():
+    """Streamlit reloads app files, not src/. Reload the analysis modules when any of them changed on disk."""
+    global E
+    stamp = tuple((p.name, p.stat().st_mtime) for p in sorted(_SRC.glob("*.py")))
+    if getattr(E, "_app_stamp", None) != stamp:
+        for name in ("common", "steps", "timetable_link", "engine"):
+            mod = sys.modules.get(f"{_PKG}.{name}")
+            if mod is not None:
+                importlib.reload(mod)
+        E = sys.modules[f"{_PKG}.engine"]
+        E._app_stamp = stamp
+    return E
+
+
+_fresh_engine()
 
 CRITERIA = E.CRITERIA
 
@@ -22,6 +44,7 @@ def _prepared(fingerprint: str):
 
 def prepared():
     """Cached in memory, but rebuilt automatically when the code or the input data change."""
+    _fresh_engine()
     return _prepared(E._fingerprint())
 
 
@@ -135,6 +158,7 @@ def sidebar_rules() -> dict:
 
 
 def results(rules: dict) -> dict:
+    _fresh_engine()
     return _run(json.dumps(rules, sort_keys=True), E._fingerprint())
 
 
