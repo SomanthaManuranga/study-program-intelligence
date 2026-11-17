@@ -1,0 +1,40 @@
+# Verification of the cross-check. Written 2026-11-17 before the sweep or any marking was run.
+# Protocol and reasons: docs/crosscheck/verification_protocol.md
+
+sweep:                      # random but reasonable rule sets; each draw changes all rules at once
+  runs: 2000
+  seed: 2026
+  ranges:
+    step1_universe.emi_fit_share: [0.20, 0.25, 0.30]               # pick one
+    step2_relabel.max_one_programme: [0.70, 0.80, 0.90]
+    step2_relabel.relabel_risk_action: [flag, drop]
+    step3_fit.module_basis: [handbook, timetable]
+    step3_fit.tau: {uniform: [0.12, 0.20]}                         # 0.10 excluded: shown too loose
+    step3_fit.near_ratio: {uniform: [0.60, 0.80]}
+    step3_fit.band_low: [0.30, 0.40, 0.50]
+    step3_fit.below_band_action: [flag, drop]
+    step4_demand.alpha: {uniform: [0.25, 0.75]}
+    step4_demand.min_cohort: [15, 20, 25, 30]
+    step4_demand.demand_mix_size: {uniform: [0.50, 0.85]}
+    step5_region.competition_radius_km: [100, 150]
+    step6_jobs.job_region: [amberg_100km, bayern, germany]
+    step7_ranking.weights: {dirichlet_around_agreed: 20}           # wider than the Monte Carlo (50)
+  winner: first eligible by score at each level
+
+contenders:
+  handbook_test: {min_win_share: 0.02, always: official_winners}   # per level
+  topic_check: {min_eligible_share: 0.05, also: [official_shortlist, handbook_test]}
+
+topic_check:
+  reviewers: 2                 # fresh-context AI agents, blind to each other and to all numbers
+  third_reader: on_disagreement
+  candidate_modules_shown: 8   # by automatic similarity; the reviewer may pick any other module
+  verdicts: [covered, partly, no, unclear]
+  coverage: {covered: 1.0, partly: 0.5, no: 0.0, unclear: excluded}
+  human_spot_check: {rows_per_contender: 20, plus: third_reader_rows_of_contenders}
+
+handbook_test:
+  references_per_contender: 2
+  verdicts: [covered, partly, new]
+  overlap: {covered: 1.0, partly: 0.5, new: 0.0, weight: ects}
+  pass: {band: [0.40, 0.80], max_one_programme: 0.80}

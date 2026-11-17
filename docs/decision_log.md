@@ -472,3 +472,8 @@ Decided by: Poovallal (method); corrections as stated.
 - Official basis stays the EMI module handbooks (as in the agreed rules). The timetables (WS 2026/27, SS 2026) are shown next to it as a stated stricter check: only handbook modules that are actually scheduled count.
 - Reason: some electives run only every other year and can be missing from one year's timetable while still being an existing resource.
 - Decided by Poovallal on 2026-11-17 before the timetable variant was computed. Rule: `step3_fit.module_basis` (handbook | timetable).
+
+## 2026-11-17: Verification protocol written before the run
+
+- `docs/crosscheck/verification_protocol.md` and `configs/crosscheck_verification.yaml`: a sweep of 2,000 random rule sets decides which programmes get the handbook test (win share >= 2 %) and the topic check (eligible share >= 5 %); two blind AI reviewers mark every row, a third settles disagreements, Poovallal spot-checks 20 rows per contender.
+- Agreed by Poovallal on 2026-11-17 before the sweep, the topic check or the handbook test was run.
