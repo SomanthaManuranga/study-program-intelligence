@@ -59,8 +59,15 @@ def summary():
     order = {"no": 0, "unclear": 1, "partly": 2, "covered": 3}
     m["cautious"] = [x if order[x] <= order[y] else y for x, y in zip(m.a, m.b)]
     m["cautious_mod"] = np.where(m.cautious == m.a, m.a_mod, m.b_mod)
+    # final verdict: agreed rows as marked; disagreements settled by the third reader (cautious verdict until then)
+    tr_path = VDIR / "reviews" / "third_reader.csv"
+    tr = pd.read_csv(tr_path).set_index("row_id") if tr_path.exists() else pd.DataFrame(columns=["verdict", "module_id"])
+    tr["verdict"] = tr.verdict.astype(str).str.strip().str.lower()
+    m["final"] = [r.a if r.agree else tr.verdict.get(r.row_id, r.cautious) for r in m.itertuples()]
+    m["final_mod"] = [r.a_mod if r.agree else tr.module_id.get(r.row_id, r.cautious_mod) for r in m.itertuples()]
+    m["settled_by"] = np.where(m.agree, "both reviewers", np.where(m.row_id.isin(tr.index), "third reader", "cautious (pending)"))
     agree = {"rows": len(m), "agreement": m.agree.mean(), "kappa": kappa(m.a, m.b)}
-    per_batch = m.groupby("batch").apply(lambda g: pd.Series({"rows": len(g), "agreement": g.agree.mean(),
+    per_batch = m.groupby("batch")[["a", "b", "agree"]].apply(lambda g: pd.Series({"rows": len(g), "agreement": g.agree.mean(),
                                                                "kappa": kappa(g.a, g.b)}))
     res = E.run(E.prepare(), E.agreed_rules())
     auto = res["kinds"].set_index("kind")
@@ -68,10 +75,10 @@ def summary():
     for kind, g in m.groupby("kind"):
         ca, sa, ua = coverage(g, "a")
         cb, sb, ub = coverage(g, "b")
-        cc, sc, uc = coverage(g, "cautious")
-        op, opn = one_programme(g, "cautious", "cautious_mod", cat)
+        cc, sc, uc = coverage(g, "final")
+        op, opn = one_programme(g, "final", "final_mod", cat)
         out.append({"kind": kind, "rows": len(g), "agreement": g.agree.mean(), "auto_coverage": auto.loc[kind, "coverage"],
-                    "A": ca, "B": cb, "cautious": cc, "cautious_strict": sc, "unclear_rows": uc,
+                    "A": ca, "B": cb, "checked": cc, "checked_strict": sc, "unclear_rows": uc,
                     "one_programme": op, "one_programme_name": opn,
                     "in_band_40_80": (0.40 <= cc <= 0.80) if cc == cc else None})
     K = pd.DataFrame(out)
