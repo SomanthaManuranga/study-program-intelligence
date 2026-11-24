@@ -477,3 +477,9 @@ Decided by: Poovallal (method); corrections as stated.
 
 - `docs/crosscheck/verification_protocol.md` and `configs/crosscheck_verification.yaml`: a sweep of 2,000 random rule sets decides which programmes get the handbook test (win share >= 2 %) and the topic check (eligible share >= 5 %); two blind AI reviewers mark every row, a third settles disagreements, Poovallal spot-checks 20 rows per contender.
 - Agreed by Poovallal on 2026-11-17 before the sweep, the topic check or the handbook test was run.
+
+## 2026-11-24: Topic-check packets rebuilt (input defect), first marking discarded
+
+- The first packets cut each module description after 600 characters. EMI handbooks start with a header table (module ID, ECTS, convenor, workload), so 242 of 252 shown descriptions held no content; reviewers reported judging from titles. The packets also carried lecturer names from those headers (public handbook data, but not needed).
+- Fix: each description is now the module's "Course Content" and subject/method "Learning Outcomes" (up to 1,100 characters), with names and standard wording removed; batches reduced to about 55 rows. Rows, row ids, marking rules and reviewers are unchanged.
+- All first-round verdicts are discarded (kept in `verification/reviews_v1_discarded/`). Only their format was checked; no agreement or coverage was computed from them, so the rerun is not influenced by their results.

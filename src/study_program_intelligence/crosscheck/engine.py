@@ -171,7 +171,17 @@ def basis(prep: Prepared, name: str):
     return prep.best_all, prep.best_prog, prep.best_module
 
 
+_CAL_CACHE: dict = {}
+
+
 def calibrate(prep: Prepared, near_ratio: float, min_topics: int, basis_name: str = "handbook") -> dict:
+    key = (prep.fingerprint, id(prep), round(float(near_ratio), 4), int(min_topics), basis_name)
+    if key not in _CAL_CACHE:
+        _CAL_CACHE[key] = _calibrate(prep, near_ratio, min_topics, basis_name)
+    return dict(_CAL_CACHE[key])
+
+
+def _calibrate(prep: Prepared, near_ratio: float, min_topics: int, basis_name: str = "handbook") -> dict:
     best_all = basis(prep, basis_name)[0]
     k = prep.kinds
     ok = lambda x: len(prep.topics[x]) >= min_topics
