@@ -483,3 +483,16 @@ Decided by: Poovallal (method); corrections as stated.
 - The first packets cut each module description after 600 characters. EMI handbooks start with a header table (module ID, ECTS, convenor, workload), so 242 of 252 shown descriptions held no content; reviewers reported judging from titles. The packets also carried lecturer names from those headers (public handbook data, but not needed).
 - Fix: each description is now the module's "Course Content" and subject/method "Learning Outcomes" (up to 1,100 characters), with names and standard wording removed; batches reduced to about 55 rows. Rows, row ids, marking rules and reviewers are unchanged.
 - All first-round verdicts are discarded (kept in `verification/reviews_v1_discarded/`). Only their format was checked; no agreement or coverage was computed from them, so the rerun is not influenced by their results.
+
+## 2026-11-24: Handbook-test references for IT-Sicherheit MA (deviation, before any marking)
+
+- The three nearest cyber-security Masters listed as full-time in the catalogue are part-time continuing-education programmes: TH Ingolstadt (Cyber Security Engineer MSc, 82 km, EUR 3,725 per semester), TH Deggendorf (Cyber Security M.Eng., 105 km, "berufsbegleitend"), Hochschule Aalen (Cyber Security MSc, 145 km, EUR 9,240-11,550). The protocol asks for full-time references.
+- Decided by Poovallal on 2026-11-24: use part-time programmes as curriculum references (TH Deggendorf, Hochschule Aalen), because the modules describe what a cyber-security Master teaches whatever the study form. TH Ingolstadt is left out because it publishes no module handbook PDF.
+- Follow-up: the catalogue's full-time label is wrong for these offers; the competition and demand figures for IT-Sicherheit MA must be re-checked.
+
+## 2026-11-24: Handbook test, counting of electives (before any marking)
+
+- Reference programmes list many electives (THWS: 30 electives with 150 credits, of which a student takes 45). Counting all listed electives would let unrelated electives dominate.
+- Rule: compulsory modules count with their credits; the elective credits a student must take (programme credits minus compulsory credits) count at the average mark of all listed electives. Best and worst elective choice are reported as a check. Placeholder modules without content ("Wahlpflichtmodul 1") are marked like any other module (usually "unclear") and excluded from the denominator.
+- Aalen: only the four core modules and the overall compulsory part are compulsory; specialisation modules count as electives; duplicates removed.
+- Decided before marking; Poovallal agreed to the handbook test on 2026-11-17.
