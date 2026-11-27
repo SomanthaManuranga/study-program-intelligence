@@ -126,13 +126,19 @@ def build_units(d: pd.DataFrame, s: pd.DataFrame, v4: dict) -> pd.DataFrame:
     u["main"] = [mt[(c, lv)] for c, lv in zip(u["type"], u["level"])]
     u = candidates(u)
     assert (u["candidate"] >= 0).all() and len(u) == len(s)                             # M1
+    mixed = pd.read_csv(COHERENCE).set_index("type")["mixed"].astype(bool)
+    u["mixed type"] = u["type"].map(mixed).fillna(False).astype(bool)                   # version_4.deviations, third entry: leaves singly
     return u
+
+
+def alive(u: pd.DataFrame) -> pd.DataFrame:
+    """The units that count for their candidate: on the primary list, not dropped with a title group, not mixed."""
+    return u[u["primary"] & ~u["dropped whole"] & ~u["mixed type"]]
 
 
 def alive_parts(u: pd.DataFrame) -> dict:
     """(candidate, level) -> sorted surviving types, for the candidates on the list."""
-    alive = u[u["primary"] & ~u["dropped whole"]]
-    return {(int(c), str(lv)): sorted(int(x) for x in g["type"]) for (c, lv), g in alive.groupby(["candidate", "level"])}
+    return {(int(c), str(lv)): sorted(int(x) for x in g["type"]) for (c, lv), g in alive(u).groupby(["candidate", "level"])}
 
 
 def committed(path) -> bool:
@@ -276,8 +282,7 @@ def main() -> None:
     coh = pd.read_csv(COHERENCE).set_index("type")["mixed"].astype(bool)
     shares = [x for x in v4["new_to_oth_scenarios"]["shares_from_oth"] if not isinstance(x, str)]
     rows = []
-    alive = u[u["primary"] & ~u["dropped whole"]]
-    for (cid, lv), part in alive.groupby(["candidate", "level"]):
+    for (cid, lv), part in alive(u).groupby(["candidate", "level"]):
         types = sorted(int(c) for c in part["type"])
         at_level = level == lv
         name = part.loc[part["how"] == "title", "main"].iloc[0] if (part["how"] == "title").any() else str(t.at[types[0], "central titles"])   # E7, from its surviving units
@@ -340,7 +345,8 @@ def main() -> None:
                "break-even share from OTH": max(0.0, 1 - 15 / gross) if gross > 0 else np.nan,
                "net-new below 15 even with none from OTH": bool(gross < 15),
                "kept": res["central"]["c"], "below the minimum cohort": bool(gross < cohort),
-               "mixed": bool(any(coh.get(c, False) for c in types)), "mixed types": "; ".join(str(c) for c in types if coh.get(c, False))}
+               "mixed": bool(any(coh.get(c, False) for c in types)), "mixed types": "; ".join(str(c) for c in types if coh.get(c, False)),
+               "mixed types left out": "; ".join(str(int(x)) for x in u.loc[(u["candidate"] == cid) & (u["level"] == lv) & u["primary"] & u["mixed type"], "type"])}
         if len(types) == 1:                                                              # M3: one unit -> the version-3 values
             c3, s3 = cap3.loc[(types[0], lv)], s[(s["type"] == types[0]) & (s["level"] == lv)].iloc[0]
             for mine, theirs in ((slope, s3["trend %/yr"]), (emi, s3["emi score"]), (g["similar within 150 km"], s3["similar within 150 km"]),

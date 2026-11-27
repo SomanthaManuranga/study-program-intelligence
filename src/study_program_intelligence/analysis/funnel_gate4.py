@@ -111,14 +111,16 @@ def check_list() -> None:
 def tries() -> None:
     """version_4.title_merge.measures (reference curricula) with feasibility_gate.references.choice: for every candidate
     of the check list, the assigned full-time offers of all its units at universities of applied sciences other than
-    OTH (universities only if there is none), nearest the centroid of its type with the most assigned offers of that
-    level first (ties: lower type number); one offer per institution and cleaned title. A table already collected in
+    OTH (universities only if there is none), nearest the centroid of its title-matched type with the most assigned
+    offers of that level first (deviation 4; any of its types without a title match; ties: lower type number); one offer per institution and cleaned title. A table already collected in
     version 3 for the same offer is marked so it can be reused."""
     from .funnel_refs import HAW, TABLES
     from .funnel_units import load_step2
     stamp = run_stamp()
     d, t, emb, cent = load_step2()
     chk = pd.read_csv(LIST4)
+    from .funnel_merge import UNITS4
+    units = pd.read_csv(UNITS4)
     known = {}
     for f in sorted(TABLES.glob("*_[ab].json")):
         meta = json.loads(f.read_text(encoding="utf-8"))
@@ -128,7 +130,9 @@ def tries() -> None:
     for r in chk[chk["module check"]].to_dict("records"):
         types = [int(x) for x in str(r["types"]).split("; ")]
         a = d[d["assigned_type"].isin(types) & (d["level"] == r["level"]) & d["full_time"].astype(bool) & ~d["is_oth"].astype(bool)].copy()
-        sizes = d[d["assigned_type"].isin(types) & (d["level"] == r["level"])].groupby("assigned_type").size()
+        titled = [int(x) for x in units.loc[(units["candidate"] == r["candidate"]) & (units["level"] == r["level"]) & (units["how"] == "title"), "type"] if int(x) in types]
+        base = titled or types                                                          # version_4.deviations, fourth entry: the title type
+        sizes = d[d["assigned_type"].isin(base) & (d["level"] == r["level"])].groupby("assigned_type").size()
         centre = int(sorted(sizes.items(), key=lambda kv: (-kv[1], kv[0]))[0][0])
         a["distance to the centroid"] = 1 - emb[a.index] @ cent[centre]
         haw = a[a["institution_type"] == HAW]

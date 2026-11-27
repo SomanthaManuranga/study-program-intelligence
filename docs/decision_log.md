@@ -608,3 +608,15 @@ result; the gate order as written is kept as a sensitivity (`version_4.deviation
 Reason: as written, rare variant phrases pulled the median of the union to 0 (Informatik bachelor: "informatik" 685
 ads within 100 km, median 0); the control shows how the earlier answer fares under the same marking as the others.
 Decided by: Soma ("Fix it and check Informatik too").
+
+## 2026-11-27: Rules version 4: mixed types leave singly; references from the title type (deviations 3 and 4)
+Decision: (3) A type flagged mixed leaves its merged candidate singly, like every other screen; the rest of the
+candidate stays and is measured without it. (4) A merged candidate's reference curricula come from the centre of its
+title-matched type with the most offers; partner types count only for a candidate without a title match. The check
+list as written is kept as a sensitivity.
+Reason: (3) as written, data science (type 283, 39 offers, one kind of programme) was left out only because two small
+partner types (3 and 4 offers) are mixed, which contradicts reading E6 (screens act on single units). (4) As written,
+the Elektrotechnik bachelor's references would have been energy and building engineering programmes, because its
+partner type Energietechnik has one offer more than the Elektrotechnik type; a reference must be a programme of the
+candidate's own kind.
+Decided by: Soma ("do the recommended way"); proposed by Claude.
