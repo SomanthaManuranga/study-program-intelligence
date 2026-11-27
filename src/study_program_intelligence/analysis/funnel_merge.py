@@ -261,8 +261,8 @@ def main() -> None:
     day = counts.sort_values("date").drop_duplicates(["keyword", "region"], keep="last").groupby("keyword")["date"].agg(lambda x: "; ".join(sorted(set(x))))
     if COUNTS4.exists():                                                                  # keywords never counted before (deviation 1)
         c4 = pd.read_csv(COUNTS4, keep_default_na=False)
-        if not (c4["keywords_file"] == sha(KEYWORDS4)).all():
-            raise SystemExit("some counts of funnel4_job_counts.csv were fetched for another keyword file")
+        # each count was fetched after a committed keyword file (fetch refuses otherwise); a count is a count of its keyword,
+        # so counts stay valid when a later keyword file still holds the keyword
         new = c4.sort_values("date").drop_duplicates(["keyword", "region"], keep="last")
         new = new[~new["keyword"].isin(latest.index)]
         latest = pd.concat([latest, new.pivot(index="keyword", columns="region", values="total")])

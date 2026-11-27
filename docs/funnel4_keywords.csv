@@ -5,51 +5,39 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 4,master,5,1,philosophie,31,40,phrases in 2 or more titles
 4,master,5,2,economics,3,40,phrases in 2 or more titles
 4,master,5,3,philosophy,3,40,phrases in 2 or more titles
-6,bachelor,6; 121; 167; 182; 234; 318,1,mathematik,71,142,phrases in 2 or more titles
-6,bachelor,6; 121; 167; 182; 234; 318,2,angewandte mathematik,11,142,phrases in 2 or more titles
-6,bachelor,6; 121; 167; 182; 234; 318,3,mathematics,11,142,phrases in 2 or more titles
-6,master,6; 167; 182; 234; 318; 780,1,mathematik,71,128,phrases in 2 or more titles
-6,master,6; 167; 182; 234; 318; 780,2,mathematics,11,128,phrases in 2 or more titles
-6,master,6; 167; 182; 234; 318; 780,3,informatik,8,128,phrases in 2 or more titles
+6,bachelor,6; 182; 234,1,mathematik,63,82,phrases in 2 or more titles
+6,bachelor,6; 182; 234,2,angewandte mathematik,6,82,phrases in 2 or more titles
+6,bachelor,6; 182; 234,3,informatik,2,82,phrases in 2 or more titles
+6,master,6; 182; 234; 780,1,mathematik,63,84,phrases in 2 or more titles
+6,master,6; 182; 234; 780,2,angewandte mathematik,6,84,phrases in 2 or more titles
+6,master,6; 182; 234; 780,3,informatik,2,84,phrases in 2 or more titles
 7,master,7; 210,1,medieninformatik,40,65,phrases in 2 or more titles
 7,master,7; 210,2,internationaler studiengang medieninformatik,3,65,phrases in 2 or more titles
 7,master,7; 210,3,interaktives entertainment,2,65,phrases in 2 or more titles
-8,bachelor,8; 567,1,chemie,29,43,phrases in 2 or more titles
-8,bachelor,8; 567,2,chemistry,4,43,phrases in 2 or more titles
-8,bachelor,8; 567,3,angewandte naturwissenschaft,2,43,phrases in 2 or more titles
+8,bachelor,8,1,chemie,29,37,phrases in 2 or more titles
+8,bachelor,8,2,chemistry,4,37,phrases in 2 or more titles
 8,master,8; 196,1,chemie,29,58,phrases in 2 or more titles
 8,master,8; 196,2,chemieingenieurwesen,9,58,phrases in 2 or more titles
 8,master,8; 196,3,verfahrenstechnik,7,58,phrases in 2 or more titles
-12,bachelor,12; 108; 285; 753,1,physik,76,149,phrases in 2 or more titles
-12,bachelor,12; 108; 285; 753,2,physics,19,149,phrases in 2 or more titles
-12,bachelor,12; 108; 285; 753,3,physikalische technik,6,149,phrases in 2 or more titles
-12,master,12; 108; 121; 285; 578; 753,1,physik,78,167,phrases in 2 or more titles
-12,master,12; 108; 121; 285; 578; 753,2,physics,19,167,phrases in 2 or more titles
-12,master,12; 108; 121; 285; 578; 753,3,angewandte physik,8,167,phrases in 2 or more titles
+12,bachelor,12; 108,1,physik,75,113,phrases in 2 or more titles
+12,bachelor,12; 108,2,physics,19,113,phrases in 2 or more titles
+12,bachelor,12; 108,3,applied physics,2,113,phrases in 2 or more titles
+12,master,12; 108,1,physik,75,113,phrases in 2 or more titles
+12,master,12; 108,2,physics,19,113,phrases in 2 or more titles
+12,master,12; 108,3,applied physics,2,113,phrases in 2 or more titles
 13,bachelor,13; 149; 203; 242; 268; 312; 421; 488,1,informatik,133,237,phrases in 2 or more titles
 13,bachelor,13; 149; 203; 242; 268; 312; 421; 488,2,angewandte informatik,47,237,phrases in 2 or more titles
 13,bachelor,13; 149; 203; 242; 268; 312; 421; 488,3,computer science,11,237,phrases in 2 or more titles
-13,master,13; 149; 203; 220; 242; 268; 294; 312; 317; 488; 505; 517; 749; 812,1,informatik,141,301,phrases in 2 or more titles
-13,master,13; 149; 203; 220; 242; 268; 294; 312; 317; 488; 505; 517; 749; 812,2,angewandte informatik,47,301,phrases in 2 or more titles
-13,master,13; 149; 203; 220; 242; 268; 294; 312; 317; 488; 505; 517; 749; 812,3,computer science,16,301,phrases in 2 or more titles
-22,bachelor,22; 56,1,architektur,90,121,phrases in 2 or more titles
-22,bachelor,22; 56,2,architecture,3,121,phrases in 2 or more titles
-22,bachelor,22; 56,3,städtebau,3,121,phrases in 2 or more titles
+13,master,13; 149; 203; 242; 268; 294; 312; 488; 517; 749,1,informatik,137,251,phrases in 2 or more titles
+13,master,13; 149; 203; 242; 268; 294; 312; 488; 517; 749,2,angewandte informatik,47,251,phrases in 2 or more titles
+13,master,13; 149; 203; 242; 268; 294; 312; 488; 517; 749,3,computer science,14,251,phrases in 2 or more titles
+22,bachelor,22,1,architektur,48,64,phrases in 2 or more titles
 22,master,22,1,architektur,48,64,phrases in 2 or more titles
-23,bachelor,23,1,musiktheorie,8,15,phrases in 2 or more titles
-23,bachelor,23,2,gehörbildung,6,15,phrases in 2 or more titles
-23,bachelor,23,3,hörakustik,4,15,phrases in 2 or more titles
-23,master,23,1,musiktheorie,8,15,phrases in 2 or more titles
-23,master,23,2,gehörbildung,6,15,phrases in 2 or more titles
-23,master,23,3,hörakustik,4,15,phrases in 2 or more titles
 24,bachelor,24,1,komposition,19,22,phrases in 2 or more titles
 24,master,24,1,komposition,19,22,phrases in 2 or more titles
-47,bachelor,47,1,eventmanagement,5,17,phrases in 2 or more titles
-47,bachelor,47,2,-technik,3,17,phrases in 2 or more titles
-47,bachelor,47,3,sportmanagement,3,17,phrases in 2 or more titles
-55,master,55; 224; 244; 529,1,mechatronik,79,137,phrases in 2 or more titles
-55,master,55; 224; 244; 529,2,mechatronics,16,137,phrases in 2 or more titles
-55,master,55; 224; 244; 529,3,robotik,6,137,phrases in 2 or more titles
+55,master,55; 224; 244,1,mechatronik,78,132,phrases in 2 or more titles
+55,master,55; 224; 244,2,mechatronics,16,132,phrases in 2 or more titles
+55,master,55; 224; 244,3,automation,4,132,phrases in 2 or more titles
 58,bachelor,191,1,biologie,14,23,phrases in 2 or more titles
 58,bachelor,191,2,biology,2,23,phrases in 2 or more titles
 58,bachelor,191,3,plant sciences,2,23,phrases in 2 or more titles
@@ -65,14 +53,12 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 84,master,84; 272,1,wirtschaftsinformatik,160,234,phrases in 2 or more titles
 84,master,84; 272,2,verwaltungsinformatik,6,234,phrases in 2 or more titles
 84,master,84; 272,3,e-government,4,234,phrases in 2 or more titles
-109,bachelor,109; 543,1,landschaftsarchitektur,14,41,phrases in 2 or more titles
-109,bachelor,109; 543,2,landschaftsbau,3,41,phrases in 2 or more titles
-109,bachelor,109; 543,3,umweltplanung,3,41,phrases in 2 or more titles
-109,master,813,1,naturschutz,1,3,parts of the member nearest the centroid
-109,master,813,2,landschaftsplanung,1,3,parts of the member nearest the centroid
-112,master,162; 262; 653,1,betriebswirtschaftslehre,36,184,phrases in 2 or more titles
-112,master,162; 262; 653,2,bwl,13,184,phrases in 2 or more titles
-112,master,162; 262; 653,3,betriebswirtschaft,12,184,phrases in 2 or more titles
+109,bachelor,543,1,raumplanung,2,7,phrases in 2 or more titles
+109,bachelor,543,2,stadtplanung,2,7,phrases in 2 or more titles
+109,bachelor,543,3,urbanistik,2,7,phrases in 2 or more titles
+112,master,162; 262,1,betriebswirtschaftslehre,36,178,phrases in 2 or more titles
+112,master,162; 262,2,betriebswirtschaft,12,178,phrases in 2 or more titles
+112,master,162; 262,3,bwl,10,178,phrases in 2 or more titles
 117,bachelor,740,1,technisches design,4,4,phrases in 2 or more titles
 117,bachelor,740,2,technisches produktmanagement,2,4,phrases in 2 or more titles
 120,bachelor,120,1,ingenieurpädagogik,10,17,phrases in 2 or more titles
@@ -83,9 +69,9 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 126,master,126,1,medizinische physik,4,13,phrases in 2 or more titles
 126,master,126,2,medizinphysik,3,13,phrases in 2 or more titles
 126,master,126,3,medical radiation sciences,2,13,phrases in 2 or more titles
-132,bachelor,132; 188,1,marketing,13,65,phrases in 2 or more titles
-132,bachelor,132; 188,2,international marketing,8,65,phrases in 2 or more titles
-132,bachelor,132; 188,3,e-commerce,6,65,phrases in 2 or more titles
+132,bachelor,188,1,international marketing,8,37,phrases in 2 or more titles
+132,bachelor,188,2,marketing,7,37,phrases in 2 or more titles
+132,bachelor,188,3,internationales marketing,3,37,phrases in 2 or more titles
 150,bachelor,150,1,bioinformatik,7,15,phrases in 2 or more titles
 150,bachelor,150,2,bioinformatics,3,15,phrases in 2 or more titles
 150,bachelor,150,3,life science informatics,2,15,phrases in 2 or more titles
@@ -114,38 +100,20 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 173,bachelor,173; 729,1,geowissenschaften,10,31,phrases in 2 or more titles
 173,bachelor,173; 729,2,geophysics,4,31,phrases in 2 or more titles
 173,bachelor,173; 729,3,geophysik,3,31,phrases in 2 or more titles
-173,master,173; 484; 729; 784,1,geowissenschaften,10,35,phrases in 2 or more titles
-173,master,173; 484; 729; 784,2,geophysics,4,35,phrases in 2 or more titles
-173,master,173; 484; 729; 784,3,geophysik,3,35,phrases in 2 or more titles
-175,bachelor,175,1,computerlinguistik,10,20,phrases in 2 or more titles
-175,bachelor,175,2,digital humanities,6,20,phrases in 2 or more titles
-175,bachelor,175,3,computational linguistics,3,20,phrases in 2 or more titles
-176,bachelor,176,1,kommunikationswissenschaft,8,30,phrases in 2 or more titles
-176,bachelor,176,2,kommunikations-,5,30,phrases in 2 or more titles
-176,bachelor,176,3,medien,3,30,phrases in 2 or more titles
-176,master,176,1,kommunikationswissenschaft,8,30,phrases in 2 or more titles
-176,master,176,2,kommunikations-,5,30,phrases in 2 or more titles
-176,master,176,3,medien,3,30,phrases in 2 or more titles
+173,master,173; 729,1,geowissenschaften,10,31,phrases in 2 or more titles
+173,master,173; 729,2,geophysics,4,31,phrases in 2 or more titles
+173,master,173; 729,3,geophysik,3,31,phrases in 2 or more titles
 177,master,177; 193; 300,1,bauingenieurwesen,96,185,phrases in 2 or more titles
 177,master,177; 193; 300,2,bauen,5,185,phrases in 2 or more titles
 177,master,177; 193; 300,3,bauingenieurwesen dual,4,185,phrases in 2 or more titles
 178,master,207; 208,1,fahrzeugtechnik,23,72,phrases in 2 or more titles
 178,master,207; 208,2,automotive engineering,5,72,phrases in 2 or more titles
 178,master,207; 208,3,automotive systems engineering,4,72,phrases in 2 or more titles
-180,bachelor,180; 524,1,medienwissenschaft,10,46,phrases in 2 or more titles
-180,bachelor,180; 524,2,filmwissenschaft,5,46,phrases in 2 or more titles
-180,bachelor,180; 524,3,medienwissenschaften,4,46,phrases in 2 or more titles
-180,master,180; 284; 524,1,medienwissenschaft,13,64,phrases in 2 or more titles
-180,master,180; 284; 524,2,medienwissenschaften,6,64,phrases in 2 or more titles
-180,master,180; 284; 524,3,filmwissenschaft,5,64,phrases in 2 or more titles
 184,bachelor,768,1,umweltwissenschaften,3,7,phrases in 2 or more titles
 184,bachelor,768,2,environmental sciences,2,7,phrases in 2 or more titles
-186,bachelor,186; 205,1,entrepreneurship,23,55,phrases in 2 or more titles
-186,bachelor,186; 205,2,innovation,6,55,phrases in 2 or more titles
-186,bachelor,186; 205,3,technical management,4,55,phrases in 2 or more titles
-186,master,186,1,technical management,4,22,phrases in 2 or more titles
-186,master,186,2,technologiemanagement,3,22,phrases in 2 or more titles
-186,master,186,3,technology,2,22,phrases in 2 or more titles
+186,bachelor,205,1,entrepreneurship,23,33,phrases in 2 or more titles
+186,bachelor,205,2,innovation,6,33,phrases in 2 or more titles
+186,bachelor,205,3,innovation management,3,33,phrases in 2 or more titles
 187,bachelor,187,1,wirtschaftsingenieurwesen elektrotechnik,9,24,phrases in 2 or more titles
 187,bachelor,187,2,informationstechnik,6,24,phrases in 2 or more titles
 187,bachelor,187,3,wirtschaftsingenieurwesen,5,24,phrases in 2 or more titles
@@ -161,52 +129,39 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 193,bachelor,193; 300,1,bauingenieurwesen,95,166,phrases in 2 or more titles
 193,bachelor,193; 300,2,bauen,5,166,phrases in 2 or more titles
 193,bachelor,193; 300,3,bauingenieurwesen dual,4,166,phrases in 2 or more titles
-195,bachelor,195; 381,1,kommunikationsdesign,23,71,phrases in 2 or more titles
-195,bachelor,195; 381,2,visuelle kommunikation,11,71,phrases in 2 or more titles
-195,bachelor,195; 381,3,design,6,71,phrases in 2 or more titles
-195,master,195; 245; 376; 381; 408,1,kommunikationsdesign,23,102,phrases in 2 or more titles
-195,master,195; 245; 376; 381; 408,2,visuelle kommunikation,11,102,phrases in 2 or more titles
-195,master,195; 245; 376; 381; 408,3,design,8,102,phrases in 2 or more titles
-196,bachelor,196; 689; 745,1,verfahrenstechnik,12,32,phrases in 2 or more titles
-196,bachelor,196; 689; 745,2,chemieingenieurwesen,9,32,phrases in 2 or more titles
-196,bachelor,196; 689; 745,3,chemical engineering,2,32,phrases in 2 or more titles
-199,bachelor,376; 386; 408,1,design,2,20,phrases in 2 or more titles
-199,bachelor,376; 386; 408,2,game design,2,20,phrases in 2 or more titles
-199,bachelor,376; 386; 408,3,games,2,20,phrases in 2 or more titles
+195,master,376; 408,1,design,2,15,phrases in 2 or more titles
+195,master,376; 408,2,game design,2,15,phrases in 2 or more titles
+195,master,376; 408,3,media art,2,15,phrases in 2 or more titles
+196,bachelor,196; 745,1,verfahrenstechnik,12,30,phrases in 2 or more titles
+196,bachelor,196; 745,2,chemieingenieurwesen,9,30,phrases in 2 or more titles
+196,bachelor,196; 745,3,chemical engineering,2,30,phrases in 2 or more titles
+199,bachelor,376; 408,1,design,2,15,phrases in 2 or more titles
+199,bachelor,376; 408,2,game design,2,15,phrases in 2 or more titles
+199,bachelor,376; 408,3,media art,2,15,phrases in 2 or more titles
 205,master,465,1,innovation management,1,2,parts of the member nearest the centroid
-209,bachelor,209,1,journalismus,9,33,phrases in 2 or more titles
-209,bachelor,209,2,journalistik,4,33,phrases in 2 or more titles
-209,bachelor,209,3,kommunikationswissenschaft,2,33,phrases in 2 or more titles
-209,master,209,1,journalismus,9,33,phrases in 2 or more titles
-209,master,209,2,journalistik,4,33,phrases in 2 or more titles
-209,master,209,3,kommunikationswissenschaft,2,33,phrases in 2 or more titles
-211,bachelor,211; 634,1,georessourcenmanagement,4,23,phrases in 2 or more titles
-211,bachelor,211; 634,2,energiewirtschaft,3,23,phrases in 2 or more titles
-211,bachelor,211; 634,3,environmental,2,23,phrases in 2 or more titles
+211,bachelor,634,1,georessourcenmanagement,4,7,phrases in 2 or more titles
+211,bachelor,634,2,umwelt-,2,7,phrases in 2 or more titles
 211,master,634,1,georessourcenmanagement,4,7,phrases in 2 or more titles
 211,master,634,2,umwelt-,2,7,phrases in 2 or more titles
 213,bachelor,724,1,betriebswirtschaftslehre - industrielles management,1,2,parts of the member nearest the centroid
 217,bachelor,467,1,mechanical engineering,3,6,phrases in 2 or more titles
 217,bachelor,467,2,international engineering,2,6,phrases in 2 or more titles
 217,master,659,1,maschinenbau produktion,1,2,parts of the member nearest the centroid
-220,bachelor,220,1,kommunikationstechnik,3,22,phrases in 2 or more titles
-220,bachelor,220,2,technische informatik,3,22,phrases in 2 or more titles
-220,bachelor,220,3,communication systems,2,22,phrases in 2 or more titles
-221,bachelor,221; 407; 414; 464; 529,1,robotik,12,45,phrases in 2 or more titles
-221,bachelor,221; 407; 414; 464; 529,2,automation,7,45,phrases in 2 or more titles
-221,bachelor,221; 407; 414; 464; 529,3,robotics,7,45,phrases in 2 or more titles
-221,master,221; 407; 464,1,robotik,8,32,phrases in 2 or more titles
-221,master,221; 407; 464,2,robotics,7,32,phrases in 2 or more titles
-221,master,221; 407; 464,3,automation,2,32,phrases in 2 or more titles
-226,master,226; 331; 368; 380; 411,1,elektrotechnik,103,168,phrases in 2 or more titles
-226,master,226; 331; 368; 380; 411,2,informationstechnik,78,168,phrases in 2 or more titles
-226,master,226; 331; 368; 380; 411,3,elektro-,28,168,phrases in 2 or more titles
+221,bachelor,221; 414; 464,1,robotik,10,35,phrases in 2 or more titles
+221,bachelor,221; 414; 464,2,automation,7,35,phrases in 2 or more titles
+221,bachelor,221; 414; 464,3,robotics,6,35,phrases in 2 or more titles
+221,master,221; 464,1,robotik,8,27,phrases in 2 or more titles
+221,master,221; 464,2,robotics,6,27,phrases in 2 or more titles
+221,master,221; 464,3,automation,2,27,phrases in 2 or more titles
+226,master,226; 331; 380; 411,1,elektrotechnik,103,165,phrases in 2 or more titles
+226,master,226; 331; 380; 411,2,informationstechnik,77,165,phrases in 2 or more titles
+226,master,226; 331; 380; 411,3,elektro-,28,165,phrases in 2 or more titles
 227,bachelor,227; 232,1,software engineering,10,41,phrases in 2 or more titles
 227,bachelor,227; 232,2,engineering,4,41,phrases in 2 or more titles
 227,bachelor,227; 232,3,computational engineering,3,41,phrases in 2 or more titles
-227,master,227; 231; 232,1,software engineering,10,77,phrases in 2 or more titles
-227,master,227; 231; 232,2,computational engineering,5,77,phrases in 2 or more titles
-227,master,227; 231; 232,3,ingenieurinformatik,5,77,phrases in 2 or more titles
+227,master,227; 232,1,software engineering,10,41,phrases in 2 or more titles
+227,master,227; 232,2,engineering,4,41,phrases in 2 or more titles
+227,master,227; 232,3,computational engineering,3,41,phrases in 2 or more titles
 230,bachelor,369; 463,1,elektrische energiesysteme,3,14,phrases in 2 or more titles
 230,bachelor,369; 463,2,elektromobilität,3,14,phrases in 2 or more titles
 230,bachelor,369; 463,3,-informationstechnik,2,14,phrases in 2 or more titles
@@ -215,20 +170,18 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 246,bachelor,246; 255,1,materials science,11,46,phrases in 2 or more titles
 246,bachelor,246; 255,2,materialwissenschaft,10,46,phrases in 2 or more titles
 246,bachelor,246; 255,3,engineering,6,46,phrases in 2 or more titles
-246,master,246; 255; 592,1,materials science,11,49,phrases in 2 or more titles
-246,master,246; 255; 592,2,materialwissenschaft,10,49,phrases in 2 or more titles
-246,master,246; 255; 592,3,engineering,6,49,phrases in 2 or more titles
-251,bachelor,251; 734,1,medienmanagement,9,22,phrases in 2 or more titles
-251,bachelor,251; 734,2,medien-,4,22,phrases in 2 or more titles
-251,bachelor,251; 734,3,journalismus,2,22,phrases in 2 or more titles
-251,master,251; 734,1,medienmanagement,9,22,phrases in 2 or more titles
-251,master,251; 734,2,medien-,4,22,phrases in 2 or more titles
-251,master,251; 734,3,journalismus,2,22,phrases in 2 or more titles
-252,bachelor,453,1,maschinenbau - wirtschaftsingenieurwesen,1,4,parts of the member nearest the centroid
+246,master,246; 255,1,materials science,11,46,phrases in 2 or more titles
+246,master,246; 255,2,materialwissenschaft,10,46,phrases in 2 or more titles
+246,master,246; 255,3,engineering,6,46,phrases in 2 or more titles
+251,bachelor,251,1,medienmanagement,7,15,phrases in 2 or more titles
+251,bachelor,251,2,media management,2,15,phrases in 2 or more titles
+251,bachelor,251,3,musikmanagement,2,15,phrases in 2 or more titles
+251,master,251,1,medienmanagement,7,15,phrases in 2 or more titles
+251,master,251,2,media management,2,15,phrases in 2 or more titles
+251,master,251,3,musikmanagement,2,15,phrases in 2 or more titles
 256,bachelor,256,1,stadtplanung,7,17,phrases in 2 or more titles
 256,bachelor,256,2,stadt-,3,17,phrases in 2 or more titles
 256,bachelor,256,3,architektur,2,17,phrases in 2 or more titles
-267,bachelor,669,1,kunst,3,5,phrases in 2 or more titles
 275,bachelor,287,1,psychologie,40,48,phrases in 2 or more titles
 275,bachelor,287,2,psychology,2,48,phrases in 2 or more titles
 275,bachelor,287,3,psychotherapie,2,48,phrases in 2 or more titles
@@ -236,10 +189,9 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 279,master,279; 297,1,systems engineering,9,25,phrases in 2 or more titles
 279,master,279; 297,2,ingenieurwissenschaften,3,25,phrases in 2 or more titles
 279,master,279; 297,3,mechanical engineering,3,25,phrases in 2 or more titles
-283,bachelor,283; 726; 812,1,data science,53,83,phrases in 2 or more titles
-283,bachelor,283; 726; 812,2,artificial intelligence,10,83,phrases in 2 or more titles
-283,bachelor,283; 726; 812,3,künstliche intelligenz,9,83,phrases in 2 or more titles
-283,master,726,1,data engineering,3,4,phrases in 2 or more titles
+283,bachelor,283,1,data science,50,73,phrases in 2 or more titles
+283,bachelor,283,2,artificial intelligence,9,73,phrases in 2 or more titles
+283,bachelor,283,3,künstliche intelligenz,9,73,phrases in 2 or more titles
 290,bachelor,290,1,medizinische informatik,11,28,phrases in 2 or more titles
 290,bachelor,290,2,medizininformatik,6,28,phrases in 2 or more titles
 290,bachelor,290,3,digitale medizin,2,28,phrases in 2 or more titles
@@ -249,9 +201,6 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 294,bachelor,294; 672; 678,1,technische informatik,8,16,phrases in 2 or more titles
 294,bachelor,294; 672; 678,2,informatik,2,16,phrases in 2 or more titles
 294,bachelor,294; 672; 678,3,informatik im praxisverbund,2,16,phrases in 2 or more titles
-296,bachelor,296,1,marketing,5,20,phrases in 2 or more titles
-296,bachelor,296,2,management,4,20,phrases in 2 or more titles
-296,bachelor,296,3,betriebswirtschaft,2,20,phrases in 2 or more titles
 305,master,352,1,umweltingenieurwesen,17,44,phrases in 2 or more titles
 305,master,352,2,umweltingenieurwissenschaften,6,44,phrases in 2 or more titles
 305,master,352,3,umwelt-,5,44,phrases in 2 or more titles
@@ -264,9 +213,9 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 324,bachelor,324; 566; 623; 809,1,design,10,36,phrases in 2 or more titles
 324,bachelor,324; 566; 623; 809,2,produktdesign,4,36,phrases in 2 or more titles
 324,bachelor,324; 566; 623; 809,3,gestaltung,3,36,phrases in 2 or more titles
-324,master,324; 334; 566; 640; 809,1,design,11,50,phrases in 2 or more titles
-324,master,324; 334; 566; 640; 809,2,produktdesign,7,50,phrases in 2 or more titles
-324,master,324; 334; 566; 640; 809,3,gestaltung,3,50,phrases in 2 or more titles
+324,master,324; 334; 566; 809,1,design,11,47,phrases in 2 or more titles
+324,master,324; 334; 566; 809,2,produktdesign,7,47,phrases in 2 or more titles
+324,master,324; 334; 566; 809,3,gestaltung,3,47,phrases in 2 or more titles
 329,master,329,1,geoinformatik,25,40,phrases in 2 or more titles
 329,master,329,2,geodäsie,13,40,phrases in 2 or more titles
 329,master,329,3,vermessung,7,40,phrases in 2 or more titles
@@ -289,44 +238,30 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 342,master,342,3,management,2,13,phrases in 2 or more titles
 343,bachelor,343,1,technomathematik,6,10,phrases in 2 or more titles
 343,master,343,1,technomathematik,6,10,phrases in 2 or more titles
-363,master,363; 475,1,nanotechnologie,3,9,phrases in 2 or more titles
-363,master,363; 475,2,micro-,2,9,phrases in 2 or more titles
-363,master,363; 475,3,mikrosystemtechnik,2,9,phrases in 2 or more titles
+363,master,475,1,nanotechnologie,3,6,phrases in 2 or more titles
+363,master,475,2,micro-,2,6,phrases in 2 or more titles
 366,bachelor,366,1,human factors,1,3,parts of the member nearest the centroid
 366,master,366,1,human factors,1,3,parts of the member nearest the centroid
-368,bachelor,368; 380; 411,1,electrical engineering,3,17,phrases in 2 or more titles
-368,bachelor,368; 380; 411,2,informations-,3,17,phrases in 2 or more titles
-368,bachelor,368; 380; 411,3,kommunikationstechnik,3,17,phrases in 2 or more titles
+368,bachelor,380; 411,1,electrical engineering,3,14,phrases in 2 or more titles
+368,bachelor,380; 411,2,informations-,3,14,phrases in 2 or more titles
+368,bachelor,380; 411,3,kommunikationstechnik,3,14,phrases in 2 or more titles
 369,master,369; 463,1,elektrische energiesysteme,3,14,phrases in 2 or more titles
 369,master,369; 463,2,elektromobilität,3,14,phrases in 2 or more titles
 369,master,369; 463,3,-informationstechnik,2,14,phrases in 2 or more titles
-371,master,371,1,english-speaking cultures: language,1,2,parts of the member nearest the centroid
-371,master,371,2,text,1,2,parts of the member nearest the centroid
-371,master,371,3,media,1,2,parts of the member nearest the centroid
-379,bachelor,379,1,design,1,2,parts of the member nearest the centroid
 385,bachelor,385,1,unternehmenskommunikation,2,7,phrases in 2 or more titles
 385,master,385,1,unternehmenskommunikation,2,7,phrases in 2 or more titles
 402,master,402,1,information technology,2,2,phrases in 2 or more titles
-413,master,413,1,elektrotechnik,2,6,phrases in 2 or more titles
 425,master,425,1,business analytics,3,5,phrases in 2 or more titles
-427,master,427,1,advanced engineering,1,2,parts of the member nearest the centroid
-427,master,427,2,engineering management,1,2,parts of the member nearest the centroid
-432,master,432,1,digital humanities - sprachwissenschaften,1,3,parts of the member nearest the centroid
-434,bachelor,434; 587,1,umweltinformatik,4,10,phrases in 2 or more titles
+434,bachelor,434,1,umweltinformatik,4,7,phrases in 2 or more titles
 434,master,434,1,umweltinformatik,4,7,phrases in 2 or more titles
 438,bachelor,438,1,mechatronische systeme,2,7,phrases in 2 or more titles
 438,master,438,1,mechatronische systeme,2,7,phrases in 2 or more titles
-442,bachelor,442; 519,1,bibliotheks-,5,12,phrases in 2 or more titles
-442,bachelor,442; 519,2,informationswissenschaft,4,12,phrases in 2 or more titles
-442,bachelor,442; 519,3,informationsmanagement,3,12,phrases in 2 or more titles
-442,master,442; 519,1,bibliotheks-,5,12,phrases in 2 or more titles
-442,master,442; 519,2,informationswissenschaft,4,12,phrases in 2 or more titles
-442,master,442; 519,3,informationsmanagement,3,12,phrases in 2 or more titles
-444,bachelor,444,1,elektrotechnik mit orientierungssemester,2,3,phrases in 2 or more titles
-457,bachelor,457,1,management,3,6,phrases in 2 or more titles
-457,bachelor,457,2,technology,2,6,phrases in 2 or more titles
-457,master,457,1,management,3,6,phrases in 2 or more titles
-457,master,457,2,technology,2,6,phrases in 2 or more titles
+442,bachelor,442,1,bibliotheks-,4,6,phrases in 2 or more titles
+442,bachelor,442,2,informationsmanagement,3,6,phrases in 2 or more titles
+442,bachelor,442,3,informationswissenschaft,2,6,phrases in 2 or more titles
+442,master,442,1,bibliotheks-,4,6,phrases in 2 or more titles
+442,master,442,2,informationsmanagement,3,6,phrases in 2 or more titles
+442,master,442,3,informationswissenschaft,2,6,phrases in 2 or more titles
 459,master,459,1,creative direction,2,2,phrases in 2 or more titles
 462,bachelor,462,1,medien-,3,5,phrases in 2 or more titles
 462,bachelor,462,2,medienpsychologie,2,5,phrases in 2 or more titles
@@ -334,10 +269,8 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 462,master,462,1,medien-,3,5,phrases in 2 or more titles
 462,master,462,2,medienpsychologie,2,5,phrases in 2 or more titles
 462,master,462,3,wirtschaftspsychologie,2,5,phrases in 2 or more titles
-469,master,469; 605,1,computer science,2,6,phrases in 2 or more titles
-469,master,469; 605,2,data science,2,6,phrases in 2 or more titles
-469,master,469; 605,3,mathematics,2,6,phrases in 2 or more titles
-474,master,474; 738,1,computational science,1,6,parts of the member nearest the centroid
+469,master,469,1,mathematics in data science,1,2,parts of the member nearest the centroid
+474,master,738,1,computational science,1,3,parts of the member nearest the centroid
 487,master,487,1,führung,1,2,parts of the member nearest the centroid
 487,master,487,2,organisation,1,2,parts of the member nearest the centroid
 502,bachelor,502,1,tonmeister,2,3,phrases in 2 or more titles
@@ -348,13 +281,12 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 507,master,507,2,visual computing,2,5,phrases in 2 or more titles
 510,bachelor,510,1,nachhaltige ingenieurwissenschaft,4,7,phrases in 2 or more titles
 510,bachelor,510,2,ingenieurwissenschaften,2,7,phrases in 2 or more titles
-512,bachelor,512; 727,1,user experience design,3,5,phrases in 2 or more titles
+512,bachelor,512,1,user experience design,2,3,phrases in 2 or more titles
 513,bachelor,513,1,autonomes fahren,2,4,phrases in 2 or more titles
 513,bachelor,513,2,autonomous driving,2,4,phrases in 2 or more titles
 513,bachelor,513,3,elektromobilität,2,4,phrases in 2 or more titles
 514,master,514,1,animation,2,3,phrases in 2 or more titles
 514,master,514,2,game,2,3,phrases in 2 or more titles
-516,bachelor,516,1,green technology,1,2,parts of the member nearest the centroid
 522,bachelor,522; 793,1,artificial intelligence,8,11,phrases in 2 or more titles
 522,bachelor,522; 793,2,applied artificial intelligence,2,11,phrases in 2 or more titles
 522,master,522; 793,1,artificial intelligence,8,11,phrases in 2 or more titles
@@ -373,45 +305,25 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 555,master,613,2,water engineering,2,7,phrases in 2 or more titles
 561,master,561,1,statistik,4,4,phrases in 2 or more titles
 561,master,561,2,data science,2,4,phrases in 2 or more titles
-563,bachelor,563,1,elektrotechnik mit praxissemester,1,2,parts of the member nearest the centroid
-567,master,567,1,angewandte naturwissenschaft,2,6,phrases in 2 or more titles
-567,master,567,2,angewandte naturwissenschaften,2,6,phrases in 2 or more titles
-573,master,573,1,information systems engineering,1,2,parts of the member nearest the centroid
-573,master,573,2,management,1,2,parts of the member nearest the centroid
-585,master,585,1,strategic marketing management,1,3,parts of the member nearest the centroid
 586,master,586,1,electrical systems engineering,1,3,parts of the member nearest the centroid
 597,bachelor,597,1,computational social science,2,4,phrases in 2 or more titles
 597,master,597,1,computational social science,2,4,phrases in 2 or more titles
 603,bachelor,603,1,bionik,2,3,phrases in 2 or more titles
-605,bachelor,605,1,computer science,2,4,phrases in 2 or more titles
-605,bachelor,605,2,data science,2,4,phrases in 2 or more titles
 614,bachelor,614,1,augenoptik,4,4,phrases in 2 or more titles
 614,bachelor,614,2,optometrie,4,4,phrases in 2 or more titles
-615,bachelor,615,1,sustainable systems engineering,2,4,phrases in 2 or more titles
 616,master,616,1,ai engineering of autonomous systems,1,2,parts of the member nearest the centroid
 623,master,623,1,modedesign,3,7,phrases in 2 or more titles
-637,master,637,1,business administration,1,3,parts of the member nearest the centroid
-648,bachelor,648,1,künstliche intelligenz in der medizin,2,6,phrases in 2 or more titles
-648,master,648,1,künstliche intelligenz in der medizin,2,6,phrases in 2 or more titles
-651,master,651,1,geoinformation,1,3,parts of the member nearest the centroid
-651,master,651,2,umwelt,1,3,parts of the member nearest the centroid
-653,bachelor,653; 671,1,bwl,3,9,phrases in 2 or more titles
+653,bachelor,671,1,onlinemedien,1,3,parts of the member nearest the centroid
 659,bachelor,659,1,maschinenbau produktion,1,2,parts of the member nearest the centroid
-660,master,660,1,product management,2,3,phrases in 2 or more titles
-660,master,660,2,sales engineering,2,3,phrases in 2 or more titles
 662,master,662,1,design management,1,2,parts of the member nearest the centroid
 666,master,666,1,advanced information technology,2,3,phrases in 2 or more titles
 667,bachelor,667,1,biophysik,3,4,phrases in 2 or more titles
 667,master,667,1,biophysik,3,4,phrases in 2 or more titles
-683,master,683,1,nachhaltigkeit,2,3,phrases in 2 or more titles
-684,bachelor,684,1,creative technologies,2,3,phrases in 2 or more titles
 686,master,686,1,medical photonics,1,3,parts of the member nearest the centroid
 691,master,691,1,agrarmanagement,4,7,phrases in 2 or more titles
 693,bachelor,693,1,sicherheitsmanagement,2,3,phrases in 2 or more titles
 693,master,693,1,sicherheitsmanagement,2,3,phrases in 2 or more titles
-703,bachelor,703,1,kooperatives ingenieurstudium elektrotechnik,1,4,parts of the member nearest the centroid
-704,bachelor,704,1,vermessung,2,3,phrases in 2 or more titles
-710,master,710; 712,1,management,2,4,phrases in 2 or more titles
+710,master,712,1,innovation management,1,2,parts of the member nearest the centroid
 715,bachelor,715,1,smart systems engineering,2,5,phrases in 2 or more titles
 715,master,715,1,smart systems engineering,2,5,phrases in 2 or more titles
 730,master,730,1,automatisierte energiesysteme,1,2,parts of the member nearest the centroid
@@ -422,15 +334,11 @@ candidate,level,types,rank,keyword,member titles with it,members,from
 738,bachelor,738,1,computational science,1,3,parts of the member nearest the centroid
 745,master,745,1,verfahrenstechnik,5,9,phrases in 2 or more titles
 745,master,745,2,prozesstechnik,2,9,phrases in 2 or more titles
-747,bachelor,747,1,produkt-,1,2,parts of the member nearest the centroid
-747,bachelor,747,2,objektdesign,1,2,parts of the member nearest the centroid
 757,bachelor,757,1,games engineering,1,2,parts of the member nearest the centroid
 757,master,757,1,games engineering,1,2,parts of the member nearest the centroid
 761,bachelor,761,1,nachhaltige materialtechnologie,1,4,parts of the member nearest the centroid
 761,bachelor,761,2,produktentwicklung,1,4,parts of the member nearest the centroid
 770,bachelor,770,1,polymer engineering,2,6,phrases in 2 or more titles
-777,bachelor,777,1,creative communication,1,4,parts of the member nearest the centroid
-777,bachelor,777,2,brand management,1,4,parts of the member nearest the centroid
 781,master,781,1,microelectronics,2,6,phrases in 2 or more titles
 782,master,782,1,international sustainability management,2,2,phrases in 2 or more titles
 783,master,783,1,angewandte physische geographie - geosystemwandel,1,2,parts of the member nearest the centroid
