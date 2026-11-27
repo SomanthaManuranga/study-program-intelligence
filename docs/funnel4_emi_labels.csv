@@ -1,30 +1,30 @@
-group,label,reason
-1,yes,Informatik and software engineering programmes; core computer science
-2,yes,Applied computer science; core computer science
-3,yes,Elektrotechnik; core electrical engineering
-4,yes,Data engineering and electronics; applied data and electrical engineering (one physics title is the exception)
-5,yes,Computer science; AI and data science; core informatics
-6,no,Energy and building services engineering; core is energy/building/process engineering not EMI
-7,yes,Mostly data science; one business analytics and one applied mathematics title are side cases
-8,yes,Elektrotechnik and Informationstechnik master; core electrical and information engineering
-9,yes,Computer science and cyber security; core informatics
-10,no,Geography and environmental information/GIS; core is geoscience
-11,partly,Design joined with management in roughly equal parts
-12,no,Civil engineering; outside EMI
-13,no,Urban and regional planning; outside EMI
-14,no,Innovation and technology management; core is management
-15,yes,Cyber and IT security; applied computer science (security)
-16,yes,Applied computer science; one bioinformatics title is the exception
-17,partly,Mechatronic systems; electrical/informatics joined with mechanical engineering
-18,partly,Information systems and AI/data science joined with business management
-19,no,General and innovation management; core is business
-20,no,Communication management and strategic communication; core is communication studies not media technology
-21,partly,Data science or analytics joined with business and management in roughly equal parts
-22,partly,AI and analytics joined with business and econometrics in roughly equal parts
-23,no,Sport communication research and sport publishing management; core is sport and communication studies
-24,yes,Applied computer science and software engineering; core informatics
-25,yes,Software engineering and software design; core computer science
-26,no,Project management (incl. construction); core is management
-27,no,Civil engineering; outside EMI
-28,yes,Informatik (dual); core computer science
-29,partly,Systems engineering; interdisciplinary engineering mixing electrical/informatics with mechanical engineering
+round,group,type,level,label,reason
+1,1,268,bachelor,yes,Informatik and software engineering programmes; core computer science
+1,2,488,bachelor,yes,Applied computer science; core computer science
+1,3,736,bachelor,yes,Elektrotechnik; core electrical engineering
+1,4,726,bachelor,yes,Data engineering and electronics; applied data and electrical engineering (one physics title is the exception)
+1,5,605,bachelor,yes,Computer science; AI and data science; core informatics
+1,6,237,bachelor,no,Energy and building services engineering; core is energy/building/process engineering not EMI
+1,7,812,bachelor,yes,Mostly data science; one business analytics and one applied mathematics title are side cases
+1,8,736,master,yes,Elektrotechnik and Informationstechnik master; core electrical and information engineering
+1,9,312,bachelor,yes,Computer science and cyber security; core informatics
+1,10,651,master,no,Geography and environmental information/GIS; core is geoscience
+1,11,662,master,partly,Design joined with management in roughly equal parts
+1,12,300,bachelor,no,Civil engineering; outside EMI
+1,13,256,bachelor,no,Urban and regional planning; outside EMI
+1,14,710,master,no,Innovation and technology management; core is management
+1,15,223,bachelor,yes,Cyber and IT security; applied computer science (security)
+1,16,149,bachelor,yes,Applied computer science; one bioinformatics title is the exception
+1,17,438,master,partly,Mechatronic systems; electrical/informatics joined with mechanical engineering
+1,18,573,master,partly,Information systems and AI/data science joined with business management
+1,19,712,master,no,General and innovation management; core is business
+1,20,410,master,no,Communication management and strategic communication; core is communication studies not media technology
+1,21,342,bachelor,partly,Data science or analytics joined with business and management in roughly equal parts
+1,22,425,master,partly,AI and analytics joined with business and econometrics in roughly equal parts
+1,23,804,master,no,Sport communication research and sport publishing management; core is sport and communication studies
+1,24,203,bachelor,yes,Applied computer science and software engineering; core informatics
+1,25,232,bachelor,yes,Software engineering and software design; core computer science
+1,26,789,master,no,Project management (incl. construction); core is management
+1,27,193,bachelor,no,Civil engineering; outside EMI
+1,28,421,bachelor,yes,Informatik (dual); core computer science
+1,29,279,bachelor,partly,Systems engineering; interdisciplinary engineering mixing electrical/informatics with mechanical engineering

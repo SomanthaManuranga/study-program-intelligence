@@ -3,12 +3,13 @@ entry of version_4.deviations; criteria and readings in docs/criteria_funnel_v4_
 
 Run from the repository root, each command from committed code on a clean tree, after analysis.funnel_merge run:
 
-    python -m study_program_intelligence.analysis.funnel_gate4 sheet    # blind title sheet for the units not yet marked
-    (a fresh reader writes docs/funnel4_emi_labels.csv: group, label, reason; commit it)
+    python -m study_program_intelligence.analysis.funnel_gate4 sheet    # blind title sheet for the units not yet marked (next round)
+    (a fresh reader writes docs/funnel4_emi_labels_new.csv: group, label, reason)
+    python -m study_program_intelligence.analysis.funnel_gate4 absorb   # adds the round to docs/funnel4_emi_labels.csv; commit it
     python -m study_program_intelligence.analysis.funnel_gate4 list     # the check list, with a reason for every other candidate
 
-Outputs: reports/funnel2/v4_emi_sheet.md (the sheet), data/interim/funnel4_emi_key.csv (group -> unit, not shown to
-the reader), data/interim/funnel4_check_list.csv, funnel4_check_list.json.
+Outputs: reports/funnel2/v4_emi_sheet.md (the sheet), data/interim/funnel4_emi_key.csv (group -> unit of the current
+round, not shown to the reader); docs/funnel4_emi_labels.csv holds every round with its units, data/interim/funnel4_check_list.csv, funnel4_check_list.json.
 """
 
 from __future__ import annotations
@@ -24,7 +25,7 @@ from .funnel_merge import FIRST, ORDER4
 from .funnel_types import OFFER_TYPES, sha
 from .funnel_units import EMI_LABELS
 
-LABELS4 = REPO_ROOT / "docs" / "funnel4_emi_labels.csv"
+LABELS4, NEW4 = REPO_ROOT / "docs" / "funnel4_emi_labels.csv", REPO_ROOT / "docs" / "funnel4_emi_labels_new.csv"
 KEY4, SHEET4 = INTERIM / "funnel4_emi_key.csv", REPORTS / "v4_emi_sheet.md"
 LIST4, LIST4_JSON = INTERIM / "funnel4_check_list.csv", INTERIM / "funnel4_check_list.json"
 TITLES = 8                                     # F3, as Step 3
@@ -41,7 +42,9 @@ def gate_units(order: pd.DataFrame) -> pd.DataFrame:
 def sheet() -> None:
     stamp = run_stamp()
     order = pd.read_csv(ORDER4)
-    old = pd.read_csv(EMI_LABELS, keep_default_na=False)
+    old = pd.concat([pd.read_csv(EMI_LABELS, keep_default_na=False)[["type", "level"]],
+                     pd.read_csv(LABELS4, keep_default_na=False)[["type", "level"]] if LABELS4.exists() else pd.DataFrame(columns=["type", "level"])])
+    rnd = int(pd.read_csv(LABELS4)["round"].max()) + 1 if LABELS4.exists() else 1
     units = gate_units(order)
     todo = units[~units.set_index(["type", "level"]).index.isin(old.set_index(["type", "level"]).index)].drop_duplicates(["type", "level"])
     todo = todo.sort_values(["type", "level"]).reset_index(drop=True)
@@ -62,18 +65,30 @@ def sheet() -> None:
         keys.append({"group": n, "type": int(r.type), "level": r.level})
     REPORTS.mkdir(parents=True, exist_ok=True)
     SHEET4.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    pd.DataFrame(keys).to_csv(KEY4, index=False)
+    pd.DataFrame(keys).assign(round=rnd).to_csv(KEY4, index=False)
     print(json.dumps({"commit": stamp["commit"], "units in the first 20 and the control": len(units), "already marked": int(len(units) - len(todo)),
-                      "groups on the sheet": len(todo)}, indent=1))
+                      "groups on the sheet": len(todo), "round": rnd}, indent=1))
+
+
+def absorb() -> None:
+    """Adds the reader's marks of the current round (docs/funnel4_emi_labels_new.csv) to docs/funnel4_emi_labels.csv."""
+    key, new = pd.read_csv(KEY4), pd.read_csv(NEW4, keep_default_na=False)
+    if set(new["group"]) != set(key["group"]) or not new["label"].isin(["yes", "partly", "no"]).all():
+        raise SystemExit("docs/funnel4_emi_labels_new.csv must mark every group of the sheet with yes, partly or no")
+    rows = key.merge(new, on="group")[["round", "group", "type", "level", "label", "reason"]]
+    old = pd.read_csv(LABELS4, keep_default_na=False) if LABELS4.exists() else rows.iloc[:0]
+    if int(rows["round"].iloc[0]) in set(old["round"]):
+        raise SystemExit("this round is already in docs/funnel4_emi_labels.csv")
+    pd.concat([old, rows], ignore_index=True).to_csv(LABELS4, index=False, lineterminator="
+")
+    NEW4.unlink()
+    print(f"{len(rows)} marks of round {int(rows['round'].iloc[0])} added")
 
 
 def emi_marks() -> pd.DataFrame:
     old = pd.read_csv(EMI_LABELS, keep_default_na=False)[["type", "level", "label"]].assign(source="Step 3")
-    key = pd.read_csv(KEY4)
     new = pd.read_csv(LABELS4, keep_default_na=False)
-    if set(new["group"]) != set(key["group"]) or not new["label"].isin(["yes", "partly", "no"]).all():
-        raise SystemExit("docs/funnel4_emi_labels.csv must mark every group of the sheet with yes, partly or no")
-    new = key.merge(new, on="group")[["type", "level", "label"]].assign(source="R2 reader")
+    new = new[["type", "level", "label"]].assign(source=["R2 reader, round " + str(x) for x in new["round"]])
     return pd.concat([old, new], ignore_index=True)
 
 
@@ -103,7 +118,7 @@ def check_list() -> None:
     res = {"stamp": stamp, "candidates": len(out), "module check": int(out["module check"].sum()),
            "checked": [label(r) for r in out[out["module check"]].to_dict("records")],
            "left out": {label(r): r["reason"] for r in out[~out["module check"]].to_dict("records")},
-           "inputs": {f.name: sha(f) for f in (ORDER4, EMI_LABELS, LABELS4, KEY4)}, "files": {LIST4.name: sha(LIST4)}}
+           "inputs": {f.name: sha(f) for f in (ORDER4, EMI_LABELS, LABELS4)}, "files": {LIST4.name: sha(LIST4)}}
     LIST4_JSON.write_text(json.dumps(res, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(json.dumps(res, indent=2, ensure_ascii=False))
 
@@ -150,4 +165,4 @@ def tries() -> None:
 
 
 if __name__ == "__main__":
-    {"sheet": sheet, "list": check_list, "tries": tries}[sys.argv[1]]()
+    {"sheet": sheet, "absorb": absorb, "list": check_list, "tries": tries}[sys.argv[1]]()

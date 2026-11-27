@@ -22,7 +22,7 @@ number, no score, no gate order, no candidate name. One line of reason per group
 
 | # | Case | Reading |
 |---|---|---|
-| F1 | Where the new marks are kept | `docs/funnel4_emi_labels.csv`, next to `docs/funnel_emi_labels.csv`: Step 3's file must stay the 300-unit sample its code checks, so the new marks are not appended to it |
+| F1 | Where the new marks are kept | `docs/funnel4_emi_labels.csv` (with round, type and level; each round marks only units without any mark), next to `docs/funnel_emi_labels.csv`: Step 3's file must stay the 300-unit sample its code checks, so the new marks are not appended to it |
 | F2 | Which units are marked | every unit of the first 20 candidates of the primary gate order and of the control candidate that is not in `docs/funnel_emi_labels.csv` |
 | F3 | Titles shown | up to 8 titles of the unit's assigned offers of its level, drawn with numpy default_rng(42), as in Step 3 |
 | F4 | A candidate is EMI-field | any of its units marked yes or partly (old or new marks) |

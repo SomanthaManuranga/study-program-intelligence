@@ -259,6 +259,7 @@ reports/final/*
 !docs/funnel_keywords.csv
 !docs/funnel4_keywords.csv
 !docs/funnel4_emi_labels.csv
+!docs/funnel4_emi_labels_new.csv
 !docs/funnel_module_marks_1.csv
 !docs/funnel_module_marks_2.csv
 !docs/funnel_module_marks_3.csv
