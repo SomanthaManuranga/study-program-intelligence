@@ -79,8 +79,7 @@ def absorb() -> None:
     old = pd.read_csv(LABELS4, keep_default_na=False) if LABELS4.exists() else rows.iloc[:0]
     if int(rows["round"].iloc[0]) in set(old["round"]):
         raise SystemExit("this round is already in docs/funnel4_emi_labels.csv")
-    pd.concat([old, rows], ignore_index=True).to_csv(LABELS4, index=False, lineterminator="
-")
+    pd.concat([old, rows], ignore_index=True).to_csv(LABELS4, index=False, lineterminator="\n")
     NEW4.unlink()
     print(f"{len(rows)} marks of round {int(rows['round'].iloc[0])} added")
 
