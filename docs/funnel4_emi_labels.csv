@@ -28,3 +28,7 @@ round,group,type,level,label,reason
 1,27,193,bachelor,no,Civil engineering; outside EMI
 1,28,421,bachelor,yes,Informatik (dual); core computer science
 1,29,279,bachelor,partly,Systems engineering; interdisciplinary engineering mixing electrical/informatics with mechanical engineering
+2,1,634,bachelor,no,Environmental and georesource management; core subject outside EMI
+2,2,308,bachelor,partly,Mostly media management and communication science; media joined with business or social science; one media technology title
+2,3,205,bachelor,no,Entrepreneurship and innovation management; business administration core
+2,4,22,bachelor,no,Architecture; building design and construction not an EMI subject
