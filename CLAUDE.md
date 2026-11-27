@@ -171,7 +171,7 @@ and "without bias" are not established; README, explainer and notebook say so an
 decided for the rerun: module check for every EMI-field candidate in the first 20, strict and lenient marking both
 reported, Soma and the teammate check the rows that decide outside teaching. Rules version 4 are drafted in
 docs/funnel_rules_v4.md, approved and committed. R1 merge done (analysis/funnel_merge.py, notes in docs/funnel_run2_notes.md):
-merged Informatik bachelor at gate order 79 (competition, job-ad artefact A1 open for Soma); next R2 (EMI-field marks
+merged Informatik bachelor at gate order 30 after the job-ad deviation (79 as written), checked as a control; next R2 (EMI-field marks
 for the first 20, module checks).
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).

@@ -862,3 +862,24 @@ asked. Measured that way it has a lot of competition nearby and drops from first
 to check. Other EMI-near programmes, such as cybersecurity, technische Informatik, data science and Elektrotechnik,
 are now near the top. One open point: the job measure gives Informatik 0 ads because rare keyword variants pull the
 median down; fixing it would still leave Informatik at 29th.
+
+### R1 deviation: job ads of merged candidates (Soma: "Fix it and check Informatik too")
+
+The keywords of a merged candidate now come from the version-3 keyword rule applied to the titles of all its types
+(3 phrases; `docs/funnel4_keywords.csv`, committed before any request). Three keywords had never been counted
+("applied artificial intelligence", "bauingenieurwesen dual", "games"); they were counted once on 27 Nov 2026 (9
+requests, no error; `data/interim/funnel4_job_counts.csv`). The order as written is kept in
+`funnel4_gate_order_as_written.csv`, and every row of the primary order shows both positions.
+
+- **Informatik bachelor:** keywords informatik (685 ads within 100 km), angewandte informatik (9), computer science (33);
+  median 33; **gate order 30** (79 as written). It is outside the first 20 either way and is checked as a **control**
+  (second deviation): its result is reported apart and it can be recommended only from inside the first 20.
+- **Changes in the first 20:** technische Informatik leaves (5 as written, now 43: its keywords technische informatik 34,
+  informatik 685, informatik im praxisverbund 0) and Elektrische Energiesysteme leaves; innovation management (master,
+  "management" 2,074) and software engineering / computational engineering (bachelor, "software engineering" 252)
+  enter. The run is reproducible (same hashes twice).
+- The job measure still counts words in ads, not jobs for graduates: general words such as "management" and
+  "energie-" lift a candidate. This limit is inherited from Step 5 and stays stated.
+
+**What we achieved.** The job measure no longer punishes a candidate for having many title variants. Informatik
+moves from 79th to 30th but stays outside the first 20, so it is checked as a control, as Soma decided.
