@@ -918,3 +918,30 @@ one reference only; systems engineering has offers at universities only.
    partner types count only when the candidate has no title match.
 
 Both would be deviations after the check list was seen; the list as written would be reported next to them.
+
+### R2 after deviations 3 and 4 (Soma: "do the recommended way")
+
+**Why the two changes.** (3) Every screen acts on a single programme group (reading E6); letting one small mixed group
+remove a whole merged candidate contradicted that, and it removed data science, a field the re-check named, for a
+reason that had nothing to do with data science itself. (4) A reference handbook must be a programme of the
+candidate's own kind; without the change, Elektrotechnik would have been judged on energy and building engineering
+handbooks.
+
+**Effect.** 44 candidates that consisted only of mixed groups leave the list (175 remain); data science returns as
+type 283 alone. The Informatik control moves to order 25 (63 with the union keywords). A second blind round marked 4
+new units (environmental management no, media and communication partly, entrepreneurship no, architecture no).
+
+**Check list (11):** cybersecurity bachelor (2), business analytics and data science bachelor (3), Elektrotechnik
+bachelor (5), business analytics and AI master (6), Elektrotechnik / renewable energy master (8), design management
+master (9), systems engineering bachelor (10), data science bachelor (18), computational / software engineering
+bachelor (19), communication and social media bachelor (20, marked "partly"), and the Informatik control (25).
+Left out of the first 20: 8 outside EMI's field, 1 outside and below the minimum cohort, 1 below the minimum cohort.
+
+**References.** Elektrotechnik now draws on Elektrotechnik programmes (Rheinische Hochschule, Hochschule Niederrhein,
+...). The version-3 tables of cybersecurity (TH Mannheim, TH Deggendorf) and of TH Ingolstadt Informatik are reused;
+all other handbooks are collected under `docs/funnel4_collector_brief.md`, fixed before collection.
+
+**Reasoning so far, in one chain.** The re-check showed the earlier lead came from a narrow "Computer Science" group
+and from comparing only two EMI bachelors. Measuring each field as one candidate (R1) put competition and demand on a
+fair footing; checking every EMI-field candidate in the first 20 (R2) removes the 3-per-level shortcut. Every rule
+change after a result is a recorded deviation with its reason, and the result without it is kept beside it.
