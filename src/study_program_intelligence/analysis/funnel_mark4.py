@@ -44,7 +44,7 @@ CAT_TABLE, TT_TABLE = INTERIM / "funnel4_emi_catalogue.csv", INTERIM / "funnel4_
 ROWS4, KEY4 = INTERIM / "funnel4_rows.json", INTERIM / "funnel4_rows_key.csv"
 BLOCKS = REPORTS / "v4_rows"
 MARKS = lambda k: sorted((REPO_ROOT / "docs").glob(f"funnel4_marks_{k}_*.csv"))
-SEED, BLOCK, CAT_TEXT, MODULE_TEXT = 42, 50, 1500, 1500
+SEED, BLOCK, CAT_TEXT, MODULE_TEXT = 42, 20, 1500, 1500
 FACTS = ["covered", "covering", "topic", "parent_field", "lab", "general", "unsure", "reason"]
 
 
