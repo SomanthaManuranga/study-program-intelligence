@@ -815,3 +815,50 @@ version 4 (`docs/funnel_rules_v4.md`; `version_4` in `configs/funnel.yaml`; mark
 merged Informatik candidate, module check for every EMI-field candidate in the first 20, facts-based marking with
 strict / lenient and content / size readings, a person check of the deciding rows, "new to OTH" as scenarios, and a
 recommendation only from firm passers. The criteria for the rerun (V1-V9) are in `docs/funnel_rules_v4.md`.
+
+## Rules version 4, R1: one candidate per programme title
+
+Code `analysis/funnel_merge.py`; criteria and exact readings E1-E9 in `docs/criteria_funnel_v4_merge.md`; outputs
+`data/interim/funnel4_units.csv`, `funnel4_candidates.csv`, `funnel4_gate_order.csv`, report
+`reports/funnel2/v4_merge.md`.
+
+**What changed.** Units of one level whose types share a normalised main title are one candidate, with their
+complete-linkage partners one hop out. All 1,285 units fall into 723 candidates; 219 are on the list (version 3: 268
+candidates). 23 title groups (62 units) drop whole because OTH already has a programme of that
+title (among them Elektrotechnik und Informationstechnik, Medieninformatik, Wirtschaftsinformatik, Mechatronik and
+the KI bachelor). Pool, trend, competition, job ads, EMI-field score, first-years and the new-to-OTH scenarios are
+computed again on every merged candidate.
+
+**Result: the gate order changes at the top.** Version 3's first candidate, "Computer Science" (type 312), is now part
+of one Informatik bachelor (types 13, 149, 203, 242, 268, 312, 421, 488) at **order 79** (pre-gate score 2.39):
+38 similar offers within 150 km (differentiation 1.0), job-ad measure 0 within 100 km (labour 1.0), net-new 18.1
+(gross 21.9; break-even share from OTH 31 %). The first 20 now hold 11 bachelors and 9 masters; EMI-near candidates
+among them include cybersecurity (2), business analytics and data science (3), technische Informatik (5),
+Elektrotechnik (8), systems engineering (12) and data science (13, mixed). Which of them are EMI-field is decided in
+the next step (R2).
+
+**Artefact A1 (open, Soma to decide).** The job-ad measure of a merged candidate is the median over the union of its
+types' keywords (rule `version_4.title_merge.measures`). For Informatik that union has 8 keywords: "informatik" has
+685 ads within 100 km, "computer science" 33, "angewandte informatik" 9, and five niche phrases have 0, so the median
+is 0. With the version-3 keyword rule applied to the merged titles (3 phrases: informatik, angewandte informatik,
+computer science; median 33) Informatik would rank 29, still outside the first 20; with type 312's own 359 it would
+rank 3. Changing the measure now would be a deviation after seeing the result; it is not applied.
+
+**Scorecard.**
+
+| # | Criterion | Target | Result | Pass |
+|---|---|---|---|---|
+| M1 | Every unit in exactly one candidate | 1,285, none twice | 1,285, none twice | yes |
+| M2 | Partners of two or more title groups listed | listed | 27 units (E3), 37 partners of a dropped title group (E5), in `funnel4_merge.json` | yes |
+| M3 | One-unit candidates equal version 3 | all equal | asserted in code for every one-unit candidate | yes |
+| M4 | Fresh reviewer recomputes 5 candidates | no wrong number | 85 of 85 values match; 4 code-to-rule differences, 3 fixed (square brackets, candidate number, negative break-even flagged), 1 kept (a candidate may carry the number of a dropped type) | yes |
+| M5 | Version-3 first 20 shown in the new order | shown | `reports/funnel2/v4_merge.md` | yes |
+| M6 | Second run gives the same hashes | same | same | yes |
+| M7 | Tests | all pass | 20 new tests pass | yes |
+| M8 | Code committed before the run | clean stamp | clean | yes |
+
+**What we achieved.** We counted Informatik as one programme instead of several small groups, as the re-check
+asked. Measured that way it has a lot of competition nearby and drops from first to 79th in the order of candidates
+to check. Other EMI-near programmes, such as cybersecurity, technische Informatik, data science and Elektrotechnik,
+are now near the top. One open point: the job measure gives Informatik 0 ads because rare keyword variants pull the
+median down; fixing it would still leave Informatik at 29th.

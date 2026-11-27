@@ -585,3 +585,15 @@ little beyond wording and are shown to Soma with the commit: a candidate is drop
 unit is at OTH; the person check also takes 5 covered or N rows per candidate and shows no AI citations; if the
 supervisor rejects a point, the stricter reading becomes primary; the "new to OTH" scenarios do not change the
 ranking or the decision. Listed in `docs/funnel_rules_v4.md`.
+
+## 2026-11-27: Rules version 4, R1 merge: exact readings and code fixes
+Decision: The merge rule is applied with the exact readings E1-E9 of `docs/criteria_funnel_v4_merge.md`, written
+before the run (a title match needs a second unit of the same level with the same title; a partner of one title
+group joins it, a partner of two or more joins none; a dropped title group frees its partners; screens stay on single
+units). After the fresh review (85 of 85 values recomputed and matching), three code-to-rule differences were fixed:
+square brackets are removed like round ones, the candidate number is the lowest type number of all its units, and a
+break-even share below 0 is shown as 0 with the flag "net-new below 15 even with none from OTH". No rule was changed.
+The job-ad artefact for merged candidates (median over the union of keywords; Informatik 0 ads) is reported and not
+changed: a change now would be a deviation after the result.
+Reason: rule version 4 committed before the run; the review found no wrong number.
+Decided by: Claude (readings and code fixes); the job-ad artefact goes to Soma.
