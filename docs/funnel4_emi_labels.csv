@@ -1,0 +1,30 @@
+group,label,reason
+1,yes,Informatik and software engineering programmes; core computer science
+2,yes,Applied computer science; core computer science
+3,yes,Elektrotechnik; core electrical engineering
+4,yes,Data engineering and electronics; applied data and electrical engineering (one physics title is the exception)
+5,yes,Computer science; AI and data science; core informatics
+6,no,Energy and building services engineering; core is energy/building/process engineering not EMI
+7,yes,Mostly data science; one business analytics and one applied mathematics title are side cases
+8,yes,Elektrotechnik and Informationstechnik master; core electrical and information engineering
+9,yes,Computer science and cyber security; core informatics
+10,no,Geography and environmental information/GIS; core is geoscience
+11,partly,Design joined with management in roughly equal parts
+12,no,Civil engineering; outside EMI
+13,no,Urban and regional planning; outside EMI
+14,no,Innovation and technology management; core is management
+15,yes,Cyber and IT security; applied computer science (security)
+16,yes,Applied computer science; one bioinformatics title is the exception
+17,partly,Mechatronic systems; electrical/informatics joined with mechanical engineering
+18,partly,Information systems and AI/data science joined with business management
+19,no,General and innovation management; core is business
+20,no,Communication management and strategic communication; core is communication studies not media technology
+21,partly,Data science or analytics joined with business and management in roughly equal parts
+22,partly,AI and analytics joined with business and econometrics in roughly equal parts
+23,no,Sport communication research and sport publishing management; core is sport and communication studies
+24,yes,Applied computer science and software engineering; core informatics
+25,yes,Software engineering and software design; core computer science
+26,no,Project management (incl. construction); core is management
+27,no,Civil engineering; outside EMI
+28,yes,Informatik (dual); core computer science
+29,partly,Systems engineering; interdisciplinary engineering mixing electrical/informatics with mechanical engineering

@@ -108,5 +108,42 @@ def check_list() -> None:
     print(json.dumps(res, indent=2, ensure_ascii=False))
 
 
+def tries() -> None:
+    """version_4.title_merge.measures (reference curricula) with feasibility_gate.references.choice: for every candidate
+    of the check list, the assigned full-time offers of all its units at universities of applied sciences other than
+    OTH (universities only if there is none), nearest the centroid of its type with the most assigned offers of that
+    level first (ties: lower type number); one offer per institution and cleaned title. A table already collected in
+    version 3 for the same offer is marked so it can be reused."""
+    from .funnel_refs import HAW, TABLES
+    from .funnel_units import load_step2
+    stamp = run_stamp()
+    d, t, emb, cent = load_step2()
+    chk = pd.read_csv(LIST4)
+    known = {}
+    for f in sorted(TABLES.glob("*_[ab].json")):
+        meta = json.loads(f.read_text(encoding="utf-8"))
+        if meta.get("programme_id"):
+            known[str(meta["programme_id"])] = f.stem
+    rows = []
+    for r in chk[chk["module check"]].to_dict("records"):
+        types = [int(x) for x in str(r["types"]).split("; ")]
+        a = d[d["assigned_type"].isin(types) & (d["level"] == r["level"]) & d["full_time"].astype(bool) & ~d["is_oth"].astype(bool)].copy()
+        sizes = d[d["assigned_type"].isin(types) & (d["level"] == r["level"])].groupby("assigned_type").size()
+        centre = int(sorted(sizes.items(), key=lambda kv: (-kv[1], kv[0]))[0][0])
+        a["distance to the centroid"] = 1 - emb[a.index] @ cent[centre]
+        haw = a[a["institution_type"] == HAW]
+        use, pool = (haw, "universities of applied sciences") if len(haw) else (a, "universities only")
+        use = use.sort_values(["distance to the centroid", "programme_id"], kind="mergesort").drop_duplicates(["institution", "clean_title"])
+        for k, o in enumerate(use.to_dict("records"), 1):
+            rows.append({"gate order": int(r["gate order"]), "candidate": int(r["candidate"]), "level": r["level"], "name": r["name"], "centre type": centre,
+                         "try": k, "institution": o["institution"], "city": o["city"], "title": o["title"], "programme_id": o["programme_id"],
+                         "distance to the centroid": o["distance to the centroid"], "offers from": pool,
+                         "version-3 table": known.get(str(o["programme_id"]), "")})
+    out = pd.DataFrame(rows)
+    out.to_csv(INTERIM / "funnel4_reference_tries.csv", index=False)
+    print(json.dumps({"commit": stamp["commit"]}, indent=1))
+    print(out[out["try"] <= 8][["gate order", "candidate", "level", "try", "institution", "title", "version-3 table"]].to_string())
+
+
 if __name__ == "__main__":
-    {"sheet": sheet, "list": check_list}[sys.argv[1]]()
+    {"sheet": sheet, "list": check_list, "tries": tries}[sys.argv[1]]()
