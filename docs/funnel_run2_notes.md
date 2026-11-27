@@ -883,3 +883,38 @@ requests, no error; `data/interim/funnel4_job_counts.csv`). The order as written
 
 **What we achieved.** The job measure no longer punishes a candidate for having many title variants. Informatik
 moves from 79th to 30th but stays outside the first 20, so it is checked as a control, as Soma decided.
+
+## Rules version 4, R2: which candidates get a module check
+
+Code `analysis/funnel_gate4.py` (sheet, list, tries); criteria and readings F1-F5 in `docs/criteria_funnel_v4_gate.md`.
+A fresh reader marked the 29 units of the first 20 candidates and the control that had no Step 3 mark, from up to 8
+titles each, blind to type, score and order (`docs/funnel4_emi_labels.csv`: 14 yes, 6 partly, 9 no; the reader named
+4 marks that could go the other way: energy engineering, two communication groups, systems engineering).
+
+**Check list (9):** cybersecurity bachelor (order 2), business analytics and data science bachelor (3), Elektrotechnik
+bachelor (7), business analytics and AI master (8), Elektrotechnik / renewable energy master (9), design management
+master (10), systems engineering bachelor (11), computational engineering / software engineering bachelor (20), and
+the Informatik bachelor as the control (30).
+
+**Left out (12 of the first 20):** outside EMI's field: urban planning, civil engineering, project management
+(construction), architecture master, aerospace engineering, communication master, geoinformation, innovation
+management; mixed: information systems master (573), data science / mathematics bachelor (605), data science bachelor
+(283, mixed through its types 726 and 812); below the minimum cohort: mechatronic systems master.
+
+**Reference offers** (`data/interim/funnel4_reference_tries.csv`): three tables of version 3 can be reused
+(cybersecurity a and b, TH Ingolstadt Informatik for the control). Three candidates have only one offer at all
+(business analytics and AI master, Elektrotechnik / renewable energy master, design management master) and can have
+one reference only; systems engineering has offers at universities only.
+
+**Two readings that need Soma before any handbook is collected:**
+
+1. **Data science is dropped by its partner types.** Type 283 (data science, 39 offers) reads as one kind of
+   programme; the candidate counts as mixed only because the small types 726 (3 offers) and 812 (4 offers) are mixed.
+   Every other screen drops a unit singly (E6). Proposal: a mixed type leaves its candidate singly, as the other
+   screens; data science would then be checked as type 283.
+2. **The Elektrotechnik references would come from energy and building engineering.** The rule takes the centre of
+   the candidate's type with the most offers; that is the partner type 237 (Energietechnik, 21 offers) by one offer
+   over the title type 206 (Elektrotechnik, 20). Proposal: the centre is the title-matched type with the most offers;
+   partner types count only when the candidate has no title match.
+
+Both would be deviations after the check list was seen; the list as written would be reported next to them.
