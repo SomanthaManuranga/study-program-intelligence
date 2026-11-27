@@ -9,33 +9,38 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 
 ---
 
-## Result (preliminary, as of 18 Oct 2026; final after the 4 Dec 2026 data freeze)
+## Result (data-driven funnel; preliminary, under re-check before the 4 Dec 2026 data freeze)
 
-> **Status note:** the result below is the **baseline with new resources**. The supervisor has since made "existing
-> staff and labs only" binding, and the cybersecurity bachelor needs new staff and a lab. Current answer
-> (`docs/evidence_tie_break.md`): under the strict existing-resources rule no candidate passes; under the lenient
-> sensitivity, Robotics + AI B.Sc. (path B, assistive / service robotics) is a conditional candidate; with investment,
-> the cybersecurity bachelor below remains the answer. This section is rewritten after the 4 Dec 2026 freeze.
+**Preliminary finding: a general computer science / Informatik bachelor at the EMI faculty fits the supervisor's
+40-80 % overlap band with existing staff and labs.** An independent re-check of Steps 0-8 found that the
+arithmetic is correct but that four further statements are not established: that it is the *only* programme EMI can
+run, that it attracts the *most* students, how many first-years would be new to OTH, and that the result was reached
+without bias. A rerun with corrected rules (version 4) is planned; until then this is a working result.
 
-**Recommendation: a Cyber Security B.Sc. at the EMI faculty.**
+| | What holds | What is open |
+|---|---|---|
+| How it was found | All ~20,000 German bachelor and master offers grouped into 824 programme types by content; screened for "not at OTH" and "in EMI's field"; demand, job ads and first-years measured for every remaining candidate | Only 6 candidates were checked module by module, 2 of them plausible EMI bachelors (computer science, cybersecurity); plain Informatik, electrical engineering, data science and software engineering were skipped by a 3-per-level stopping rule; automation and robotics (gate order 38) and Angewandte Informatik (40) were never reached |
+| Share EMI already teaches | 49-68 % of a real computer science bachelor (OTH Regensburg's International Computer Science; 68 % as marked, 49 % after a reviewer's corrections), 66.7 % of a second one (TH Ingolstadt Informatik); the band is 40-80 % | The figure moved between marking passes (44, 46, 68 %); about 7 points come from language courses counted through EMI's foreign-language slot |
+| New teaching needed | about 52.5-55 ECTS, about 1.2 professor-equivalents a year; no new lab | Whether staff have the hours is unknown; 11.5 of the 50.5 ECTS of new modules are language courses (10 of them Spanish) |
+| Computer science vs. cybersecurity | | The split comes partly from inconsistent marking: the same topic (penetration testing) was judged teachable by current lecturers in one handbook and new in the other, following which EMI modules the sheet showed. Under one consistent standard both pass or neither does |
+| First-years new to OTH | about 18-20 a year measured as general Informatik (types 13 and 242); the small "Computer Science" group of the model gives 26 (range 7-88), a grouping artefact | The share taken from OTH's own programmes is modelled, not measured; measured as general Informatik, above 28-35 % taken from OTH the estimate falls below the bar of 15 |
+| Ranking | | A two-candidate comparison for information only; measured as the stable Informatik type 13, cybersecurity comes first; as type 242 Informatik stays first |
+| Robustness | holds under the agreed rules | Breaks with a cap on new modules by current lecturers, with at most 50 % from one existing programme, without counting two EMI modules together, or under the project's former strict rule. The "holds in 22 % of the stress grid" figure means 2 of 9 combinations of two factors, not a probability |
 
-| | Result |
-|---|---|
-| Ranking (10,000 Monte Carlo draws) | Cyber Security B.Sc. ranked first in **~92 %** of draws; first in every leave-one-criterion-out run (base case; five of six with German-only demand trends). With demand measured on German entrants only: first in ~78 %, just below the 80 % robustness bar |
-| Expected first-years per year | **21 / 39 / 75** (low / central / high), year 1: 12 / 24 / 45 |
-| New to OTH (not taken from existing programmes) | **~82 %** in the central case (73-86 % across model variants; a model estimate that does not see OTH programmes without a security focus) |
-| Regional pool | ~5,500 qualified school leavers a year; no full-time dedicated cyber bachelor within ~80 km |
-| Demand trend | Bavarian first-years in the cyber-related subjects: 4,936 (2024); central planning value (midpoint of KMK scenario and trend) ~5,540 (2030), ~6,220 (2035). Most of the growth is foreign students: German first-years +1.9 % a year (2019-2024), foreign +12.8 % |
-| Labour market | IT occupations in Bavaria +24 % (2019-2023), +34 % with a degree; Informatik a shortage occupation at bachelor level in Germany (2025) |
-| Faculty fit | EMI covers ~71 % of the foundations but at most ~31 % of the security content |
-| Resources needed | ~2 new professorships, 1 lab engineer, 1 security lab |
+**Not passed:** the Step 2 reader check (22 of 30, bar 24), the Step 3 coherence check (70 %, bar 80 %), the Step 3
+similarity check (competition counts not validated), the Step 1b matching threshold (no reliable cut-off); 7 stress
+values were not run.
 
-Options compared: Cyber Security B.Sc. (winner), Cyber/OT Security M.Sc. (second; proposed as a later
-follow-on), Robotics + AI B.Sc. (third; better as a specialisation of the existing KI B.Sc.).
+**Rules and bias:** several decisive rules were set or changed after earlier results were known (the 40-80 % band
+without a cap on new modules, and "two EMI modules may cover one", set together with "content counts, not credits" 15 minutes after the notes recorded that if module size
+counted, no bachelor would pass). Every module judgement comes from one AI model; no person has checked them yet. The supervisor
+has not confirmed the band reading, the uncapped new modules or the two-module rule. The re-check: `docs/funnel_recheck.md`. Details:
+`docs/funnel_run2_notes.md`; tables in `results/`.
 
-**Main limitations:** no published intake figures for comparable programmes (wide first-year range; the low case
-only just reaches the assumed minimum cohort of 20, and only about 15 of its 21 first-years would be new to OTH), Destatis has no separate cyber-security subject (a proxy is used),
-and job-ad counts are keyword matches, not vacancy statistics. All of these are stated in the report.
+**Earlier baseline (with new resources):** before the existing-resources condition, the analysis recommended a
+Cyber Security B.Sc. (needs ~2 new professorships and a lab). It is kept for comparison (tag
+`baseline-new-resources`, `docs/evidence_tie_break.md`); the report and dashboard are rewritten to the funnel result
+before the freeze.
 
 ---
 
@@ -51,6 +56,21 @@ and job-ad counts are keyword matches, not vacancy statistics. All of these are 
 All options then go through the kill rules (`docs/kill_rules.md`) and a ranking with MCDA + Monte Carlo
 (Dirichlet-sampled weights, sampled score ranges, leave-one-criterion-out). Rules, weights and scoring scales
 were fixed before any ranking was run; every method decision is in `docs/decision_log.md`.
+
+**The data-driven funnel** (the current working answer; rules written before each step in `configs/funnel.yaml`,
+`docs/funnel_preregistration.md`, later changes recorded in `docs/decision_log.md`; one step at a time, each
+reviewed):
+
+| Step | Question | Code (`analysis/`) |
+|---|---|---|
+| 0-1 | Rules; is the data there? | `funnel_inventory.py`, `funnel_modules.py` |
+| 2 | What kinds of programme exist? (824 types from all offers, multilingual embeddings + clustering) | `funnel_types.py` |
+| 3 | Not at OTH, in EMI's field; competition by content similarity | `funnel_units.py` |
+| 4 | Are students coming? (subject pools, backtested trends) | `funnel_demand.py` |
+| 5 | Are there jobs nearby? (BA job board) | `funnel_labour.py` |
+| 6 | How many first-years, how many new to OTH? (Huff model) | `funnel_capture.py` |
+| 7 | Can EMI teach it? (real handbooks, module by module, AI readers) | `funnel_shortlist.py`, `funnel_refs.py`, `funnel_feasibility.py` |
+| 8 | Which one, and how sure? (MCDA, Monte Carlo, PROMETHEE, stress grid) | `funnel_rank.py`, `funnel_listspecs.py` |
 
 ---
 
@@ -68,12 +88,15 @@ src/study_program_intelligence/
   report/           key numbers, figures, outline, report builder, spot checks
 app/                Streamlit dashboard
 data/               raw / interim / processed data (git-ignored, regenerated by the code)
+results/            final tables of the funnel, one folder per step (committed; MANIFEST.csv lists every file)
 reports/            generated tables, figures and the final report (git-ignored)
 tests/              tests
 ```
 
 Key documents to start with:
-- `docs/evidence_funnel.md`: how the shortlist was narrowed down
+- `docs/funnel_run2_notes.md`: the data-driven funnel, step by step, with every number
+- `notebooks/funnel_progress.ipynb`: the same in plain language, for the progress meetings
+- `docs/evidence_funnel.md`: how the baseline shortlist was narrowed down
 - `docs/evidence_ranking.md`: the final ranking and its robustness
 - `docs/decision_log.md`: every method decision with date and reason
 - `docs/kill_rules.md`: the exclusion and scoring rules
@@ -147,6 +170,22 @@ python app/screenshots.py      # screenshots of every page (dashboard must be ru
 Every number in the report and dashboard comes from `reports/key_numbers.yaml`, which links each value to its
 evidence document. The report build stops on unknown placeholders or hand-typed numbers.
 
+**The funnel** runs step by step, each from committed code (it refuses to run on uncommitted changes):
+```powershell
+python -m study_program_intelligence.analysis.funnel_types scan; python -m study_program_intelligence.analysis.funnel_types embed; python -m study_program_intelligence.analysis.funnel_types run
+python -m study_program_intelligence.analysis.funnel_units run
+python -m study_program_intelligence.analysis.funnel_demand
+python -m study_program_intelligence.analysis.funnel_labour measure
+python -m study_program_intelligence.analysis.funnel_capture
+python -m study_program_intelligence.analysis.funnel_shortlist
+python -m study_program_intelligence.analysis.funnel_feasibility verdict
+python -m study_program_intelligence.analysis.funnel_rank
+python -m study_program_intelligence.analysis.funnel_listspecs
+python -m study_program_intelligence.analysis.funnel_results      # copies the final tables into results/
+```
+Steps 5 and 7 also collect data (job-ad counts, reference handbooks, AI marks); how is described in
+`docs/funnel_run2_notes.md`. The marks of the AI readers are committed in `docs/funnel_module_marks_*.csv`.
+
 ### Manual downloads
 A few sources cannot be fetched by script (robots.txt or no API). These files must be placed by hand:
 - **Google Trends** CSVs in `data/raw/trends/` (settings are recorded in `docs/evidence_demand_trends.md`)
@@ -165,6 +204,7 @@ The team's hand-checked theme labels (Step 38) are committed as `docs/theme_labe
 - **Every source is registered** in `configs/sources.yaml` with licence notes, and every download is recorded in
   a manifest in `docs/` (URL, date, SHA-256).
 - **Raw data is not redistributed.** `data/` is git-ignored; the code regenerates it from the original sources.
+  `results/` holds only derived tables (no raw download, no module text of another university, no internal file).
 
 Main sources: Destatis GENESIS-Online (tables 21311, 21321), Bayerisches Landesamt für Statistik (school leavers,
 employment, students by origin), KMK projections, Bundesagentur für Arbeit (Studiensuche/Hochschulkompass data,

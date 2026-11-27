@@ -65,14 +65,23 @@ def test_tie_break_competitors_match_the_competition_table():
 
 
 @needs("data/interim/tie_break.csv")
-def test_job_ads_come_from_the_latest_snapshot_and_missing_keywords_say_why():
+def test_job_ads_match_the_snapshot_they_name_and_missing_keywords_say_why():
+    """The baseline tie-break stays on the snapshot pinned in analysis/tie_break.py (SNAPSHOT_UNTIL) until the freeze: every
+    count must come from the newest snapshot up to that date, and a "no data" keyword must have no row up to it."""
+    from study_program_intelligence.analysis.tie_break import SNAPSHOT_UNTIL
     t = pd.read_csv(INTERIM / "tie_break.csv", dtype={"value": str})
     s = pd.DataFrame(json.loads((REPO / "docs" / "jobsuche_snapshots.json").read_text(encoding="utf-8")))
-    rob = s[(s["keyword_id"] == "robotik") & (s["date"] == s["date"].max()) & (s["region_id"] == "germany")]["total"].iloc[0]
-    got = t[(t["series"] == "robotik") & (t["region"] == "germany")]["value"].iloc[0]
-    assert int(got) == rob
-    missing = t[(t["signal"] == "job ads") & (t["candidate"] == "arvr")]["value"]
-    assert missing.str.startswith("no data").all()
+    s = s[s["date"] <= SNAPSHOT_UNTIL]
+    total = s.set_index(["keyword_id", "region_id", "date"])["total"]
+    jobs = t[t["signal"] == "job ads"]
+    assert (jobs["series"] == "robotik").any()
+    for r in jobs.itertuples():
+        rows = s[s["keyword_id"] == r.series]
+        if r.value.startswith("no data"):
+            assert rows.empty                                  # no snapshot row on or before the pinned date
+            continue
+        assert r.metric == f"ads {rows['date'].max()}"          # the newest snapshot up to the pinned date, one date per keyword
+        assert int(r.value) == total[(r.series, r.region, rows["date"].max())]
 
 
 def test_new_keywords_are_in_the_snapshot_config():

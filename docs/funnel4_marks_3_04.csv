@@ -1,0 +1,13 @@
+row,covered,covering,topic,parent_field,lab,general,unsure,reason
+V0542,no,,T036,yes,no,no,no,"Containers, Docker and Kubernetes are not in any EMI module (E022 covers cloud services, E018 OS basics); main topic is cloud-computing technology, named by timetable subject T036 Cloud-Computing Technologie"
+V0543,no,,E049,yes,no,no,no,"Maxwell equations and numerical field simulation (FEM/FDM) are not taught; E049 Elektrotechnik 1 only introduces static and time-varying fields at basic level"
+V0552,E2,E199,E199,yes,no,no,no,"E199 Wissenschaftliches Arbeiten teaches scientific writing, citing, literature research and presenting/discussing results; only the seminar's subject topic is open"
+V0562,no,,E173,yes,no,no,yes,"E173 Stochastik has the same topic list (probability spaces, random variables, limit theorems) but not the proof-based rigour of an 8-ECTS mathematics module; combinatorics only in E117"
+V0571,no,,none,no,no,no,yes,"Business analyses of company data (balance sheet, cash flow, production and investment planning); E021 only names balance-sheet evaluation in a BWL overview and E033 is generic data analytics"
+V0580,no,,E091,yes,no,no,no,"E091 Informationssicherheit covers protection goals, threat models and security standards but not the audit process for IT systems/IACS"
+V0593,E1,E086,E086,yes,no,no,no,"E086 Informatik 1 teaches information-processing basics, C programming, program design and development environments; Git/Linux use is a minor addition"
+V0597,no,,T221,yes,no,no,no,"No EMI module teaches ERP/enterprise software use; timetable subject T221 SAP-Anwendungsentwicklung fuer Logistik 4.0 has SAP business software as its topic"
+V0615,no,,T018,yes,no,no,yes,"AI methods incl. planning, evolutionary algorithms and neural nets; E178 (problem solving) plus E113 (deep learning for CV/NLP) cover only part, evolutionary algorithms missing; T018 Ausgewaehlte Methoden der KI"
+V0618,no,,E173,yes,no,no,no,"Module is entirely inferential statistics (MLE, confidence intervals, parametric and nonparametric tests, software); E173 Stochastik has inferential statistics only as its second half"
+V0619,no,,none,no,no,no,yes,"Hydrogen production, storage, transport and fuel cells are not taught; E097 Integrierte Energiesysteme lists Power-to-X only as one item"
+V0639,no,,E199,yes,no,no,yes,"Advanced seminar on a specialist topic with demanding literature; E199 Wissenschaftliches Arbeiten (with E016 Bachelorseminar) teaches writing and presenting only at introductory level"

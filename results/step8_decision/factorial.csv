@@ -1,0 +1,161 @@
+set,factor,level,winner,count
+first,min_cohort,20,312 bachelor,1990656
+first,pool_trend,unprojected,312 bachelor,1327104
+first,master_transition,0.5,312 bachelor,1327104
+first,overlap_band,"(0.4, 0.8)",312 bachelor,1327104
+first,overlap_reading,"lower end overall, upper end on one programme",312 bachelor,1990656
+first,one_programme_max,0.8,312 bachelor,1990656
+first,N_cap,"{'bachelor': inf, 'master': inf}",312 bachelor,3981312
+first,references,both inside,312 bachelor,1990656
+first,fit_value,rising,312 bachelor,1990656
+first,feasibility_value,included,312 bachelor,1990656
+first,differentiation,both halves anchor 10,312 bachelor,1327104
+first,labour_measure,median keyword,312 bachelor,1990656
+first,value_anchors,as written,312 bachelor,1990656
+first,widenings,as written,312 bachelor,1990656
+second,min_cohort,20,312 bachelor,5925888
+second,pool_trend,unprojected,312 bachelor,3942144
+second,master_transition,0.5,312 bachelor,3976704
+second,overlap_band,"(0.4, 0.8)",312 bachelor,3981312
+second,overlap_reading,"lower end overall, upper end on one programme",312 bachelor,5928192
+second,one_programme_max,0.8,312 bachelor,5928192
+second,N_cap,"{'bachelor': inf, 'master': inf}",312 bachelor,3952128
+second,references,both inside,312 bachelor,5884416
+second,fit_value,rising,312 bachelor,5971968
+second,feasibility_value,included,312 bachelor,5944320
+second,differentiation,both halves anchor 10,312 bachelor,3953664
+second,labour_measure,median keyword,312 bachelor,5928192
+second,value_anchors,as written,312 bachelor,5939712
+second,widenings,as written,312 bachelor,5971968
+first,widenings,none,312 bachelor,1990656
+second,widenings,none,312 bachelor,5884416
+first,value_anchors,widened,312 bachelor,1990656
+second,value_anchors,widened,312 bachelor,5916672
+first,labour_measure,largest keyword,312 bachelor,1990656
+second,labour_measure,largest keyword,312 bachelor,5928192
+first,differentiation,anchor 20,312 bachelor,1327104
+second,differentiation,anchor 20,312 bachelor,3972096
+first,differentiation,quotient half left out,312 bachelor,1327104
+second,differentiation,quotient half left out,312 bachelor,3930624
+first,feasibility_value,left out,312 bachelor,1990656
+second,feasibility_value,left out,312 bachelor,5912064
+first,fit_value,flat,312 bachelor,1990656
+second,fit_value,flat,312 bachelor,5884416
+first,references,primary only,312 bachelor,1990656
+second,references,primary only,312 bachelor,5971968
+first,min_cohort,20,none,6967296
+first,pool_trend,unprojected,none,4644864
+first,master_transition,0.5,none,4644864
+first,overlap_band,"(0.4, 0.8)",none,4644864
+first,overlap_reading,"lower end overall, upper end on one programme",none,6967296
+first,one_programme_max,0.8,none,3981312
+first,N_cap,"{'bachelor': 20.0, 'master': 10.0}",none,5971968
+first,references,both inside,none,6967296
+first,fit_value,rising,none,6967296
+first,feasibility_value,included,none,6967296
+first,differentiation,both halves anchor 10,none,4644864
+first,labour_measure,median keyword,none,6967296
+first,value_anchors,as written,none,6967296
+first,widenings,as written,none,6967296
+second,N_cap,"{'bachelor': 20.0, 'master': 10.0}",312 bachelor,3952128
+first,widenings,none,none,6967296
+first,value_anchors,widened,none,6967296
+first,labour_measure,largest keyword,none,6967296
+first,differentiation,anchor 20,none,4644864
+first,differentiation,quotient half left out,none,4644864
+first,feasibility_value,left out,none,6967296
+first,fit_value,flat,none,6967296
+first,references,primary only,none,6967296
+first,N_cap,"{'bachelor': 10.0, 'master': 5.0}",none,5971968
+second,N_cap,"{'bachelor': 10.0, 'master': 5.0}",312 bachelor,3952128
+first,one_programme_max,0.5,none,5971968
+first,N_cap,"{'bachelor': inf, 'master': inf}",none,1990656
+second,min_cohort,20,223 bachelor,2881728
+second,pool_trend,unprojected,223 bachelor,1926720
+second,master_transition,0.5,223 bachelor,1952640
+second,overlap_band,"(0.4, 0.8)",223 bachelor,1990656
+second,overlap_reading,"lower end overall, upper end on one programme",223 bachelor,2900736
+second,one_programme_max,0.5,223 bachelor,5801472
+second,N_cap,"{'bachelor': inf, 'master': inf}",223 bachelor,1933824
+second,references,both inside,223 bachelor,2815488
+second,fit_value,rising,223 bachelor,2958336
+second,feasibility_value,included,223 bachelor,2889216
+second,differentiation,both halves anchor 10,223 bachelor,1928448
+second,labour_measure,median keyword,223 bachelor,2867328
+second,value_anchors,as written,223 bachelor,2915712
+second,widenings,as written,223 bachelor,2957184
+second,widenings,none,223 bachelor,2844288
+second,value_anchors,widened,223 bachelor,2885760
+second,labour_measure,largest keyword,223 bachelor,2934144
+second,differentiation,anchor 20,223 bachelor,1938816
+second,differentiation,quotient half left out,223 bachelor,1934208
+second,feasibility_value,left out,223 bachelor,2912256
+second,fit_value,flat,223 bachelor,2843136
+second,references,primary only,223 bachelor,2985984
+second,N_cap,"{'bachelor': 20.0, 'master': 10.0}",223 bachelor,1933824
+second,N_cap,"{'bachelor': 10.0, 'master': 5.0}",223 bachelor,1933824
+first,one_programme_max,none,312 bachelor,1990656
+second,one_programme_max,none,312 bachelor,5928192
+first,one_programme_max,none,none,3981312
+first,overlap_reading,both ends on all EMI modules,312 bachelor,1990656
+second,overlap_reading,both ends on all EMI modules,312 bachelor,5928192
+first,overlap_reading,both ends on all EMI modules,none,6967296
+second,overlap_reading,both ends on all EMI modules,223 bachelor,2900736
+first,overlap_band,"(0.5, 0.8)",312 bachelor,1327104
+second,overlap_band,"(0.5, 0.8)",312 bachelor,3981312
+first,overlap_band,"(0.5, 0.8)",none,4644864
+second,overlap_band,"(0.5, 0.8)",223 bachelor,1990656
+first,overlap_band,"(0.3, 0.9)",312 bachelor,1327104
+second,overlap_band,"(0.3, 0.9)",312 bachelor,3893760
+second,min_cohort,20,312 master,150336
+second,pool_trend,unprojected,312 master,103104
+second,master_transition,0.5,312 master,42624
+second,overlap_band,"(0.3, 0.9)",312 master,258048
+second,overlap_reading,"lower end overall, upper end on one programme",312 master,129024
+second,one_programme_max,0.8,312 master,43776
+second,N_cap,"{'bachelor': inf, 'master': inf}",312 master,86016
+second,references,both inside,312 master,258048
+second,fit_value,flat,312 master,230400
+second,feasibility_value,left out,312 master,133632
+second,differentiation,quotient half left out,312 master,107136
+second,labour_measure,median keyword,312 master,162432
+second,value_anchors,widened,312 master,155520
+second,widenings,none,312 master,229248
+second,labour_measure,largest keyword,312 master,95616
+first,overlap_band,"(0.3, 0.9)",none,4644864
+second,N_cap,"{'bachelor': 20.0, 'master': 10.0}",312 master,86016
+second,N_cap,"{'bachelor': 10.0, 'master': 5.0}",312 master,86016
+second,overlap_band,"(0.3, 0.9)",223 bachelor,1820160
+second,one_programme_max,0.5,312 master,170496
+second,fit_value,rising,312 master,27648
+second,feasibility_value,included,312 master,124416
+second,differentiation,both halves anchor 10,312 master,89856
+second,differentiation,anchor 20,312 master,61056
+second,value_anchors,as written,312 master,102528
+second,widenings,as written,312 master,28800
+second,one_programme_max,none,312 master,43776
+second,overlap_reading,both ends on all EMI modules,312 master,129024
+first,master_transition,0.3,312 bachelor,1327104
+second,master_transition,0.3,312 bachelor,3981312
+first,master_transition,0.3,none,4644864
+second,master_transition,0.3,223 bachelor,1990656
+first,master_transition,0.7,312 bachelor,1327104
+second,master_transition,0.7,312 bachelor,3898368
+first,master_transition,0.7,none,4644864
+second,master_transition,0.7,223 bachelor,1858176
+second,master_transition,0.7,312 master,215424
+first,pool_trend,projected,312 bachelor,1327104
+second,pool_trend,projected,312 bachelor,3942144
+first,pool_trend,projected,none,4644864
+second,pool_trend,projected,223 bachelor,1926720
+second,pool_trend,projected,312 master,103104
+first,pool_trend,foreign added flat,312 bachelor,1327104
+second,pool_trend,foreign added flat,312 bachelor,3972096
+first,pool_trend,foreign added flat,none,4644864
+second,pool_trend,foreign added flat,223 bachelor,1948032
+second,pool_trend,foreign added flat,312 master,51840
+first,min_cohort,25,312 bachelor,1990656
+second,min_cohort,25,312 bachelor,5930496
+first,min_cohort,25,none,6967296
+second,min_cohort,25,223 bachelor,2919744
+second,min_cohort,25,312 master,107712

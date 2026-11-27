@@ -1,0 +1,82 @@
+{
+  "stamp": {
+    "commit": "92da989",
+    "date": "2026-11-14",
+    "clean": true
+  },
+  "diagnostic_setting": null,
+  "embed_commit": "92da989",
+  "offers": 19872,
+  "full_time": 14902,
+  "umap_seeds": [
+    42,
+    43,
+    44
+  ],
+  "refits_per_setting": 10,
+  "subsample": 0.8,
+  "settings": 10,
+  "selected": {
+    "min_cluster_size": 10,
+    "method": "eom",
+    "clusters": 427,
+    "stable_clusters": 233,
+    "share_in_stable": 0.5411,
+    "noise": 0.1664,
+    "largest_cluster_share": 0.0129
+  },
+  "former_rule_setting": [
+    50,
+    "eom"
+  ],
+  "settings_within_limits": 10,
+  "stable_types": 233,
+  "mid_sized_types": 130,
+  "rare_types": 461,
+  "rare_cutoff": 0.072,
+  "rare_cutoff_median_of_type_medians": 0.0625,
+  "rare_types_with_that_cutoff": 545,
+  "mid_sized_types_with_that_cutoff": 124,
+  "left_over": {
+    "left_over_offers": 6839,
+    "single_offers": 752,
+    "groups_at_one_institution": 197,
+    "offers_in_groups_at_one_institution": 571
+  },
+  "rare_types_with_the_stable_median_radius": 461,
+  "median_radius_90_stable": 0.0494,
+  "full_time_in_stable": 8063,
+  "full_time_in_mid_sized": 3702,
+  "full_time_in_rare": 1814,
+  "full_time_without_type": 1323,
+  "assigned_afterwards": 3809,
+  "assigned_afterwards_full_time": 172,
+  "offers_without_any_type": 2484,
+  "units": 1285,
+  "units_by_kind": {
+    "mid-sized": 253,
+    "rare": 570,
+    "stable": 462
+  },
+  "types_with_a_unit": 780,
+  "largest_type_members": 186,
+  "median_stable_members": 28.0,
+  "ari_study_fields": 0.085,
+  "offers_in_ari": 13579,
+  "tfidf_k": 233,
+  "method_dependent_stable": 138,
+  "method_dependent_stable_typed_offers_only": 80,
+  "old_lists": 18,
+  "old_lists_tested_fitted": 17,
+  "old_lists_recovered_fitted": 3,
+  "old_lists_tested_assigned": 17,
+  "old_lists_recovered_assigned": 3,
+  "files": {
+    "funnel2_offers.csv": "d472a3cf360af9da",
+    "funnel2_embeddings.npy": "398d5f70049c86da",
+    "funnel2_grid.csv": "b772cecca535fc83",
+    "funnel2_types.csv": "efc5b106c3ccdb61",
+    "funnel2_offer_types.csv": "509fbdbe7fc60ac1",
+    "funnel2_centroids.npy": "52aa325c89b4b840"
+  }
+}

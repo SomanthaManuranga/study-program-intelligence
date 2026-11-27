@@ -1,0 +1,422 @@
+gate order,type,level,try,institution,city,title,programme_id,distance to the centroid,offers from
+1,312,bachelor,1,Hochschule Hof,"Hof, Saale",Computer Science Bachelor,112336040,0.0031068540188534666,universities of applied sciences
+1,312,bachelor,2,Ostbayerische Technische Hochschule Regensburg,Regensburg,International Computer Science Bachelor of Science,173090215,0.016229395478857045,universities of applied sciences
+2,256,bachelor,1,Technische Hochschule Lübeck,Lübeck,Stadtplanung Bachelor,120576595,0.004940242328003053,universities of applied sciences
+3,223,bachelor,1,Technische Hochschule Mannheim,Mannheim,Cyber Security Bachelor,73429540,0.016663333677302106,universities of applied sciences
+3,223,bachelor,2,Technische Hochschule Deggendorf,Deggendorf,Cyber Security Bachelor of Science,95741402,0.01698792174231567,universities of applied sciences
+3,223,bachelor,3,Hochschule Esslingen,Esslingen am Neckar,IT-Sicherheit Bachelor,176374456,0.025203395494464598,universities of applied sciences
+3,223,bachelor,4,Hochschule Mittweida,Mittweida,IT-Sicherheit Bachelor of Science,92531693,0.031560354821160264,universities of applied sciences
+3,223,bachelor,5,Hochschule für Angewandte Wissenschaften Kiel,Kiel,Cybersicherheit Bachelor,385692409,0.03355984620927399,universities of applied sciences
+3,223,bachelor,6,Mediadesign Hochschule,Berlin,Information Technology - Network Engineering & Cyber Security (B.Sc.) Bachelor,304679525,0.03564730293371077,universities of applied sciences
+3,223,bachelor,7,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Informationssicherheit Bachelor of Science,173090156,0.03618370290013262,universities of applied sciences
+3,223,bachelor,8,Leibniz-Fachhochschule Hannover,Hannover,IT-Security B.Sc. Bachelor,93224403,0.041612690474342684,universities of applied sciences
+3,223,bachelor,9,Hochschule Bonn-Rhein-Sieg,Sankt Augustin,Cyber Security & Privacy Bachelor,120112950,0.04177899724330447,universities of applied sciences
+3,223,bachelor,10,Technische Hochschule Ingolstadt,"Ingolstadt, Donau",Cybersicherheit Bachelor of Science,132134950,0.04203564109207636,universities of applied sciences
+3,223,bachelor,11,FOM Hochschule für Oekonomie & Management,"Essen, Ruhr",Cyber Security Bachelor of Science,149857631,0.04397947894622101,universities of applied sciences
+3,223,bachelor,12,"Hochschule für Technik, Wirtschaft und Medien Offenburg",Offenburg,Unternehmens- und IT-Sicherheit Bachelor,73429857,0.04512652479644885,universities of applied sciences
+3,223,bachelor,13,Hochschule Neu-Ulm,Neu-Ulm,Angewandte Cyber Security Bachelor of Science,388277986,0.04667874040759867,universities of applied sciences
+3,223,bachelor,14,Technische Hochschule Mittelhessen,Friedberg (Hessen),Organisations- und IT-Sicherheit Bachelor of Science (B.Sc.),314245211,0.04695792130498233,universities of applied sciences
+3,223,bachelor,15,Hochschule Niederrhein,Mönchengladbach,Cyber Security Management Vollzeit Bachelor of Science (B.Sc.),123198698,0.057831332259608015,universities of applied sciences
+4,242,bachelor,1,Technische Hochschule Ingolstadt,"Ingolstadt, Donau",Informatik Bachelor,73209158,0.02084615845758475,universities of applied sciences
+4,242,bachelor,2,Hochschule für Technik Stuttgart,Stuttgart,Informatik Bachelor,73026033,0.022374981000966132,universities of applied sciences
+4,242,bachelor,3,Hochschule Aalen,"Aalen, Württemberg",Informatik Bachelor,73210450,0.022951985954100418,universities of applied sciences
+4,242,bachelor,4,Hochschule Osnabrück,Osnabrück,Informatik Bachelor,375922893,0.023908131629268303,universities of applied sciences
+4,242,bachelor,5,Hochschule Bonn-Rhein-Sieg,Sankt Augustin,Informatik Bachelor,73210147,0.02592589878803775,universities of applied sciences
+4,242,bachelor,6,Hochschule Emden/ Leer,"Emden, Ostfriesland",Informatik Bachelor,73209862,0.026572888058933652,universities of applied sciences
+4,242,bachelor,7,Westfälische Hochschule,Gelsenkirchen,Informatik Bachelor,78846500,0.027372141237594683,universities of applied sciences
+4,242,bachelor,8,Hochschule Coburg,Coburg,Informatik Bachelor,78849481,0.027575300120391777,universities of applied sciences
+4,242,bachelor,9,FH Münster,"Steinfurt, Westfalen",Informatik Bachelor,123110094,0.02781148850492654,universities of applied sciences
+4,242,bachelor,10,Hochschule Darmstadt,Darmstadt,Informatik Bachelor of Science,132879135,0.02798380046615656,universities of applied sciences
+4,242,bachelor,11,Hochschule Schmalkalden,Schmalkalden,Informatik Bachelor,73023729,0.029521525181603114,universities of applied sciences
+4,242,bachelor,12,Hochschule für Technik und Wirtschaft Dresden,Dresden,Informatik Bachelor,78849679,0.029598024949209933,universities of applied sciences
+4,242,bachelor,13,FOM Hochschule für Oekonomie & Management,"Essen, Ruhr",Informatik Bachelor of Science,78849044,0.029791530680295164,universities of applied sciences
+4,242,bachelor,14,Technische Hochschule Rosenheim,"Rosenheim, Oberbayern",Informatik Bachelor of Science,78846103,0.029871155846338482,universities of applied sciences
+4,242,bachelor,15,Hochschule Niederrhein,Krefeld,Informatik Bachelor of Science (B.Sc.),73024415,0.031280744595805654,universities of applied sciences
+4,242,bachelor,16,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Informatik Bachelor of Engineering,73209226,0.03182432233590671,universities of applied sciences
+4,242,bachelor,17,Westfälische Hochschule,Bocholt,"Informatik (Ausbildungs-, Praxis- und Berufsintegrierend) Bachelor",78846467,0.032974852473694805,universities of applied sciences
+4,242,bachelor,18,Hochschule Bremerhaven,Bremerhaven,Informatik Bachelor,73423873,0.03310113240347645,universities of applied sciences
+4,242,bachelor,19,"Hochschule für Technik, Wirtschaft und Kultur Leipzig",Leipzig,Informatik Bachelor of Science,271961198,0.033934170646554795,universities of applied sciences
+4,242,bachelor,20,Hochschule Hof,"Hof, Saale",Informatik Bachelor,73208828,0.03423256744585779,universities of applied sciences
+4,242,bachelor,21,Technische Hochschule Mannheim,Mannheim,Informatik Bachelor,73429493,0.034322936302188634,universities of applied sciences
+4,242,bachelor,22,Hochschule Bochum,Bochum,Informatik Bachelor,73423504,0.03527395178838377,universities of applied sciences
+4,242,bachelor,23,Technische Hochschule Brandenburg,Brandenburg an der Havel,Informatik Bachelor of Science,73423512,0.03595368569880608,universities of applied sciences
+4,242,bachelor,24,NORDAKADEMIE Hochschule der Wirtschaft,Elmshorn,IT-Engineering/Technische Informatik Bachelor,135931003,0.03625574299662149,universities of applied sciences
+4,242,bachelor,25,Hochschule für Angewandte Wissenschaften Kiel,Kiel,Informatik Bachelor,120874822,0.037698300983180166,universities of applied sciences
+4,242,bachelor,26,FH Münster,"Steinfurt, Westfalen",Informatik (dual - ausbildungsintegrierend) Bachelor,123110133,0.04035282688234354,universities of applied sciences
+4,242,bachelor,27,Hochschule Niederrhein,Krefeld,"Informatik, Dual Bachelor of Science (B.Sc.)",73024439,0.04142108919273846,universities of applied sciences
+5,206,bachelor,1,Rheinische Hochschule,Köln,Elektrotechnik Bachelor of Engineering,409312612,0.005676364247444887,universities of applied sciences
+5,206,bachelor,2,Hochschule Niederrhein,Krefeld,Elektrotechnik Bachelor of Engineering (B.Eng.),73024388,0.005676364247444887,universities of applied sciences
+5,206,bachelor,3,Fachhochschule Aachen,Aachen,Elektrotechnik Bachelor,73210610,0.005676364247444887,universities of applied sciences
+5,206,bachelor,4,Hochschule Hof,"Hof, Saale",Elektrotechnik Bachelor,92680829,0.005676364247444887,universities of applied sciences
+5,206,bachelor,5,Fachhochschule Aachen,Jülich,Elektrotechnik - Energietechnik Bachelor,73210611,0.02531984627441808,universities of applied sciences
+5,206,bachelor,6,Hochschule Bielefeld,Bielefeld,Elektrotechnik (berufsbegleitend) Bachelor,73434612,0.027936665980346387,universities of applied sciences
+5,206,bachelor,7,Hochschule Furtwangen,Furtwangen im Schwarzwald,Elektrotechnik in Anwendungen Bachelor of Science,311628707,0.03634225098399679,universities of applied sciences
+5,206,bachelor,8,Technische Hochschule Mannheim,Mannheim,International Engineering Bachelor,329048645,0.04325081443115941,universities of applied sciences
+5,206,bachelor,9,FH Münster,"Steinfurt, Westfalen",International Engineering - Electrical Engineering Bachelor,137203770,0.044415194403922054,universities of applied sciences
+5,206,bachelor,10,FH Münster,"Steinfurt, Westfalen",Elektrotechnik (dual - praxisintegrierend) Bachelor,381794943,0.054534412058211745,universities of applied sciences
+5,206,bachelor,11,Fachhochschule Aachen,Jülich,Elektrotechnik PLuS Bachelor,73210645,0.054899469490864106,universities of applied sciences
+5,206,bachelor,12,Hochschule RheinMain,Rüsselsheim am Main,Berufsbegleitendes Ingenieurstudium Elektrotechnik Bachelor,73025278,0.06429611582533501,universities of applied sciences
+5,206,bachelor,13,Fachhochschule Aachen,Aachen,Elektrotechnik mit Praxissemester Bachelor,73210622,0.07079424852303351,universities of applied sciences
+6,300,master,1,"Hochschule für Technik, Wirtschaft und Kultur Leipzig",Leipzig,Bauingenieurwesen Master of Engineering,271961196,0.0020311504442795947,universities of applied sciences
+6,300,master,2,Hochschule Biberach,Biberach an der Riß,Bauingenieurwesen Master,73211075,0.0020311504442795947,universities of applied sciences
+6,300,master,3,Hochschule für Technik und Wirtschaft Berlin,Berlin,Bauingenieurwesen Master,73430651,0.0020311504442795947,universities of applied sciences
+6,300,master,4,Technische Hochschule Rosenheim,"Rosenheim, Oberbayern",Gebäudephysik Master of Science (M. Sc.),92638172,0.034082725625887766,universities of applied sciences
+6,300,master,5,Hochschule für Technik Stuttgart,Stuttgart,Gebäudephysik Master,92655184,0.034082725625887766,universities of applied sciences
+6,300,master,6,Hochschule Biberach,Biberach an der Riß,Engineering Management Master,73211083,0.03439689618795938,universities of applied sciences
+6,300,master,7,SRH Heidelberg,"Heidelberg, Neckar",International Business and Engineering Master of Engineering (M.Eng.),73433469,0.05598231534844755,universities of applied sciences
+7,300,bachelor,1,"Hochschule für Technik, Wirtschaft und Kultur Leipzig",Leipzig,Bauingenieurwesen Bachelor of Engineering,271961178,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,2,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Bauingenieurwesen Bachelor of Engineering,73209215,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,3,Hochschule für Technik und Wirtschaft Berlin,Berlin,Bauingenieurwesen Bachelor,73430482,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,4,Hochschule Karlsruhe,"Karlsruhe, Baden",Bauingenieurwesen Bachelor,73434354,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,5,Hochschule Wismar,"Wismar, Mecklenburg",Bauingenieurwesen Bachelor,78849220,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,6,Technische Hochschule Rosenheim,"Rosenheim, Oberbayern",Bauingenieurwesen Bachelor of Engineering,92638170,0.0020311504442795947,universities of applied sciences
+7,300,bachelor,7,Hochschule München,München,Bauingenieurwesen Bachelor,78847200,0.027962097259482177,universities of applied sciences
+7,300,bachelor,8,Hochschule Mainz,Mainz am Rhein,"Bauingenieurwesen, internationales Bachelor",73209424,0.028338796422728962,universities of applied sciences
+7,300,bachelor,9,Hochschule für Wirtschaft und Recht Berlin,Berlin,Bauingenieurwesen Bachelor of Engineering,73430278,0.029377481552420703,universities of applied sciences
+7,300,bachelor,10,Fachhochschule Aachen,Aachen,Bauingenieurwesen Dual Bachelor,73210705,0.03374244457671827,universities of applied sciences
+7,300,bachelor,11,Hochschule Trier,Trier,Bauingenieurwesen (dual) Bachelor,92858993,0.034713696458341436,universities of applied sciences
+7,300,bachelor,12,Hochschule München,München,Bauingenieurwesen (dual) Bachelor,78847285,0.04506961556201594,universities of applied sciences
+7,300,bachelor,13,Hochschule Karlsruhe,"Karlsruhe, Baden",Bauingenieurwesen (Trinational) Bachelor,73434370,0.047216936291174516,universities of applied sciences
+7,300,bachelor,14,Hochschule für Technik Stuttgart,Stuttgart,Wirtschaftsingenieurwesen (Bau und Immobilien) Bachelor,73026040,0.04733902069328422,universities of applied sciences
+8,342,bachelor,1,Berlin International University of Applied Sciences,Berlin,Data Science & Business Bachelor of Arts,73419724,0.022478522667171097,universities of applied sciences
+8,342,bachelor,2,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Business Analytics Bachelor of Science,132805074,0.02906662522497372,universities of applied sciences
+9,232,bachelor,1,Hochschule Heilbronn,"Heilbronn, Neckar",Software Engineering Bachelor,73433320,0.02541011745248145,universities of applied sciences
+9,232,bachelor,2,Hochschule Bielefeld,Gütersloh,Software Engineering (praxisintegriert) Bachelor,73434611,0.036560910764319,universities of applied sciences
+9,232,bachelor,3,Gisma University of Applied Sciences,Potsdam,Software Engineering Bachelor,274843236,0.042219528628209435,universities of applied sciences
+9,232,bachelor,4,Technische Hochschule Aschaffenburg,Aschaffenburg,Software Design Bachelor,100654640,0.04345564694370041,universities of applied sciences
+10,312,master,1,Technische Hochschule Bingen,Bingen am Rhein,Informatik/Computer Science Master of Science,73025607,0.009267081625531026,universities of applied sciences
+10,312,master,2,Hochschule Schmalkalden,Schmalkalden,Applied Computer Science Master,73023762,0.023764314623333282,universities of applied sciences
+11,193,bachelor,1,Technische Hochschule Nürnberg,"Nürnberg, Mittelfranken",Bauingenieurwesen Bachelor,73026851,0.01018646184141958,universities of applied sciences
+11,193,bachelor,2,Fachhochschule Hildesheim/ Holzminden/ Göttingen,Hildesheim,Bauingenieurwesen Bachelor of Engineering,73434229,0.010644073303485047,universities of applied sciences
+11,193,bachelor,3,Hochschule Darmstadt,Darmstadt,Bauingenieurwesen Bachelor of Engineering,132879083,0.011234762581443625,universities of applied sciences
+11,193,bachelor,4,Hochschule Bochum,Bochum,Bauingenieurwesen Bachelor,73423492,0.011664997833930824,universities of applied sciences
+11,193,bachelor,5,Technische Hochschule Ostwestfalen-Lippe,Detmold,Bauingenieurwesen Bachelor,78849026,0.01180880916196847,universities of applied sciences
+11,193,bachelor,6,Fachhochschule Aachen,Aachen,Bauingenieurwesen Bachelor,73210651,0.011819748813267972,universities of applied sciences
+11,193,bachelor,7,Frankfurt University of Applied Sciences,Frankfurt am Main,Bauingenieurwesen Bachelor,78846084,0.011890826527417242,universities of applied sciences
+11,193,bachelor,8,Hochschule für Technik Stuttgart,Stuttgart,Bauingenieurwesen Bachelor,92655183,0.012109311338392104,universities of applied sciences
+11,193,bachelor,9,Technische Hochschule Köln,Köln,Bauingenieurwesen Bachelor,73428324,0.012459677967989635,universities of applied sciences
+11,193,bachelor,10,Hochschule Mainz,Mainz am Rhein,Bauingenieurwesen Bachelor of Engineering (B.Eng.),73209419,0.012781574780349358,universities of applied sciences
+11,193,bachelor,11,Hochschule Konstanz,Konstanz,Bauingenieurwesen Bachelor,132878947,0.012948690629917547,universities of applied sciences
+11,193,bachelor,12,Hochschule Trier,Trier,Bauingenieurwesen Bachelor,73025656,0.013251690325034149,universities of applied sciences
+11,193,bachelor,13,Berliner Hochschule für Technik,Berlin,Bauingenieurwesen Bachelor of Engineering,78847909,0.014501224207742469,universities of applied sciences
+11,193,bachelor,14,Hochschule Biberach,Biberach an der Riß,Bauingenieurwesen Bachelor,73211051,0.014526977047130796,universities of applied sciences
+11,193,bachelor,15,Hochschule RheinMain,Wiesbaden,Bauingenieurwesen Bachelor,73025271,0.01757589332658116,universities of applied sciences
+11,193,bachelor,16,Ostbayerische Technische Hochschule Regensburg,Regensburg,Bauingenieurwesen Bachelor of Engineering,73024615,0.01871359665715089,universities of applied sciences
+11,193,bachelor,17,Hochschule Bremen,Bremen,Bauingenieurwesen Bachelor,73424072,0.01940157947445964,universities of applied sciences
+11,193,bachelor,18,Hochschule für Technik und Wirtschaft des Saarlandes,Saarbrücken,Bauingenieurwesen Bachelor,73023764,0.020779572670332147,universities of applied sciences
+11,193,bachelor,19,Hochschule für Angewandte Wissenschaften Kiel,Kiel,Bauingenieurwesen Bachelor,73427603,0.02147614360452843,universities of applied sciences
+11,193,bachelor,20,Ostfalia Hochschule,Suderburg,Bauingenieurwesen Bachelor,78849245,0.021953878581750574,universities of applied sciences
+11,193,bachelor,21,Technische Hochschule Mittelhessen,"Gießen, Lahn",Bauingenieurwesen Bachelor of Engineering (B.Eng.),78846904,0.023726997476310352,universities of applied sciences
+11,193,bachelor,22,Hochschule Coburg,Coburg,Allgemeines Bauingenieurwesen Bachelor,78849478,0.02431126824481633,universities of applied sciences
+11,193,bachelor,23,FH Münster,"Münster, Westfalen",Bauingenieurwesen Bachelor,123110085,0.02431710240250784,universities of applied sciences
+11,193,bachelor,24,Hochschule Magdeburg-Stendal,Magdeburg,Bauingenieurwesen Bachelor of Engineering,73429979,0.024627079942902474,universities of applied sciences
+11,193,bachelor,25,Fachhochschule Potsdam,Potsdam,Bauingenieurwesen Bachelor,73426671,0.02600429387658676,universities of applied sciences
+11,193,bachelor,26,Hochschule Mainz,Mainz am Rhein,Bauingenieurwesen dual Bachelor of Engineering (B.Eng.),286089313,0.026524534387877496,universities of applied sciences
+11,193,bachelor,27,IU Internationale Hochschule,Erfurt,Bauingenieurwesen Bachelor of Engineering,92859055,0.02693472057589885,universities of applied sciences
+11,193,bachelor,28,Technische Hochschule Augsburg,"Augsburg, Bayern",Bauingenieurwesen Bachelor,73419782,0.027040060480270522,universities of applied sciences
+11,193,bachelor,29,Frankfurt University of Applied Sciences,Frankfurt am Main,Bauingenieurwesen dual Bachelor,78846232,0.028551349079798838,universities of applied sciences
+11,193,bachelor,30,Hochschule Biberach,Biberach an der Riß,Bau-Projektmanagement/Bauingenieurwesen Bachelor,73211055,0.03102990069207212,universities of applied sciences
+11,193,bachelor,31,Hochschule für Technik Stuttgart,Stuttgart,Infrastrukturmanagement Bachelor,73026037,0.0312709402681961,universities of applied sciences
+11,193,bachelor,32,Fachhochschule Potsdam,Potsdam,Bauingenieurwesen - Infrastruktursysteme Bachelor,73426673,0.032106734252503655,universities of applied sciences
+11,193,bachelor,33,Fachhochschule Potsdam,Potsdam,Bauingenieurwesen - Siedlungswasserwirtschaft Bachelor,73426669,0.03252946992146599,universities of applied sciences
+11,193,bachelor,34,Technische Hochschule Deggendorf,Deggendorf,Bauingenieurwesen Bachelor of Engineering,78948989,0.032585063385219826,universities of applied sciences
+11,193,bachelor,35,Hochschule Bielefeld,"Minden, Westfalen",Bauingenieurwesen Bachelor,73434579,0.0363158119367919,universities of applied sciences
+11,193,bachelor,36,Technische Hochschule Ingolstadt,Neuburg an der Donau,Nachhaltiges Bauingenieurwesen Bachelor of Engineering,134031487,0.037828902949207155,universities of applied sciences
+11,193,bachelor,37,Frankfurt University of Applied Sciences,Frankfurt am Main,Infrastruktur und Umwelt Bachelor,135223080,0.03831020812078456,universities of applied sciences
+11,193,bachelor,38,hochschule 21,Buxtehude,Bauingenieurwesen DUAL Bachelor of Engineering,78849399,0.0386596441133511,universities of applied sciences
+11,193,bachelor,39,FH Münster,"Münster, Westfalen",Bauingenieurwesen (dual - ausbildungsintegrierend) Bachelor,123110169,0.03892307800231731,universities of applied sciences
+11,193,bachelor,40,Fachhochschule Erfurt,Erfurt,Bauingenieurwesen Bachelor,73425096,0.03938956184089448,universities of applied sciences
+11,193,bachelor,41,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Bauingenieurwesen - digitales Planen und Bauen Bachelor of Engineering,173090157,0.041533296519379204,universities of applied sciences
+11,193,bachelor,42,Fachhochschule Aachen,Aachen,Bauingenieurwesen mit Auslandssemester Bachelor,73210657,0.041919735876905784,universities of applied sciences
+11,193,bachelor,43,Hochschule Bochum,Bochum,Bauingenieurwesen ausbildungsbegleitend Bachelor,73423545,0.043099082861178806,universities of applied sciences
+11,193,bachelor,44,Technische Hochschule Lübeck,Lübeck,Bauingenieurwesen Bachelor,78848257,0.04367114996390187,universities of applied sciences
+11,193,bachelor,45,Ostfalia Hochschule,Suderburg,Bauingenieurwesen im Praxisverbund Bachelor,78849351,0.043933292624302345,universities of applied sciences
+11,193,bachelor,46,Fachhochschule Aachen,Aachen,Bauingenieurwesen mit Orientierungssemester Bachelor,92365614,0.04466636995183637,universities of applied sciences
+11,193,bachelor,47,Technische Hochschule Deggendorf,Deggendorf,Projektmanagement im Bauingenieurwesen Bachelor of Engineering,136803231,0.04559187903562756,universities of applied sciences
+11,193,bachelor,48,FH Münster,"Münster, Westfalen",International Engineering - Civil Engineering Bachelor,287220440,0.046131367285216274,universities of applied sciences
+11,193,bachelor,49,Fachhochschule Aachen,Aachen,Bauingenieurwesen mit Praxissemester Bachelor,73210655,0.046365997532580305,universities of applied sciences
+11,193,bachelor,50,Technische Hochschule Ingolstadt,Neuburg an der Donau,Sustainable Civil Engineering Bachelor of Engineering,158112750,0.04905467978402456,universities of applied sciences
+11,193,bachelor,51,Hochschule Osnabrück,Osnabrück,Baubetriebswirtschaft Dual Bachelor,10850139,0.056100616984121277,universities of applied sciences
+11,193,bachelor,52,Hochschule Bielefeld,"Minden, Westfalen",Projektmanagement Bau Bachelor,73434586,0.05724392011247115,universities of applied sciences
+11,193,bachelor,53,Hochschule Karlsruhe,"Karlsruhe, Baden",Baumanagement und Baubetrieb Bachelor,73434349,0.05985827161202828,universities of applied sciences
+11,193,bachelor,54,Technische Hochschule Deggendorf,"Pfarrkirchen, Niederbayern",Building Products and Processes / Bauprodukte und -Prozesse Bachelor of Engineering,133213575,0.06690007048122104,universities of applied sciences
+11,193,bachelor,55,Technische Hochschule Augsburg,"Augsburg, Bayern",Energieeffizientes Planen und Bauen Bachelor,73419794,0.06805673562172199,universities of applied sciences
+11,193,bachelor,56,Technische Hochschule Köln,Köln,Raumentwicklung und Infrastruktursysteme Bachelor,173090264,0.06813039282794331,universities of applied sciences
+11,193,bachelor,57,Technische Hochschule Augsburg,"Augsburg, Bayern",Digitaler Baumeister Bachelor,133655602,0.07255819753002457,universities of applied sciences
+11,193,bachelor,58,Hochschule für Technik und Wirtschaft des Saarlandes,Saarbrücken,Europäisches Baumanagement (dt.-frz.-lux. Studiengang) Bachelor,73023776,0.07503261141570983,universities of applied sciences
+11,193,bachelor,59,Hochschule für Technik Stuttgart,Stuttgart,KlimaEngineering - Klimagerechtes und ressourceneffizientes Bauen Bachelor,213931251,0.07636607689884745,universities of applied sciences
+12,573,master,1,Hochschule Furtwangen,Furtwangen im Schwarzwald,Artifical Intelligence and Data Science for Digital Business Management Master of Science,311628727,0.015208551532812642,universities of applied sciences
+13,12,bachelor,1,Universität Bonn,Bonn,Physik Bachelor of Science,10843180,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,2,Bergische Universität Wuppertal,Wuppertal,Physik Bachelor,10853404,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,3,Universität Siegen,Siegen,Physik Bachelor of Science,73023898,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,4,Universität Stuttgart,Stuttgart,Physik Bachelor of Arts,73026606,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,5,Universität Osnabrück,Osnabrück,Physik Bachelor,73208117,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,6,Universität Oldenburg,Oldenburg (Oldb),Physik Bachelor of Science,73208154,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,7,Universität Würzburg,Würzburg,Physik Bachelor,73209681,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,8,FAU Erlangen-Nürnberg,Erlangen,Physik Bachelor of Science,73425708,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,9,Universität zu Köln,Köln,Physik Bachelor of Science,73427908,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,10,LMU München,München,Physik Bachelor,73428564,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,11,Universität Paderborn,Paderborn,Physik Bachelor,73429308,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,12,Universität Giessen,"Gießen, Lahn",Physik Bachelor,73431762,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,13,Karlsruher Institut für Technologie,"Karlsruhe, Baden",Physik Bachelor,73433678,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,14,RPTU Kaiserslautern-Landau,Kaiserslautern,Physik Bachelor,73433847,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,15,Universität zu Kiel,Kiel,Physik 1-Fach-Bachelor,73434210,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,16,Universität Kassel,"Kassel, Hessen",Physik Bachelor,73434259,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,17,Universität Freiburg im Breisgau,Freiburg,Physik Bachelor of Science,78846670,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,18,Universität Münster,"Münster, Westfalen",Physik Bachelor,78846949,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,19,BTU Cottbus-Senftenberg,Cottbus,Physik Bachelor,78849540,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,20,TU Dortmund,Dortmund,Physik Bachelor of Science,78850236,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,21,Universität Düsseldorf,Düsseldorf,Physik Bachelor,78850340,0.002343953760768791,universities only (no offer at a university of applied sciences)
+13,12,bachelor,22,Universität Tübingen,Tübingen,Physik Bachelor,132880062,0.002343953760769235,universities only (no offer at a university of applied sciences)
+13,12,bachelor,23,Universität Würzburg,Würzburg,Mathematische Physik Bachelor,73209722,0.02401410140758231,universities only (no offer at a university of applied sciences)
+13,12,bachelor,24,LMU München,München,"Physik, Theoretische Bachelor",73428650,0.02436571323087866,universities only (no offer at a university of applied sciences)
+13,12,bachelor,25,LMU München,München,Experimentalphysik Bachelor,73428648,0.03224776275213159,universities only (no offer at a university of applied sciences)
+13,12,bachelor,26,RWTH Aachen,Aachen,Physik Plus Bachelor,100697267,0.03322292491045298,universities only (no offer at a university of applied sciences)
+13,12,bachelor,27,RPTU Kaiserslautern-Landau,Kaiserslautern,TechnoPhysik Bachelor,73433885,0.03854715592355562,universities only (no offer at a university of applied sciences)
+13,12,bachelor,28,Universität Regensburg,Regensburg,Physik Bachelor of Science,73025194,0.04063295425032387,universities only (no offer at a university of applied sciences)
+13,12,bachelor,29,LMU München,München,Physik plus Meteorologie Bachelor,73428565,0.04566471575579123,universities only (no offer at a university of applied sciences)
+13,12,bachelor,30,Constructor University,Bremen,Physics and Data Science Bachelor,184014571,0.05343991940340831,universities only (no offer at a university of applied sciences)
+13,12,bachelor,31,Freie Universität Berlin,Berlin,Physik Bachelor,73430959,0.08807053488725414,universities only (no offer at a university of applied sciences)
+14,726,bachelor,1,Berliner Hochschule für Technik,Berlin,Data Engineering Bachelor of Engineering,388277990,0.013867119161997787,universities of applied sciences
+14,726,bachelor,2,Hochschule München,München,Engineering Physics and Data Science Bachelor,237627825,0.02498836138804461,universities of applied sciences
+15,425,master,1,FOM Hochschule für Oekonomie & Management,"Essen, Ruhr",KI & Business Analytics Master of Science,78848901,0.028800194837450777,universities of applied sciences
+16,22,bachelor,1,FH Münster,"Münster, Westfalen",Architektur Bachelor,123110099,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,2,Hochschule Darmstadt,Darmstadt,Architektur Bachelor of Engineering,132879093,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,3,Hochschule RheinMain,Wiesbaden,Architektur Bachelor,73025288,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,4,Hochschule Trier,Trier,Architektur Bachelor,73025655,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,5,Technische Hochschule Nürnberg,"Nürnberg, Mittelfranken",Architektur Bachelor,73026844,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,6,Technische Hochschule Würzburg-Schweinfurt,Würzburg,Architektur Bachelor of Engineering,73209214,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,7,Hochschule Mainz,Mainz am Rhein,Architektur Bachelor of Engineering (B.Eng.),73209418,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,8,Hochschule Anhalt,Dessau-Roßlau,Architektur Bachelor,73210335,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,9,Fachhochschule Aachen,Aachen,Architektur Bachelor,73210600,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,10,Hochschule Biberach,Biberach an der Riß,Architektur Bachelor,73211053,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,11,Hochschule Bremen,Bremen,Architektur Bachelor,73424016,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,12,SRH Heidelberg,"Heidelberg, Neckar",Architektur Bachelor of Arts (B.A.),73433377,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,13,Hochschule Karlsruhe,"Karlsruhe, Baden",Architektur Bachelor,73434351,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,14,Hochschule Bielefeld,"Minden, Westfalen",Architektur Bachelor,73434578,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,15,Frankfurt University of Applied Sciences,Frankfurt am Main,Architektur Bachelor,78846247,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,16,Technische Hochschule Mittelhessen,"Gießen, Lahn",Architektur Bachelor of Engineering (B.Eng.),78846792,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,17,Hochschule München,München,Architektur Bachelor,78847274,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,18,Berliner Hochschule für Technik,Berlin,Architektur Bachelor of Science,78847781,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,19,Technische Hochschule Lübeck,Lübeck,Architektur Bachelor,78848261,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,20,Berlin International University of Applied Sciences,Berlin,Architektur Bachelor of Arts,93361992,0.0022844635369843047,universities of applied sciences
+16,22,bachelor,21,Fachhochschule Dortmund,Dortmund,Architektur Bachelor,78849897,0.015463607604279894,universities of applied sciences
+16,22,bachelor,22,Frankfurt University of Applied Sciences,Frankfurt am Main,Stadtplanung Bachelor,135223079,0.03398287863621019,universities of applied sciences
+16,22,bachelor,23,Hochschule Mainz,Mainz am Rhein,Architektur mit integrierter Praxis Bachelor,73209427,0.06140376546145809,universities of applied sciences
+17,736,master,1,Hochschule für Technik und Wirtschaft des Saarlandes,Saarbrücken,Elektrotechnik - Erneuerbare Energien und Systemtechnik (dt.-frz. Studiengang) Master,73023802,0.010778106245133534,universities of applied sciences
+18,108,bachelor,1,Universität Augsburg,"Augsburg, Bayern",Physik Bachelor,78848541,0.01842644777526714,universities only (no offer at a university of applied sciences)
+18,108,bachelor,2,Leibniz Universität Hannover,Hannover,Physik Bachelor of Science,78847843,0.018686184171760822,universities only (no offer at a university of applied sciences)
+18,108,bachelor,3,Universität Mainz,Mainz am Rhein,Physik Bachelor of Science (Ein-Fach-Bachelor),73430343,0.018814181281304743,universities only (no offer at a university of applied sciences)
+18,108,bachelor,4,Universität Marburg,Marburg,Physik Monobachelor,10852759,0.021615333894400512,universities only (no offer at a university of applied sciences)
+18,108,bachelor,5,Universität Bochum,Bochum,Physik Bachelor of Science,78848616,0.022710884382077468,universities only (no offer at a university of applied sciences)
+18,108,bachelor,6,RWTH Aachen,Aachen,Physik Bachelor,73430452,0.024312611260650985,universities only (no offer at a university of applied sciences)
+18,108,bachelor,7,Universität Stuttgart,Stuttgart,Physik Bachelor of Science,73026565,0.025525771170995304,universities only (no offer at a university of applied sciences)
+18,108,bachelor,8,Constructor University,Bremen,Physics Bachelor,73209120,0.025677482757454406,universities only (no offer at a university of applied sciences)
+18,108,bachelor,9,TU München,Garching bei München,Physik Bachelor of Science,73428851,0.02639782995214557,universities only (no offer at a university of applied sciences)
+18,108,bachelor,10,Universität Koblenz,Koblenz am Rhein,Physik (Zwei-Fach-Bachelor) Bachelor,73427915,0.02725724835795018,universities only (no offer at a university of applied sciences)
+18,108,bachelor,11,Universität Frankfurt am Main,Frankfurt am Main,Physik Bachelor of Science,73425993,0.028280553324264712,universities only (no offer at a university of applied sciences)
+18,108,bachelor,12,Universität Rostock,Rostock,Physik Bachelor of Science (B.Sc.),73024048,0.028728191056223484,universities only (no offer at a university of applied sciences)
+18,108,bachelor,13,Universität Ulm,"Ulm, Donau",Physik Bachelor,78847998,0.03519238858235252,universities only (no offer at a university of applied sciences)
+18,108,bachelor,14,Universität Bremen,Bremen,Physik Bachelor,73423806,0.03657812851470432,universities only (no offer at a university of applied sciences)
+18,108,bachelor,15,Universität Göttingen,"Göttingen, Niedersachsen",Physik Bachelor,78846723,0.0374267245613934,universities only (no offer at a university of applied sciences)
+18,108,bachelor,16,Universität Duisburg-Essen,Duisburg,Physik Bachelor of Science,126267278,0.03899593718802907,universities only (no offer at a university of applied sciences)
+18,108,bachelor,17,Universität Marburg,Marburg,Physik und Wirtschaft Monobachelor,92531689,0.05400223248954339,universities only (no offer at a university of applied sciences)
+18,108,bachelor,18,Universität Ulm,"Ulm, Donau",Wirtschaftsphysik Bachelor,78848115,0.060856140411115534,universities only (no offer at a university of applied sciences)
+18,108,bachelor,19,Universität Marburg,Marburg,Physik und KI Monobachelor,250988648,0.07173574827377549,universities only (no offer at a university of applied sciences)
+18,108,bachelor,20,Universität Marburg,Marburg,Einführung in die Physik Kombibachelor Nebenfach,135223052,0.07194522063090991,universities only (no offer at a university of applied sciences)
+18,108,bachelor,21,Universität Halle-Wittenberg,Halle (Saale),"Physik Plus Bachelor of Science (Teilstudiengang, 120 LP)",100697251,0.07612375503295488,universities only (no offer at a university of applied sciences)
+19,662,master,1,Mediadesign Hochschule,Berlin,Design Management (M.A.) Master of Arts,73423046,0.011770024233416443,universities of applied sciences
+20,279,bachelor,1,Universität Bremen,Bremen,Systems Engineering Bachelor,73423764,0.012187491716983634,universities only (no offer at a university of applied sciences)
+20,279,bachelor,2,Universität des Saarlandes,Saarbrücken,Systems Engineering Bachelor,73024260,0.017872270814462632,universities only (no offer at a university of applied sciences)
+21,789,master,1,SRH Heidelberg,"Heidelberg, Neckar",Projektmanagement Bau Master of Engineering (M.Eng.),73433466,0.015355569713056738,universities of applied sciences
+21,789,master,2,Rheinische Hochschule,Köln,Projektmanagement Master of Science,307600667,0.015355609966260952,universities of applied sciences
+22,308,master,1,"Hochschule für Technik, Wirtschaft und Medien Offenburg",Offenburg,Medien und Kommunikation Master,73429904,0.02061918553085751,universities of applied sciences
+22,308,master,2,Hochschule Karlsruhe,"Karlsruhe, Baden",Kommunikation und Medienmanagement Master,73434377,0.02729487430201427,universities of applied sciences
+22,308,master,3,Hochschule Mittweida,Mittweida,Media Management and Technology Master of Science,78850025,0.02772515646594531,universities of applied sciences
+22,308,master,4,Hochschule der Medien Stuttgart,Stuttgart,Unternehmenskommunikation Master,73026429,0.03011192732780521,universities of applied sciences
+22,308,master,5,Hochschule für Angewandte Wissenschaften Hamburg,Hamburg,Digitale Kommunikation Master,78846965,0.030613613625974923,universities of applied sciences
+22,308,master,6,Westfälische Hochschule,Gelsenkirchen,Kommunikationsmanagement Master,78846645,0.034679355267386525,universities of applied sciences
+22,308,master,7,Hochschule Bonn-Rhein-Sieg,Sankt Augustin,Digitale Kommunikation und Medieninnovation Master,214674691,0.04189084220457562,universities of applied sciences
+23,381,master,1,Hochschule Rhein-Waal,Kamp-Lintfort,Design and Interaction Master of Arts,73423405,0.02520703072990127,universities of applied sciences
+24,438,master,1,Technische Hochschule Ostwestfalen-Lippe,Lemgo,Mechatronische Systeme Master,78849056,0.00913842122861186,universities of applied sciences
+24,438,master,2,Hochschule Pforzheim,Pforzheim,Mechatronische Systementwicklung Master,73429290,0.01710808875573433,universities of applied sciences
+24,438,master,3,Technische Hochschule Deggendorf,Deggendorf,Mechatronische und cyberphysische Systeme Master of Engineering,92680835,0.01913310443883154,universities of applied sciences
+24,438,master,4,Technische Hochschule Nürnberg,"Nürnberg, Mittelfranken",Elektronische und Mechatronische Systeme Master,73026885,0.021319736424826097,universities of applied sciences
+25,22,master,1,FH Münster,"Münster, Westfalen",Architektur Master,123110167,0.0022844635369843047,universities of applied sciences
+25,22,master,2,Hochschule Darmstadt,Darmstadt,Architektur Master of Engineering,132879168,0.0022844635369843047,universities of applied sciences
+25,22,master,3,Hochschule Trier,Trier,Architektur Master,73025755,0.0022844635369843047,universities of applied sciences
+25,22,master,4,Technische Hochschule Nürnberg,"Nürnberg, Mittelfranken",Architektur Master,73026880,0.0022844635369843047,universities of applied sciences
+25,22,master,5,Hochschule Karlsruhe,"Karlsruhe, Baden",Architektur Master,73434412,0.0022844635369843047,universities of applied sciences
+25,22,master,6,Frankfurt University of Applied Sciences,Frankfurt am Main,Architektur Master,78846241,0.0022844635369843047,universities of applied sciences
+25,22,master,7,Technische Hochschule Mittelhessen,"Gießen, Lahn",Architektur Master of Engineering (M.Eng.),78846956,0.0022844635369843047,universities of applied sciences
+25,22,master,8,Hochschule München,München,Architektur Master,78847405,0.0022844635369843047,universities of applied sciences
+25,22,master,9,Berliner Hochschule für Technik,Berlin,Architektur Master of Science,78847842,0.0022844635369843047,universities of applied sciences
+25,22,master,10,Technische Hochschule Ostwestfalen-Lippe,Detmold,Architektur Master,78848894,0.0022844635369843047,universities of applied sciences
+25,22,master,11,Fachhochschule Aachen,Aachen,Architektur Master,73210736,0.018527754124457174,universities of applied sciences
+25,22,master,12,Hochschule Mainz,Mainz am Rhein,Architektur: Wohnungsbau Master,73209445,0.028682674414519438,universities of applied sciences
+25,22,master,13,Hochschule Bochum,Bochum,Architektur: Projektentwicklung Master,73423570,0.03968707001236427,universities of applied sciences
+25,22,master,14,Hochschule Anhalt,Dessau-Roßlau,Design Research Master,73210424,0.048879001429107616,universities of applied sciences
+25,22,master,15,Hochschule Bremen,Bremen,Architektur/Environmental Design Master,73424116,0.04972404921862794,universities of applied sciences
+25,22,master,16,Technische Hochschule Ostwestfalen-Lippe,Detmold,Integrated Design Master,78848944,0.05531760368250738,universities of applied sciences
+25,22,master,17,Hochschule Biberach,Biberach an der Riß,Ressourcenschonende Architektur Master,73211073,0.05781643774621603,universities of applied sciences
+25,22,master,18,Hochschule Bochum,Bochum,Architektur Mediamanagement Master,73423566,0.06338155124606759,universities of applied sciences
+25,22,master,19,Frankfurt University of Applied Sciences,Frankfurt am Main,Inclusive Design - Inklusive Architektur Master,104486424,0.06689680747353943,universities of applied sciences
+25,22,master,20,Frankfurt University of Applied Sciences,Frankfurt am Main,Advanced Architecture - From Urban Design to Building Construction Master,78846215,0.0736071410590633,universities of applied sciences
+25,22,master,21,Hochschule Wismar,"Wismar, Mecklenburg",Architectural Lighting Design Master,78849176,0.07600594302059238,universities of applied sciences
+25,22,master,22,Hochschule Anhalt,Dessau-Roßlau,Denkmalpflege Master,73210389,0.0850454545787841,universities of applied sciences
+25,22,master,23,Frankfurt University of Applied Sciences,Frankfurt am Main,Inclusive Design - Inklusive Konzepte im Sozialraum Master,104486425,0.10164111657016928,universities of applied sciences
+25,22,master,24,Frankfurt University of Applied Sciences,Frankfurt am Main,Inclusive Design - Intelligente Systeme Master,104486426,0.11844819647048166,universities of applied sciences
+26,64,bachelor,1,Hochschule Bremen,Bremen,Luft- und Raumfahrttechnik Bachelor,73424097,0.016594132631661984,universities of applied sciences
+26,64,bachelor,2,Hochschule München,München,Luft- und Raumfahrttechnik Bachelor,78847196,0.016594132631661984,universities of applied sciences
+26,64,bachelor,3,Fachhochschule Aachen,Aachen,Luft- und Raumfahrttechnik Bachelor,73210606,0.017113601198495587,universities of applied sciences
+26,64,bachelor,4,Technische Hochschule Ingolstadt,"Ingolstadt, Donau",Luftfahrttechnik Bachelor of Engineering,132134949,0.02279347064067061,universities of applied sciences
+26,64,bachelor,5,Hochschule RheinMain,Rüsselsheim am Main,Elektro- und Luftfahrttechnik Bachelor,73025309,0.02401449302448133,universities of applied sciences
+26,64,bachelor,6,Hochschule für Angewandte Wissenschaften Hamburg,Hamburg,Flugzeugtechnik Bachelor,78847073,0.032006646105958714,universities of applied sciences
+26,64,bachelor,7,Hochschule Osnabrück,Osnabrück,Aircraft and Flight Engineering Bachelor,10850113,0.03740509080386878,universities of applied sciences
+26,64,bachelor,8,Technische Hochschule Wildau,Wildau bei Königs Wusterhausen,Luftfahrttechnik/Luftfahrtmanagement Bachelor,191785091,0.044419115715167545,universities of applied sciences
+26,64,bachelor,9,Hochschule RheinMain,Rüsselsheim am Main,Elektro- und Luftfahrttechnik - Angewandte Ingenieurwissenschaften Bachelor,384666331,0.046217790140952175,universities of applied sciences
+26,64,bachelor,10,Fachhochschule Aachen,Aachen,Flugbetriebstechnik mit Verkehrspilotenausbildung Bachelor,73210672,0.06557638723771597,universities of applied sciences
+26,64,bachelor,11,Hochschule Bremen,Bremen,Internationaler Studiengang Luftfahrtsystemtechnik und -management Bachelor,73424022,0.0860673372024846,universities of applied sciences
+27,605,bachelor,1,Technische Hochschule Ingolstadt,"Ingolstadt, Donau",Computer Science and Artificial Intelligence Bachelor of Science,120353842,0.02880990078028467,universities of applied sciences
+28,634,bachelor,1,SRH Heidelberg,"Heidelberg, Neckar",Climate Change Management and Engineering Bachelor of Engineering (B.Eng.),94598762,0.03601736931906052,universities of applied sciences
+29,736,bachelor,1,Hochschule für Technik und Wirtschaft des Saarlandes,Saarbrücken,Elektrotechnik - Erneuerbare Energien und Systemtechnik (dt.-frz. Studiengang) Bachelor,73023774,0.01117771166259518,universities of applied sciences
+29,736,bachelor,2,Hochschule Bonn-Rhein-Sieg,Sankt Augustin,Elektrotechnik (Dualer Studiengang) Bachelor,73210153,0.01917482622407629,universities of applied sciences
+29,736,bachelor,3,Hochschule Bochum,Bochum,Elektrotechnik Bachelor,73423506,0.02581150293503387,universities of applied sciences
+30,683,master,1,Hochschule Trier,Hoppstädten-Weiersbach,"Projektmanagement: Kommunikation, Psychologie und Nachhaltigkeit Master",271343973,0.020049806554268246,universities of applied sciences
+31,381,bachelor,1,Hochschule Karlsruhe,"Karlsruhe, Baden",Informationsdesign Bachelor,132134957,0.017907752021493084,universities of applied sciences
+31,381,bachelor,2,Hochschule der Medien Stuttgart,Stuttgart,Informationsdesign Bachelor,73026403,0.018802871535067878,universities of applied sciences
+31,381,bachelor,3,Hochschule Rhein-Waal,Kamp-Lintfort,Information and Communication Design Bachelor of Arts,73423357,0.020221108548978295,universities of applied sciences
+31,381,bachelor,4,Hochschule Osnabrück,Osnabrück,Media & Interaction Design Bachelor,10850147,0.021134821726474406,universities of applied sciences
+31,381,bachelor,5,Technische Hochschule Lübeck,Lübeck,Informationstechnologie und Design Bachelor,78848226,0.025487180027282896,universities of applied sciences
+31,381,bachelor,6,Westfälische Hochschule,Gelsenkirchen,Informatik und Design Bachelor,316981034,0.03183103632978823,universities of applied sciences
+31,381,bachelor,7,Brand University of Applied Sciences,Hamburg,AI & Brand Communication Design Bachelor of Arts,73422626,0.03844575052905508,universities of applied sciences
+32,284,master,1,Technische Hochschule Köln,Köln,Medienrecht und Medienwirtschaft Master,73428469,0.04180312003478015,universities of applied sciences
+33,176,master,1,Hochschule für Angewandte Wissenschaften Kiel,Kiel,Angewandte Kommunikationswissenschaft Master,73427619,0.031119924390564657,universities of applied sciences
+33,176,master,2,Hochschule Bonn-Rhein-Sieg,Sankt Augustin,International Media Studies Master,73210167,0.04259752653561877,universities of applied sciences
+33,176,master,3,Technische Hochschule Köln,Köln,Markt- und Medienforschung Master,73428489,0.044223718034203774,universities of applied sciences
+34,342,master,1,SRH Heidelberg,"Fürth, Bayern",Data Science: Business Analytics Master of Science (M.Sc.),314245207,0.017078381108439622,universities of applied sciences
+34,342,master,2,Hochschule Aalen,"Aalen, Württemberg",Data Science und Business Analytics (berufsbegleitend) Master,73210564,0.01743273453890548,universities of applied sciences
+34,342,master,3,International School of Management,Dortmund,Business Intelligence & Data Science Master of Science,73209037,0.02608702187711931,universities of applied sciences
+34,342,master,4,Hochschule Düsseldorf,Düsseldorf,Business Analytics Master of Science,78850211,0.03515037084045758,universities of applied sciences
+35,371,master,1,Universität Bremen,Bremen,"English-Speaking Cultures: Language, Text, Media Master",73424004,0.018006613298219287,universities only (no offer at a university of applied sciences)
+35,371,master,2,Universität Münster,"Münster, Westfalen","National and Transnational Studies: Literature, Culture, Language Master",78846514,0.018006614066435445,universities only (no offer at a university of applied sciences)
+36,812,bachelor,1,Technische Hochschule Mittelhessen,"Gießen, Lahn",Applied Data Science Bachelor of Science (B.Sc.),383064727,0.01850410355904164,universities of applied sciences
+36,812,bachelor,2,International School of Management,Dortmund,Applied Data Science & Business Analytics Bachelor of Science,147592975,0.023872152786115874,universities of applied sciences
+36,812,bachelor,3,Technische Hochschule Würzburg-Schweinfurt,Schweinfurt,Applied Mathematics Bachelor of Science,236026476,0.026391997981302984,universities of applied sciences
+37,809,bachelor,1,Universität Kassel,"Kassel, Hessen",Design Bachelor,380314644,5.822256654575142e-08,universities only (no offer at a university of applied sciences)
+38,414,bachelor,1,Technische Hochschule Lübeck,Lübeck,Automation und Robotik Bachelor,78848269,0.016157907218514178,universities of applied sciences
+38,414,bachelor,2,Fachhochschule Hildesheim/ Holzminden/ Göttingen,"Göttingen, Niedersachsen",Technische Informatik und Robotik Bachelor of Engineering,174742677,0.022999809375172875,universities of applied sciences
+38,414,bachelor,3,Technische Hochschule Mannheim,Mannheim,Automatisierungstechnik und Industrie 4.0 Bachelor,120576589,0.023175975432976448,universities of applied sciences
+38,414,bachelor,4,Technische Hochschule Mannheim,Mannheim,Automation and Industrial Internet of Things Bachelor,92531710,0.023290162178859375,universities of applied sciences
+38,414,bachelor,5,Hochschule Harz,Wernigerode,Smart Automation/Elektrotechnik Bachelor,73432565,0.02876211295976927,universities of applied sciences
+39,463,bachelor,1,FH Münster,"Steinfurt, Westfalen",Gebäudetechnik Bachelor,123110087,0.01849225805762922,universities of applied sciences
+39,463,bachelor,2,Westsächsische Hochschule,Zwickau,"Gebäude-, Energie- und Klimatechnik Bachelor of Engineering",334031607,0.019238680452270285,universities of applied sciences
+39,463,bachelor,3,Hochschule für Technik und Wirtschaft Berlin,Berlin,Gebäudeenergie- und -informationstechnik Bachelor,73430520,0.022579776639666593,universities of applied sciences
+39,463,bachelor,4,Hochschule Trier,Trier,Technische Gebäudeausrüstung und Versorgungstechnik Bachelor,73025665,0.030670205359851765,universities of applied sciences
+39,463,bachelor,5,FH Münster,"Steinfurt, Westfalen",Gebäudetechnik (dual - praxisintegrierend) Bachelor,135567926,0.03327961020167303,universities of applied sciences
+39,463,bachelor,6,Hochschule Wismar,"Wismar, Mecklenburg","Technische Gebäudeplanung - Smart Building Engineering, Bachelor Bachelor",120874745,0.03371905416916443,universities of applied sciences
+39,463,bachelor,7,Hochschule Wismar,"Wismar, Mecklenburg",Anlagen- und Versorgungstechnik Bachelor,120378228,0.03570287051017629,universities of applied sciences
+40,203,bachelor,1,Ostfalia Hochschule,Suderburg,Angewandte Informatik Bachelor,78849135,0.01635214100934579,universities of applied sciences
+40,203,bachelor,2,Hochschule Mittweida,Mittweida,Angewandte Informatik Bachelor of Science,78849895,0.017575917325867052,universities of applied sciences
+40,203,bachelor,3,Hochschule Merseburg,Merseburg,Angewandte Informatik Bachelor,73429320,0.019083946030013843,universities of applied sciences
+40,203,bachelor,4,Hochschule für Technik und Wirtschaft Berlin,Berlin,Angewandte Informatik Bachelor,73430493,0.019970587508577164,universities of applied sciences
+40,203,bachelor,5,Hochschule Konstanz,Konstanz,Angewandte Informatik Bachelor,132878944,0.02269040332374328,universities of applied sciences
+40,203,bachelor,6,Fachhochschule Südwestfalen,Iserlohn,Angewandte Informatik Bachelor,73210498,0.023124076789456494,universities of applied sciences
+40,203,bachelor,7,Hochschule Flensburg,Flensburg,Angewandte Informatik Bachelor of Science,73425868,0.02343655332671679,universities of applied sciences
+40,203,bachelor,8,Hochschule Anhalt,Köthen (Anhalt),Angewandte Informatik - mit interdisziplinärer Vertiefung Bachelor,73210341,0.02438172722379639,universities of applied sciences
+40,203,bachelor,9,Hochschule Ravensburg Weingarten,"Weingarten, Württemberg",Angewandte Informatik Bachelor,73024774,0.02459544094559596,universities of applied sciences
+40,203,bachelor,10,Fachhochschule der Wirtschaft,Paderborn,Angewandte Informatik Bachelor of Science,419387817,0.0255587571949083,universities of applied sciences
+40,203,bachelor,11,Hochschule Worms,Worms,Angewandte Informatik Bachelor of Science,73024986,0.02598789910238808,universities of applied sciences
+40,203,bachelor,12,Hochschule für Angewandte Wissenschaften Hamburg,Hamburg,"Informatik, Angewandte Bachelor",78846950,0.026367170529009387,universities of applied sciences
+40,203,bachelor,13,Hochschule Fulda,Fulda,Angewandte Informatik Bachelor,78846156,0.026573290803332705,universities of applied sciences
+40,203,bachelor,14,Technische Hochschule Deggendorf,Deggendorf,Angewandte Informatik/Infotronik Bachelor of Engineering,78949075,0.02694835921118055,universities of applied sciences
+40,203,bachelor,15,"Hochschule für Technik, Wirtschaft und Medien Offenburg",Offenburg,Angewandte Informatik Bachelor,73429822,0.027024292012273077,universities of applied sciences
+40,203,bachelor,16,Hochschule Pforzheim,Pforzheim,Angewandte Informatik Bachelor,391020507,0.027280457803376956,universities of applied sciences
+40,203,bachelor,17,Hochschule Hamm-Lippstadt,Lippstadt,Angewandte Informatik und Soziale Medien Bachelor,308845792,0.028280804614068566,universities of applied sciences
+40,203,bachelor,18,Hochschule Heilbronn,"Heilbronn, Neckar",Angewandte Informatik Bachelor,73433412,0.02946812044128877,universities of applied sciences
+40,203,bachelor,19,Technische Hochschule Ostwestfalen-Lippe,Höxter,Angewandte Informatik Bachelor,78848968,0.0318391439732828,universities of applied sciences
+40,203,bachelor,20,Fachhochschule Südwestfalen,Iserlohn,Angewandte Informatik (berufsbegleitendes Verbundstudium) Bachelor,73210506,0.03190703896524161,universities of applied sciences
+40,203,bachelor,21,Hochschule Worms,Worms,Angewandte Informatik - dual Bachelor of Science,73024999,0.03451355723457805,universities of applied sciences
+40,203,bachelor,22,Hochschule Wismar,"Wismar, Mecklenburg",Angewandte Informatik - Multimediatechnik Bachelor,78849287,0.03953103054027529,universities of applied sciences
+40,203,bachelor,23,NORDAKADEMIE Hochschule der Wirtschaft,Elmshorn,Software Engineering / Angewandte Informatik Bachelor,242285291,0.04190293183002236,universities of applied sciences
+40,203,bachelor,24,Fachhochschule Südwestfalen,"Soest, Westfalen",Angewandte Informatik dual ausbildungsintegrierend Bachelor,130466095,0.04861820073094547,universities of applied sciences
+40,203,bachelor,25,Fachhochschule Südwestfalen,"Soest, Westfalen",Angewandte Informatik dual praxisintegrierend Bachelor,130466094,0.05142651898721973,universities of applied sciences
+40,203,bachelor,26,Technische Hochschule Wildau,Wildau bei Königs Wusterhausen,Telematik - Angewandte Informatik Bachelor,383064735,0.05552270445585672,universities of applied sciences
+41,294,master,1,Technische Hochschule Köln,Köln,Informatik und Systems-Engineering Master,73428480,0.013753742695881588,universities of applied sciences
+41,294,master,2,Hochschule Bochum,Heiligenhaus bei Velbert,Technische Informatik Master,92365669,0.015867433821470822,universities of applied sciences
+41,294,master,3,Hochschule Emden/ Leer,"Emden, Ostfriesland",Industrial Informatics Master,73209872,0.04221949088950816,universities of applied sciences
+42,684,bachelor,1,FH Münster,"Steinfurt, Westfalen",Creative Technologies Bachelor,383064749,0.0105667119444679,universities of applied sciences
+42,684,bachelor,2,Technische Hochschule Augsburg,"Augsburg, Bayern",Creative Engineering Bachelor,135463425,0.023803986676618982,universities of applied sciences
+43,332,bachelor,1,Hochschule Trier,Trier,Elektromobilität Bachelor,73025726,0.01347264190117059,universities of applied sciences
+43,332,bachelor,2,Technische Hochschule Ingolstadt,"Ingolstadt, Donau",Elektrotechnik und Elektromobilität Bachelor,73209169,0.02180235778351136,universities of applied sciences
+43,332,bachelor,3,Hochschule München,München,Elektrotechnik - Elektromobilität Bachelor,78847385,0.021912641507482733,universities of applied sciences
+43,332,bachelor,4,Hochschule RheinMain,Rüsselsheim am Main,Elektrotechnik Bachelor,73025283,0.022797274302745252,universities of applied sciences
+43,332,bachelor,5,Technische Hochschule Brandenburg,Brandenburg an der Havel,Elektromobilität Bachelor of Engineering,104527797,0.02442907223878743,universities of applied sciences
+43,332,bachelor,6,Hochschule RheinMain,Rüsselsheim am Main,Elektrotechnik - Angewandte Ingenieurwissenschaften Bachelor,384666330,0.028693849943628114,universities of applied sciences
+43,332,bachelor,7,Hochschule Ravensburg Weingarten,"Weingarten, Württemberg",Elektromobilität und regenerative Energien Bachelor,73024802,0.032102161271984175,universities of applied sciences
+43,332,bachelor,8,SRH Heidelberg,"Heidelberg, Neckar",Elektrotechnik Bachelor of Engineering (B.Eng.),73433411,0.03620970513391519,universities of applied sciences
+44,324,master,1,Hochschule Reutlingen,Reutlingen,Design Master,73024594,0.02096653709760743,universities of applied sciences
+44,324,master,2,Fachhochschule Aachen,Aachen,Design Master,73210738,0.02175490381591938,universities of applied sciences
+44,324,master,3,Fachhochschule Hildesheim/ Holzminden/ Göttingen,Hildesheim,Gestaltung Master of Arts,73434323,0.027338810544001557,universities of applied sciences
+45,411,bachelor,1,"Hochschule für Technik, Wirtschaft und Kultur Leipzig",Leipzig,Informations- und Kommunikationstechnik Bachelor of Engineering,271961154,0.016007278997430596,universities of applied sciences
+45,411,bachelor,2,Hochschule für Technik und Wirtschaft Berlin,Berlin,Informations- und Kommunikationstechnik Bachelor,73430581,0.017310464377226387,universities of applied sciences
+45,411,bachelor,3,"Hochschule für Technik, Wirtschaft und Kultur Leipzig",Leipzig,Telekommunikationsinformatik Bachelor of Engineering,271961148,0.026480861743762296,universities of applied sciences
+45,411,bachelor,4,Technische Hochschule Lübeck,Lübeck,Kommunikationstechnologie Bachelor,78848286,0.02648668747501548,universities of applied sciences
+46,815,bachelor,1,Frankfurt University of Applied Sciences,Frankfurt am Main,Service Engineering dual Bachelor,150651106,0.007205725277769526,universities of applied sciences
+47,809,master,1,Ostbayerische Technische Hochschule Regensburg,Regensburg,Design Master of Arts,320502770,5.822256710086293e-08,universities of applied sciences
+47,809,master,2,Mediadesign Hochschule,Berlin,Design (M.A.) Master of Arts,306649378,5.822256754495214e-08,universities of applied sciences
+48,651,master,1,Berliner Hochschule für Technik,Berlin,Umweltinformation - GIS Master of Science,78847739,0.01743027532385022,universities of applied sciences
+49,745,bachelor,1,Hochschule Anhalt,Köthen (Anhalt),Verfahrenstechnik Bachelor,73210346,0.004329107490571249,universities of applied sciences
+49,745,bachelor,2,Hochschule für Angewandte Wissenschaften Hamburg,Hamburg,Verfahrenstechnik Bachelor,78846981,0.004329107490571249,universities of applied sciences
+49,745,bachelor,3,Hochschule Anhalt,Köthen (Anhalt),Verfahrenstechnik (berufsbegleitend) Bachelor,73210356,0.015142449601321384,universities of applied sciences
+49,745,bachelor,4,Hochschule Niederrhein,Krefeld,Verfahrenstechnik Bachelor of Engineering (B.Eng.),73024399,0.049313580147426705,universities of applied sciences
+50,205,bachelor,1,Hochschule für Wirtschaft und Recht Berlin,Berlin,Entrepreneurship Bachelor of Science,406150412,0.02376174241645046,universities of applied sciences
+50,205,bachelor,2,Private Hochschule Göttingen,"Göttingen, Niedersachsen",Entrepreneurship im Studiengang Business Administration Bachelor of Science,228584339,0.041810746710062796,universities of applied sciences
+50,205,bachelor,3,Hochschule Bremerhaven,Bremerhaven,"Gründung, Innovation, Führung Bachelor",73423909,0.05122623094648504,universities of applied sciences
+50,205,bachelor,4,CODE University of Applied Sciences,Berlin,Business Management & Entrepreneurship Bachelor,93894616,0.05603740524228329,universities of applied sciences
+51,308,bachelor,1,Westsächsische Hochschule,Zwickau,Kommunikation und Soziale Medien Bachelor of Arts,373091108,0.017275027944615884,universities of applied sciences
+51,308,bachelor,2,Ostfalia Hochschule,Salzgitter,Medienkommunikation Bachelor,78849181,0.02134850677221123,universities of applied sciences
+51,308,bachelor,3,Hochschule der Medien Stuttgart,Stuttgart,Werbung und Marktkommunikation Bachelor,73026400,0.02544940474149171,universities of applied sciences
+51,308,bachelor,4,Hochschule Osnabrück,Lingen (Ems),Kommunikationsmanagement Bachelor,10850106,0.02737482113808276,universities of applied sciences
+51,308,bachelor,5,Hochschule Karlsruhe,"Karlsruhe, Baden",Kommunikation und Medienmanagement Bachelor,73434312,0.027489460867454518,universities of applied sciences
+51,308,bachelor,6,Hochschule für Angewandte Wissenschaften Hamburg,Hamburg,Medien und Kommunikation Bachelor,78846973,0.028205907735445512,universities of applied sciences
+51,308,bachelor,7,Hochschule für Technik und Wirtschaft Berlin,Berlin,Wirtschaftskommunikation Bachelor,73430535,0.02873083701070589,universities of applied sciences
+51,308,bachelor,8,BSP Business and Law School,Berlin,Kommunikations- und Medienmanagement Bachelor of Science,73024535,0.029519368566787274,universities of applied sciences
+52,318,master,1,Universität zu Köln,Köln,Informatik Master of Science,136997815,0.015393534049225721,universities only (no offer at a university of applied sciences)
+52,318,master,2,TU München,Garching bei München,Mathematik Master of Science,73428894,0.015847541450253244,universities only (no offer at a university of applied sciences)
+52,318,master,3,Universität Mainz,Mainz am Rhein,Mathematik-Informatik Master of Science,306649357,0.01855887975175652,universities only (no offer at a university of applied sciences)
+52,318,master,4,Universität zu Köln,Köln,Mathematik Master of Science,73428234,0.019328407355565624,universities only (no offer at a university of applied sciences)
+52,318,master,5,Universität Rostock,Rostock,Mathematik Master of Science (M.Sc.),73024296,0.028268175018423047,universities only (no offer at a university of applied sciences)
+52,318,master,6,Universität Mainz,Mainz am Rhein,Naturwissenschaftliche Informatik Master of Science,73430848,0.03451815031552563,universities only (no offer at a university of applied sciences)
+53,615,bachelor,1,Hochschule RheinMain,Rüsselsheim am Main,Sustainable Engineering - Angewandte Ingenieurwissenschaften Bachelor,384666328,0.024896081465841435,universities of applied sciences
+53,615,bachelor,2,Technische Hochschule Bingen,Bingen am Rhein,Sustainable Power Engineering Bachelor of Engineering,321079436,0.029626767829881162,universities of applied sciences
+54,132,bachelor,1,IU Internationale Hochschule,Erfurt,Marketing Bachelor of Arts,78850312,0.0264009631490133,universities of applied sciences
+54,132,bachelor,2,MU Media University of Applied Sciences,Berlin,Digitales Marketing und E-Commerce Bachelor of Arts,106484163,0.02718347829274892,universities of applied sciences
+54,132,bachelor,3,Hochschule Worms,Worms,Digital Marketing Bachelor of Arts,173090161,0.027713894857836596,universities of applied sciences
+54,132,bachelor,4,Rheinische Hochschule,Köln,Marketing und Medienmanagement Bachelor of Arts,78846417,0.029730562118646997,universities of applied sciences
+54,132,bachelor,5,IU Internationale Hochschule,Erfurt,Online Marketing Bachelor of Arts,140554816,0.033944714122478015,universities of applied sciences
+54,132,bachelor,6,Hochschule Niederrhein,Mönchengladbach,Sales and Marketing Bachelor of Arts (B.A.),120079042,0.03692420532770302,universities of applied sciences
+54,132,bachelor,7,Technische Hochschule Aschaffenburg,Aschaffenburg,Digitales Marketing und E-Commerce Bachelor,334031627,0.038511503406197134,universities of applied sciences
+54,132,bachelor,8,Hochschule Heilbronn,Schwäbisch Hall,Global Digital Marketing and Sales Bachelor,304679539,0.04181795850140346,universities of applied sciences
+54,132,bachelor,9,Private Hochschule Göttingen,"Göttingen, Niedersachsen",Digital Marketing & Sales im Studiengang Business Administration Bachelor of Science,370271479,0.0577699036040783,universities of applied sciences
+54,132,bachelor,10,Hochschule Ravensburg Weingarten,"Weingarten, Württemberg",Internet und Online-Marketing Bachelor,73024808,0.05818556078970838,universities of applied sciences
+54,132,bachelor,11,Technische Hochschule Rosenheim,"Rosenheim, Oberbayern",E-Commerce (Campus Chiemgau) Bachelor of Arts,135223039,0.09071637306491231,universities of applied sciences
+55,226,bachelor,1,Hochschule Landshut,"Landshut, Isar",Elektro- und Informationstechnik Bachelor,271961222,0.0038674114053812714,universities of applied sciences
+55,226,bachelor,2,Frankfurt University of Applied Sciences,Frankfurt am Main,Elektro- und Informationstechnik Bachelor,78846196,0.005332846970417915,universities of applied sciences
+55,226,bachelor,3,Technische Hochschule Augsburg,"Augsburg, Bayern",Elektro- und Informationstechnik Bachelor,287220436,0.010732972383508788,universities of applied sciences
+55,226,bachelor,4,Hochschule Trier,Trier,Informationstechnik Bachelor,253112431,0.02098151567790163,universities of applied sciences
+55,226,bachelor,5,Technische Hochschule Aschaffenburg,Aschaffenburg,"Elektro- und Informationstechnik, berufsbegleitend Bachelor",122620000,0.022407314201717266,universities of applied sciences
+55,226,bachelor,6,Frankfurt University of Applied Sciences,Frankfurt am Main,Elektro- und Informationstechnik dual Bachelor,150651105,0.02995146560207218,universities of applied sciences
+56,505,master,1,Bergische Universität Wuppertal,Wuppertal,Informatik Master of Science,92680880,0.013333212832410402,universities only (no offer at a university of applied sciences)
+56,505,master,2,TU München,Garching bei München,Data Engineering and Analytics Master of Science,73428987,0.020230689343598396,universities only (no offer at a university of applied sciences)
+56,505,master,3,Universität Koblenz,Koblenz am Rhein,Informatik Master,73427947,0.024743960142937005,universities only (no offer at a university of applied sciences)
+56,505,master,4,RWTH Aachen,Aachen,Data Analytics and Decision Science Master,73430856,0.03190666054914748,universities only (no offer at a university of applied sciences)
+57,712,master,1,Hochschule für Wirtschaft und Gesellschaft Ludwigshafen,Ludwigshafen am Rhein,Innovation Management (MIM) Master of Science (M.Sc.),132878952,0.013449026681049192,universities of applied sciences
+58,459,master,1,Fachhochschule Dresden,Dresden,Creative Direction Master,135567945,0.016589886890917227,universities of applied sciences
+58,459,master,2,Hochschule Pforzheim,Pforzheim,Creative Direction Master,73429260,0.016589904709058523,universities of applied sciences
+59,793,bachelor,1,Technische Hochschule Rosenheim,"Rosenheim, Oberbayern",Applied Artificial Intelligence Bachelor of Science,120576581,0.023652502797069763,universities of applied sciences
+59,793,bachelor,2,accadis Hochschule,Bad Homburg vor der Höhe,Informatics and AI Engineering Bachelor of Science,372191305,0.02657451493614449,universities of applied sciences
+60,653,bachelor,1,Hochschule Pforzheim,Pforzheim,BWL/Media Management und Digital Media Bachelor,73429221,0.018434862766003923,universities of applied sciences
+60,653,bachelor,2,International School of Management,Dortmund,Betriebswirtschaft · Marketing & Communications Bachelor of Arts,137739408,0.01892813559534523,universities of applied sciences
+60,653,bachelor,3,Hochschule Pforzheim,Pforzheim,BWL/Marketingkommunikation und Digital Marketing Bachelor,73429183,0.01952326068144772,universities of applied sciences
+60,653,bachelor,4,Hochschule Pforzheim,Pforzheim,BWL/Marketing Bachelor,73429161,0.02160045991444859,universities of applied sciences

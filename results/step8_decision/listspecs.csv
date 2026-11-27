@@ -1,0 +1,18 @@
+spec,value,units on the list,candidates,gate candidates (6) still in the top 20,base top-20 candidates still in the top 20,position of 312 bachelor among bachelors that can take a slot,first bachelor (type),first master (type),note
+trend_threshold,-5,365,268,5,20,1,312,300,
+trend_threshold,none,365,268,5,20,1,312,300,
+min_cohort,15,365,268,5,20,1,312,300,
+min_cohort,none,365,268,5,20,1,312,300,
+supply_cut,3,305,240,6,16,1,312,300,
+supply_cut,5,341,261,5,17,1,312,300,
+similarity_radius,percentile 75,365,268,5,16,1,312,300,"changes the offers half of differentiation only (unit count at that radius against the group count at p90); similar-offer counts, quotient and capture competitors are not recomputed"
+similarity_radius,percentile 95,365,268,5,15,3,256,300,"changes the offers half of differentiation only (unit count at that radius against the group count at p90); similar-offer counts, quotient and capture competitors are not recomputed"
+at_oth,within radius_90,332,256,5,18,1,312,300,
+at_oth,any fitted member,368,268,5,20,1,312,300,
+at_oth,median distance only,381,271,5,20,1,312,300,
+teacher_training_share,0.3,364,267,5,20,1,312,300,
+teacher_training_share,0.7,365,268,5,20,1,312,300,
+quotient_pseudo_offers,2,365,268,5,20,1,312,300,
+quotient_pseudo_offers,10,365,268,5,20,1,312,300,
+merging,none,365,365,5,13,1,312,300,
+merging,connected,365,63,6,20,1,312,312,connected groups chain most units; the group count is the largest unit count

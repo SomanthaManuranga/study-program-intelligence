@@ -1,0 +1,398 @@
+{
+  "stamp": {
+    "commit": "ef5af71",
+    "date": "2026-11-16",
+    "clean": true
+  },
+  "step7_commit": "c31b38d",
+  "candidates": 6,
+  "factorial": {
+    "specs": 17915904,
+    "evaluated": 186624,
+    "multiplicity": 96
+  },
+  "weights": {
+    "demand": 0.3,
+    "labour": 0.2,
+    "fit": 0.2,
+    "feasibility": 0.15,
+    "differentiation": 0.1,
+    "regional": 0.05
+  },
+  "sets": {
+    "first": {
+      "members": [
+        "312 bachelor"
+      ],
+      "win share": 0.2222222222222222,
+      "decision": {
+        "as written": {
+          "outcome": "recommend",
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "net-new central": 26.53469688148053,
+          "bar": 15.0,
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818
+        },
+        "bars lowered by 0.1": {
+          "outcome": "recommend",
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "net-new central": 26.53469688148053,
+          "bar": 15.0,
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818
+        },
+        "one-passer bar 10": {
+          "outcome": "recommend",
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "net-new central": 26.53469688148053,
+          "bar": 10.0,
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818
+        }
+      },
+      "decision under other readings": {},
+      "variants": {},
+      "winners over the factorial": {
+        "312 bachelor": 0.2222222222222222,
+        "none": 0.7777777777777778
+      },
+      "regret": {
+        "312 bachelor": {
+          "share of specs in the set": 0.2222222222222222,
+          "mean score gap to the winner": 0.0
+        }
+      }
+    },
+    "second": {
+      "members": [
+        "312 bachelor",
+        "223 bachelor"
+      ],
+      "win share": 0.6617798353909465,
+      "decision": {
+        "as written": {
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "runner-up": [
+            223,
+            "bachelor"
+          ],
+          "P(rank 1)": 0.8174,
+          "P(beats the runner-up)": 0.8174,
+          "win share": 0.6617798353909465,
+          "PROMETHEE rank 1": [
+            312,
+            "bachelor"
+          ],
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818,
+          "outcome": "first among the band passers (for information, never a recommendation)"
+        },
+        "bars lowered by 0.1": {
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "runner-up": [
+            223,
+            "bachelor"
+          ],
+          "P(rank 1)": 0.8174,
+          "P(beats the runner-up)": 0.8174,
+          "win share": 0.6617798353909465,
+          "PROMETHEE rank 1": [
+            312,
+            "bachelor"
+          ],
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818,
+          "outcome": "first among the band passers (for information, never a recommendation)"
+        },
+        "one-passer bar 10": {
+          "candidate": [
+            312,
+            "bachelor"
+          ],
+          "runner-up": [
+            223,
+            "bachelor"
+          ],
+          "P(rank 1)": 0.8174,
+          "P(beats the runner-up)": 0.8174,
+          "win share": 0.6617798353909465,
+          "PROMETHEE rank 1": [
+            312,
+            "bachelor"
+          ],
+          "new teaching ECTS": 52.50000000000001,
+          "professor-equivalents": 1.166666666666667,
+          "X ECTS": "0.000",
+          "N ECTS": "50.500",
+          "T ECTS": "2.000",
+          "references": 1.0,
+          "fit central": 0.6818181818181818,
+          "outcome": "first among the band passers (for information, never a recommendation)"
+        }
+      },
+      "decision under other readings": {
+        "concentration 10": {
+          "P(rank 1) of the top": 0.7746,
+          "P(beats the runner-up)": 0.7746,
+          "outcome": "shortlist"
+        },
+        "offers half uniform on 1-5": {
+          "P(rank 1) of the top": 0.7803,
+          "P(beats the runner-up)": 0.7803,
+          "outcome": "shortlist"
+        },
+        "tier-2 slope -1": {
+          "P(rank 1) of the top": 0.8231,
+          "P(beats the runner-up)": 0.8231,
+          "outcome": "recommend"
+        }
+      },
+      "variants": {
+        "P(rank 1), concentration 10": {
+          "312 bachelor": 0.7746,
+          "223 bachelor": 0.2254
+        },
+        "P(rank 1), concentration 200": {
+          "312 bachelor": 0.8305,
+          "223 bachelor": 0.1695
+        },
+        "P(rank 1), no widening": {
+          "312 bachelor": 0.8231,
+          "223 bachelor": 0.1769
+        }
+      },
+      "winners over the factorial": {
+        "312 bachelor": 0.6617798353909465,
+        "223 bachelor": 0.3238168724279835,
+        "312 master": 0.01440329218106996
+      },
+      "regret": {
+        "312 bachelor": {
+          "share of specs in the set": 0.6666666666666666,
+          "mean score gap to the winner": 0.00040663159192577176
+        },
+        "223 bachelor": {
+          "share of specs in the set": 1.0,
+          "mean score gap to the winner": 0.20137779518501375
+        },
+        "312 master": {
+          "share of specs in the set": 0.16666666666666666,
+          "mean score gap to the winner": 0.6233236443211648
+        }
+      }
+    }
+  },
+  "decision.first under the Step 7 sensitivities": {
+    "without two-module covers": {
+      "existing-resources passers": [],
+      "decision.first": "no candidate passes",
+      "closest (mean overlap)": "223 bachelor: 0.350"
+    },
+    "covered-but-unsure rows not covered": {
+      "existing-resources passers": [
+        "312 bachelor"
+      ],
+      "decision.first": "recommend",
+      "closest (mean overlap)": "312 bachelor: 0.570"
+    }
+  },
+  "recommended unit as plain Informatik": {
+    "13 bachelor": {
+      "net-new central": 18.127015238575662,
+      "gross central": 20.863755862825553,
+      "similar offers within 150 km": 30.0,
+      "kept in the region": 0.36080876633794073,
+      "labour (median keyword)": 0.0,
+      "labour (largest keyword)": 685.0,
+      "labour artefact": true,
+      "existing-resources passer at min cohort 20": true,
+      "at min cohort 25": false,
+      "decision.first": "recommend",
+      "central score": 3.048479831236204,
+      "central scores of the other band passers": {
+        "223 bachelor": 3.5791823706751833
+      },
+      "decision.second: first (for information)": [
+        223,
+        "bachelor"
+      ],
+      "decision.second: P(rank 1) of the first": 0.7997
+    },
+    "242 bachelor": {
+      "net-new central": 20.198229764468902,
+      "gross central": 23.158886905079193,
+      "similar offers within 150 km": 13.0,
+      "kept in the region": 0.2595989040293826,
+      "labour (median keyword)": 359.0,
+      "labour (largest keyword)": 685.0,
+      "labour artefact": false,
+      "existing-resources passer at min cohort 20": true,
+      "at min cohort 25": false,
+      "decision.first": "recommend",
+      "central score": 3.835677657910754,
+      "central scores of the other band passers": {
+        "223 bachelor": 3.5791823706751833
+      },
+      "decision.second: first (for information)": [
+        242,
+        "bachelor"
+      ],
+      "decision.second: P(rank 1) of the first": 0.7188
+    }
+  },
+  "runner-up gaps (decision.second)": {
+    "demand": {
+      "value points the runner-up needs on this criterion alone": 1.9310510947660329,
+      "room it has": 1.0774556794221652,
+      "can flip alone": false
+    },
+    "labour": {
+      "value points the runner-up needs on this criterion alone": 2.896576642149049,
+      "room it has": 0.9470835383602019,
+      "can flip alone": false
+    },
+    "fit": {
+      "value points the runner-up needs on this criterion alone": 2.896576642149049,
+      "room it has": 1.9624573378839592,
+      "can flip alone": false
+    },
+    "feasibility": {
+      "value points the runner-up needs on this criterion alone": 3.8621021895320657,
+      "room it has": 0.9988846181622684,
+      "can flip alone": false
+    },
+    "differentiation": {
+      "value points the runner-up needs on this criterion alone": 5.793153284298098,
+      "room it has": 2.8999302649930265,
+      "can flip alone": false
+    },
+    "regional": {
+      "value points the runner-up needs on this criterion alone": 11.586306568596196,
+      "room it has": 1.5169406205138438,
+      "can flip alone": false
+    }
+  },
+  "share of specs with no existing-resources passer, by factor level": {
+    "N_cap": {
+      "{'bachelor': 10.0, 'master': 5.0}": 1.0,
+      "{'bachelor': 20.0, 'master': 10.0}": 1.0,
+      "{'bachelor': inf, 'master': inf}": 0.3333333333333333
+    },
+    "differentiation": {
+      "anchor 20": 0.7777777777777778,
+      "both halves anchor 10": 0.7777777777777778,
+      "quotient half left out": 0.7777777777777778
+    },
+    "feasibility_value": {
+      "included": 0.7777777777777778,
+      "left out": 0.7777777777777778
+    },
+    "fit_value": {
+      "flat": 0.7777777777777778,
+      "rising": 0.7777777777777778
+    },
+    "labour_measure": {
+      "largest keyword": 0.7777777777777778,
+      "median keyword": 0.7777777777777778
+    },
+    "master_transition": {
+      "0.3": 0.7777777777777778,
+      "0.5": 0.7777777777777778,
+      "0.7": 0.7777777777777778
+    },
+    "min_cohort": {
+      "20": 0.7777777777777778,
+      "25": 0.7777777777777778
+    },
+    "one_programme_max": {
+      "0.5": 1.0,
+      "0.8": 0.6666666666666666,
+      "none": 0.6666666666666666
+    },
+    "overlap_band": {
+      "(0.3, 0.9)": 0.7777777777777778,
+      "(0.4, 0.8)": 0.7777777777777778,
+      "(0.5, 0.8)": 0.7777777777777778
+    },
+    "overlap_reading": {
+      "both ends on all EMI modules": 0.7777777777777778,
+      "lower end overall, upper end on one programme": 0.7777777777777778
+    },
+    "pool_trend": {
+      "foreign added flat": 0.7777777777777778,
+      "projected": 0.7777777777777778,
+      "unprojected": 0.7777777777777778
+    },
+    "references": {
+      "both inside": 0.7777777777777778,
+      "primary only": 0.7777777777777778
+    },
+    "value_anchors": {
+      "as written": 0.7777777777777778,
+      "widened": 0.7777777777777778
+    },
+    "widenings": {
+      "as written": 0.7777777777777778,
+      "none": 0.7777777777777778
+    }
+  },
+  "competition counts": "not validated (Step 3: the check of similar failed twice); the offers half of differentiation takes the range 1 to 5 in the Monte Carlo",
+  "inputs": {
+    "funnel2_gate.csv": "34bcffd308248ffa",
+    "funnel2_gate_references.csv": "c4e6b98552fba2f0",
+    "funnel2_capture.csv": "941fcafaf4048139",
+    "funnel2_demand.csv": "d6e9cbccd315df94",
+    "funnel2_labour.csv": "4cc4fe60c3364fee",
+    "funnel2_screen.csv": "b12cdfe015f8620d"
+  },
+  "files": {
+    "funnel2_rank_inputs.csv": "32d3e21b48c7827c",
+    "funnel2_rank.csv": "17523923bd5ecaf5",
+    "funnel2_factorial.csv": "27cebbd4e15cea01"
+  },
+  "sentences": [
+    "- decision.first: recommend type 312 bachelor (a general computer science / Informatik bachelor; titles: Computer Science; Informatik/Computer Science; Informatik / ); 26.5 first-years new to OTH a year (central); new teaching 52.5 ECTS: 50.5 ECTS new modules by current lecturers (N) and 2.0 ECTS by a teaching assignment (T), none beyond that (X 0.0); about 1.17 professor-equivalents; no new lab. It is the only existing-resources passer; it rests on 1 handbook(s) and wins 22% of the stress grid (the rest has no passer at all).",
+    "- decision.second (for information, outside the scope): first among the band passers is type 312 bachelor (P(rank 1) 0.82, win share 66%); type 223 bachelor needs 10.0 and 10.0 ECTS by teaching assignments (T) and 3.0 and 10.0 ECTS beyond what existing staff can take (X), 1.45 professor-equivalents: outside the scope, needs new expertise."
+  ]
+}

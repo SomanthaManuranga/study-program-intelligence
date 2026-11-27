@@ -1,0 +1,399 @@
+label,offers,code,destatis_name,how,similarity,review
+"Betriebswirtschaftslehre, Business Administration",1276,SF021,Betriebswirtschaftslehre,nearest,0.95,False
+Lehramt an Gymnasien,801,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.896,True
+Informatik,792,SF079,Informatik,exact,1.0,False
+Lehramt für Schularten der Sekundarstufe I,715,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.89,True
+Lehramt an Gymnasien (grundständig außer Staatsexamen),710,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.892,True
+Lehramt für Schularten der Sekundarstufe I (grundständig außer Staatsexamen),666,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.888,True
+Maschinenbau,523,SF104,Maschinenbau/-wesen,nearest,0.948,False
+Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs,522,SF270,Berufs- und Wirtschaftspädagogik,corrected: vocational teacher training,0.907,False
+Elektrotechnik,494,SF048,Elektrotechnik/Elektronik,corrected: same subject,0.954,False
+Wirtschaftsingenieurwesen,474,SF370,Wirtschaftsingenieurw. m. ingenieurwiss.Schwerpkt.,"corrected: industrial engineering, engineering-focus series",0.945,False
+Wirtschaftswissenschaften,473,SF184,Wirtschaftswissenschaften,exact,1.0,False
+Lehramt für Schularten der Sekundarstufe I (Staatsexamen),422,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.882,True
+Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs (grundständig außer Staatsexamen),389,SF270,Berufs- und Wirtschaftspädagogik,corrected: vocational teacher training,0.887,True
+Mathematik,372,SF105,Mathematik,exact,1.0,False
+Wirtschaftsinformatik,364,SF277,Wirtschaftsinformatik,exact,1.0,False
+Psychologie,351,SF132,Psychologie,exact,1.0,False
+Soziale Arbeit,350,SF208,Soziale Arbeit,exact,1.0,False
+Lehramt an Grundschulen (grundständig außer Staatsexamen),350,SF115,Grundschul-/Primärstufenpädagogik,corrected: primary teacher training,0.896,True
+Lehramt an Gymnasien (Staatsexamen),345,SF361,Schulpädagogik,"corrected: teacher training, school pedagogy closest",0.894,True
+Instrumentalmusik,330,SF080,Instrumentalmusik,exact,1.0,False
+"Erziehungs-, Bildungswissenschaft",329,SF052,Erziehungswissenschaften (Pädagogik),nearest,0.958,False
+Lehramt an Grundschulen,318,SF115,Grundschul-/Primärstufenpädagogik,nearest,0.922,False
+Bauingenieurwesen,294,SF017,Bauingenieurwesen/Ingenieurbau,nearest,0.949,False
+Chemie,280,SF032,Chemie,exact,1.0,False
+Geschichte,276,SF068,Geschichte,exact,1.0,False
+Physik,271,SF128,Physik,exact,1.0,False
+Politikwissenschaft,260,SF129,Politikwissenschaft/Politologie,nearest,0.949,False
+"Informations-, Kommunikationstechnik",250,SF222,Kommunikations- und Informationstechnik,nearest,0.979,False
+Sozialwissenschaften,248,SF148,Sozialwissenschaften,exact,1.0,False
+Lehramt an Förderschulen/für Sonderpädagogik (grundständig außer Staatsexamen),245,SF190,Sonderpädagogik,nearest,0.887,True
+Internationale Wirtschaft,244,SF182,Internationale Betriebswirtschaft/Management,nearest,0.926,False
+Lehramt an Förderschulen/für Sonderpädagogik,236,SF190,Sonderpädagogik,nearest,0.901,False
+"Gesundheitsmanagement, -ökonomie",229,SF232,Gesundheitswissenschaften/-management,nearest,0.935,False
+Biologie,226,SF026,Biologie,exact,1.0,False
+"Philosophie, Ethik",224,SF127,Philosophie,nearest,0.906,False
+Musikwissenschaft,217,SF114,Musikwissenschaft/-geschichte,nearest,0.943,False
+"Anglistik, Amerikanistik",216,SF008,Anglistik/Englisch,corrected: English studies main series,0.953,False
+"Gesundheitswissenschaft, Public Health",215,SF232,Gesundheitswissenschaften/-management,nearest,0.93,False
+Mechatronik,213,SF380,Mechatronik,exact,1.0,False
+Germanistik,213,SF067,Germanistik/Deutsch,nearest,0.943,False
+Allgemeine und vergleichende Sprachwissenschaft,211,SF152,Allgemeine Sprachwissenschaft,nearest,0.949,False
+Allgemeine und vergleichende Kulturwissenschaft,201,SF024,Europäische Ethnologie und Kulturwissenschaft,nearest,0.909,False
+Lehramt an Grundschulen (Staatsexamen),201,SF115,Grundschul-/Primärstufenpädagogik,nearest,0.896,True
+Energietechnik,193,SF211,Energieverfahrenstechnik,nearest,0.961,False
+Medienwissenschaft,192,SF302,Medienwissenschaft,exact,1.0,False
+"Marketing, Vertrieb",190,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.896,True
+Soziologie,188,SF149,Soziologie,exact,1.0,False
+"Datenwissenschaft, Data Science",187,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.921,False
+Sportwissenschaft,185,SF029,Sportwissenschaft,exact,1.0,False
+"Unternehmensführung, Management",185,SF021,Betriebswirtschaftslehre,"corrected: general management, parent BWL",0.914,False
+Architektur,183,SF013,Architektur,exact,1.0,False
+Ingenieurwissenschaft,159,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),corrected: general engineering series,0.919,False
+Rechtswissenschaft,155,SF135,Rechtswissenschaft,exact,1.0,False
+Wirtschaftsrecht,152,SF042,Wirtschaftsrecht,exact,1.0,False
+Biotechnologie,148,SF282,Biotechnologie,exact,1.0,False
+Geografie,144,SF050,Geografie/Erdkunde,corrected: same subject,0.914,False
+Nachhaltigkeitsmanagement,142,SF458,Umweltschutz,corrected: environmental protection is closest,0.901,False
+Volkswirtschaftslehre,140,SF175,Volkswirtschaftslehre,exact,1.0,False
+Umwelttechnik,138,SF457,Umwelttechnik (einschließlich Recycling),nearest,0.935,False
+Kommunikationswissenschaft,137,SF303,Kommunikationswissenschaft/Publizistik,nearest,0.934,False
+Archäologie,137,SF012,Archäologie,exact,1.0,False
+Medizinische Technik,135,SF215,Gesundheitstechnik,nearest,0.954,False
+Allgemeine und vergleichende Literaturwissenschaft,135,SF188,Allgemeine Literaturwissenschaft,nearest,0.949,False
+"Pflegemanagement, -wissenschaft",128,SF234,Pflegewissenschaft/-management,nearest,0.974,False
+Medieninformatik,128,SF121,Medieninformatik,exact,1.0,False
+Wirtschaftspsychologie,127,SF132,Psychologie,corrected: counted under psychology,0.925,False
+Umweltwissenschaft,123,SF458,Umweltschutz,nearest,0.926,False
+Musikpädagogik,119,SF113,Musikpädagogik,exact,1.0,False
+"Finanz- und Rechnungswesen, Controlling",115,SF021,Betriebswirtschaftslehre,"corrected: business function, not public finance",0.937,False
+Geowissenschaften,113,SF039,Geowissenschaften allgemein,nearest,0.963,False
+Verfahrenstechnik,110,SF226,Verfahrenstechnik,exact,1.0,False
+"Kommunikationsdesign, visuelle Kommunikation",109,SF069,Grafikdesign/Kommunikationsgestaltung,nearest,0.938,False
+Design,108,SF007,Angewandte Kunst,"corrected: general design, parent applied art",0.894,True
+Kunstgeschichte,108,SF092,"Kunstgeschichte, Kunstwissenschaft",nearest,0.941,False
+"Logistik, Supply-Chain-Management",105,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.888,True
+Religionswissenschaft,105,SF136,Religionswissenschaft,exact,1.0,False
+"Mediendesign, -kunst",103,SF287,Neue Medien,corrected: design and art with new media,0.924,False
+Agrarwissenschaft,102,SF003,Agrarwissenschaft/Landwirtschaft,nearest,0.959,False
+Erneuerbare Energien,101,SF310,Regenerative Energien,nearest,0.928,False
+Humanmedizin,101,SF107,Medizin (Allgemein-Medizin),corrected: same subject,0.939,False
+"Personalmanagement, -dienstleistung",99,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.897,True
+Sozialmanagement,96,SF253,Sozialwesen,nearest,0.922,False
+Fahrzeugtechnik,94,SF235,Fahrzeugtechnik,exact,1.0,False
+Gesang,92,SF230,Gesang,exact,1.0,False
+"Sportmanagement, -ökonomie",90,SF166,Sportmanagement/Sportökonomie,nearest,0.967,False
+"Ernährungswissenschaft, Ökotrophologie",88,SF320,Ernährungswissenschaft,nearest,0.942,False
+Romanistik - Französisch,88,SF059,Französisch,corrected: same subject,0.938,False
+Romanistik - Spanisch,87,SF150,Spanisch,corrected: same subject,0.928,False
+"Sozial-, Kulturanthropologie",85,SF173,Ethnologie,"corrected: same subject, ethnology",0.923,False
+"Medienwirtschaft, -management",84,SF304,Medienwirtschaft/Medienmanagement,nearest,0.975,False
+"Biomedizin, Molekulare Medizin",83,SF300,Biomedizin,nearest,0.926,False
+Materialwissenschaft,83,SF294,Materialwissenschaften,nearest,0.994,False
+Biochemie,82,SF025,Biochemie,exact,1.0,False
+Rechtswissenschaft (grundständig außer Erste juristische Prüfung),79,SF135,Rechtswissenschaft,nearest,0.913,False
+Kirchenmusik,78,SF193,Kirchenmusik,exact,1.0,False
+Chemieingenieurwesen,77,SF033,Chemie-Ingenieurwesen/Chemieverfahrenstechnik,nearest,0.944,False
+Regionalwissenschaft - Europa,77,SF036,Sonstige Regionalwissenschaften,nearest,0.93,False
+Vermessungstechnik,76,SF171,Vermessungswesen (Geodäsie),nearest,0.902,False
+Technologiemanagement,76,SF370,Wirtschaftsingenieurw. m. ingenieurwiss.Schwerpkt.,corrected: engineering and business hybrid,0.89,True
+Lehramt an Förderschulen/für Sonderpädagogik (Staatsexamen),75,SF190,Sonderpädagogik,nearest,0.882,True
+Romanistik,74,SF137,"Romanistik (Roman.Philologie,Einzelsprach. a.n.g.)",nearest,0.906,False
+"Dirigieren, Chorleitung",74,SF192,Dirigieren,nearest,0.915,False
+Künstliche Intelligenz,73,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.886,True
+Automatisierungstechnik,70,SF048,Elektrotechnik/Elektronik,"corrected: automation, parent electrical engineering",0.9,False
+Technische Informatik,70,SF123,Ingenieurinformatik/Technische Informatik,nearest,0.956,False
+"Finanz-, Wirtschaftsmathematik",70,SF276,Wirtschaftsmathematik,nearest,0.946,False
+Tourismusmanagement,70,SF274,Tourismuswirtschaft,nearest,0.94,False
+"Produkt-, Industriedesign",67,SF203,Industriedesign/Produktgestaltung,nearest,0.961,False
+Altertumswissenschaften,67,SF012,Archäologie,nearest,0.906,False
+Bildende Künste,67,SF023,Bildende Kunst/Grafik,nearest,0.946,False
+Produktionstechnik,66,SF202,Fertigungs-/Produktionstechnik,nearest,0.951,False
+Lehramt an berufsbildenden/beruflichen Schulen/Berufskollegs (Staatsexamen),65,SF270,Berufs- und Wirtschaftspädagogik,corrected: vocational teacher training,0.892,True
+Softwaretechnik,64,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.907,False
+Journalistik,63,SF303,Kommunikationswissenschaft/Publizistik,corrected: journalism series merged into this code,0.88,True
+Heilpädagogik,63,SF190,Sonderpädagogik,corrected: special needs education,0.96,False
+Komposition,62,SF191,Komposition,exact,1.0,False
+"Steuern, Prüfungswesen",61,SF021,Betriebswirtschaftslehre,"corrected: business function, not public finance",0.93,False
+"Ingenieurinformatik, Computational Engineering",60,SF123,Ingenieurinformatik/Technische Informatik,nearest,0.945,False
+"Werkstoffwissenschaft, -technik",59,SF177,Werkstofftechnik,nearest,0.948,False
+"Stadt-, Regionalplanung",57,SF134,Raumplanung,"corrected: same subject, spatial planning",0.908,False
+"Medizin-, Pflegepädagogik",57,SF195,Gesundheitspädagogik,nearest,0.939,False
+Zahnmedizin,57,SF185,Zahnmedizin,exact,1.0,False
+Romanistik - Italienisch,57,SF084,Italienisch,corrected: same subject,0.934,False
+Deutsch als Zweit-/Fremdsprache,57,SF271,Deutsch als Fremdsprache oder als Zweitsprache,nearest,0.963,False
+Klassische Philologie - Latinistik,57,SF095,Latein,corrected: same subject,0.934,False
+"Jazz, Popularmusik",55,SF164,Jazz und Popularmusik,nearest,0.955,False
+Physiotherapie,55,SF552,Physiotherapie,exact,1.0,False
+Theologie - Evangelische Theologie (grundständig außer kirchliche Abschlüsse),54,SF053,"Evangelische Theologie, - Religionslehre",nearest,0.939,False
+"Bank, Finanzdienstleistungen",53,SF021,Betriebswirtschaftslehre,"corrected: business function, not public finance",0.908,False
+Interkulturelle Studien,53,SF024,Europäische Ethnologie und Kulturwissenschaft,corrected: cultural studies parent,0.901,False
+Slawistik,53,SF146,"Slawistik (Slawische Philologie, ohne Sorabistik)",corrected: same subject,0.903,False
+Lebensmitteltechnologie,52,SF097,Lebensmitteltechnologie,exact,1.0,False
+Klassische Philologie - Gräzistik,52,SF070,Griechisch,corrected: same subject,0.927,False
+Molekularwissenschaft,51,SF032,Chemie,"corrected: molecular science, parent chemistry",0.913,False
+Immobilienwirtschaft,51,SF021,Betriebswirtschaftslehre,"corrected: sector business, parent BWL",0.881,True
+"Rehabilitations-, Sonderpädagogik",51,SF190,Sonderpädagogik,nearest,0.924,False
+"Luft-, Raumfahrttechnik",50,SF057,Luft- und Raumfahrttechnik,nearest,0.975,False
+Psychotherapie,50,SF132,Psychologie,corrected: counted under psychology,0.922,False
+Theologie - Evangelische Theologie,50,SF053,"Evangelische Theologie, - Religionslehre",nearest,0.984,False
+"Energie-, Ressourcenmanagement",49,SF370,Wirtschaftsingenieurw. m. ingenieurwiss.Schwerpkt.,corrected: engineering and business hybrid,0.903,False
+"Robotik, Autonome Systeme",49,SF380,Mechatronik,"corrected: robotics, closest mechatronics",0.886,True
+Medizinische Informatik,49,SF247,Medizinische Informatik,exact,1.0,False
+"Staats-, Verwaltungswissenschaft",49,SF172,Verwaltungswissenschaft/-wesen,nearest,0.966,False
+Öffentliches Recht,49,SF135,Rechtswissenschaft,"corrected: law, not business law",0.905,False
+Hebammenkunde,49,SF550,Hebammenwissenschaft,nearest,0.952,False
+Regionalwissenschaft - Asien,49,SF187,Asiatische Sprachen u.Kulturen/Asienwissenschaften,"corrected: same region, Asian studies",0.924,False
+Rechtswissenschaft (Erste juristische Prüfung),49,SF135,Rechtswissenschaft,nearest,0.929,False
+Theologie - Katholische Theologie (grundständig außer kirchliche Abschlüsse),48,SF086,"Katholische Theologie, - Religionslehre",nearest,0.937,False
+Kunstwissenschaft,47,SF092,"Kunstgeschichte, Kunstwissenschaft",nearest,0.936,False
+Sinologie,46,SF145,Sinologie/Koreanistik,corrected: same subject,0.904,False
+Kulturmanagement,44,SF024,Europäische Ethnologie und Kulturwissenschaft,corrected: cultural studies parent,0.894,True
+Kunstpädagogik,44,SF091,Kunstpädagogik,exact,1.0,False
+"Landschaftsarchitektur, Freiraumplanung",43,SF093,Landschaftsgestaltung,nearest,0.926,False
+Berufspädagogik,43,SF270,Berufs- und Wirtschaftspädagogik,nearest,0.954,False
+"Verwaltungsmanagement, Public Management",43,SF172,Verwaltungswissenschaft/-wesen,nearest,0.914,False
+"Facility-Management, Technisches Gebäudemanagement",41,SF464,Facility Management,nearest,0.923,False
+IT-Sicherheit,41,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.88,True
+"Coaching, Beratung, Supervision",41,SF208,Soziale Arbeit,"corrected: counselling, feeder social work",0.918,False
+Bioinformatik,40,SF221,Bioinformatik,exact,1.0,False
+"Biowissenschaften, Life Sciences",40,SF026,Biologie,corrected: parent biology,0.913,False
+Islamwissenschaft,40,SF083,Islamwissenschaft,exact,1.0,False
+Versicherungsbetriebswirtschaft,39,SF021,Betriebswirtschaftslehre,nearest,0.893,True
+Nah- und Mitteloststudien,39,SF122,"Orientalistik, Altorientalistik","corrected: Middle East, parent oriental studies",0.928,False
+Event-Management,38,SF021,Betriebswirtschaftslehre,"corrected: sector business, parent BWL",0.876,True
+Theologie - Katholische Theologie,38,SF086,"Katholische Theologie, - Religionslehre",nearest,0.986,False
+"Landschaftsökologie, Naturschutz",37,SF064,Naturschutz,"corrected: same subject, nature conservation",0.92,False
+Konstruktionstechnik,37,SF104,Maschinenbau/-wesen,"corrected: mechanical design, not civil engineering",0.931,False
+"Medien-, Multimediatechnik",37,SF305,Medientechnik,nearest,0.939,False
+Computerlinguistik,37,SF160,Computerlinguistik,exact,1.0,False
+Neurowissenschaft,36,SF026,Biologie,corrected: feeder biology,0.899,True
+"Jüdische Studien, Judaistik",36,SF073,Judaistik/Hebräisch,nearest,0.932,False
+"Gesundheitsförderung, -pädagogik",35,SF195,Gesundheitspädagogik,nearest,0.942,False
+"Gebäudetechnik, Gebäudeenergietechnik",35,SF213,Versorgungstechnik,"corrected: building services, same subject",0.915,False
+Technomathematik,35,SF118,Technomathematik,exact,1.0,False
+Pflegepraxis,35,SF234,Pflegewissenschaft/-management,nearest,0.905,False
+Theologie - Islamische Theologie,35,SF292,Islamische Studien/Islamische Theologie,nearest,0.955,False
+"Forstwissenschaft, -wirtschaft",34,SF058,"Forstwissenschaft, -wirtschaft",exact,1.0,False
+Klinische Psychologie,34,SF132,Psychologie,nearest,0.918,False
+IT-Management,33,SF277,Wirtschaftsinformatik,corrected: business informatics closest,0.897,True
+"Film-, Fernsehproduktion",33,SF054,Film und Fernsehen,nearest,0.936,False
+"Logopädie, Sprachtherapie",33,SF551,Logopädie/Sprachtherapie,exact,0.968,False
+Innenarchitektur,32,SF242,Innenarchitektur,exact,1.0,False
+Wirtschaftspädagogik,32,SF181,Wirtschaftspädagogik,exact,1.0,False
+Geophysik,30,SF066,Geophysik,exact,1.0,False
+Therapiewissenschaft,30,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-medical therapies series,0.899,True
+Statistik,30,SF312,Statistik,exact,1.0,False
+Slawistik - Ostslawistik,30,SF146,"Slawistik (Slawische Philologie, ohne Sorabistik)",corrected: parent Slavic studies,0.926,False
+Nanowissenschaft,29,SF294,Materialwissenschaften,nearest,0.9,True
+Geoökologie,29,SF385,Geoökologie,exact,1.0,False
+Meteorologie,29,SF110,Meteorologie,exact,1.0,False
+Theologie - Evangelische Theologie (kirchlicher Abschluss/Magister Theologiae),29,SF053,"Evangelische Theologie, - Religionslehre",nearest,0.943,False
+Verkehrsbetriebswirtschaft,28,SF210,Verkehrswirtschaft,nearest,0.977,False
+Versorgungstechnik,28,SF213,Versorgungstechnik,exact,1.0,False
+"Werbung, Marketingkommunikation",28,SF303,Kommunikationswissenschaft/Publizistik,nearest,0.912,False
+Theaterwissenschaft,28,SF155,Theaterwissenschaft,exact,1.0,False
+Japanologie,28,SF085,Japanologie,exact,1.0,False
+Holztechnik,27,SF082,Holz-/Fasertechnik,"corrected: same subject, wood technology",0.932,False
+Arabistik,27,SF010,Arabisch/Arabistik,corrected: same subject,0.934,False
+"Musiktheater, Musical",27,SF035,Darstellende Kunst/Bühnenkunst/Regie,nearest,0.889,True
+Sozialökonomie,26,SF148,Sozialwissenschaften,nearest,0.925,False
+"Mikrotechnik, Mikrosystemtechnik",26,SF286,Mikrosystemtechnik,nearest,0.944,False
+"Public Relations, Kommunikationsmanagement",26,SF303,Kommunikationswissenschaft/Publizistik,nearest,0.924,False
+Angewandte Naturwissenschaft,25,SF049,Interdisz. Studien (Schwerp. Naturwissenschaften),corrected: general natural sciences series,0.933,False
+"Abfall-, Entsorgungstechnik",25,SF457,Umwelttechnik (einschließlich Recycling),nearest,0.922,False
+Ergotherapie,24,SF549,Ergotherapie,exact,1.0,False
+Afrikanistik,24,SF002,Afrikanistik,exact,1.0,False
+"Photonik, Optische Technologien",23,SF088,Optoelektronik,"corrected: optical technology, optoelectronics",0.924,False
+"Bibliotheks-, Informationswissenschaft",23,SF022,Informations-/Bibliothekswiss. (nicht f. Verw.-FH),corrected: same subject,0.94,False
+Tanz,23,SF106,Tanzpädagogik,nearest,0.884,True
+Skandinavistik,23,SF120,"Nordistik/Skandinavist.(Nord.Phil.,Einzelsp.a.n.g)",corrected: same subject,0.889,True
+Restaurierung,22,SF101,Restaurierungskunde,nearest,0.955,False
+Textildesign,22,SF116,Textilgestaltung,nearest,0.961,False
+Pharmazie (Staatsexamen),22,SF126,Pharmazie,nearest,0.92,False
+Schauspiel,22,SF102,Schauspiel,exact,1.0,False
+Ägyptologie,22,SF001,Ägyptologie,exact,1.0,False
+"Wasser- und Bodenmanagement, Wassertechnologie",21,SF077,Wasserwirtschaft,"corrected: water management, same subject",0.916,False
+Bildungsmanagement,21,SF052,Erziehungswissenschaften (Pädagogik),"corrected: education, parent pedagogy",0.882,True
+"Korrepetition, Liedgestaltung",21,SF080,Instrumentalmusik,"corrected: piano performers, instrumental music",0.877,True
+Regie,21,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: same subject, stage direction",0.841,True
+"Baubetriebswirtschaft, Baumanagement",20,SF017,Bauingenieurwesen/Ingenieurbau,nearest,0.925,False
+Elektromobilität,20,SF048,Elektrotechnik/Elektronik,nearest,0.909,False
+"Religionspädagogik, Gemeindearbeit - Evangelische Gemeinden",20,SF544,"Ev. Religionspädagogik, kirchliche Bildungsarbeit",nearest,0.95,False
+Turkologie,20,SF158,Turkologie,exact,1.0,False
+Agrarmanagement,19,SF125,Agrarökonomie,nearest,0.915,False
+Gartenbau,19,SF060,Gartenbau,exact,1.0,False
+Physikingenieurwesen,19,SF224,Physikal. Technik/Mechanische Verfahrenstechnik,"corrected: engineering physics, physical technology",0.937,False
+Innovationsmanagement,19,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.873,True
+Modedesign,19,SF116,Textilgestaltung,corrected: textile and fashion design,0.87,True
+Interkulturelle Kommunikation,19,SF303,Kommunikationswissenschaft/Publizistik,nearest,0.876,True
+Gender Studies,19,SF148,Sozialwissenschaften,nearest,0.848,True
+Indologie,19,SF078,Indologie,exact,1.0,False
+Theologie - Katholische Theologie (kirchlicher Abschluss/Magister Theologiae),19,SF086,"Katholische Theologie, - Religionslehre",nearest,0.943,False
+Sensortechnik,18,SF048,Elektrotechnik/Elektronik,corrected: parent electrical engineering,0.891,True
+Kunststofftechnik,18,SF219,Kunststofftechnik,exact,1.0,False
+Szenografie,18,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: stage design, performing arts",0.886,True
+Medizinische Assistenz,18,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-physician health profession,0.903,False
+Sicherheitsmanagement,18,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.884,True
+Theaterpädagogik,18,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: theatre practice, performing arts",0.926,False
+Regionalwissenschaft - Lateinamerika,18,SF038,Lateinamerika-Studien,nearest,0.939,False
+Hotelmanagement,17,SF274,Tourismuswirtschaft,nearest,0.872,True
+"Druck-, Medientechnik",17,SF305,Medientechnik,nearest,0.937,False
+"Textil-, Bekleidungstechnik",17,SF225,Textil- und Bekleidungstechnik/-gewerbe,nearest,0.97,False
+Unternehmensberatung,17,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.898,True
+"Gamedesign, Interactiondesign",17,SF287,Neue Medien,"corrected: digital design, new media",0.888,True
+Dolmetschen,17,SF018,Berufsbezogene Fremdsprachenausbildung,corrected: professional language training,0.822,True
+Verkehrsingenieurwesen,16,SF089,Verkehrsingenieurwesen,exact,1.0,False
+Produktentwicklung,16,SF104,Maschinenbau/-wesen,"corrected: engineering, parent mechanical engineering",0.91,False
+Übersetzen,16,SF018,Berufsbezogene Fremdsprachenausbildung,corrected: professional language training,0.878,True
+Slawistik - Westslawistik,16,SF146,"Slawistik (Slawische Philologie, ohne Sorabistik)",nearest,0.912,False
+Alte Musik,16,SF080,Instrumentalmusik,"corrected: music performers, instrumental music",0.923,False
+Landschaftsbau,15,SF093,Landschaftsgestaltung,nearest,0.95,False
+Mikrobiologie,15,SF026,Biologie,nearest,0.934,False
+Pharmatechnik,15,SF226,Verfahrenstechnik,corrected: pharma process engineering,0.912,False
+"Schiffbau, Meerestechnik",15,SF142,"Schiffbau/Schiffstechnik, Meerestechnik",nearest,0.99,False
+Medizinische Physik,15,SF128,Physik,nearest,0.939,False
+Informationsmanagement,15,SF277,Wirtschaftsinformatik,corrected: business informatics closest,0.893,True
+Kindheitspädagogik,15,SF365,Kindheitspädagogik,exact,1.0,False
+Neogräzistik,15,SF043,Neugriechisch,corrected: same subject,0.88,True
+Dramaturgie,15,SF155,Theaterwissenschaft,nearest,0.873,True
+"Audio-, Sounddesign",14,SF305,Medientechnik,corrected: media technology closest,0.881,True
+"Gesundheits-, Rehabilitationspsychologie",14,SF132,Psychologie,corrected: counted under psychology,0.92,False
+Gesundheitssport,14,SF029,Sportwissenschaft,corrected: parent sport science,0.928,False
+Biophysik,14,SF128,Physik,corrected: parent physics,0.924,False
+Kunsttherapie,14,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-medical therapies series,0.909,False
+Regionalwissenschaft - Nordamerika,14,SF006,Amerikanistik/Amerikakunde,"corrected: same region, American studies",0.925,False
+"Projektmanagement, -ingenieurwesen",13,SF370,Wirtschaftsingenieurw. m. ingenieurwiss.Schwerpkt.,corrected: engineering and business hybrid,0.936,False
+Pharmazie,13,SF126,Pharmazie,exact,1.0,False
+Sicherheitstechnik,13,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),"corrected: safety engineering, general engineering",0.909,False
+Pädagogische Psychologie,13,SF132,Psychologie,corrected: counted under psychology,0.935,False
+Handelsbetriebswirtschaft,13,SF021,Betriebswirtschaftslehre,nearest,0.893,True
+Romanistik - Portugiesisch,13,SF131,Portugiesisch,corrected: same subject,0.931,False
+Fotografie,13,SF023,Bildende Kunst/Grafik,"corrected: visual arts, not painting",0.875,True
+Qualitätsmanagement,12,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.882,True
+Lebensmittelchemie,12,SF096,Lebensmittelchemie,exact,1.0,False
+Verpackungstechnik,12,SF104,Maschinenbau/-wesen,"corrected: packaging engineering, parent mechanical",0.924,False
+Mikroelektronik,12,SF157,Mikroelektronik,exact,1.0,False
+Wirtschaftschemie,12,SF032,Chemie,"corrected: chemistry with business, parent chemistry",0.932,False
+Koreanistik,12,SF145,Sinologie/Koreanistik,nearest,0.921,False
+Neue und zeitgenössische Musik,12,SF080,Instrumentalmusik,"corrected: music performers, instrumental music",0.903,False
+Geotechnologie,11,SF039,Geowissenschaften allgemein,corrected: parent geosciences,0.913,False
+"Friedens-, Konfliktforschung",11,SF129,Politikwissenschaft/Politologie,nearest,0.914,False
+Iranistik,11,SF081,Iranistik,exact,1.0,False
+Systems Engineering,10,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),corrected: general engineering series,0.865,True
+Ingenieurpädagogik,10,SF270,Berufs- und Wirtschaftspädagogik,corrected: vocational teacher training,0.914,False
+"Automobilwirtschaft, Automotive Management",10,SF021,Betriebswirtschaftslehre,"corrected: sector business, parent BWL",0.904,False
+Industriebetriebswirtschaft,10,SF021,Betriebswirtschaftslehre,"corrected: sector business, parent BWL",0.913,False
+Medienproduktion,10,SF305,Medientechnik,nearest,0.923,False
+Digitale Geisteswissenschaften/Computerphilologie,10,SF004,Interdisz. Studien (Schwerpunkt Geisteswiss.),corrected: interdisciplinary humanities,0.899,True
+"Augenoptik, Optometrie",10,SF143,Augenoptik,nearest,0.924,False
+Sporttechnik,10,SF029,Sportwissenschaft,nearest,0.918,False
+Kommunikationspsychologie,10,SF132,Psychologie,corrected: counted under psychology,0.905,False
+Gebärdensprachdolmetschen,10,SF018,Berufsbezogene Fremdsprachenausbildung,corrected: professional language training,0.882,True
+Buchwissenschaft,10,SF188,Allgemeine Literaturwissenschaft,nearest,0.921,False
+Tiermedizin,9,SF156,Tiermedizin/Veterinärmedizin,nearest,0.951,False
+"Brauerei-, Getränketechnologie",9,SF028,Brauwesen/Getränketechnologie,nearest,0.979,False
+Biomechanik,9,SF215,Gesundheitstechnik,corrected: medical engineering closest,0.927,False
+Sportpsychologie,9,SF098,Sportpädagogik/Sportpsychologie,nearest,0.947,False
+Umweltinformatik,9,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.927,False
+Pharmazie (grundständig außer Staatsexamen),9,SF126,Pharmazie,nearest,0.909,False
+Kulturpädagogik,9,SF052,Erziehungswissenschaften (Pädagogik),corrected: parent pedagogy,0.949,False
+Gerontologie,9,SF232,Gesundheitswissenschaften/-management,corrected: health sciences closest,0.893,True
+Psychosoziale Beratung und Therapie,9,SF208,Soziale Arbeit,"corrected: counselling, feeder social work",0.909,False
+Niederlandistik,9,SF119,Niederländisch,nearest,0.929,False
+Finnougristik,9,SF056,Finno-Ugristik,nearest,0.958,False
+Mediävistik,9,SF273,Mittlere und neuere Geschichte,"corrected: medieval studies, medieval history",0.89,True
+Museologie,9,SF037,Archiv- und Dokumentationswissenschaft,corrected: archive and documentation closest,0.902,False
+Schmuckdesign,9,SF159,Edelstein- und Schmuckdesign,nearest,0.934,False
+"Entwicklungsforschung, -politik",8,SF129,Politikwissenschaft/Politologie,nearest,0.93,False
+"Fahrzeuginformatik, -elektronik",8,SF123,Ingenieurinformatik/Technische Informatik,nearest,0.929,False
+Nautik,8,SF223,Nautik/Seefahrt,nearest,0.879,True
+Lebensmittelchemie (Staatsexamen),8,SF096,Lebensmittelchemie,nearest,0.925,False
+Verwaltungsinformatik,8,SF277,Wirtschaftsinformatik,nearest,0.938,False
+"Weinbau, Önologie",7,SF227,Weinbau und Kellerwirtschaft,corrected: same subject,0.912,False
+Schiffsbetriebstechnik,7,SF223,Nautik/Seefahrt,"corrected: seafaring, ship operation",0.93,False
+Bionik,7,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),corrected: general engineering series,0.876,True
+Lebensmittelchemie (grundständig außer Staatsexamen),7,SF096,Lebensmittelchemie,nearest,0.914,False
+"Klinische Forschung, Arzneimittelerprobung, -zulassung",7,SF126,Pharmazie,"corrected: drug development, feeder pharmacy",0.891,True
+Computervisualistik,7,SF121,Medieninformatik,"corrected: visual computing, media informatics",0.914,False
+Musiktherapie,7,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-medical therapies series,0.899,True
+Denkmalpflege,7,SF092,"Kunstgeschichte, Kunstwissenschaft","corrected: built heritage, art history",0.868,True
+"Rhetorik, Sprechwissenschaft",7,SF284,Angewandte Sprachwissenschaft,corrected: applied linguistics closest,0.922,False
+Mechanik,6,SF104,Maschinenbau/-wesen,corrected: parent mechanical engineering,0.946,False
+Astrophysik,6,SF014,Astrophysik und Astronomie,nearest,0.952,False
+Kognitionswissenschaft,6,SF132,Psychologie,corrected: feeder psychology,0.896,True
+Epidemiologie,6,SF232,Gesundheitswissenschaften/-management,corrected: public health series,0.901,False
+Humanitäre Hilfe,6,SF208,Soziale Arbeit,nearest,0.881,True
+Regionalwissenschaft - Afrika,6,SF002,Afrikanistik,"corrected: same region, African studies",0.924,False
+Semitistik,6,SF122,"Orientalistik, Altorientalistik",corrected: parent oriental studies,0.89,True
+Bioökonomie,5,SF125,Agrarökonomie,"corrected: bio-based economics, agricultural economics",0.917,False
+Kybernetik,5,SF144,Technische Kybernetik,nearest,0.951,False
+Regionalmanagement,5,SF134,Raumplanung,"corrected: regional development, spatial planning",0.872,True
+Polymerwissenschaft,5,SF294,Materialwissenschaften,nearest,0.915,False
+"Religionspädagogik, Gemeindearbeit - Katholische Gemeinden",5,SF545,"Kath. Religionspäd., kirchliche Bildungsarbeit","corrected: same subject, Catholic series",0.944,False
+"Mensch-Maschine-Interaktion, Interfacedesign",5,SF121,Medieninformatik,"corrected: human-computer interaction, media informatics",0.902,False
+Computermathematik,5,SF118,Technomathematik,nearest,0.938,False
+Risikomanagement,5,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.877,True
+Archivwissenschaft,5,SF037,Archiv- und Dokumentationswissenschaft,nearest,0.962,False
+Slawistik - Südslawistik,5,SF146,"Slawistik (Slawische Philologie, ohne Sorabistik)",nearest,0.926,False
+"Keramik-, Glastechnik",4,SF216,Glastechnik/Keramik,nearest,0.976,False
+"Ton-, Bildtechnik",4,SF305,Medientechnik,corrected: media technology closest,0.912,False
+"Hörtechnik, Audiologie",4,SF215,Gesundheitstechnik,corrected: medical engineering closest,0.909,False
+Patentingenieurwesen,4,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),corrected: general engineering series,0.91,False
+Chemische Biologie,4,SF026,Biologie,nearest,0.945,False
+Meeresbiologie,4,SF026,Biologie,nearest,0.896,True
+Luftverkehrsmanagement,4,SF210,Verkehrswirtschaft,corrected: transport economics,0.904,False
+Liberal Arts,4,SF004,Interdisz. Studien (Schwerpunkt Geisteswiss.),corrected: interdisciplinary humanities,0.854,True
+Choreografie,4,SF106,Tanzpädagogik,corrected: dance series,0.869,True
+"Film-, Fernsehkamera",4,SF054,Film und Fernsehen,nearest,0.929,False
+Holzwirtschaft,3,SF075,Holzwirtschaft,exact,1.0,False
+Bauphysik,3,SF017,Bauingenieurwesen/Ingenieurbau,corrected: parent civil engineering,0.909,False
+Papiertechnik,3,SF082,Holz-/Fasertechnik,corrected: fibre technology,0.919,False
+Geoinformatik,3,SF079,Informatik,"corrected: specialised computing, parent Informatik",0.913,False
+"Orthopädie-, Rehatechnik",3,SF215,Gesundheitstechnik,corrected: medical engineering closest,0.899,True
+Wirtschaftsphysik,3,SF128,Physik,"corrected: physics with business, parent physics",0.938,False
+Rohstoffingenieurwesen,3,SF020,Bergbau/Bergtechnik,corrected: mining and raw materials,0.906,False
+Rettungsingenieurwesen,3,SF072,Interdisz. Studien (Schwerp. Ingenieurwissensch.),corrected: general engineering series,0.911,False
+Biomathematik,3,SF105,Mathematik,corrected: parent mathematics,0.921,False
+Toxikologie,3,SF300,Biomedizin,corrected: biomedical closest,0.881,True
+"Sanitäts-, Rettungswesen",3,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-physician health profession,0.895,True
+"Markt-, Kommunikationsforschung",3,SF303,Kommunikationswissenschaft/Publizistik,nearest,0.935,False
+"Dienstleistungs-, Servicemanagement",3,SF021,Betriebswirtschaftslehre,"corrected: business function, parent BWL",0.911,False
+Theologie - Jüdische Theologie,3,SF073,Judaistik/Hebräisch,"corrected: Jewish studies, not Catholic",0.949,False
+Kriminologie,3,SF135,Rechtswissenschaft,corrected: parent law,0.879,True
+Theologie - Freikirchen,3,SF053,"Evangelische Theologie, - Religionslehre",corrected: Protestant tradition,0.93,False
+"Fischereiwesen, Aquakultur",2,SF371,Tierproduktion,corrected: animal production,0.93,False
+Batterietechnik,2,SF316,Elektronische Energietechnik,nearest,0.912,False
+Kartografie,2,SF280,Kartografie,exact,1.0,False
+Komplementärmedizin,2,SF107,Medizin (Allgemein-Medizin),nearest,0.883,True
+Arbeitsmarktmanagement,2,SF264,"Arbeits- und Sozialverwaltung, Berufsberatung",corrected: labour administration,0.886,True
+Waldorfpädagogik,2,SF361,Schulpädagogik,nearest,0.92,False
+Bühnenbild,2,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: stage design, performing arts",0.901,False
+Keltologie,2,SF152,Allgemeine Sprachwissenschaft,corrected: comparative linguistics closest,0.885,True
+Fremdsprachendidaktik,2,SF271,Deutsch als Fremdsprache oder als Zweitsprache,nearest,0.909,False
+Technische Redaktion,2,SF303,Kommunikationswissenschaft/Publizistik,corrected: technical communication,0.91,False
+Eurythmie,2,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: movement art, performing arts",0.843,True
+Maskenbild,2,SF035,Darstellende Kunst/Bühnenkunst/Regie,"corrected: stage craft, performing arts",0.836,True
+Pferdewirtschaft,1,SF371,Tierproduktion,corrected: animal production,0.88,True
+"Schiffs-, Reedereimanagement, Hafenwirtschaft",1,SF210,Verkehrswirtschaft,corrected: transport economics,0.944,False
+Veranstaltungstechnik,1,SF305,Medientechnik,nearest,0.899,True
+Nukleartechnik,1,SF211,Energieverfahrenstechnik,nearest,0.888,True
+Baustoffingenieurwissenschaft,1,SF017,Bauingenieurwesen/Ingenieurbau,nearest,0.915,False
+Technischer Vertrieb,1,SF370,Wirtschaftsingenieurw. m. ingenieurwiss.Schwerpkt.,corrected: engineering and business hybrid,0.884,True
+Natur- und Wirkstoffchemie,1,SF032,Chemie,corrected: parent chemistry,0.907,False
+"Biometrie, Biostatistik",1,SF312,Statistik,"corrected: same subject, statistics",0.907,False
+Medienpädagogik,1,SF052,Erziehungswissenschaften (Pädagogik),corrected: parent pedagogy,0.922,False
+Dentalhygiene,1,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-physician health profession,0.91,False
+Tanz- und Bewegungstherapie,1,SF233,Nichtärztliche Heilberufe/Therapien,corrected: non-medical therapies series,0.906,False
+Motologie,1,SF029,Sportwissenschaft,"corrected: movement science, sport science",0.895,True
+Sozialversicherung,1,SF264,"Arbeits- und Sozialverwaltung, Berufsberatung",corrected: social administration,0.926,False
+"Beratung für Bildung, Beruf und Beschäftigung",1,SF264,"Arbeits- und Sozialverwaltung, Berufsberatung",nearest,0.951,False
+Arbeitsmarktorientierte Beratung,1,SF264,"Arbeits- und Sozialverwaltung, Berufsberatung",nearest,0.93,False
+Editionswissenschaft,1,SF067,Germanistik/Deutsch,"corrected: textual editing, feeder German studies",0.895,True
+Kaukasiologie,1,SF180,Kaukasistik,nearest,0.911,False
+Baltistik,1,SF016,Baltistik,exact,1.0,False
+Theologie - Orthodoxe Theologie,1,SF086,"Katholische Theologie, - Religionslehre",nearest,0.94,False
+"Religionspädagogik, Gemeindearbeit - Freikirchliche Gemeinden",1,SF544,"Ev. Religionspädagogik, kirchliche Bildungsarbeit",nearest,0.945,False
+Musikinstrumentenbau,1,SF007,Angewandte Kunst,"corrected: instrument craft, applied art",0.891,True
+Figurentheater,1,SF102,Schauspiel,nearest,0.877,True

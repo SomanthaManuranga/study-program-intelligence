@@ -1,0 +1,26 @@
+gate order,type,level,status,reason
+1,312,bachelor,eligible,1 complete reference(s): 312_bachelor_a
+2,256,bachelor,eligible,1 complete reference(s): 256_bachelor_a
+3,223,bachelor,eligible,"2 complete reference(s): 223_bachelor_a, 223_bachelor_b"
+4,242,bachelor,skipped,3 bachelor candidates are eligible already
+5,206,bachelor,skipped,3 bachelor candidates are eligible already
+6,300,master,eligible,"2 complete reference(s): 300_master_a, 300_master_b"
+7,300,bachelor,skipped,3 bachelor candidates are eligible already
+8,342,bachelor,skipped,3 bachelor candidates are eligible already
+9,232,bachelor,skipped,3 bachelor candidates are eligible already
+10,312,master,eligible,"2 complete reference(s): 312_master_a, 312_master_b"
+11,193,bachelor,skipped,3 bachelor candidates are eligible already
+12,573,master,not a candidate,"mixed type, all 2 titles read, 1 in the main kind (below 80 %)"
+13,12,bachelor,skipped,3 bachelor candidates are eligible already
+14,726,bachelor,not a candidate,"mixed type, all 4 titles read, 3 in the main kind (below 80 %)"
+15,425,master,"tried, not eligible",no complete reference
+16,22,bachelor,skipped,3 bachelor candidates are eligible already
+17,736,master,"tried, not eligible",no complete reference
+18,108,bachelor,skipped,3 bachelor candidates are eligible already
+19,662,master,"tried, not eligible",no complete reference
+20,279,bachelor,skipped,3 bachelor candidates are eligible already
+21,789,master,"tried, not eligible",no complete reference
+22,308,master,below the minimum cohort,central gross first-years below capture.min_cohort; takes no slot
+23,381,master,not a candidate,"mixed type, all 8 titles read, 6 in the main kind (below 80 %)"
+24,438,master,below the minimum cohort,central gross first-years below capture.min_cohort; takes no slot
+25,22,master,eligible,"2 complete reference(s): 22_master_a, 22_master_b"

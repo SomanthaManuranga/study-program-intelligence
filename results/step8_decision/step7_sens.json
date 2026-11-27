@@ -1,0 +1,52 @@
+{
+  "stamp": {
+    "commit": "97047bf",
+    "date": "2026-11-16",
+    "clean": true
+  },
+  "rows": 31,
+  "references": 1,
+  "candidates": 1,
+  "verdicts": {
+    "existing-resources passer": 1
+  },
+  "first_marking": {
+    "E2": 18,
+    "N": 11,
+    "new": 1,
+    "E1": 1
+  },
+  "first_marking_unsure": 6,
+  "rows_marked_by_both": 14,
+  "agreement_on_covered_or_not": 0.9285714285714286,
+  "final_basis": {
+    "first reviewer alone": 17,
+    "both reviewers": 13,
+    "third reader": 1
+  },
+  "samples": {
+    "242 bachelor": {
+      "drawn": 10,
+      "differ": 0,
+      "sample failed": false,
+      "rows": 31,
+      "rows the second reviewer marked": 14
+    }
+  },
+  "band": [
+    0.4,
+    0.8
+  ],
+  "one_programme_max": 0.8,
+  "inputs": {
+    "funnel2_rows_sens_key.csv": "55315ded71824b07",
+    "funnel2_rows_sens.json": "0751c789027bcba2",
+    "funnel_module_marks_sens_1.csv": "36d0486b1b8aa1f5",
+    "funnel_module_marks_sens_2.csv": "3622c8c0d12e571f",
+    "funnel_module_marks_sens_3.csv": "5acda53dd3c977f0"
+  },
+  "files": {
+    "funnel2_gate_sens.csv": "6abddd04aa4bd15b",
+    "funnel2_gate_references_sens.csv": "4acd0992f0dd2d75"
+  }
+}

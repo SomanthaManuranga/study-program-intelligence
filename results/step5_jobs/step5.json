@@ -1,0 +1,43 @@
+{
+  "stamp": {
+    "commit": "c9d4220",
+    "date": "2026-11-15",
+    "clean": true
+  },
+  "step3_commit": "7f24b79",
+  "keywords_file": "d8ca6521f6c7e26e",
+  "units": 1285,
+  "counts_stored": 3348,
+  "days": [
+    "2026-11-15"
+  ],
+  "all_ads": {
+    "germany": 780392,
+    "bayern": 131440,
+    "amberg_100km": 49476
+  },
+  "bavaria_share_of_all_ads": 0.1684,
+  "share_of_all_german_ads_within_100km": 0.0634,
+  "primary": {
+    "units": 365,
+    "labour input ok": 365,
+    "missing": {},
+    "median of the measure": 22.0,
+    "quartiles": [
+      2.0,
+      116.0
+    ],
+    "units with 0 ads within 100 km": 63,
+    "units with 150 or more": 82,
+    "units below 10": 152,
+    "median Bavarian share": 0.2016
+  },
+  "stress": {
+    "units": 1241,
+    "labour input ok": 1241
+  },
+  "files": {
+    "funnel2_labour.csv": "4cc4fe60c3364fee",
+    "funnel2_job_counts.csv": "cebfef0b6756421e"
+  }
+}

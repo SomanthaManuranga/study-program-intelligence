@@ -281,3 +281,21 @@ sources:
     use: rarity of programme types Germany-wide (re-scope R4); the 13-field harvest stays for the baseline
     access: public REST API via ingest/studiensuche.py (separate cache data/raw/studiensuche_full); manifest docs/studiensuche_full_manifest.json
     status: downloaded (180 queries; 22,093 unique offers, 20,383 bachelor/master, 15,207 of them full-time)
+
+  # Added for the funnel rerun (Step 1).
+  - id: destatis_genesis_21311_laender
+    owner: Destatis
+    url: https://genesis.destatis.de/datenbank/online/statistic/21311/details
+    table: "21311-0015 for the 15 Laender other than Bavaria, 2018-2025 (configs/genesis_tables.yaml)"
+    use: funnel rule screen.regional_gap (is a subject growing where similar programmes exist outside the south)
+    licence: Datenlizenz Deutschland, Namensnennung 2.0
+    access: GENESIS REST API, token in .env; 2 s delay; manifest docs/genesis_manifest.json
+    status: downloaded
+
+  - id: oth_emi_timetables
+    owner: OTH Amberg-Weiden, Fakultaet EMI (provided by the supervisor; INTERNAL, not public)
+    url: none (two PDFs handed over for this project)
+    table: weekly timetables of all EMI semester groups, summer 2026 and winter 2026/27, with subject, lecturer and room
+    use: funnel rule feasibility_gate.hand_check.N (which topics current lecturers teach); never for student numbers
+    access: files kept in data/raw/oth_internal/ (git-ignored); parsed by transform/timetables.py; lecturers only as neutral labels
+    status: downloaded

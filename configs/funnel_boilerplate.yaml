@@ -1,0 +1,40 @@
+# Focus-item strings that name no subject matter (configs/funnel.yaml, text.boilerplate_scan).
+# Written after the scan (reports/funnel2/step2_scan.md) and committed before the embedding. No type was seen.
+#
+# Decision rule: a string is dropped only if it could stand in a programme of any field, that is, it names no field,
+# object or method of one discipline. When in doubt the string is kept. A dropped string is removed only where it is a
+# whole focus item; inside a longer item ("International Management") it is content and stays.
+# Strings are in the normalised form of text.normalise.
+
+scan:
+  code_commit: b94ea23
+  date: 2026-11-14
+  distinct_strings: 25758
+  strings_in_20_or_more_offers: 317
+  strings_in_10_or_more_offers: 764
+
+dropped:                       # of the 317 strings found in 20 or more offers
+  - international
+  - forschung
+  - interdisziplinaritaet
+  - forschungsmethoden
+
+stress_from_10:                # dropped in addition under the stress spec boilerplate_scan_from 10 (10 to 19 offers)
+  - wissenschaftliches arbeiten
+  - methodenkompetenz
+  - projektarbeit
+  - fachwissenschaftliche vertiefung
+  - wissenschaft
+  - arbeits
+
+kept_although_broad:           # the closest cases that stay, because they name a field or a profession
+  - technik
+  - engineering
+  - wirtschaft
+  - kultur
+  - lehramt
+  - grundschule
+  - projektmanagement
+  - kommunikation
+  - fachdidaktik
+  - interkulturelle kompetenz
