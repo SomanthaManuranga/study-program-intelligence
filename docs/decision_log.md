@@ -597,3 +597,14 @@ The job-ad artefact for merged candidates (median over the union of keywords; In
 changed: a change now would be a deviation after the result.
 Reason: rule version 4 committed before the run; the review found no wrong number.
 Decided by: Claude (readings and code fixes); the job-ad artefact goes to Soma.
+
+## 2026-11-27: Rules version 4: job-ad measure of merged candidates (deviation) and Informatik as a control
+Decision: (1) The keywords of a merged candidate are made by the version-3 keyword rule (labour.keywords, 3 phrases)
+applied to the fitted members of all its types, instead of the union of its types' keywords; keywords committed in
+`docs/funnel4_keywords.csv` before any request; counts of 15 Nov 2026 where they exist, keywords never counted are
+counted once and flagged with their date. (2) The Informatik bachelor gets a module check as a control whatever its
+gate order; it competes for the recommendation only if it is among the first 20. Both are deviations after the R1
+result; the gate order as written is kept as a sensitivity (`version_4.deviations` in `configs/funnel.yaml`).
+Reason: as written, rare variant phrases pulled the median of the union to 0 (Informatik bachelor: "informatik" 685
+ads within 100 km, median 0); the control shows how the earlier answer fares under the same marking as the others.
+Decided by: Soma ("Fix it and check Informatik too").
