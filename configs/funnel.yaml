@@ -1,4 +1,5 @@
-# Data-driven funnel: pre-registered rules, version 3 (docs/funnel_preregistration.md).
+# Data-driven funnel: pre-registered rules, version 4 (docs/funnel_preregistration.md). Version 4 is the block
+# version_4 at the end: it supersedes the keys it names and leaves every other key of version 3 unchanged.
 # Committed before any run-2 code runs. Run 1 (version 2) is not a result (docs/funnel_run1_review.md).
 # A value is not changed after the step that uses it has run; a later change is logged in docs/decision_log.md as a
 # deviation and the old value is kept as a sensitivity.
@@ -202,7 +203,7 @@ capture:                       # Step 6
 shortlist:
   pre_gate_score: the ranking's central weighted score with fit replaced by the fit proxy and feasibility left out, weights renormalised
   fit_proxy: emi_domain type_score, value 1 at the bar and 5 at the 90th percentile of the EMI offers' calibration scores   # [K]
-  gate_list: down the pre-gate ranking of merged candidates; a candidate is "tried" when its references were looked for; stop when 6 are eligible for the hand check or 20 were tried; a 4th eligible candidate of one level is skipped and not counted (kill rule 5)   # 6, 3, 20 [C]
+  gate_list: SUPERSEDED by version_4.gate_breadth; version 3 was - down the pre-gate ranking of merged candidates; a candidate is "tried" when its references were looked for; stop when 6 are eligible for the hand check or 20 were tried; a 4th eligible candidate of one level is skipped and not counted (kill rule 5)   # 6, 3, 20 [C]
 
 feasibility_gate:              # Step 7
   emi_modules: a bachelor candidate is compared with EMI's bachelor modules, a master candidate with all EMI modules   # [C] run-1 code
@@ -341,3 +342,78 @@ conformance:                   # how run 1's rule-versus-code differences are pr
   rule_tests: tests/test_funnel_step*.py assert the checkable rules (no boilerplate left, both lists processed, w_substitute order, one row per published programme, every keyword in every region, all 18 lists tested, no input filled with a middle value)
   review: a fresh-context reviewer compares each step's code with this file before the step's output counts as a result
   steps_stop: every step ends with short notes on why each programme stays or goes (docs/funnel_run2_notes.md) and waits for Soma's OK
+
+version_4:                     # Soma's OK on 27 Nov 2026 ("Approve as drafted", docs/funnel_rules_v4.md); wording made exact
+  # after a fresh review of the draft (26 points), before any step runs again. All of it is [K]: written knowing
+  # the version-3 result. A version-4 value changed after a result is seen is a deviation, and the result is then
+  # reported under both the old and the new value.
+  supersedes: [definitions.merged_candidates (adds title_merge), screen.at_oth for title-matched units, shortlist.gate_list, feasibility_gate.hand_check (rows, marking_rules, first_marking, sample_check trigger, sample_pass, final_verdict, disclosed, second_rater, E1_E2, N, new_not_N, computed_T_and_X), feasibility_gate.overlap, feasibility_gate.one_programme.share, feasibility_gate.verdict.existing_resources_passer, feasibility_gate.reported_for_every_band_passer, capture.net_new (adds scenarios), ranking.ranked_sets, ranking.inputs.fit, ranking.inputs.feasibility, stress_tests.winner_of_a_spec, decision.first]
+
+  title_merge:                 # R1, fixes re-check loopholes 4 and 5
+    main_title: per type and level, the most frequent normalised title among its assigned offers of that level; ties by the alphabetically first normalised title
+    normalise: applied to funnel_types.clean_title of the offer; text in brackets removed; lower case; ae/oe/ue/ss for umlauts and sharp s; "elektro- und" written as "elektrotechnik und"; every character other than a-z, 0-9 and space replaced by a space; the phrases of translate replaced on word boundaries, longest phrase first; the words of remove deleted as whole words; the remaining words de-duplicated and sorted
+    translate: {computer science: informatik, informatics: informatik, business informatics: wirtschaftsinformatik, media informatics: medieninformatik, electrical engineering: elektrotechnik, information technology: informationstechnik, software engineering: softwaretechnik, mechatronics: mechatronik, robotics: robotik, automation: automatisierungstechnik, cyber security: it sicherheit, cybersecurity: it sicherheit, it security: it sicherheit, information security: it sicherheit}
+    remove: [dual, duales, international, internationale, allgemeine, general, angewandte, applied, berufsbegleitend, praxisintegriert, praxisintegrierend, studium, bachelor, master, of, and, und]
+    rule: the candidate is every unit of one level whose type has the same normalised main title, plus the complete-linkage partners (definitions.merged_candidates) of each of these units, one hop only; a unit without a title match keeps its version-3 group; applied by code to every unit; the largest candidate size is reported
+    at_oth: a unit at OTH (screen.at_oth) is dropped singly, as in version 3; the whole candidate is dropped only if one of its title-matched units is at OTH (then OTH already has a programme of that title); complete-linkage partners are dropped singly
+    measures: |
+      for every merged candidate (by title or by linkage), over the assigned offers of all its surviving units of that level:
+      pool weights = mean of the offers' pool weights; trend, its validation, the anchor and the popularity tier come from that pool;
+      competition = union of the similar offers of all its units; labour keywords = union of the keywords of all its types (labour.measure on that list);
+      fit proxy = emi_domain type_score over the assigned offers of all its units; capture = Step 6 with that pool and the Bavarian comparator sites of all its units;
+      OTH sites = union over its types, else the OTH offer of that level nearest any of its centroids;
+      mixed = any of its types flagged mixed and not lifted by a full reading;
+      reference curricula = assigned offers of all its units, nearest the centroid of its type with the most assigned offers of that level (ties: lower type number)
+    reported: every merged candidate with its types; the version-3 split as a sensitivity
+
+  gate_breadth:                # R2, fixes loophole 1
+    rule: the first 20 positions of the single pre-gate order of both levels (after title_merge), counted before any exclusion; every EMI-field candidate among them gets a module check; no cap per level; a candidate excluded for any reason (outside EMI's field, below the minimum cohort, mixed, no complete public handbook) is named with the reason and not replaced by a lower one
+    emi_field: a candidate is EMI-field if any of its units is marked "yes" or "partly" in docs/funnel_emi_labels.csv; units of the first 20 not in that file are marked by one fresh-context reader, blind to the gate order, from titles only, with the question "Is this kind of programme inside the field of a faculty of electrical engineering, media and computer science (yes, partly or no)?", committed with this rule; its marks are added to the file
+
+  marking:                     # R3-R7, fixes loopholes 2 and 6; reader instructions in docs/funnel_marking_rules.md version 4
+    material: every row shows the 5 nearest EMI modules and up to 5 title matches (as version 3); in addition every reader has the whole list of EMI modules allowed for the level (number, title, ECTS, text) and the list of timetable subjects, and may cite any of them
+    facts_per_row: {covered: "E1, E2 or no, with the numbers of one or two covering EMI modules", topic: "for every row: the number of an EMI module or a timetable subject whose text or name has the module's main topic, or none (for a covered row its covering module)", parent_field: "yes if the module belongs to computing (with mathematics, physics and programming), electrical and information engineering, or media and design; no for business, law, management and other sciences", lab: yes or no, general: "yes for a foreign-language, Studium-generale or soft-skills module", unsure: flag, reason: one line}
+    combinations:
+      marking_reading: {strict: "a row not covered (under the size reading below) and not lab is N if topic names an EMI module or a timetable subject, else new", lenient: "as strict, and also N if topic is none and parent_field is yes"}
+      size_reading: {content: "covered as marked: one or two EMI modules, content counts; general rows covered by OTH's existing language and general-studies offer", size: "covered only if the covering EMI modules together have at least the module's ECTS; a row covered under content but not under size is N under both marking readings, its covering modules being its topic; general rows left out of the counted taught ECTS, not refilled by electives, and the scaling base of 165 / 60 taught ECTS reduced by them"}
+      four: strict x content, strict x size, lenient x content, lenient x size; every figure below is computed under each of the four
+    general_modules: never N, new, T or X; covered general ECTS count for no single OTH programme
+    T_and_X: per reference and combination, the ECTS read as new up to 10 (bachelor) or 5 (master) are T, the ECTS above that are X; any lab row fails the candidate   # 10, 5 [C] as version 3
+    one_programme_share: a covered row counts in full for every OTH programme whose handbook lists one of its covering modules or a module with the same normalised title (same_module); timetable-confirmed only if all its covering modules are in the timetables
+    order_of_passes: first marking, then second and third reader, then consistency pass, then person check; each pass changes only the rows it handles and the facts it is asked about
+    second_and_third_reader: a blind second reader marks 10 rows per checked candidate drawn by numpy default_rng(42).choice from its rows sorted by reference and module order, every row of a candidate whose content-reading first-marking overlap on any reference lies within 0.10 of a band end, and every unsure row; sample_pass = at most 1 of the 10 drawn rows differs in any fact, else the second reader marks all rows of that candidate; a blind third reader settles every row on which the first two differ in any fact
+    final_facts: the first reader's where the second agreed or did not look; the third reader's where the two differed; per candidate, the share of covered and of N ECTS that rests on the first reader alone is reported
+    consistency: after the readers, rows of different handbooks whose titles are equal after title_merge.normalise go side by side to a fresh third reader, and so do rows that share a title content word (funnel_feasibility.title_words) where one has a topic and the other has none; the reader sets the facts of each, may keep them different with a written reason, and only on those rows
+
+  person_check:                # R8, fixes loophole 3; reverses feasibility_gate.hand_check.second_rater for these rows only (Soma, 27 Nov 2026)
+    candidates: every checked candidate whose overlap under strict x content on any reference is at least band min and whose one-programme share on that reference under the same reading is at most band max
+    rows: of these candidates, every row that is new (T or X) under strict x size, or lab; plus, so that the check can move rows in both directions, 5 rows per candidate drawn by numpy default_rng(42).choice from its rows that are covered or N under strict x size
+    who: Soma and the second team member, each alone, blind to the AI facts and to each other
+    sheet: English side by side, rows of all candidates shuffled, without the candidate's name, institution or programme title; each row shows the module (title, ECTS, text) and its own 5 nearest EMI modules and title matches (as for the AI readers), not the AI's citations; the persons have the whole EMI module and timetable lists and record the facts_per_row facts
+    settle: the two settle every difference together; a difference they cannot settle takes the cautious answer of the marking rules (unsure); their facts replace the AI facts on these rows; the agreement of AI and persons is reported in both directions
+    cut: at most 40 rows; if more qualify, the rows are drawn by numpy default_rng(42).choice with each candidate's share in proportion to its qualifying rows; a candidate with qualifying rows left AI-only is reported as "firm pending person check" or "conditional pending person check"
+
+  verdict:                     # R10 (Soma, 27 Nov 2026)
+    passes_a_combination: under that combination, on both references (or on the single one), overlap at least band min, one-programme share at most band max, no lab row, X = 0
+    firm_existing_resources_passer: passes strict x size
+    conditional_existing_resources_passer: not firm, and passes at least one of strict x content, lenient x size, lenient x content; the condition named is the first of these three it passes, with the ECTS that depend on it
+    existing_resources_set: wherever version 3 says "existing-resources passers" (ranking.ranked_sets, stress_tests.winner_of_a_spec, the stress spec existing_resources_N_cap) it means the firm passers if there is one, else the conditional passers, flagged
+    reported: for every checked candidate, pass or fail under each of the four combinations, with overlap, N, T, X and professor-equivalents (new ECTS x 0.8 / 36) under each
+
+  new_to_oth_scenarios:        # R9, fixes loophole 5
+    shares_from_oth: [model central (capture.net_new), 0.35, 0.50]
+    break_even: 1 - 15 / gross central, the share from OTH at which net-new falls below 15 (decision.rule.one)
+    use: reported for every band passer, and the decision sentence states the break-even; the ranking and decision.rule.one keep the model's share (version 3), stated as a limit
+
+  ranking_inputs:
+    fit: central = mean overlap of the references under lenient x content; low and high = the smallest and largest overlap over the references and the four combinations
+    feasibility: central = mean over the references of the N share of new ECTS under lenient x content; low and high = the smallest and largest over the references and the four combinations
+
+  decision_first: by decision.rule among the firm existing-resources passers; if there is none, the decision says "no firm passer" and applies the same rule to the conditional passers, a winner reported as "conditional recommendation" with its condition; the decision sentence gives new ECTS and professor-equivalents under strict x size and under the combination the candidate passes; decision.second unchanged
+
+  supervisor:
+    asked_in_writing: the 40-80 % reading (lower end on all EMI modules, upper end on one programme), uncapped new modules by current lecturers, two EMI modules covering one
+    if_rejected: 40-80 % reading -> "both ends on all EMI modules" (stress overlap_reading) becomes primary; two modules covering one -> the size reading decides (firm passers only); uncapped N -> the N cap of 10 (bachelor) / 5 (master) ECTS becomes primary
+    late: an answer after the 4 Dec 2026 freeze is reported as a sensitivity only; without an answer the three are stated as assumptions
+
+  reporting: README, explainer and notebook state firm or conditional, the four combinations, the person-check status and every failed check

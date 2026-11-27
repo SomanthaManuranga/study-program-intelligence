@@ -565,3 +565,23 @@ only. How "report both" turns into a verdict is proposed in rules version 4 for 
 Reason: the re-check found that only two plausible EMI bachelors were checked, that N against "new" followed which EMI
 modules the sheet showed, and that several deciding rules were set after earlier results.
 Decided by: Soma.
+
+## 2026-11-27: Funnel rules version 4
+Decision: Rules version 4 (`docs/funnel_rules_v4.md`, block `version_4` in `configs/funnel.yaml`, marking rules
+version 4 in `docs/funnel_marking_rules.md`), committed before any step runs again: R1 one candidate per normalised
+programme title (Informatik types merged by rule, applied to every unit); R2 module check for every EMI-field
+candidate among the first 20 of the gate order, no cap per level (automation and robotics, order 38, stays outside
+unless the merged order moves it up); R3-R7 readers record facts (covered, topic, parent field, lab, general) with the
+whole EMI module and timetable lists, verdicts computed under a strict and a lenient reading and under a content and
+a size reading, language and general-studies modules apart, one set of facts per topic; R8 Soma and the second team
+member check up to 40 rows that carry T, X or lab; R9 "new to OTH" as scenarios (model share, 35 %, 50 %) with the
+break-even share; R10 a firm existing-resources passer passes under the strict and the size reading, a conditional
+passer only under the lenient or the content reading, and the recommendation comes from firm passers only.
+Reason: the fixes of the independent re-check (`docs/funnel_recheck.md`).
+Decided by: Soma ("Approve as drafted"); drafted by Claude.
+Addendum (same day): a fresh review of the approved draft found 26 places where the wording was loose or
+contradicted version 3; the binding text in `configs/funnel.yaml` was made exact before any rerun. Four points go a
+little beyond wording and are shown to Soma with the commit: a candidate is dropped as a whole only if a title-matched
+unit is at OTH; the person check also takes 5 covered or N rows per candidate and shows no AI citations; if the
+supervisor rejects a point, the stricter reading becomes primary; the "new to OTH" scenarios do not change the
+ranking or the decision. Listed in `docs/funnel_rules_v4.md`.

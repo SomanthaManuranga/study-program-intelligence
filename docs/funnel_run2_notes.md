@@ -805,3 +805,13 @@ grid ignored the reference reading (win shares corrected); the Informatik types 
 **Scorecard.** D1 pass. D2 pass. D3 pass (test recomputes every input). D4 pass. D5 pass. D6 pass. D7 pass (17.9
 million specs counted; test guards the cache). D8 pass after round 1. D9 partly: 18 of 25 spec values run, 7 named as
 not run with the reason. D10 pass. D11 pass after the final fact check and its wording corrections. D12 pass.
+
+## Re-check and rules version 4
+
+An independent re-check after Step 8 (`docs/funnel_recheck.md`) confirmed the arithmetic and the band pass of an
+Informatik bachelor (49-68 % on two handbooks), but not that it is the only programme EMI can run, that it attracts
+the most students, the 26 new to OTH, or freedom from bias. The result is therefore preliminary. Soma approved rules
+version 4 (`docs/funnel_rules_v4.md`; `version_4` in `configs/funnel.yaml`; marking rules version 4) before any rerun:
+merged Informatik candidate, module check for every EMI-field candidate in the first 20, facts-based marking with
+strict / lenient and content / size readings, a person check of the deciding rows, "new to OTH" as scenarios, and a
+recommendation only from firm passers. The criteria for the rerun (V1-V9) are in `docs/funnel_rules_v4.md`.
