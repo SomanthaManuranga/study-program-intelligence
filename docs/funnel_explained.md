@@ -18,7 +18,8 @@ checked the best-ranked ones against real course plans: can EMI teach it?
 **What we found.** We could check **6 candidates** in depth. **One of them passes**: a **general computer science
 (Informatik) bachelor**.
 
-- EMI already teaches about **two thirds** of what such a programme contains (68 %).
+- EMI already teaches about **half to two thirds** of what such a programme contains (49 % to 68 %, depending on how
+  doubtful modules are read).
 - About **18 to 20 first-year students a year** would be new to OTH (a rough estimate with a wide range).
 - It needs at least about **52 credits of new teaching**, almost all of it written and taught by EMI's current
   lecturers. That is roughly the yearly teaching of **at least 1.2 professors**. **No new lab** is needed.
@@ -26,6 +27,12 @@ checked the best-ranked ones against real course plans: can EMI teach it?
 **How sure are we.** The answer holds under the rules **our team** set while reading the supervisor's conditions.
 The supervisor has **not yet confirmed** those rules, and under some stricter readings no candidate passes at all
 (part 4). Many strong-looking candidates further down the list were never checked. We say all of this openly.
+
+**This is a preliminary result.** An independent re-check (part 6) found the arithmetic correct, but also that the
+module judgements were not made to one consistent standard, and that several deciding rules were set after earlier
+results were known. What is established: an Informatik bachelor fits the 40-80 % band. What is not: that it is the
+only programme EMI can run, that it attracts the most students, and the exact number of students new to OTH. A
+corrected rerun is planned.
 
 ![How 19,872 programmes became one recommendation](figures/funnel_explained.png){ width=100% }
 
@@ -282,8 +289,50 @@ with about 18 to 20 new first-years.
 - Some evidence counts more than once in the score (competition, trend and overlap).
 - Whether EMI's lecturers have **time** for the new teaching cannot be known from public data.
 - Seven planned stress tests were not run, because they would mean redoing earlier steps.
+- Three of our own quality checks were **not passed**: the reading check of the programme groups (22 of 30, bar 24),
+  how often a group holds one kind of programme (70 %, bar 80 %), and the check of whether "similar" offers really are the same kind of programme (hence the competition counts above).
 
-# 6. Where to find everything
+# 6. The independent re-check and what happens next
+
+After Step 8, three fresh reviewers checked the result tables, the module marking and the history of rule changes
+(`docs/funnel_recheck.md`).
+
+**What they confirmed.** Every number they recomputed matches. An Informatik bachelor overlaps with EMI's teaching
+by roughly 49 % to 68 %, inside the 40-80 % band, on two handbooks.
+
+**What they found.**
+
+- **Only two plausible EMI bachelors were compared** (computer science and cybersecurity). The stopping rule
+  skipped plain Informatik, electrical engineering, data science and software engineering; automation and robotics
+  and Angewandte Informatik lie further down the list and were never reached.
+- **The marking was not consistent.** The module "Penetration Testing" was judged "a current lecturer can write it"
+  in one cybersecurity handbook and "new to EMI" in the other. The verdicts followed which EMI modules the reader was
+  shown next to a module. Under one consistent standard, computer science and cybersecurity
+  either both pass or both fail.
+- **Language courses** (11.5 credits, 10 of them Spanish) count as "new modules by current lecturers" for computer science.
+- **Rules changed after results.** About 24 rules or procedures changed after a result was seen; 9 helped or
+  protected the result, none hurt it. The person checks planned at the start were dropped on the way.
+- **"Computer Science" is a grouping artefact.** Measured as the stable Informatik group, competition is much
+  higher, the job and student numbers are lower, and in the comparison cybersecurity comes first; measured as the
+  other large Informatik group, Informatik stays first.
+- **"New to OTH" is not measured.** Measured as general Informatik, if more than about 28 % to 35 % of the students came from OTH's existing
+  programmes (Medieninformatik, Industrie-4.0-Informatik, the AI bachelors), fewer than 15 would be new.
+
+**What happens next** (each step with the team's OK, rules written first):
+
+1. Correct this document, the README and the progress notebook (done).
+2. Write rules version 4: check **every** EMI-field candidate near the top, not 3 per level; mark every module so
+   that a strict and a lenient reading can both be computed and show the result under each; Soma and the second
+   team member check the 20-30 module rows that decide outside teaching.
+3. Treat the Informatik groups as one candidate and measure competition, jobs and students on it.
+4. Report "new to OTH" as scenarios with the break-even share, and the overlap as a range.
+5. Rerun the module check and the decision.
+6. Ask the supervisor to confirm in writing the 40-80 % reading, uncapped new modules by current lecturers, and the
+   rule that two EMI modules may cover one.
+
+Whatever does not finish by the analysis freeze on 4 Dec 2026 is stated as a limit in the report.
+
+# 7. Where to find everything
 
 | What | Where |
 |---|---|

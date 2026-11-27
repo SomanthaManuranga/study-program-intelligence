@@ -166,6 +166,11 @@ grid and has no passer in the other 78 %.
 A second, public handbook (TH Ingolstadt Informatik, check only) confirms it: 66.7 %, 55 ECTS new teaching, 1.22
 professor-equivalents. Cybersecurity bachelor is second for information only (needs new expertise). The gate walk now applies the minimum
 cohort (architecture master took the slot of communication master).
+Re-check after Step 8 (docs/funnel_recheck.md): the arithmetic holds, but "only candidate", "most students", "26 new to OTH"
+and "without bias" are not established; README, explainer and notebook say so and call the result preliminary. Soma
+decided for the rerun: module check for every EMI-field candidate in the first 20, strict and lenient marking both
+reported, Soma and the teammate check the rows that decide outside teaching. Rules version 4 are drafted in
+docs/funnel_rules_v4.md and wait for Soma's OK; nothing is rerun before that.
 Read data/interim/funnel2_screen.csv with float_precision="round_trip". The label CSVs in docs/ are tracked
 (exceptions in .gitignore).
 

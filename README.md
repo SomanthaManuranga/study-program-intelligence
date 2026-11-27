@@ -9,27 +9,33 @@ the shortlisted options with a multi-criteria decision analysis under uncertaint
 
 ---
 
-## Result (data-driven funnel; final after the 4 Dec 2026 data freeze)
+## Result (data-driven funnel; preliminary, under re-check before the 4 Dec 2026 data freeze)
 
-**Recommendation: a general computer science / Informatik bachelor at the EMI faculty**, the only candidate the
-faculty can run with its existing staff and labs (the supervisor's binding condition).
+**Preliminary finding: a general computer science / Informatik bachelor at the EMI faculty fits the supervisor's
+40-80 % overlap band with existing staff and labs.** An independent re-check of Steps 0-8 found that the
+arithmetic is correct but that four further statements are not established: that it is the *only* programme EMI can
+run, that it attracts the *most* students, how many first-years would be new to OTH, and that the result was reached
+without bias. A rerun with corrected rules (version 4) is planned; until then this is a working result.
 
-| | Result |
-|---|---|
-| How it was found | All ~20,000 German bachelor and master offers grouped into 824 programme types by content; screened for "not at OTH" and "in EMI's field"; demand, job ads and first-years new to OTH measured for every remaining candidate; the best candidates checked module by module against real handbooks |
-| Share EMI already teaches | **68 %** of a real computer science bachelor (OTH Regensburg's International Computer Science); the supervisor's band is 40-80 % |
-| New teaching needed | **52.5 ECTS**: 50.5 as new modules by current lecturers, 2 by a teaching assignment; about **1.2 professor-equivalents** a year; **no new lab** |
-| First-years new to OTH | about **26 a year** (central; range 7-88); measured on the larger Informatik groups 18-20 |
-| Ranking | first among the candidates in the band in 82 % of 10,000 Monte Carlo draws (cybersecurity second, for information only: it needs outside teaching) |
-| Robustness | holds under the agreed rules; breaks with a cap on new modules by current lecturers, with at most 50 % from one existing programme, without counting two EMI modules together, or under the project's former strict rule (it holds in 22 % of 17.9 million stress combinations; the rest has no passer at all) |
+| | What holds | What is open |
+|---|---|---|
+| How it was found | All ~20,000 German bachelor and master offers grouped into 824 programme types by content; screened for "not at OTH" and "in EMI's field"; demand, job ads and first-years measured for every remaining candidate | Only 6 candidates were checked module by module, 2 of them plausible EMI bachelors (computer science, cybersecurity); plain Informatik, electrical engineering, data science and software engineering were skipped by a 3-per-level stopping rule; automation and robotics (gate order 38) and Angewandte Informatik (40) were never reached |
+| Share EMI already teaches | 49-68 % of a real computer science bachelor (OTH Regensburg's International Computer Science; 68 % as marked, 49 % after a reviewer's corrections), 66.7 % of a second one (TH Ingolstadt Informatik); the band is 40-80 % | The figure moved between marking passes (44, 46, 68 %); about 7 points come from language courses counted through EMI's foreign-language slot |
+| New teaching needed | about 52.5-55 ECTS, about 1.2 professor-equivalents a year; no new lab | Whether staff have the hours is unknown; 11.5 of the 50.5 ECTS of new modules are language courses (10 of them Spanish) |
+| Computer science vs. cybersecurity | | The split comes partly from inconsistent marking: the same topic (penetration testing) was judged teachable by current lecturers in one handbook and new in the other, following which EMI modules the sheet showed. Under one consistent standard both pass or neither does |
+| First-years new to OTH | about 18-20 a year measured as general Informatik (types 13 and 242); the small "Computer Science" group of the model gives 26 (range 7-88), a grouping artefact | The share taken from OTH's own programmes is modelled, not measured; measured as general Informatik, above 28-35 % taken from OTH the estimate falls below the bar of 15 |
+| Ranking | | A two-candidate comparison for information only; measured as the stable Informatik type 13, cybersecurity comes first; as type 242 Informatik stays first |
+| Robustness | holds under the agreed rules | Breaks with a cap on new modules by current lecturers, with at most 50 % from one existing programme, without counting two EMI modules together, or under the project's former strict rule. The "holds in 22 % of the stress grid" figure means 2 of 9 combinations of two factors, not a probability |
 
-**Second handbook:** a plain Informatik bachelor (TH Ingolstadt), marked the same way as a check, gives 66.7 % overlap,
-55 ECTS new teaching and 1.22 professor-equivalents, so the result does not hang on one programme.
+**Not passed:** the Step 2 reader check (22 of 30, bar 24), the Step 3 coherence check (70 %, bar 80 %), the Step 3
+similarity check (competition counts not validated), the Step 1b matching threshold (no reliable cut-off); 7 stress
+values were not run.
 
-**Main limitations:** the gate result rests on one public handbook (confirmed by the check above); every module judgement was made by AI readers
-with blind second and third readers, no person checked them; the rule that two EMI modules may cover one module was
-set after an earlier result was known; competition counts could not be validated; "new to OTH" uses OTH's nearest
-programme as a stand-in. Details and every number: `docs/funnel_run2_notes.md`; final tables in `results/`.
+**Rules and bias:** several decisive rules were set or changed after earlier results were known (the 40-80 % band
+without a cap on new modules, and "two EMI modules may cover one", set together with "content counts, not credits" 15 minutes after the notes recorded that if module size
+counted, no bachelor would pass). Every module judgement comes from one AI model; no person has checked them yet. The supervisor
+has not confirmed the band reading, the uncapped new modules or the two-module rule. The re-check: `docs/funnel_recheck.md`. Details:
+`docs/funnel_run2_notes.md`; tables in `results/`.
 
 **Earlier baseline (with new resources):** before the existing-resources condition, the analysis recommended a
 Cyber Security B.Sc. (needs ~2 new professorships and a lab). It is kept for comparison (tag
@@ -51,8 +57,9 @@ All options then go through the kill rules (`docs/kill_rules.md`) and a ranking 
 (Dirichlet-sampled weights, sampled score ranges, leave-one-criterion-out). Rules, weights and scoring scales
 were fixed before any ranking was run; every method decision is in `docs/decision_log.md`.
 
-**The data-driven funnel** (the current answer; rules fixed in advance in `configs/funnel.yaml`,
-`docs/funnel_preregistration.md`; one step at a time, each reviewed):
+**The data-driven funnel** (the current working answer; rules written before each step in `configs/funnel.yaml`,
+`docs/funnel_preregistration.md`, later changes recorded in `docs/decision_log.md`; one step at a time, each
+reviewed):
 
 | Step | Question | Code (`analysis/`) |
 |---|---|---|

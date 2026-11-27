@@ -551,3 +551,17 @@ Decided by: Claude, for Soma's review.
 Decision: (1) New modules written and taught by current lecturers count as existing resources: no new professorship, no new lab; the supervisor's own measure (at least 40 % overlap with existing lectures, "less costs too many resources") accepts up to 60 % new content. They are not capped; every result states them in ECTS and professor-equivalents as the condition the faculty has to accept (as settled on 14 Nov 2026). (2) One handbook is what the rule allows for the recommended candidate: the only other offer of its type at a university of applied sciences (Hochschule Hof) blocks scripts in robots.txt. As a check with public data only, the recommendation is also tested against one plain Informatik bachelor handbook (type 242, the largest Informatik type; the offer nearest its centre whose handbook is public and complete), marked the same way in its own files (`funnel_feasibility sens ...`, `docs/funnel_module_marks_sens_*.csv`). The check is reported next to the result and never changes the gate or the decision. (3) The 7 stress values of Step 8b that need Steps 2, 3 or 5 again are not run; they are stated as a limit.
 Reason: Soma: "we have to go with our existing resources only and use only publicly available data; you can decide which approach is better".
 Decided by: Soma (frame), Claude (approach).
+
+## 2026-11-27: Independent re-check of the funnel; three decisions for the rerun
+Decision: The funnel result (Steps 0-8) is preliminary. README, `docs/funnel_explained.md` and the progress notebook
+state what an independent re-check (tables, module marking, rule history) confirmed and what it did not. For the
+rerun (rules version 4, written and shown to Soma before any rerun): (1) gate breadth: every EMI-field candidate among
+the top 20 of the gate order gets a module check, instead of at most 3 per level; (2) marking standard: every module
+row is marked so that a strict reading (a current lecturer can write it only when an EMI module or timetable subject
+on that topic is shown) and a lenient reading (EMI teaches the parent field) can both be computed, and each candidate
+is reported as passing under strict, lenient, both or neither; (3) person check: Soma and the second team member check
+the 20-30 rows that decide outside teaching (T/X), reversing the earlier decision against hand checks for these rows
+only. How "report both" turns into a verdict is proposed in rules version 4 for Soma to confirm.
+Reason: the re-check found that only two plausible EMI bachelors were checked, that N against "new" followed which EMI
+modules the sheet showed, and that several deciding rules were set after earlier results.
+Decided by: Soma.
