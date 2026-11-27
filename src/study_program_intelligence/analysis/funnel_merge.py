@@ -47,7 +47,7 @@ def normaliser(rule: dict):
     remove = set(rule["remove"])
 
     def norm(title: str) -> str:
-        t = re.sub(r"\([^)]*\)", " ", clean_title(title)).lower()
+        t = re.sub(r"\([^)]*\)|\[[^\]]*\]", " ", clean_title(title)).lower()      # round and square brackets
         for a, b in (("ä", "ae"), ("ö", "oe"), ("ü", "ue"), ("ß", "ss")):
             t = t.replace(a, b)
         t = re.sub(r"elektro-\s*und\b", "elektrotechnik und", t)
@@ -98,6 +98,7 @@ def candidates(units: pd.DataFrame) -> pd.DataFrame:
             how[free.index] = ("version-3 group" if not titles else                                              # no title group in the version-3 group
                                "partner of two or more title groups" if len(titles) > 1 else                    # E3
                                "partner of a title group dropped at OTH")                                       # E5
+        cand = cand.groupby(cand).transform(lambda g: int(x.loc[g.index, "type"].min()))      # E7: the lowest type number of all its units
         out.loc[x.index, "candidate"] = cand
         out.loc[x.index, "how"] = how
         out.loc[x.index, "dropped whole"] = matched & x["main"].isin(titles_at_oth)
@@ -215,7 +216,8 @@ def main() -> None:
                "gross low": gross * LOW, "gross central": gross, "gross high": gross * HIGH,
                "net_new": net, "net-new low": gross * LOW * (1 - res["pessimistic"]["a"]), "net-new high": gross * HIGH * (1 - res["optimistic"]["a"]),
                **{f"net-new at {x:.0%} from OTH": gross * (1 - x) for x in shares},
-               "break-even share from OTH": 1 - 15 / gross if gross > 0 else np.nan,
+               "break-even share from OTH": max(0.0, 1 - 15 / gross) if gross > 0 else np.nan,
+               "net-new below 15 even with none from OTH": bool(gross < 15),
                "kept": res["central"]["c"], "below the minimum cohort": bool(gross < cohort),
                "mixed": bool(any(coh.get(c, False) for c in types)), "mixed types": "; ".join(str(c) for c in types if coh.get(c, False))}
         if len(types) == 1:                                                              # M3: one unit -> the version-3 values
