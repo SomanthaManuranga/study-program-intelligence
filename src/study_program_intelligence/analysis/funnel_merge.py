@@ -197,10 +197,10 @@ def main() -> None:
         an = anchor_of(w, table, lv)
         gross = an["anchor"] * scale
         net = gross * (1 - res["central"]["a"])
-        name = part.loc[part["how"] == "title", "main"].iloc[0] if (part["how"] == "title").any() else str(t.at[int(cid), "central titles"])
+        name = part.loc[part["how"] == "title", "main"].iloc[0] if (part["how"] == "title").any() else str(t.at[types[0], "central titles"])   # E7, from its surviving units
         row = {"candidate": int(cid), "level": lv, "name": name, "types": "; ".join(str(c) for c in types), "units": len(types),
                "how": "; ".join(sorted(set(part["how"]))), "assigned offers": len(a), "institutions": int(a["institution"].nunique()),
-               "central titles": str(t.at[int(cid), "central titles"]),
+               "central titles": str(t.at[types[0], "central titles"]),
                "pool": "; ".join(f"{k}:{v:.2f}" for k, v in sorted(w.items(), key=lambda kv: (-kv[1], kv[0]))[:4]),
                "trend": slope, "trend validated": bool(bt["validated"]), "MASE naive": bt["naive"], "MASE drift": bt["drift"],
                "similar offers": g["similar offers"], "similar in Bavaria": g["similar in Bavaria"], "similar within 100 km": g["similar within 100 km"],
