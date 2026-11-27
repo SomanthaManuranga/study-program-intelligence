@@ -1425,5 +1425,1378 @@
   "asked_utc": "2026-11-16T12:48:57+00:00",
   "status": "error",
   "error": "HTTP 404"
+ },
+ {
+  "id": "227_bachelor_try1_page",
+  "url": "https://www.hs-coburg.de/en/study/bachelor-degree-programs/bachelors-degree-programs-in-engineering-and-computer-science/engineering-physics/",
+  "asked_utc": "2026-11-27T19:16:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try1_page.html",
+  "bytes": 521093,
+  "sha256": "936ab93ac8aa4244b94bb5378302943688c8c7201900d68fca9b833ecdd47b97",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "342_bachelor_try1_page",
+  "url": "https://www.berlin-international.de/en/programs/data-science-and-business",
+  "asked_utc": "2026-11-27T19:16:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try1_page.html",
+  "bytes": 105892,
+  "sha256": "f97739a13e4db2505bd968cb273a70b39a10621035d1416718df79e10dc80966",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "160_bachelor_try1_page",
+  "url": "https://www.rh-koeln.de/studium/bachelor/elektrotechnik/",
+  "asked_utc": "2026-11-27T19:16:10+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "227_bachelor_try1_mhb",
+  "url": "https://www.hs-coburg.de/wp-content/uploads/2025/06/250602_EP_MHB.pdf",
+  "asked_utc": "2026-11-27T19:16:15+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try1_mhb.pdf",
+  "bytes": 2712626,
+  "sha256": "31b48540d4e9dee93671bd8f99a3e612fe2d7d5808664b097647502f3e12e397",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try1_svp",
+  "url": "https://rh-koeln.de/hubfs/Dokumente/Studienverlaufsplaene/Bachelor/rh-svp-Elektrotechnik.pdf",
+  "asked_utc": "2026-11-27T19:16:19+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try1_svp.pdf",
+  "bytes": 564057,
+  "sha256": "c372f1a3a729985c95ab5727b010b22a0d62cb932a977856c13d416266d241cc",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "227_bachelor_try1_spo",
+  "url": "https://www.hs-coburg.de/wp-content/uploads/2025/05/SPO-B-EP.pdf",
+  "asked_utc": "2026-11-27T19:16:24+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "283_bachelor_try1_page",
+  "url": "https://www.h-ka.de/data-science-bachelor",
+  "asked_utc": "2026-11-27T19:16:34+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "342_bachelor_try1_studyplan",
+  "url": "https://whitecliffe.de/wp-content/uploads/2026/06/FoB_BA_DSB_Study_Plan.pdf",
+  "asked_utc": "2026-11-27T19:16:37+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try1_studyplan.pdf",
+  "bytes": 186086,
+  "sha256": "fad1147fa091a6b2ff8be72a2bcc30abe86acad823ac9eb98c0380b9750016be",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "662_master_try1_page",
+  "url": "https://www.mediadesign.de/de/master/design-management-ma",
+  "asked_utc": "2026-11-27T19:16:37+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_page.html",
+  "bytes": 172923,
+  "sha256": "d552aa7e169bb5dcc9545c62ced3490b02a2c559d91463e7cc6e413da6aafe0e",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "227_bachelor_try1_spo1",
+  "url": "https://www.hs-coburg.de/wp-content/uploads/2025/10/SPO-B-EP_1.pdf",
+  "asked_utc": "2026-11-27T19:16:38+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try1_spo1.pdf",
+  "bytes": 371368,
+  "sha256": "32afffcad952bfa72bc8b3e41cd795ce5ab71082009a2cde0ea840336dd98ae4",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try1_home",
+  "url": "https://www.rh-koeln.de/",
+  "asked_utc": "2026-11-27T19:16:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try1_home.html",
+  "bytes": 367796,
+  "sha256": "b9f58457d9421e30fb6aa0782e039ba4ad1eb2d9e67e50e8d0050f41c1a1c5bc",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "283_bachelor_try1_home",
+  "url": "https://www.h-ka.de/",
+  "asked_utc": "2026-11-27T19:16:46+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try1_home.html",
+  "bytes": 255632,
+  "sha256": "2dcabd6e79f277b43c6fba57ad5e584c050001cda62f1eb932501559348b5f46",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "662_master_try1_page_en",
+  "url": "https://www.mediadesign.de/en/master/design-management-ma",
+  "asked_utc": "2026-11-27T19:16:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_page_en.html",
+  "bytes": 140945,
+  "sha256": "078c9a78ba4309c443332376c78ca6780feb2b5bac99d6e86725e5e9deef6f40",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "160_bachelor_try1_prog",
+  "url": "https://rh-koeln.de/studium/bachelor-elektrotechnik",
+  "asked_utc": "2026-11-27T19:16:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try1_prog.html",
+  "bytes": 298150,
+  "sha256": "71b5fd37b03a5ad7745d19bb6970becbc30fca3fba0c347b44489de509cd7189",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "283_bachelor_try1_list",
+  "url": "https://www.h-ka.de/studieren/studienangebot/bachelor",
+  "asked_utc": "2026-11-27T19:16:58+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try1_list.html",
+  "bytes": 455803,
+  "sha256": "3baa01e5fa15ab665da2b8ad74ba407e7b96453b0b0ce27f54c66c19c72ca439",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "662_master_try1_downloads",
+  "url": "https://www.mediadesign.de/de/downloads",
+  "asked_utc": "2026-11-27T19:17:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_downloads.html",
+  "bytes": 78779,
+  "sha256": "5574f28fa984e9c5ffea61a3b26859b926df05b584795e68a2270572eccc5817",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "342_bachelor_try1_academics",
+  "url": "https://whitecliffe.de/en/about-us/our-academics/",
+  "asked_utc": "2026-11-27T19:17:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try1_academics.html",
+  "bytes": 103630,
+  "sha256": "442e7b8496c159af7faa753418fa5696c06e516ed3828f32ec510a1bf7f79e51",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "283_bachelor_try1_page2",
+  "url": "https://www.h-ka.de/dscb",
+  "asked_utc": "2026-11-27T19:17:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try1_page2.html",
+  "bytes": 248618,
+  "sha256": "de358580e6090b77a4d0d7e38effbc836070fca7457d15a3d4782164e2ab57f7",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "662_master_try1_spo",
+  "url": "https://www.mediadesign.de/sites/default/files/2023-03/SPO%20DM%20MA_ENG_1.pdf",
+  "asked_utc": "2026-11-27T19:17:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_spo.pdf",
+  "bytes": 584849,
+  "sha256": "233c2220f0f5c522ed8da5097e20df1e1fe796e4170a6f2c8c76fa2b3288a628",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "342_bachelor_try1_page_de",
+  "url": "https://whitecliffe.de/studiengaenge/bachelor-in-betriebswirtschaftslehre-datenwissenschaft-und-wirtschaft/",
+  "asked_utc": "2026-11-27T19:17:25+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try1_page_de.html",
+  "bytes": 121420,
+  "sha256": "f4be04d8de240efaaf64fe89f105774ffdde5020859cdc83f742f7d5316d2d4a",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "662_master_try1_plan",
+  "url": "https://www.mediadesign.de/sites/default/files/2022-07/Studienverlaufsgrafik_DM-MA_2022.pdf",
+  "asked_utc": "2026-11-27T19:17:30+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_plan.pdf",
+  "bytes": 171240,
+  "sha256": "bf4337543feb51eb90b67555b2f405e7a428dac4ae60b689b612e594005a785b",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try2_fb",
+  "url": "https://www.hs-niederrhein.de/elektrotechnik-informatik/",
+  "asked_utc": "2026-11-27T19:17:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try2_fb.html",
+  "bytes": 90918,
+  "sha256": "7ade04e3d23104ae16da3942af92ba9cb322d701c0b7e3b54495329ca85776ba",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try1_handbook",
+  "url": "https://www.h-ka.de/fileadmin/Hochschule_Karlsruhe_HKA/Bilder_FK-IWI/_Dokumente/Modulhandbuecher/20260512_HKA_IWI_DSCB_Modulhandbuch_V10_web.pdf",
+  "asked_utc": "2026-11-27T19:17:34+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try1_handbook.pdf",
+  "bytes": 1119868,
+  "sha256": "2d9b8849899b46504f5e1bfabb7fe185d3a6def49c7a6083613b0eccb2be4662",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try2_studium",
+  "url": "https://www.hs-niederrhein.de/ingenieurwissenschaften-informatik/studium-studienstart/",
+  "asked_utc": "2026-11-27T19:17:48+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try2_studium.html",
+  "bytes": 120408,
+  "sha256": "f674e48e7d6fea44d1b196aa50855123a676d1b779b52e107faaf368acf77e01",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "662_master_try1_downloads_en",
+  "url": "https://www.mediadesign.de/en/downloads",
+  "asked_utc": "2026-11-27T19:17:55+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/662_master_try1_downloads_en.html",
+  "bytes": 79456,
+  "sha256": "89297b25e1050604292d4402c691c6ed9720e92a1abc7363fad79c795e6e36f9",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "342_bachelor_try2_page",
+  "url": "https://www.thws.de/en/studies-at-thws/studying-at-thws/degree-programmes/business-analytics/",
+  "asked_utc": "2026-11-27T19:18:00+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try2_page.html",
+  "bytes": 124672,
+  "sha256": "4ef302d9d10c81ff436ae809482fba74a9ca1afcffe71670483582cfff1bb9d4",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try2_mhb",
+  "url": "https://www.hs-niederrhein.de/fileadmin/dateien/FB03/Studierende/Bachelor-Studiengaenge/PO2019/modul_Bachelor.pdf",
+  "asked_utc": "2026-11-27T19:18:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try2_mhb.pdf",
+  "bytes": 376092,
+  "sha256": "ebe540958fde802dc1244fbf077de683ecc6dbcea15ddf15077c7392e73bf6fc",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try2_plan",
+  "url": "https://www.hs-niederrhein.de/fileadmin/dateien/FB03/Studierende/Bachelor-Studiengaenge/PO2019/Studien-PruefungsplanBET.pdf",
+  "asked_utc": "2026-11-27T19:18:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try2_plan.pdf",
+  "bytes": 253208,
+  "sha256": "b2bec0bd0a5f4c627f50ad8d74c2898a756a7bce7866953f90a82b498296db2d",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try2_wf",
+  "url": "https://www.hs-niederrhein.de/fileadmin/dateien/FB03/Studierende/Bachelor-Studiengaenge/PO2019/Bachelor_Wahlfach_Katalog.pdf",
+  "asked_utc": "2026-11-27T19:18:18+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try2_wf.pdf",
+  "bytes": 79651,
+  "sha256": "dc3b8c10ed7cddb3cc178a499b98c77fdf1f554787c16019abd251fa1a82febc",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "227_bachelor_try2_page",
+  "url": "https://www.oth-regensburg.de/studiengang/scientific-computing-studieren",
+  "asked_utc": "2026-11-27T19:18:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try2_page.html",
+  "bytes": 106920,
+  "sha256": "8de8619ce26edf0299075f6eb46c190342e4e9fc1d802d7a5bb89f98332b12d0",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_page",
+  "url": "https://www.whz.de/studium/studieninteressenten/studienangebot/kommunikation-und-soziale-medien-bachelor/",
+  "asked_utc": "2026-11-27T19:18:27+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_page.html",
+  "bytes": 391266,
+  "sha256": "d367364471f5aea9a6c217850cc4da43b4b393734ef9658101fe43db3e74fcd5",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "342_bachelor_try2_page_de",
+  "url": "https://www.thws.de/studium-an-der-thws/studieren/studiengaenge/business-analytics/",
+  "asked_utc": "2026-11-27T19:18:29+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try2_page_de.html",
+  "bytes": 155190,
+  "sha256": "5efe463a40e5869636731331f0072037c903513a077677cc6acbec632f875162",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "227_bachelor_try2_mhb",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/scientific_computing_bachelor/Modulhandbuch_SC.pdf",
+  "asked_utc": "2026-11-27T19:18:34+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try2_mhb.pdf",
+  "bytes": 1587144,
+  "sha256": "e7091295fd4203919c2e6c6c03a6def27797c55e1775c1dfe94bb4b4a34512b9",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_modulux",
+  "url": "https://modulux.whz.de/app-modulux/frontend/studiengaenge/",
+  "asked_utc": "2026-11-27T19:18:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_modulux.html",
+  "bytes": 8896,
+  "sha256": "0faa3a1fe5b8e39c64b88ac679d4e4b22aa259f250cc4ae9ede6782755c8bda7",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "227_bachelor_try2_plan",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/scientific_computing_bachelor/Studienplan_SC.pdf",
+  "asked_utc": "2026-11-27T19:18:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try2_plan.pdf",
+  "bytes": 158969,
+  "sha256": "a5210d3e14c8185582e87fe7e5674440d5009b67b81fb29b2f0e0a0c3df247ff",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "342_bachelor_try2_faculty",
+  "url": "https://business.thws.de/studierende/studiengaenge/bachelor-business-analytics/",
+  "asked_utc": "2026-11-27T19:18:45+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_try2_faculty.html",
+  "bytes": 55825,
+  "sha256": "94e00ce21fb63073c5c665146d8f97396e1c081ef3a6b36819e8a23f06485aaa",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "227_bachelor_try2_verlauf",
+  "url": "https://www.oth-regensburg.de/fileadmin/Bereiche/Fakultaet_IM/studium/scientific_computing_bachelor/Studienverlaufsplan_SC.pdf",
+  "asked_utc": "2026-11-27T19:18:52+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/227_bachelor_try2_verlauf.pdf",
+  "bytes": 114579,
+  "sha256": "471f3c27eaac695ca70f3396255bd0efd9468f2e7e519234c7a543296176be54",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_stglist",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/studiengaenge/?type=526&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5Bcustom%5D=%28m_stg.fk_m_zustand_id+%3E%3D+100+AND+m_stg.fk_m_zustand_id+%3C%3D+150%29&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5BfilterType%5D=custom&tx_ezqueries_ezqueriesplugin%5Bheader%5D=Studieng%C3%A4nge+der+Wests%C3%A4chsischen+Hochschule+Zwickau&tx_ezqueries_ezqueriesplugin%5Baction%5D=list&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken",
+  "asked_utc": "2026-11-27T19:18:58+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_stglist.html",
+  "bytes": 74371,
+  "sha256": "41da2f58b65a07859ee51e1f68197f6ff6ceaa51ea1dc27cab5bdb5059c6b33d",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "342_bachelor_b_handbook",
+  "url": "https://business.thws.de/fileadmin/5._Studierende/Studieng%C3%A4nge/SPO_Studienplan_Ausbildung/BBA/0_WS2026_27_Modulhandbuch_BBA_final.pdf",
+  "asked_utc": "2026-11-27T19:19:04+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_b_handbook.pdf",
+  "bytes": 1287988,
+  "sha256": "a5658a7d883a9bd28477549b3bfa5d15726eb2cdb0aecee4a2993e78d4e900d8",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "342_bachelor_b_studyplan",
+  "url": "https://business.thws.de/fileadmin/5._Studierende/Studieng%C3%A4nge/SPO_Studienplan_Ausbildung/BBA/Studienplan_BBA_WS2026_27.pdf",
+  "asked_utc": "2026-11-27T19:19:13+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_b_studyplan.pdf",
+  "bytes": 406369,
+  "sha256": "eea22cac2fac53b424057ebbdc69a57fe31b86422e834cf3bbb33e7351248944",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_stgall",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/studiengaenge/?type=526&tx_ezqueries_ezqueriesplugin%5BstartRecord%5D=0&tx_ezqueries_ezqueriesplugin%5BrecordsPerPage%5D=0&tx_ezqueries_ezqueriesplugin%5Border%5D=ASC&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5Bcustom%5D=%28m_stg.fk_m_zustand_id+%3E%3D+100+AND+m_stg.fk_m_zustand_id+%3C%3D+150%29&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5BfilterType%5D=custom&tx_ezqueries_ezqueriesplugin%5Baction%5D=list&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken",
+  "asked_utc": "2026-11-27T19:19:17+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_stgall.html",
+  "bytes": 2158847,
+  "sha256": "41fc4a2e91e06e6ba265c2a0e567f88a02ccf5e0fb625326bc1f3e43275dc334",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "342_bachelor_a_handbook",
+  "url": "https://business.thws.de/fileadmin/5._Studierende/Studieng%C3%A4nge/SPO_Studienplan_Ausbildung/BBA/0_WS2026_27_Modulhandbuch_BBA_final.pdf",
+  "asked_utc": "2026-11-27T19:19:38+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/342_bachelor_a_handbook.pdf",
+  "bytes": 1287988,
+  "sha256": "a5658a7d883a9bd28477549b3bfa5d15726eb2cdb0aecee4a2993e78d4e900d8",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_bso",
+  "url": "https://modulux.whz.de/fileadmin/user_upload/WIW/B/KSM/BSO_KSM_2026.pdf",
+  "asked_utc": "2026-11-27T19:19:39+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_bso.pdf",
+  "bytes": 248866,
+  "sha256": "565c00bce0e1d63c6244fbbe70351ad2620338c8c58ac12dc4dbc154b752b456",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_stg1136",
+  "url": "https://modulux.whz.de/modulux/studiengang/1136",
+  "asked_utc": "2026-11-27T19:19:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_stg1136.html",
+  "bytes": 7015,
+  "sha256": "889be6c2d5318877a0d94a16ae1fe15d17eb5362283e5e60fd5548dc017e1e89",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try2_page",
+  "url": "https://h-da.de/studium/studienangebot/studiengaenge/mathematik-und-naturwissenschaften/data-science-und-kuenstliche-intelligenz-bsc",
+  "asked_utc": "2026-11-27T19:20:03+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "308_bachelor_try1_stgdetail",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/studiengaenge/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_stg.m_stg_id%5D=1136&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5Bm_stg.m_stg_id%5D=1136&tx_ezqueries_ezqueriesplugin%5Bfilters%5D%5BfilterType%5D=strict&tx_ezqueries_ezqueriesplugin%5Border%5D=ASC&tx_ezqueries_ezqueriesplugin%5Bheader%5D=Kommunikation+und+Soziale+Medien&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken",
+  "asked_utc": "2026-11-27T19:20:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_stgdetail.html",
+  "bytes": 147835,
+  "sha256": "7dc256e1b4185db842a0fc9f4577d5cc1db3635203cd9d78d7c03a7e79a0548f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try2_page2",
+  "url": "https://h-da.de/studium/studienangebot/studiengaenge/data-science-und-kuenstliche-intelligenz-bsc",
+  "asked_utc": "2026-11-27T19:20:23+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "283_bachelor_try2_handbook",
+  "url": "https://h-da.de/fileadmin/h_da/Hochschule/Presse_Publikationen/Hochschulanzeiger/2026/FBMN_MHB_DSKI_BA_2025-04-22.pdf",
+  "asked_utc": "2026-11-27T19:20:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try2_handbook.pdf",
+  "bytes": 517330,
+  "sha256": "ec4349c8edbf976e54d6f7071807c81008648d851ab29304cfc0c3beed6bb479",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try3_etos",
+  "url": "https://fh-aachen.de/en/studies/degree-programmes/electrical-engineering-with-orientation-semester-beng/programme-content",
+  "asked_utc": "2026-11-27T19:20:35+00:00",
+  "status": "error",
+  "error": "HTTP 403"
+ },
+ {
+  "id": "308_bachelor_try1_mod5470",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5470&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:20:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5470.html",
+  "bytes": 23002,
+  "sha256": "1a3cbb77478a619d1a545abab661689845de00b2654b34f1e378fcdd3ff5c500",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try3_home",
+  "url": "https://www.fh-aachen.de/",
+  "asked_utc": "2026-11-27T19:20:48+00:00",
+  "status": "error",
+  "error": "HTTP 403"
+ },
+ {
+  "id": "308_bachelor_try1_mod5463",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5463&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:20:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5463.html",
+  "bytes": 21123,
+  "sha256": "f9d190ca951ec9d4b8e0e87a53e73ad4cb9bfb67651cdaf0f21d37cdf81b4175",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "425_master_try1_page",
+  "url": "https://www.fom.de/studiengaenge/it-management/master-studiengaenge/ki-und-business-analytics.html",
+  "asked_utc": "2026-11-27T19:21:05+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "308_bachelor_try1_mod5440",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5440&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5440.html",
+  "bytes": 20515,
+  "sha256": "1befa9325e537670ca9789f9f72eef795e0f99c693cfeed878de8937e0d1625b",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try4_home",
+  "url": "https://www.hof-university.de/",
+  "asked_utc": "2026-11-27T19:21:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try4_home.html",
+  "bytes": 78966,
+  "sha256": "f713ac0725bd52e644ed4601b76ff9c25208a8fc6d8b0ad2b5307d1a65a1eea7",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5449",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5449&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:15+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5449.html",
+  "bytes": 21320,
+  "sha256": "d785eb9d716b35f00772877bf425c152719820a51222a4159623ef946cd5e46d",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try4_list",
+  "url": "https://www.hof-university.de/studium/studiengaenge-und-weiterbildungs-programme.html",
+  "asked_utc": "2026-11-27T19:21:20+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try4_list.html",
+  "bytes": 59898,
+  "sha256": "12f092e071c499056ca6c003542798d4b16282170f47b748fa282cec561ce603",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try2_page",
+  "url": "https://www.ostfalia.de/k/bachelor/medienkommunikation",
+  "asked_utc": "2026-11-27T19:21:20+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try2_page.html",
+  "bytes": 258698,
+  "sha256": "64f7d7980e48a5279b693d18b9ce88fbf1279785176857c2f40bca6b138f8ad8",
+  "content_type": "text/html;charset=utf-8"
+ },
+ {
+  "id": "425_master_try1_home",
+  "url": "https://www.fom.de/",
+  "asked_utc": "2026-11-27T19:21:22+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/425_master_try1_home.html",
+  "bytes": 241436,
+  "sha256": "6b0b4588f6d2f81c107a3d9c0cefd07a0c69fcb8eabaad1143869f1005e9285f",
+  "content_type": "text/html;charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5451",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5451&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:23+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5451.html",
+  "bytes": 20120,
+  "sha256": "dffab3fbe9551626508a14774daf167a8573819760eb14c4c517399983069b6f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5452",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5452&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5452.html",
+  "bytes": 22099,
+  "sha256": "be434985d0d0a7cd67ebe87536d253f895a83a3764105522aac755d22bb8ff60",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "425_master_try1_area",
+  "url": "https://www.fom.de/de/hochschulbereiche/it-management.html",
+  "asked_utc": "2026-11-27T19:21:36+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/425_master_try1_area.html",
+  "bytes": 196753,
+  "sha256": "5611d4a616dc97576e9f19b812a201b15eee8103462516b315cf436728eed260",
+  "content_type": "text/html;charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try2_home",
+  "url": "https://h-da.de/",
+  "asked_utc": "2026-11-27T19:21:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try2_home.html",
+  "bytes": 208770,
+  "sha256": "097c396545cb1712c2630aeec79f0843b8b5fc6728b1399c3f3dc17b6dbaac82",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5471",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5471&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5471.html",
+  "bytes": 25487,
+  "sha256": "78166d10efb9b3a187821b9a9b045db5652949e2590b78a445f22ae6dcdbfb81",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try2_mhb",
+  "url": "https://www.ostfalia.de/fileadmin/user_upload/Fakultaeten/k/MK/Dateien/Modulkatalog_MK.pdf",
+  "asked_utc": "2026-11-27T19:21:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try2_mhb.pdf",
+  "bytes": 384384,
+  "sha256": "52fd253daaa37ef09a61a6c06cdc4874e8b327342cff9b4aa01bfd3484da603d",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try4_gen",
+  "url": "https://www.hof-university.de/studium/studiengaenge-und-weiterbildungs-programme/studiengangsgenerator2.html",
+  "asked_utc": "2026-11-27T19:21:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try4_gen.html",
+  "bytes": 54920,
+  "sha256": "abc8503c73b8f01d4aea8e66a8331ded68de166f075cf73557727cd817abdf6d",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try1_page",
+  "url": "https://www.uni-bremen.de/studium/orientieren-bewerben/studienangebot/dbs/study/systems-engineering-bachelor",
+  "asked_utc": "2026-11-27T19:21:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try1_page.html",
+  "bytes": 266605,
+  "sha256": "cc2596e3924db62bd7100994f4efecc194b6f23f2ae6bfcc74dc59040a32454f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5464",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5464&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:21:52+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5464.html",
+  "bytes": 21331,
+  "sha256": "849f5e136004e322a9c193d476479bcc2bb2af98de8b91270ba7ee183116ff95",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try2_curr",
+  "url": "https://www.ostfalia.de/fileadmin/user_upload/Fakultaeten/k/MK/Dateien/Curriculum_MK.pdf",
+  "asked_utc": "2026-11-27T19:21:53+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try2_curr.pdf",
+  "bytes": 198655,
+  "sha256": "e9ba0e19b97526895a344a567ed033f510b31531621f49fd8c83bfe7a347b2aa",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "425_master_try1_page",
+  "url": "https://www.fom.de/de/hochschulbereiche/it-management/ki-and-business-analytics-ma.html",
+  "asked_utc": "2026-11-27T19:21:54+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/425_master_try1_page.html",
+  "bytes": 315875,
+  "sha256": "eddc01b0843bd40e127ad9a6a6b5dd16fa6f585c215a0c5b6c113d6e51ca40b9",
+  "content_type": "text/html;charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try2_list",
+  "url": "https://h-da.de/studium/studienangebot/studiengaenge/naturwissenschaft-und-mathematik",
+  "asked_utc": "2026-11-27T19:21:56+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try2_list.html",
+  "bytes": 201595,
+  "sha256": "edf9dae2959c7e149ea66ad9e9e103c56aeef810f20743fc6a29f6c4ecaff9a1",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try4_fak",
+  "url": "https://www.hof-university.de/ueber-die-hochschule/fakultaeten/ingenieurwissenschaften-und-angewandtes-design.html",
+  "asked_utc": "2026-11-27T19:21:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try4_fak.html",
+  "bytes": 112030,
+  "sha256": "c26229af076734adb1850031e8d609d38d6dcc8a860450253dc84ca421e081cc",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5441",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5441&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5441.html",
+  "bytes": 19882,
+  "sha256": "680151966225c1089a125d9ad22fc71233252b9aaca412d60fe6f3983603c470",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "283_bachelor_try2_page3",
+  "url": "https://h-da.de/studium/studienangebot/studiengaenge/naturwissenschaft-und-mathematik/data-science-und-kuenstliche-intelligenz-bsc",
+  "asked_utc": "2026-11-27T19:22:09+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try2_page3.html",
+  "bytes": 183301,
+  "sha256": "1ba5e94e444cc6d3e60db1c93194302e6c639d4e8f4c23fd5b35e44444e69ed7",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try4_page",
+  "url": "https://www.hof-university.de/studium/studiengaenge-und-weiterbildungs-programme/studiengaenge/ingenieurwissenschaften-beng/studienrichtung-elektrotechnik.html",
+  "asked_utc": "2026-11-27T19:22:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try4_page.html",
+  "bytes": 79534,
+  "sha256": "33e8788532484d498c4ea4217602fe62c6c6c020eff20e58e568aad54b25ce93",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5450",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5450&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5450.html",
+  "bytes": 22843,
+  "sha256": "4e5a7eab02158bb7e82a49f527859c2f68e3841ec882794034af649c3be1076f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5453",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5453&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:20+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5453.html",
+  "bytes": 20342,
+  "sha256": "5367ac37a47d704df227c6d2ca16e55fd4dbdf0a44522bdcb3fb2ab52a588d32",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try4_mod",
+  "url": "https://module.hof-university.de/",
+  "asked_utc": "2026-11-27T19:22:24+00:00",
+  "status": "skipped_robots"
+ },
+ {
+  "id": "283_bachelor_try2_bbpo",
+  "url": "https://h-da.de/fileadmin/h_da/Hochschule/Presse_Publikationen/Hochschulanzeiger/2026/FBMN_BBPO_DSKI_BA_2025-04-22.pdf",
+  "asked_utc": "2026-11-27T19:22:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/283_bachelor_try2_bbpo.pdf",
+  "bytes": 400268,
+  "sha256": "0c747923834320ccf9b004201c2719cfed539daeddd37030a2c41dcfe53035ce",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_mod5033",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5033&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:29+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5033.html",
+  "bytes": 20469,
+  "sha256": "cead977c8c9fe8bd718805d76e2027d7661811a72c6601afae393b859593e8de",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try1_mhbshare",
+  "url": "https://nc.uni-bremen.de/index.php/s/kqZK4nFfeNZFceL",
+  "asked_utc": "2026-11-27T19:22:37+00:00",
+  "status": "skipped_robots"
+ },
+ {
+  "id": "308_bachelor_try1_mod4199",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=4199&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:39+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod4199.html",
+  "bytes": 27517,
+  "sha256": "a5dc64a484ace80bf11b41afad5853696bc420babf33b3530cbaa43aa88ffac4",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try5_page",
+  "url": "https://www.fh-aachen.de/studium/studiengaenge/elektrotechnik-energietechnik-beng",
+  "asked_utc": "2026-11-27T19:22:43+00:00",
+  "status": "error",
+  "error": "HTTP 403"
+ },
+ {
+  "id": "308_bachelor_try1_mod5444",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5444&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:22:52+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5444.html",
+  "bytes": 20072,
+  "sha256": "de914ba805295f924b347e45fd6868584d06c0835f674a2d4ec6cf154a35c41b",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try1_fb4page",
+  "url": "https://www.produktionstechnik.uni-bremen.de/studium_ba_se_home_e.html",
+  "asked_utc": "2026-11-27T19:22:58+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try1_fb4page.html",
+  "bytes": 147834,
+  "sha256": "09560a152497664fbc3b9b0845b327a44a08e8c4443ef619a4bf377a8256f928",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5448",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5448&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5448.html",
+  "bytes": 24201,
+  "sha256": "64dd8498ea45d88f74131c2ca638d951d7e9fdccba6b0e7de0a4f721d4e3a865",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_page",
+  "url": "https://www.hsbi.de/elektrotechnik-bachelor",
+  "asked_utc": "2026-11-27T19:23:06+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "308_bachelor_try1_mod5454",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5454&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5454.html",
+  "bytes": 21286,
+  "sha256": "f2022c844ad3df06e989416d070e0d7205ec8de74fa0597633edf30f82d0ee5e",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_mhb",
+  "url": "https://www.hsbi.de/multimedia/Hochschulverwaltung/Dezernat+II/StudServ/Pr%C3%BCfungsangelegenheiten/Studiengangs_Downloads/Elektrotechnik+_+ELE/Studiengangspr%C3%BCfungsordnung+und+Modulhandbuch+Bachelor+Elektrotechnik+Version+12+%28Fassung+2024%29.pdf?download=1",
+  "asked_utc": "2026-11-27T19:23:15+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "308_bachelor_try1_mod3822",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3822&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:19+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3822.html",
+  "bytes": 22007,
+  "sha256": "9a4b5bed26e7059fd51144688d59cd003633c8648f1daf279e0dbbc360e80cc2",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try1_emhb",
+  "url": "https://www.uni-bremen.de/studium/lehre-studium/studiengaenge-gestalten-1/elektronische-modulhandbuecher/modulhandbucharchiv/nach-modulhandbuechern-suchen",
+  "asked_utc": "2026-11-27T19:23:21+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try1_emhb.html",
+  "bytes": 216360,
+  "sha256": "1c7c7948429e61091be95b90f7856f26464f5caba899d25df6e49fef6445432c",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3418",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3418&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:28+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3418.html",
+  "bytes": 21124,
+  "sha256": "483f28f4cb67c4252815ea4ba361a34868e403d5f2fadf2c96dffe0bcddcb717",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_list",
+  "url": "https://www.hsbi.de/studium/studienangebot",
+  "asked_utc": "2026-11-27T19:23:34+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "308_bachelor_try1_mod3486",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3486&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:38+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3486.html",
+  "bytes": 21684,
+  "sha256": "87229b55118056d1e269cdb919db7d23a7000016235b8e9cc3876bb3b69da97f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_home",
+  "url": "https://www.hsbi.de/",
+  "asked_utc": "2026-11-27T19:23:45+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_home.html",
+  "bytes": 377143,
+  "sha256": "320606cc3bdb919b6f9c67694cc19eda9189f11f4cd5ac2d2eea7b10471fc38d",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "279_bachelor_try2_page",
+  "url": "https://www.uni-saarland.de/studium/angebot/bachelor/systems-engineering.html",
+  "asked_utc": "2026-11-27T19:23:47+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try2_page.html",
+  "bytes": 295050,
+  "sha256": "6c3ff101ffa3277403006fedd6d54b3d19b14ad306ff54edceca39eed852d121",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5476",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5476&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:48+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5476.html",
+  "bytes": 23710,
+  "sha256": "3ed8a5fbdc0cfc2844bc1fc6437b3b5a50bbba69c939fa6b368ea126c530bf50",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_sg",
+  "url": "https://www.hsbi.de/studiengaenge",
+  "asked_utc": "2026-11-27T19:23:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_sg.html",
+  "bytes": 373194,
+  "sha256": "d636573aff11bc884b6d2c0a8b1603257d2c95a21e5452e1dbc30543aa23b5e4",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5477",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5477&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:23:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5477.html",
+  "bytes": 25024,
+  "sha256": "b07aeea6589d2c98299f7c70ac63235519a6a72b91318c742fcdd3f7c6f26b8a",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try2_mhb",
+  "url": "https://www.uni-saarland.de/fileadmin/upload/studium/angebot/mhb_ba/MHB_2026/MHB_BASE26.pdf",
+  "asked_utc": "2026-11-27T19:24:01+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try2_mhb.pdf",
+  "bytes": 1601088,
+  "sha256": "a8910737ea2df4acfb78830d135d48e8f258a77a90588b9723ffb256c0375b9d",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_mod5335",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5335&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5335.html",
+  "bytes": 20742,
+  "sha256": "57ae9b62e5271fd80d96fe545cf10eabca1ea8eb32c30e52136659aed9d65925",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_prog",
+  "url": "https://www.hsbi.de/studiengaenge/elektrotechnik-bachelor",
+  "asked_utc": "2026-11-27T19:24:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_prog.html",
+  "bytes": 352890,
+  "sha256": "0ef9a50b885b2a196d57485d89fd2c36d6f8f92d5af57b3da922be5f7f4f3e88",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "279_bachelor_try2_plan",
+  "url": "https://www.uni-saarland.de/fileadmin/upload/studium/angebot/studplan/2024_2025_2026/Studpl_BASE26.pdf",
+  "asked_utc": "2026-11-27T19:24:10+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try2_plan.pdf",
+  "bytes": 322201,
+  "sha256": "d41fb85c504c247a768468a16656ea9c9ffc7c67d24c129e2ae1ea501dd5e1d7",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "13_bachelor_try2_page",
+  "url": "https://www.hft-stuttgart.de/informatik/bachelor-informatik",
+  "asked_utc": "2026-11-27T19:24:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/13_bachelor_try2_page.html",
+  "bytes": 220942,
+  "sha256": "f4cf0ae17736314e5bdec1f2bab6eb08b0369b455e739586bf1ba1de95aa52f5",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5503",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5503&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:15+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5503.html",
+  "bytes": 20179,
+  "sha256": "c6b22c1f54e6236df011921baece84e8a9ad3579277f56fde623cbbd057bb4f9",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "279_bachelor_try2_sto",
+  "url": "https://www.uni-saarland.de/fileadmin/upload/verwaltung/fundstellen/Ausbildungs_Pruefungs_Studienordn/StudO_PO_2014_15_16/DB15_517.pdf",
+  "asked_utc": "2026-11-27T19:24:19+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/279_bachelor_try2_sto.pdf",
+  "bytes": 124140,
+  "sha256": "7a5dd7ef0ad0ae2dc55e3ae3c17e8aab3cf743f180879c2e00c8910df13e679d",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try6_dl",
+  "url": "https://www.hsbi.de/studiengaenge/downloads/elektrotechnik-bachelor",
+  "asked_utc": "2026-11-27T19:24:23+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_dl.html",
+  "bytes": 348389,
+  "sha256": "1acaa9cc95e53241425c7d54d3afeb750b46d1b32b00a88532a88a0ebebb290c",
+  "content_type": "text/html; charset=UTF-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3641",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3641&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3641.html",
+  "bytes": 22660,
+  "sha256": "b96c4864b659ef3fdbb5ca4152dbf89a46498f6e74839d191a52251d6da771f1",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "13_bachelor_try2_handbook",
+  "url": "https://www.hft-stuttgart.de/fileadmin/Dateien/Informatik/Bachelor-Informatik/SPO202-Modulhandbuch_Bachelor_Informatik-WS2122.pdf",
+  "asked_utc": "2026-11-27T19:24:27+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/13_bachelor_try2_handbook.pdf",
+  "bytes": 2218411,
+  "sha256": "fb12223b80ce6094f05898bb42c770b75e6ab7cdd0d16595f86e5e22fb09641e",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_mod5465",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5465&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:35+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5465.html",
+  "bytes": 21974,
+  "sha256": "b454f8a498c9c816eb1a9702ac71d0cbd4f2e100650a9dff3cd01f0d5b79f698",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "13_bachelor_try2_so",
+  "url": "https://www.hft-stuttgart.de/fileadmin/Dateien/Informatik/Bachelor-Informatik/20250328_Studienordnung_Bachelor_Informatik.pdf",
+  "asked_utc": "2026-11-27T19:24:36+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/13_bachelor_try2_so.pdf",
+  "bytes": 391667,
+  "sha256": "39186582b0bd9ba502733327abf50f6459c5f7e4226bbcd3b646008f068fc31d",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "160_bachelor_try6_mhb2025",
+  "url": "https://www.hsbi.de/media/hochschulverwaltung/dezernat-ii/studserv/pruefungsangelegenheiten/studiengangs-downloads/elektrotechnik-ele/studiengangspruefungsordnung-und-modulhandbuch-bachelor-elektrotechnik-version-2025.pdf?called_by=fh_neu&download=1&original_page=1114&original_site=fh_neu&view_image=1",
+  "asked_utc": "2026-11-27T19:24:43+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_mhb2025.pdf",
+  "bytes": 892418,
+  "sha256": "ffdb1e39c13a4407655885566ccc7840dffc070a2491a2f499420fb698a8913d",
+  "content_type": "application/pdf; charset=UTF-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5238",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5238&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5238.html",
+  "bytes": 26186,
+  "sha256": "e7d60f7e97e49111d3f9d77a8b54f84987936ed42208c4838896ece1066d90f9",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "160_bachelor_try6_mhb12",
+  "url": "https://www.hsbi.de/media/hochschulverwaltung/dezernat-ii/studserv/pruefungsangelegenheiten/studiengangs-downloads/elektrotechnik-ele/studiengangspruefungsordnung-und-modulhandbuch-bachelor-elektrotechnik-version-12-(fassung-2026).pdf?called_by=fh_neu&download=1&original_page=1114&original_site=fh_neu&view_image=1",
+  "asked_utc": "2026-11-27T19:24:52+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/160_bachelor_try6_mhb12.pdf",
+  "bytes": 592845,
+  "sha256": "3b8bc59b525fadcf291a3ac0429512d07c42586779e392b9cc85831e7b2b0ed2",
+  "content_type": "application/pdf; charset=UTF-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5445",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5445&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:24:57+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5445.html",
+  "bytes": 20560,
+  "sha256": "cef45591a46de2b18051282512d8d58603cf2066eba47ceec08b83dc9e6f86ed",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5446",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5446&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:05+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5446.html",
+  "bytes": 22362,
+  "sha256": "2948abbd917a37dfcbb2fac2a9fafe2550d17b40c70d3b4f20ffe3f8d824bb26",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5447",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5447&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:14+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5447.html",
+  "bytes": 20884,
+  "sha256": "9cbb683bf057219572656b0b4c625d62205173356e1e910328aa661e24a51189",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5442",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5442&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:23+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5442.html",
+  "bytes": 21932,
+  "sha256": "aa9572ac5f0948218d547b516e3e6c41d7ee7e012695e37566e46ca2b38bd4f6",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5443",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5443&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:31+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5443.html",
+  "bytes": 22155,
+  "sha256": "b95bc818c00cf94db2188386163ae2b7b580306dfaab2f339e9d2ba2864c3cd6",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5472",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5472&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:40+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5472.html",
+  "bytes": 22351,
+  "sha256": "c52ec295656afc9a0364fcdbbacf1064a543cc5286173d1881d53baf247a47bb",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5473",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5473&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:49+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5473.html",
+  "bytes": 24838,
+  "sha256": "0675d97a39da41bedd2e1e27f857479d79b4e8d0e76a6a76a50d49c96cad1fec",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5474",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5474&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:25:58+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5474.html",
+  "bytes": 24274,
+  "sha256": "15ccf675af14048c403da19344c0da17805419bec4522b2f2da094b9892e0a6d",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5490",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5490&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:07+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5490.html",
+  "bytes": 20271,
+  "sha256": "4f1d6b66864143a925a98ab77ada49c4b2f20b2b2d496d82593009bde1e02fd8",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5491",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5491&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:15+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5491.html",
+  "bytes": 20397,
+  "sha256": "edee04986c4e5a1a27d8255d380c20a240dc6d725fb4ee8b85b9feb08662e907",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5492",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5492&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5492.html",
+  "bytes": 20917,
+  "sha256": "40c7db8c32b632e9396982421516b35915cb90e313b5acd5cf0a2a7405d2d721",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3549",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3549&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:33+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3549.html",
+  "bytes": 21444,
+  "sha256": "7edb7b73e47fbf6432428c0fdba2dd0118635c33b78d322bf45d240d9958becb",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3550",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3550&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:44+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3550.html",
+  "bytes": 21444,
+  "sha256": "34d5e185be34447bbf31183dffe7846631e150e1623271fb00b62751828a0b74",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3624",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3624&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:26:54+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3624.html",
+  "bytes": 27110,
+  "sha256": "1054361ae80619010642ae24cf1abb8f1a628627219220bbd587f949ba92c837",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod4983",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=4983&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:06+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod4983.html",
+  "bytes": 21330,
+  "sha256": "a9f394e3a14682bfea7da05d9fc5c6f6839b5ecd23c40a572529e6bfa9ceacc8",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "736_master_try1_home",
+  "url": "https://www.htwsaar.de/",
+  "asked_utc": "2026-11-27T19:27:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_home.html",
+  "bytes": 80633,
+  "sha256": "735f91134fa4e889c866f769688ddf3406dc552d51048564354bd537b3994517",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5123",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5123&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:16+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5123.html",
+  "bytes": 21935,
+  "sha256": "593db0cccc3562eb32a4d5ff3a36d2b2c2c90558ad89a7b49b7277411bc21e6b",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5502",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5502&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:25+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5502.html",
+  "bytes": 19419,
+  "sha256": "d6a455d7baf8711f3a3c20d1eaa286cdbee09671ed0a1b1264c4b21ccb930109",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "736_master_try1_page",
+  "url": "https://www.dfhi-isfates.eu/de/studieninteressierte/master-studiengaenge/elektrotechnik/",
+  "asked_utc": "2026-11-27T19:27:26+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_page.html",
+  "bytes": 176076,
+  "sha256": "b493457b9065764582da8881787e0deeb1a21809de894e8f35b9df5da6a44f2f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod5555",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5555&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:34+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5555.html",
+  "bytes": 26481,
+  "sha256": "0ced66807cab603e9ff696817948ae19eacdee1bbc831c1ff3e272ba859cef5f",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "736_master_try1_mhb",
+  "url": "https://www.dfhi-isfates.eu/wp-content/uploads/2020/10/Modulkatalog-Elektrotechnik-Master_2020.pdf",
+  "asked_utc": "2026-11-27T19:27:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_mhb.pdf",
+  "bytes": 88870,
+  "sha256": "c2c17000ad50bcfb898d881468d5ffe327e96b4af14e0ec931519db3e65f293c",
+  "content_type": "application/pdf"
+ },
+ {
+  "id": "308_bachelor_try1_mod5640",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=5640&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:42+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod5640.html",
+  "bytes": 22991,
+  "sha256": "497027bbb6e0276da35e49c1ef4679ec2b8d22837f5577605e4e111144f8b028",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "308_bachelor_try1_mod3548",
+  "url": "https://modulux.whz.de/app-modulux/frontend/ausgabe/module/?type=526&tx_ezqueries_ezqueriesplugin%5BprimaryKeys%5D%5Bm_mod.m_mod_id%5D=3548&tx_ezqueries_ezqueriesplugin%5Baction%5D=detail&tx_ezqueries_ezqueriesplugin%5Bcontroller%5D=RecordManagement&tx_ezqueries_ezqueriesplugin%5Btoken%5D=dummyToken\r",
+  "asked_utc": "2026-11-27T19:27:51+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/308_bachelor_try1_mod3548.html",
+  "bytes": 22425,
+  "sha256": "35d496a574c52dc3ceeb7210a4f0f1209055212930e358bbb867013055adf8f8",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "736_master_try1_eitm",
+  "url": "https://www.htwsaar.de/studieren/studiengaenge/ingenieurwissenschaften/master/elektro-und-informationstechnik-msc",
+  "asked_utc": "2026-11-27T19:28:11+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_eitm.html",
+  "bytes": 90368,
+  "sha256": "651cd89f1ccae931122d50314a573480b97d8b0b09e7bc102f19a2d4bbde3d7c",
+  "content_type": "text/html; charset=utf-8"
+ },
+ {
+  "id": "736_master_try1_moduldb",
+  "url": "https://moduldb.htwsaar.de/cgi-bin/moduldb-index",
+  "asked_utc": "2026-11-27T19:28:24+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_moduldb.html",
+  "bytes": 644239,
+  "sha256": "23642ab9b4ea188a41de52485470ec21ecee40209aadf76d16c0c152d777b2c2",
+  "content_type": "text/html; charset=iso-8859-1"
+ },
+ {
+  "id": "736_master_try1_db",
+  "url": "https://moduldb.htwsaar.de/cgi-bin/moduldb-b?bkeys=dfmees&lang=de",
+  "asked_utc": "2026-11-27T19:28:41+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_db.html",
+  "bytes": 13586,
+  "sha256": "4c716f7fa135d10bbe3881526c0c769aab537b75689c809e9857dd6fcce0295b",
+  "content_type": "text/html; charset=iso-8859-1"
+ },
+ {
+  "id": "736_master_try1_stupo",
+  "url": "https://moduldb.htwsaar.de/moduldb/pdf/po/2018_dfhi_e_master_stupo.pdf",
+  "asked_utc": "2026-11-27T19:28:50+00:00",
+  "status": "error",
+  "error": "HTTP 404"
+ },
+ {
+  "id": "736_master_try1_mhbdb",
+  "url": "https://moduldb.htwsaar.de/moduldb/pdf/modulbook_dfmees_de.pdf?Jun-30-10-12-03-2025",
+  "asked_utc": "2026-11-27T19:29:05+00:00",
+  "status": "downloaded",
+  "file": "data/raw/funnel2_refs/736_master_try1_mhbdb.pdf",
+  "bytes": 410676,
+  "sha256": "19886ff0d4053d4a68516e800602ebc76a993335b1f76e81b5085e9dd5728732",
+  "content_type": "application/pdf"
  }
 ]

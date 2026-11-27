@@ -945,3 +945,33 @@ all other handbooks are collected under `docs/funnel4_collector_brief.md`, fixed
 and from comparing only two EMI bachelors. Measuring each field as one candidate (R1) put competition and demand on a
 fair footing; checking every EMI-field candidate in the first 20 (R2) removes the 3-per-level shortcut. Every rule
 change after a result is a recorded deviation with its reason, and the result without it is kept beside it.
+
+### R2: the reference handbooks
+
+Collected by five collectors under `docs/funnel4_collector_brief.md` (fixed before collection), every request
+through `funnel_refs fetch` (robots.txt, User-Agent, delay); all requests in `docs/funnel_refs_manifest.json`.
+Tables in `data/interim/funnel4_refs/` (git-ignored: they hold other universities' module texts).
+
+| Candidate (order) | Reference a | Reference b | Eligible |
+|---|---|---|---|
+| Cybersecurity bachelor (2) | TH Mannheim (version 3) | TH Deggendorf (version 3) | yes |
+| Business analytics and data science bachelor (3) | TH Würzburg-Schweinfurt, Business Analytics | none: the other offer publishes only a one-page study plan | yes, single reference |
+| Elektrotechnik bachelor (5) | Hochschule Niederrhein | Hochschule Bielefeld (full-time variant) | yes |
+| Business analytics and AI master (6) | none: FOM publishes no module handbook | - | no, named |
+| Elektrotechnik / renewable energy master (8) | htw saar: only the first year is described (50 %) | - | no, named |
+| Design management master (9) | none: Mediadesign publishes no handbook for it | - | no, named |
+| Systems engineering bachelor (10) | Universität des Saarlandes | none: Universität Bremen's handbook is blocked by robots.txt | yes, single reference |
+| Data science bachelor (18) | Hochschule Karlsruhe | Hochschule Darmstadt | yes |
+| Computational / software engineering bachelor (19) | Hochschule Coburg, Engineering Physics (87 % listed) | OTH Regensburg, Scientific Computing | yes |
+| Communication and social media bachelor (20) | WH Zwickau | Ostfalia | yes |
+| Informatik control (25) | TH Ingolstadt (version 3) | HFT Stuttgart | yes (control) |
+
+Every eligible table passes the completeness check (`funnel_feasibility.complete`, at least 80 % of the programme's
+ECTS) with no module lacking ECTS. Blocked or failed: Hochschule Hof (robots.txt), FH Aachen (HTTP 403 for every
+request), Universität Bremen (robots.txt). A scan for person names found lecturer names in brackets in one table
+(Saarland); they were removed before any marking. Module texts of the version-3 tables were cut at 1,500 characters,
+the new ones are full; the marking sheet cuts every text the same way.
+
+**Why this matters for the result.** Eight candidates can now be compared module by module under one standard,
+instead of two EMI bachelors before. Three masters cannot be checked because their only programme publishes no
+complete handbook; they are named, not replaced (rule `version_4.gate_breadth.no_handbook`).
